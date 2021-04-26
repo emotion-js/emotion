@@ -199,7 +199,7 @@ test('initializing another Emotion instance should not move already moved styles
   `)
 })
 
-test('global styles can be removed individually after rehydrating SSRed HTML', () => {
+test('global styles can be removed individually after rehydrating HTML SSRed with extractCriticalToChunks', () => {
   const { app, styles } = disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
@@ -263,7 +263,7 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
   `)
 
   resetAllModules()
-  const cache = createCache({ key: 'mui' })
+  const cache = createCache({ key: 'mui', speedy: true })
 
   ReactDOM.render(
     <CacheProvider value={cache}>
@@ -279,13 +279,13 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
   expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
     <head>
       <style
-        data-emotion="mui-global l6h"
+        data-emotion="mui-global"
         data-s=""
       >
         body{color:white;}
       </style>
       <style
-        data-emotion="mui-global 10q49a4"
+        data-emotion="mui-global"
         data-s=""
       >
         html{background:red;}
@@ -312,7 +312,7 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
   expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
     <head>
       <style
-        data-emotion="mui-global l6h"
+        data-emotion="mui-global"
         data-s=""
       >
         body{color:white;}
@@ -322,6 +322,276 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
         data-s=""
       >
         .mui-bjcoli{color:green;}.mui-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+})
+
+test('duplicated global styles can be removed safely after rehydrating HTML SSRed with extractCriticalToChunks', () => {
+  const { app, styles } = disableBrowserEnvTemporarily(() => {
+    resetAllModules()
+
+    let cache = createCache({ key: 'muii' })
+    let {
+      extractCriticalToChunks,
+      constructStyleTagsFromChunks
+    } = createEmotionServer(cache)
+
+    const rendered = ReactDOMServer.renderToString(
+      <CacheProvider value={cache}>
+        <Global styles={{ body: { color: 'white' } }} />
+        <Global styles={{ body: { color: 'white' } }} />
+        <div css={{ color: 'hotpink' }} />
+      </CacheProvider>
+    )
+    const extracted = extractCriticalToChunks(rendered)
+    return {
+      app: extracted.html,
+      styles: constructStyleTagsFromChunks(extracted)
+    }
+  })
+
+  safeQuerySelector('head').innerHTML = styles
+  safeQuerySelector('body').innerHTML = `<div id="root">${app}</div>`
+  expect(safeQuerySelector('html')).toMatchInlineSnapshot(`
+    <html>
+      <head>
+        <style
+          data-emotion="muii-global l6h"
+        >
+          body{color:white;}
+        </style>
+        <style
+          data-emotion="muii 1lrxbo5"
+        >
+          .muii-1lrxbo5{color:hotpink;}
+        </style>
+      </head>
+      <body>
+        <div
+          id="root"
+        >
+          <div
+            class="muii-1lrxbo5"
+          />
+        </div>
+      </body>
+    </html>
+  `)
+
+  resetAllModules()
+  const cache = createCache({ key: 'muii', speedy: true })
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <Global styles={{ body: { color: 'white' } }} />
+      <Global styles={{ body: { color: 'white' } }} />
+      <div css={{ color: 'hotpink' }} />
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  // it's expected that this contains 2 copies of the same global style
+  // where the second one is added during client hydration
+  // this makes them flushable individually
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="muii-global"
+        data-s=""
+      >
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="muii-global"
+        data-s=""
+      >
+        
+      </style>
+      <style
+        data-emotion="muii 1lrxbo5"
+        data-s=""
+      >
+        .muii-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <Global styles={{ body: { color: 'white' } }} />
+      <div css={{ color: 'hotpink' }} />
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  // this should still have a global style
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="muii-global"
+        data-s=""
+      >
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="muii 1lrxbo5"
+        data-s=""
+      >
+        .muii-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <div css={{ color: 'hotpink' }} />
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  // this should render without a crash
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="muii 1lrxbo5"
+        data-s=""
+      >
+        .muii-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+})
+
+test('duplicated global styles can be removed safely after rehydrating HTML SSRed with zero config approach', () => {
+  const { app } = disableBrowserEnvTemporarily(() => {
+    resetAllModules()
+
+    let cache = createCache({ key: 'globcop' })
+
+    const rendered = ReactDOMServer.renderToString(
+      <CacheProvider value={cache}>
+        <Global styles={{ body: { color: 'white' } }} />
+        <Global styles={{ body: { color: 'white' } }} />
+        <div css={{ color: 'hotpink' }} />
+      </CacheProvider>
+    )
+    return {
+      app: rendered
+    }
+  })
+
+  safeQuerySelector('head').innerHTML = ''
+  safeQuerySelector('body').innerHTML = `<div id="root">${app}</div>`
+
+  expect(safeQuerySelector('html')).toMatchInlineSnapshot(`
+    <html>
+      <head />
+      <body>
+        <div
+          id="root"
+        >
+          <style
+            data-emotion="globcop-global l6h"
+          >
+            body{color:white;}
+          </style>
+          <style
+            data-emotion="globcop-global l6h"
+          >
+            body{color:white;}
+          </style>
+          <style
+            data-emotion="globcop 1lrxbo5"
+          >
+            .globcop-1lrxbo5{color:hotpink;}
+          </style>
+          <div
+            class="globcop-1lrxbo5"
+          />
+        </div>
+      </body>
+    </html>
+  `)
+
+  resetAllModules()
+  const cache = createCache({ key: 'globcop', speedy: true })
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <Global styles={{ body: { color: 'white' } }} />
+      <Global styles={{ body: { color: 'white' } }} />
+      <div css={{ color: 'hotpink' }} />
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  // it's expected that this contains 2 copies of the same global style
+  // as both were rendered "inline" during SSR
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="globcop-global"
+        data-s=""
+      >
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="globcop-global"
+        data-s=""
+      >
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="globcop 1lrxbo5"
+        data-s=""
+      >
+        .globcop-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <Global styles={{ body: { color: 'white' } }} />
+      <div css={{ color: 'hotpink' }} />
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  // this should still have a global style
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="globcop-global"
+        data-s=""
+      >
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="globcop 1lrxbo5"
+        data-s=""
+      >
+        .globcop-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <div css={{ color: 'hotpink' }} />
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  // this should render without a crash
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="globcop 1lrxbo5"
+        data-s=""
+      >
+        .globcop-1lrxbo5{color:hotpink;}
       </style>
     </head>
   `)
