@@ -102,6 +102,7 @@ export let Global: React.AbstractComponent<
         sheet.before = cache.sheet.tags[0]
       }
       if (node !== null) {
+        // clear the hash so this node won't be recognizable as rehydratable by other <Global/>s
         node.setAttribute('data-emotion', key)
         sheet.hydrate([node])
       } else {
