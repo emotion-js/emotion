@@ -102,6 +102,7 @@ export let Global: React.AbstractComponent<
         sheet.before = cache.sheet.tags[0]
       }
       if (node !== null) {
+        node.setAttribute('data-emotion', key)
         sheet.hydrate([node])
       } else {
         if (serialized.next !== undefined) {
