@@ -48,7 +48,7 @@ const removeGlobalProp = prop => {
   return () => Object.defineProperty(global, prop, descriptor)
 }
 
-const disableBrowserEnvTemporarily = fn => {
+const disableBrowserEnvTemporarily = <T>(fn: () => T): T => {
   let restoreDocument = removeGlobalProp('document')
   let restoreWindow = removeGlobalProp('window')
   let restoreHTMLElement = removeGlobalProp('HTMLElement')
@@ -145,7 +145,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-1pdkrhd-App{color:hotpink;}
         </style>
       </div>
@@ -191,7 +191,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-1pdkrhd-App{color:hotpink;}
         </style>
       </div>
@@ -406,7 +406,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
         data-emotion="muii-global"
         data-s=""
       >
-        
+
       </style>
       <style
         data-emotion="muii 1lrxbo5"
