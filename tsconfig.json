@@ -9,6 +9,6 @@
     "strict": true,
     "target": "es5"
   },
-  "include": ["packages", "scripts", "site", "test"],
+  "include": ["packages", "scripts", "site", "test", "playgrounds"],
   "exclude": ["node_modules"]
 }
