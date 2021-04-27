@@ -25,6 +25,8 @@
     "release": "yarn build && changeset publish"
   },
   "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.22.0",
+    "**/@typescript-eslint/parser": "^4.22.0",
     "**/react": "16.14.0",
     "**/react-dom": "16.14.0",
     "**/browserslist": "^3.2.8",
@@ -49,7 +51,7 @@
   ],
   "eslintConfig": {
     "extends": [
-      "standard",
+      "standard-with-typescript",
       "standard-react",
       "prettier"
     ],
@@ -57,7 +59,10 @@
       "prettier",
       "@emotion"
     ],
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
     "rules": {
       "camelcase": 0,
       "no-template-curly-in-string": 0,
@@ -76,7 +81,9 @@
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 0,
       "standard/computed-property-even-spacing": 0,
-      "@emotion/pkg-renaming": 2
+      "@emotion/pkg-renaming": 2,
+      "no-use-before-define": 0,
+      "@typescript-eslint/no-use-before-define": 1
     },
     "env": {
       "browser": true
@@ -191,6 +198,8 @@
     "@types/jest": "^26.0.14",
     "@types/node": "^10.11.4",
     "@types/react": "^16.9.11",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
@@ -212,8 +221,8 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
+    "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
@@ -254,6 +263,7 @@
     "react-test-renderer": "16.8.6",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
+    "typescript": "^4.2.4",
     "unified": "^6.1.6",
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "3.3.2",

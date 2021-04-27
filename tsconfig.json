@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "noEmit": true,
+    "strict": true,
+    "target": "es5"
+  },
+  "include": ["packages"],
+  "exclude": ["node_modules"]
+}
