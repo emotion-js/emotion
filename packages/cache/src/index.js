@@ -54,7 +54,7 @@ let createCache = (options: Options): EmotionCache => {
 
   if (isBrowser && key === 'css') {
     const ssrStyles = document.querySelectorAll(
-      `style[data-emotion]:not([data-s])`
+      `body style[data-emotion]:not([data-s])`
     )
 
     // get SSRed styles out of the way of React's hydration
