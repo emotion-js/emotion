@@ -56,9 +56,18 @@ let createCache = (options: Options): EmotionCache => {
     const ssrStyles = document.querySelectorAll(
       `style[data-emotion]:not([data-s])`
     )
+
     // get SSRed styles out of the way of React's hydration
     // document.head is a safe place to move them to
     Array.prototype.forEach.call(ssrStyles, (node: HTMLStyleElement) => {
+      const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
+        ' '
+      )
+
+      if (attrib[0] !== key) {
+        return
+      }
+
       ;((document.head: any): HTMLHeadElement).appendChild(node)
       node.setAttribute('data-s', '')
     })

@@ -35,3 +35,21 @@ test('rehydrated styles to head can be flushed', () => {
   cache.sheet.flush()
   expect(document.documentElement).toMatchSnapshot()
 })
+
+test('Should only mount style elements matching the cache key', () => {
+  let css = `color:hotpink;`
+  let hash = hashString(css)
+
+  safeQuerySelector(
+    'body'
+  ).innerHTML = `<style data-emotion="emo ${hash}">.css-${hash}{${css}}</style>`
+
+  const cache = createCache({ key: 'css' })
+
+  expect(document.documentElement).toMatchSnapshot()
+  expect(cache.inserted).toEqual({})
+
+  const cache2 = createCache({ key: 'emo' })
+  expect(cache2.inserted).toEqual({ [hash]: true })
+  expect(document.documentElement).toMatchSnapshot()
+})
