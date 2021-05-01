@@ -80,10 +80,13 @@ export let Global: React.AbstractComponent<
     )
   }
 
-  // yes, i know this hook is used conditionally
+  // yes, i know these hooks are used conditionally
   // but it is based on a constant that will never change at runtime
   // it's effectively like having two implementations and switching them out
   // so it's not actually breaking anything
+
+  let sheetRef = React.useRef()
+
   React.useLayoutEffect(
     () => {
       const key = `${cache.key}-global`
@@ -94,6 +97,7 @@ export let Global: React.AbstractComponent<
         container: cache.sheet.container,
         speedy: cache.sheet.isSpeedy
       })
+      let rehydrating = false
       // $FlowFixMe
       let node: HTMLStyleElement | null = document.querySelector(
         `style[data-emotion="${key} ${serialized.name}"]`
@@ -102,20 +106,39 @@ export let Global: React.AbstractComponent<
         sheet.before = cache.sheet.tags[0]
       }
       if (node !== null) {
+        rehydrating = true
         // clear the hash so this node won't be recognizable as rehydratable by other <Global/>s
         node.setAttribute('data-emotion', key)
         sheet.hydrate([node])
-      } else {
-        if (serialized.next !== undefined) {
-          // insert keyframes
-          insertStyles(cache, serialized.next, true)
-        }
-        cache.insert(``, serialized, sheet, false)
       }
-
+      sheetRef.current = [sheet, rehydrating]
       return () => {
         sheet.flush()
       }
+    },
+    [cache]
+  )
+
+  React.useLayoutEffect(
+    () => {
+      let sheetRefCurrent = (sheetRef.current: any)
+      let [sheet, rehydrating] = sheetRefCurrent
+      if (rehydrating) {
+        sheetRefCurrent[1] = false
+        return
+      }
+      if (serialized.next !== undefined) {
+        // insert keyframes
+        insertStyles(cache, serialized.next, true)
+      }
+
+      if (sheet.tags.length) {
+        // if this doesn't exist then it will be null so the style element will be appended
+        let element = sheet.tags[sheet.tags.length - 1].nextElementSibling
+        sheet.before = ((element: any): Element | null)
+        sheet.flush()
+      }
+      cache.insert(``, serialized, sheet, false)
     },
     [cache, serialized.name]
   )
