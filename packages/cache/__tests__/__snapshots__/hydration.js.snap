@@ -1,85 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`In production mode Existing head styles should not be remounted 1`] = `
-<html>
-  <head>
-    <style
-      data-emotion="css-global"
-    />
-    <style>
-      .my-div{color: red;}
-    </style>
-    <style
-      data-emotion="css"
-    />
-    <style
-      data-emotion="css 1lrxbo5"
-      data-s=""
-    >
-      .css-1lrxbo5{color:hotpink;}
-    </style>
-  </head>
-  <body />
-</html>
-`;
-
-exports[`Should only mount style elements matching the cache key 1`] = `
-<html>
-  <head />
-  <body>
-    <style
-      data-emotion="emo 1lrxbo5"
-    >
-      .css-1lrxbo5{color:hotpink;}
-    </style>
-  </body>
-</html>
-`;
-
-exports[`Should only mount style elements matching the cache key 2`] = `
-<html>
-  <head>
-    <style
-      data-emotion="emo 1lrxbo5"
-    >
-      .css-1lrxbo5{color:hotpink;}
-    </style>
-  </head>
-  <body />
-</html>
-`;
-
-exports[`flushing rehydrated styles in the head only affect styles matching the cache key 1`] = `
-<html>
-  <head>
-    <style
-      data-emotion="css qweqwee"
-    >
-      .css-qweqwee{color:red;}
-    </style>
-    <style
-      data-emotion="emo 1lrxbo5"
-    >
-      .emo-1lrxbo5{color:hotpink;}
-    </style>
-  </head>
-  <body />
-</html>
-`;
-
-exports[`flushing rehydrated styles in the head only affect styles matching the cache key 2`] = `
-<html>
-  <head>
-    <style
-      data-emotion="css qweqwee"
-    >
-      .css-qweqwee{color:red;}
-    </style>
-  </head>
-  <body />
-</html>
-`;
-
 exports[`it works 1`] = `
 <html>
   <head>
@@ -99,6 +19,7 @@ exports[`rehydrated styles to head can be flushed 1`] = `
   <head>
     <style
       data-emotion="emo 1lrxbo5"
+      data-s=""
     >
       .emo-1lrxbo5{color:hotpink;}
     </style>
