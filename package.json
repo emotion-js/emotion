@@ -56,6 +56,8 @@
     "plugins": [
       "prettier",
       "@emotion",
+      "import",
+      "react",
       "@typescript-eslint"
     ],
     "parser": "@typescript-eslint/parser",
