@@ -51,8 +51,6 @@
   ],
   "eslintConfig": {
     "extends": [
-      "standard-with-typescript",
-      "standard-react",
       "prettier"
     ],
     "plugins": [
@@ -81,7 +79,6 @@
       "react/no-unused-prop-types": 0,
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 0,
-      "standard/computed-property-even-spacing": 0,
       "@emotion/pkg-renaming": 2,
       "no-use-before-define": 0,
       "@typescript-eslint/no-use-before-define": 1
@@ -223,15 +220,12 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "eslint-plugin-standard": "^4.0.1",
     "html-tag-names": "^1.1.2",
     "husky": "^3.0.9",
     "jest": "^26.4.2",
