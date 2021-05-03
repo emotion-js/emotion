@@ -32,7 +32,7 @@ const createExtractCriticalToChunks = (cache: EmotionCache) => (
         // regular css can be added in one style tag
         regularCssIds.push(id)
         // $FlowFixMe
-        regularCss += cache.inserted[id].toString()
+        regularCss += cache.inserted[id]
       } else {
         // each global styles require a new entry so it can be independently flushed
         o.styles.push({
