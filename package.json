@@ -57,7 +57,8 @@
     ],
     "plugins": [
       "prettier",
-      "@emotion"
+      "@emotion",
+      "@typescript-eslint"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
