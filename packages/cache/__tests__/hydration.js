@@ -37,8 +37,6 @@ test('rehydrated styles to head can be flushed', () => {
 })
 
 test('flushing rehydrated styles in the head only affect styles matching the cache key', () => {
-  const css = `color:hotpink;`
-  const hash = hashString(css)
   safeQuerySelector('head').innerHTML = [
     '<style data-emotion="emo 1lrxbo5">.emo-1lrxbo5{color:hotpink;}</style>',
     '<style data-emotion="css qweqwee">.css-qweqwee{color:red;}</style>'
@@ -85,28 +83,27 @@ test('flushing rehydrated styles in the head only affect styles matching the cac
   `)
 })
 
-test('Should only hydrate style elements matching the cache key', () => {
+test('should only hydrate style elements matching the cache key', () => {
   let css = `color:hotpink;`
   let hash = hashString(css)
 
   safeQuerySelector(
     'body'
-  ).innerHTML = `<style data-emotion="emo ${hash}">.css-${hash}{${css}}</style>`
+  ).innerHTML = `<style data-emotion="emo ${hash}">.emo-${hash}{${css}}</style>`
 
-  const cache = createCache({ key: 'css' })
+  const cache = createCache({ key: 'custom-key' })
 
   expect(cache.inserted).toEqual({})
   expect(document.documentElement).toMatchInlineSnapshot(`
     <html>
-      <head>
+      <head />
+      <body>
         <style
           data-emotion="emo 1lrxbo5"
-          data-s=""
         >
-          .css-1lrxbo5{color:hotpink;}
+          .emo-1lrxbo5{color:hotpink;}
         </style>
-      </head>
-      <body />
+      </body>
     </html>
   `)
 
@@ -118,9 +115,8 @@ test('Should only hydrate style elements matching the cache key', () => {
       <head>
         <style
           data-emotion="emo 1lrxbo5"
-          data-s=""
         >
-          .css-1lrxbo5{color:hotpink;}
+          .emo-1lrxbo5{color:hotpink;}
         </style>
       </head>
       <body />
@@ -138,6 +134,7 @@ describe('In production mode', () => {
   })
 
   test('Existing head styles from Emotion 10 should not be moved', () => {
+    // The style tags below simulate Emotion 10 (pre data-s attribute).
     safeQuerySelector('head').innerHTML = [
       '<style data-emotion="css-global"></style>',
       '<style data-emotion="css"></style>',
