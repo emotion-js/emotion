@@ -107,6 +107,20 @@
       },
       {
         "files": [
+          "**/packages/**/*.ts",
+          "**/packages/**/*.tsx"
+        ],
+        "rules": {
+          "prettier/prettier": [
+            "error",
+            {
+              "parser": "typescript"
+            }
+          ]
+        }
+      },
+      {
+        "files": [
           "**/__fixtures__/*"
         ],
         "rules": {
