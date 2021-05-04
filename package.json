@@ -51,7 +51,8 @@
   ],
   "eslintConfig": {
     "extends": [
-      "prettier"
+      "prettier",
+      "plugin:@typescript-eslint/eslint-recommended"
     ],
     "plugins": [
       "prettier",
@@ -79,9 +80,7 @@
       "react/no-unused-prop-types": 0,
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 0,
-      "@emotion/pkg-renaming": 2,
-      "no-use-before-define": 0,
-      "@typescript-eslint/no-use-before-define": 1
+      "@emotion/pkg-renaming": 2
     },
     "env": {
       "browser": true
