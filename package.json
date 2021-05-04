@@ -59,9 +59,6 @@
       "@typescript-eslint"
     ],
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
     "rules": {
       "camelcase": 0,
       "no-template-curly-in-string": 0,
@@ -98,6 +95,9 @@
           "**/packages/**/*.ts",
           "**/packages/**/*.tsx"
         ],
+        "parserOptions": {
+          "project": "./tsconfig.json"
+        },
         "rules": {
           "prettier/prettier": [
             "error",
