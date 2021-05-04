@@ -128,52 +128,60 @@ test('Should only hydrate style elements matching the cache key', () => {
   `)
 })
 
-describe('In production mode', () => {
-  beforeEach(() => {
-    process.env.NODE_ENV = 'production'
-  })
-
-  afterEach(() => {
-    process.env.NODE_ENV = 'test'
-  })
-
-  test('Existing head styles from Emotion 10 should not be moved', () => {
-    safeQuerySelector('head').innerHTML = [
-      '<style data-emotion="css-global"></style>',
-      '<style data-emotion="css"></style>',
-      '<style>.my-div{color: red;}</style>'
-    ].join('')
-
-    const css = `color:hotpink;`
-    const hash = hashString(css)
-
-    safeQuerySelector(
-      'body'
-    ).innerHTML = `<style data-emotion="css ${hash}">.css-${hash}{${css}}</style>`
-
-    createCache({ key: 'css' })
-
-    expect(document.documentElement).toMatchInlineSnapshot(`
-      <html>
-        <head>
+test('Existing client-side inserted styles from Emotion 10 should not be moved', () => {
+  // the nested nature isn't special, it's just meant to be a general "make sure they're not moved"
+  safeQuerySelector(
+    'body'
+  ).innerHTML = `<div><style data-emotion="css-global"></style><div><style data-emotion="css"></style></div></div>`
+  expect(document.documentElement).toMatchInlineSnapshot(`
+    <html>
+      <head />
+      <body>
+        <div>
           <style
             data-emotion="css-global"
           />
+          <div>
+            <style
+              data-emotion="css"
+            />
+          </div>
+        </div>
+      </body>
+    </html>
+  `)
+
+  const css = `color:hotpink;`
+  const hash = hashString(css)
+  let thing = document.createElement('div')
+  thing.innerHTML = `<style data-emotion="css ${hash}">.css-${hash}{${css}}</style>`
+  safeQuerySelector('body').appendChild(thing)
+  jest.resetModules()
+  require('@emotion/react')
+
+  expect(document.documentElement).toMatchInlineSnapshot(`
+    <html>
+      <head>
+        <style
+          data-emotion="css 1lrxbo5"
+          data-s=""
+        >
+          .css-1lrxbo5{color:hotpink;}
+        </style>
+      </head>
+      <body>
+        <div>
           <style
-            data-emotion="css"
+            data-emotion="css-global"
           />
-          <style>
-            .my-div{color: red;}
-          </style>
-          <style
-            data-emotion="css 1lrxbo5"
-            data-s=""
-          >
-            .css-1lrxbo5{color:hotpink;}
-          </style>
-        </head>
-        <body />
-      </html>
-    `)
-  })
+          <div>
+            <style
+              data-emotion="css"
+            />
+          </div>
+        </div>
+        <div />
+      </body>
+    </html>
+  `)
 })
