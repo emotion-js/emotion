@@ -56,7 +56,6 @@
     "plugins": [
       "prettier",
       "@emotion",
-      "import",
       "react",
       "@typescript-eslint"
     ],
@@ -69,7 +68,6 @@
       "no-template-curly-in-string": 0,
       "prefer-const": 0,
       "no-unused-vars": 0,
-      "import/no-duplicates": 0,
       "prettier/prettier": [
         "error",
         {
@@ -96,15 +94,6 @@
         ],
         "env": {
           "jest": true
-        }
-      },
-      {
-        "files": [
-          "**/packages/*/src/*",
-          "**/packages/*/src/**/*"
-        ],
-        "rules": {
-          "import/no-commonjs": 2
         }
       },
       {
@@ -236,7 +225,6 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^4.2.1",
