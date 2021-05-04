@@ -98,19 +98,13 @@ let createCache = (options: Options): EmotionCache => {
     container = options.container || ((document.head: any): HTMLHeadElement)
 
     Array.prototype.forEach.call(
-      document.querySelectorAll(`style[data-emotion]`),
+      // this means we will ignore elements which don't have a space in them which
+      // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
+      document.querySelectorAll(`style[data-emotion^="${key} "]`),
       (node: HTMLStyleElement) => {
         const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
           ' '
         )
-        if (
-          attrib[0] !== key ||
-          // this means we will ignore elements which don't have a space in them which
-          // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
-          attrib.length === 1
-        ) {
-          return
-        }
         // $FlowFixMe
         for (let i = 1; i < attrib.length; i++) {
           inserted[attrib[i]] = true
