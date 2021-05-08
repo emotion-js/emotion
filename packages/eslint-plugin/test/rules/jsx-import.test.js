@@ -54,6 +54,13 @@ ruleTester.run('emotion jsx', rule, {
       `
     },
     {
+      options: [{ runtime: 'automatic' }],
+      code: `
+      // no css prop usage for test coverage
+      let ele = <div />
+      `
+    },
+    {
       options: [{ runtime: 'automatic', importSource: '@emotion/react' }],
       code: `
       /** @jsxImportSource @emotion/react */
