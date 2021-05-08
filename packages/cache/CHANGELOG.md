@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.4.0
+
+### Patch Changes
+
+- [#2361](https://github.com/emotion-js/emotion/pull/2361) [`38f9d44f`](https://github.com/emotion-js/emotion/commit/38f9d44f919dccbf66c835ccde3f08ab927a4940) Thanks [@danieldelcore](https://github.com/danieldelcore), [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fixed moving of client-side inserted style tags from Emotion 10 when intending to hydrate Emotion 11 styles resulting in losing styles in production
+
 ## 11.1.3
 
 ### Patch Changes

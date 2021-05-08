@@ -1,5 +1,14 @@
 # @emotion/react
 
+## 11.4.0
+
+### Patch Changes
+
+- [#2334](https://github.com/emotion-js/emotion/pull/2334) [`7d9e74f8`](https://github.com/emotion-js/emotion/commit/7d9e74f8f0d0e0ea60573a19965eded61dc41024) Thanks [@Andarist](https://github.com/Andarist)! - The Global component no longer replaces style elements from server-rendering on first mount and instead reuses the server-side rendered style element
+
+- Updated dependencies [[`38f9d44f`](https://github.com/emotion-js/emotion/commit/38f9d44f919dccbf66c835ccde3f08ab927a4940)]:
+  - @emotion/cache@11.4.0
+
 ## 11.1.5
 
 ### Patch Changes

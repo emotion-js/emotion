@@ -163,7 +163,29 @@ export const prettifyCritical = ({
   css: string,
   ids: Array<string>
 }) => {
-  return { css: prettify(css), ids, html }
+  return {
+    css: prettify(css),
+    ids,
+    html
+  }
+}
+
+export const prettifyCriticalChunks = ({
+  html,
+  styles
+}: {
+  html: string,
+  styles: Array<{ key: string, css: string, ids: Array<string> }>
+}) => {
+  return {
+    // $FlowFixMe
+    styles: styles.map<{ key: string, css: string, ids: Array<string> }>(
+      (item): { key: string, css: string, ids: Array<string> } => {
+        return { css: prettify(item.css || ''), ids: item.ids, key: item.key }
+      }
+    ),
+    html
+  }
 }
 
 const isSSRedStyle = node => {
