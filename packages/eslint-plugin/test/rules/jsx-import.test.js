@@ -57,7 +57,7 @@ ruleTester.run('emotion jsx', rule, {
       options: [{ runtime: 'automatic' }],
       code: `
       // no css prop usage for test coverage
-      let ele = <div />
+      let ele = <div nonecss={{}} />
       `
     },
     {
