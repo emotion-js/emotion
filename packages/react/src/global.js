@@ -97,18 +97,21 @@ export let Global: React.AbstractComponent<
         container: cache.sheet.container,
         speedy: cache.sheet.isSpeedy
       })
+      let rehydrating = false
       // $FlowFixMe
       let node: HTMLStyleElement | null = document.querySelector(
         `style[data-emotion="${key} ${serialized.name}"]`
       )
-
       if (cache.sheet.tags.length) {
         sheet.before = cache.sheet.tags[0]
       }
       if (node !== null) {
+        rehydrating = true
+        // clear the hash so this node won't be recognizable as rehydratable by other <Global/>s
+        node.setAttribute('data-emotion', key)
         sheet.hydrate([node])
       }
-      sheetRef.current = sheet
+      sheetRef.current = [sheet, rehydrating]
       return () => {
         sheet.flush()
       }
@@ -118,11 +121,17 @@ export let Global: React.AbstractComponent<
 
   React.useLayoutEffect(
     () => {
+      let sheetRefCurrent = (sheetRef.current: any)
+      let [sheet, rehydrating] = sheetRefCurrent
+      if (rehydrating) {
+        sheetRefCurrent[1] = false
+        return
+      }
       if (serialized.next !== undefined) {
         // insert keyframes
         insertStyles(cache, serialized.next, true)
       }
-      let sheet: StyleSheet = ((sheetRef.current: any): StyleSheet)
+
       if (sheet.tags.length) {
         // if this doesn't exist then it will be null so the style element will be appended
         let element = sheet.tags[sheet.tags.length - 1].nextElementSibling

@@ -1,5 +1,11 @@
 # @emotion/server
 
+## 11.4.0
+
+### Minor Changes
+
+- [#2334](https://github.com/emotion-js/emotion/pull/2334) [`7d9e74f8`](https://github.com/emotion-js/emotion/commit/7d9e74f8f0d0e0ea60573a19965eded61dc41024) Thanks [@mnajdova](https://github.com/mnajdova)! - Added `extractCriticalToChunks` that allows the Global component to remove styles on unmount unlike `extractCritical` along with `constructStyleTagsFromChunks` to render the chunks to style tags.
+
 ## 11.0.0
 
 ### Major Changes

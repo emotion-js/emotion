@@ -1,16 +1,6 @@
 // @flow
 import type { EmotionCache } from '@emotion/utils'
-
-function generateStyleTag(
-  cssKey: string,
-  ids: string,
-  styles: string,
-  nonceString: string
-) {
-  return `<style data-emotion="${cssKey} ${ids.substring(
-    1
-  )}"${nonceString}>${styles}</style>`
-}
+import { generateStyleTag } from './utils'
 
 const createRenderStylesToString = (
   cache: EmotionCache,
@@ -38,7 +28,12 @@ const createRenderStylesToString = (
   }
 
   if (globalStyles !== '') {
-    result = generateStyleTag(cssKey, globalIds, globalStyles, nonceString)
+    result = generateStyleTag(
+      cssKey,
+      globalIds.substring(1),
+      globalStyles,
+      nonceString
+    )
   }
 
   let ids = ''
@@ -50,7 +45,12 @@ const createRenderStylesToString = (
     // $FlowFixMe
     if (match[0] === '<') {
       if (ids !== '') {
-        result += generateStyleTag(cssKey, ids, styles, nonceString)
+        result += generateStyleTag(
+          cssKey,
+          ids.substring(1),
+          styles,
+          nonceString
+        )
         ids = ''
         styles = ''
       }

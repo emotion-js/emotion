@@ -35,6 +35,48 @@ You can also use the advanced integration, it requires more work but does not ha
 
 ### On server
 
+#### When using `@emotion/react`
+
+```jsx
+import { CacheProvider } from '@emotion/react'
+import { renderToString } from 'react-dom/server'
+import createEmotionServer from '@emotion/server/create-instance'
+import createCache from '@emotion/cache'
+
+const key = 'custom'
+const cache = createCache({ key })
+const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache)
+
+let element = (
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>
+)
+
+let { html, styles } = extractCriticalToChunks(renderToString(element))
+
+res
+  .status(200)
+  .header('Content-Type', 'text/html')
+  .send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My site</title>
+    ${constructStyleTagsFromChunks({ html, styles })}
+</head>
+<body>
+    <div id="root">${html}</div>
+
+    <script src="./bundle.js"></script>
+</body>
+</html>`);
+```
+
+#### When using `@emotion/css`
+
 ```jsx
 import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'

@@ -93,6 +93,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### In the Wild
 
+- [frontity.org](https://frontity.org)
 - [abacusfi.com](https://abacusfi.com)
 - [healthline.com](https://www.healthline.com)
 - [nytimes.com](https://www.nytimes.com)
