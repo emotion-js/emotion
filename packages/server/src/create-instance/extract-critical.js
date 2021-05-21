@@ -1,7 +1,8 @@
-// @flow
-import type { EmotionCache } from '@emotion/utils'
+/* import type { EmotionCache } from '@emotion/utils' */
 
-const createExtractCritical = (cache: EmotionCache) => (html: string) => {
+const createExtractCritical = (cache /*: EmotionCache */) => (
+  html /*: string */
+) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
   let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
@@ -10,9 +11,7 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
-    // $FlowFixMe
     if (ids[match[1]] === undefined) {
-      // $FlowFixMe
       ids[match[1]] = true
     }
   }

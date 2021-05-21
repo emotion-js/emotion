@@ -1,14 +1,14 @@
-// @flow
 import * as React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
+/*
 type Props = {
   render: (
     data: Array<{
       node: {
         frontmatter: {
           title: string
-        },
+        }
         fields: {
           slug: string
         }
@@ -16,8 +16,9 @@ type Props = {
     }>
   ) => React.Node
 }
+*/
 
-const DocMetadata = (props: Props) => {
+const DocMetadata = (props /*: Props */) => {
   return (
     <StaticQuery
       query={graphql`

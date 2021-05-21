@@ -1,11 +1,12 @@
-// @flow
 import { createMacro } from 'babel-plugin-macros'
 
+/*
 type Transformer = Function
+*/
 
 export function createTransformerMacro(
-  transformers: { [key: string]: Transformer | [Transformer, Object] },
-  { importSource }: { importSource: string }
+  transformers /*: { [key: string]: Transformer | [Transformer, Object] } */,
+  { importSource } /*: { importSource: string } */
 ) {
   let macro = createMacro(
     ({ path, source, references, state, babel, isEmotionCall }) => {

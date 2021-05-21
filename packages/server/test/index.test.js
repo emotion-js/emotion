@@ -1,6 +1,5 @@
 /**
  * @jest-environment node
- * @flow
  */
 
 import React from 'react'
@@ -39,7 +38,7 @@ describe('extractCritical', () => {
         )
       )
 
-      expect((console.error: any).mock.calls).toMatchObject([])
+      expect(console.error.mock.calls).toMatchObject([])
     })
   })
 })

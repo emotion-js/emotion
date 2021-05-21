@@ -45,8 +45,7 @@
     "base",
     "types/*.d.ts",
     "macro.d.ts",
-    "macro.js",
-    "macro.js.flow"
+    "macro.js"
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {

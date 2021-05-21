@@ -1,4 +1,3 @@
-// @flow
 import { transformExpressionWithStyles, createTransformerMacro } from './utils'
 
 const isAlreadyTranspiled = path => {
@@ -29,13 +28,9 @@ const isAlreadyTranspiled = path => {
   return ['name', 'styles'].every(p => properties.has(p))
 }
 
-let createEmotionTransformer = (isPure: boolean) => ({
-  state,
-  babel,
-  importSource,
-  reference,
-  importSpecifierName
-}: Object) => {
+let createEmotionTransformer = (isPure /*: boolean */) => (
+  { state, babel, importSource, reference, importSpecifierName } /*: Object */
+) => {
   const path = reference.parentPath
 
   if (isAlreadyTranspiled(path)) {
@@ -63,5 +58,5 @@ export let transformers = {
   keyframes: createEmotionTransformer(true)
 }
 
-export let createEmotionMacro = (importSource: string) =>
+export let createEmotionMacro = (importSource /*: string */) =>
   createTransformerMacro(transformers, { importSource })

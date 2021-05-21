@@ -1,4 +1,3 @@
-// @flow
 import transform from 'css-to-react-native'
 import { interleave } from './utils'
 
@@ -11,7 +10,11 @@ let generated = {}
 let buffer = ''
 let lastType
 
-function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
+function handleInterpolation(
+  interpolation,
+  i /*: number */,
+  arr /*: Array<*> */
+) {
   let type = typeof interpolation
 
   if (type === 'string') {
@@ -31,15 +34,7 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
         )
       }
     } else {
-      handleInterpolation.call(
-        this,
-        interpolation(
-          // $FlowFixMe
-          this
-        ),
-        i,
-        arr
-      )
+      handleInterpolation.call(this, interpolation(this), i, arr)
     }
     return
   }
@@ -79,8 +74,8 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
 
 // Use platform specific StyleSheet method for creating the styles.
 // This enables us to use the css``/css({}) in any environment (Native | Sketch | Web)
-export function createCss(StyleSheet: Object) {
-  return function css(...args: any) {
+export function createCss(StyleSheet /*: Object */) {
+  return function css(...args) {
     const prevBuffer = buffer
     let vals
 
@@ -130,7 +125,7 @@ function convertPropertyValue(style) {
   }
 }
 
-function convertStyles(str: string) {
+function convertStyles(str /*: string */) {
   if (str.trim() === '') return
 
   const stylePairs = []

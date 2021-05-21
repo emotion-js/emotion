@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
@@ -6,9 +5,7 @@ import { Global, keyframes, css, CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
 beforeEach(() => {
-  // $FlowFixMe
   document.head.innerHTML = ''
-  // $FlowFixMe
   document.body.innerHTML = `<div id="root"></div>`
 })
 
@@ -41,7 +38,6 @@ test('basic', () => {
         ]}
       />
     </CacheProvider>,
-    // $FlowFixMe
     document.getElementById('root')
   )
   expect(document.head).toMatchSnapshot()
@@ -58,7 +54,6 @@ test('updating more than 1 global rule', () => {
       <CacheProvider value={cache}>
         <Global styles={{ body: { background }, div: { color } }} />
       </CacheProvider>,
-      // $FlowFixMe
       document.getElementById('root')
     )
 

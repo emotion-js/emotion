@@ -1,5 +1,4 @@
-// @flow
-import type { Options } from './create-serializer'
+/* import type { Options } from './create-serializer' */
 import { createSerializer as createEmotionSerializer } from './create-serializer'
 import * as enzymeTickler from './enzyme-tickler'
 import { createSerializer as createEnzymeToJsonSerializer } from 'enzyme-to-json'
@@ -9,22 +8,22 @@ const enzymeSerializer = createEnzymeToJsonSerializer({})
 export function createEnzymeSerializer({
   classNameReplacer,
   DOMElements = true
-}: Options = {}) {
+} /*: Options */ = {}) {
   const emotionSerializer = createEmotionSerializer({
     classNameReplacer,
     DOMElements
   })
   return {
-    test(node: *) {
+    test(node) {
       return enzymeSerializer.test(node) || emotionSerializer.test(node)
     },
     serialize(
-      node: *,
-      config: *,
-      indentation: string,
-      depth: number,
-      refs: *,
-      printer: Function
+      node,
+      config,
+      indentation /*: string */,
+      depth /*: number */,
+      refs,
+      printer /*: Function */
     ) {
       if (enzymeSerializer.test(node)) {
         const tickled = enzymeTickler.tickle(node)

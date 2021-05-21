@@ -70,7 +70,6 @@ let CssFuncTriangle = createTriangle(({ x, y, size, color, ...props }) => {
     ...props
   })
 })
-// $FlowFixMe
 let CacheContext = CacheProvider._context
 
 let hasOwnProperty = Object.prototype.hasOwnProperty

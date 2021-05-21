@@ -1,5 +1,5 @@
 // some of this is from https://github.com/styled-components/styled-components/blob/master/benchmarks/run-headless.js
-// @flow
+
 const path = require('path')
 const puppeteer = require('puppeteer')
 const { createServer } = require('http-server')

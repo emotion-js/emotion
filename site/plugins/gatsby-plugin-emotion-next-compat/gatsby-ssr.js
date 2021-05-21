@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 import { extractCritical } from '@emotion/server'
@@ -9,7 +8,7 @@ export const replaceRenderer = ({
   replaceBodyHTMLString,
   bodyComponent,
   setHeadComponents
-}: *) => {
+}) => {
   let { html, ids, css } = extractCritical(
     renderToString(<CacheProvider value={cache}>{bodyComponent}</CacheProvider>)
   )

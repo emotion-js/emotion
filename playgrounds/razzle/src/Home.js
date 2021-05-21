@@ -1,9 +1,8 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import * as React from 'react'
 
-class Home extends React.Component<{}, { isBrowser: boolean }> {
+class Home extends React.Component /* <{}, { isBrowser: boolean }> */ {
   state = { isBrowser: false }
   componentDidMount() {
     this.setState({ isBrowser: true })

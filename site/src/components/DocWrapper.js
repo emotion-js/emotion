@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import * as React from 'react'
@@ -25,12 +24,11 @@ const scaleAnimation = keyframes`
   }
 `
 
-function ToggleSidebarButton({
-  setSidebarOpen,
-  ...rest
-}: {
+function ToggleSidebarButton(
+  { setSidebarOpen, ...rest } /*: {
   setSidebarOpen: boolean => void
-}) {
+} */
+) {
   return (
     <button
       {...rest}
@@ -65,12 +63,14 @@ const docHeadingMap = docList.reduce((obj, current) => {
   return obj
 }, {})
 
-const SidebarGroup = (props: {
-  item: { title: string, items: Array<string> },
-  setSidebarOpenState: boolean => void,
-  docMap: *,
-  docName?: string
-}) => {
+const SidebarGroup = (
+  props /*: {
+  // item: { title: string, items: Array<string> },
+  // setSidebarOpenState: boolean => void,
+  // docMap,
+  //docName?: string
+} */
+) => {
   const { item, docMap, docName } = props
   return (
     <>
@@ -148,15 +148,17 @@ const SidebarGroup = (props: {
   )
 }
 
-export default ({
-  children,
-  sidebarOpen,
-  setSidebarOpen
-}: {
+export default (
+  {
+    children,
+    sidebarOpen,
+    setSidebarOpen
+  } /*: {
   children: React.Node,
   sidebarOpen: boolean,
   setSidebarOpen: boolean => void
-}) => {
+} */
+) => {
   return (
     <DocMetadata
       render={data => {
@@ -184,7 +186,7 @@ export default ({
               {docList.map(item => {
                 return (
                   <Match path="/docs/:docName" key={item.title}>
-                    {({ match }: { match?: { docName: string } }) => {
+                    {({ match } /*: { match?: { docName: string } } */) => {
                       return (
                         <SidebarGroup
                           item={item}

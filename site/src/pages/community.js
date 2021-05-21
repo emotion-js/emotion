@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { graphql } from 'gatsby'
@@ -10,7 +9,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import { mq } from '../utils/style'
 
-const Community = (props: *) => {
+const Community = props => {
   const title = 'Community'
   return (
     <Layout title={title}>

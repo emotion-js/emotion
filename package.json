@@ -18,8 +18,6 @@
     "benchmark": "cd scripts/benchmarks && yarn benchmark",
     "start:site": "cd site && yarn start:site",
     "build:site": "cd site && yarn build:site",
-    "flow": "flow",
-    "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
     "preinstall": "node ./scripts/ensure-yarn.js",
     "postinstall": "opencollective postinstall && preconstruct dev && manypkg check",
     "changeset": "changeset",
@@ -58,7 +56,6 @@
     ],
     "plugins": [
       "prettier",
-      "flowtype",
       "@emotion"
     ],
     "parser": "babel-eslint",
@@ -67,12 +64,11 @@
       "no-template-curly-in-string": 0,
       "prefer-const": 0,
       "no-unused-vars": 0,
-      "flowtype/define-flow-type": 2,
       "import/no-duplicates": 0,
       "prettier/prettier": [
         "error",
         {
-          "parser": "flow"
+          "parser": "typescript-eslint"
         }
       ],
       "react/jsx-curly-brace-presence": 0,
@@ -181,10 +177,8 @@
     "@babel/helper-module-imports": "^7.12.13",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-syntax-jsx": "^7.12.13",
-    "@babel/plugin-transform-flow-strip-types": "^7.13.0",
     "@babel/plugin-transform-react-jsx": "^7.12.17",
     "@babel/preset-env": "^7.13.10",
-    "@babel/preset-flow": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@babel/register": "^7.13.8",
     "@babel/runtime": "^7.13.10",
@@ -200,7 +194,6 @@
     "@types/react": "^16.9.11",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-eslint": "^10.1.0",
-    "babel-flow-types": "^1.2.3",
     "babel-jest": "^26.3.0",
     "babel-plugin-add-basic-constructor-for-react-components": "^0.1.0",
     "babel-plugin-codegen": "^3.0.0",
@@ -222,7 +215,6 @@
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -230,7 +222,6 @@
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-standard": "^4.0.1",
-    "flow-bin": "^0.128.0",
     "html-tag-names": "^1.1.2",
     "husky": "^3.0.9",
     "jest": "^26.4.2",

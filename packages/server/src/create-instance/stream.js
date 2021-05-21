@@ -1,12 +1,11 @@
-// @flow
-import type { EmotionCache } from '@emotion/utils'
+/* import type { EmotionCache } from '@emotion/utils' */
 import through from 'through'
 import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 
 const createRenderStylesToNodeStream = (
-  cache: EmotionCache,
-  nonceString: string
+  cache /*: EmotionCache */,
+  nonceString /*: string */
 ) => () => {
   let insed = {}
   const tokenStream = tokenize()
@@ -35,7 +34,6 @@ const createRenderStylesToNodeStream = (
                 (ids[id] = true)))
           ) {
             insed[id] = true
-            // $FlowFixMe flow thinks emotion.caches.inserted[id] can be true even though it's checked earlier
             css += cache.inserted[id]
           }
         })

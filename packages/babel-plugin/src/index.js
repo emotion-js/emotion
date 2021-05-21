@@ -1,4 +1,3 @@
-// @flow
 import syntaxJsx from '@babel/plugin-syntax-jsx'
 import {
   createEmotionMacro,
@@ -69,13 +68,15 @@ export const macros = {
   vanillaEmotion: vanillaEmotionMacro
 }
 
+/*
 export type BabelPath = any
 
 export type EmotionBabelPluginPass = any
+*/
 
 const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always']
 
-export default function(babel: *, options: *) {
+export default function(babel, options) {
   if (
     options.autoLabel !== undefined &&
     !AUTO_LABEL_VALUES.includes(options.autoLabel)
@@ -92,7 +93,7 @@ export default function(babel: *, options: *) {
     name: '@emotion',
     inherits: syntaxJsx,
     visitor: {
-      ImportDeclaration(path: *, state: *) {
+      ImportDeclaration(path, state) {
         const macro = state.pluginMacros[path.node.source.value]
         // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/main/src/index.js
         if (macro === undefined) {
@@ -146,13 +147,13 @@ export default function(babel: *, options: *) {
           isBabelMacrosCall: true
         })
       },
-      Program(path: *, state: *) {
+      Program(path, state) {
         let macros = {}
-        let jsxReactImports: Array<{
+        let jsxReactImports /*: Array<{
           importSource: string,
           export: string,
           cssExport: string
-        }> = [
+        }> */ = [
           { importSource: '@emotion/react', export: 'jsx', cssExport: 'css' }
         ]
         state.jsxReactImport = jsxReactImports[0]
@@ -196,11 +197,11 @@ export default function(babel: *, options: *) {
               }
             }
 
-            let [exportTransformer, defaultOptions] =
-              // $FlowFixMe
-              Array.isArray(packageTransformers[exportName])
-                ? packageTransformers[exportName]
-                : [packageTransformers[exportName]]
+            let [exportTransformer, defaultOptions] = Array.isArray(
+              packageTransformers[exportName]
+            )
+              ? packageTransformers[exportName]
+              : [packageTransformers[exportName]]
 
             transformers[localExportName] = [
               exportTransformer,
@@ -253,7 +254,7 @@ export default function(babel: *, options: *) {
           state.emotionSourceMap = true
         }
       },
-      JSXAttribute(path: *, state: *) {
+      JSXAttribute(path, state) {
         if (path.node.name.name !== 'css' || !state.transformCssProp) {
           return
         }
@@ -276,7 +277,7 @@ export default function(babel: *, options: *) {
         }
       },
       CallExpression: {
-        exit(path: BabelPath, state: EmotionBabelPluginPass) {
+        exit(path /*: BabelPath */, state /*: EmotionBabelPluginPass */) {
           try {
             if (
               path.node.callee &&

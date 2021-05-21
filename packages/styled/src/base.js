@@ -1,12 +1,13 @@
-// @flow
 import * as React from 'react'
 import {
   getDefaultShouldForwardProp,
-  composeShouldForwardProps,
+  composeShouldForwardProps
+  /*
   type StyledOptions,
   type CreateStyled,
   type PrivateStyledComponent,
   type StyledElementType
+  */
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
@@ -19,7 +20,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 
 let isBrowser = typeof document !== 'undefined'
 
-let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
+let createStyled /*: CreateStyled */ = (
+  tag /*: any */,
+  options /* ?: StyledOptions */
+) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -42,7 +46,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return function<Props>(): PrivateStyledComponent<Props> {
+  /* return function<Props>(): PrivateStyledComponent<Props> { */
+  return function() {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -69,8 +74,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    // $FlowFixMe: we need to cast StatelessFunctionalComponent to our PrivateStyledComponent class
-    const Styled: PrivateStyledComponent<Props> = withEmotionCache(
+    const Styled /*: PrivateStyledComponent<Props> */ = withEmotionCache(
       (props, cache, ref) => {
         const finalTag = (shouldUseAs && props.as) || baseTag
 
@@ -120,10 +124,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         for (let key in props) {
           if (shouldUseAs && key === 'as') continue
 
-          if (
-            // $FlowFixMe
-            finalShouldForwardProp(key)
-          ) {
+          if (finalShouldForwardProp(key)) {
             newProps[key] = props[key]
           }
         }
@@ -179,18 +180,16 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         ) {
           return 'NO_COMPONENT_SELECTOR'
         }
-        // $FlowFixMe: coerce undefined to string
         return `.${targetClassName}`
       }
     })
 
     Styled.withComponent = (
-      nextTag: StyledElementType<Props>,
-      nextOptions?: StyledOptions
+      nextTag /*: StyledElementType<Props> */,
+      nextOptions /* ?: StyledOptions */
     ) => {
       return createStyled(nextTag, {
         ...options,
-        // $FlowFixMe
         ...nextOptions,
         shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
       })(...styles)

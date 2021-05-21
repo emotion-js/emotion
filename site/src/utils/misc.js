@@ -1,17 +1,16 @@
-// @flow
 export function getDocMap(
-  edges: Array<{
+  edges /* : Array<{
     node: {
       fields: {
         slug: string
-      },
+      }
       frontmatter: {
         title: string
       }
     }
-  }>
+  }> */
 ) {
-  const docMap: { [string]: string } = {}
+  const docMap /* : { [string]: string } */ = {}
   edges.forEach(({ node }) => {
     if (node.fields === null) {
       return
@@ -21,8 +20,7 @@ export function getDocMap(
   return docMap
 }
 
-export const docList: Array<{
-  title: string,
+export const docList /* : Array<{
+  title: string
   items: Array<string>
-  // $FlowFixMe
-}> = require('../../../docs/docs.yaml')
+  }> */ = require('../../../docs/docs.yaml')

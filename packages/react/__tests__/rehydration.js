@@ -1,10 +1,7 @@
-// @flow
 /** @jsx jsx */
 import { safeQuerySelector } from 'test-utils'
 
-// $FlowFixMe
 console.error = jest.fn()
-// $FlowFixMe
 console.warn = jest.fn()
 
 afterEach(() => {
@@ -44,11 +41,10 @@ const removeGlobalProp = prop => {
     writable: true,
     configurable: true
   })
-  // $FlowFixMe
   return () => Object.defineProperty(global, prop, descriptor)
 }
 
-const disableBrowserEnvTemporarily = <T>(fn: () => T): T => {
+const disableBrowserEnvTemporarily = /* <T> */ (fn /*: () => T */) /*: T */ => {
   let restoreDocument = removeGlobalProp('document')
   let restoreWindow = removeGlobalProp('window')
   let restoreHTMLElement = removeGlobalProp('HTMLElement')
@@ -92,8 +88,8 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
 
   ReactDOM.hydrate(<App />, safeQuerySelector('#root'))
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-  expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
 })
 
 test('initializing another Emotion instance should not move already moved styles elements', () => {

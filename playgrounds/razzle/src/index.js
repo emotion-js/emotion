@@ -1,4 +1,3 @@
-// @flow
 import app from './server'
 import http from 'http'
 
@@ -12,10 +11,10 @@ server.listen(process.env.PORT || 3000, error => {
   }
 
   console.log('🚀 started')
-}) // $FlowFixMe
+})
+
 if (module.hot) {
   console.log('✅  Server-side HMR Enabled!')
-  // $FlowFixMe
   module.hot.accept('./server', () => {
     console.log('🔁  HMR Reloading `./server`...')
     server.removeListener('request', currentApp)
