@@ -303,6 +303,6 @@ export function isPrimitive(test) {
   return test !== Object(test)
 }
 
-export function hasIntersection(left /* [] */, right /* [] */) {
+export function hasIntersection(left /* any[] */, right /* any[] */) {
   return left.some(value => right.includes(value))
 }
