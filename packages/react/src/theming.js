@@ -2,7 +2,7 @@ import * as React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
 import hoistNonReactStatics from './isolated-hoist-non-react-statics-do-not-use-this-in-your-code'
 
-export const ThemeContext = /* #__PURE__ */ React.createContext < Object > {}
+export const ThemeContext = /* #__PURE__ */ React.createContext({})
 
 export const useTheme = () => React.useContext(ThemeContext)
 
