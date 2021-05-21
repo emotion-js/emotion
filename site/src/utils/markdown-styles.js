@@ -11,7 +11,7 @@ const textStyles = mq({
   lineHeight: '1.7'
 })
 
-export const p = styled.p < empty > textStyles
+export const p = styled.p(textStyles)
 
 export const code = styled.code(
   textStyles,
