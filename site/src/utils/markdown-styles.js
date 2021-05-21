@@ -1,3 +1,4 @@
+// @flow
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 import styled from '@emotion/styled'
@@ -24,47 +25,37 @@ export const code = styled.code(
   })
 )
 
-export const pre =
-  styled.pre <
-  empty >
-  {
-    '& > code': {
-      padding: 0
+export const pre = styled.pre({
+  '& > code': {
+    padding: 0
+  }
+})
+
+export const ul = styled.ul({
+  marginTop: 20,
+  paddingLeft: 20,
+
+  '& li': {
+    marginTop: 10
+  },
+
+  '& ol, & ul': {
+    marginLeft: 20,
+    marginTop: 10
+  }
+})
+
+export const li = styled.li(textStyles, {
+  marginTop: 10,
+  p: { marginTop: 5, marginBottom: 0 },
+  '& > ul, & > ol': {
+    marginTop: 5,
+    marginBottom: 15,
+    '& > li': {
+      marginTop: 5
     }
   }
-
-export const ul =
-  styled.ul <
-  empty >
-  {
-    marginTop: 20,
-    paddingLeft: 20,
-
-    '& li': {
-      marginTop: 10
-    },
-
-    '& ol, & ul': {
-      marginLeft: 20,
-      marginTop: 10
-    }
-  }
-
-export const li = styled.li(
-  /* <empty> */
-  textStyles,
-  {
-    marginTop: 10,
-    p: { marginTop: 5, marginBottom: 0 },
-    '& > ul, & > ol': {
-      marginTop: 5,
-      marginBottom: 15,
-      '& > li': {
-        marginTop: 5
-      }
-    }
-  }
-)
+})
 
 export const img = styled.img`
   max-height: 360px;
@@ -118,7 +109,6 @@ export const h6 = styled.div`
 `
 
 export const a = styled.a(
-  /* <empty> */
   {
     display: 'inline-block',
     fontSize: constants.fontSizes[2],
@@ -208,7 +198,7 @@ export const tr = styled.tr`
   border-top: 1px solid #ccc;
 `
 
-export let hr = (props /* : {} */) => (
+export let hr = props => (
   <hr
     {...props}
     css={{ border: `1px solid ${colors.lighten(0.25, colors.border)}` }}
