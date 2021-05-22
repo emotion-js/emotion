@@ -56,7 +56,6 @@ cases(
       expect(() => {
         renderer.create(
           <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
-            {/* $FlowFixMe */}
             <ThemeProvider theme={value}>
               <div
                 css={({ color, padding, backgroundColor }) => ({

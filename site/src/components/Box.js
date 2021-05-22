@@ -49,10 +49,8 @@ type Props = $Shape<{
 }>
 */
 
-const Box =
-  styled.div <
-  Props >
-  (display,
+const Box = styled.div(
+  display,
   space,
   width,
   fontSize,
@@ -64,6 +62,7 @@ const Box =
   direction,
   align,
   justify,
-  overflow)
+  overflow
+)
 
 export default Box
