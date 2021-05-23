@@ -12,9 +12,7 @@ module.exports = ({ markdownAST }) => {
   visit(markdownAST, `code`, node => {
     if (node.lang === 'jsx live') {
       throw new Error(
-        `The following code block has the language jsx live which is no longer allowed:\n${
-          node.value
-        }`
+        `The following code block has the language jsx live which is no longer allowed:\n${node.value}`
       )
     }
     if (

@@ -13,12 +13,12 @@
  * https://github.com/flowtype/flow-typed
  */
 
-import type {JestSnapshotSerializer} from 'jest'
-
+import type { JestSnapshotSerializer } from 'jest'
 
 interface GlamorStyleSheet {
   tags: Array<HTMLStyleElement>;
 }
 declare module 'jest-glamor-react' {
-  declare module.exports: JestSnapshotSerializer & (sheet: GlamorStyleSheet) => JestSnapshotSerializer
+  declare module.exports: JestSnapshotSerializer &
+    ((sheet: GlamorStyleSheet) => JestSnapshotSerializer)
 }

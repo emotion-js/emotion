@@ -224,12 +224,13 @@ const anim1 = keyframes`
   >['css']
 
   // $ExpectType false
-  type _NoCssPropAsIntended1 = 'css' extends keyof EmotionJSX.LibraryManagedAttributes<
-    {},
-    { className?: undefined }
-  >
-    ? true
-    : false
+  type _NoCssPropAsIntended1 =
+    'css' extends keyof EmotionJSX.LibraryManagedAttributes<
+      {},
+      { className?: undefined }
+    >
+      ? true
+      : false
 }
 
 // RMWC-like component test

@@ -7,7 +7,6 @@ All of the docs live in the `docs` in the root of this repository. They are in [
 ```yaml
 title: 'Some Title'
 ---
-
 ```
 
 ### Code Blocks

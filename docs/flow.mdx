@@ -18,14 +18,20 @@ alternatives:
 import styled from '@emotion/styled'
 
 // Option A
-const A = styled<Props>('div')`
+const A =
+  styled <
+  Props >
+  'div'`
   color: red;
 `
 
 // Option B
-const B = styled.div<Props>({
-  color: 'red',
-})
+const B =
+  styled.div <
+  Props >
+  {
+    color: 'red'
+  }
 ```
 
 Styled components are annotated the same way normal React components are:
@@ -34,7 +40,10 @@ Styled components are annotated the same way normal React components are:
 import styled from '@emotion/styled'
 
 type Props = { a: string }
-const Link = styled<Props>('a')`
+const Link =
+  styled <
+  Props >
+  'a'`
   color: red;
 `
 
@@ -56,7 +65,6 @@ Be aware, Flow infers the return type of your components by referencing their re
 this means you will need to annotate the properties of the root component in the case below:
 
 ```jsx
-
 const Container = styled.div`
                   ^^^^^^^^^^^ Missing type annotation for P. P is a type parameter declared in function type [1] and was implicitly instantiated at
 encaps tag [2].   
@@ -73,13 +81,15 @@ any existing React component:
 import type { ElementConfig } from 'react'
 
 type Props = ElementConfig<'div'>
-const Container = styled<Props>('div')`
+const Container =
+  styled <
+  Props >
+  'div'`
   color: red;
 `
 
 export const App = () => <Container />
 ```
-
 
 ```jsx
 import type { ElementConfig } from 'react'
@@ -110,6 +120,3 @@ const Container = styled.div`
 
 export const App = (): Node => <Container />
 ```
-
-
-

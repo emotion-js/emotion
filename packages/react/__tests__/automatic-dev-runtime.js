@@ -62,7 +62,12 @@ test('fragment', () => {
 
   const { container } = render(
     <div>
-      <Test buttons={[{ id: 1, label: 'Foo' }, { id: 2, label: 'Bar' }]} />
+      <Test
+        buttons={[
+          { id: 1, label: 'Foo' },
+          { id: 2, label: 'Bar' }
+        ]}
+      />
     </div>
   )
 

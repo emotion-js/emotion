@@ -40,8 +40,7 @@ To make the css prop work with pure TypeScript (without babel plugin) you need t
 ```tsx
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-
-<div css={{ background: 'black' }} />
+;<div css={{ background: 'black' }} />
 ```
 
 As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can use `<Fragment></Fragment>`.
@@ -51,8 +50,7 @@ You can still use the css helper and pass the className yourself (ensure you are
 
 ```tsx
 import { css } from '@emotion/css'
-
-<div className={css({ background: 'black' })} />
+;<div className={css({ background: 'black' })} />
 ```
 
 ### `css` prop
@@ -60,6 +58,7 @@ import { css } from '@emotion/css'
 When using our JSX factories the support for `css` prop is being added only for components that accepts `className` prop as they take provided `css` prop, resolves it and pass the generated `className` to the rendered component.
 
 If using the automatic runtime you should just add this to your `tsconfig.json` to let TypeScript know where it should look for the `JSX` namespace:
+
 ```json
 {
   "compilerOptions": {
@@ -170,13 +169,12 @@ interface ComponentProps {
   label: string
 }
 
-const Component: FC<ComponentProps> = ({
-  label,
-  className
-}) => <div className={className}>{label}</div>
+const Component: FC<ComponentProps> = ({ label, className }) => (
+  <div className={className}>{label}</div>
+)
 
 const StyledComponent0 = styled(Component)`
-  color: ${props => label === 'Important' ? 'red' : 'green'};
+  color: ${props => (label === 'Important' ? 'red' : 'green')};
 `
 
 const StyledComponent1 = styled(Component)({
@@ -199,8 +197,8 @@ If you make `shouldForwardProp` a [type guard](https://www.typescriptlang.org/do
 
 For example:
 
-``` ts
-const Original: React.FC<{ prop1: string, prop2: string }> = () => null
+```ts
+const Original: React.FC<{ prop1: string; prop2: string }> = () => null
 
 interface StyledOriginalExtraProps {
   // This prop would conflict with the `prop2` on Original
@@ -286,7 +284,7 @@ declare module '@emotion/react' {
 
 // You are also able to use a 3rd party theme this way:
 import '@emotion/react'
-import { LibTheme } from 'some-lib' 
+import { LibTheme } from 'some-lib'
 
 declare module '@emotion/react' {
   export interface Theme extends LibTheme {}
@@ -315,7 +313,7 @@ _emotion.d.ts_
 import '@emotion/react'
 
 declare module '@emotion/react' {
-    export interface Theme extends Record<string, any> {}
+  export interface Theme extends Record<string, any> {}
 }
 ```
 
@@ -325,17 +323,16 @@ For Typescript <2.9, the generic type version only works with object styles due 
 
 You can work around this by specifying the prop types in your style callback:
 
-``` ts
+```ts
 const StyledComponent0 = styled(Component)`
   color: red;
-  background: ${(props: StyledComponentProps) =>
-    props.bgColor};
+  background: ${(props: StyledComponentProps) => props.bgColor};
 `
 ```
 
 NOTE: This approach you will have to perform the intersection with the component props yourself to get at the component props
 
-``` ts
+```ts
 const StyledComponent0 = styled(Component)`
   color: red;
   background: ${(props: StyledComponentProps & ComponentProps) =>
