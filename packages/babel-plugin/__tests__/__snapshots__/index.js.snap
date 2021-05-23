@@ -56,8 +56,7 @@ const OtherComponent = () => <div className={_ref} />;"
 `;
 
 exports[`@emotion/babel-plugin core-with-component 1`] = `
-"
-import styled from '@emotion/styled'
+"import styled from '@emotion/styled'
 
 const MyComponent = styled.div({ color: 'hotpink' })
 
@@ -81,7 +80,7 @@ const MyComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\"
 } : {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR29CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcblxuY29uc3QgT3RoZXJDb21wb25lbnQgPSBNeUNvbXBvbmVudC53aXRoQ29tcG9uZW50KCdzZWN0aW9uJylcbiJdfQ== */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRW9CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCdcblxuY29uc3QgTXlDb21wb25lbnQgPSBzdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuXG5jb25zdCBPdGhlckNvbXBvbmVudCA9IE15Q29tcG9uZW50LndpdGhDb21wb25lbnQoJ3NlY3Rpb24nKVxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
@@ -219,8 +218,7 @@ const SomeComponent = props => <div css={/*#__PURE__*/_css({
 `;
 
 exports[`@emotion/babel-plugin function-declaration 1`] = `
-"
-import * as React from 'react'
+"import * as React from 'react'
 import { jsx } from '@emotion/react'
 
 function Logo(props) {
@@ -247,7 +245,7 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"jgxhdf-Logo\\",
   styles: \\"display:block;label:Logo;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZ1bmN0aW9uLWRlY2xhcmF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU9NIiwiZmlsZSI6ImZ1bmN0aW9uLWRlY2xhcmF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQGZsb3dcbmltcG9ydCAqIGFzIFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsganN4IH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmZ1bmN0aW9uIExvZ28ocHJvcHMpIHtcbiAgcmV0dXJuIChcbiAgICA8YVxuICAgICAgY3NzPXt7XG4gICAgICAgIGRpc3BsYXk6ICdibG9jaydcbiAgICAgIH19XG4gICAgLz5cbiAgKVxufVxuIl19 */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZ1bmN0aW9uLWRlY2xhcmF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1NIiwiZmlsZSI6ImZ1bmN0aW9uLWRlY2xhcmF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZnVuY3Rpb24gTG9nbyhwcm9wcykge1xuICByZXR1cm4gKFxuICAgIDxhXG4gICAgICBjc3M9e3tcbiAgICAgICAgZGlzcGxheTogJ2Jsb2NrJ1xuICAgICAgfX1cbiAgICAvPlxuICApXG59XG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 
@@ -301,8 +299,7 @@ const SomeComponent = props => <div css={_ref} {...props} />;"
 `;
 
 exports[`@emotion/babel-plugin object-property 1`] = `
-"
-import * as React from 'react'
+"import * as React from 'react'
 import { jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 
@@ -335,7 +332,7 @@ const MyObject = {
   } : {
     name: \\"3sn2xs\\",
     styles: \\"color:hotpink\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNYyIsImZpbGUiOiJvYmplY3QtcHJvcGVydHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJ1xuXG5jb25zdCBNeU9iamVjdCA9IHtcbiAgTXlQcm9wZXJ0eTogc3R5bGVkLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcbn1cblxuZnVuY3Rpb24gTG9nbyhwcm9wcykge1xuICByZXR1cm4gPE15T2JqZWN0Lk15UHJvcGVydHkgLz5cbn1cbiJdfQ== */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLYyIsImZpbGUiOiJvYmplY3QtcHJvcGVydHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15T2JqZWN0ID0ge1xuICBNeVByb3BlcnR5OiBzdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxufVxuXG5mdW5jdGlvbiBMb2dvKHByb3BzKSB7XG4gIHJldHVybiA8TXlPYmplY3QuTXlQcm9wZXJ0eSAvPlxufVxuIl19 */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   })
 };
