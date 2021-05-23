@@ -1,10 +1,10 @@
-// @flow
 import * as React from 'react'
-import type { Compiler, Scope } from './types'
+/* import type { Compiler, Scope } from './types' */
 import { compileAndEvaluate, evaluate } from './compile'
 export { default as compile } from './compiler'
 export { default as Editor } from 'react-live/lib/components/Editor'
 
+/*
 type Props = {
   code: string,
   compile: Compiler,
@@ -18,9 +18,10 @@ type State = {
   element: React.Node | null,
   error: Error | null
 }
+*/
 
-export default class Live extends React.Component<Props, State> {
-  constructor(...args: *) {
+export default class Live extends React.Component /* <Props, State> */ {
+  constructor(...args) {
     super(...args)
     this.state = {
       code: this.props.code,
@@ -34,11 +35,15 @@ export default class Live extends React.Component<Props, State> {
     noInline: false
   }
 
-  onChange = (code: string) => {
+  onChange = (code /*: string */) => {
     this.compile(code, this.props.compile, this.props.scope)
   }
 
-  compile = (code: string, compiler: Compiler, scope: Scope) => {
+  compile = (
+    code /*: string */,
+    compiler /*: Compiler */,
+    scope /*: Scope */
+  ) => {
     if (code !== this.state.code) {
       this.setState({ code })
     }
@@ -51,11 +56,11 @@ export default class Live extends React.Component<Props, State> {
       })
   }
 
-  onError = (error: Error) => {
+  onError = (error /*: Error */) => {
     this.setState({ error })
   }
 
-  componentWillReceiveProps({ code, scope, compile }: Props) {
+  componentWillReceiveProps({ code, scope, compile } /*: Props */) {
     if (
       code !== this.props.code ||
       scope !== this.props.scope ||
@@ -76,13 +81,15 @@ export default class Live extends React.Component<Props, State> {
   }
 }
 
+/*
 type ErrorBoundaryProps = {
   children: React.Node,
   onError: Error => void
 }
+*/
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
-  componentDidCatch(err: Error) {
+export class ErrorBoundary extends React.Component /* <ErrorBoundaryProps> */ {
+  componentDidCatch(err /*: Error */) {
     this.props.onError(err)
   }
 

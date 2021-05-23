@@ -1,4 +1,3 @@
-// @flow
 /* eslint-env jest */
 import jestInCase from 'jest-in-case'
 import * as babel from '@babel/core'
@@ -47,8 +46,8 @@ function doThing(dirname) {
 }
 
 export default (
-  name: string,
-  cases:
+  name /*: string */,
+  cases /*:
     | {
         [key: string]: {
           code: string,
@@ -56,13 +55,13 @@ export default (
           babelFileName?: string
         }
       }
-    | string,
-  opts?: {
+    | string */,
+  opts /* ?: {
     plugins?: Array<*>,
     presets?: Array<*>,
     transform?: string => string,
     filename?: string
-  } = {}
+  } */ = {}
 ) => {
   if (typeof cases === 'string') {
     cases = doThing(cases).reduce((accum, filename) => {
@@ -86,6 +85,5 @@ export default (
     }, {})
   }
 
-  // $FlowFixMe
   return jestInCase(name, tester(opts), cases)
 }

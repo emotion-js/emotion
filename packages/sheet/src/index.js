@@ -1,4 +1,3 @@
-// @flow
 /*
 
 Based off glamor's StyleSheet, thanks Sunil ❤️
@@ -22,10 +21,8 @@ styleSheet.flush()
 
 */
 
-// $FlowFixMe
-function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
+function sheetForTag(tag /*: HTMLStyleElement */) /*: CSSStyleSheet */ {
   if (tag.sheet) {
-    // $FlowFixMe
     return tag.sheet
   }
 
@@ -33,12 +30,12 @@ function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   /* istanbul ignore next */
   for (let i = 0; i < document.styleSheets.length; i++) {
     if (document.styleSheets[i].ownerNode === tag) {
-      // $FlowFixMe
       return document.styleSheets[i]
     }
   }
 }
 
+/*
 export type Options = {
   nonce?: string,
   key: string,
@@ -46,11 +43,14 @@ export type Options = {
   speedy?: boolean,
   prepend?: boolean
 }
+*/
 
-function createStyleElement(options: {
+function createStyleElement(
+  options /*: {
   key: string,
   nonce: string | void
-}): HTMLStyleElement {
+} */
+) /*: HTMLStyleElement */ {
   let tag = document.createElement('style')
   tag.setAttribute('data-emotion', options.key)
   if (options.nonce !== undefined) {
@@ -62,15 +62,15 @@ function createStyleElement(options: {
 }
 
 export class StyleSheet {
-  isSpeedy: boolean
-  ctr: number
-  tags: HTMLStyleElement[]
-  container: HTMLElement
-  key: string
-  nonce: string | void
-  prepend: boolean | void
-  before: Element | null
-  constructor(options: Options) {
+  isSpeedy /*: boolean */
+  ctr /*: number */
+  tags /*: HTMLStyleElement[] */
+  container /*: HTMLElement */
+  key /*: string */
+  nonce /*: string | void */
+  prepend /*: boolean | void */
+  before /*: Element | null */
+  constructor(options /*: Options */) {
     this.isSpeedy =
       options.speedy === undefined
         ? process.env.NODE_ENV === 'production'
@@ -85,7 +85,7 @@ export class StyleSheet {
     this.before = null
   }
 
-  _insertTag = (tag: HTMLStyleElement) => {
+  _insertTag = (tag /*: HTMLStyleElement */) => {
     let before
     if (this.tags.length === 0) {
       before = this.prepend ? this.container.firstChild : this.before
@@ -96,11 +96,11 @@ export class StyleSheet {
     this.tags.push(tag)
   }
 
-  hydrate(nodes: HTMLStyleElement[]) {
+  hydrate(nodes /*: HTMLStyleElement[] */) {
     nodes.forEach(this._insertTag)
   }
 
-  insert(rule: string) {
+  insert(rule /*: string */) {
     // the max length is how many rules we have per style tag, it's 65000 in speedy mode
     // it's 1 in dev because we insert source maps that map a single rule to a location
     // and you can only have one source map per style tag
@@ -113,7 +113,7 @@ export class StyleSheet {
       const isImportRule =
         rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
 
-      if (isImportRule && (this: any)._alreadyInsertedOrderInsensitiveRule) {
+      if (isImportRule && this._alreadyInsertedOrderInsensitiveRule) {
         // this would only cause problem in speedy mode
         // but we don't want enabling speedy to affect the observable behavior
         // so we report this error at all times
@@ -124,8 +124,8 @@ export class StyleSheet {
         )
       }
 
-      ;(this: any)._alreadyInsertedOrderInsensitiveRule =
-        (this: any)._alreadyInsertedOrderInsensitiveRule || !isImportRule
+      this._alreadyInsertedOrderInsensitiveRule =
+        this._alreadyInsertedOrderInsensitiveRule || !isImportRule
     }
 
     if (this.isSpeedy) {
@@ -154,12 +154,11 @@ export class StyleSheet {
   }
 
   flush() {
-    // $FlowFixMe
     this.tags.forEach(tag => tag.parentNode.removeChild(tag))
     this.tags = []
     this.ctr = 0
     if (process.env.NODE_ENV !== 'production') {
-      ;(this: any)._alreadyInsertedOrderInsensitiveRule = false
+      this._alreadyInsertedOrderInsensitiveRule = false
     }
   }
 }

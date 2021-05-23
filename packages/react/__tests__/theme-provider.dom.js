@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import 'test-utils/dev-mode'
@@ -8,7 +7,7 @@ import { jsx, ThemeProvider } from '@emotion/react'
 import { render } from 'react-dom'
 
 test('provider with theme value that changes', () => {
-  class ThemeTest extends React.Component<*, *> {
+  class ThemeTest extends React.Component {
     state = { theme: { color: 'hotpink', padding: 4 } }
     render() {
       return (

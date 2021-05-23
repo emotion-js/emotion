@@ -1,8 +1,7 @@
-// @flow
-import type { EmotionCache } from '@emotion/utils'
+/* import type { EmotionCache } from '@emotion/utils' */
 
-const createExtractCriticalToChunks = (cache: EmotionCache) => (
-  html: string
+const createExtractCriticalToChunks = (cache /*: EmotionCache */) => (
+  html /*: string */
 ) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
@@ -12,9 +11,7 @@ const createExtractCriticalToChunks = (cache: EmotionCache) => (
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
-    // $FlowFixMe
     if (ids[match[1]] === undefined) {
-      // $FlowFixMe
       ids[match[1]] = true
     }
   }
@@ -31,7 +28,6 @@ const createExtractCriticalToChunks = (cache: EmotionCache) => (
       if (cache.registered[`${cache.key}-${id}`]) {
         // regular css can be added in one style tag
         regularCssIds.push(id)
-        // $FlowFixMe
         regularCss += cache.inserted[id]
       } else {
         // each global styles require a new entry so it can be independently flushed

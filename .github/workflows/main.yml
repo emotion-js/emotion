@@ -50,37 +50,6 @@ jobs:
         uses: codecov/codecov-action@v1
         if: ${{ matrix.platform == 'ubuntu-latest' && always() }}
 
-  flow:
-    name: Flow
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@main
-
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
-
-      - name: Check Types
-        run: yarn flow:check
-
   test_dist:
     name: Test Dist
     runs-on: ubuntu-latest

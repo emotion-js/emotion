@@ -1,5 +1,3 @@
-// @flow
-
 import importFromEmotion from './rules/import-from-emotion'
 import noVanilla from './rules/no-vanilla'
 import syntaxPreference from './rules/syntax-preference'

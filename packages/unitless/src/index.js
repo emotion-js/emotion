@@ -1,6 +1,4 @@
-// @flow
-
-let unitlessKeys: { [key: string]: 1 } = {
+let unitlessKeys /*: { [key: string]: 1 } */ = {
   animationIterationCount: 1,
   borderImageOutset: 1,
   borderImageSlice: 1,

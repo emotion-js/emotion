@@ -1,4 +1,3 @@
-// @flow
 import styled from '@emotion/styled'
 import {
   space,
@@ -36,6 +35,7 @@ const column = props => (props.column ? 'flex-direction:column;' : null)
  *   ${justify};
  * `
  */
+/*
 type Props = $Shape<{
   className: ?string,
   flex: number | string,
@@ -47,7 +47,9 @@ type Props = $Shape<{
   justify: string,
   align: string
 }>
-const Box = styled.div<Props>(
+*/
+
+const Box = styled.div(
   display,
   space,
   width,

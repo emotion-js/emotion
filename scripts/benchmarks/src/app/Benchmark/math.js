@@ -1,4 +1,3 @@
-// @flow
 import stats from 'stats-analysis'
 type ValuesType = Array<number>
 

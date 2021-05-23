@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 /** @jsx jsx */
 import { Global, jsx, keyframes } from '@emotion/react'

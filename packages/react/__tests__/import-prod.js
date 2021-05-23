@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/prod-mode'
 import * as React from 'react'
 import { css, Global } from '@emotion/react'

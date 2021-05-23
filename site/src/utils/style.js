@@ -1,4 +1,3 @@
-// @flow
 import { css } from '@emotion/react'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'

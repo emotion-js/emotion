@@ -1,12 +1,11 @@
-// @flow
-import type { RegisteredCache, EmotionCache, SerializedStyles } from './types'
+/* import type { RegisteredCache, EmotionCache, SerializedStyles } from './types' */
 
 const isBrowser = typeof document !== 'undefined'
 
 export function getRegisteredStyles(
-  registered: RegisteredCache,
-  registeredStyles: string[],
-  classNames: string
+  registered /*: RegisteredCache */,
+  registeredStyles /*: string[] */,
+  classNames /*: string */
 ) {
   let rawClassName = ''
 
@@ -21,9 +20,9 @@ export function getRegisteredStyles(
 }
 
 export const insertStyles = (
-  cache: EmotionCache,
-  serialized: SerializedStyles,
-  isStringTag: boolean
+  cache /*: EmotionCache */,
+  serialized /*: SerializedStyles */,
+  isStringTag /*: boolean */
 ) => {
   let className = `${cache.key}-${serialized.name}`
   if (
