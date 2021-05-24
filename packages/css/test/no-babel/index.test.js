@@ -161,7 +161,9 @@ describe('css', () => {
   })
   test('glamorous style api & composition', () => {
     const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
-    const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
+    const H2 = styled(H1)(props => ({ flex: props.flex }), {
+      display: 'flex'
+    })
 
     const tree = renderer
       .create(

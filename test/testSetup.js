@@ -6,7 +6,7 @@ import prettyCSS from './pretty-css'
 if (typeof Node !== 'undefined') {
   let oldInsertBefore = Node.prototype.insertBefore
   // $FlowFixMe
-  Node.prototype.insertBefore = function(node, refNode) {
+  Node.prototype.insertBefore = function (node, refNode) {
     if (refNode instanceof Node || refNode === null) {
       return oldInsertBefore.call(this, node, refNode)
     }

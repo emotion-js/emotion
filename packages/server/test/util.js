@@ -9,7 +9,11 @@ import HTMLSerializer from 'jest-serializer-html'
 
 type EmotionServer = {
   renderStylesToNodeStream: () => *,
-  extractCritical: string => { html: string, css: string, ids: Array<string> },
+  extractCritical: string => {
+    html: string,
+    css: string,
+    ids: Array<string>
+  },
   renderStylesToString: string => string
 }
 

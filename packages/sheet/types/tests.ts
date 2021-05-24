@@ -50,4 +50,4 @@ styleSheet.flush()
 // $ExpectError
 styleSheet.flush(undefined as any)
 // $ExpectError
-styleSheet.flush(...((undefined as any) as Array<any>))
+styleSheet.flush(...(undefined as any as Array<any>))
