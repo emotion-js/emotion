@@ -76,7 +76,7 @@ export type EmotionBabelPluginPass = any
 
 const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always']
 
-export default function(babel, options) {
+export default function (babel, options) {
   if (
     options.autoLabel !== undefined &&
     !AUTO_LABEL_VALUES.includes(options.autoLabel)

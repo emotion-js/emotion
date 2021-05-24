@@ -4,7 +4,7 @@ import createExtractCriticalToChunks from './extract-critical-to-chunks'
 import createRenderStylesToString from './inline'
 import createRenderStylesToStream from './stream'
 import createConstructStyleTagsFromChunks from './construct-style-tags-from-chunks'
-export default function(cache /*: EmotionCache */) {
+export default function (cache /*: EmotionCache */) {
   if (cache.compat !== true) {
     // is this good? should we do this automatically?
     // this is only for when using the new apis (not emotion or create-emotion)

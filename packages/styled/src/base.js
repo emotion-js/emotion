@@ -47,7 +47,7 @@ let createStyled /*: CreateStyled */ = (
   const shouldUseAs = !defaultShouldForwardProp('as')
 
   /* return function<Props>(): PrivateStyledComponent<Props> { */
-  return function() {
+  return function () {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined

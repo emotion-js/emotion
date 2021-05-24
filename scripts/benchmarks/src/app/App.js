@@ -32,20 +32,12 @@ export default class App extends Component {
 
   render() {
     const { tests } = this.props
-    const {
-      currentBenchmarkName,
-      status,
-      currentLibraryName,
-      results
-    } = this.state
+    const { currentBenchmarkName, status, currentLibraryName, results } =
+      this.state
     const currentImplementation =
       tests[currentBenchmarkName][currentLibraryName]
-    const {
-      Component,
-      Provider,
-      getComponentProps,
-      sampleCount
-    } = currentImplementation
+    const { Component, Provider, getComponentProps, sampleCount } =
+      currentImplementation
 
     return (
       <Layout
@@ -203,28 +195,27 @@ export default class App extends Component {
     }
   }
 
-  _createHandleComplete = ({
-    benchmarkName,
-    libraryName,
-    sampleCount
-  }) => results => {
-    this.setState(
-      state => ({
-        results: state.results.concat([
-          {
-            ...results,
-            benchmarkName,
-            libraryName,
-            libraryVersion: this.props.tests[benchmarkName][libraryName].version
-          }
-        ]),
-        status: 'complete'
-      }),
-      this._scrollToEnd
-    )
-    // console.log(results);
-    // console.log(results.samples.map(sample => sample.elapsed.toFixed(1)).join('\n'));
-  }
+  _createHandleComplete =
+    ({ benchmarkName, libraryName, sampleCount }) =>
+    results => {
+      this.setState(
+        state => ({
+          results: state.results.concat([
+            {
+              ...results,
+              benchmarkName,
+              libraryName,
+              libraryVersion:
+                this.props.tests[benchmarkName][libraryName].version
+            }
+          ]),
+          status: 'complete'
+        }),
+        this._scrollToEnd
+      )
+      // console.log(results);
+      // console.log(results.samples.map(sample => sample.elapsed.toFixed(1)).join('\n'));
+    }
 
   _handleClear = () => {
     this.setState(() => ({ results: [] }))

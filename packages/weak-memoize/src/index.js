@@ -1,4 +1,4 @@
-let weakMemoize = function(
+let weakMemoize = function (
   /* <Arg, Return> */ func /*: Arg => Return */
 ) /*: Arg => Return */ {
   let cache /*: WeakMap<Arg, Return> */ = new WeakMap()

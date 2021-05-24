@@ -116,48 +116,46 @@ function isShallowEnzymeElement(
   })
 }
 
-const createConvertEmotionElements = (
-  keys /*: string[] */,
-  printer
-) => node => {
-  if (isPrimitive(node)) {
-    return node
-  }
-  if (isEmotionCssPropEnzymeElement(node)) {
-    const className = enzymeTickler.getTickledClassName(node.props.css)
-    const labels = getLabelsFromClassName(keys, className || '')
+const createConvertEmotionElements =
+  (keys /*: string[] */, printer) => node => {
+    if (isPrimitive(node)) {
+      return node
+    }
+    if (isEmotionCssPropEnzymeElement(node)) {
+      const className = enzymeTickler.getTickledClassName(node.props.css)
+      const labels = getLabelsFromClassName(keys, className || '')
 
-    if (isShallowEnzymeElement(node, keys, labels)) {
-      const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-      // emotionType will be a string for DOM elements
-      const type =
-        typeof emotionType === 'string'
-          ? emotionType
-          : emotionType.displayName || emotionType.name || 'Component'
+      if (isShallowEnzymeElement(node, keys, labels)) {
+        const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+        // emotionType will be a string for DOM elements
+        const type =
+          typeof emotionType === 'string'
+            ? emotionType
+            : emotionType.displayName || emotionType.name || 'Component'
+        return {
+          ...node,
+          props: filterEmotionProps({
+            ...node.props,
+            className
+          }),
+          type
+        }
+      } else {
+        return node.children[0]
+      }
+    }
+    if (isEmotionCssPropElementType(node)) {
       return {
         ...node,
-        props: filterEmotionProps({
-          ...node.props,
-          className
-        }),
-        type
+        props: filterEmotionProps(node.props),
+        type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       }
-    } else {
-      return node.children[0]
     }
-  }
-  if (isEmotionCssPropElementType(node)) {
-    return {
-      ...node,
-      props: filterEmotionProps(node.props),
-      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+    if (isReactElement(node)) {
+      return copyProps({}, node)
     }
+    return node
   }
-  if (isReactElement(node)) {
-    return copyProps({}, node)
-  }
-  return node
-}
 
 function clean(node, classNames /*: string[] */) {
   if (Array.isArray(node)) {
@@ -230,8 +228,8 @@ export function createSerializer({
     test(val) {
       return (
         val &&
-        (!isTransformed(val) &&
-          (isReactElement(val) || (DOMElements && isDOMElement(val))))
+        !isTransformed(val) &&
+        (isReactElement(val) || (DOMElements && isDOMElement(val)))
       )
     },
     serialize

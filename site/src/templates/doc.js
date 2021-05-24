@@ -36,13 +36,13 @@ type Props = {
 */
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var hash = window.decodeURI(window.location.hash)
     if (hash !== '' && hash !== '#') {
       var element = document.getElementById(`.docSearch-content ${hash} a`)
       if (element) {
         // Wait for the browser to finish rendering before scrolling.
-        setTimeout(function() {
+        setTimeout(function () {
           if (element) {
             element.click()
           }
@@ -124,12 +124,8 @@ export default class DocRoute extends React.Component /* <Props, DocRouteState> 
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={
                   doc.frontmatter.title
-                    ? `https://github.com/emotion-js/emotion/edit/main/docs/${
-                        this.props.pageContext.slug
-                      }.mdx`
-                    : `https://github.com/emotion-js/emotion/edit/main/packages/${
-                        this.props.pageContext.slug
-                      }/README.md`
+                    ? `https://github.com/emotion-js/emotion/edit/main/docs/${this.props.pageContext.slug}.mdx`
+                    : `https://github.com/emotion-js/emotion/edit/main/packages/${this.props.pageContext.slug}/README.md`
                 }
               >
                 ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>

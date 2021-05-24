@@ -37,8 +37,7 @@ export interface StyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
   JSXProps extends {} = {}
->
-  extends React.FC<ComponentProps & SpecificComponentProps & JSXProps>,
+> extends React.FC<ComponentProps & SpecificComponentProps & JSXProps>,
     ComponentSelector {
   withComponent<C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C
@@ -119,9 +118,7 @@ export interface CreateStyledComponent<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -150,9 +147,7 @@ export interface CreateStyled {
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>

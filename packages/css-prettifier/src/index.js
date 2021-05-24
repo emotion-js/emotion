@@ -28,8 +28,8 @@ const prettyStringify = memoize(
       case 'rule':
         element.value = element.props.join(
           element.root &&
-          (element.root.type === '@keyframes' ||
-            element.root.type === '@-webkit-keyframes')
+            (element.root.type === '@keyframes' ||
+              element.root.type === '@-webkit-keyframes')
             ? ', '
             : ',\n'
         )
@@ -39,10 +39,7 @@ const prettyStringify = memoize(
       ? (element.return =
           element.value +
           ' {\n' +
-          children
-            .trim()
-            .replace(/^/gm, indentation)
-            .replace(/^\s+$/gm, '') +
+          children.trim().replace(/^/gm, indentation).replace(/^\s+$/gm, '') +
           '\n}\n\n')
       : ''
   }

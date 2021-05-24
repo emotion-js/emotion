@@ -75,11 +75,7 @@ describe('unsafe pseudo classes', () => {
         expect(match).not.toBeNull()
         expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
         expect(console.error).toBeCalledWith(
-          `The pseudo class "${
-            match[0]
-          }" is potentially unsafe when doing server-side rendering. Try changing it to "${
-            match[1]
-          }-of-type".`
+          `The pseudo class "${match[0]}" is potentially unsafe when doing server-side rendering. Try changing it to "${match[1]}-of-type".`
         )
       })
     })

@@ -22,11 +22,10 @@ const isCustomProperty = (property /*: string */) =>
   property.charCodeAt(1) === 45
 const isProcessableValue = value => value != null && typeof value !== 'boolean'
 
-const processStyleName = /* #__PURE__ */ memoize(
-  (styleName /*: string */) =>
-    isCustomProperty(styleName)
-      ? styleName
-      : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+const processStyleName = /* #__PURE__ */ memoize((styleName /*: string */) =>
+  isCustomProperty(styleName)
+    ? styleName
+    : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
 let processStyleValue = (
@@ -61,7 +60,8 @@ let processStyleValue = (
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  let contentValuePattern = /(attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
+  let contentValuePattern =
+    /(attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
   let contentValues = ['normal', 'none', 'initial', 'inherit', 'unset']
 
   let oldProcessStyleValue = processStyleValue
@@ -298,14 +298,15 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
 let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
-  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
+  sourceMapPattern =
+    /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
 }
 
 // this is the cursor for keyframes
 // keyframes are stored on the SerializedStyles object as a linked list
 let cursor
 
-export const serializeStyles = function(
+export const serializeStyles = function (
   args /*: Array<Interpolation> */,
   registered /*: RegisteredCache | void */,
   mergedProps /*: void | Object */

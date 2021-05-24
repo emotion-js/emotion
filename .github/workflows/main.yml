@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: "Tests on ${{matrix.platform}}"
+    name: 'Tests on ${{matrix.platform}}'
     strategy:
       fail-fast: false
       matrix:
@@ -163,5 +163,3 @@ jobs:
         run: yarn lint:check
       - name: TypeScript
         run: cd packages/${{ matrix.package }} && yarn test:typescript
-
-

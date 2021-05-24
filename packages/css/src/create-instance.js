@@ -71,7 +71,7 @@ export type Emotion = {
 let createEmotion = (options) /*: Emotion */ => {
   let cache = createCache(options)
 
-  cache.sheet.speedy = function(value /*: boolean */) {
+  cache.sheet.speedy = function (value /*: boolean */) {
     if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }

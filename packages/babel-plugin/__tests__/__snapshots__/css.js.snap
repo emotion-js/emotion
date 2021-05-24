@@ -393,7 +393,7 @@ const thing = () => _ref;"
 exports[`emotion-babel-plugin css label-function-expression 1`] = `
 "import { css } from '@emotion/react'
 
-const thing = function() {
+const thing = function () {
   return css\`
     color: hotpink;
   \`
@@ -412,7 +412,7 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"1hi0qos-thing\\",
   styles: \\"color:hotpink;label:thing;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWZ1bmN0aW9uLWV4cHJlc3Npb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR1kiLCJmaWxlIjoibGFiZWwtZnVuY3Rpb24tZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCB0aGluZyA9IGZ1bmN0aW9uKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWZ1bmN0aW9uLWV4cHJlc3Npb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR1kiLCJmaWxlIjoibGFiZWwtZnVuY3Rpb24tZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCB0aGluZyA9IGZ1bmN0aW9uICgpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxufVxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 

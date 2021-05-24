@@ -1,6 +1,8 @@
+arrowParens: avoid
 semi: false
 singleQuote: true
+trailingComma: none
 overrides:
-- files: "docs/*.md"
-  options:
-    printWidth: 60
+  - files: 'docs/*.md'
+    options:
+      printWidth: 60

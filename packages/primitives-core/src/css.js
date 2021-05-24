@@ -146,11 +146,7 @@ function convertStyles(str /*: string */) {
         .trim()
         .split(':')
 
-      const errorMsg = `'${
-        values[0]
-      }' shorthand property requires units for example - ${
-        values[0]
-      }: 20px or ${values[0]}: 10px 20px 40px 50px`
+      const errorMsg = `'${values[0]}' shorthand property requires units for example - ${values[0]}: 20px or ${values[0]}: 10px 20px 40px 50px`
 
       console.error(errorMsg)
     }

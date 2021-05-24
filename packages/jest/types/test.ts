@@ -25,7 +25,7 @@ createSerializer({
     return `${className}-${index}`
   }
 })
-createSerializer((213 as any) as CreateSerializerOptions)
+createSerializer(213 as any as CreateSerializerOptions)
 // $ExpectError
 createSerializer(1)
 // $ExpectError

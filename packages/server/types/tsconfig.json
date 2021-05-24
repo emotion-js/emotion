@@ -3,9 +3,7 @@
     "baseUrl": "../",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "es6"
-    ],
+    "lib": ["es6"],
     "module": "commonjs",
     "noEmit": true,
     "noImplicitAny": true,
@@ -14,13 +12,8 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "target": "es5",
-    "typeRoots": [
-      "../"
-    ],
+    "typeRoots": ["../"],
     "types": []
   },
-  "include": [
-    "./*.ts",
-    "./*.tsx"
-  ]
+  "include": ["./*.ts", "./*.tsx"]
 }
