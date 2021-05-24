@@ -31,7 +31,9 @@ let important = css`
 `
 
 const SomeComponent = props => (
-  <div className={cx(basic, props.important && important)} />
+  <div
+    className={cx(basic, props.important && important)}
+  />
 )
 ```
 
@@ -204,6 +206,7 @@ let element = (
 
 - Replace `injectGlobal` with `Global` styles
 
+
 ```jsx
 import { injectGlobal } from 'emotion'
 
@@ -216,7 +219,8 @@ injectGlobal`
 // ↓ ↓ ↓ ↓ ↓ ↓
 
 import { Global, css } from '@emotion/core'
-;<Global
+
+<Global
   styles={css`
     * {
       box-sizing: border-box;

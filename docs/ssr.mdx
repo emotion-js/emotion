@@ -45,8 +45,7 @@ import createCache from '@emotion/cache'
 
 const key = 'custom'
 const cache = createCache({ key })
-const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-  createEmotionServer(cache)
+const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache)
 
 let element = (
   <CacheProvider value={cache}>
@@ -56,7 +55,10 @@ let element = (
 
 let { html, styles } = extractCriticalToChunks(renderToString(element))
 
-res.status(200).header('Content-Type', 'text/html').send(`<!DOCTYPE html>
+res
+  .status(200)
+  .header('Content-Type', 'text/html')
+  .send(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,7 +72,7 @@ res.status(200).header('Content-Type', 'text/html').send(`<!DOCTYPE html>
 
     <script src="./bundle.js"></script>
 </body>
-</html>`)
+</html>`);
 ```
 
 #### When using `@emotion/css`
@@ -93,7 +95,10 @@ let element = (
 
 let { html, css, ids } = extractCritical(renderToString(element))
 
-res.status(200).header('Content-Type', 'text/html').send(`<!DOCTYPE html>
+res
+  .status(200)
+  .header('Content-Type', 'text/html')
+  .send(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -107,7 +112,7 @@ res.status(200).header('Content-Type', 'text/html').send(`<!DOCTYPE html>
 
     <script src="./bundle.js"></script>
 </body>
-</html>`)
+</html>`);
 ```
 
 ### On client
@@ -122,6 +127,8 @@ ReactDOM.hydrate(
   document.getElementById('root')
 )
 ```
+
+
 
 In this approach you have to create your own cache and emotion server then use extractCritical
 
@@ -158,6 +165,7 @@ This returns an object with the properties `html`, `ids` and `css`. It pulls out
 > Note:
 >
 > If you have dynamic global styles it's advised to create cache **per** single render to avoid global styles from different renders leaking into the extracted `css`.
+
 
 ```jsx
 import { renderToString } from 'react-dom/server'
@@ -213,7 +221,7 @@ export const createMyCache = () =>
     key: 'my-prefix-key',
     stylisPlugins: [
       /* your plugins here */
-    ]
+    ],
   })
 
 export const myCache = createMyCache()
