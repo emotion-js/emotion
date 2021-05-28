@@ -137,7 +137,7 @@ export class StyleSheet {
       } catch (e) {
         if (
           process.env.NODE_ENV !== 'production' &&
-          !/:(-moz-placeholder|-ms-input-placeholder|-moz-read-write|-moz-read-only){/.test(
+          !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear){/.test(
             rule
           )
         ) {
