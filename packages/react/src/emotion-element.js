@@ -23,9 +23,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
     props.css.indexOf(':') !== -1
   ) {
     throw new Error(
-      `Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/react' like this: css\`${
-        props.css
-      }\``
+      `Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/react' like this: css\`${props.css}\``
     )
   }
 
