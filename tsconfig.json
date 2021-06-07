@@ -6,6 +6,7 @@
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "noEmit": true,
+    "skipDefaultLibCheck": true,
     "strict": true,
     "target": "es5"
   },
