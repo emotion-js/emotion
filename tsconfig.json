@@ -11,5 +11,5 @@
     "target": "es5"
   },
   "include": ["packages", "scripts", "site", "test", "playgrounds"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "packages/*/types/test/*"]
 }
