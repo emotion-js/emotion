@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import BabelWorker from 'worker-loader!./worker'
 
 let worker

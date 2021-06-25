@@ -117,11 +117,11 @@ function replacePlaceholdersWithExpressions(
     }
   })
 
-  return interleave(strings, finalExpressions).filter((
-    node /*: { value: string } */
-  ) => {
-    return node.value !== ''
-  })
+  return interleave(strings, finalExpressions).filter(
+    (node /*: { value: string } */) => {
+      return node.value !== ''
+    }
+  )
 }
 
 function createRawStringFromTemplateLiteral(

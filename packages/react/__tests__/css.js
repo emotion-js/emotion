@@ -268,10 +268,7 @@ test('applies class when css prop is set to nil on wrapper component', () => {
   const Button = props => <button css={{ color: 'hotpink' }} {...props} />
 
   const WrappedButton /*: React.StatelessFunctionalComponent<any> */ = (
-    {
-      children,
-      buttonStyles
-    } /*: {
+    { children, buttonStyles } /*: {
     children: React$Node,
     buttonStyles?: null
   } */
