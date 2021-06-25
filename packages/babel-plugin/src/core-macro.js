@@ -6,13 +6,7 @@ import {
 } from './utils'
 
 export const transformCssCallExpression = (
-  {
-    state,
-    babel,
-    path,
-    sourceMap,
-    annotateAsPure = true
-  } /*: {
+  { state, babel, path, sourceMap, annotateAsPure = true } /*: {
   state: *,
   babel: *,
   path: *,
@@ -72,12 +66,7 @@ export const transformCsslessArrayExpression = (
 }
 
 export const transformCsslessObjectExpression = (
-  {
-    state,
-    babel,
-    path,
-    cssImport
-  } /*: {
+  { state, babel, path, cssImport } /*: {
   babel: *,
   state: *,
   path: *,
@@ -117,11 +106,7 @@ export const transformCsslessObjectExpression = (
 }
 
 let cssTransformer = (
-  {
-    state,
-    babel,
-    reference
-  } /*: {
+  { state, babel, reference } /*: {
   state: any,
   babel: any,
   reference: any
@@ -131,13 +116,7 @@ let cssTransformer = (
 }
 
 let globalTransformer = (
-  {
-    state,
-    babel,
-    reference,
-    importSource,
-    options
-  } /*: {
+  { state, babel, reference, importSource, options } /*: {
   state: any,
   babel: any,
   reference: any,

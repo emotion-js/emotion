@@ -9,11 +9,7 @@ import { constants, mq } from '../utils/style'
 import { Global } from '@emotion/react'
 
 const TemplateWrapper = (
-  {
-    children,
-    sidebarOpen,
-    title
-  } /* : {
+  { children, sidebarOpen, title } /* : {
   children: React.Node
   sidebarOpen?: boolean
   title: string

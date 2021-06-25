@@ -67,7 +67,7 @@
       "prettier/prettier": [
         "error",
         {
-          "parser": "typescript-eslint"
+          "parser": "typescript"
         }
       ],
       "react/jsx-curly-brace-presence": 0,
