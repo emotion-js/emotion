@@ -11,7 +11,9 @@ export type ReactNativeStyle = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
 export type ReactNativeStyleType<Props> = Props extends {
   style?: RN.StyleProp<infer StyleType>
 }
-  ? StyleType extends ReactNativeStyle ? StyleType : ReactNativeStyle
+  ? StyleType extends ReactNativeStyle
+    ? StyleType
+    : ReactNativeStyle
   : ReactNativeStyle
 
 export type InterpolationPrimitive<
@@ -144,9 +146,7 @@ export interface CreateStyledComponent<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -175,9 +175,7 @@ export interface CreateStyled {
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>

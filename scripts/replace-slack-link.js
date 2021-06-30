@@ -7,7 +7,8 @@ const slackInviteLink = process.argv[2]
 const siteHeaderPath = `${__dirname}/../site/src/components/SiteHeader.js`
 const readmePath = `${__dirname}/../README.md`
 
-const slackInviteLinkRegex = /https:\/\/join\.slack\.com\/t\/emotion-slack\/shared_invite\/[^/]+\//
+const slackInviteLinkRegex =
+  /https:\/\/join\.slack\.com\/t\/emotion-slack\/shared_invite\/[^/]+\//
 
 const siteHeader = fs.readFileSync(siteHeaderPath, 'utf8')
 

@@ -65,7 +65,7 @@ export const InferredExtraPropsView = styled.View<ExtraProps>`
 
 export const ThemedView = styled.View<AdditionalProps>`
   background-color: ${({ theme }) => theme.color.positive}; // ${({ bar }) =>
-  bar}
+    bar}
 `
 
 const largeTextStyle: TextStyle = {
@@ -79,8 +79,7 @@ const stretchImageStyle: ImageStyle = {
 // for some reason, TypeScript is not complaining about the incorrect interpolated type
 styled.Text(largeTextStyle, stretchImageStyle)
 export const LargeText = styled.Text`
-  ${largeTextStyle}
-  // ${stretchImageStyle}
+  ${largeTextStyle}// ${stretchImageStyle}
 `
 
 styled.Image(
