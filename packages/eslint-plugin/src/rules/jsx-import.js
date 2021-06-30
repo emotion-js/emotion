@@ -57,8 +57,9 @@ export default {
               fix(fixer) {
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
-                  `/** @jsxImportSource ${(jsxRuntimeMode || {}).importSource ||
-                    '@emotion/react'} */\n`
+                  `/** @jsxImportSource ${
+                    (jsxRuntimeMode || {}).importSource || '@emotion/react'
+                  } */\n`
                 )
               }
             })
