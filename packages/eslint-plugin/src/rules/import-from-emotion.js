@@ -24,10 +24,11 @@ export default {
                     node.specifiers[0].local.name
                   } from '@emotion/styled';\nimport { ${node.specifiers
                     .filter(x => x.type === 'ImportSpecifier')
-                    .map(x =>
-                      x.local.name === x.imported.name
-                        ? x.local.name
-                        : `${x.imported.name} as ${x.local.name}`
+                    .map(
+                      x =>
+                        x.local.name === x.imported.name
+                          ? x.local.name
+                          : `${x.imported.name} as ${x.local.name}`
                     )
                     .join(', ')} } from 'emotion';`
                 )

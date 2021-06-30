@@ -42,7 +42,9 @@ export default {
               : '@emotion/react/macro'
           context.report({
             node: node.source,
-            message: `The default export of "${node.source.value}" in Emotion 10 has been moved to a named export, \`css\`, from "${replacement}" in Emotion 11, please import it from "${replacement}"`,
+            message: `The default export of "${
+              node.source.value
+            }" in Emotion 10 has been moved to a named export, \`css\`, from "${replacement}" in Emotion 11, please import it from "${replacement}"`,
             fix: fixer =>
               fixer.replaceText(
                 node,
