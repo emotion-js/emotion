@@ -173,8 +173,9 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     Styled.__emotion_base = baseTag
     Styled.__emotion_styles = styles
     Styled.__emotion_forwardProp = shouldForwardProp
-    Styled.__emotion_forward_className = `${tag.__emotion_forward_className ||
-      ''} ${targetClassName || ''}`.trim()
+    Styled.__emotion_forward_className = `${
+      tag.__emotion_forward_className || ''
+    } ${targetClassName || ''}`.trim()
 
     Object.defineProperty(Styled, 'toString', {
       value() {
