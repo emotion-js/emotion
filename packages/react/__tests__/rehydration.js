@@ -204,10 +204,8 @@ test('global styles can be removed individually after rehydrating HTML SSRed wit
     resetAllModules()
 
     let cache = createCache({ key: 'mui' })
-    let {
-      extractCriticalToChunks,
-      constructStyleTagsFromChunks
-    } = createEmotionServer(cache)
+    let { extractCriticalToChunks, constructStyleTagsFromChunks } =
+      createEmotionServer(cache)
 
     const rendered = ReactDOMServer.renderToString(
       <CacheProvider value={cache}>
@@ -332,10 +330,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     resetAllModules()
 
     let cache = createCache({ key: 'muii' })
-    let {
-      extractCriticalToChunks,
-      constructStyleTagsFromChunks
-    } = createEmotionServer(cache)
+    let { extractCriticalToChunks, constructStyleTagsFromChunks } =
+      createEmotionServer(cache)
 
     const rendered = ReactDOMServer.renderToString(
       <CacheProvider value={cache}>

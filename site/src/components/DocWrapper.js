@@ -127,9 +127,7 @@ const SidebarGroup = (props: {
                     content: '""',
                     height: [42, 42, 32],
                     width: [8, 8, 6],
-                    transform: `translate3d(-${constants.space[3]}px, -${
-                      constants.space[1]
-                    }px, 0)`,
+                    transform: `translate3d(-${constants.space[3]}px, -${constants.space[1]}px, 0)`,
                     position: 'absolute',
                     display: 'inline-block',
                     backgroundColor: colors.lighten(0.25, colors.border)

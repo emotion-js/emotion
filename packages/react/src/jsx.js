@@ -4,7 +4,7 @@ import Emotion, { createEmotionProps } from './emotion-element'
 import { hasOwnProperty } from './utils'
 
 // $FlowFixMe
-export const jsx: typeof React.createElement = function(
+export const jsx: typeof React.createElement = function (
   type: React.ElementType,
   props: Object
 ) {

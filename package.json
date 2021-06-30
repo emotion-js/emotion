@@ -53,8 +53,7 @@
     "extends": [
       "standard",
       "standard-react",
-      "prettier",
-      "prettier/react"
+      "prettier"
     ],
     "plugins": [
       "prettier",
@@ -218,14 +217,14 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
     "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
@@ -247,7 +246,7 @@
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
     "polished": "^1.2.1",
-    "prettier": "1.14.3",
+    "prettier": "^2.3.0",
     "puppeteer": "^1.6.0",
     "raf": "^3.4.0",
     "react": "16.14.0",

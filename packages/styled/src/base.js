@@ -42,7 +42,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return function<Props>(): PrivateStyledComponent<Props> {
+  return function <Props>(): PrivateStyledComponent<Props> {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
