@@ -14,5 +14,5 @@
     "typeRoots": ["../"],
     "types": []
   },
-  "include": ["./src/**/*"]
+  "include": ["./*.ts", "./*.tsx"]
 }
