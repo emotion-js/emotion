@@ -94,7 +94,7 @@ export class StyleSheet {
     this.before = null
   }
 
-  _insertTag = (tag: HTMLStyleElement) => {
+  private _insertTag = (tag: HTMLStyleElement) => {
     let before
     if (this.tags.length === 0) {
       before = this.prepend ? this.container.firstChild : this.before
