@@ -20,6 +20,11 @@ let EmotionCacheContext: React.Context<EmotionCache | null> =
 
 export let CacheProvider = EmotionCacheContext.Provider
 
+export let __unsafe_useEmotionCache =
+  function useEmotionCache(): EmotionCache | null {
+    return useContext(EmotionCacheContext)
+  }
+
 let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
 ): React.AbstractComponent<Props> {
