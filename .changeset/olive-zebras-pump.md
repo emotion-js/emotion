@@ -1,5 +1,5 @@
 ---
-'@emotion/react': minor
+'@emotion/react': patch
 ---
 
-Add display names to public React contexts
+Added display names to public React contexts in development builds. This helps to recognize them in React Developer Tools.
