@@ -18,8 +18,7 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "browser": {
     "./dist/emotion-weak-memoize.cjs.js": "./dist/emotion-weak-memoize.browser.cjs.js",
