@@ -2,4 +2,4 @@
 '@emotion/sheet': minor
 ---
 
-Convert to TypeScript and emit declarations from code
+Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.

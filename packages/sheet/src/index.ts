@@ -21,19 +21,7 @@ styleSheet.flush()
 
 */
 
-function assertDefined<T>(
-  value: T | undefined | null,
-  name: string
-): asserts value is T {
-  // skip the check in production
-  if (process.env.NODE_ENV === 'production') return
-
-  if (value == null) {
-    throw new Error(`${name} was not defined`)
-  }
-}
-
-function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet | undefined {
+function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   if (tag.sheet) {
     return tag.sheet
   }
@@ -45,6 +33,10 @@ function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet | undefined {
       return document.styleSheets[i]
     }
   }
+
+  // this function should always return with a value
+  // TS can't understand it though so we make it stop complaining here
+  return undefined as any
 }
 
 export type Options = {
@@ -55,10 +47,7 @@ export type Options = {
   prepend?: boolean
 }
 
-function createStyleElement(options: {
-  key: string
-  nonce?: string
-}): HTMLStyleElement {
+function createStyleElement(options: Options): HTMLStyleElement {
   let tag = document.createElement('style')
   tag.setAttribute('data-emotion', options.key)
   if (options.nonce !== undefined) {
@@ -78,7 +67,9 @@ export class StyleSheet {
   nonce: string | undefined
   prepend: boolean | undefined
   before: Element | null
-  private _alreadyInsertedOrderInsensitiveRule: boolean | undefined = undefined
+
+  private _alreadyInsertedOrderInsensitiveRule: boolean | undefined
+
   constructor(options: Options) {
     this.isSpeedy =
       options.speedy === undefined
@@ -94,7 +85,7 @@ export class StyleSheet {
     this.before = null
   }
 
-  private _insertTag = (tag: HTMLStyleElement) => {
+  private _insertTag = (tag: HTMLStyleElement): void => {
     let before
     if (this.tags.length === 0) {
       before = this.prepend ? this.container.firstChild : this.before
@@ -139,7 +130,6 @@ export class StyleSheet {
 
     if (this.isSpeedy) {
       const sheet = sheetForTag(tag)
-      assertDefined(sheet, 'sheet')
       try {
         // this is the ultrafast version, works across browsers
         // the big drawback is that the css won't be editable in devtools
@@ -164,11 +154,7 @@ export class StyleSheet {
   }
 
   flush(): void {
-    this.tags.forEach(tag => {
-      const { parentNode } = tag
-      assertDefined(parentNode, 'tag.parentNode')
-      parentNode.removeChild(tag)
-    })
+    this.tags.forEach(tag => tag.parentNode!.removeChild(tag))
     this.tags = []
     this.ctr = 0
     if (process.env.NODE_ENV !== 'production') {

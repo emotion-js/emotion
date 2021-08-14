@@ -1,4 +1,4 @@
-import { StyleSheet } from '../src'
+import { StyleSheet } from '@emotion/sheet'
 
 new StyleSheet({
   key: 'abc',

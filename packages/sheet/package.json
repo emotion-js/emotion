@@ -8,7 +8,7 @@
     "./dist/emotion-sheet.cjs.js": "./dist/emotion-sheet.browser.cjs.js",
     "./dist/emotion-sheet.esm.js": "./dist/emotion-sheet.browser.esm.js"
   },
-  "types": "dist/declarations/src/index.d.ts",
+  "types": "dist/emotion-sheet.cjs.d.ts",
   "license": "MIT",
   "scripts": {
     "test:typescript": "dtslint types"
@@ -19,8 +19,7 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "devDependencies": {
     "dtslint": "^0.3.0"
