@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/legacy-env'
 import * as renderer from 'react-test-renderer'
@@ -44,9 +43,7 @@ test('composition with objects', () => {
   const cssA = {
     color: lighten(0.2, '#000'),
     fontSize: '1em',
-    [hiDPI(1.5)
-      .replace('\n', ' ')
-      .trim()]: { fontSize: '1.25em' }
+    [hiDPI(1.5).replace('\n', ' ').trim()]: { fontSize: '1.25em' }
   }
 
   const cssB = css`

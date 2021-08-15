@@ -1,6 +1,5 @@
 /**
  * @jest-environment node
- * @flow
  */
 import { JSDOM } from 'jsdom'
 

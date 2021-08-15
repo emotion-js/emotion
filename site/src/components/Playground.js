@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { Component } from 'react'
@@ -15,7 +14,7 @@ export const scope = {
       NODE_ENV: process.env.NODE_ENV
     }
   },
-  require(moduleName: string) {
+  require(moduleName /*: string */) {
     switch (moduleName) {
       case '@emotion/css':
         return require('@emotion/css')
@@ -38,7 +37,6 @@ export const scope = {
   }
 }
 
-// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const Error = styled.pre`
   background-color: ${colors.red[8]};
   overflow: auto;
@@ -49,14 +47,16 @@ export const Error = styled.pre`
   margin: 0;
 `
 
+/*
 type Props = {
   code: string,
   className?: string,
   editorClassName?: string,
   initialCompiledCode: string
 }
+*/
 
-export default class Playground extends Component<Props> {
+export default class Playground extends Component /* <Props> */ {
   render() {
     return (
       <StaticQuery

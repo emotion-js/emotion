@@ -41,22 +41,20 @@ export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
 ): StyleType
 
 // those 2 are just copies of the `BaseCreateStyled` with supplied `C` type argument
-type HostClassComponent<
-  C extends React.ComponentClass<any>
-> = CreateStyledComponent<
-  React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
-  {},
-  { ref?: React.Ref<InstanceType<C>> },
-  ReactNativeStyleType<React.ComponentProps<C>>
->
-type HostFunctionComponent<
-  C extends React.FunctionComponent<any>
-> = CreateStyledComponent<
-  React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
-  {},
-  {},
-  ReactNativeStyleType<React.ComponentProps<C>>
->
+type HostClassComponent<C extends React.ComponentClass<any>> =
+  CreateStyledComponent<
+    React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
+    {},
+    { ref?: React.Ref<InstanceType<C>> },
+    ReactNativeStyleType<React.ComponentProps<C>>
+  >
+type HostFunctionComponent<C extends React.FunctionComponent<any>> =
+  CreateStyledComponent<
+    React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
+    {},
+    {},
+    ReactNativeStyleType<React.ComponentProps<C>>
+  >
 
 export interface StyledComponents {
   ActivityIndicator: HostClassComponent<ReactNative['ActivityIndicator']>

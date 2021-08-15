@@ -93,6 +93,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### In the Wild
 
+- [frontity.org](https://frontity.org)
 - [abacusfi.com](https://abacusfi.com)
 - [healthline.com](https://www.healthline.com)
 - [nytimes.com](https://www.nytimes.com)
@@ -108,6 +109,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [Domain.com.au](https://www.domain.com.au)
 - [cyberhaven.com](https://cyberhaven.com)
 - [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
+- [codecademy.com](https://www.codecademy.com)
 
 ## Contributors
 

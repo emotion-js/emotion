@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
@@ -13,6 +12,7 @@ import Title from '../components/Title'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 
+/*
 type Props = {
   data: {
     doc: {
@@ -33,15 +33,16 @@ type Props = {
     slug: string
   }
 }
+*/
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var hash = window.decodeURI(window.location.hash)
     if (hash !== '' && hash !== '#') {
       var element = document.getElementById(`.docSearch-content ${hash} a`)
       if (element) {
         // Wait for the browser to finish rendering before scrolling.
-        setTimeout(function() {
+        setTimeout(function () {
           if (element) {
             element.click()
           }
@@ -51,7 +52,7 @@ if (typeof window !== 'undefined') {
   })
 }
 
-const ClassName = (props: any) => {
+const ClassName = props => {
   return props.children(props.className)
 }
 
@@ -84,16 +85,19 @@ const createLiveCode = memoize(logoUrl => props => (
   </ClassName>
 ))
 
+/*
 type DocRouteState = {
   sidebarOpen: boolean
 }
+*/
 
-export default class DocRoute extends React.Component<Props, DocRouteState> {
+export default class DocRoute extends React.Component /* <Props, DocRouteState> */ {
   state = {
     sidebarOpen: false
   }
 
-  setSidebarOpen = (value: boolean) => this.setState({ sidebarOpen: value })
+  setSidebarOpen = (value /*: boolean */) =>
+    this.setState({ sidebarOpen: value })
 
   render() {
     const { data } = this.props
@@ -120,12 +124,8 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={
                   doc.frontmatter.title
-                    ? `https://github.com/emotion-js/emotion/edit/main/docs/${
-                        this.props.pageContext.slug
-                      }.mdx`
-                    : `https://github.com/emotion-js/emotion/edit/main/packages/${
-                        this.props.pageContext.slug
-                      }/README.md`
+                    ? `https://github.com/emotion-js/emotion/edit/main/docs/${this.props.pageContext.slug}.mdx`
+                    : `https://github.com/emotion-js/emotion/edit/main/packages/${this.props.pageContext.slug}/README.md`
                 }
               >
                 ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>

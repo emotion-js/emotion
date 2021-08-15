@@ -1,4 +1,3 @@
-// @flow
 import { StyleSheet, Text, View, Image } from 'react-primitives'
 import { createCss } from '@emotion/primitives-core'
 

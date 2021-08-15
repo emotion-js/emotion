@@ -1,5 +1,3 @@
-// @flow
-
 let finished = false
 let available = false
 let callbacks = []
@@ -29,7 +27,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-export const addCallback = (callback: boolean => mixed) => {
+export const addCallback = (callback /*: boolean => mixed */) => {
   if (finished) {
     callback(available)
   } else {

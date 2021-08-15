@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'

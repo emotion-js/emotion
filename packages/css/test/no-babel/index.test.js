@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
@@ -161,7 +160,9 @@ describe('css', () => {
   })
   test('glamorous style api & composition', () => {
     const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
-    const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
+    const H2 = styled(H1)(props => ({ flex: props.flex }), {
+      display: 'flex'
+    })
 
     const tree = renderer
       .create(
@@ -211,7 +212,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('name with class component', () => {
-    class SomeComponent extends React.Component<{ className: string }> {
+    class SomeComponent extends React.Component /* <{ className: string }> */ {
       render() {
         return <div className={this.props.className} />
       }

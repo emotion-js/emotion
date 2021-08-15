@@ -1,20 +1,23 @@
-// @flow
 import createCache from '@emotion/cache'
 import { serializeStyles } from '@emotion/serialize'
 import {
   insertStyles,
-  getRegisteredStyles,
-  type EmotionCache,
-  type SerializedStyles
+  getRegisteredStyles
+  /* type EmotionCache, */
+  /* type SerializedStyles */
 } from '@emotion/utils'
 
-function insertWithoutScoping(cache, serialized: SerializedStyles) {
+function insertWithoutScoping(cache, serialized /*: SerializedStyles */) {
   if (cache.inserted[serialized.name] === undefined) {
     return cache.insert('', serialized, cache.sheet, true)
   }
 }
 
-function merge(registered: Object, css: (*) => string, className: string) {
+function merge(
+  registered /*: Object */,
+  css /*: (*) => string */,
+  className /*: string */
+) {
   const registeredStyles = []
   const rawClassName = getRegisteredStyles(
     registered,
@@ -28,6 +31,7 @@ function merge(registered: Object, css: (*) => string, className: string) {
   return rawClassName + css(registeredStyles)
 }
 
+/*
 export type Interpolation = any
 export type Interpolations = Array<Interpolation>
 
@@ -59,15 +63,15 @@ export type Emotion = {
   keyframes: CreateStyles<string>,
   sheet: StyleSheet,
   cache: EmotionCache,
-  merge: *,
-  getRegisteredStyles: *
+  merge,
+  getRegisteredStyles
 }
+*/
 
-let createEmotion = (options: *): Emotion => {
+let createEmotion = (options) /*: Emotion */ => {
   let cache = createCache(options)
 
-  // $FlowFixMe
-  cache.sheet.speedy = function(value: boolean) {
+  cache.sheet.speedy = function (value /*: boolean */) {
     if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }
@@ -104,7 +108,7 @@ let createEmotion = (options: *): Emotion => {
     cx,
     injectGlobal,
     keyframes,
-    hydrate(ids: Array<string>) {
+    hydrate(ids /*: Array<string> */) {
       ids.forEach(key => {
         cache.inserted[key] = true
       })
@@ -114,7 +118,6 @@ let createEmotion = (options: *): Emotion => {
       cache.inserted = {}
       cache.sheet.flush()
     },
-    // $FlowFixMe
     sheet: cache.sheet,
     cache,
     getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),

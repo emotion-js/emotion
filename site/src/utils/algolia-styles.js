@@ -1,4 +1,3 @@
-// @flow
 import { css } from '@emotion/react'
 import { colors } from '../utils/style'
 

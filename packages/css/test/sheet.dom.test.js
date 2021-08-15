@@ -1,4 +1,3 @@
-// @flow
 import { sheet } from '@emotion/css'
 
 describe('sheet', () => {

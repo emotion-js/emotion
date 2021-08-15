@@ -1,6 +1,6 @@
-import type { RegisteredCache, EmotionCache, SerializedStyles } from './types'
+import { RegisteredCache, EmotionCache, SerializedStyles } from './types'
 
-export const isBrowser = typeof document !== 'undefined'
+const isBrowser = typeof document !== 'undefined'
 
 export function getRegisteredStyles(
   registered: RegisteredCache,

@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import '../utils/make-prism-manual'
@@ -9,15 +8,13 @@ import SiteHeader from '../components/SiteHeader'
 import { constants, mq } from '../utils/style'
 import { Global } from '@emotion/react'
 
-const TemplateWrapper = ({
-  children,
-  sidebarOpen,
-  title
-}: {
-  children: React.Node,
-  sidebarOpen?: boolean,
+const TemplateWrapper = (
+  { children, sidebarOpen, title } /* : {
+  children: React.Node
+  sidebarOpen?: boolean
   title: string
-}) => {
+} */
+) => {
   let space = constants.space
   return (
     <React.Fragment>

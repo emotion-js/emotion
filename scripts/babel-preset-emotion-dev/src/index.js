@@ -18,7 +18,6 @@ module.exports = (api, options = {}) => {
         'babel-plugin-add-basic-constructor-for-react-components'
       ),
       require.resolve('babel-plugin-fix-dce-for-classes-with-statics'),
-      require.resolve('@babel/plugin-transform-flow-strip-types'),
       require.resolve('babel-plugin-codegen'),
       [
         require.resolve('@babel/plugin-transform-runtime'),

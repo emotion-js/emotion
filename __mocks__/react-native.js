@@ -1,4 +1,3 @@
-// @flow
 /* eslint-env jest */
 
 let components = [

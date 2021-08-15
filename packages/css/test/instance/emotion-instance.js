@@ -1,4 +1,3 @@
-// @flow
 import createEmotion from '@emotion/css/create-instance'
 import createEmotionServer from '@emotion/server/create-instance'
 
@@ -12,7 +11,6 @@ export let container
 
 if (typeof document !== 'undefined') {
   container = document.createElement('div')
-  // $FlowFixMe
   document.head.appendChild(container)
 }
 

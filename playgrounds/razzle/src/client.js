@@ -1,4 +1,3 @@
-// @flow
 import App from './App'
 import BrowserRouter from 'react-router-dom/BrowserRouter'
 import * as React from 'react'
@@ -17,8 +16,6 @@ hydrate(
   root
 )
 
-// $FlowFixMe
 if (module.hot) {
-  // $FlowFixMe
   module.hot.accept()
 }

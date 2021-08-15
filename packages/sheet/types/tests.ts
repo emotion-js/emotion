@@ -32,7 +32,16 @@ const styleSheet0 = new StyleSheet({
   container: document.createElement('div')
 })
 const styleSheet1: StyleSheet = styleSheet0
+// $ExpectError
 const styleSheet2: StyleSheet = new StyleSheet()
+// $ExpectError
+const styleSheet3: StyleSheet = new StyleSheet({})
+// $ExpectError
+const styleSheet4: StyleSheet = new StyleSheet({ key: 'mykey' })
+// $ExpectError
+const styleSheet5: StyleSheet = new StyleSheet({
+  container: document.createElement('div')
+})
 
 const styleSheet = new StyleSheet({
   key: 'abc',
@@ -50,4 +59,4 @@ styleSheet.flush()
 // $ExpectError
 styleSheet.flush(undefined as any)
 // $ExpectError
-styleSheet.flush(...((undefined as any) as Array<any>))
+styleSheet.flush(...(undefined as any as Array<any>))

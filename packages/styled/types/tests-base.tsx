@@ -291,7 +291,7 @@ const StyledClass3 = StyledClass1.withComponent('label')
 declare const ref3_0: (element: HTMLLabelElement | null) => void
 declare const ref3_1: (element: ReactClassComponent0 | null) => void
 declare const ref3_2: (element: HTMLDivElement | null) => void
-// $ExpectError
+  // $ExpectError
 ;<StyledClass3 column={true} ref={ref3_0} />
 // $ExpectError
 ;<StyledClass3 column={true} ref={ref3_1} />
@@ -406,7 +406,7 @@ const StyledDiv = styled('div')({})
 declare const ref4_0: (element: ReactClassComponent1 | null) => void
 declare const ref4_1: (element: ReactClassComponent0 | null) => void
 declare const ref4_2: (element: HTMLDivElement | null) => void
-// $ExpectError
+  // $ExpectError
 ;<StyledDiv ref={ref4_0} />
 // $ExpectError
 ;<StyledDiv ref={ref4_1} />

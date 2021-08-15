@@ -1,6 +1,5 @@
-// @flow
 import { StyleSheet } from '@emotion/sheet'
-import { type EmotionCache, type SerializedStyles } from '@emotion/utils'
+/* import { type EmotionCache, type SerializedStyles } from '@emotion/utils' */
 import {
   serialize,
   compile,
@@ -18,10 +17,11 @@ import {
   createUnsafeSelectorsAlarm,
   incorrectImportAlarm
 } from './stylis-plugins'
-import type { StylisPlugin } from './types'
+/* import type { StylisPlugin } from './types' */
 
 let isBrowser = typeof document !== 'undefined'
 
+/*
 export type Options = {
   nonce?: string,
   stylisPlugins?: StylisPlugin[],
@@ -30,6 +30,7 @@ export type Options = {
   speedy?: boolean,
   prepend?: boolean
 }
+*/
 
 let getServerStylisCache = isBrowser
   ? undefined
@@ -42,7 +43,7 @@ let getServerStylisCache = isBrowser
 
 const defaultStylisPlugins = [prefixer]
 
-let createCache = (options: Options): EmotionCache => {
+let createCache = (options /*: Options */) /*: EmotionCache */ => {
   let key = options.key
 
   if (process.env.NODE_ENV !== 'production' && !key) {
@@ -56,10 +57,24 @@ let createCache = (options: Options): EmotionCache => {
     const ssrStyles = document.querySelectorAll(
       `style[data-emotion]:not([data-s])`
     )
+
     // get SSRed styles out of the way of React's hydration
-    // document.head is a safe place to move them to
-    Array.prototype.forEach.call(ssrStyles, (node: HTMLStyleElement) => {
-      ;((document.head: any): HTMLHeadElement).appendChild(node)
+    // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
+    // note this very very intentionally targets all style elements regardless of the key to ensure
+    // that creating a cache works inside of render of a React component
+    Array.prototype.forEach.call(ssrStyles, (node /*: HTMLStyleElement */) => {
+      // we want to only move elements which have a space in the data-emotion attribute value
+      // because that indicates that it is an Emotion 11 server-side rendered style elements
+      // while we will already ignore Emotion 11 client-side inserted styles because of the :not([data-s]) part in the selector
+      // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
+      // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
+      // will not result in the Emotion 10 styles being destroyed
+      const dataEmotionAttribute = node.getAttribute('data-emotion')
+      if (dataEmotionAttribute.indexOf(' ') === -1) {
+        return
+      }
+
+      document.head.appendChild(node)
       node.setAttribute('data-s', '')
     })
   }
@@ -67,7 +82,6 @@ let createCache = (options: Options): EmotionCache => {
   const stylisPlugins = options.stylisPlugins || defaultStylisPlugins
 
   if (process.env.NODE_ENV !== 'production') {
-    // $FlowFixMe
     if (/[^a-z-]/.test(key)) {
       throw new Error(
         `Emotion key must only contain lower case alphabetical characters and - but "${key}" was passed`
@@ -75,22 +89,17 @@ let createCache = (options: Options): EmotionCache => {
     }
   }
   let inserted = {}
-  // $FlowFixMe
-  let container: HTMLElement
+  let container /*: HTMLElement */
   const nodesToHydrate = []
   if (isBrowser) {
-    container = options.container || ((document.head: any): HTMLHeadElement)
+    container = options.container || document.head
 
     Array.prototype.forEach.call(
-      document.querySelectorAll(`style[data-emotion]`),
-      (node: HTMLStyleElement) => {
-        const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
-          ' '
-        )
-        if (attrib[0] !== key) {
-          return
-        }
-        // $FlowFixMe
+      // this means we will ignore elements which don't have a space in them which
+      // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
+      document.querySelectorAll(`style[data-emotion^="${key} "]`),
+      (node /*: HTMLStyleElement */) => {
+        const attrib = node.getAttribute(`data-emotion`).split(' ')
         for (let i = 1; i < attrib.length; i++) {
           inserted[attrib[i]] = true
         }
@@ -99,13 +108,12 @@ let createCache = (options: Options): EmotionCache => {
     )
   }
 
-  let insert: (
+  let insert /*: (
     selector: string,
     serialized: SerializedStyles,
     sheet: StyleSheet,
     shouldCache: boolean
-  ) => string | void
-
+  ) => string | void */
   const omnipresentPlugins = [compat, removeLabel]
 
   if (process.env.NODE_ENV !== 'production') {
@@ -147,19 +155,19 @@ let createCache = (options: Options): EmotionCache => {
     const stylis = styles => serialize(compile(styles), serializer)
 
     insert = (
-      selector: string,
-      serialized: SerializedStyles,
-      sheet: StyleSheet,
-      shouldCache: boolean
-    ): void => {
+      selector /*: string */,
+      serialized /*: SerializedStyles */,
+      sheet /*: StyleSheet */,
+      shouldCache /*: boolean */
+    ) /*: void */ => {
       currentSheet = sheet
       if (
         process.env.NODE_ENV !== 'production' &&
         serialized.map !== undefined
       ) {
         currentSheet = {
-          insert: (rule: string) => {
-            sheet.insert(rule + ((serialized.map: any): string))
+          insert: (rule /*: string */) => {
+            sheet.insert(rule + serialized.map)
           }
         }
       }
@@ -177,9 +185,11 @@ let createCache = (options: Options): EmotionCache => {
     )
     const stylis = styles => serialize(compile(styles), serializer)
 
-    // $FlowFixMe
     let serverStylisCache = getServerStylisCache(stylisPlugins)(key)
-    let getRules = (selector: string, serialized: SerializedStyles): string => {
+    let getRules = (
+      selector /*: string */,
+      serialized /*: SerializedStyles */
+    ) /*: string */ => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
         serverStylisCache[name] = stylis(
@@ -189,11 +199,11 @@ let createCache = (options: Options): EmotionCache => {
       return serverStylisCache[name]
     }
     insert = (
-      selector: string,
-      serialized: SerializedStyles,
-      sheet: StyleSheet,
-      shouldCache: boolean
-    ): string | void => {
+      selector /*: string */,
+      serialized /*: SerializedStyles */,
+      sheet /*: StyleSheet */,
+      shouldCache /*: boolean */
+    ) /*: string | void */ => {
       let name = serialized.name
       let rules = getRules(selector, serialized)
       if (cache.compat === undefined) {
@@ -230,11 +240,11 @@ let createCache = (options: Options): EmotionCache => {
     }
   }
 
-  const cache: EmotionCache = {
+  const cache /*: EmotionCache */ = {
     key,
     sheet: new StyleSheet({
       key,
-      container: ((container: any): HTMLElement),
+      container: container,
       nonce: options.nonce,
       speedy: options.speedy,
       prepend: options.prepend

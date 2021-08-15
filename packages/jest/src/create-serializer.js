@@ -1,4 +1,3 @@
-// @flow
 import prettify from '@emotion/css-prettifier'
 import { replaceClassNames } from './replace-class-names'
 import * as enzymeTickler from './enzyme-tickler'
@@ -49,13 +48,13 @@ function deepTransform(node, transform) {
     return node.map(child => deepTransform(child, transform))
   }
 
-  const transformed: any = transform(node)
+  const transformed = transform(node)
 
   if (transformed !== node && transformed.children) {
     return copyProps(transformed, {
       // flatMap to allow a child of <A><B /><C /></A> to be transformed to <B /><C />
       children: flatMap(
-        (deepTransform(transformed.children, transform): any),
+        deepTransform(transformed.children, transform),
         id => id
       )
     })
@@ -65,17 +64,19 @@ function deepTransform(node, transform) {
 }
 
 function getPrettyStylesFromClassNames(
-  classNames: Array<string>,
-  elements: Array<HTMLStyleElement>,
-  indentation: string
+  classNames /*: Array<string> */,
+  elements /*: Array<HTMLStyleElement> */,
+  indentation /*: string */
 ) {
   return prettify(getStylesFromClassNames(classNames, elements), indentation)
 }
 
+/*
 export type Options = {
   classNameReplacer?: (className: string, index: number) => string,
   DOMElements?: boolean
 }
+*/
 
 function filterEmotionProps(props = {}) {
   const {
@@ -101,9 +102,9 @@ function getLabelsFromClassName(keys, className) {
 }
 
 function isShallowEnzymeElement(
-  element: any,
-  keys: string[],
-  labels: string[]
+  element /*: any */,
+  keys /*: string[] */,
+  labels /*: string[] */
 ) {
   const childClassNames = (element.children || [])
     .map(({ props = {} }) => props.className || '')
@@ -115,49 +116,48 @@ function isShallowEnzymeElement(
   })
 }
 
-const createConvertEmotionElements = (keys: string[], printer: *) => (
-  node: any
-) => {
-  if (isPrimitive(node)) {
-    return node
-  }
-  if (isEmotionCssPropEnzymeElement(node)) {
-    const className = enzymeTickler.getTickledClassName(node.props.css)
-    const labels = getLabelsFromClassName(keys, className || '')
+const createConvertEmotionElements =
+  (keys /*: string[] */, printer) => node => {
+    if (isPrimitive(node)) {
+      return node
+    }
+    if (isEmotionCssPropEnzymeElement(node)) {
+      const className = enzymeTickler.getTickledClassName(node.props.css)
+      const labels = getLabelsFromClassName(keys, className || '')
 
-    if (isShallowEnzymeElement(node, keys, labels)) {
-      const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-      // emotionType will be a string for DOM elements
-      const type =
-        typeof emotionType === 'string'
-          ? emotionType
-          : emotionType.displayName || emotionType.name || 'Component'
+      if (isShallowEnzymeElement(node, keys, labels)) {
+        const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+        // emotionType will be a string for DOM elements
+        const type =
+          typeof emotionType === 'string'
+            ? emotionType
+            : emotionType.displayName || emotionType.name || 'Component'
+        return {
+          ...node,
+          props: filterEmotionProps({
+            ...node.props,
+            className
+          }),
+          type
+        }
+      } else {
+        return node.children[0]
+      }
+    }
+    if (isEmotionCssPropElementType(node)) {
       return {
         ...node,
-        props: filterEmotionProps({
-          ...node.props,
-          className
-        }),
-        type
+        props: filterEmotionProps(node.props),
+        type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       }
-    } else {
-      return node.children[0]
     }
-  }
-  if (isEmotionCssPropElementType(node)) {
-    return {
-      ...node,
-      props: filterEmotionProps(node.props),
-      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+    if (isReactElement(node)) {
+      return copyProps({}, node)
     }
+    return node
   }
-  if (isReactElement(node)) {
-    return copyProps({}, node)
-  }
-  return node
-}
 
-function clean(node: any, classNames: string[]) {
+function clean(node, classNames /*: string[] */) {
   if (Array.isArray(node)) {
     for (const child of node) {
       clean(child, classNames)
@@ -186,17 +186,17 @@ function clean(node: any, classNames: string[]) {
 export function createSerializer({
   classNameReplacer,
   DOMElements = true
-}: Options = {}) {
+} /*: Options */ = {}) {
   const cache = new WeakSet()
   const isTransformed = val => cache.has(val)
 
   function serialize(
-    val: *,
-    config: *,
-    indentation: string,
-    depth: number,
-    refs: *,
-    printer: Function
+    val,
+    config,
+    indentation /*: string */,
+    depth /*: number */,
+    refs,
+    printer /*: Function */
   ) {
     const elements = getStyleElements()
     const keys = getKeys(elements)
@@ -225,11 +225,11 @@ export function createSerializer({
   }
 
   return {
-    test(val: *) {
+    test(val) {
       return (
         val &&
-        (!isTransformed(val) &&
-          (isReactElement(val) || (DOMElements && isDOMElement(val))))
+        !isTransformed(val) &&
+        (isReactElement(val) || (DOMElements && isDOMElement(val)))
       )
     },
     serialize

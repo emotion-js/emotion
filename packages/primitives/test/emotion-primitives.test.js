@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import { Text, StyleSheet } from 'react-primitives'
@@ -17,7 +16,6 @@ describe('Emotion primitives', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
-    // $FlowFixMe: expect error
     expect(() => styled.TEXT({})).toThrow()
   })
 
@@ -29,7 +27,6 @@ describe('Emotion primitives', () => {
     `
     const tree = renderer
       .create(
-        // $FlowFixMe
         <Text style={{ fontSize: 40 }} back="red">
           Emotion Primitives
         </Text>
@@ -46,7 +43,6 @@ describe('Emotion primitives', () => {
     const tree = renderer
       .create(
         <ThemeProvider theme={theme}>
-          {/* $FlowFixMe */}
           <Text>Hello World</Text>
         </ThemeProvider>
       )
@@ -64,7 +60,6 @@ describe('Emotion primitives', () => {
 
     render(
       <ThemeProvider theme={theme}>
-        {/* $FlowFixMe */}
         <StyledText id="something" style={{ backgroundColor: 'yellow' }}>
           Hello World
         </StyledText>
@@ -81,7 +76,6 @@ describe('Emotion primitives', () => {
       color: props.decor
     }))
     const tree = renderer
-      // $FlowFixMe
       .create(<Text decor="hotpink">Emotion Primitives</Text>)
       .toJSON()
     expect(tree).toMatchSnapshot()
@@ -92,10 +86,7 @@ describe('Emotion primitives', () => {
       color: hotpink;
     `
     const tree = renderer
-      .create(
-        // $FlowFixMe
-        <Title style={{ padding: 10 }}>Emotion primitives</Title>
-      )
+      .create(<Title style={{ padding: 10 }}>Emotion primitives</Title>)
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -107,7 +98,6 @@ describe('Emotion primitives', () => {
     `
 
     const tree = renderer
-      // $FlowFixMe
       .create(<Text style={styles.foo}>Emotion Primitives</Text>)
       .toJSON()
     expect(tree).toMatchSnapshot()
@@ -117,7 +107,6 @@ describe('Emotion primitives', () => {
     const StyledText = styled.Text`
       color: ${props => props.decor};
     `
-    // $FlowFixMe
     const Name = StyledText.withComponent(Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
@@ -127,13 +116,11 @@ describe('Emotion primitives', () => {
     const Text = styled.Text`
       color: hotpink;
     `
-    // $FlowFixMe
     const Title = () => <Text>Hello World</Text>
     const StyledTitle = styled(Title)`
       font-size: 20px;
       font-style: ${props => props.sty};
     `
-    // $FlowFixMe
     const tree = renderer.create(<StyledTitle sty="italic" />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -144,7 +131,6 @@ describe('Emotion primitives', () => {
     `
     let ref = React.createRef()
     const rootNode = document.createElement('div')
-    // $FlowFixMe
     render(<StyledText ref={ref} id="something" />, rootNode)
     expect(ref.current).toBe(rootNode.firstElementChild)
     unmountComponentAtNode(rootNode)
@@ -154,9 +140,7 @@ describe('Emotion primitives', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
-    // $FlowFixMe
     const treeOne = renderer.create(<ViewOne color="green" />)
-    // $FlowFixMe
     const ViewTwo = ViewOne.withComponent(Text)
     const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
 
@@ -170,11 +154,9 @@ describe('Emotion primitives', () => {
     `
     const tree = renderer
       .create(
-        // $FlowFixMe
         <Image
           source={{
-            uri:
-              'https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67',
+            uri: 'https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67',
             height: 150,
             width: 150
           }}
@@ -188,7 +170,6 @@ describe('Emotion primitives', () => {
   test('custom shouldForwardProp works', () => {
     const Text = styled.Text``
     const Title = props => <Text {...props} />
-    // $FlowFixMe
     const StyledTitle = styled(Title, {
       shouldForwardProp: prop => prop !== 'color' && prop !== 'theme'
     })`

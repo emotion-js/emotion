@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'test-utils/legacy-env'

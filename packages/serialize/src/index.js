@@ -1,9 +1,8 @@
-// @flow
-import type {
+/* import type {
   Interpolation,
   SerializedStyles,
   RegisteredCache
-} from '@emotion/utils'
+} from '@emotion/utils' */
 import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
@@ -19,20 +18,20 @@ const UNDEFINED_AS_OBJECT_KEY_ERROR =
 let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
-const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
+const isCustomProperty = (property /*: string */) =>
+  property.charCodeAt(1) === 45
 const isProcessableValue = value => value != null && typeof value !== 'boolean'
 
-const processStyleName = /* #__PURE__ */ memoize(
-  (styleName: string) =>
-    isCustomProperty(styleName)
-      ? styleName
-      : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+const processStyleName = /* #__PURE__ */ memoize((styleName /*: string */) =>
+  isCustomProperty(styleName)
+    ? styleName
+    : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
 let processStyleValue = (
-  key: string,
-  value: string | number
-): string | number => {
+  key /*: string */,
+  value /*: string | number */
+) /*: string | number */ => {
   switch (key) {
     case 'animation':
     case 'animationName': {
@@ -61,7 +60,8 @@ let processStyleValue = (
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  let contentValuePattern = /(attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
+  let contentValuePattern =
+    /(attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
   let contentValues = ['normal', 'none', 'initial', 'inherit', 'unset']
 
   let oldProcessStyleValue = processStyleValue
@@ -71,7 +71,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   let hyphenatedCache = {}
 
-  processStyleValue = (key: string, value: string) => {
+  processStyleValue = (key /*: string */, value /*: string */) => {
     if (key === 'content') {
       if (
         typeof value !== 'string' ||
@@ -107,10 +107,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function handleInterpolation(
-  mergedProps: void | Object,
-  registered: RegisteredCache | void,
-  interpolation: Interpolation
-): string | number {
+  mergedProps /*: void | Object */,
+  registered /*: RegisteredCache | void */,
+  interpolation /*: Interpolation */
+) /*: string | number */ {
   if (interpolation == null) {
     return ''
   }
@@ -223,10 +223,10 @@ function handleInterpolation(
 }
 
 function createStringFromObject(
-  mergedProps: void | Object,
-  registered: RegisteredCache | void,
-  obj: { [key: string]: Interpolation }
-): string {
+  mergedProps /*: void | Object */,
+  registered /*: RegisteredCache | void */,
+  obj /*: { [key: string]: Interpolation } */
+) /*: string */ {
   let string = ''
 
   if (Array.isArray(obj)) {
@@ -298,18 +298,19 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
 let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
-  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
+  sourceMapPattern =
+    /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
 }
 
 // this is the cursor for keyframes
 // keyframes are stored on the SerializedStyles object as a linked list
 let cursor
 
-export const serializeStyles = function(
-  args: Array<Interpolation>,
-  registered: RegisteredCache | void,
-  mergedProps: void | Object
-): SerializedStyles {
+export const serializeStyles = function (
+  args /*: Array<Interpolation> */,
+  registered /*: RegisteredCache | void */,
+  mergedProps /*: void | Object */
+) /*: SerializedStyles */ {
   if (
     args.length === 1 &&
     typeof args[0] === 'object' &&
@@ -358,16 +359,12 @@ export const serializeStyles = function(
   let match
   // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
   while ((match = labelPattern.exec(styles)) !== null) {
-    identifierName +=
-      '-' +
-      // $FlowFixMe we know it's not null
-      match[1]
+    identifierName += '-' + match[1]
   }
 
   let name = hashString(styles) + identifierName
 
   if (process.env.NODE_ENV !== 'production') {
-    // $FlowFixMe SerializedStyles type doesn't have toString property (and we don't want to add it)
     return {
       name,
       styles,

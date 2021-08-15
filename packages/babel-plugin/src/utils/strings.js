@@ -1,13 +1,12 @@
-// @flow
 import {
   getTypeScriptMakeTemplateObjectPath,
   isTaggedTemplateTranspiledByBabel
 } from './transpiled-output-utils'
 
 export const appendStringReturningExpressionToArguments = (
-  t: *,
-  path: *,
-  expression: *
+  t,
+  path,
+  expression
 ) => {
   let lastIndex = path.node.arguments.length - 1
   let last = path.node.arguments[lastIndex]
@@ -44,7 +43,7 @@ export const appendStringReturningExpressionToArguments = (
   }
 }
 
-export const joinStringLiterals = (expressions: Array<*>, t: *) => {
+export const joinStringLiterals = (expressions /*: Array<*> */, t) => {
   return expressions.reduce((finalExpressions, currentExpression, i) => {
     if (!t.isStringLiteral(currentExpression)) {
       finalExpressions.push(currentExpression)
