@@ -4,7 +4,7 @@
   "description": "A MurmurHash2 implementation",
   "main": "dist/emotion-hash.cjs.js",
   "module": "dist/emotion-hash.esm.js",
-  "types": "types/index.d.ts",
+  "types": "dist/emotion-hash.cjs.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/hash",
   "publishConfig": {
@@ -12,8 +12,7 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
