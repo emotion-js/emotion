@@ -2,7 +2,7 @@
 // Inspired by https://github.com/garycourt/murmurhash-js
 // Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
 
-export default function murmur2(str /*: string */) {
+export default function murmur2(str: string): string {
   // 'm' and 'r' are mixing constants generated offline.
   // They're not really 'magic', they just happen to work well.
 
