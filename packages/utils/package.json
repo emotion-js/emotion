@@ -4,6 +4,7 @@
   "description": "internal utils for emotion",
   "main": "dist/emotion-utils.cjs.js",
   "module": "dist/emotion-utils.esm.js",
+  "types": "dist/emotion-utils.cjs.d.ts",
   "browser": {
     "./dist/emotion-utils.cjs.js": "./dist/emotion-utils.browser.cjs.js",
     "./dist/emotion-utils.esm.js": "./dist/emotion-utils.browser.esm.js"
@@ -18,13 +19,9 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "devDependencies": {
     "dtslint": "^0.3.0"
-  },
-  "dependencies": {
-    "typescript": "^4.2.4"
   }
 }
