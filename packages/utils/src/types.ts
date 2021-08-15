@@ -1,6 +1,6 @@
-import { StyleSheet } from '@emotion/sheet'
+import type { StyleSheet } from '@emotion/sheet'
 
-export { StyleSheet }
+export type { StyleSheet }
 
 export type RegisteredCache = Record<string, string | undefined>
 
