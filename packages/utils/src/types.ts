@@ -1,8 +1,8 @@
 import { StyleSheet } from '@emotion/sheet'
 
-export type RegisteredCache = { [key: string]: string }
+export { StyleSheet }
 
-export type Interpolation = any
+export type RegisteredCache = Record<string, string | undefined>
 
 export type SerializedStyles = {
   name: string
@@ -12,7 +12,7 @@ export type SerializedStyles = {
 }
 
 export type EmotionCache = {
-  inserted: Record<string, string | boolean>
+  inserted: Record<string, string | true | undefined>
   registered: RegisteredCache
   sheet: StyleSheet
   key: string
