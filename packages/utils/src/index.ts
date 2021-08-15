@@ -1,12 +1,12 @@
-/* import type { RegisteredCache, EmotionCache, SerializedStyles } from './types' */
+import { RegisteredCache, EmotionCache, SerializedStyles } from './types'
 
 const isBrowser = typeof document !== 'undefined'
 
 export function getRegisteredStyles(
-  registered /*: RegisteredCache */,
-  registeredStyles /*: string[] */,
-  classNames /*: string */
-) {
+  registered: RegisteredCache,
+  registeredStyles: string[],
+  classNames: string
+): string {
   let rawClassName = ''
 
   classNames.split(' ').forEach(className => {
@@ -20,10 +20,10 @@ export function getRegisteredStyles(
 }
 
 export const insertStyles = (
-  cache /*: EmotionCache */,
-  serialized /*: SerializedStyles */,
-  isStringTag /*: boolean */
-) => {
+  cache: EmotionCache,
+  serialized: SerializedStyles,
+  isStringTag: boolean
+): string | void => {
   let className = `${cache.key}-${serialized.name}`
   if (
     // we only need to add the styles to the registered cache if the
@@ -43,7 +43,7 @@ export const insertStyles = (
   }
   if (cache.inserted[serialized.name] === undefined) {
     let stylesForSSR = ''
-    let current = serialized
+    let current: SerializedStyles | undefined = serialized
     do {
       let maybeStyles = cache.insert(
         serialized === current ? `.${className}` : '',
