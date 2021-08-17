@@ -9,7 +9,7 @@ type SnapshotSerializerPlugin = Extract<
 >
 
 export interface StyleRuleOptions {
-  target?: string
+  target?: string | Regexp
   media?: string
 }
 
