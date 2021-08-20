@@ -15,6 +15,8 @@ import { getDocMap, docList } from '../utils/misc'
 import DocMetadata from './DocMetadata'
 import Search from './Search'
 
+import Carbon from './Carbon'
+
 let space = constants.space
 const scaleAnimation = keyframes`
   from {
@@ -178,6 +180,7 @@ export default ({
                 ]
               })}
             >
+              <Carbon />
               <Search />
               {docList.map(item => {
                 return (
