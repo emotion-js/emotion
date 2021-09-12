@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.4.0",
+  "version": "11.4.1",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
@@ -29,7 +29,7 @@
     "@babel/runtime": "^7.13.10",
     "@emotion/cache": "^11.4.0",
     "@emotion/serialize": "^1.0.2",
-    "@emotion/sheet": "^1.0.1",
+    "@emotion/sheet": "^1.0.2",
     "@emotion/utils": "^1.0.0",
     "@emotion/weak-memoize": "^0.2.5",
     "hoist-non-react-statics": "^3.3.1"
