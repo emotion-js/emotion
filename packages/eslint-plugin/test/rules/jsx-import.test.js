@@ -127,6 +127,23 @@ let ele = <div css={{}} />
             `.trim()
     },
     {
+      options: [{ runtime: 'automatic', importSource: '@iChenLei/react' }],
+      code: `
+/** @jsxImportSource invalid-react */
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          message:
+            'The css prop can only be used if you set correct jsxImportSource, e.g @emotion/react'
+        }
+      ],
+      output: `
+/** @jsxImportSource @iChenLei/react */
+let ele = <div css={{}} />
+            `.trim()
+    },
+    {
       options: [{ runtime: 'classic' }],
       code: `
 let ele = <div css={{}} />
