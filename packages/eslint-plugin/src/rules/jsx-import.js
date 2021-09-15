@@ -42,14 +42,27 @@ export default {
           if (node.name.name !== 'css') {
             return
           }
-          let hasJsxImportSource = false
+          const importSource =
+            (jsxRuntimeMode || {}).importSource || '@emotion/react'
+          let jsxImportSourcePragmaNode
+          let jsxImportSourceMatch
+          let validJsxImportSource = false
           let sourceCode = context.getSourceCode()
-          let pragma = sourceCode
-            .getAllComments()
-            .find(node => JSX_IMPORT_SOURCE_REGEX.test(node.value))
-          hasJsxImportSource =
+          let pragma = sourceCode.getAllComments().find(node => {
+            if (JSX_IMPORT_SOURCE_REGEX.test(node.value)) {
+              jsxImportSourcePragmaNode = node
+              return true
+            }
+          })
+          jsxImportSourceMatch =
             pragma && pragma.value.match(JSX_IMPORT_SOURCE_REGEX)
-          if (!hasJsxImportSource) {
+          if (
+            jsxImportSourceMatch &&
+            jsxImportSourceMatch[1] === importSource
+          ) {
+            validJsxImportSource = true
+          }
+          if (!jsxImportSourceMatch) {
             context.report({
               node,
               message:
@@ -57,9 +70,19 @@ export default {
               fix(fixer) {
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
-                  `/** @jsxImportSource ${
-                    (jsxRuntimeMode || {}).importSource || '@emotion/react'
-                  } */\n`
+                  `/** @jsxImportSource ${importSource} */\n`
+                )
+              }
+            })
+          } else if (!validJsxImportSource && jsxImportSourcePragmaNode) {
+            context.report({
+              node,
+              message:
+                'The css prop can only be used if you set correct jsxImportSource, e.g @emotion/react',
+              fix(fixer) {
+                return fixer.replaceText(
+                  jsxImportSourcePragmaNode,
+                  `/** @jsxImportSource ${importSource} */`
                 )
               }
             })
