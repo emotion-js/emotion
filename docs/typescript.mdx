@@ -176,7 +176,7 @@ const Component: FC<ComponentProps> = ({
 }) => <div className={className}>{label}</div>
 
 const StyledComponent0 = styled(Component)`
-  color: ${props => label === 'Important' ? 'red' : 'green'};
+  color: ${props => props.label === 'Important' ? 'red' : 'green'};
 `
 
 const StyledComponent1 = styled(Component)({
