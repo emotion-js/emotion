@@ -7,12 +7,36 @@ import {
   token,
   char,
   from,
-  identifier,
   peek,
-  position
+  position,
+  slice
 } from 'stylis'
 
 const last = arr => (arr.length ? arr[arr.length - 1] : null)
+
+// based on https://github.com/thysultan/stylis.js/blob/e6843c373ebcbbfade25ebcc23f540ed8508da0a/src/Tokenizer.js#L239-L244
+const identifierWithPointTracking = (begin, points, index) => {
+  let previous = 0
+  let character = 0
+
+  while (true) {
+    previous = character
+    character = peek()
+
+    // &\f
+    if (previous === 38 && character === 12) {
+      points[index] = 1
+    }
+
+    if (token(character)) {
+      break
+    }
+
+    next()
+  }
+
+  return slice(begin, position)
+}
 
 const toRules = (parsed, points) => {
   // pretend we've started with a comma
@@ -30,7 +54,11 @@ const toRules = (parsed, points) => {
           // it's very unlikely for this sequence to actually appear in a different context, so we just leverage this fact here
           points[index] = 1
         }
-        parsed[index] += identifier(position - 1)
+        parsed[index] += identifierWithPointTracking(
+          position - 1,
+          points,
+          index
+        )
         break
       case 2:
         parsed[index] += delimit(character)
