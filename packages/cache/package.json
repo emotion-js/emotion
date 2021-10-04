@@ -19,7 +19,7 @@
     "@emotion/sheet": "^1.0.0",
     "@emotion/utils": "^1.0.0",
     "@emotion/weak-memoize": "^0.2.5",
-    "stylis": "^4.0.3"
+    "stylis": "^4.0.10"
   },
   "devDependencies": {
     "@emotion/hash": "*",
