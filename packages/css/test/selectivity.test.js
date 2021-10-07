@@ -117,6 +117,37 @@ describe('css', () => {
     `
     expect(sheet).toMatchSnapshot()
   })
+
+  // this isn't compatible with SCSS but is allowed in Stylis
+  test('should allow for context selector being appended to an element type', () => {
+    css`
+      a& {
+        background: blue;
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
+
+  // #2488
+  test('should allow for context selector being appended to an element type when pseudoclass appears in the selector group', () => {
+    css`
+      &:hover,
+      a& {
+        background: blue;
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('should allow a weird class containing & when pseudoclass appears in the selector group', () => {
+    css`
+      &:hover,
+      .t\\&t {
+        background: blue;
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
 })
 
 describe('orphaned pseudos', () => {
