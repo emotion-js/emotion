@@ -20,7 +20,13 @@ if (process.env.NODE_ENV !== 'production') {
   const isJest = typeof jest !== 'undefined'
 
   if (isBrowser && !isJest) {
-    const globalContext = isBrowser ? window : global
+    // globalThis has 92.8% browser support - https://caniuse.com/?search=globalThis, Node.js 0.12.0 and later
+    const globalContext =
+      typeof globalThis !== 'undefined'
+        ? globalThis
+        : isBrowser
+        ? window
+        : global
     const globalKey = `__EMOTION_REACT_${pkg.version.split('.')[0]}__`
     if (globalContext[globalKey]) {
       console.warn(
