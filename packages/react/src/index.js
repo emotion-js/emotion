@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
   const isJest = typeof jest !== 'undefined'
 
   if (isBrowser && !isJest) {
-    // globalThis has 92.8% browser support - https://caniuse.com/?search=globalThis, Node.js 0.12.0 and later
+    // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
     const globalContext =
       typeof globalThis !== 'undefined'
         ? globalThis
