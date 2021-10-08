@@ -22,8 +22,9 @@ if (process.env.NODE_ENV !== 'production') {
   if (isBrowser && !isJest) {
     // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
     const globalContext =
+      // $FlowIgnore
       typeof globalThis !== 'undefined'
-        ? globalThis
+        ? globalThis // eslint-disable-line no-undef
         : isBrowser
         ? window
         : global
