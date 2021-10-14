@@ -65,8 +65,7 @@ export default {
           if (!jsxImportSourceMatch) {
             context.report({
               node,
-              message:
-                'The css prop can only be used if you set @jsxImportSource pragma',
+              message: `The css prop can only be used if jsxImportSource is set to ${importSource}`,
               fix(fixer) {
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
@@ -77,8 +76,7 @@ export default {
           } else if (!validJsxImportSource && jsxImportSourcePragmaNode) {
             context.report({
               node,
-              message:
-                'The css prop can only be used if you set correct jsxImportSource, e.g @emotion/react',
+              message: `The css prop can only be used if jsxImportSource is set to ${importSource}`,
               fix(fixer) {
                 return fixer.replaceText(
                   jsxImportSourcePragmaNode,

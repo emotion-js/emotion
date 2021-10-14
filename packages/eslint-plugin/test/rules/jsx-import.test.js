@@ -102,7 +102,7 @@ let ele = <div css={{}} />
       errors: [
         {
           message:
-            'The css prop can only be used if you set @jsxImportSource pragma'
+            'The css prop can only be used if jsxImportSource is set to @emotion/react'
         }
       ],
       output: `
@@ -118,7 +118,7 @@ let ele = <div css={{}} />
       errors: [
         {
           message:
-            'The css prop can only be used if you set @jsxImportSource pragma'
+            'The css prop can only be used if jsxImportSource is set to @iChenLei/react'
         }
       ],
       output: `
@@ -135,7 +135,7 @@ let ele = <div css={{}} />
       errors: [
         {
           message:
-            'The css prop can only be used if you set correct jsxImportSource, e.g @emotion/react'
+            'The css prop can only be used if jsxImportSource is set to @iChenLei/react'
         }
       ],
       output: `
