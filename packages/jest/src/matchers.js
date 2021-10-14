@@ -43,7 +43,7 @@ function toHaveStyleRule(
   received: *,
   property: *,
   value: *,
-  options?: { target?: string, media?: string } = {}
+  options?: { target?: string | RegExp, media?: string } = {}
 ) {
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
