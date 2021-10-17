@@ -181,4 +181,16 @@ describe('StyleSheet', () => {
     sheet.flush()
     head.removeChild(otherStyle)
   })
+
+  it('should not crash when flushing when styles are already detached', () => {
+    const head = safeQuerySelector('head')
+
+    const sheet = new StyleSheet(defaultOptions)
+
+    sheet.insert(rule)
+
+    head.innerHTML = ''
+
+    expect(() => sheet.flush()).not.toThrowError()
+  })
 })
