@@ -1,5 +1,18 @@
 # @emotion/react
 
+## 11.4.1
+
+### Patch Changes
+
+- [#2441](https://github.com/emotion-js/emotion/pull/2441) [`24557d9d`](https://github.com/emotion-js/emotion/commit/24557d9d6409db453fdbaa031cb635820305f137) Thanks [@garronej](https://github.com/garronej)! - Exposed `__unsafe_useEmotionCache` which can be used to access the current Emotion's cache in an easier way than before. Using this might break 0-config SSR and is not recommended to be used unless there you know what you are doing and you are OK with the mentioned downside.
+
+* [#2424](https://github.com/emotion-js/emotion/pull/2424) [`cd25b62d`](https://github.com/emotion-js/emotion/commit/cd25b62da80119bfb1c74a8d0a3516fcd2f62e0e) Thanks [@tills13](https://github.com/tills13)! - Use theme context when rendering components at all times. This removes a conditional usage of a React hook that could break [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) in some scenarios.
+
+- [#2428](https://github.com/emotion-js/emotion/pull/2428) [`a69929d6`](https://github.com/emotion-js/emotion/commit/a69929d6ab47e834a3535525657829c81dd97b4a) Thanks [@eps1lon](https://github.com/eps1lon)! - Added display names to public React contexts in development builds. This helps to recognize them in React Developer Tools.
+
+- Updated dependencies [[`405af5ca`](https://github.com/emotion-js/emotion/commit/405af5ca01dcc0cac64227db082ce3f483e1bb46)]:
+  - @emotion/sheet@1.0.2
+
 ## 11.4.0
 
 ### Patch Changes
