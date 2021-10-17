@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "@emotion/react": "11.4.1",
+    "@emotion/react": "11.5.0",
     "dtslint": "^0.3.0",
     "react": "16.14.0"
   },
