@@ -1,5 +1,11 @@
 # @emotion/sheet
 
+## 1.0.3
+
+### Patch Changes
+
+- [#2447](https://github.com/emotion-js/emotion/pull/2447) [`f2eda829`](https://github.com/emotion-js/emotion/commit/f2eda8295429dd1892a06cbc9496321f2a55c10a) Thanks [@mdesantis](https://github.com/mdesantis)! - Fixed an issue with `sheet.flush()` crashing if its style elements were already detached by something else.
+
 ## 1.0.2
 
 ### Patch Changes

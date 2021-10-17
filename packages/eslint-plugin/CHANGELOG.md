@@ -1,5 +1,11 @@
 # @emotion/eslint-plugin
 
+## 11.5.0
+
+### Patch Changes
+
+- [#2353](https://github.com/emotion-js/emotion/pull/2353) [`d7d768e0`](https://github.com/emotion-js/emotion/commit/d7d768e056e6cd7a10c2de6ecb2b564e6444dac3) Thanks [@iChenLei](https://github.com/iChenLei)! - implement automatic adding of jsxImportSource pragma definition
+
 ## 11.2.0
 
 ### Patch Changes

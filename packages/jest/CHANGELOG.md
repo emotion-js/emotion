@@ -1,5 +1,15 @@
 # @emotion/jest
 
+## 11.5.0
+
+### Minor Changes
+
+- [#2456](https://github.com/emotion-js/emotion/pull/2456) [`500cdd82`](https://github.com/emotion-js/emotion/commit/500cdd828b65ad4b778c8a1459094b099d50f08a) Thanks [@billyjanitsch](https://github.com/billyjanitsch)! - Support typings for Jest v27
+
+### Patch Changes
+
+- [#2457](https://github.com/emotion-js/emotion/pull/2457) [`218e4f78`](https://github.com/emotion-js/emotion/commit/218e4f78ca03b36cd8ed595bc1a93892b9783eda) Thanks [@jcleefw](https://github.com/jcleefw)! - Add `RegExp` as a valid type for the `target` option accepted by `toHaveStyleRule`.
+
 ## 11.3.0
 
 ### Patch Changes
