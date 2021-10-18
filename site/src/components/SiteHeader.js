@@ -31,34 +31,6 @@ export default function SiteHeader() {
         gridColumn: '1 /span 2'
       })}
     >
-      <a href="https://support.eji.org/give/153413/#!/donation/checkout">
-        <div
-          css={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            backgroundColor: 'black',
-            width: '100%',
-            zIndex: 100
-          }}
-        >
-          <span
-            style={{
-              textAlign: 'center',
-              fontWeight: 'bold',
-              textDecoration: 'none',
-              color: '#fff',
-              fontSize: 28,
-              paddingBottom: 4
-            }}
-          >
-            Black Lives Matter.
-          </span>
-        </div>
-      </a>
-
       <div
         css={{
           paddingTop: 24,
