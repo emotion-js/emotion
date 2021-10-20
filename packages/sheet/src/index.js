@@ -91,7 +91,7 @@ export class StyleSheet {
   _insertTag = (tag: HTMLStyleElement) => {
     let before
     if (this.tags.length === 0) {
-      if (!!this.insertionPoint) {
+      if (this.insertionPoint) {
         before = this.insertionPoint.nextSibling
       } else if (this.prepend) {
         before = this.container.firstChild
