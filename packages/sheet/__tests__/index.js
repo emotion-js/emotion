@@ -117,6 +117,30 @@ describe('StyleSheet', () => {
     head.removeChild(otherStyle)
   })
 
+  it('should accept insertionPoint option', () => {
+    const head = safeQuerySelector('head')
+    const firstStyle = document.createElement('style')
+    firstStyle.setAttribute('id', 'first')
+    head.appendChild(firstStyle)
+
+    const thirdStyle = document.createElement('style')
+    thirdStyle.setAttribute('id', 'third')
+    head.appendChild(thirdStyle)
+
+    // the sheet should be inserted between the first and third style node
+    const sheet = new StyleSheet({
+      ...defaultOptions,
+      insertionPoint: firstStyle
+    })
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    head.removeChild(firstStyle)
+    head.removeChild(thirdStyle)
+  })
+
   it('should be able to hydrate styles', () => {
     const fooStyle = document.createElement('style')
     fooStyle.textContent = '.foo { color: hotpink; }'

@@ -37,6 +37,7 @@ export interface Options {
   container?: HTMLElement
   speedy?: boolean
   prepend?: boolean
+  insertionPoint?: HTMLElement
 }
 
 export default function createCache(options: Options): EmotionCache

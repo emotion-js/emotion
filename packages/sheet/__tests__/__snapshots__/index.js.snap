@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`StyleSheet should accept insertionPoint option 1`] = `
+<html>
+  <head>
+    <style
+      id="first"
+    />
+    <style
+      data-emotion=""
+      data-s=""
+    >
+      
+      html { color: hotpink; }
+    </style>
+    <style
+      data-emotion=""
+      data-s=""
+    >
+      
+      * { box-sizing: border-box; }
+    </style>
+    <style
+      id="third"
+    />
+  </head>
+  <body />
+</html>
+`;
+
 exports[`StyleSheet should accept prepend option 1`] = `
 <html>
   <head>
