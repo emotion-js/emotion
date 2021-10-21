@@ -1,3 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should accept insertionPoint option 1`] = `
+<html>
+  <head>
+    <style
+      id="first"
+    />
+    <style
+      data-emotion="test-insertion-point"
+      data-s=""
+    >
+      
+      .test-insertion-point-83n355{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;color:blue;}
+    </style>
+    <style
+      id="third"
+    />
+  </head>
+  <body />
+</html>
+`;
+
 exports[`throws correct error with invalid key 1`] = `"Emotion key must only contain lower case alphabetical characters and - but \\".\\" was passed"`;

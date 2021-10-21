@@ -240,3 +240,28 @@ exports[`StyleSheet should use the container option instead of document.head to 
   </body>
 </html>
 `;
+
+exports[`StyleSheet should work if insertionPoint is last element 1`] = `
+<html>
+  <head>
+    <style
+      id="last"
+    />
+    <style
+      data-emotion=""
+      data-s=""
+    >
+      
+      html { color: hotpink; }
+    </style>
+    <style
+      data-emotion=""
+      data-s=""
+    >
+      
+      * { box-sizing: border-box; }
+    </style>
+  </head>
+  <body />
+</html>
+`;

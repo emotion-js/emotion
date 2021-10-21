@@ -141,6 +141,25 @@ describe('StyleSheet', () => {
     head.removeChild(thirdStyle)
   })
 
+  it('should work if insertionPoint is last element', () => {
+    const head = safeQuerySelector('head')
+    const lastStyle = document.createElement('style')
+    lastStyle.setAttribute('id', 'last')
+    head.appendChild(lastStyle)
+
+    // the sheet should be inserted between the first and third style node
+    const sheet = new StyleSheet({
+      ...defaultOptions,
+      insertionPoint: lastStyle
+    })
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    head.removeChild(lastStyle)
+  })
+
   it('should be able to hydrate styles', () => {
     const fooStyle = document.createElement('style')
     fooStyle.textContent = '.foo { color: hotpink; }'
