@@ -22,11 +22,11 @@ it('should accept insertionPoint option', () => {
   firstStyle.setAttribute('id', 'first')
   head.appendChild(firstStyle)
 
-  const thirdStyle = document.createElement('style')
-  thirdStyle.setAttribute('id', 'third')
-  head.appendChild(thirdStyle)
+  const lastStyle = document.createElement('style')
+  lastStyle.setAttribute('id', 'last')
+  head.appendChild(lastStyle)
 
-  // the sheet should be inserted between the first and third style node
+  // the sheet should be inserted between the first and last style nodes
   const cache = createCache({
     key: 'test-insertion-point',
     insertionPoint: firstStyle

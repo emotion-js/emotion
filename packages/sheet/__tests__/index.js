@@ -123,11 +123,11 @@ describe('StyleSheet', () => {
     firstStyle.setAttribute('id', 'first')
     head.appendChild(firstStyle)
 
-    const thirdStyle = document.createElement('style')
-    thirdStyle.setAttribute('id', 'third')
-    head.appendChild(thirdStyle)
+    const lastStyle = document.createElement('style')
+    lastStyle.setAttribute('id', 'last')
+    head.appendChild(lastStyle)
 
-    // the sheet should be inserted between the first and third style node
+    // the sheet should be inserted between the first and last style nodes
     const sheet = new StyleSheet({
       ...defaultOptions,
       insertionPoint: firstStyle
@@ -138,7 +138,7 @@ describe('StyleSheet', () => {
 
     sheet.flush()
     head.removeChild(firstStyle)
-    head.removeChild(thirdStyle)
+    head.removeChild(lastStyle)
   })
 
   it('should work if insertionPoint is last element', () => {
@@ -147,7 +147,7 @@ describe('StyleSheet', () => {
     lastStyle.setAttribute('id', 'last')
     head.appendChild(lastStyle)
 
-    // the sheet should be inserted between the first and third style node
+    // the sheet should be inserted after the first node
     const sheet = new StyleSheet({
       ...defaultOptions,
       insertionPoint: lastStyle

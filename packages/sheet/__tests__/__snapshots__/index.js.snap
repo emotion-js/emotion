@@ -21,7 +21,7 @@ exports[`StyleSheet should accept insertionPoint option 1`] = `
       * { box-sizing: border-box; }
     </style>
     <style
-      id="third"
+      id="last"
     />
   </head>
   <body />
