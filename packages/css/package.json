@@ -39,7 +39,11 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/css",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/css"
+  },
   "keywords": [
     "styles",
     "emotion",

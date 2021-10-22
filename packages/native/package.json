@@ -35,7 +35,11 @@
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/native",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/native"
+  },
   "keywords": [
     "styles",
     "emotion",

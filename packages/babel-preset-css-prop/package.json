@@ -5,7 +5,11 @@
   "main": "dist/emotion-babel-preset-css-prop.cjs.js",
   "module": "dist/emotion-babel-preset-css-prop.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/babel-preset-css-prop",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/babel-preset-css-prop"
+  },
   "scripts": {
     "test:typescript": "exit 0"
   },

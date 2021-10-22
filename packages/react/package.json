@@ -58,7 +58,11 @@
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/react",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/react"
+  },
   "publishConfig": {
     "access": "public"
   },

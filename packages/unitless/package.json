@@ -5,7 +5,11 @@
   "main": "dist/emotion-unitless.cjs.js",
   "module": "dist/emotion-unitless.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/unitless",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/unitless"
+  },
   "scripts": {
     "test:typescript": "exit 0"
   },

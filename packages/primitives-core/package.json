@@ -24,7 +24,11 @@
     "react": "16.14.0"
   },
   "homepage": "https://emotion.sh",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/primitives-core",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/primitives-core"
+  },
   "keywords": [
     "styles",
     "emotion",

@@ -10,7 +10,11 @@
   },
   "types": "types/index.d.ts",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/cache",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/cache"
+  },
   "scripts": {
     "test:typescript": "dtslint types"
   },

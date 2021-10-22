@@ -5,7 +5,11 @@
   "main": "dist/emotion-babel-plugin-jsx-pragmatic.cjs.js",
   "module": "dist/emotion-babel-plugin-jsx-pragmatic.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/babel-plugin-jsx-pragmatic",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/babel-plugin-jsx-pragmatic"
+  },
   "scripts": {
     "test:typescript": "exit 0"
   },

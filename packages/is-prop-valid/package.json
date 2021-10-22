@@ -6,7 +6,11 @@
   "module": "dist/emotion-is-prop-valid.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/is-prop-valid",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/is-prop-valid"
+  },
   "scripts": {
     "test:typescript": "dtslint types"
   },

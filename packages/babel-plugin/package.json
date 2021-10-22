@@ -36,7 +36,11 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/babel-plugin",
+  "repository": {
+    "url": "https://github.com/emotion-js/emotion.git",
+    "type": "git",
+    "directory": "packages/babel-plugin"
+  },
   "keywords": [
     "styles",
     "emotion",
