@@ -96,7 +96,7 @@ export class StyleSheet {
       } else if (this.prepend) {
         before = this.container.firstChild
       } else {
-        before = this.prepend ? this.container.firstChild : this.before
+        before = this.before
       }
     } else {
       before = this.tags[this.tags.length - 1].nextSibling
