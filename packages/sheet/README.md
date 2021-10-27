@@ -58,16 +58,15 @@ This defines specific dom node after which the rules are inserted into the `cont
 ```jsx
 const head = document.querySelector('head')
 
-head.innerHTML = `
-  <meta name="emotion-insertion-point" content="" />
-`
+const emotionInsertionPoint = document.createElement('meta')
+emotionInsertionPoint.setAttribute('name', 'emotion-insertion-point')
 
-const metaTag = document.querySelector("meta[name='emotion-insertion-point']")
+head.appendChild(emotionInsertionPoint)
 
 // the emotion sheets should be inserted right after the meta tag
 const cache = createCache({
   key: 'my-app',
-  insertionPoint: metaTag
+  insertionPoint: emotionInsertionPoint
 })
 
 function App() {

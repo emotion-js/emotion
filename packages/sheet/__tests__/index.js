@@ -130,7 +130,7 @@ describe('StyleSheet', () => {
     // the sheet should be inserted between the first and last style nodes
     const sheet = new StyleSheet({
       ...defaultOptions,
-      insertionPoint: document.getElementById('first')
+      insertionPoint: safeQuerySelector('first')
     })
     sheet.insert(rule)
     sheet.insert(rule2)
