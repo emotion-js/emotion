@@ -53,7 +53,31 @@ This defines where rules are inserted into the `container`. By default they are 
 
 #### insertionPoint
 
-This defines specific dom node after which the rules are inserted into the `container`.
+This defines specific dom node after which the rules are inserted into the `container`. You can use a `meta` tag to specify the specific location:
+
+```jsx
+const head = document.querySelector('head')
+
+head.innerHTML = `
+  <meta name="emotion-insertion-point" content="" />
+`
+
+const metaTag = document.querySelector("meta[name='emotion-insertion-point']")
+
+// the emotion sheets should be inserted right after the meta tag
+const cache = createCache({
+  key: 'my-app',
+  insertionPoint: metaTag
+})
+
+function App() {
+  return (
+    <CacheProvider value={cache}>
+      <Main />
+    </CacheProvider>
+  )
+}
+```
 
 ### Methods
 

@@ -5,18 +5,19 @@
 
 Add insertionPoint option to the EmotionCache, to insert rules after the specified element.
 
-```
+```jsx
 const head = document.querySelector('head')
 
-const firstStyle = document.createElement('style')
-const lastStyle = document.createElement('style')
-head.appendChild(firstStyle)
-head.appendChild(lastStyle)
+head.innerHTML = `
+  <meta name="emotion-insertion-point" content="" />
+`
 
-// the emotion sheets should be inserted between the first and last style nodes
+const metaTag = document.querySelector("meta[name='emotion-insertion-point']")
+
+// the emotion sheets should be inserted right after the meta tag
 const cache = createCache({
   key: 'my-app',
-  insertionPoint: firstStyle
+  insertionPoint: metaTag
 })
 
 function App() {
