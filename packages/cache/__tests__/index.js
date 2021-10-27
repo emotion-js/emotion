@@ -18,13 +18,11 @@ function render(ele) {
 
 it('should accept insertionPoint option', () => {
   const head = safeQuerySelector('head')
-  const firstStyle = document.createElement('style')
-  firstStyle.setAttribute('id', 'first')
-  head.appendChild(firstStyle)
 
-  const lastStyle = document.createElement('style')
-  lastStyle.setAttribute('id', 'last')
-  head.appendChild(lastStyle)
+  head.innerHTML = `
+    <style id="first"></style>
+    <style id="last"></style>
+  `
 
   // the sheet should be inserted between the first and last style nodes
   const cache = createCache({
