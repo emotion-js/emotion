@@ -27,7 +27,7 @@ it('should accept insertionPoint option', () => {
   // the sheet should be inserted between the first and last style nodes
   const cache = createCache({
     key: 'test-insertion-point',
-    insertionPoint: firstStyle
+    insertionPoint: document.getElementById('first')
   })
 
   render(

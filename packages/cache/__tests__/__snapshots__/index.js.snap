@@ -3,6 +3,8 @@
 exports[`should accept insertionPoint option 1`] = `
 <html>
   <head>
+    
+    
     <style
       id="first"
     />
@@ -13,9 +15,13 @@ exports[`should accept insertionPoint option 1`] = `
       
       .test-insertion-point-83n355{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;color:blue;}
     </style>
+    
+    
     <style
       id="last"
     />
+    
+  
   </head>
   <body />
 </html>
