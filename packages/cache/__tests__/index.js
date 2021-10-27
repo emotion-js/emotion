@@ -4,17 +4,13 @@ import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'
 import createCache from '@emotion/cache'
 import { jsx, CacheProvider } from '@emotion/react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 test('throws correct error with invalid key', () => {
   expect(() => {
     createCache({ key: '.' })
   }).toThrowErrorMatchingSnapshot()
 })
-
-function render(ele) {
-  return renderer.create(ele).toJSON()
-}
 
 it('should accept insertionPoint option', () => {
   const head = safeQuerySelector('head')
@@ -36,5 +32,5 @@ it('should accept insertionPoint option', () => {
     </CacheProvider>
   )
 
-  expect(document.documentElement).toMatchSnapshot()
+  expect(document.head).toMatchSnapshot()
 })
