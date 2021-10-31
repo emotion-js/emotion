@@ -12,6 +12,19 @@ let animation = keyframes({
   }
 })
 
+function Foobar() {
+  function renderSpan() {
+    return <span css={{ color: 'orchid' }}>Orchid2</span>
+  }
+
+  return (
+    <div>
+      <span css={{ color: 'orchid' }}>Orchid</span>
+      {/* renderSpan() */}
+    </div>
+  )
+}
+
 const App = () => (
   <React.Fragment>
     <Global
@@ -23,14 +36,15 @@ const App = () => (
         }
       }}
     />
-    <h1
+    {/* <h1
       css={{
-        color: 'hotpink',
-        animation: `${animation} 1s infinite`
+        color: 'hotpink'
       }}
     >
       wow, some hotpink text!!
-    </h1>
+      <span css={{ color: 'blue' }}>Blue</span>
+    </h1> */}
+    <Foobar />
   </React.Fragment>
 )
 

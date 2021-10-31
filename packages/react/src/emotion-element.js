@@ -11,6 +11,26 @@ import { serializeStyles } from '@emotion/serialize'
 const sanitizeIdentifier = (identifier: string) =>
   identifier.replace(/\$/g, '-')
 
+export const getLabelFromStackTrace = (stackTrace: string): ?string => {
+  if (!stackTrace) return undefined
+
+  // console.log(stacktrace)
+
+  // Chrome — TODO: why is it like this?
+  let match = stackTrace.match(
+    /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
+  )
+  if (!match) {
+    // Safari and Firefox — get the first function name that starts with a capital letter
+    match = stackTrace.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
+  }
+  if (match) {
+    return sanitizeIdentifier(match[1])
+  }
+
+  return undefined
+}
+
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
 let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
@@ -38,20 +58,8 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   newProps[typePropName] = type
 
   if (process.env.NODE_ENV !== 'production') {
-    const error = new Error()
-    if (error.stack) {
-      // chrome
-      let match = error.stack.match(
-        /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
-      )
-      if (!match) {
-        // safari and firefox
-        match = error.stack.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
-      }
-      if (match) {
-        newProps[labelPropName] = sanitizeIdentifier(match[1])
-      }
-    }
+    const label = getLabelFromStackTrace(new Error().stack)
+    if (label) newProps[labelPropName] = label
   }
 
   return newProps
