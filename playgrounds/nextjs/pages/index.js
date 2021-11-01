@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react'
 
 export default function Home() {
-  function renderSpan() {
-    return <span css={{ color: 'orchid' }}>Orchid2</span>
-  }
+  const [count, setCount] = useState(true)
 
   return (
     <div>
@@ -15,9 +14,7 @@ export default function Home() {
       </Head>
 
       <h1>Next.js Playground</h1>
-      {[0].map(() => (
-        <div css={{ color: 'blue' }} />
-      ))}
+      <div css={{ color: 'orchid' }}>Some colored text</div>
     </div>
   )
 }
