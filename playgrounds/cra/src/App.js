@@ -12,18 +12,8 @@ let animation = keyframes({
   }
 })
 
-function MyComponent9() {
-  function renderSpan() {
-    return <span>Orchid2</span>
-  }
-
-  return (
-    <div css={{ color: 'orchid' }}>
-      {[1, 2, 3].map((_, i) => (
-        <div key={i} css={{ background: 'red' }} />
-      ))}
-    </div>
-  )
+const MyComponent9 = function MyComponent9() {
+  return <div css={{ color: 'orchid' }}>Foobar</div>
 }
 
 const App = () => (
