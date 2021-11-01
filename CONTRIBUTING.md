@@ -5,6 +5,10 @@
 
 ## Installation
 
+- (If using an M1 Mac) Install `vips` via Homebrew: `brew install vips`.
+  - This step will become unnecessary once Sharp starts publishing prebuilt
+    binaries for darwin-arm64v8.
+    [Reference](https://github.com/lovell/sharp/issues/2460#issuecomment-751491241)
 - Run `yarn` in the repository's root directory to install everything you need for development.
 - Run `yarn build` in the root directory to build the modules.
 
