@@ -47,11 +47,15 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
       expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
     })
 
-    // test('Safari', () => {
-    //   const stackTrace = `TODO`
+    test('Safari', () => {
+      const stackTrace = `createEmotionProps@http://localhost:3000/static/js/bundle.js:46440:49
+jsx@http://localhost:3000/static/js/bundle.js:46635:113
+renderWithHooks@http://localhost:3000/static/js/bundle.js:18904:27
+mountIndeterminateComponent@http://localhost:3000/static/js/bundle.js:21583:28
+beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
 
-    //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
-    // })
+      expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    })
 
     test('Next.js SSR', () => {
       const stackTrace = `Error
@@ -76,7 +80,7 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
    * ```jsx
    * function MyComponent9() {
    *   function renderSpan() {
-   *     return <span css={{ color: 'orchid' }}>Orchid2</span>
+   *     return <span css={{ color: 'orchid' }}>Orchid</span>
    *   }
    *
    *   return <div>{renderSpan()}</div>
@@ -110,11 +114,16 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
       expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
     })
 
-    // test('Safari', () => {
-    //   const stackTrace = `TODO`
+    test('Safari', () => {
+      const stackTrace = `createEmotionProps@http://localhost:3000/static/js/bundle.js:46440:49
+jsx@http://localhost:3000/static/js/bundle.js:46635:113
+MyComponent9@http://localhost:3000/static/js/bundle.js:47599:15
+renderWithHooks@http://localhost:3000/static/js/bundle.js:18904:27
+mountIndeterminateComponent@http://localhost:3000/static/js/bundle.js:21583:28
+beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
 
-    //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
-    // })
+      expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    })
 
     test('Next.js SSR', () => {
       const stackTrace = `Error
@@ -160,11 +169,17 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
       expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
     })
 
-    // test('Safari', () => {
-    //   const stackTrace = `TODO`
+    test('Safari', () => {
+      const stackTrace = `createEmotionProps@http://localhost:3000/static/js/bundle.js:46440:49
+jsx@http://localhost:3000/static/js/bundle.js:46635:113
+map@[native code]
+MyComponent9@http://localhost:3000/static/js/bundle.js:47601:18
+renderWithHooks@http://localhost:3000/static/js/bundle.js:18904:27
+mountIndeterminateComponent@http://localhost:3000/static/js/bundle.js:21583:28
+beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
 
-    //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
-    // })
+      expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    })
 
     test('Next.js SSR', () => {
       const stackTrace = `Error
