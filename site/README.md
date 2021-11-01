@@ -7,12 +7,11 @@ All of the docs live in the `docs` in the root of this repository. They are in [
 ```yaml
 title: 'Some Title'
 ---
-
 ```
 
 ### Code Blocks
 
-When the langauge is `jsx` and the the code block has a `// @live` comment, it will have a preview next to it. Most of the Emotion packages can be imported and there is a `render` function that accepts a react element and will render into the preview next to it.
+When the langauge is `jsx` and the code block has a `// @live` comment, it will have a preview next to it. Most of the Emotion packages can be imported and there is a `render` function that accepts a react element and will render into the preview next to it.
 
 ```md
 \`\`\`jsx
@@ -25,15 +24,3 @@ render('some react element')
 ### Links
 
 All links to other pages on the docs should be linked to with `https://emotion.sh/docs/doc-name`, these links are transformed so they are local links.
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
