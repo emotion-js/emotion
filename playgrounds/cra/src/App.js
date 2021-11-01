@@ -12,15 +12,16 @@ let animation = keyframes({
   }
 })
 
-function Foobar() {
+function MyComponent9() {
   function renderSpan() {
-    return <span css={{ color: 'orchid' }}>Orchid2</span>
+    return <span>Orchid2</span>
   }
 
   return (
-    <div>
-      <span css={{ color: 'orchid' }}>Orchid</span>
-      {/* renderSpan() */}
+    <div css={{ color: 'orchid' }}>
+      {[1, 2, 3].map((_, i) => (
+        <div key={i} css={{ background: 'red' }} />
+      ))}
     </div>
   )
 }
@@ -44,7 +45,7 @@ const App = () => (
       wow, some hotpink text!!
       <span css={{ color: 'blue' }}>Blue</span>
     </h1> */}
-    <Foobar />
+    <MyComponent9 />
   </React.Fragment>
 )
 
