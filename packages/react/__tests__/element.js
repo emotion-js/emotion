@@ -53,11 +53,21 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
     //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
     // })
 
-    // test('Next.js SSR', () => {
-    //   const stackTrace = `TODO`
+    test('Next.js SSR', () => {
+      const stackTrace = `Error
+    at Object.createEmotionProps (webpack-internal:///../../packages/react/dist/emotion-element-7a9c77b4.cjs.dev.js:175:40)
+    at jsxDEV (webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.dev.js:22:75)
+    at MyComponent9 (webpack-internal:///./pages/index.js:60:85)
+    at processChild (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3043:14)
+    at resolve (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
+    at ReactDOMServerRenderer.render (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
+    at ReactDOMServerRenderer.read (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3373:29)
+    at Object.renderToString (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)
+    at Object.renderPage (C:/Projects/OSS/emotion/node_modules/next/dist/server/render.js:621:45)
+    at Object.defaultGetInitialProps (C:/Projects/OSS/emotion/node_modules/next/dist/server/render.js:301:51)`
 
-    //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
-    // })
+      expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    })
   })
 
   /**
@@ -106,11 +116,21 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
     //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
     // })
 
-    // test('Next.js SSR', () => {
-    //   const stackTrace = `TODO`
+    test('Next.js SSR', () => {
+      const stackTrace = `Error
+    at Object.createEmotionProps (webpack-internal:///../../packages/react/dist/emotion-element-7a9c77b4.cjs.dev.js:175:40)
+    at jsxDEV (webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.dev.js:22:75)
+    at renderSpan (webpack-internal:///./pages/index.js:28:82)
+    at MyComponent9 (webpack-internal:///./pages/index.js:71:15)
+    at processChild (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3043:14)
+    at resolve (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
+    at ReactDOMServerRenderer.render (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
+    at ReactDOMServerRenderer.read (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3373:29)
+    at Object.renderToString (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)
+    at Object.renderPage (C:/Projects/OSS/emotion/node_modules/next/dist/server/render.js:621:45)`
 
-    //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
-    // })
+      expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    })
   })
 
   describe('element returned by Array.map', () => {
@@ -146,11 +166,22 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
     //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
     // })
 
-    // test('Next.js SSR', () => {
-    //   const stackTrace = `TODO`
+    test('Next.js SSR', () => {
+      const stackTrace = `Error
+    at Object.createEmotionProps (webpack-internal:///../../packages/react/dist/emotion-element-7a9c77b4.cjs.dev.js:175:40)
+    at jsxDEV (webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.dev.js:22:75)
+    at eval (webpack-internal:///./pages/index.js:78:99)
+    at Array.map (<anonymous>)
+    at MyComponent9 (webpack-internal:///./pages/index.js:78:19)
+    at processChild (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3043:14)
+    at resolve (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
+    at ReactDOMServerRenderer.render (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
+    at ReactDOMServerRenderer.read (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3373:29)
+    at Object.renderToString (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)
+      `
 
-    //   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
-    // })
+      expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    })
   })
 })
 

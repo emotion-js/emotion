@@ -14,7 +14,7 @@ const sanitizeIdentifier = (identifier: string) =>
 export const getLabelFromStackTrace = (stackTrace: string): ?string => {
   if (!stackTrace) return undefined
 
-  //console.log(stackTrace)
+  console.log(stackTrace)
 
   // Chrome — TODO: why is it like this?
   let match = stackTrace.match(
