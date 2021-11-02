@@ -11,7 +11,7 @@ export const getFunctionNameFromIdentifier = (identifier: string): ?string => {
 }
 
 export const getFunctionNameFromStackTraceLine = (line: string): ?string => {
-  if (/^\s+at\s+/.exec(line)) {
+  if (/^\s+at\s+/.test(line)) {
     // V8
     const match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line)
 
