@@ -119,10 +119,10 @@
   },
   "workspaces": {
     "packages": [
-      "./packages/*",
-      "./site",
-      "./scripts/*",
-      "./playgrounds/*"
+      "packages/*",
+      "site",
+      "scripts/*",
+      "playgrounds/*"
     ],
     "nohoist": [
       "**/dtslint"

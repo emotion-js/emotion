@@ -1,4 +1,0 @@
-{
-  "plugins": ["emotion"],
-  "presets": ["razzle/babel"]
-}
