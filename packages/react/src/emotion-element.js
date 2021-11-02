@@ -11,12 +11,29 @@ import { serializeStyles } from '@emotion/serialize'
 const sanitizeIdentifier = (identifier: string) =>
   identifier.replace(/\$/g, '-')
 
+// TODO remove
+const getLabelFromStackTraceOLD = (stackTrace: string): ?string => {
+  if (!stackTrace) return undefined
+
+  // Chrome
+  let match = stackTrace.match(
+    /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
+  )
+  if (!match) {
+    // Safari and Firefox — get the first function name that starts with a capital letter
+    match = stackTrace.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
+  }
+  if (match) {
+    return sanitizeIdentifier(match[1])
+  }
+
+  return undefined
+}
+
 export const getLabelFromStackTrace = (stackTrace: string): ?string => {
   if (!stackTrace) return undefined
 
-  //console.log(stackTrace)
-
-  // Chrome — TODO: why is it like this?
+  // Chrome
   let match = stackTrace.match(
     /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
   )

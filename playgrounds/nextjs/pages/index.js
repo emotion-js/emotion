@@ -1,20 +1,9 @@
-/** @jsxImportSource theme-ui */
-import { render } from '@testing-library/react'
+/** @jsxImportSource @emotion/react */
 import Head from 'next/head'
 import Image from 'next/image'
-import React, { useState } from 'react'
-
-// const test = {
-//   MyComponent$9() {
-//     return <div css={{ color: 'red' }}>red</div>
-//   }
-// }
+import { Global } from '@emotion/react'
 
 export default function Home() {
-  const [count, setCount] = useState(true)
-
-  // const el = test.MyComponent$9()
-
   return (
     <div>
       <Head>
@@ -23,8 +12,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Global
+        styles={{
+          body: {
+            padding: '2rem',
+            fontFamily: 'sans-serif'
+          },
+          h1: {
+            marginTop: 0
+          }
+        }}
+      />
+
       <h1>Next.js Playground</h1>
-      <MyComponent$9 />
+      <div css={{ color: 'orchid' }}>Some colored text</div>
     </div>
   )
 }

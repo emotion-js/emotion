@@ -1,16 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
-
-class MyComponent$9 extends React.Component {
-  render() {
-    return <div css={{ color: 'red' }}>red</div>
-  }
-}
+import { Global } from '@emotion/react'
 
 function App() {
   return (
-    <div className="App">
-      <MyComponent$9 />
+    <div>
+      <Global
+        styles={{
+          body: {
+            padding: '2rem',
+            fontFamily: 'sans-serif'
+          },
+          h1: {
+            marginTop: 0
+          }
+        }}
+      />
+
+      <h1>CRA Playground</h1>
+      <div css={{ color: 'orchid' }}>Some colored text</div>
     </div>
   )
 }

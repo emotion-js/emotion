@@ -32,13 +32,13 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
   })
 
   test('Safari', () => {
+    // Strangely, the component name does not appear in the stacktrace
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/bundle.js:46440:49
 jsx@http://localhost:3000/static/js/bundle.js:46635:113
 renderWithHooks@http://localhost:3000/static/js/bundle.js:18904:27
 mountIndeterminateComponent@http://localhost:3000/static/js/bundle.js:21583:28
 beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
 
-    // Strangely, the component name does not appear in the stacktrace
     expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
   })
 })
@@ -60,11 +60,11 @@ describe('typical function component', () => {
 
   test('Firefox', () => {
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:844:40
-    jsxDEV@http://localhost:3000/static/js/main.chunk.js:1126:247
-    MyComponent$9@http://localhost:3000/static/js/main.chunk.js:2274:92
-    renderWithHooks@http://localhost:3000/static/js/vendors~main.chunk.js:16616:31
-    mountIndeterminateComponent@http://localhost:3000/static/js/vendors~main.chunk.js:19228:17
-    beginWork@http://localhost:3000/static/js/vendors~main.chunk.js:20306:20`
+jsxDEV@http://localhost:3000/static/js/main.chunk.js:1126:247
+MyComponent$9@http://localhost:3000/static/js/main.chunk.js:2274:92
+renderWithHooks@http://localhost:3000/static/js/vendors~main.chunk.js:16616:31
+mountIndeterminateComponent@http://localhost:3000/static/js/vendors~main.chunk.js:19228:17
+beginWork@http://localhost:3000/static/js/vendors~main.chunk.js:20306:20`
 
     expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
   })
@@ -141,7 +141,7 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:18`
     // It's weird that renderSpan is not in the stacktrace
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:844:49
 jsxDEV@http://localhost:3000/static/js/main.chunk.js:1126:247
-MySpan@http://localhost:3000/main.4d087bc1a783e9f2b657.hot-update.js:36:25
+MyComponent$9@http://localhost:3000/main.4d087bc1a783e9f2b657.hot-update.js:36:25
 renderWithHooks@http://localhost:3000/static/js/vendors~main.chunk.js:16616:31
 updateFunctionComponent@http://localhost:3000/static/js/vendors~main.chunk.js:18795:39
 beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:27`
@@ -218,8 +218,7 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:27`
     at resolve (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
     at ReactDOMServerRenderer.render (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
     at ReactDOMServerRenderer.read (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3373:29)
-    at Object.renderToString (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)
-      `
+    at Object.renderToString (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)`
 
     expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
   })
@@ -235,7 +234,11 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:27`
  *   }
  * }
  *
- * const el = test.MyComponent$9()
+ * function App() {
+ *   const el = test.MyComponent$9()
+ *
+ *   return ...
+ * }
  * ```
  */
 describe('function component within object', () => {
@@ -244,7 +247,7 @@ describe('function component within object', () => {
     at createEmotionProps (emotion-element-6352414e.browser.esm.js?fcc6:142)
     at jsxDEV (emotion-react-jsx-dev-runtime.browser.esm.js?cf67:18)
     at Object.MyComponent$9 (index.js?bee7:7)
-    at Home (index.js?bee7:14)
+    at App (index.js?bee7:14)
     at renderWithHooks (react-dom.development.js?3c4a:14803)
     at mountIndeterminateComponent (react-dom.development.js?3c4a:17482)
     at beginWork (react-dom.development.js?3c4a:18596)
@@ -255,21 +258,27 @@ describe('function component within object', () => {
 
   test('Firefox', () => {
     const stackTrace = `createEmotionProps@webpack-internal:///../../packages/react/dist/emotion-element-6352414e.browser.esm.js:163:40
-    jsxDEV@webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js:35:230
-    MyComponent$9@webpack-internal:///./pages/index.js:32:82
-    Home@webpack-internal:///./pages/index.js:49:17
-    renderWithHooks@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:14803:27
-    mountIndeterminateComponent@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:17482:13
-    beginWork@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:18596:16
-    beginWork$1@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:23179:14`
+jsxDEV@webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js:35:230
+MyComponent$9@webpack-internal:///./pages/index.js:32:82
+App@webpack-internal:///./pages/index.js:49:17
+renderWithHooks@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:14803:27
+mountIndeterminateComponent@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:17482:13
+beginWork@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:18596:16
+beginWork$1@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:23179:14`
 
     expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
   })
 
   test('Safari', () => {
-    const stackTrace = `TODO`
+    // Strangely, MyComponent$9 does not appear in the stack trace
+    const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:866:49
+jsxDEV@http://localhost:3000/static/js/main.chunk.js:1147:247
+App@http://localhost:3000/static/js/main.chunk.js:2290:32
+renderWithHooks@http://localhost:3000/static/js/vendors~main.chunk.js:19152:31
+mountIndeterminateComponent@http://localhost:3000/static/js/vendors~main.chunk.js:21764:32
+beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:27384:27`
 
-    expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+    expect(getLabelFromStackTrace(stackTrace)).toBe('App')
   })
 
   test('SSR', () => {
@@ -277,7 +286,7 @@ describe('function component within object', () => {
     at Object.createEmotionProps (webpack-internal:///../../packages/react/dist/emotion-element-7a9c77b4.cjs.dev.js:175:40)
     at jsxDEV (webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.dev.js:22:75)
     at Object.MyComponent$9 (webpack-internal:///./pages/index.js:31:82)
-    at Home (webpack-internal:///./pages/index.js:47:19)
+    at App (webpack-internal:///./pages/index.js:47:19)
     at processChild (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3043:14)
     at resolve (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
     at ReactDOMServerRenderer.render (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
@@ -354,8 +363,13 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:29733:18`
   })
 
   test('Safari', () => {
-    const stackTrace = `TODO`
-    throw new Error('fail')
+    // Strangely, jsxDEV only appears once
+    const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:866:49
+jsxDEV@http://localhost:3000/static/js/main.chunk.js:1147:247
+MyComponent$9@http://localhost:3000/static/js/main.chunk.js:2277:86
+renderWithHooks@http://localhost:3000/static/js/vendors~main.chunk.js:19627:31
+mountIndeterminateComponent@http://localhost:3000/static/js/vendors~main.chunk.js:22239:32
+beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:27859:27`
 
     expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
   })
@@ -415,8 +429,12 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:29705:18`
   })
 
   test('Safari', () => {
-    const stackTrace = `TODO`
-    throw new Error('fail')
+    // render does not appear in the stack trace
+    const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:866:49
+jsxDEV@http://localhost:3000/static/js/main.chunk.js:1147:247
+finishClassComponent@http://localhost:3000/static/js/vendors~main.chunk.js:21453:41
+updateClassComponent@http://localhost:3000/static/js/vendors~main.chunk.js:21406:48
+beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:27384:27`
 
     expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
   })
