@@ -1,5 +1,41 @@
 // @flow
-import { getLabelFromStackTrace } from '../src/emotion-element'
+import {
+  getFunctionNameFromIdentifier,
+  getFunctionNameFromStackTraceLine,
+  getLabelFromStackTrace
+} from '../src/get-label-from-stack-trace'
+
+describe('getFunctionNameFromIdentifier', () => {
+  test('simple identifier', () => {
+    expect(getFunctionNameFromIdentifier('MyComponent$9')).toBe('MyComponent$9')
+  })
+
+  test('compound identifier', () => {
+    expect(getFunctionNameFromIdentifier('Object.createEmotionProps')).toBe(
+      'createEmotionProps'
+    )
+  })
+})
+
+describe('getFunctionNameFromStackTraceLine', () => {
+  test('V8', () => {
+    expect(getFunctionNameFromStackTraceLine('Error')).toBeUndefined()
+
+    expect(
+      getFunctionNameFromStackTraceLine(
+        '    at Object.createEmotionProps (emotion-element-1fb5ab00.browser.esm.js:143)'
+      )
+    ).toBe('createEmotionProps')
+  })
+
+  test('Safari / Firefox', () => {
+    expect(
+      getFunctionNameFromStackTraceLine(
+        'createEmotionProps@http://localhost:3000/static/js/main.chunk.js:844:40'
+      )
+    ).toBe('createEmotionProps')
+  })
+})
 
 // Ensure that it works for components that have numbers and $ in their name
 const expectedLabel = 'MyComponent-9'

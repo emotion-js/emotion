@@ -5,48 +5,7 @@ import { ThemeContext } from './theming'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
-
-// those identifiers come from error stacks, so they have to be valid JS identifiers
-// thus we only need to replace what is a valid character for JS, but not for CSS
-const sanitizeIdentifier = (identifier: string) =>
-  identifier.replace(/\$/g, '-')
-
-// TODO remove
-const getLabelFromStackTraceOLD = (stackTrace: string): ?string => {
-  if (!stackTrace) return undefined
-
-  // Chrome
-  let match = stackTrace.match(
-    /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
-  )
-  if (!match) {
-    // Safari and Firefox — get the first function name that starts with a capital letter
-    match = stackTrace.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
-  }
-  if (match) {
-    return sanitizeIdentifier(match[1])
-  }
-
-  return undefined
-}
-
-export const getLabelFromStackTrace = (stackTrace: string): ?string => {
-  if (!stackTrace) return undefined
-
-  // Chrome
-  let match = stackTrace.match(
-    /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
-  )
-  if (!match) {
-    // Safari and Firefox — get the first function name that starts with a capital letter
-    match = stackTrace.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
-  }
-  if (match) {
-    return sanitizeIdentifier(match[1])
-  }
-
-  return undefined
-}
+import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
