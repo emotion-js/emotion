@@ -1,9 +1,19 @@
+/** @jsxImportSource theme-ui */
+import { render } from '@testing-library/react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import React, { useState } from 'react'
+
+// const test = {
+//   MyComponent$9() {
+//     return <div css={{ color: 'red' }}>red</div>
+//   }
+// }
 
 export default function Home() {
   const [count, setCount] = useState(true)
+
+  // const el = test.MyComponent$9()
 
   return (
     <div>
@@ -14,7 +24,7 @@ export default function Home() {
       </Head>
 
       <h1>Next.js Playground</h1>
-      <div css={{ color: 'orchid' }}>Some colored text</div>
+      <MyComponent$9 />
     </div>
   )
 }

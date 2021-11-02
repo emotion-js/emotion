@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "theme-ui": "^0.12.0"
   },
   "scripts": {
     "start": "react-scripts start",

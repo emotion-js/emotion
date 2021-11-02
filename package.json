@@ -119,10 +119,10 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "site",
-      "scripts/*",
-      "playgrounds/*"
+      "./packages/*",
+      "./site",
+      "./scripts/*",
+      "./playgrounds/*"
     ],
     "nohoist": [
       "**/dtslint"
@@ -259,7 +259,6 @@
     "react-native-web": "0.13.12",
     "react-primitives": "^0.8.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.5",
     "react-test-renderer": "16.8.6",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
