@@ -40,8 +40,18 @@ describe('getFunctionNameFromStackTraceLine', () => {
 // Ensure that it works for components that have numbers and $ in their name
 const expectedLabel = 'MyComponent-9'
 
-// All tests after this block are for runtime=automatic, i.e. the new JSX
-// transform introduced in React 17
+/**
+ * E.g.
+ *
+ * ```
+ * function MyComponent$9() {
+ *   return <div css={{ color: 'red' }} />
+ * }
+ * ```
+ *
+ * All tests after this block are for runtime=automatic, i.e. the new JSX
+ * transform introduced in React 17
+ */
 describe('typical function component - runtime=classic', () => {
   test('Chrome', () => {
     // Each "at" line starts with some whitespace
@@ -79,6 +89,15 @@ beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
   })
 })
 
+/**
+ * E.g.
+ *
+ * ```
+ * function MyComponent$9() {
+ *   return <div css={{ color: 'red' }} />
+ * }
+ * ```
+ */
 describe('typical function component', () => {
   test('Chrome', () => {
     // Each "at" line starts with some whitespace
@@ -136,7 +155,7 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:27`
 /**
  * E.g.
  *
- * ```jsx
+ * ```
  * function MyComponent$9() {
  *   function renderSpan() {
  *     return <span css={{ color: 'orchid' }}>Orchid</span>
@@ -202,6 +221,17 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:27`
   })
 })
 
+/**
+ * E.g.
+ *
+ * ```
+ * function MyComponent$9() {
+ *   return <div>
+ *     {[0].map(i => <div css={{ color: 'red' }} key={i} />)}
+ *   </div>
+ * }
+ * ```
+ */
 describe('element returned by Array.map', () => {
   test('Chrome', () => {
     const stackTrace = `Error
@@ -351,6 +381,15 @@ test('Chrome: Module.jsx', () => {
   expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
 })
 
+/**
+ * E.g.
+ *
+ * ```
+ * const MyComponent$9 = React.forwardRef(function MyComponent$9() {
+ *   return <div css={{ color: 'red' }} />
+ * })
+ * ```
+ */
 describe('React.forwardRef with named function', () => {
   // forwardRef only changes the stack trace for SSR
   test('SSR', () => {
@@ -370,6 +409,19 @@ describe('React.forwardRef with named function', () => {
   })
 })
 
+/**
+ * E.g.
+ *
+ * ```
+ * // @jsxImportSource theme-ui
+ *
+ * function MyComponent$9() {
+ *   return <div sx={{ color: 'red' }} />
+ * }
+ * ```
+ *
+ * See https://theme-ui.com/sx-prop.
+ */
 describe('multiple jsx factories', () => {
   test('Chrome', () => {
     const stackTrace = `Error
@@ -438,6 +490,16 @@ mountIndeterminateComponent@http://localhost:3000/_next/static/development/dll/d
   })
 })
 
+/**
+ * E.g.
+ *
+ * ```
+ * class MyComponent$9 extends React.Component {
+ *   render() {
+ *     return <div css={{ color: 'red' }} />
+ *   }
+ * }
+ */
 describe('class component', () => {
   test('Chrome', () => {
     const stackTrace = `Error
