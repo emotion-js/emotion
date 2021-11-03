@@ -24,6 +24,24 @@ describe('getFunctionNameFromStackTraceLine', () => {
   })
 })
 
+/**
+ * SAFARI STACK TRACES ARE SUPER WEIRD
+ *
+ * Sometimes Safari includes the component name in the stack trace, and
+ * sometimes it doesn't, even for the exact same code. Most likely, this is
+ * because Safari's JavaScript engine inlines function calls under certain
+ * circumstances to improve performance.
+ *
+ * As a result, you may not get the same stack traces if you try to reproduce
+ * these test cases on your own.
+ *
+ * If Safari omits the component name from the stack trace, the best thing we
+ * can do is:
+ *
+ * 1. Match the parent component's name if it is in the stack trace, or
+ * 2. Return `undefined`.
+ */
+
 // Ensure that it works for components that have numbers and $ in their name
 const expectedLabel = 'MyComponent-9'
 
@@ -68,7 +86,6 @@ beginWork@http://localhost:3000/static/js/bundle.js:22697:16`
   })
 
   test('Safari', () => {
-    // Strangely, the component name does not appear in the stacktrace
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/bundle.js:46440:49
 jsx@http://localhost:3000/static/js/bundle.js:46635:113
 renderWithHooks@http://localhost:3000/static/js/bundle.js:18904:27
@@ -90,7 +107,6 @@ beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
  */
 describe('typical function component', () => {
   test('Chrome', () => {
-    // Each "at" line starts with some whitespace
     const stackTrace = `Error
     at createEmotionProps (emotion-element-895e3bbe.browser.esm.js:142)
     at jsxDEV (emotion-react-jsx-dev-runtime.browser.esm.js:18)
@@ -183,7 +199,6 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:18`
   })
 
   test('Safari', () => {
-    // Strangely, renderSpan is not in the stacktrace
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:844:49
 jsxDEV@http://localhost:3000/static/js/main.chunk.js:1126:247
 MyComponent$9@http://localhost:3000/main.4d087bc1a783e9f2b657.hot-update.js:36:25
@@ -326,7 +341,7 @@ beginWork$1@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.devel
   })
 
   test('Safari', () => {
-    // Strangely, MyComponent$9 does not appear in the stack trace
+    // MyComponent$9 does not appear in the stack trace
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:866:49
 jsxDEV@http://localhost:3000/static/js/main.chunk.js:1147:247
 App@http://localhost:3000/static/js/main.chunk.js:2290:32
