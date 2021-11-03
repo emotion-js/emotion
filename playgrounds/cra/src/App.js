@@ -1,6 +1,10 @@
-/** @jsxImportSource @emotion/react */
+/** @jsx jsx */
 import React from 'react'
-import { Global } from '@emotion/react'
+import { Global, jsx } from '@emotion/react'
+
+function MyComponent9() {
+  return <div css={{ color: 'red' }} />
+}
 
 function App() {
   return (
@@ -18,7 +22,8 @@ function App() {
       />
 
       <h1>CRA Playground</h1>
-      <div css={{ color: 'orchid' }}>Some colored text</div>
+      <MyComponent9 />
+      {/* <div css={{ color: 'orchid' }}>Some colored text</div> */}
     </div>
   )
 }

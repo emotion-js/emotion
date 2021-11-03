@@ -27,6 +27,7 @@ export const getFunctionNameFromStackTraceLine = (line: string): ?string => {
 }
 
 export const getLabelFromStackTrace = (stackTrace: string): ?string => {
+  console.log(stackTrace)
   if (!stackTrace) return undefined
 
   const lines = stackTrace.split('\n')

@@ -49,6 +49,9 @@ const expectedLabel = 'MyComponent-9'
  * }
  * ```
  *
+ * See `playgrounds/cra/.env` for instructions on testing with the old JSX
+ * transform.
+ *
  * All tests after this block are for runtime=automatic, i.e. the new JSX
  * transform introduced in React 17
  */
