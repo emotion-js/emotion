@@ -8,8 +8,10 @@ Add insertionPoint option to the EmotionCache, to insert rules after the specifi
 ```jsx
 const head = document.querySelector('head')
 
+// <meta name="emotion-insertion-point" content="">
 const emotionInsertionPoint = document.createElement('meta')
 emotionInsertionPoint.setAttribute('name', 'emotion-insertion-point')
+emotionInsertionPoint.setAttribute('content', '')
 
 head.appendChild(emotionInsertionPoint)
 

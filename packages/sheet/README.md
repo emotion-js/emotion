@@ -49,6 +49,8 @@ This defines how rules are inserted. If it is true, rules will be inserted with 
 
 #### prepend
 
+**Deprecated:** Please use `insertionPoint` option instead.
+
 This defines where rules are inserted into the `container`. By default they are appended but this can be changed by using `prepend: true` option.
 
 #### insertionPoint
@@ -58,8 +60,10 @@ This defines specific dom node after which the rules are inserted into the `cont
 ```jsx
 const head = document.querySelector('head')
 
+// <meta name="emotion-insertion-point" content="">
 const emotionInsertionPoint = document.createElement('meta')
 emotionInsertionPoint.setAttribute('name', 'emotion-insertion-point')
+emotionInsertionPoint.setAttribute('content', '')
 
 head.appendChild(emotionInsertionPoint)
 
