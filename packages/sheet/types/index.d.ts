@@ -6,7 +6,9 @@ export interface Options {
   key: string
   container: HTMLElement
   speedy?: boolean
+  /** @deprecate use `insertionPoint` instead */
   prepend?: boolean
+  insertionPoint?: HTMLElement
 }
 
 export class StyleSheet {
