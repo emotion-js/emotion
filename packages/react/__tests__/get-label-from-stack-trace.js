@@ -1,21 +1,8 @@
 // @flow
 import {
-  getFunctionNameFromIdentifier,
   getFunctionNameFromStackTraceLine,
   getLabelFromStackTrace
 } from '../src/get-label-from-stack-trace'
-
-describe('getFunctionNameFromIdentifier', () => {
-  test('simple identifier', () => {
-    expect(getFunctionNameFromIdentifier('MyComponent$9')).toBe('MyComponent$9')
-  })
-
-  test('compound identifier', () => {
-    expect(getFunctionNameFromIdentifier('Object.createEmotionProps')).toBe(
-      'createEmotionProps'
-    )
-  })
-})
 
 describe('getFunctionNameFromStackTraceLine', () => {
   test('V8', () => {
@@ -196,7 +183,7 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:24848:18`
   })
 
   test('Safari', () => {
-    // It's weird that renderSpan is not in the stacktrace
+    // Strangely, renderSpan is not in the stacktrace
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:844:49
 jsxDEV@http://localhost:3000/static/js/main.chunk.js:1126:247
 MyComponent$9@http://localhost:3000/main.4d087bc1a783e9f2b657.hot-update.js:36:25
@@ -413,10 +400,10 @@ describe('React.forwardRef with named function', () => {
 })
 
 /**
- * E.g.
+ * E.g. (put an @ in front of jsxImportSource if doing this for real)
  *
  * ```
- * // @jsxImportSource theme-ui
+ * // jsxImportSource theme-ui
  *
  * function MyComponent$9() {
  *   return <div sx={{ color: 'red' }} />

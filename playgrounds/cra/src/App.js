@@ -1,6 +1,6 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import React from 'react'
-import { Global, jsx } from '@emotion/react'
+import { Global } from '@emotion/react'
 
 function MyComponent9() {
   return <div css={{ color: 'red' }} />

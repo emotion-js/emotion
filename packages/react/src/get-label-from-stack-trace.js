@@ -1,52 +1,51 @@
+// @flow
+
+export const getFunctionNameFromStackTraceLine = (line: string): ?string => {
+  // V8
+  let match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line)
+
+  if (match) {
+    // The match may be something like 'Object.createEmotionProps'
+    const parts = match[1].split('.')
+    return parts[parts.length - 1]
+  }
+
+  // Safari / Firefox
+  match = /^([A-Za-z0-9$.]+)@/.exec(line)
+  if (match) return match[1]
+
+  return undefined
+}
+
+// If we reach one of these, we have gone too far and should quit
+const internalReactFunctionNames = new Set([
+  'renderWithHooks',
+  'processChild',
+  'finishClassComponent',
+  'renderToString'
+])
+
 // those identifiers come from error stacks, so they have to be valid JS identifiers
 // thus we only need to replace what is a valid character for JS, but not for CSS
 const sanitizeIdentifier = (identifier: string) =>
   identifier.replace(/\$/g, '-')
 
-export const getFunctionNameFromIdentifier = (identifier: string): ?string => {
-  if (!identifier) return undefined
-
-  const parts = identifier.split('.')
-  return parts[parts.length - 1]
-}
-
-export const getFunctionNameFromStackTraceLine = (line: string): ?string => {
-  if (/^\s+at\s+/.test(line)) {
-    // V8
-    const match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line)
-
-    if (match) return getFunctionNameFromIdentifier(match[1])
-  } else {
-    // Safari / Firefox
-    const match = /^([A-Za-z0-9$.]+)@/.exec(line)
-
-    if (match) return match[1]
-  }
-
-  return undefined
-}
-
 export const getLabelFromStackTrace = (stackTrace: string): ?string => {
-  console.log(stackTrace)
+  // console.log(stackTrace)
   if (!stackTrace) return undefined
 
   const lines = stackTrace.split('\n')
 
   for (let i = 0; i < lines.length; i++) {
     const functionName = getFunctionNameFromStackTraceLine(lines[i])
-  }
+    if (!functionName) continue
 
-  // Chrome
-  // let match = stackTrace.match(
-  //   /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
-  // )
-  // if (!match) {
-  //   // Safari and Firefox — get the first function name that starts with a capital letter
-  //   match = stackTrace.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
-  // }
-  // if (match) {
-  //   return sanitizeIdentifier(match[1])
-  // }
+    if (internalReactFunctionNames.has(functionName)) break
+
+    // The component name is the first function in the stack that starts with an
+    // uppercase letter
+    if (/^[A-Z]/.test(functionName)) return sanitizeIdentifier(functionName)
+  }
 
   return undefined
 }
