@@ -44,7 +44,8 @@ export type Options = {
   key: string,
   container: HTMLElement,
   speedy?: boolean,
-  prepend?: boolean
+  prepend?: boolean,
+  insertionPoint?: HTMLElement
 }
 
 function createStyleElement(options: {
@@ -70,6 +71,7 @@ export class StyleSheet {
   nonce: string | void
   prepend: boolean | void
   before: Element | null
+  insertionPoint: HTMLElement | void
   constructor(options: Options) {
     this.isSpeedy =
       options.speedy === undefined
@@ -82,13 +84,20 @@ export class StyleSheet {
     this.key = options.key
     this.container = options.container
     this.prepend = options.prepend
+    this.insertionPoint = options.insertionPoint
     this.before = null
   }
 
   _insertTag = (tag: HTMLStyleElement) => {
     let before
     if (this.tags.length === 0) {
-      before = this.prepend ? this.container.firstChild : this.before
+      if (this.insertionPoint) {
+        before = this.insertionPoint.nextSibling
+      } else if (this.prepend) {
+        before = this.container.firstChild
+      } else {
+        before = this.before
+      }
     } else {
       before = this.tags[this.tags.length - 1].nextSibling
     }

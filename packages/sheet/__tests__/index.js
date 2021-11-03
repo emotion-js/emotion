@@ -17,6 +17,11 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
+beforeEach(() => {
+  safeQuerySelector('head').innerHTML = ''
+  safeQuerySelector('body').innerHTML = ''
+})
+
 describe('StyleSheet', () => {
   it('should be speedy by default in production', () => {
     process.env.NODE_ENV = 'production'
@@ -98,8 +103,6 @@ describe('StyleSheet', () => {
     expect(sheet.tags).toHaveLength(1)
     expect(sheet.tags[0].parentNode).toBe(container)
     sheet.flush()
-    // $FlowFixMe
-    document.body.removeChild(container)
   })
 
   it('should accept prepend option', () => {
@@ -114,7 +117,44 @@ describe('StyleSheet', () => {
     expect(document.documentElement).toMatchSnapshot()
 
     sheet.flush()
-    head.removeChild(otherStyle)
+  })
+
+  it('should accept insertionPoint option', () => {
+    const head = safeQuerySelector('head')
+
+    head.innerHTML = `
+      <style id="first"></style>
+      <style id="last"></style>
+    `
+
+    // the sheet should be inserted between the first and last style nodes
+    const sheet = new StyleSheet({
+      ...defaultOptions,
+      insertionPoint: safeQuerySelector('#first')
+    })
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+  })
+
+  it('should work if insertionPoint is last element', () => {
+    const head = safeQuerySelector('head')
+    const lastStyle = document.createElement('style')
+    lastStyle.setAttribute('id', 'last')
+    head.appendChild(lastStyle)
+
+    // the sheet should be inserted after the first node
+    const sheet = new StyleSheet({
+      ...defaultOptions,
+      insertionPoint: lastStyle
+    })
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
   })
 
   it('should be able to hydrate styles', () => {
@@ -179,7 +219,6 @@ describe('StyleSheet', () => {
     expect(document.documentElement).toMatchSnapshot()
 
     sheet.flush()
-    head.removeChild(otherStyle)
   })
 
   it('should not crash when flushing when styles are already detached', () => {
