@@ -504,6 +504,7 @@ mountIndeterminateComponent@http://localhost:3000/_next/static/development/dll/d
  *     return <div css={{ color: 'red' }} />
  *   }
  * }
+ * ```
  */
 describe('class component', () => {
   test('Chrome', () => {
