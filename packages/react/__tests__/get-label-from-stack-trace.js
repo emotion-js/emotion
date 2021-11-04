@@ -25,15 +25,15 @@ describe('getFunctionNameFromStackTraceLine', () => {
 })
 
 /**
- * SAFARI STACK TRACES ARE SUPER WEIRD
+ * # Safari stack traces
  *
- * Sometimes Safari includes the component name in the stack trace, and
- * sometimes it doesn't, even for the exact same code. Most likely, this is
- * because Safari's JavaScript engine inlines function calls under certain
- * circumstances to improve performance.
+ * The component name may not appear in the Safari stack trace because Safari
+ * implements Proper Tail Calls.
  *
- * As a result, you may not get the same stack traces if you try to reproduce
- * these test cases on your own.
+ * Two components that seem almost identical may produce different stack traces
+ * based on whether or not a Proper Tail Call optimization was possible. As a
+ * result, you may not get the same stack traces if you try to reproduce these
+ * test cases on your own.
  *
  * If Safari omits the component name from the stack trace, the best thing we
  * can do is:
@@ -456,7 +456,6 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:29733:18`
   })
 
   test('Safari', () => {
-    // Strangely, jsxDEV only appears once
     const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:866:49
 jsxDEV@http://localhost:3000/static/js/main.chunk.js:1147:247
 MyComponent$9@http://localhost:3000/static/js/main.chunk.js:2277:86
