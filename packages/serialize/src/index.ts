@@ -1,11 +1,71 @@
-/* import type {
-  Interpolation,
-  SerializedStyles,
-  RegisteredCache
-} from '@emotion/utils' */
 import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
+import { RegisteredCache, SerializedStyles } from '@emotion/utils'
+import * as CSS from 'csstype'
+
+type Props = Record<string, unknown>
+type Cursor = {
+  name: string
+  styles: string
+  next?: Cursor
+}
+
+export type CSSProperties = CSS.PropertiesFallback<number | string>
+export type CSSPropertiesWithMultiValues = {
+  [K in keyof CSSProperties]:
+    | CSSProperties[K]
+    | Array<Extract<CSSProperties[K], string>>
+}
+
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
+
+export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+
+export type InterpolationPrimitive =
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSObject
+
+export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation
+
+export interface CSSOthersObject {
+  [propertiesName: string]: CSSInterpolation
+}
+
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudos,
+    CSSOthersObject {}
+
+export interface ComponentSelector {
+  __emotion_styles: any
+}
+
+export type Keyframes = {
+  name: string
+  styles: string
+  anim: number
+  toString: () => string
+} & string
+
+export interface ArrayInterpolation<Props>
+  extends Array<Interpolation<Props>> {}
+
+export interface FunctionInterpolation<Props> {
+  (props: Props): Interpolation<Props>
+}
+
+export type Interpolation<Props> =
+  | InterpolationPrimitive
+  | ArrayInterpolation<Props>
+  | FunctionInterpolation<Props>
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
@@ -18,9 +78,30 @@ const UNDEFINED_AS_OBJECT_KEY_ERROR =
 let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
-const isCustomProperty = (property /*: string */) =>
-  property.charCodeAt(1) === 45
-const isProcessableValue = value => value != null && typeof value !== 'boolean'
+const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
+const isProcessableValue = <Props>(value: Interpolation<Props>) =>
+  value != null && typeof value !== 'boolean'
+
+const isComponentSelector = (
+  interpolation: any
+): interpolation is ComponentSelector =>
+  interpolation !== null &&
+  typeof interpolation === 'object' &&
+  '__emotion_styles' in interpolation
+
+const isKeyframes = (interpolation: any): interpolation is Keyframes =>
+  interpolation !== null &&
+  typeof interpolation === 'object' &&
+  'anim' in interpolation &&
+  interpolation.anim === 1
+
+const isSerializedStyles = (
+  interpolation: any
+): interpolation is SerializedStyles =>
+  interpolation !== null &&
+  typeof interpolation === 'object' &&
+  'styles' in interpolation &&
+  interpolation.styles !== undefined
 
 const processStyleName = /* #__PURE__ */ memoize((styleName /*: string */) =>
   isCustomProperty(styleName)
@@ -29,9 +110,9 @@ const processStyleName = /* #__PURE__ */ memoize((styleName /*: string */) =>
 )
 
 let processStyleValue = (
-  key /*: string */,
-  value /*: string | number */
-) /*: string | number */ => {
+  key: string,
+  value: string | number
+): string | number => {
   switch (key) {
     case 'animation':
     case 'animationName': {
@@ -49,7 +130,7 @@ let processStyleValue = (
   }
 
   if (
-    unitless[key] !== 1 &&
+    unitless[key as keyof typeof unitless] !== 1 &&
     !isCustomProperty(key) &&
     typeof value === 'number' &&
     value !== 0
@@ -69,9 +150,9 @@ if (process.env.NODE_ENV !== 'production') {
   let msPattern = /^-ms-/
   let hyphenPattern = /-(.)/g
 
-  let hyphenatedCache = {}
+  let hyphenatedCache: Record<string, boolean | undefined> = {}
 
-  processStyleValue = (key /*: string */, value /*: string */) => {
+  processStyleValue = (key: string, value: string | number) => {
     if (key === 'content') {
       if (
         typeof value !== 'string' ||
@@ -106,15 +187,15 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-function handleInterpolation(
-  mergedProps /*: void | Object */,
-  registered /*: RegisteredCache | void */,
-  interpolation /*: Interpolation */
-) /*: string | number */ {
+function handleInterpolation<Props>(
+  mergedProps: Props | undefined,
+  registered: RegisteredCache | undefined,
+  interpolation: Interpolation<Props> | TemplateStringsArray
+): string | number {
   if (interpolation == null) {
     return ''
   }
-  if (interpolation.__emotion_styles !== undefined) {
+  if (isComponentSelector(interpolation)) {
     if (
       process.env.NODE_ENV !== 'production' &&
       interpolation.toString() === 'NO_COMPONENT_SELECTOR'
@@ -123,7 +204,6 @@ function handleInterpolation(
         'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
       )
     }
-    return interpolation
   }
 
   switch (typeof interpolation) {
@@ -131,7 +211,7 @@ function handleInterpolation(
       return ''
     }
     case 'object': {
-      if (interpolation.anim === 1) {
+      if (isKeyframes(interpolation)) {
         cursor = {
           name: interpolation.name,
           styles: interpolation.styles,
@@ -140,7 +220,7 @@ function handleInterpolation(
 
         return interpolation.name
       }
-      if (interpolation.styles !== undefined) {
+      if (isSerializedStyles(interpolation)) {
         let next = interpolation.next
         if (next !== undefined) {
           // not the most efficient thing ever but this is a pretty rare case
@@ -187,10 +267,10 @@ function handleInterpolation(
     }
     case 'string':
       if (process.env.NODE_ENV !== 'production') {
-        const matched = []
+        const matched: string[] = []
         const replaced = interpolation.replace(
           animationRegex,
-          (match, p1, p2) => {
+          (_match, _p1, p2) => {
             const fakeVarName = `animation${matched.length}`
             matched.push(
               `const ${fakeVarName} = keyframes\`${p2.replace(
@@ -203,11 +283,15 @@ function handleInterpolation(
         )
         if (matched.length) {
           console.error(
-            '`keyframes` output got interpolated into plain string, please wrap it with `css`.\n\n' +
-              'Instead of doing this:\n\n' +
-              [...matched, `\`${replaced}\``].join('\n') +
-              '\n\nYou should wrap it with `css` like this:\n\n' +
-              `css\`${replaced}\``
+            `\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
+
+Instead of doing this:
+
+${[...matched, `\`${replaced}\``].join('\n')}
+
+You should wrap it with \`css\` like this:
+
+css\`${replaced}\``
           )
         }
       }
@@ -215,18 +299,23 @@ function handleInterpolation(
   }
 
   // finalize string values (regular strings and functions interpolated into css calls)
+  const asString = interpolation as string
   if (registered == null) {
-    return interpolation
+    return asString
   }
-  const cached = registered[interpolation]
-  return cached !== undefined ? cached : interpolation
+  const cached = registered[asString]
+  return cached !== undefined ? cached : asString
 }
 
-function createStringFromObject(
-  mergedProps /*: void | Object */,
-  registered /*: RegisteredCache | void */,
-  obj /*: { [key: string]: Interpolation } */
-) /*: string */ {
+function createStringFromObject<Props>(
+  mergedProps: Props | undefined,
+  registered: RegisteredCache | undefined,
+  obj:
+    | ArrayInterpolation<Props>
+    | CSSObject
+    | ComponentSelector
+    | TemplateStringsArray
+): string {
   let string = ''
 
   if (Array.isArray(obj)) {
@@ -234,9 +323,9 @@ function createStringFromObject(
       string += `${handleInterpolation(mergedProps, registered, obj[i])};`
     }
   } else {
-    for (let key in obj) {
-      let value = obj[key]
-      if (typeof value !== 'object') {
+    for (const key in obj) {
+      const value = (obj as any)[key] as Interpolation<Props>
+      if (typeof value === 'string') {
         if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
         } else if (isProcessableValue(value)) {
@@ -260,7 +349,7 @@ function createStringFromObject(
             if (isProcessableValue(value[i])) {
               string += `${processStyleName(key)}:${processStyleValue(
                 key,
-                value[i]
+                value[i] as string | number
               )};`
             }
           }
@@ -296,7 +385,7 @@ function createStringFromObject(
 
 let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
-let sourceMapPattern
+let sourceMapPattern: RegExp | undefined
 if (process.env.NODE_ENV !== 'production') {
   sourceMapPattern =
     /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
@@ -304,26 +393,25 @@ if (process.env.NODE_ENV !== 'production') {
 
 // this is the cursor for keyframes
 // keyframes are stored on the SerializedStyles object as a linked list
-let cursor
+let cursor: Cursor | undefined
 
-export const serializeStyles = function (
-  args /*: Array<Interpolation> */,
-  registered /*: RegisteredCache | void */,
-  mergedProps /*: void | Object */
-) /*: SerializedStyles */ {
+export const serializeStyles = function <Props>(
+  args: Array<TemplateStringsArray | Interpolation<Props>>,
+  registered: RegisteredCache,
+  mergedProps?: Props
+): SerializedStyles {
   if (
     args.length === 1 &&
-    typeof args[0] === 'object' &&
-    args[0] !== null &&
-    args[0].styles !== undefined
+    !Array.isArray(args[0]) &&
+    isSerializedStyles(args[0])
   ) {
-    return args[0]
+    return args[0] as SerializedStyles
   }
   let stringMode = true
   let styles = ''
 
   cursor = undefined
-  let strings = args[0]
+  let strings = args[0] as TemplateStringsArray
   if (strings == null || strings.raw === undefined) {
     stringMode = false
     styles += handleInterpolation(mergedProps, registered, strings)
@@ -345,7 +433,7 @@ export const serializeStyles = function (
   }
   let sourceMap
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (sourceMapPattern) {
     styles = styles.replace(sourceMapPattern, match => {
       sourceMap = match
       return ''
