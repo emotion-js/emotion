@@ -323,8 +323,8 @@ function createStringFromObject<Props>(
       string += `${handleInterpolation(mergedProps, registered, obj[i])};`
     }
   } else {
-    for (const key in obj) {
-      const value = (obj as any)[key] as Interpolation<Props>
+    for (let key in obj) {
+      let value = (obj as any)[key] as Interpolation<Props>
       if (
         typeof value === 'string' ||
         typeof value === 'number' ||
@@ -437,7 +437,7 @@ export const serializeStyles = function <Props>(
   }
   let sourceMap
 
-  if (sourceMapPattern) {
+  if (process.env.NODE_ENV !== 'production' && sourceMapPattern !== undefined) {
     styles = styles.replace(sourceMapPattern, match => {
       sourceMap = match
       return ''
