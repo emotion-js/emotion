@@ -325,7 +325,11 @@ function createStringFromObject<Props>(
   } else {
     for (const key in obj) {
       const value = (obj as any)[key] as Interpolation<Props>
-      if (typeof value === 'string') {
+      if (
+        typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'symbol'
+      ) {
         if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
         } else if (isProcessableValue(value)) {
