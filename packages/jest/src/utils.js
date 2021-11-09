@@ -62,7 +62,7 @@ function getClassNamesFromEnzyme(selectors, nodeWithFragment) {
   // TODO: Does approach work with older Emotion versions? Does it cause false positives with components named "Fragment" that aren't `React.Fragment`?
   const node =
     nodeWithFragment.name() === 'Fragment'
-      ? nodeWithFragment.children()
+      ? nodeWithFragment.children().at(1)
       : nodeWithFragment
   // We need to dive in to get the className if we have a styled element from a shallow render
   const isShallow = shouldDive(node)

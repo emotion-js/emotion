@@ -48,6 +48,7 @@ exports[`enzyme mount displayName 1`] = `
 
 exports[`enzyme mount empty styled 1`] = `
 <Greeting>
+  <Noop />
   <div
     className="emotion-0 emotion-1"
   >
@@ -97,6 +98,7 @@ exports[`enzyme mount nested styled 1`] = `
 
 <div>
   <Greeting>
+    <Noop />
     <div
       className="emotion-0 emotion-1"
     >
@@ -120,6 +122,7 @@ exports[`enzyme mount nested styled with css prop 1`] = `
   <Button
     className="emotion-0"
   >
+    <Noop />
     <button
       className="emotion-1 emotion-2"
     >
@@ -135,6 +138,7 @@ exports[`enzyme mount styled 1`] = `
 }
 
 <Greeting>
+  <Noop />
   <div
     className="emotion-0 emotion-1"
   >
@@ -156,6 +160,7 @@ exports[`enzyme mount styled with css prop 1`] = `
 <Button
   className="emotion-0"
 >
+  <Noop />
   <button
     className="emotion-1 emotion-2"
   >
@@ -178,6 +183,7 @@ exports[`enzyme mount theming 1`] = `
       }
     }
   >
+    <Noop />
     <button
       className="emotion-0 emotion-1"
     >
@@ -198,6 +204,7 @@ exports[`enzyme mount theming 1`] = `
         }
       }
     >
+      <Noop />
       <button
         className="emotion-0 emotion-1"
       >
@@ -447,6 +454,7 @@ exports[`enzyme shallow displayName 1`] = `
 
 exports[`enzyme shallow empty styled 1`] = `
 <Fragment>
+  <Noop />
   <div
     className="emotion-0 emotion-1"
   >
@@ -503,6 +511,7 @@ exports[`enzyme shallow styled 1`] = `
 }
 
 <Fragment>
+  <Noop />
   <div
     className="emotion-0 emotion-1"
   >

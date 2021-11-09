@@ -18,6 +18,7 @@ You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
 let isBrowser = typeof document !== 'undefined'
+const Noop = () => null
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -132,7 +133,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         newProps.ref = ref
 
         const ele = React.createElement(finalTag, newProps)
-        let possiblyStyleElement = <></>
+        let possiblyStyleElement = <Noop />
         if (!isBrowser && rules !== undefined) {
           let serializedNames = serialized.name
           let next = serialized.next
