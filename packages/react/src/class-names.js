@@ -88,6 +88,8 @@ type Props = {
   }) => React.Node
 }
 
+const Noop = () => null
+
 export const ClassNames: React.AbstractComponent<Props> =
   /* #__PURE__ */ withEmotionCache((props, cache) => {
     let rules = ''
@@ -125,21 +127,25 @@ export const ClassNames: React.AbstractComponent<Props> =
     }
     let ele = props.children(content)
     hasRendered = true
+    let possiblyStyleElement = <Noop />
     if (!isBrowser && rules.length !== 0) {
-      return (
-        <>
-          <style
-            {...{
-              [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
-              dangerouslySetInnerHTML: { __html: rules },
-              nonce: cache.sheet.nonce
-            }}
-          />
-          {ele}
-        </>
+      possiblyStyleElement = (
+        <style
+          {...{
+            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
+            dangerouslySetInnerHTML: { __html: rules },
+            nonce: cache.sheet.nonce
+          }}
+        />
       )
     }
-    return ele
+    // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+    return (
+      <>
+        {possiblyStyleElement}
+        {ele}
+      </>
+    )
   })
 
 if (process.env.NODE_ENV !== 'production') {

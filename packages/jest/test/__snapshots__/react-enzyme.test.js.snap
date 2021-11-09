@@ -7,9 +7,14 @@ exports[`enzyme mount basic 1`] = `
 
 <Greeting>
   <div
-    className="emotion-0"
+    css="unknown styles"
   >
-    hello
+    <Noop />
+    <div
+      className="emotion-0"
+    >
+      hello
+    </div>
   </div>
 </Greeting>
 `;
@@ -20,13 +25,14 @@ exports[`enzyme mount conditional styles 1`] = `
 }
 
 <div
-  className="emotion-0"
+  css="unknown styles"
 >
-  <span
-    className="emotion-1"
+  <Noop />
+  <div
+    className="emotion-0"
   >
-    Test content
-  </span>
+    <Noop />
+  </div>
 </div>
 `;
 
@@ -36,13 +42,18 @@ exports[`enzyme mount displayName 1`] = `
 }
 
 <CustomDisplayName
-  className="emotion-0"
+  css="unknown styles"
 >
-  <div
+  <Noop />
+  <CustomDisplayName
     className="emotion-0"
   >
-    Hello
-  </div>
+    <div
+      className="emotion-0"
+    >
+      Hello
+    </div>
+  </CustomDisplayName>
 </CustomDisplayName>
 `;
 
@@ -65,9 +76,14 @@ exports[`enzyme mount nested 1`] = `
 <div>
   <Greeting>
     <div
-      className="emotion-0"
+      css="unknown styles"
     >
-      hello
+      <Noop />
+      <div
+        className="emotion-0"
+      >
+        hello
+      </div>
     </div>
   </Greeting>
 </div>
@@ -80,13 +96,18 @@ exports[`enzyme mount nested displayName 1`] = `
 
 <div>
   <CustomDisplayName
-    className="emotion-0"
+    css="unknown styles"
   >
-    <div
+    <Noop />
+    <CustomDisplayName
       className="emotion-0"
     >
-      Hello
-    </div>
+      <div
+        className="emotion-0"
+      >
+        Hello
+      </div>
+    </CustomDisplayName>
   </CustomDisplayName>
 </div>
 `;
@@ -120,14 +141,19 @@ exports[`enzyme mount nested styled with css prop 1`] = `
 
 <div>
   <Button
-    className="emotion-0"
+    css="unknown styles"
   >
     <Noop />
-    <button
-      className="emotion-1 emotion-2"
+    <Button
+      className="emotion-0"
     >
-      iChenLei
-    </button>
+      <Noop />
+      <button
+        className="emotion-1 emotion-2"
+      >
+        iChenLei
+      </button>
+    </Button>
   </Button>
 </div>
 `;
@@ -158,14 +184,19 @@ exports[`enzyme mount styled with css prop 1`] = `
 }
 
 <Button
-  className="emotion-0"
+  css="unknown styles"
 >
   <Noop />
-  <button
-    className="emotion-1 emotion-2"
+  <Button
+    className="emotion-0"
   >
-    iChenLei
-  </button>
+    <Noop />
+    <button
+      className="emotion-1 emotion-2"
+    >
+      iChenLei
+    </button>
+  </Button>
 </Button>
 `;
 
@@ -222,9 +253,14 @@ exports[`enzyme mount with array of styles as css prop 1`] = `
 }
 
 <div
-  className="emotion-0"
+  css="unknown styles"
 >
-  Test content
+  <Noop />
+  <div
+    className="emotion-0"
+  >
+    Test content
+  </div>
 </div>
 `;
 
@@ -236,13 +272,18 @@ exports[`enzyme mount with array of styles in a composite inner child 1`] = `
 
 <div>
   <Inner
-    className="emotion-0"
+    css="unknown styles"
   >
-    <span
+    <Noop />
+    <Inner
       className="emotion-0"
     >
-      Test content
-    </span>
+      <span
+        className="emotion-0"
+      >
+        Test content
+      </span>
+    </Inner>
   </Inner>
 </div>
 `;
@@ -263,9 +304,14 @@ exports[`enzyme mount with prop containing css element 1`] = `
 >
   <div>
     <p
-      className="emotion-0"
+      css="unknown styles"
     >
-      Hello
+      <Noop />
+      <p
+        className="emotion-0"
+      >
+        Hello
+      </p>
     </p>
      
     World!
@@ -291,10 +337,16 @@ exports[`enzyme mount with prop containing css element not at the top level 1`] 
   >
     <div>
       <p
-        className="emotion-0"
+        css="unknown styles"
         id="something"
       >
-        Hello
+        <Noop />
+        <p
+          className="emotion-0"
+          id="something"
+        >
+          Hello
+        </p>
       </p>
        
       World!
@@ -326,10 +378,16 @@ exports[`enzyme mount with prop containing css element with other label 1`] = `
     }
   >
     <p
-      className="emotion-0"
+      css="unknown styles"
       id="something"
     >
-      Hello
+      <Noop />
+      <p
+        className="emotion-0"
+        id="something"
+      >
+        Hello
+      </p>
     </p>
      
     World!
@@ -354,10 +412,16 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
 >
   <div>
     <p
-      className="emotion-0"
+      css="unknown styles"
       id="something"
     >
-      Hello
+      <Noop />
+      <p
+        className="emotion-0"
+        id="something"
+      >
+        Hello
+      </p>
     </p>
      
     World!
@@ -385,13 +449,18 @@ exports[`enzyme mount with styles on top level 1`] = `
 }
 
 <Greeting
-  className="emotion-0"
+  css="unknown styles"
 >
-  <div
+  <Noop />
+  <Greeting
     className="emotion-0"
   >
-    Hello
-  </div>
+    <div
+      className="emotion-0"
+    >
+      Hello
+    </div>
+  </Greeting>
 </Greeting>
 `;
 
@@ -405,22 +474,28 @@ exports[`enzyme parent and child using css property 1`] = `
 }
 
 <div
-  className="emotion-0"
+  css="unknown styles"
 >
-  Test content
+  <Noop />
   <div
-    className="emotion-1"
-  />
+    className="emotion-0"
+  >
+    Test content
+    <div
+      css="unknown styles"
+    >
+      <Noop />
+      <div
+        className="emotion-1"
+      />
+    </div>
+  </div>
 </div>
 `;
 
 exports[`enzyme shallow basic 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <div
-  className="emotion-0"
+  css="unknown styles"
 >
   hello
 </div>
@@ -431,15 +506,18 @@ exports[`enzyme shallow conditional styles 1`] = `
   background-color: black;
 }
 
-<div
-  className="emotion-0"
->
-  <span
-    css="unknown styles"
+<Fragment>
+  <Noop />
+  <div
+    className="emotion-0"
   >
-    Test content
-  </span>
-</div>
+    <span
+      css="unknown styles"
+    >
+      Test content
+    </span>
+  </div>
+</Fragment>
 `;
 
 exports[`enzyme shallow displayName 1`] = `
@@ -447,9 +525,12 @@ exports[`enzyme shallow displayName 1`] = `
   color: hotpink;
 }
 
-<CustomDisplayName
-  className="emotion-0"
-/>
+<Fragment>
+  <Noop />
+  <CustomDisplayName
+    className="emotion-0"
+  />
+</Fragment>
 `;
 
 exports[`enzyme shallow empty styled 1`] = `
@@ -472,13 +553,9 @@ exports[`enzyme shallow nested 1`] = `
 `;
 
 exports[`enzyme shallow nested displayName 1`] = `
-.emotion-0 {
-  color: hotpink;
-}
-
 <div>
   <CustomDisplayName
-    className="emotion-0"
+    css="unknown styles"
   />
 </div>
 `;
@@ -492,13 +569,9 @@ exports[`enzyme shallow nested styled 1`] = `
 `;
 
 exports[`enzyme shallow nested styled with css prop 1`] = `
-.emotion-0 {
-  background-color: black;
-}
-
 <div>
   <Button
-    className="emotion-0"
+    css="unknown styles"
   >
     iChenLei
   </Button>
@@ -525,11 +598,14 @@ exports[`enzyme shallow styled with css prop 1`] = `
   background-color: black;
 }
 
-<Button
-  className="emotion-0"
->
-  iChenLei
-</Button>
+<Fragment>
+  <Noop />
+  <Button
+    className="emotion-0"
+  >
+    iChenLei
+  </Button>
+</Fragment>
 `;
 
 exports[`enzyme shallow theming 1`] = `
@@ -569,22 +645,20 @@ exports[`enzyme shallow with array of styles as css prop 1`] = `
   color: white;
 }
 
-<div
-  className="emotion-0"
->
-  Test content
-</div>
+<Fragment>
+  <Noop />
+  <div
+    className="emotion-0"
+  >
+    Test content
+  </div>
+</Fragment>
 `;
 
 exports[`enzyme shallow with array of styles in a composite inner child 1`] = `
-.emotion-0 {
-  background-color: black;
-  color: white;
-}
-
 <div>
   <Inner
-    className="emotion-0"
+    css="unknown styles"
   >
     Test content
   </Inner>
@@ -592,13 +666,9 @@ exports[`enzyme shallow with array of styles in a composite inner child 1`] = `
 `;
 
 exports[`enzyme shallow with prop containing css element 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <div>
   <p
-    className="emotion-0"
+    css="unknown styles"
   >
     Hello
   </p>
@@ -625,10 +695,6 @@ exports[`enzyme shallow with prop containing css element not at the top level 1`
 `;
 
 exports[`enzyme shallow with prop containing css element with other label 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <Thing
   content={
     <div
@@ -637,7 +703,7 @@ exports[`enzyme shallow with prop containing css element with other label 1`] = 
   }
 >
   <p
-    className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -648,13 +714,9 @@ exports[`enzyme shallow with prop containing css element with other label 1`] = 
 `;
 
 exports[`enzyme shallow with prop containing css element with other props 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <div>
   <p
-    className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -675,11 +737,14 @@ exports[`enzyme shallow with styles on top level 1`] = `
   background-color: red;
 }
 
-<Greeting
-  className="emotion-0"
->
-  Hello
-</Greeting>
+<Fragment>
+  <Noop />
+  <Greeting
+    className="emotion-0"
+  >
+    Hello
+  </Greeting>
+</Fragment>
 `;
 
 exports[`enzyme with prop containing css element in fragment 1`] = `
@@ -689,10 +754,13 @@ exports[`enzyme with prop containing css element in fragment 1`] = `
 
 <div>
   x
-  <div
-    className="emotion-0"
-  >
-    y
-  </div>
+  Array [
+    "",
+    <div
+      className="emotion-0"
+    >
+      y
+    </div>,
+  ]
 </div>
 `;
