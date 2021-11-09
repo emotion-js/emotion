@@ -17,6 +17,7 @@ let ReactDOMServer
 let createCache
 let css
 let jsx
+let styled
 let CacheProvider
 let Global
 let createEmotionServer
@@ -35,6 +36,7 @@ const resetAllModules = () => {
   CacheProvider = emotionReact.CacheProvider
   Global = emotionReact.Global
   createEmotionServer = require('@emotion/server/create-instance').default
+  styled = require('@emotion/styled').default
 }
 
 const removeGlobalProp = prop => {
@@ -591,4 +593,74 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       </style>
     </head>
   `)
+})
+
+describe('react18', () => {
+  let previousIsReactActEnvironment
+  beforeAll(() => {
+    jest
+      .mock('react', () => {
+        return jest.requireActual('react18')
+      })
+      .mock('react-dom', () => {
+        return jest.requireActual('react18-dom')
+      })
+      .mock('react-dom/server', () => {
+        return jest.requireActual('react18-dom/server')
+      })
+
+    previousIsReactActEnvironment = global.IS_REACT_ACT_ENVIRONMENT
+    global.IS_REACT_ACT_ENVIRONMENT = true
+  })
+
+  afterAll(() => {
+    jest.clearAllMocks()
+    global.IS_REACT_ACT_ENVIRONMENT = previousIsReactActEnvironment
+  })
+
+  test('no hydration mismatch when using useId', () => {
+    const finalHTML = disableBrowserEnvTemporarily(() => {
+      resetAllModules()
+
+      const StyledDivWithId = styled(function DivWithId({ className }) {
+        const id = (React: any).useId()
+        return <div className={className} id={id} />
+      })({
+        border: '1px solid black'
+      })
+
+      return ReactDOMServer.renderToString(<StyledDivWithId />)
+    })
+
+    safeQuerySelector('body').innerHTML = `<div id="root">${finalHTML}</div>`
+
+    resetAllModules()
+
+    const StyledDivWithId = styled(function DivWithId({ className }) {
+      const id = (React: any).useId()
+      return <div className={className} id={id} />
+    })({
+      border: '1px solid black'
+    })
+
+    ;(React: any).unstable_act(() => {
+      ReactDOM.hydrateRoot(safeQuerySelector('#root'), <StyledDivWithId />)
+    })
+
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          "Warning: Prop \`%s\` did not match. Server: %s Client: %s%s",
+          "id",
+          "\\"R:2\\"",
+          "\\"R:0\\"",
+          "
+          at div
+          at className (/home/eps1lon/Development/forks/emotion/packages/react/__tests__/rehydration.js:639:57)
+          at Styled(DivWithId) (/home/eps1lon/Development/forks/emotion/packages/react/src/context.js:38:19)",
+        ],
+      ]
+    `)
+    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  })
 })

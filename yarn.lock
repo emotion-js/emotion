@@ -23995,6 +23995,23 @@ react-timer-mixin@^0.13.4:
   resolved "https://registry.npmjs.org/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
 
+"react18-dom@npm:react-dom@alpha":
+  version "18.0.0-alpha-327d5c484-20211106"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-327d5c484-20211106.tgz#f8855d8e73876b5dbf6545ca02e14d8644a48008"
+  integrity sha512-yI2Kxy4/+nAFYHtC5uVIwXPURABwBhtqbEgjgRa9cITHsmZIO7AqDee0a5nXVSr8wWmtmbN1vSh29aDicuO03A==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    scheduler "0.21.0-alpha-327d5c484-20211106"
+
+"react18@npm:react@alpha":
+  version "18.0.0-alpha-327d5c484-20211106"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-327d5c484-20211106.tgz#f0e29b20b8c371697207a9f7b73a7ab625bee4b7"
+  integrity sha512-CB3JnXquQ9FYkd8IpTlvdpyk+HN1fOUDB7NabXTfbycqqRxuKhtijv7W7F/mbTzPLLMrxV5LwUqrLFc25Zy+UQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
 react@16.14.0:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
@@ -25335,6 +25352,14 @@ scheduler@0.19.1, scheduler@^0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@0.21.0-alpha-327d5c484-20211106:
+  version "0.21.0-alpha-327d5c484-20211106"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-327d5c484-20211106.tgz#16340fd4c7387ff58ad897b64715c0e3098e9489"
+  integrity sha512-VzlBG9d8m/2GwzXMjh7FoV6lpv/vOKdUYFCw3FCVY2aP/lN4oJkKwOlf4on2vEk855ckx+s3bR4eJLrlD7kZSw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
