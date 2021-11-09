@@ -647,20 +647,7 @@ describe('react18', () => {
       ReactDOM.hydrateRoot(safeQuerySelector('#root'), <StyledDivWithId />)
     })
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
-          "Warning: Prop \`%s\` did not match. Server: %s Client: %s%s",
-          "id",
-          "\\"R:2\\"",
-          "\\"R:0\\"",
-          "
-          at div
-          at className (/home/eps1lon/Development/forks/emotion/packages/react/__tests__/rehydration.js:639:57)
-          at Styled(DivWithId) (/home/eps1lon/Development/forks/emotion/packages/react/src/context.js:38:19)",
-        ],
-      ]
-    `)
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
     expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
   })
 })
