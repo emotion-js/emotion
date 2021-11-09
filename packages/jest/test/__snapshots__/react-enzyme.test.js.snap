@@ -446,11 +446,13 @@ exports[`enzyme shallow displayName 1`] = `
 `;
 
 exports[`enzyme shallow empty styled 1`] = `
-<div
-  className="emotion-0 emotion-1"
->
-  Hello
-</div>
+<Fragment>
+  <div
+    className="emotion-0 emotion-1"
+  >
+    Hello
+  </div>
+</Fragment>
 `;
 
 exports[`enzyme shallow nested 1`] = `
@@ -500,11 +502,13 @@ exports[`enzyme shallow styled 1`] = `
   background-color: red;
 }
 
-<div
-  className="emotion-0 emotion-1"
->
-  Hello
-</div>
+<Fragment>
+  <div
+    className="emotion-0 emotion-1"
+  >
+    Hello
+  </div>
+</Fragment>
 `;
 
 exports[`enzyme shallow styled with css prop 1`] = `
