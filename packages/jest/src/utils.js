@@ -58,12 +58,20 @@ function getClassNameProp(node) {
   return (node && node.prop('className')) || ''
 }
 
-function getClassNamesFromEnzyme(selectors, nodeWithFragment) {
-  // TODO: Does approach work with older Emotion versions? Does it cause false positives with components named "Fragment" that aren't `React.Fragment`?
-  const node =
-    nodeWithFragment.name() === 'Fragment'
-      ? nodeWithFragment.children().at(1)
-      : nodeWithFragment
+function unwrapFromPotentialFragment(node) {
+  // this symbol is rather stable and won't change, it is how jest was handling this initially:
+  // https://github.com/facebook/jest/blob/b0d28888154aec2e05cfb3249520b9a2a1a7c12d/packages/pretty-format/src/plugins/react_element.js#L20
+  // in environments without Symbols this would fail (React fallbacks to integers then for the element types) but we don't support such environments
+  // since then jest has started using `react-is` package and that could be used here too
+  if (node.type() === Symbol.for('react.fragment')) {
+    // the rendered element always comes second as the first slot is reserved for the potential style element
+    return node.childAt(1)
+  }
+  return node
+}
+
+function getClassNamesFromEnzyme(selectors, nodeWithPotentialFragment) {
+  const node = unwrapFromPotentialFragment(nodeWithPotentialFragment)
   // We need to dive in to get the className if we have a styled element from a shallow render
   const isShallow = shouldDive(node)
   const nodeWithClassName = findNodeWithClassName(
