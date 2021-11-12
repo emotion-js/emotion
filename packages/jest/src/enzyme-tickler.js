@@ -12,8 +12,12 @@ export const tickle = wrapper => {
       return
     }
 
-    const wrapped = (isShallow ? el.dive() : el.children()).first()
-    tickledCssProps.set(cssProp, wrapped.props().className)
+    const rendered = (isShallow ? el.dive() : el.children()).last()
+    const unwrapped =
+      rendered.type() === Symbol.for('react.fragment')
+        ? rendered.children().last()
+        : rendered
+    tickledCssProps.set(cssProp, unwrapped.props().className)
   })
   return wrapper
 }
