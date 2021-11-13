@@ -20,6 +20,7 @@ let jsx
 let styled
 let CacheProvider
 let Global
+let ClassNames
 let createEmotionServer
 
 const resetAllModules = () => {
@@ -35,6 +36,7 @@ const resetAllModules = () => {
   jsx = emotionReact.jsx
   CacheProvider = emotionReact.CacheProvider
   Global = emotionReact.Global
+  ClassNames = emotionReact.ClassNames
   createEmotionServer = require('@emotion/server/create-instance').default
   styled = require('@emotion/styled').default
 }
@@ -618,7 +620,7 @@ describe('react18', () => {
     global.IS_REACT_ACT_ENVIRONMENT = previousIsReactActEnvironment
   })
 
-  test('no hydration mismatch when using useId', () => {
+  test('no hydration mismatch for styled when using useId', () => {
     const finalHTML = disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
@@ -645,6 +647,102 @@ describe('react18', () => {
 
     ;(React: any).unstable_act(() => {
       ReactDOM.hydrateRoot(safeQuerySelector('#root'), <StyledDivWithId />)
+    })
+
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  })
+
+  test('no hydration mismatch for css prop when using useId', () => {
+    const finalHTML = disableBrowserEnvTemporarily(() => {
+      resetAllModules()
+
+      function DivWithId({ className }) {
+        const id = (React: any).useId()
+        return <div id={id} className={className} />
+      }
+
+      return ReactDOMServer.renderToString(
+        <DivWithId
+          css={{
+            border: '1px solid black'
+          }}
+        />
+      )
+    })
+
+    safeQuerySelector('body').innerHTML = `<div id="root">${finalHTML}</div>`
+
+    resetAllModules()
+
+    function DivWithId({ className }) {
+      const id = (React: any).useId()
+      return <div id={id} className={className} />
+    }
+
+    ;(React: any).unstable_act(() => {
+      ReactDOM.hydrateRoot(
+        safeQuerySelector('#root'),
+        <DivWithId
+          css={{
+            border: '1px solid black'
+          }}
+        />
+      )
+    })
+
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  })
+
+  test('no hydration mismatch for ClassNames when using useId', () => {
+    const finalHTML = disableBrowserEnvTemporarily(() => {
+      resetAllModules()
+
+      const DivWithId = ({ className }) => {
+        const id = (React: any).useId()
+        return <div id={id} className={className} />
+      }
+
+      return ReactDOMServer.renderToString(
+        <ClassNames>
+          {({ css }) => {
+            return (
+              <DivWithId
+                className={css({
+                  border: '1px solid black'
+                })}
+              />
+            )
+          }}
+        </ClassNames>
+      )
+    })
+
+    safeQuerySelector('body').innerHTML = `<div id="root">${finalHTML}</div>`
+
+    resetAllModules()
+
+    const DivWithId = ({ className }) => {
+      const id = (React: any).useId()
+      return <div id={id} className={className} />
+    }
+
+    ;(React: any).unstable_act(() => {
+      ReactDOM.hydrateRoot(
+        safeQuerySelector('#root'),
+        <ClassNames>
+          {({ css }) => {
+            return (
+              <DivWithId
+                className={css({
+                  border: '1px solid black'
+                })}
+              />
+            )
+          }}
+        </ClassNames>
+      )
     })
 
     expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
