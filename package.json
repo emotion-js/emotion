@@ -256,7 +256,7 @@
     "react-icons": "^2.2.7",
     "react-live": "1.10.0",
     "react-native": "^0.63.2",
-    "react-native-web": "0.13.12",
+    "react-native-web": "0.17.5",
     "react-primitives": "^0.8.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.5",
