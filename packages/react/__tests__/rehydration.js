@@ -65,6 +65,11 @@ const disableBrowserEnvTemporarily = <T>(fn: () => T): T => {
   }
 }
 
+beforeEach(() => {
+  safeQuerySelector('head').innerHTML = ''
+  safeQuerySelector('body').innerHTML = ''
+})
+
 test("cache created in render doesn't cause a hydration mismatch", () => {
   safeQuerySelector('body').innerHTML = [
     '<div id="root">',
@@ -481,7 +486,6 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     }
   })
 
-  safeQuerySelector('head').innerHTML = ''
   safeQuerySelector('body').innerHTML = `<div id="root">${app}</div>`
 
   expect(safeQuerySelector('html')).toMatchInlineSnapshot(`
