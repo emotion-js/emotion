@@ -657,7 +657,7 @@ describe('react18', () => {
     const finalHTML = disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
-      function DivWithId({ className }) {
+      function DivWithId({ className }: { className?: string }) {
         const id = (React: any).useId()
         return <div id={id} className={className} />
       }
@@ -675,7 +675,7 @@ describe('react18', () => {
 
     resetAllModules()
 
-    function DivWithId({ className }) {
+    function DivWithId({ className }: { className?: string }) {
       const id = (React: any).useId()
       return <div id={id} className={className} />
     }

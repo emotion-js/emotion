@@ -58,7 +58,7 @@ function getClassNameProp(node) {
   return (node && node.prop('className')) || ''
 }
 
-export function unwrapFromPotentialFragment(node) {
+export function unwrapFromPotentialFragment(node: *) {
   if (node.type() === Symbol.for('react.fragment')) {
     return node.children().last()
   }
