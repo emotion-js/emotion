@@ -1,3 +1,5 @@
+import { unwrapFromPotentialFragment } from './utils'
+
 const tickledCssProps = new WeakMap()
 
 export const getTickledClassName = cssProp => tickledCssProps.get(cssProp)
@@ -13,11 +15,10 @@ export const tickle = wrapper => {
     }
 
     const rendered = (isShallow ? el.dive() : el.children()).last()
-    const unwrapped =
-      rendered.type() === Symbol.for('react.fragment')
-        ? rendered.children().last()
-        : rendered
-    tickledCssProps.set(cssProp, unwrapped.props().className)
+    tickledCssProps.set(
+      cssProp,
+      unwrapFromPotentialFragment(rendered).props().className
+    )
   })
   return wrapper
 }

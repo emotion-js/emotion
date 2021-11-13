@@ -3,7 +3,11 @@ import type { Options } from './create-serializer'
 import { createSerializer as createEmotionSerializer } from './create-serializer'
 import * as enzymeTickler from './enzyme-tickler'
 import { createSerializer as createEnzymeToJsonSerializer } from 'enzyme-to-json'
-import { isEmotionCssPropElementType, isStyledElementType } from './utils'
+import {
+  isEmotionCssPropElementType,
+  isStyledElementType,
+  unwrapFromPotentialFragment
+} from './utils'
 
 const enzymeToJsonSerializer = createEnzymeToJsonSerializer({
   map: json => {
@@ -43,15 +47,14 @@ const wrappedEnzymeSerializer = {
   print: (enzymeWrapper, printer) => {
     const isShallow = !!enzymeWrapper.dive
 
-    if (isShallow) {
+    if (isShallow && enzymeWrapper.root() === enzymeWrapper) {
       const unrendered = getUnrenderedElement(enzymeWrapper)
       if (
-        (isEmotionCssPropElementType(unrendered) ||
-          isStyledElementType(unrendered)) &&
-        enzymeWrapper.getElement().type === Symbol.for('react.fragment')
+        isEmotionCssPropElementType(unrendered) ||
+        isStyledElementType(unrendered)
       ) {
         return enzymeToJsonSerializer.print(
-          enzymeWrapper.children().last(),
+          unwrapFromPotentialFragment(enzymeWrapper),
           printer
         )
       }
