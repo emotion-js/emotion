@@ -1,14 +1,19 @@
-let React = require('react')
-let styled = require('@emotion/styled').default
-let { renderToString } = require('react-dom/server')
-let Benchmark = require('benchmark')
-let { jsx, css, CacheProvider } = require('@emotion/react')
-let { createTriangle } = require('./triangle')
-let { css: cssClassName } = require('@emotion/css')
-let { renderStylesToString } = require('@emotion/server')
-let createEmotionServer = require('create-emotion-server').default
-let createCache = require('@emotion/cache').default
-let { insertStyles } = require('@emotion/utils')
+import React, { useContext } from 'react'
+import EmotionStyled from '@emotion/styled'
+import ReactDOMServer from 'react-dom/server.js'
+import Benchmark from 'benchmark'
+import { jsx, css, CacheProvider } from '@emotion/react'
+import { createTriangle } from './triangle.js'
+import { css as cssClassName } from '@emotion/css'
+import { renderStylesToString } from '@emotion/server'
+import EmotionServer from '@emotion/server/create-instance/dist/emotion-server-create-instance.cjs.js'
+import EmotionCache from '@emotion/cache'
+import { insertStyles } from '@emotion/utils'
+
+const styled = EmotionStyled.default
+const createCache = EmotionCache.default
+const createEmotionServer = EmotionServer.default
+const { renderToString } = ReactDOMServer
 
 let Triangle = createTriangle(styled.div`
   position: absolute;
@@ -76,8 +81,6 @@ let CacheContext = CacheProvider._context
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
 let ExperimentTriangle = createTriangle(({ x, y, size, color, ...props }) => {
-  let cache = CacheContext._currentValue
-
   let className = ''
   const serialized = css`
     position: absolute;
@@ -95,6 +98,8 @@ let ExperimentTriangle = createTriangle(({ x, y, size, color, ...props }) => {
     border-left-width: ${size / 2 + 'px'};
     border-bottom-color: ${color};
   `
+
+  const cache = useContext(CacheContext)
   const rules = insertStyles(cache, serialized, true)
   className += `${cache.key}-${serialized.name}`
 
@@ -144,7 +149,7 @@ suite
     renderToString(React.createElement(CssPropTriangle, { s: 100, x: 0, y: 0 }))
   })
   .add('css prop compat', () => {
-    let cache = createCache()
+    let cache = createCache({ key: '.' })
     createEmotionServer(cache).renderStylesToString(
       renderToString(
         React.createElement(
@@ -163,7 +168,7 @@ suite
     )
   })
   .add('experiment', () => {
-    let cache = createCache()
+    let cache = createCache({ key: '.' })
     renderToString(
       React.createElement(
         CacheProvider,
@@ -193,7 +198,7 @@ suite
     )
   })
   .add('css prop compat with random', () => {
-    let cache = createCache()
+    let cache = createCache({ key: '.' })
     createEmotionServer(cache).renderStylesToString(
       renderToString(
         React.createElement(
@@ -222,7 +227,7 @@ suite
     )
   })
   .add('experiment with random', () => {
-    let cache = createCache()
+    let cache = createCache({ key: '.' })
     renderToString(
       React.createElement(
         CacheProvider,
