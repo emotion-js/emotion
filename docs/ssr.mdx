@@ -47,13 +47,14 @@ const key = 'custom'
 const cache = createCache({ key })
 const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache)
 
-let element = (
+const html = renderToString(
   <CacheProvider value={cache}>
     <App />
   </CacheProvider>
 )
 
-let { html, styles } = extractCriticalToChunks(renderToString(element))
+const chunks = extractCriticalToChunks(html)
+const styles = constructStyleTagsFromChunks(chunks)
 
 res
   .status(200)
@@ -65,7 +66,7 @@ res
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My site</title>
-    ${constructStyleTagsFromChunks({ html, styles })}
+    ${styles}
 </head>
 <body>
     <div id="root">${html}</div>
@@ -187,7 +188,7 @@ hydrate(ids)
 
 ## Next.js
 
-To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`. [An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`. [An example of Next.js with emotion can be found in the Next.js repo](https://github.com/vercel/next.js/tree/master/examples/with-emotion-vanilla).
 
 > Note:
 >

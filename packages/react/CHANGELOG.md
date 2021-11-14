@@ -1,5 +1,30 @@
 # @emotion/react
 
+## 11.5.0
+
+### Patch Changes
+
+- [#2498](https://github.com/emotion-js/emotion/pull/2498) [`e5beae8e`](https://github.com/emotion-js/emotion/commit/e5beae8e320f3d1455e45efecdfeb7d757687a43) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an edge case issue with incorrect rules being generated. When a context selector (`&`) was used not at the beginning of a selector (which is not valid SCSS but is allowed by the Stylis parser that we are using) within a group of selectors containing a pseudoclass then it was not replaced correctly with the current context selector.
+
+* [#2500](https://github.com/emotion-js/emotion/pull/2500) [`eda5e687`](https://github.com/emotion-js/emotion/commit/eda5e687c0bc4eddcafb243a2b1028296fb45cba) Thanks [@Jarred-Sumner](https://github.com/Jarred-Sumner)! - Fix error loading @emotion/react in alternative JS environments
+
+* Updated dependencies [[`e5beae8e`](https://github.com/emotion-js/emotion/commit/e5beae8e320f3d1455e45efecdfeb7d757687a43), [`9ae4a91a`](https://github.com/emotion-js/emotion/commit/9ae4a91a08a6f7c5ca26a585f1c271a179db4623), [`f2eda829`](https://github.com/emotion-js/emotion/commit/f2eda8295429dd1892a06cbc9496321f2a55c10a)]:
+  - @emotion/cache@11.5.0
+  - @emotion/sheet@1.0.3
+
+## 11.4.1
+
+### Patch Changes
+
+- [#2441](https://github.com/emotion-js/emotion/pull/2441) [`24557d9d`](https://github.com/emotion-js/emotion/commit/24557d9d6409db453fdbaa031cb635820305f137) Thanks [@garronej](https://github.com/garronej)! - Exposed `__unsafe_useEmotionCache` which can be used to access the current Emotion's cache in an easier way than before. Using this might break 0-config SSR and is not recommended to be used unless there you know what you are doing and you are OK with the mentioned downside.
+
+* [#2424](https://github.com/emotion-js/emotion/pull/2424) [`cd25b62d`](https://github.com/emotion-js/emotion/commit/cd25b62da80119bfb1c74a8d0a3516fcd2f62e0e) Thanks [@tills13](https://github.com/tills13)! - Use theme context when rendering components at all times. This removes a conditional usage of a React hook that could break [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) in some scenarios.
+
+- [#2428](https://github.com/emotion-js/emotion/pull/2428) [`a69929d6`](https://github.com/emotion-js/emotion/commit/a69929d6ab47e834a3535525657829c81dd97b4a) Thanks [@eps1lon](https://github.com/eps1lon)! - Added display names to public React contexts in development builds. This helps to recognize them in React Developer Tools.
+
+- Updated dependencies [[`405af5ca`](https://github.com/emotion-js/emotion/commit/405af5ca01dcc0cac64227db082ce3f483e1bb46)]:
+  - @emotion/sheet@1.0.2
+
 ## 11.4.0
 
 ### Patch Changes

@@ -15,7 +15,7 @@
 ![@emotion/react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/react.svg?label=@emotion/react%20gzip%20size)
 ![@emotion/styled size](https://img.shields.io/bundlephobia/min/@emotion/styled.svg?label=@emotion/styled%20size)
 ![@emotion/styled gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled.svg?label=@emotion/styled%20gzip%20size)
-[![slack](https://img.shields.io/badge/join-slack-green)](https://join.slack.com/t/emotion-slack/shared_invite/zt-p7lflhc4-mxBbzPbzxoyyuQY54ow0PQ)
+[![slack](https://img.shields.io/badge/join-slack-green)](https://join.slack.com/t/emotion-slack/shared_invite/zt-rmtwsy74-2uvyFdz5uxa8OiMguJJeuQ)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
@@ -111,17 +111,6 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
 - [codecademy.com](https://www.codecademy.com)
 
-## Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/emotion-js/emotion/graphs/contributors"><img src="https://opencollective.com/emotion/contributors.svg?width=890&button=false" /></a>
-
-## Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/emotion#backer)]
-
-<a href="https://opencollective.com/emotion#backers" target="_blank"><img src="https://opencollective.com/emotion/backers.svg?width=890"></a>
-
 ## Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/emotion#sponsor)]
@@ -137,3 +126,14 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/emotion/sponsor/7/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/7/avatar.svg"></a>
 <a href="https://opencollective.com/emotion/sponsor/8/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/emotion/sponsor/9/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/9/avatar.svg"></a>
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/emotion#backer)]
+
+<a href="https://opencollective.com/emotion#backers" target="_blank"><img src="https://opencollective.com/emotion/backers.svg?width=890"></a>
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/emotion-js/emotion/graphs/contributors"><img src="https://opencollective.com/emotion/contributors.svg?width=890&button=false" /></a>

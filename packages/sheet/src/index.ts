@@ -45,6 +45,7 @@ export type Options = {
   container: HTMLElement
   speedy?: boolean
   prepend?: boolean
+  insertionPoint?: HTMLElement
 }
 
 function createStyleElement(options: Options): HTMLStyleElement {
@@ -67,6 +68,7 @@ export class StyleSheet {
   nonce: string | undefined
   prepend: boolean | undefined
   before: Element | null
+  insertionPoint: HTMLElement | void
 
   private _alreadyInsertedOrderInsensitiveRule: boolean | undefined
 
@@ -82,13 +84,20 @@ export class StyleSheet {
     this.key = options.key
     this.container = options.container
     this.prepend = options.prepend
+    this.insertionPoint = options.insertionPoint
     this.before = null
   }
 
   private _insertTag = (tag: HTMLStyleElement): void => {
     let before
     if (this.tags.length === 0) {
-      before = this.prepend ? this.container.firstChild : this.before
+      if (this.insertionPoint) {
+        before = this.insertionPoint.nextSibling
+      } else if (this.prepend) {
+        before = this.container.firstChild
+      } else {
+        before = this.before
+      }
     } else {
       before = this.tags[this.tags.length - 1].nextSibling
     }
@@ -137,7 +146,7 @@ export class StyleSheet {
       } catch (e) {
         if (
           process.env.NODE_ENV !== 'production' &&
-          !/:(-moz-placeholder|-ms-input-placeholder|-moz-read-write|-moz-read-only){/.test(
+          !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear){/.test(
             rule
           )
         ) {
@@ -154,7 +163,7 @@ export class StyleSheet {
   }
 
   flush(): void {
-    this.tags.forEach(tag => tag.parentNode!.removeChild(tag))
+    this.tags.forEach(tag => tag.parentNode?.removeChild(tag))
     this.tags = []
     this.ctr = 0
     if (process.env.NODE_ENV !== 'production') {

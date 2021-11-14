@@ -1,6 +1,6 @@
 {
   "name": "@emotion/eslint-plugin",
-  "version": "11.2.0",
+  "version": "11.5.0",
   "description": "ESLint rules for emotion",
   "scripts": {
     "test:typescript": "exit 0"

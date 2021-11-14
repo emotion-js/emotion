@@ -42,9 +42,7 @@ export let Global /*: React.AbstractComponent<
   let serialized = serializeStyles(
     [styles],
     undefined,
-    typeof styles === 'function' || Array.isArray(styles)
-      ? React.useContext(ThemeContext)
-      : undefined
+    React.useContext(ThemeContext)
   )
 
   if (!isBrowser) {

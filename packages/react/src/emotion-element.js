@@ -90,9 +90,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
     let serialized = serializeStyles(
       registeredStyles,
       undefined,
-      typeof cssProp === 'function' || Array.isArray(cssProp)
-        ? React.useContext(ThemeContext)
-        : undefined
+      React.useContext(ThemeContext)
     )
 
     if (
