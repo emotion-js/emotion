@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
 import Head from 'next/head'
-import Image from 'next/image'
 import { Global } from '@emotion/react'
 
 export default function Home() {
