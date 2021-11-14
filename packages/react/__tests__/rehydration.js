@@ -625,7 +625,7 @@ describe('react18', () => {
       resetAllModules()
 
       const StyledDivWithId = styled(function DivWithId({ className }) {
-        const id = (React: any).useId()
+        const id = React.useId()
         return <div className={className} id={id} />
       })({
         border: '1px solid black'
@@ -639,26 +639,26 @@ describe('react18', () => {
     resetAllModules()
 
     const StyledDivWithId = styled(function DivWithId({ className }) {
-      const id = (React: any).useId()
+      const id = React.useId()
       return <div className={className} id={id} />
     })({
       border: '1px solid black'
     })
 
-    ;(React: any).unstable_act(() => {
+    React.unstable_act(() => {
       ReactDOM.hydrateRoot(safeQuerySelector('#root'), <StyledDivWithId />)
     })
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
   })
 
   test('no hydration mismatch for css prop when using useId', () => {
     const finalHTML = disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
-      function DivWithId({ className }: { className?: string }) {
-        const id = (React: any).useId()
+      function DivWithId({ className } /*: { className?: string }*/) {
+        const id = React.useId()
         return <div id={id} className={className} />
       }
 
@@ -675,12 +675,12 @@ describe('react18', () => {
 
     resetAllModules()
 
-    function DivWithId({ className }: { className?: string }) {
-      const id = (React: any).useId()
+    function DivWithId({ className } /*: { className?: string }*/) {
+      const id = React.useId()
       return <div id={id} className={className} />
     }
 
-    ;(React: any).unstable_act(() => {
+    React.unstable_act(() => {
       ReactDOM.hydrateRoot(
         safeQuerySelector('#root'),
         <DivWithId
@@ -691,8 +691,8 @@ describe('react18', () => {
       )
     })
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
   })
 
   test('no hydration mismatch for ClassNames when using useId', () => {
@@ -700,7 +700,7 @@ describe('react18', () => {
       resetAllModules()
 
       const DivWithId = ({ className }) => {
-        const id = (React: any).useId()
+        const id = React.useId()
         return <div id={id} className={className} />
       }
 
@@ -724,11 +724,11 @@ describe('react18', () => {
     resetAllModules()
 
     const DivWithId = ({ className }) => {
-      const id = (React: any).useId()
+      const id = React.useId()
       return <div id={id} className={className} />
     }
 
-    ;(React: any).unstable_act(() => {
+    React.unstable_act(() => {
       ReactDOM.hydrateRoot(
         safeQuerySelector('#root'),
         <ClassNames>
@@ -745,7 +745,7 @@ describe('react18', () => {
       )
     })
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
   })
 })
