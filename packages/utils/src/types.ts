@@ -9,7 +9,6 @@ export type SerializedStyles = {
   styles: string
   map?: string
   next?: SerializedStyles
-  toString: () => string
 }
 
 export type EmotionCache = {
