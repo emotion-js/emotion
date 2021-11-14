@@ -59,10 +59,15 @@ export const createEmotionProps = (
   return newProps
 }
 
-const Noop = () => null
-
+<<<<<<< HEAD
 let Emotion = /* #__PURE__ */ withEmotionCache(
   /* <any, any> */ (props, cache, ref) => {
+=======
+const Noop = () => null
+
+let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
+  (props, cache, ref) => {
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
     let cssProp = props.css
 
     // so that using `css` from `emotion` and passing the result to the css prop works

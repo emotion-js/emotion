@@ -90,14 +90,23 @@ type Props = {
   }) => React.Node
 }
 */
-const Noop = () => null
 
+<<<<<<< HEAD
 export const ClassNames /*: React.AbstractComponent<
   Props
 > */ = /* #__PURE__ */ withEmotionCache((props, cache) => {
   let rules = ''
   let serializedHashes = ''
   let hasRendered = false
+=======
+const Noop = () => null
+
+export const ClassNames: React.AbstractComponent<Props> =
+  /* #__PURE__ */ withEmotionCache((props, cache) => {
+    let rules = ''
+    let serializedHashes = ''
+    let hasRendered = false
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
 
   let css = (...args /*: Array<any> */) => {
     if (hasRendered && process.env.NODE_ENV !== 'production') {
@@ -115,6 +124,7 @@ export const ClassNames /*: React.AbstractComponent<
     if (!isBrowser) {
       serializedHashes += ` ${serialized.name}`
     }
+<<<<<<< HEAD
     return `${cache.key}-${serialized.name}`
   }
   let cx = (...args /*: Array<ClassNameArg> */) => {
@@ -130,26 +140,46 @@ export const ClassNames /*: React.AbstractComponent<
   }
   let ele = props.children(content)
   hasRendered = true
-  let possiblyStyleElement = <Noop />
   if (!isBrowser && rules.length !== 0) {
-    possiblyStyleElement = (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
-      />
+    return (
+      <>
+        <style
+          {...{
+            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
+            dangerouslySetInnerHTML: { __html: rules },
+            nonce: cache.sheet.nonce
+          }}
+        />
+        {ele}
+      </>
     )
   }
-  // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
-  return (
-    <>
-      {possiblyStyleElement}
-      {ele}
-    </>
-  )
+  return ele
 })
+=======
+    let ele = props.children(content)
+    hasRendered = true
+    let possiblyStyleElement = <Noop />
+    if (!isBrowser && rules.length !== 0) {
+      possiblyStyleElement = (
+        <style
+          {...{
+            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
+            dangerouslySetInnerHTML: { __html: rules },
+            nonce: cache.sheet.nonce
+          }}
+        />
+      )
+    }
+    // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+    return (
+      <>
+        {possiblyStyleElement}
+        {ele}
+      </>
+    )
+  })
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
 
 if (process.env.NODE_ENV !== 'production') {
   ClassNames.displayName = 'EmotionClassNames'

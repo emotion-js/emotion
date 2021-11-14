@@ -1,5 +1,10 @@
 import * as React from 'react'
 
+<<<<<<< HEAD
+let impls = require('./implementations/*/index.js')
+
+console.log(impls)
+=======
 import * as EmotionCssFunc from './implementations/emotion-css-func'
 import * as EmotionCssProp from './implementations/emotion-css-prop'
 import * as EmotionStyled from './implementations/emotion-styled'
@@ -9,6 +14,7 @@ const impls = {
   'emotion-css-prop': EmotionCssProp,
   'emotion-styled': EmotionStyled
 }
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
 
 /*
 type ComponentsType = {

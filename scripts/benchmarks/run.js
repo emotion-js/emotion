@@ -4,7 +4,7 @@ const path = require('path')
 const puppeteer = require('puppeteer')
 const { createServer } = require('http-server')
 
-let libraries = ['emotion-css-func', 'emotion-css-prop']
+let libraries = ['emotion-css-func', 'emotion-css-prop', 'emotion-styled']
 let tests = ['Mount deep tree', 'Mount wide tree', 'Update dynamic styles']
 let tracing = process.argv.some(arg => arg.includes('tracing'))
 
@@ -24,6 +24,7 @@ if (tracing) {
       resolve()
     })
   })
+
   console.log('\nStarting headless browser...')
   const browser = await puppeteer.launch()
 

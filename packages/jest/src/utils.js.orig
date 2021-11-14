@@ -62,7 +62,7 @@ function getClassNameProp(node) {
   return (node && node.prop('className')) || ''
 }
 
-export function unwrapFromPotentialFragment(node) {
+export function unwrapFromPotentialFragment(node: *) {
   if (node.type() === Symbol.for('react.fragment')) {
     return node.children().last()
   }
@@ -102,7 +102,10 @@ export function isEmotionCssPropElementType(val) /*: boolean */ {
   )
 }
 
-export function isStyledElementType(val /* : any */) /* : boolean */ {
+<<<<<<< HEAD
+export function isEmotionCssPropEnzymeElement(val) /*: boolean */ {
+=======
+export function isStyledElementType(val: any): boolean {
   if (val.$$typeof !== Symbol.for('react.element')) {
     return false
   }
@@ -110,7 +113,8 @@ export function isStyledElementType(val /* : any */) /* : boolean */ {
   return type.__emotion_real === type
 }
 
-export function isEmotionCssPropEnzymeElement(val /* : any */) /*: boolean */ {
+export function isEmotionCssPropEnzymeElement(val: any): boolean {
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
   return (
     val.$$typeof === Symbol.for('react.test.json') &&
     val.type === 'EmotionCssPropInternal'

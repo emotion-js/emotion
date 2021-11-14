@@ -19,6 +19,7 @@ You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
 let isBrowser = typeof document !== 'undefined'
+const Noop = () => null
 
 let createStyled /*: CreateStyled */ = (
   tag /*: any */,
@@ -133,6 +134,7 @@ let createStyled /*: CreateStyled */ = (
         newProps.ref = ref
 
         const ele = React.createElement(finalTag, newProps)
+        let possiblyStyleElement = <Noop />
         if (!isBrowser && rules !== undefined) {
           let serializedNames = serialized.name
           let next = serialized.next
@@ -140,20 +142,23 @@ let createStyled /*: CreateStyled */ = (
             serializedNames += ' ' + next.name
             next = next.next
           }
-          return (
-            <>
-              <style
-                {...{
-                  [`data-emotion`]: `${cache.key} ${serializedNames}`,
-                  dangerouslySetInnerHTML: { __html: rules },
-                  nonce: cache.sheet.nonce
-                }}
-              />
-              {ele}
-            </>
+          possiblyStyleElement = (
+            <style
+              {...{
+                [`data-emotion`]: `${cache.key} ${serializedNames}`,
+                dangerouslySetInnerHTML: { __html: rules },
+                nonce: cache.sheet.nonce
+              }}
+            />
           )
         }
-        return ele
+        // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+        return (
+          <>
+            {possiblyStyleElement}
+            {ele}
+          </>
+        )
       }
     )
 

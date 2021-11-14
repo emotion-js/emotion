@@ -1,5 +1,10 @@
 import React, { Fragment } from 'react'
-import { createElement, StyleSheet, Text } from 'react-native'
+import {
+  unstable_createElement as createElement,
+  StyleSheet,
+  Text
+} from 'react-native'
+import { any } from 'prop-types'
 
 const styles = StyleSheet.create({
   root: {
@@ -26,7 +31,7 @@ const createIcon = children => {
       children
     )
   Icon.propTypes = {
-    style: Text.propTypes.style
+    style: any
   }
   return Icon
 }

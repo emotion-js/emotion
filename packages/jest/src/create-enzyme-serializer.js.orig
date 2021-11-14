@@ -72,8 +72,13 @@ export function createEnzymeSerializer({
     DOMElements
   })
   return {
+<<<<<<< HEAD
     test(node) {
+      return enzymeSerializer.test(node) || emotionSerializer.test(node)
+=======
+    test(node: *) {
       return wrappedEnzymeSerializer.test(node) || emotionSerializer.test(node)
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
     },
     serialize(
       node,

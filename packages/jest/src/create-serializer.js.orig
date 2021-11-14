@@ -116,8 +116,9 @@ function isShallowEnzymeElement(
   })
 }
 
+<<<<<<< HEAD
 const createConvertEmotionElements =
-  (keys /*: string[]*/) => (node /*: any*/) => {
+  (keys /*: string[] */, printer) => node => {
     if (isPrimitive(node)) {
       return node
     }
@@ -141,21 +142,51 @@ const createConvertEmotionElements =
           type
         }
       } else {
-        return node.children[node.children.length - 1]
+        return node.children[0]
       }
     }
     if (isEmotionCssPropElementType(node)) {
-      return {
-        ...node,
-        props: filterEmotionProps(node.props),
-        type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-      }
-    }
-    if (isReactElement(node)) {
-      return copyProps({}, node)
-    }
+=======
+const createConvertEmotionElements = (keys: string[]) => (node: any) => {
+  if (isPrimitive(node)) {
     return node
   }
+  if (isEmotionCssPropEnzymeElement(node)) {
+    const className = enzymeTickler.getTickledClassName(node.props.css)
+    const labels = getLabelsFromClassName(keys, className || '')
+
+    if (isShallowEnzymeElement(node, keys, labels)) {
+      const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+      // emotionType will be a string for DOM elements
+      const type =
+        typeof emotionType === 'string'
+          ? emotionType
+          : emotionType.displayName || emotionType.name || 'Component'
+>>>>>>> 2bac69b6c058d007cfc190e94490c0cb225ca40c
+      return {
+        ...node,
+        props: filterEmotionProps({
+          ...node.props,
+          className
+        }),
+        type
+      }
+    } else {
+      return node.children[node.children.length - 1]
+    }
+  }
+  if (isEmotionCssPropElementType(node)) {
+    return {
+      ...node,
+      props: filterEmotionProps(node.props),
+      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+    }
+  }
+  if (isReactElement(node)) {
+    return copyProps({}, node)
+  }
+  return node
+}
 
 function clean(node, classNames /*: string[] */) {
   if (Array.isArray(node)) {
