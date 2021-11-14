@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.1.1
+
+### Patch Changes
+
+- [#2540](https://github.com/emotion-js/emotion/pull/2540) [`9861a18b`](https://github.com/emotion-js/emotion/commit/9861a18bbf4a9480fad7f21a833ddfcf814cc893) Thanks [@fabb](https://github.com/fabb)! - Added `enterKeyHint` prop to the allowlist of forwardable props.
+
 ## 1.1.0
 
 ### Minor Changes
