@@ -68,7 +68,7 @@ export class StyleSheet {
   nonce: string | undefined
   prepend: boolean | undefined
   before: Element | null
-  insertionPoint: HTMLElement | void
+  insertionPoint: HTMLElement | undefined
 
   private _alreadyInsertedOrderInsensitiveRule: boolean | undefined
 

@@ -1,7 +1,8 @@
+/** @jsx jsx */
 import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'
 import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/react'
+import { jsx, CacheProvider } from '@emotion/react'
 import { render } from '@testing-library/react'
 
 test('throws correct error with invalid key', () => {
