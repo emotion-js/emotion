@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "size": "bundlesize",
     "lint": "eslint . --fix",
-    "benchmark": "cd scripts/benchmarks && yarn benchmark",
+    "benchmark": "cd scripts/benchmarks && yarn build && yarn run-benchmark",
     "start:site": "cd site && yarn start:site",
     "build:site": "cd site && yarn build:site",
     "flow": "flow",
