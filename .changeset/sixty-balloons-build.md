@@ -1,9 +1,8 @@
 ---
 '@emotion/cache': minor
-'@emotion/sheet': minor
 ---
 
-Add insertionPoint option to the EmotionCache, to insert rules after the specified element.
+Added `insertionPoint` option to the `createCache`. It can be used to insert rules after the specified element. For example, to use it with the `CacheProvider` from `@emotion/react` you can do this:
 
 ```jsx
 const head = document.querySelector('head')
