@@ -4,7 +4,6 @@ import memoize from '@emotion/memoize'
 import { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import * as CSS from 'csstype'
 
-type Props = Record<string, unknown>
 type Cursor = {
   name: string
   styles: string
@@ -55,14 +54,14 @@ export type Keyframes = {
   toString: () => string
 } & string
 
-export interface ArrayInterpolation<Props>
+export interface ArrayInterpolation<Props = unknown>
   extends Array<Interpolation<Props>> {}
 
-export interface FunctionInterpolation<Props> {
+export interface FunctionInterpolation<Props = unknown> {
   (props: Props): Interpolation<Props>
 }
 
-export type Interpolation<Props> =
+export type Interpolation<Props = unknown> =
   | InterpolationPrimitive
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>
@@ -79,31 +78,10 @@ let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
-const isProcessableValue = <Props>(value: Interpolation<Props>) =>
+const isProcessableValue = (value: Interpolation) =>
   value != null && typeof value !== 'boolean'
 
-const isComponentSelector = (
-  interpolation: any
-): interpolation is ComponentSelector =>
-  interpolation !== null &&
-  typeof interpolation === 'object' &&
-  '__emotion_styles' in interpolation
-
-const isKeyframes = (interpolation: any): interpolation is Keyframes =>
-  interpolation !== null &&
-  typeof interpolation === 'object' &&
-  'anim' in interpolation &&
-  interpolation.anim === 1
-
-const isSerializedStyles = (
-  interpolation: any
-): interpolation is SerializedStyles =>
-  interpolation !== null &&
-  typeof interpolation === 'object' &&
-  'styles' in interpolation &&
-  interpolation.styles !== undefined
-
-const processStyleName = /* #__PURE__ */ memoize((styleName /*: string */) =>
+const processStyleName = /* #__PURE__ */ memoize((styleName: string) =>
   isCustomProperty(styleName)
     ? styleName
     : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
@@ -187,18 +165,19 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-function handleInterpolation<Props>(
-  mergedProps: Props | undefined,
+function handleInterpolation(
+  mergedProps: unknown | undefined,
   registered: RegisteredCache | undefined,
-  interpolation: Interpolation<Props> | TemplateStringsArray
+  interpolation: Interpolation | TemplateStringsArray
 ): string | number {
   if (interpolation == null) {
     return ''
   }
-  if (isComponentSelector(interpolation)) {
+  const componentSelector = interpolation as ComponentSelector
+  if (componentSelector.__emotion_styles !== undefined) {
     if (
       process.env.NODE_ENV !== 'production' &&
-      interpolation.toString() === 'NO_COMPONENT_SELECTOR'
+      componentSelector.toString() === 'NO_COMPONENT_SELECTOR'
     ) {
       throw new Error(
         'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
@@ -211,17 +190,19 @@ function handleInterpolation<Props>(
       return ''
     }
     case 'object': {
-      if (isKeyframes(interpolation)) {
+      const keyframes = interpolation as Keyframes
+      if (keyframes.anim === 1) {
         cursor = {
-          name: interpolation.name,
-          styles: interpolation.styles,
+          name: keyframes.name,
+          styles: keyframes.styles,
           next: cursor
         }
 
-        return interpolation.name
+        return keyframes.name
       }
-      if (isSerializedStyles(interpolation)) {
-        let next = interpolation.next
+      const serializedStyles = interpolation as SerializedStyles
+      if (serializedStyles.styles !== undefined) {
+        let next = serializedStyles.next
         if (next !== undefined) {
           // not the most efficient thing ever but this is a pretty rare case
           // and there will be very few iterations of this generally
@@ -234,18 +215,26 @@ function handleInterpolation<Props>(
             next = next.next
           }
         }
-        let styles = `${interpolation.styles};`
+        let styles = `${serializedStyles.styles};`
         if (
           process.env.NODE_ENV !== 'production' &&
-          interpolation.map !== undefined
+          serializedStyles.map !== undefined
         ) {
-          styles += interpolation.map
+          styles += serializedStyles.map
         }
 
         return styles
       }
 
-      return createStringFromObject(mergedProps, registered, interpolation)
+      return createStringFromObject(
+        mergedProps,
+        registered,
+        interpolation as
+          | ArrayInterpolation
+          | CSSObject
+          | ComponentSelector
+          | TemplateStringsArray
+      )
     }
     case 'function': {
       if (mergedProps !== undefined) {
@@ -307,14 +296,10 @@ css\`${replaced}\``
   return cached !== undefined ? cached : asString
 }
 
-function createStringFromObject<Props>(
-  mergedProps: Props | undefined,
+function createStringFromObject(
+  mergedProps: unknown | undefined,
   registered: RegisteredCache | undefined,
-  obj:
-    | ArrayInterpolation<Props>
-    | CSSObject
-    | ComponentSelector
-    | TemplateStringsArray
+  obj: ArrayInterpolation | CSSObject | ComponentSelector | TemplateStringsArray
 ): string {
   let string = ''
 
@@ -324,16 +309,16 @@ function createStringFromObject<Props>(
     }
   } else {
     for (let key in obj) {
-      let value = (obj as any)[key] as Interpolation<Props>
-      if (
-        typeof value === 'string' ||
-        typeof value === 'number' ||
-        typeof value === 'symbol'
-      ) {
-        if (registered != null && registered[value] !== undefined) {
-          string += `${key}{${registered[value]}}`
-        } else if (isProcessableValue(value)) {
-          string += `${processStyleName(key)}:${processStyleValue(key, value)};`
+      let value = (obj as any)[key] as Interpolation
+      if (typeof value !== 'object') {
+        const asString = value as string
+        if (registered != null && registered[asString] !== undefined) {
+          string += `${key}{${registered[asString]}}`
+        } else if (isProcessableValue(asString)) {
+          string += `${processStyleName(key)}:${processStyleValue(
+            key,
+            asString
+          )};`
         }
       } else {
         if (
@@ -361,7 +346,7 @@ function createStringFromObject<Props>(
           const interpolated = handleInterpolation(
             mergedProps,
             registered,
-            value
+            value as Interpolation | TemplateStringsArray
           )
           switch (key) {
             case 'animation':
@@ -406,8 +391,9 @@ export const serializeStyles = function <Props>(
 ): SerializedStyles {
   if (
     args.length === 1 &&
-    !Array.isArray(args[0]) &&
-    isSerializedStyles(args[0])
+    typeof args[0] === 'object' &&
+    args[0] !== null &&
+    (args[0] as SerializedStyles).styles !== undefined
   ) {
     return args[0] as SerializedStyles
   }
@@ -427,7 +413,11 @@ export const serializeStyles = function <Props>(
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {
-    styles += handleInterpolation(mergedProps, registered, args[i])
+    styles += handleInterpolation(
+      mergedProps,
+      registered,
+      args[i] as TemplateStringsArray | Interpolation
+    )
     if (stringMode) {
       if (process.env.NODE_ENV !== 'production' && strings[i] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
@@ -437,8 +427,8 @@ export const serializeStyles = function <Props>(
   }
   let sourceMap
 
-  if (process.env.NODE_ENV !== 'production' && sourceMapPattern !== undefined) {
-    styles = styles.replace(sourceMapPattern, match => {
+  if (process.env.NODE_ENV !== 'production') {
+    styles = styles.replace(sourceMapPattern!, match => {
       sourceMap = match
       return ''
     })
