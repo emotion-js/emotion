@@ -1,5 +1,6 @@
 ---
-'@emotion/styled': patch
+'@emotion/react': minor
+'@emotion/styled': minor
 ---
 
-Fix hydration mismatches if `React.useId` is used
+Fixed hydration mismatches if `React.useId` (the upcoming API of the React 18) is used within a tree below our components.
