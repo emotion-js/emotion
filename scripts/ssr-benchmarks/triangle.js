@@ -1,13 +1,13 @@
-let React = require('react')
-let {
+import React from 'react'
+import {
   interpolatePurples,
   interpolateBuPu,
   interpolateRdPu
-} = require('d3-scale-chromatic')
+} from 'd3-scale-chromatic'
 
 const targetSize = 10
 
-exports.createTriangle = Dot => {
+export const createTriangle = Dot => {
   let SierpinskiTriangle = ({
     components,
     x,

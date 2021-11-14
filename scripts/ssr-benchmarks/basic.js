@@ -1,8 +1,7 @@
-process.env.NODE_ENV = 'production'
-let React = require('react')
-let { jsx, css } = require('@emotion/react')
-let { renderToString } = require('react-dom/server')
-let { createTriangle } = require('./triangle')
+import React from 'react'
+import { jsx, css } from '@emotion/react'
+import ReactDOMServer from 'react-dom/server.js'
+import { createTriangle } from './triangle.js'
 
 let i = 500
 
@@ -29,5 +28,7 @@ let CssPropTriangle = createTriangle(({ x, y, size, color, ...props }) => {
 })
 
 while (i--) {
-  renderToString(React.createElement(CssPropTriangle, { s: 100, x: 0, y: 0 }))
+  ReactDOMServer.renderToString(
+    React.createElement(CssPropTriangle, { s: 100, x: 0, y: 0 })
+  )
 }

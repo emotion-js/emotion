@@ -1,10 +1,15 @@
 // @flow
 import * as React from 'react'
 
-// $FlowFixMe
-let impls = require('./implementations/*/index.js')
+import * as EmotionCssFunc from './implementations/emotion-css-func'
+import * as EmotionCssProp from './implementations/emotion-css-prop'
+import * as EmotionStyled from './implementations/emotion-styled'
 
-console.log(impls)
+const impls = {
+  'emotion-css-func': EmotionCssFunc,
+  'emotion-css-prop': EmotionCssProp,
+  'emotion-styled': EmotionStyled
+}
 
 type ComponentsType = {
   Box: React.ElementType,

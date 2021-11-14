@@ -5,7 +5,7 @@ exports[`Emotion native styled primitive should work with \`withComponent\` 1`] 
   decor="hotpink"
   style={
     Array [
-      77,
+      92,
       undefined,
     ]
   }
@@ -19,7 +19,7 @@ exports[`Emotion native styled should pass props in withComponent 1`] = `
   color="green"
   style={
     Array [
-      81,
+      96,
       undefined,
     ]
   }
@@ -31,7 +31,7 @@ exports[`Emotion native styled should pass props in withComponent 2`] = `
   color="hotpink"
   style={
     Array [
-      82,
+      97,
       undefined,
     ]
   }
@@ -49,7 +49,7 @@ exports[`Emotion native styled should render <Image /> 1`] = `
   }
   style={
     Array [
-      83,
+      98,
       undefined,
     ]
   }
@@ -60,7 +60,7 @@ exports[`Emotion native styled should render primitive with style prop 1`] = `
 <Text
   style={
     Array [
-      77,
+      92,
       Object {
         "padding": 10,
       },
@@ -76,7 +76,7 @@ exports[`Emotion native styled should render styles correctly from all nested st
   backgroundColor="blue"
   style={
     Array [
-      86,
+      101,
       undefined,
     ]
   }
@@ -90,7 +90,7 @@ exports[`Emotion native styled should render the primitive on changing the props
   decor="hotpink"
   style={
     Array [
-      76,
+      91,
       undefined,
     ]
   }
@@ -104,7 +104,7 @@ exports[`Emotion native styled should render the primitive when styles applied u
   back="red"
   style={
     Array [
-      74,
+      89,
       Object {
         "fontSize": 40,
       },
@@ -119,7 +119,7 @@ exports[`Emotion native styled should style any other component 1`] = `
 <Text
   style={
     Array [
-      77,
+      92,
       undefined,
     ]
   }
@@ -132,8 +132,8 @@ exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 <Text
   style={
     Array [
-      79,
-      78,
+      94,
+      93,
     ]
   }
 >
@@ -145,7 +145,7 @@ exports[`Emotion native styled should work with theming from @emotion/react 1`] 
 <Text
   style={
     Array [
-      75,
+      90,
       undefined,
     ]
   }
