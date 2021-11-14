@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.6.0
+
+### Minor Changes
+
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon), [@Andarist](https://github.com/Andarist)! - Adjusted the serialization logic to unwrap rendered elements from Fragments that had to be added to fix hydration mismatches caused by `React.useId` usage (the upcoming API of the React 18).
+
 ## 11.5.0
 
 ### Minor Changes
