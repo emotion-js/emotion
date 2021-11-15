@@ -4,7 +4,6 @@ exports[`should render the primitive when styles applied using object style nota
 <div
   className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
   dir="auto"
-  onClick={[Function]}
   style={
     Object {
       "fontSize": "40px",

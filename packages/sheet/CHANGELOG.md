@@ -1,5 +1,11 @@
 # @emotion/sheet
 
+## 1.1.0
+
+### Minor Changes
+
+- [#2521](https://github.com/emotion-js/emotion/pull/2521) [`516fe45`](https://github.com/emotion-js/emotion/commit/516fe458058c9ec8218740472b301e935801ebbc) Thanks [@mnajdova](https://github.com/mnajdova)! - Added `insertionPoint` option to the `Sheet`'s constructor. It can be used to insert rules after the specified element.
+
 ## 1.0.3
 
 ### Patch Changes

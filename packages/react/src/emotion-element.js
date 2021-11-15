@@ -57,6 +57,8 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   return newProps
 }
 
+const Noop = () => null
+
 let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
   (props, cache, ref) => {
     let cssProp = props.css
@@ -121,6 +123,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
     newProps.className = className
 
     const ele = React.createElement(type, newProps)
+    let possiblyStyleElement = <Noop />
     if (!isBrowser && rules !== undefined) {
       let serializedNames = serialized.name
       let next = serialized.next
@@ -128,20 +131,23 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
         serializedNames += ' ' + next.name
         next = next.next
       }
-      return (
-        <>
-          <style
-            {...{
-              [`data-emotion`]: `${cache.key} ${serializedNames}`,
-              dangerouslySetInnerHTML: { __html: rules },
-              nonce: cache.sheet.nonce
-            }}
-          />
-          {ele}
-        </>
+      possiblyStyleElement = (
+        <style
+          {...{
+            [`data-emotion`]: `${cache.key} ${serializedNames}`,
+            dangerouslySetInnerHTML: { __html: rules },
+            nonce: cache.sheet.nonce
+          }}
+        />
       )
     }
-    return ele
+    // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+    return (
+      <>
+        {possiblyStyleElement}
+        {ele}
+      </>
+    )
   }
 )
 

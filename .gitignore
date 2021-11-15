@@ -12,3 +12,4 @@ public/
 !playgrounds/cra/public
 .env
 .vscode
+.parcel-cache/

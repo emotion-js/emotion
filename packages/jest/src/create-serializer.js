@@ -115,46 +115,45 @@ function isShallowEnzymeElement(
   })
 }
 
-const createConvertEmotionElements =
-  (keys: string[], printer: *) => (node: any) => {
-    if (isPrimitive(node)) {
-      return node
-    }
-    if (isEmotionCssPropEnzymeElement(node)) {
-      const className = enzymeTickler.getTickledClassName(node.props.css)
-      const labels = getLabelsFromClassName(keys, className || '')
-
-      if (isShallowEnzymeElement(node, keys, labels)) {
-        const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-        // emotionType will be a string for DOM elements
-        const type =
-          typeof emotionType === 'string'
-            ? emotionType
-            : emotionType.displayName || emotionType.name || 'Component'
-        return {
-          ...node,
-          props: filterEmotionProps({
-            ...node.props,
-            className
-          }),
-          type
-        }
-      } else {
-        return node.children[0]
-      }
-    }
-    if (isEmotionCssPropElementType(node)) {
-      return {
-        ...node,
-        props: filterEmotionProps(node.props),
-        type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-      }
-    }
-    if (isReactElement(node)) {
-      return copyProps({}, node)
-    }
+const createConvertEmotionElements = (keys: string[]) => (node: any) => {
+  if (isPrimitive(node)) {
     return node
   }
+  if (isEmotionCssPropEnzymeElement(node)) {
+    const className = enzymeTickler.getTickledClassName(node.props.css)
+    const labels = getLabelsFromClassName(keys, className || '')
+
+    if (isShallowEnzymeElement(node, keys, labels)) {
+      const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+      // emotionType will be a string for DOM elements
+      const type =
+        typeof emotionType === 'string'
+          ? emotionType
+          : emotionType.displayName || emotionType.name || 'Component'
+      return {
+        ...node,
+        props: filterEmotionProps({
+          ...node.props,
+          className
+        }),
+        type
+      }
+    } else {
+      return node.children[node.children.length - 1]
+    }
+  }
+  if (isEmotionCssPropElementType(node)) {
+    return {
+      ...node,
+      props: filterEmotionProps(node.props),
+      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+    }
+  }
+  if (isReactElement(node)) {
+    return copyProps({}, node)
+  }
+  return node
+}
 
 function clean(node: any, classNames: string[]) {
   if (Array.isArray(node)) {
@@ -199,7 +198,7 @@ export function createSerializer({
   ) {
     const elements = getStyleElements()
     const keys = getKeys(elements)
-    const convertEmotionElements = createConvertEmotionElements(keys, printer)
+    const convertEmotionElements = createConvertEmotionElements(keys)
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
     const classNames = getClassNamesFromNodes(nodes)

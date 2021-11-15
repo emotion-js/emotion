@@ -1,5 +1,19 @@
 # @emotion/react
 
+## 11.6.0
+
+### Minor Changes
+
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (the upcoming API of the React 18) is used within a tree below our components.
+
+### Patch Changes
+
+- [#2551](https://github.com/emotion-js/emotion/pull/2551) [`99fcea04`](https://github.com/emotion-js/emotion/commit/99fcea04a27458b94982bb8fcd7d209f21278013) Thanks [@Andarist](https://github.com/Andarist)! - Shorten the path of the "private" `isolated-hoist-non-react-statics-do-not-use-this-in-your-code` entrypoint to avoid exeeding path limitations on Windows.
+
+- Updated dependencies [[`9e82a991`](https://github.com/emotion-js/emotion/commit/9e82a991624b18c20c46c5974e8a127c94a54711), [`516fe458`](https://github.com/emotion-js/emotion/commit/516fe458058c9ec8218740472b301e935801ebbc)]:
+  - @emotion/sheet@1.1.0
+  - @emotion/cache@11.6.0
+
 ## 11.5.0
 
 ### Patch Changes
