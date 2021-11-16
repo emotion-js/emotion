@@ -183,6 +183,7 @@ function handleInterpolation(
         'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
       )
     }
+    return String(componentSelector)
   }
 
   switch (typeof interpolation) {
@@ -452,6 +453,7 @@ export const serializeStyles = function <Props>(
       styles,
       map: sourceMap,
       next: cursor,
+      // @ts-ignore: SerializedStyles does not have toString method, and we don't want to add it
       toString() {
         return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
       }
