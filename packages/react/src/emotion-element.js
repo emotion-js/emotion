@@ -33,7 +33,15 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 
   newProps[typePropName] = type
 
-  if (process.env.NODE_ENV !== 'production') {
+  // For performance, only call getLabelFromStackTrace in development and when
+  // the label hasn't already been computed
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    !!props.css &&
+    (typeof props.css !== 'object' ||
+      typeof props.css.name !== 'string' ||
+      props.css.name.indexOf('-') === -1)
+  ) {
     const label = getLabelFromStackTrace(new Error().stack)
     if (label) newProps[labelPropName] = label
   }
