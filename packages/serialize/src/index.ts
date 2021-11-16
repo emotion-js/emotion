@@ -1,8 +1,10 @@
+import type { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
-import { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import * as CSS from 'csstype'
+
+export type { RegisteredCache, SerializedStyles }
 
 type Cursor = {
   name: string
