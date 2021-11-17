@@ -17,7 +17,7 @@ export const getFunctionNameFromStackTraceLine = (line: string): ?string => {
   return undefined
 }
 
-const internalReactFunctionNames = new Set([
+const internalReactFunctionNames = /* #__PURE__ */ new Set([
   'renderWithHooks',
   'processChild',
   'finishClassComponent',
