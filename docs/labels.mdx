@@ -30,19 +30,3 @@ render(
   </div>
 )
 ```
-
-## SSR & Safari
-
-If using server side rendering, you may get the following warning when running
-your app in Safari:
-
-```text
-Warning: Prop `className` did not match.
-```
-
-This means that Emotion was unable to determine the label because Safari did a
-Proper Tail Call optimization. Don't worry — Emotion only does automatic label
-extraction in development, so this won't affect your production app.
-
-If you see this warning in another browser, please open an issue as it may be a
-bug.
