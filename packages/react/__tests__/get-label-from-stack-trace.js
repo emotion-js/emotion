@@ -94,6 +94,22 @@ beginWork$1@http://localhost:3000/static/js/bundle.js:27280:23`
 
     expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
   })
+
+  test('SSR', () => {
+    const stackTrace = `Error
+  at Object.createEmotionProps (webpack-internal:///../../packages/react/dist/emotion-element-7a506f09.cjs.dev.js:195:40)
+  at jsx (webpack-internal:///../../packages/react/dist/emotion-react.cjs.dev.js:103:45)
+  at MyComponent$9 (webpack-internal:///./pages/index.js:20:61)
+  at processChild (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3043:14)
+  at resolve (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
+  at ReactDOMServerRenderer.render (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
+  at ReactDOMServerRenderer.read (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3373:29)
+  at Object.renderToString (C:/Projects/OSS/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)
+  at Object.renderPage (C:/Projects/OSS/emotion/node_modules/next/dist/server/render.js:621:45)
+  at Object.defaultGetInitialProps (C:/Projects/OSS/emotion/node_modules/next/dist/server/render.js:301:51)`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+  })
 })
 
 /**
