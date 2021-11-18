@@ -31,7 +31,6 @@ const sanitizeIdentifier = (identifier: string) =>
   identifier.replace(/\$/g, '-')
 
 export const getLabelFromStackTrace = (stackTrace: string): ?string => {
-  // console.log(stackTrace)
   if (!stackTrace) return undefined
 
   const lines = stackTrace.split('\n')
