@@ -1,28 +1,5 @@
 // @flow
-import {
-  getFunctionNameFromStackTraceLine,
-  getLabelFromStackTrace
-} from '../src/get-label-from-stack-trace'
-
-describe('getFunctionNameFromStackTraceLine', () => {
-  test('V8', () => {
-    expect(getFunctionNameFromStackTraceLine('Error')).toBeUndefined()
-
-    expect(
-      getFunctionNameFromStackTraceLine(
-        '    at Object.createEmotionProps (emotion-element-1fb5ab00.browser.esm.js:143)'
-      )
-    ).toBe('createEmotionProps')
-  })
-
-  test('Safari / Firefox', () => {
-    expect(
-      getFunctionNameFromStackTraceLine(
-        'createEmotionProps@http://localhost:3000/static/js/main.chunk.js:844:40'
-      )
-    ).toBe('createEmotionProps')
-  })
-})
+import { getLabelFromStackTrace } from '../src/get-label-from-stack-trace'
 
 /**
  * # Safari stack traces

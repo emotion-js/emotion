@@ -1,6 +1,6 @@
 // @flow
 
-export const getFunctionNameFromStackTraceLine = (line: string): ?string => {
+const getFunctionNameFromStackTraceLine = (line: string): ?string => {
   // V8
   let match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line)
 
@@ -31,6 +31,7 @@ const sanitizeIdentifier = (identifier: string) =>
   identifier.replace(/\$/g, '-')
 
 export const getLabelFromStackTrace = (stackTrace: string): ?string => {
+  // console.log(stackTrace)
   if (!stackTrace) return undefined
 
   const lines = stackTrace.split('\n')
