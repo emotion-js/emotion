@@ -170,7 +170,7 @@ if (process.env.NODE_ENV !== 'production') {
 function handleInterpolation(
   mergedProps: unknown | undefined,
   registered: RegisteredCache | undefined,
-  interpolation: Interpolation | TemplateStringsArray
+  interpolation: Interpolation
 ): string | number {
   if (interpolation == null) {
     return ''
@@ -185,7 +185,7 @@ function handleInterpolation(
         'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
       )
     }
-    return String(componentSelector)
+    return componentSelector as unknown as string
   }
 
   switch (typeof interpolation) {
@@ -232,11 +232,7 @@ function handleInterpolation(
       return createStringFromObject(
         mergedProps,
         registered,
-        interpolation as
-          | ArrayInterpolation
-          | CSSObject
-          | ComponentSelector
-          | TemplateStringsArray
+        interpolation as ArrayInterpolation | CSSObject
       )
     }
     case 'function': {
@@ -302,7 +298,7 @@ css\`${replaced}\``
 function createStringFromObject(
   mergedProps: unknown | undefined,
   registered: RegisteredCache | undefined,
-  obj: ArrayInterpolation | CSSObject | ComponentSelector | TemplateStringsArray
+  obj: ArrayInterpolation | CSSObject
 ): string {
   let string = ''
 
@@ -312,7 +308,7 @@ function createStringFromObject(
     }
   } else {
     for (let key in obj) {
-      let value = (obj as any)[key] as Interpolation
+      let value = obj[key]
       if (typeof value !== 'object') {
         const asString = value as string
         if (registered != null && registered[asString] !== undefined) {
@@ -349,7 +345,7 @@ function createStringFromObject(
           const interpolated = handleInterpolation(
             mergedProps,
             registered,
-            value as Interpolation | TemplateStringsArray
+            value as Interpolation
           )
           switch (key) {
             case 'animation':
@@ -387,10 +383,15 @@ if (process.env.NODE_ENV !== 'production') {
 // keyframes are stored on the SerializedStyles object as a linked list
 let cursor: Cursor | undefined
 
-export const serializeStyles = function <Props>(
+export function serializeStyles<Props>(
   args: Array<TemplateStringsArray | Interpolation<Props>>,
   registered: RegisteredCache,
   mergedProps?: Props
+): SerializedStyles
+export function serializeStyles(
+  args: Array<TemplateStringsArray | Interpolation<unknown>>,
+  registered: RegisteredCache,
+  mergedProps?: unknown
 ): SerializedStyles {
   if (
     args.length === 1 &&
@@ -404,28 +405,40 @@ export const serializeStyles = function <Props>(
   let styles = ''
 
   cursor = undefined
-  let strings = args[0] as TemplateStringsArray
-  if (strings == null || strings.raw === undefined) {
+  let strings = args[0]
+  if (strings == null || (strings as TemplateStringsArray).raw === undefined) {
     stringMode = false
-    styles += handleInterpolation(mergedProps, registered, strings)
+    styles += handleInterpolation(
+      mergedProps,
+      registered,
+      strings as Interpolation
+    )
   } else {
-    if (process.env.NODE_ENV !== 'production' && strings[0] === undefined) {
+    const asTemplateStringsArr = strings as TemplateStringsArray
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      asTemplateStringsArr[0] === undefined
+    ) {
       console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
     }
-    styles += strings[0]
+    styles += asTemplateStringsArr[0]
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {
     styles += handleInterpolation(
       mergedProps,
       registered,
-      args[i] as TemplateStringsArray | Interpolation
+      args[i] as Interpolation
     )
     if (stringMode) {
-      if (process.env.NODE_ENV !== 'production' && strings[i] === undefined) {
+      const templateStringsArr = strings as TemplateStringsArray
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        templateStringsArr[i] === undefined
+      ) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
       }
-      styles += strings[i]
+      styles += templateStringsArr[i]
     }
   }
   let sourceMap
