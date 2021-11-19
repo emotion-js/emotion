@@ -95,9 +95,6 @@
           "**/packages/**/*.ts",
           "**/packages/**/*.tsx"
         ],
-        "parserOptions": {
-          "project": "./tsconfig.json"
-        },
         "rules": {
           "prettier/prettier": [
             "error",
