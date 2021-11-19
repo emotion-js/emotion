@@ -112,6 +112,9 @@ jobs:
       - name: ESLint
         run: yarn lint:check
 
+      - name: TypeScript
+        run: yarn tsc
+
   typescript:
     name: DTSLint
     runs-on: ubuntu-latest
