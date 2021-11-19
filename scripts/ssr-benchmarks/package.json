@@ -2,11 +2,16 @@
   "private": true,
   "name": "ssr-benchmarks",
   "version": "0.8.13",
+  "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node bench.js",
+    "start-basic": "NODE_ENV=production node basic.js",
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "benchmark": "^2.1.4"
+    "benchmark": "^2.1.4",
+    "d3-scale-chromatic": "^3.0.0",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   }
 }

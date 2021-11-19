@@ -62,7 +62,15 @@ function getClassNameProp(node) {
   return (node && node.prop('className')) || ''
 }
 
-function getClassNamesFromEnzyme(selectors, node) {
+export function unwrapFromPotentialFragment(node) {
+  if (node.type() === Symbol.for('react.fragment')) {
+    return node.children().last()
+  }
+  return node
+}
+
+function getClassNamesFromEnzyme(selectors, nodeWithPotentialFragment) {
+  const node = unwrapFromPotentialFragment(nodeWithPotentialFragment)
   // We need to dive in to get the className if we have a styled element from a shallow render
   const isShallow = shouldDive(node)
   const nodeWithClassName = findNodeWithClassName(
@@ -90,12 +98,19 @@ export function isReactElement(val) /*: boolean */ {
 export function isEmotionCssPropElementType(val) /*: boolean */ {
   return (
     val.$$typeof === Symbol.for('react.element') &&
-    val.type.$$typeof === Symbol.for('react.forward_ref') &&
     val.type.displayName === 'EmotionCssPropInternal'
   )
 }
 
-export function isEmotionCssPropEnzymeElement(val) /*: boolean */ {
+export function isStyledElementType(val /* : any */) /* : boolean */ {
+  if (val.$$typeof !== Symbol.for('react.element')) {
+    return false
+  }
+  const { type } = val
+  return type.__emotion_real === type
+}
+
+export function isEmotionCssPropEnzymeElement(val /* : any */) /*: boolean */ {
   return (
     val.$$typeof === Symbol.for('react.test.json') &&
     val.type === 'EmotionCssPropInternal'

@@ -49,7 +49,38 @@ This defines how rules are inserted. If it is true, rules will be inserted with 
 
 #### prepend
 
+**Deprecated:** Please use `insertionPoint` option instead.
+
 This defines where rules are inserted into the `container`. By default they are appended but this can be changed by using `prepend: true` option.
+
+#### insertionPoint
+
+This defines specific dom node after which the rules are inserted into the `container`. You can use a `meta` tag to specify the specific location:
+
+```jsx
+const head = document.querySelector('head')
+
+// <meta name="emotion-insertion-point" content="">
+const emotionInsertionPoint = document.createElement('meta')
+emotionInsertionPoint.setAttribute('name', 'emotion-insertion-point')
+emotionInsertionPoint.setAttribute('content', '')
+
+head.appendChild(emotionInsertionPoint)
+
+// the emotion sheets should be inserted right after the meta tag
+const cache = createCache({
+  key: 'my-app',
+  insertionPoint: emotionInsertionPoint
+})
+
+function App() {
+  return (
+    <CacheProvider value={cache}>
+      <Main />
+    </CacheProvider>
+  )
+}
+```
 
 ### Methods
 

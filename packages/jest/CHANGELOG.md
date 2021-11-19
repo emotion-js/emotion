@@ -1,5 +1,21 @@
 # @emotion/jest
 
+## 11.6.0
+
+### Minor Changes
+
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon), [@Andarist](https://github.com/Andarist)! - Adjusted the serialization logic to unwrap rendered elements from Fragments that had to be added to fix hydration mismatches caused by `React.useId` usage (the upcoming API of the React 18).
+
+## 11.5.0
+
+### Minor Changes
+
+- [#2456](https://github.com/emotion-js/emotion/pull/2456) [`500cdd82`](https://github.com/emotion-js/emotion/commit/500cdd828b65ad4b778c8a1459094b099d50f08a) Thanks [@billyjanitsch](https://github.com/billyjanitsch)! - Support typings for Jest v27
+
+### Patch Changes
+
+- [#2457](https://github.com/emotion-js/emotion/pull/2457) [`218e4f78`](https://github.com/emotion-js/emotion/commit/218e4f78ca03b36cd8ed595bc1a93892b9783eda) Thanks [@jcleefw](https://github.com/jcleefw)! - Add `RegExp` as a valid type for the `target` option accepted by `toHaveStyleRule`.
+
 ## 11.3.0
 
 ### Patch Changes

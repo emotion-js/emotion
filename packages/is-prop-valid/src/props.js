@@ -69,6 +69,7 @@ const props = {
   download: true,
   draggable: true,
   encType: true,
+  enterKeyHint: true,
   form: true,
   formAction: true,
   formEncType: true,

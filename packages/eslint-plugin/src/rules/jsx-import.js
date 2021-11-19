@@ -1,4 +1,5 @@
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
+const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 
 // TODO: handling this case
 // <div css={`color:hotpink;`} />
@@ -7,9 +8,87 @@ const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
+    schema: {
+      type: 'array',
+      items: {
+        oneOf: [
+          {
+            type: 'string'
+          },
+          {
+            type: 'object',
+            properties: {
+              runtime: { type: 'string' },
+              importSource: { type: 'string' }
+            },
+            required: ['runtime'],
+            additionalProperties: false
+          }
+        ]
+      },
+      uniqueItems: true,
+      minItems: 0
+    }
   },
   create(context) {
+    const jsxRuntimeMode = context.options.find(
+      option => option && option.runtime === 'automatic'
+    )
+
+    if (jsxRuntimeMode) {
+      return {
+        JSXAttribute(node) {
+          if (node.name.name !== 'css') {
+            return
+          }
+          const importSource =
+            (jsxRuntimeMode || {}).importSource || '@emotion/react'
+          let jsxImportSourcePragmaNode
+          let jsxImportSourceMatch
+          let validJsxImportSource = false
+          let sourceCode = context.getSourceCode()
+          let pragma = sourceCode.getAllComments().find(node => {
+            if (JSX_IMPORT_SOURCE_REGEX.test(node.value)) {
+              jsxImportSourcePragmaNode = node
+              return true
+            }
+          })
+          jsxImportSourceMatch =
+            pragma && pragma.value.match(JSX_IMPORT_SOURCE_REGEX)
+          if (
+            jsxImportSourceMatch &&
+            jsxImportSourceMatch[1] === importSource
+          ) {
+            validJsxImportSource = true
+          }
+          if (!jsxImportSourceMatch) {
+            context.report({
+              node,
+              message: `The css prop can only be used if jsxImportSource is set to ${importSource}`,
+              fix(fixer) {
+                return fixer.insertTextBefore(
+                  sourceCode.ast.body[0],
+                  `/** @jsxImportSource ${importSource} */\n`
+                )
+              }
+            })
+          } else if (!validJsxImportSource && jsxImportSourcePragmaNode) {
+            context.report({
+              node,
+              message: `The css prop can only be used if jsxImportSource is set to ${importSource}`,
+              fix(fixer) {
+                return fixer.replaceText(
+                  jsxImportSourcePragmaNode,
+                  `/** @jsxImportSource ${importSource} */`
+                )
+              }
+            })
+          }
+        }
+      }
+    }
+
     return {
       JSXAttribute(node) {
         if (node.name.name !== 'css') {

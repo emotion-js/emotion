@@ -14,6 +14,8 @@ import * as serializer from '@emotion/jest/enzyme-serializer'
 expect.extend(matchers)
 expect.addSnapshotSerializer(serializer)
 
+const identity = v => v
+
 const cases = {
   basic: {
     render() {
@@ -278,46 +280,93 @@ const cases = {
         </div>
       )
     }
+  },
+  'parent and child using css property': {
+    render() {
+      const parentStyle = css`
+        background-color: black;
+      `
+
+      const childStyle = css`
+        color: white;
+      `
+
+      return (
+        <div css={parentStyle}>
+          Test content
+          <div css={childStyle} />
+        </div>
+      )
+    }
+  },
+  'fragment with multiple css prop elements': {
+    render() {
+      const Component = () => {
+        return (
+          <>
+            <div css={{ backgroundColor: 'hotpink' }} />
+            <div css={{ backgroundColor: 'green' }} />
+            <div css={{ backgroundColor: 'blue' }} />
+          </>
+        )
+      }
+      return <Component />
+    }
+  },
+  'multiple selected components': {
+    selector: tree =>
+      // with simple `tree.find('[data-item]')` we get elements twice with `mount` since it selects both the css prop element and the host element
+      tree.findWhere(
+        n => typeof n.type() !== 'string' && n.props()['data-item']
+      ),
+    render() {
+      return (
+        <ul>
+          <li data-item css={{ backgroundColor: 'hotpink' }}>
+            {'hello'}
+          </li>
+          <li data-item css={{ backgroundColor: 'blue' }}>
+            {'beautiful'}
+          </li>
+          <li data-item css={{ backgroundColor: 'green' }}>
+            {'world'}
+          </li>
+        </ul>
+      )
+    }
+  },
+  'unmatched selector': {
+    selector: tree => tree.find('div'),
+    render() {
+      return (
+        <ul>
+          <li css={{ backgroundColor: 'hotpink' }}>{'hello'}</li>
+          <li css={{ backgroundColor: 'blue' }}>{'beautiful'}</li>
+          <li css={{ backgroundColor: 'green' }}>{'world'}</li>
+        </ul>
+      )
+    }
   }
 }
 
 describe('enzyme', () => {
   jestInCase(
     'shallow',
-    ({ render }) => {
+    ({ render, selector = identity }) => {
       const wrapper = enzyme.shallow(render())
-      expect(wrapper).toMatchSnapshot()
+      expect(selector(wrapper)).toMatchSnapshot()
     },
     cases
   )
 
   jestInCase(
     'mount',
-    ({ render }) => {
+    ({ render, selector = identity }) => {
       const wrapper = enzyme.mount(render())
-      expect(wrapper).toMatchSnapshot()
+      expect(selector(wrapper)).toMatchSnapshot()
     },
     cases
   )
-
-  test('parent and child using css property', () => {
-    const parentStyle = css`
-      background-color: black;
-    `
-
-    const childStyle = css`
-      color: white;
-    `
-
-    const wrapper = enzyme.mount(
-      <div css={parentStyle}>
-        Test content
-        <div css={childStyle} />
-      </div>
-    )
-
-    expect(wrapper).toMatchSnapshot()
-  })
 
   test('with prop containing css element in fragment', () => {
     const FragmentComponent = () => (

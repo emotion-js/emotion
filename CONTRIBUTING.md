@@ -5,6 +5,10 @@
 
 ## Installation
 
+- (If using an M1 Mac) Install `vips` via Homebrew: `brew install vips`.
+  - This step can be removed from this document if we upgrade to the latest
+    version of Gatsby, which is compatible with sharp 0.28.0+ which does include
+    binaries for M1 Macs.
 - Run `yarn` in the repository's root directory to install everything you need for development.
 - Run `yarn build` in the root directory to build the modules.
 
