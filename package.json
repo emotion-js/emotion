@@ -253,7 +253,6 @@
     "react-native": "^0.63.2",
     "react-primitives": "^0.8.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.5",
     "react-test-renderer": "16.8.6",
     "react18": "npm:react@alpha",
     "react18-dom": "npm:react-dom@alpha",
