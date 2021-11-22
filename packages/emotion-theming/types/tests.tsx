@@ -13,7 +13,7 @@ interface Props {
   prop: boolean
   theme: Theme
 }
-declare const CompSFC: React.SFC<Props>
+declare const CompSFC: React.FC<Props>
 declare class CompC extends React.Component<Props> {}
 
 const WrappedCompC = withTheme<typeof CompC>(CompC)
@@ -79,7 +79,7 @@ typedWithTheme((props: { value: number }) => null)
 
   type SomethingToRead = (Book | Magazine) & { theme?: any }
 
-  const Readable: React.SFC<SomethingToRead> = props => {
+  const Readable: React.FC<SomethingToRead> = props => {
     if (props.kind === 'magazine') {
       return <div>magazine #{props.issue}</div>
     }

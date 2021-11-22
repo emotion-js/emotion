@@ -148,7 +148,7 @@ const Image3 = styled.div<ImageProps>`
 ### React Components
 
 ```tsx
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
 type ComponentProps = {
@@ -156,7 +156,7 @@ type ComponentProps = {
   label: string
 }
 
-const Component: SFC<ComponentProps> = ({
+const Component: FC<ComponentProps> = ({
   label,
   className
 }) => <div className={className}>{label}</div>
@@ -180,7 +180,7 @@ const App = () => (
 ### Passing props when styling a React component
 
 ```tsx
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
 type ComponentProps = {
@@ -188,7 +188,7 @@ type ComponentProps = {
   label: string
 }
 
-const Component: SFC<ComponentProps> = ({
+const Component: FC<ComponentProps> = ({
   label,
   className
 }) => <div className={className}>{label}</div>

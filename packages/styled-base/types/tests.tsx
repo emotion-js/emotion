@@ -21,17 +21,17 @@ declare class ReactClassComponent2 extends React.Component<ReactClassProps2> {}
 type ReactSFCProps0 = {
   readonly column: boolean
 }
-declare const ReactSFC0: React.SFC<ReactSFCProps0>
+declare const ReactSFC0: React.FC<ReactSFCProps0>
 
 interface ReactSFCProps1 {
   readonly value: string
 }
-declare const ReactSFC1: React.SFC<ReactSFCProps1>
+declare const ReactSFC1: React.FC<ReactSFCProps1>
 
 interface ReactSFCProps2 {
   readonly value: number
 }
-declare const ReactSFC2: React.SFC<ReactSFCProps2>
+declare const ReactSFC2: React.FC<ReactSFCProps2>
 
 const Button0 = styled('button')`
   color: blue;
@@ -256,7 +256,7 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
 
   type SomethingToRead = Book | Magazine
 
-  const Readable: React.SFC<SomethingToRead> = props => {
+  const Readable: React.FC<SomethingToRead> = props => {
     if (props.kind === 'magazine') {
       return <div>magazine #{props.issue}</div>
     }
