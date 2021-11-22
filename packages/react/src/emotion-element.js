@@ -5,11 +5,7 @@ import { ThemeContext } from './theming'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
-
-// those identifiers come from error stacks, so they have to be valid JS identifiers
-// thus we only need to replace what is a valid character for JS, but not for CSS
-const sanitizeIdentifier = (identifier: string) =>
-  identifier.replace(/\$/g, '-')
+import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -37,21 +33,17 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 
   newProps[typePropName] = type
 
-  if (process.env.NODE_ENV !== 'production') {
-    const error = new Error()
-    if (error.stack) {
-      // chrome
-      let match = error.stack.match(
-        /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
-      )
-      if (!match) {
-        // safari and firefox
-        match = error.stack.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
-      }
-      if (match) {
-        newProps[labelPropName] = sanitizeIdentifier(match[1])
-      }
-    }
+  // For performance, only call getLabelFromStackTrace in development and when
+  // the label hasn't already been computed
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    !!props.css &&
+    (typeof props.css !== 'object' ||
+      typeof props.css.name !== 'string' ||
+      props.css.name.indexOf('-') === -1)
+  ) {
+    const label = getLabelFromStackTrace(new Error().stack)
+    if (label) newProps[labelPropName] = label
   }
 
   return newProps

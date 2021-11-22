@@ -1,12 +1,10 @@
-// @flow
-import * as React from 'react'
-import { render } from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import App from './App'
 
-let root = document.getElementById('root')
-
-if (!root) {
-  throw new Error('could not find root element')
-}
-
-render(<App />, root)
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+)
