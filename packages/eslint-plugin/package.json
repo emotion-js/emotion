@@ -19,7 +19,7 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin",
   "peerDependencies": {
-    "eslint": "6 || 7"
+    "eslint": "6 || 7 || 8"
   },
   "devDependencies": {
     "eslint": "^7.10.0"
