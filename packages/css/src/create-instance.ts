@@ -90,7 +90,7 @@ function merge(
 let createEmotion = (options: Options): Emotion => {
   let cache = createCache(options)
 
-  ;(cache.sheet as any).speedy = function (value: boolean) {
+  ;(cache.sheet as CSSStyleSheet).speedy = function (value: boolean) {
     if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }
