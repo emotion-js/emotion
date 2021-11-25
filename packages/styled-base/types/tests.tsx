@@ -18,20 +18,20 @@ interface ReactClassProps2 {
 declare class ReactClassComponent2 extends React.Component<ReactClassProps2> {}
 
 // tslint:disable-next-line: interface-over-type-literal
-type ReactSFCProps0 = {
+type ReactFCProps0 = {
   readonly column: boolean
 }
-declare const ReactSFC0: React.SFC<ReactSFCProps0>
+declare const ReactFC0: React.FC<ReactFCProps0>
 
-interface ReactSFCProps1 {
+interface ReactFCProps1 {
   readonly value: string
 }
-declare const ReactSFC1: React.SFC<ReactSFCProps1>
+declare const ReactFC1: React.FC<ReactFCProps1>
 
-interface ReactSFCProps2 {
+interface ReactFCProps2 {
   readonly value: number
 }
-declare const ReactSFC2: React.SFC<ReactSFCProps2>
+declare const ReactFC2: React.FC<ReactFCProps2>
 
 const Button0 = styled('button')`
   color: blue;
@@ -124,7 +124,7 @@ const Button4 = styled<typeof ReactClassComponent0, PrimaryProps>(
   fontSize: ${5}px;
   color: ${props => props.primary}
 `
-const Button5 = styled<typeof ReactSFC0, PrimaryProps>(ReactSFC0)(props => ({
+const Button5 = styled<typeof ReactFC0, PrimaryProps>(ReactFC0)(props => ({
   color: props.primary
 }))
 ;<div>
@@ -158,7 +158,7 @@ const Container1 = Container0.withComponent('span')
 // $ExpectError
 ;<Container1 contentEditable />
 
-const Container2 = Container0.withComponent(ReactSFC0)
+const Container2 = Container0.withComponent(ReactFC0)
 ;<Container2 column={true} />
 // $ExpectError
 ;<Container2 />
@@ -173,7 +173,7 @@ const Container3 = Container0.withComponent(ReactClassComponent1)
 interface ContainerProps {
   extraWidth: string
 }
-const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
+const Container4 = styled(ReactFC2)<ContainerProps>(props => ({
   borderColor: 'black',
   borderWidth: props.extraWidth,
   borderStyle: 'solid'
@@ -184,7 +184,7 @@ const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
 // $ExpectError
 ;<Container4 value="5" />
 
-const Container5 = Container3.withComponent(ReactSFC2)
+const Container5 = Container3.withComponent(ReactFC2)
 ;<Container5 column={true} value={123} />
 // $ExpectError
 ;<Container5 />
@@ -194,7 +194,7 @@ const Container5 = Container3.withComponent(ReactSFC2)
 ;<Container5 value={242} />
 
 // $ExpectError
-styled(ReactSFC2)<ReactSFCProps1>()
+styled(ReactFC2)<ReactFCProps1>()
 
 /**
  * @todo
@@ -256,7 +256,7 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
 
   type SomethingToRead = Book | Magazine
 
-  const Readable: React.SFC<SomethingToRead> = props => {
+  const Readable: React.FC<SomethingToRead> = props => {
     if (props.kind === 'magazine') {
       return <div>magazine #{props.issue}</div>
     }

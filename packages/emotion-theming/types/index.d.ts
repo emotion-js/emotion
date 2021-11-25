@@ -22,11 +22,11 @@ export function useTheme<Theme>(): Theme
  */
 export function withTheme<C extends React.ComponentType<any>>(
   component: C
-): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
+): React.FC<AddOptionalTo<PropsOf<C>, 'theme'>>
 
 export interface EmotionTheming<Theme> {
   ThemeProvider(props: ThemeProviderProps<Theme>): React.ReactElement
   withTheme<C extends React.ComponentType<any>>(
     component: C
-  ): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
+  ): React.FC<AddOptionalTo<PropsOf<C>, 'theme'>>
 }
