@@ -77,6 +77,8 @@ type Props = {
   }) => React.Node
 }
 
+const Noop = () => null
+
 export const ClassNames = withEmotionCache<Props>((props, context) => {
   return (
     <ThemeContext.Consumer>
@@ -112,23 +114,25 @@ export const ClassNames = withEmotionCache<Props>((props, context) => {
         let content = { css, cx, theme }
         let ele = props.children(content)
         hasRendered = true
+        let possiblyStyleElement = <Noop />
         if (!isBrowser && rules.length !== 0) {
-          return (
-            <React.Fragment>
-              <style
-                {...{
-                  [`data-emotion-${context.key}`]: serializedHashes.substring(
-                    1
-                  ),
-                  dangerouslySetInnerHTML: { __html: rules },
-                  nonce: context.sheet.nonce
-                }}
-              />
-              {ele}
-            </React.Fragment>
+          possiblyStyleElement = (
+            <style
+              {...{
+                [`data-emotion-${context.key}`]: serializedHashes.substring(1),
+                dangerouslySetInnerHTML: { __html: rules },
+                nonce: context.sheet.nonce
+              }}
+            />
           )
         }
-        return ele
+        // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+        return (
+          <React.Fragment>
+            {possiblyStyleElement}
+            {ele}
+          </React.Fragment>
+        )
       }}
     </ThemeContext.Consumer>
   )

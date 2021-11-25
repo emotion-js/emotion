@@ -17,6 +17,7 @@ You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
 let isBrowser = typeof document !== 'undefined'
+const Noop = () => null
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -152,6 +153,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               }
 
               const ele = React.createElement(finalTag, newProps)
+              let possiblyStyleElement = <Noop />
               if (!isBrowser && rules !== undefined) {
                 let serializedNames = serialized.name
                 let next = serialized.next
@@ -159,20 +161,23 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                   serializedNames += ' ' + next.name
                   next = next.next
                 }
-                return (
-                  <React.Fragment>
-                    <style
-                      {...{
-                        [`data-emotion-${context.key}`]: serializedNames,
-                        dangerouslySetInnerHTML: { __html: rules },
-                        nonce: context.sheet.nonce
-                      }}
-                    />
-                    {ele}
-                  </React.Fragment>
+                possiblyStyleElement = (
+                  <style
+                    {...{
+                      [`data-emotion-${context.key}`]: serializedNames,
+                      dangerouslySetInnerHTML: { __html: rules },
+                      nonce: context.sheet.nonce
+                    }}
+                  />
                 )
               }
-              return ele
+              // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+              return (
+                <React.Fragment>
+                  {possiblyStyleElement}
+                  {ele}
+                </React.Fragment>
+              )
             }}
           </ThemeContext.Consumer>
         )
