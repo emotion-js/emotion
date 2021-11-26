@@ -2,12 +2,12 @@
  * @jest-environment node
  */
 
-import { RuleTester } from 'eslint'
-import { rules as emotionRules } from '@emotion/eslint-plugin'
+import { TSESLint } from '@typescript-eslint/experimental-utils'
+import rule from '../../src/rules/no-vanilla'
+import { espreeParser } from '../test-utils'
 
-const rule = emotionRules['no-vanilla']
-
-RuleTester.setDefaultConfig({
+const ruleTester = new TSESLint.RuleTester({
+  parser: espreeParser,
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -17,8 +17,6 @@ RuleTester.setDefaultConfig({
   }
 })
 
-const ruleTester = new RuleTester()
-
 ruleTester.run('no-vanilla', rule, {
   valid: [{ code: `import { css } from '@emotion/react'` }],
   invalid: [
@@ -26,7 +24,7 @@ ruleTester.run('no-vanilla', rule, {
       code: `import { css } from '@emotion/css'`,
       errors: [
         {
-          message: `Vanilla emotion should not be used`
+          messageId: 'vanillaEmotion'
         }
       ]
     }
