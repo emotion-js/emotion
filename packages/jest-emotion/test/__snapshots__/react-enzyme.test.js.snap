@@ -10,7 +10,8 @@ exports[`enzyme mount test 1`] = `
 }
 
 <Greeting>
-  <div
+  <Noop />
+<div
     className="emotion-0"
   >
     hello
@@ -37,7 +38,8 @@ exports[`enzyme test with prop containing css element 1`] = `
   }
 >
   <div>
-    <p
+    <Noop />
+<p
       className="emotion-0"
     >
       Hello
@@ -90,7 +92,8 @@ exports[`enzyme test with prop containing css element not at the top level 1`] =
     }
   >
     <div>
-      <p
+      <Noop />
+<p
         className="emotion-0"
         id="something"
       >
@@ -129,7 +132,8 @@ exports[`enzyme test with prop containing css element with other label 1`] = `
       />
     }
   >
-    <p
+    <Noop />
+<p
       className="emotion-0"
       id="something"
     >
@@ -161,7 +165,8 @@ exports[`enzyme test with prop containing css element with other props 1`] = `
   }
 >
   <div>
-    <p
+    <Noop />
+<p
       className="emotion-0"
       id="something"
     >
