@@ -10,7 +10,7 @@
 
 ### Minor Changes
 
-- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (the upcoming API of the React 18) is used within a tree below our components.
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (an upcoming API in React 18) is used within a tree below our components.
 
 ### Patch Changes
 
