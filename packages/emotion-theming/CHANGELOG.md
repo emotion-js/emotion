@@ -1,5 +1,11 @@
 # emotion-theming
 
+## 10.3.0
+
+### Minor Changes
+
+- [#2560](https://github.com/emotion-js/emotion/pull/2560) [`b5a26619`](https://github.com/emotion-js/emotion/commit/b5a26619b158703e9bc653f6297b33350c9e7b40) Thanks [@eps1lon](https://github.com/eps1lon)! - Dropped usage of a deprecated `SFC` React type in favor of `FC`. The `FC` type has been introduced in `@types/react@16.7.2` so this version of this package is now a minimum requirement for TypeScript users.
+
 ## 10.0.27
 
 ### Patch Changes

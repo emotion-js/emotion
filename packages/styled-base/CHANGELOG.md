@@ -1,5 +1,13 @@
 # @emotion/styled-base
 
+## 10.3.0
+
+### Minor Changes
+
+- [#2566](https://github.com/emotion-js/emotion/pull/2566) [`122e9f11`](https://github.com/emotion-js/emotion/commit/122e9f11bf3aec2100dd55cee00b74170abe1ec9) Thanks [@eps1lon](https://github.com/eps1lon), [@Andarist](https://github.com/Andarist)! - Fixed hydration mismatches if `React.useId` (an upcoming API in React 18) is used within a tree below our components.
+
+* [#2560](https://github.com/emotion-js/emotion/pull/2560) [`b5a26619`](https://github.com/emotion-js/emotion/commit/b5a26619b158703e9bc653f6297b33350c9e7b40) Thanks [@eps1lon](https://github.com/eps1lon)! - Dropped usage of a deprecated `SFC` React type in favor of `FC`. The `FC` type has been introduced in `@types/react@16.7.2` so this version of this package is now a minimum requirement for TypeScript users.
+
 ## 10.0.31
 
 ### Patch Changes
