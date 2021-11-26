@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@emotion/css": "11.5.0",
-    "@emotion/react": "11.6.0",
+    "@emotion/react": "11.7.0",
     "@types/jest": "^26.0.14",
     "dtslint": "^0.3.0",
     "enzyme-to-json": "^3.6.1",
