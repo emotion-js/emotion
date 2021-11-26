@@ -8,12 +8,12 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-import { RuleTester } from 'eslint'
-import { rules as emotionRules } from '@emotion/eslint-plugin'
+import { AST_NODE_TYPES, TSESLint } from '@typescript-eslint/experimental-utils'
+import rule from '../../src/rules/syntax-preference'
+import { espreeParser } from '../test-utils'
 
-const rule = emotionRules['syntax-preference']
-
-RuleTester.setDefaultConfig({
+const ruleTester = new TSESLint.RuleTester({
+  parser: espreeParser,
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -26,8 +26,6 @@ RuleTester.setDefaultConfig({
 // ------------------------------------------------------------------------------
 // Tests
 // ------------------------------------------------------------------------------
-
-const ruleTester = new RuleTester()
 
 ruleTester.run('syntax-preference (string)', rule, {
   valid: [
@@ -59,6 +57,10 @@ ruleTester.run('syntax-preference (string)', rule, {
     {
       code: `css(cls, css\`color: hotpink;\`)`,
       options: ['string']
+    },
+    {
+      code: `const Foo = () => <div css />`,
+      options: ['string']
     }
   ],
 
@@ -68,8 +70,8 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Styles should be written using strings.',
-          type: 'ObjectExpression'
+          messageId: 'preferStringStyle',
+          type: AST_NODE_TYPES.ObjectExpression
         }
       ]
     },
@@ -78,8 +80,8 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Styles should be written using strings.',
-          type: 'ObjectExpression'
+          messageId: 'preferStringStyle',
+          type: AST_NODE_TYPES.ObjectExpression
         }
       ]
     },
@@ -88,8 +90,8 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Styles should be written using strings.',
-          type: 'ObjectExpression'
+          messageId: 'preferStringStyle',
+          type: AST_NODE_TYPES.ObjectExpression
         }
       ]
     },
@@ -98,8 +100,8 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Prefer wrapping your string styles with `css` call.',
-          type: 'Literal'
+          messageId: 'preferWrappingWithCSS',
+          type: AST_NODE_TYPES.Literal
         }
       ]
     },
@@ -108,8 +110,8 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Prefer wrapping your string styles with `css` call.',
-          type: 'Literal'
+          messageId: 'preferWrappingWithCSS',
+          type: AST_NODE_TYPES.Literal
         }
       ]
     },
@@ -118,12 +120,12 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Prefer wrapping your string styles with `css` call.',
-          type: 'Literal'
+          messageId: 'preferWrappingWithCSS',
+          type: AST_NODE_TYPES.Literal
         },
         {
-          message: 'Styles should be written using strings.',
-          type: 'ObjectExpression'
+          messageId: 'preferStringStyle',
+          type: AST_NODE_TYPES.ObjectExpression
         }
       ]
     },
@@ -132,8 +134,8 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string'],
       errors: [
         {
-          message: 'Styles should be written using strings.',
-          type: 'ObjectExpression'
+          messageId: 'preferStringStyle',
+          type: AST_NODE_TYPES.ObjectExpression
         }
       ]
     }
@@ -162,6 +164,10 @@ ruleTester.run('syntax-preference (object)', rule, {
     {
       code: `const Foo = () => <div css={css({ color: 'hotpink' })} />`,
       options: ['object']
+    },
+    {
+      code: `const Foo = () => <div css />`,
+      options: ['object']
     }
   ],
 
@@ -171,8 +177,8 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'TaggedTemplateExpression'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.TaggedTemplateExpression
         }
       ]
     },
@@ -181,8 +187,8 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'TaggedTemplateExpression'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.TaggedTemplateExpression
         }
       ]
     },
@@ -191,8 +197,8 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'TaggedTemplateExpression'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.TaggedTemplateExpression
         }
       ]
     },
@@ -201,8 +207,8 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'Literal'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.Literal
         }
       ]
     },
@@ -211,8 +217,8 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'Literal'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.Literal
         }
       ]
     },
@@ -221,12 +227,12 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'Literal'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.Literal
         },
         {
-          message: 'Styles should be written using objects.',
-          type: 'TaggedTemplateExpression'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.TaggedTemplateExpression
         }
       ]
     },
@@ -235,12 +241,12 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object'],
       errors: [
         {
-          message: 'Styles should be written using objects.',
-          type: 'Literal'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.Literal
         },
         {
-          message: 'Styles should be written using objects.',
-          type: 'TaggedTemplateExpression'
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.TaggedTemplateExpression
         }
       ]
     }

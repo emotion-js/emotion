@@ -1,16 +1,24 @@
+import {
+  AST_NODE_TYPES,
+  TSESLint,
+  TSESTree
+} from '@typescript-eslint/experimental-utils'
+import { createRule } from '../utils'
+
 /**
  * @fileoverview Choose between string or object syntax
  * @author alex-pex
  */
 
-function isStringStyle(node) {
-  if (node.tag.type === 'Identifier' && node.tag.name === 'css') {
+function isStringStyle(node: TSESTree.TaggedTemplateExpression) {
+  if (node.tag.type === AST_NODE_TYPES.Identifier && node.tag.name === 'css') {
     return true
   }
   // shorthand notation
   // eg: styled.h1` color: red; `
   if (
-    node.tag.type === 'MemberExpression' &&
+    node.tag.type === AST_NODE_TYPES.MemberExpression &&
+    node.tag.object.type === AST_NODE_TYPES.Identifier &&
     node.tag.object.name === 'styled'
   ) {
     // string syntax used
@@ -19,7 +27,11 @@ function isStringStyle(node) {
 
   // full notation
   // eg: styled('h1')` color: red; `
-  if (node.tag.type === 'CallExpression' && node.tag.callee.name === 'styled') {
+  if (
+    node.tag.type === AST_NODE_TYPES.CallExpression &&
+    node.tag.callee.type === AST_NODE_TYPES.Identifier &&
+    node.tag.callee.name === 'styled'
+  ) {
     // string syntax used
     return true
   }
@@ -27,15 +39,19 @@ function isStringStyle(node) {
   return false
 }
 
-function isObjectStyle(node) {
-  if (node.callee.type === 'Identifier' && node.callee.name === 'css') {
+function isObjectStyle(node: TSESTree.CallExpression) {
+  if (
+    node.callee.type === AST_NODE_TYPES.Identifier &&
+    node.callee.name === 'css'
+  ) {
     return true
   }
 
   // shorthand notation
   // eg: styled.h1({ color: 'red' })
   if (
-    node.callee.type === 'MemberExpression' &&
+    node.callee.type === AST_NODE_TYPES.MemberExpression &&
+    node.callee.object.type === AST_NODE_TYPES.Identifier &&
     node.callee.object.name === 'styled'
   ) {
     // object syntax used
@@ -45,7 +61,8 @@ function isObjectStyle(node) {
   // full notation
   // eg: styled('h1')({ color: 'red' })
   if (
-    node.callee.type === 'CallExpression' &&
+    node.callee.type === AST_NODE_TYPES.CallExpression &&
+    node.callee.callee.type === AST_NODE_TYPES.Identifier &&
     node.callee.callee.name === 'styled'
   ) {
     // object syntax used
@@ -59,42 +76,42 @@ function isObjectStyle(node) {
 // Rule Definition
 // ------------------------------------------------------------------------------
 
-const MSG_PREFER_STRING_STYLE = 'Styles should be written using strings.'
-const MSG_PREFER_OBJECT_STYLE = 'Styles should be written using objects.'
-const MSG_PREFER_WRAPPING_WITH_CSS =
-  'Prefer wrapping your string styles with `css` call.'
-
-const checkExpressionPreferringObject = (context, node) => {
+const checkExpressionPreferringObject = (
+  context: RuleContext,
+  node: TSESTree.Node
+) => {
   switch (node.type) {
-    case 'ArrayExpression':
+    case AST_NODE_TYPES.ArrayExpression:
       node.elements.forEach(element =>
         checkExpressionPreferringObject(context, element)
       )
       return
-    case 'TemplateLiteral':
+    case AST_NODE_TYPES.TemplateLiteral:
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        messageId: 'preferObjectStyle'
       })
       return
-    case 'Literal':
+    case AST_NODE_TYPES.Literal:
       // validating other literal types seems out of scope of this plugin
       if (typeof node.value !== 'string') {
         return
       }
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        messageId: 'preferObjectStyle'
       })
   }
 }
 
-const createPreferredObjectVisitor = context => ({
+const createPreferredObjectVisitor = (
+  context: RuleContext
+): TSESLint.RuleListener => ({
   TaggedTemplateExpression(node) {
     if (isStringStyle(node)) {
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        messageId: 'preferObjectStyle'
       })
     }
   },
@@ -110,24 +127,27 @@ const createPreferredObjectVisitor = context => ({
       return
     }
 
-    switch (node.value.type) {
-      case 'Literal':
+    switch (node.value?.type) {
+      case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
         if (typeof node.value.value !== 'string') {
           return
         }
         context.report({
           node: node.value,
-          message: MSG_PREFER_OBJECT_STYLE
+          messageId: 'preferObjectStyle'
         })
         return
-      case 'JSXExpressionContainer':
+      case AST_NODE_TYPES.JSXExpressionContainer:
         checkExpressionPreferringObject(context, node.value.expression)
     }
   }
 })
 
-const checkExpressionPreferringString = (context, node) => {
+const checkExpressionPreferringString = (
+  context: RuleContext,
+  node: TSESTree.Node
+) => {
   switch (node.type) {
     case 'ArrayExpression':
       node.elements.forEach(element =>
@@ -137,7 +157,7 @@ const checkExpressionPreferringString = (context, node) => {
     case 'ObjectExpression':
       context.report({
         node,
-        message: MSG_PREFER_STRING_STYLE
+        messageId: 'preferStringStyle'
       })
       return
     case 'Literal':
@@ -147,12 +167,14 @@ const checkExpressionPreferringString = (context, node) => {
       }
       context.report({
         node,
-        message: MSG_PREFER_WRAPPING_WITH_CSS
+        messageId: 'preferWrappingWithCSS'
       })
   }
 }
 
-const createPreferredStringVisitor = context => ({
+const createPreferredStringVisitor = (
+  context: RuleContext
+): TSESLint.RuleListener => ({
   CallExpression(node) {
     if (isObjectStyle(node)) {
       node.arguments.forEach(argument =>
@@ -166,38 +188,53 @@ const createPreferredStringVisitor = context => ({
       return
     }
 
-    switch (node.value.type) {
-      case 'Literal':
+    switch (node.value?.type) {
+      case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
         if (typeof node.value.value !== 'string') {
           return
         }
         context.report({
           node: node.value,
-          message: MSG_PREFER_WRAPPING_WITH_CSS
+          messageId: 'preferWrappingWithCSS'
         })
         return
-      case 'JSXExpressionContainer':
+      case AST_NODE_TYPES.JSXExpressionContainer:
         checkExpressionPreferringString(context, node.value.expression)
     }
   }
 })
 
-export default {
+type RuleOptions = [('string' | 'object')?]
+
+type MessageId =
+  | 'preferStringStyle'
+  | 'preferObjectStyle'
+  | 'preferWrappingWithCSS'
+
+type RuleContext = TSESLint.RuleContext<MessageId, RuleOptions>
+
+export default createRule<RuleOptions, MessageId>({
+  name: __filename,
   meta: {
     docs: {
-      description: 'Choose between string or object styles',
       category: 'Stylistic Issues',
+      description: 'Choose between styles written as strings or objects',
       recommended: false
     },
-    fixable: null, // or "code" or "whitespace"
+    messages: {
+      preferStringStyle: 'Styles should be written using strings.',
+      preferObjectStyle: 'Styles should be written using objects.',
+      preferWrappingWithCSS: `Prefer wrapping your string styles with \`css\` call.`
+    },
     schema: [
       {
         enum: ['string', 'object']
       }
-    ]
+    ],
+    type: 'problem'
   },
-
+  defaultOptions: [],
   create(context) {
     const preferredSyntax = context.options[0]
 
@@ -210,4 +247,4 @@ export default {
         return {}
     }
   }
-}
+})
