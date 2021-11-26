@@ -14,7 +14,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.2.1"
   },
   "files": [
     "src",

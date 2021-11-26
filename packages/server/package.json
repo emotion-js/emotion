@@ -32,7 +32,7 @@
     "@emotion/css": "11.5.0",
     "@emotion/css-prettifier": "1.0.0",
     "@types/node": "^10.11.4",
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.2.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

@@ -6,10 +6,14 @@
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "noEmit": true,
-    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
     "strict": true,
     "target": "es5"
   },
   "include": ["packages", "scripts", "site", "test", "playgrounds"],
-  "exclude": ["node_modules", "packages/*/types/test/*"]
+  "exclude": [
+    "node_modules",
+    "packages/*/types/test/*",
+    "packages/*/types/test*"
+  ]
 }

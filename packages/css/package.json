@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.2.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

@@ -5,10 +5,11 @@
   "scripts": {
     "build:watch": "preconstruct watch",
     "build": "preconstruct build",
+    "tsc": "tsc",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
-    "test:typescript": "yarn workspaces run test:typescript",
+    "test:typescript": "yarn workspaces foreach run test:typescript",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "test:prod": "yarn build && jest -c jest.dist.js --no-cache --ci --runInBand",
     "lint:check": "eslint .",
@@ -23,12 +24,6 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish"
-  },
-  "resolutions": {
-    "**/react": "16.14.0",
-    "**/react-dom": "16.14.0",
-    "**/browserslist": "^3.2.8",
-    "**/graphql-type-json": "0.2.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -126,9 +121,6 @@
       "site",
       "scripts/*",
       "playgrounds/*"
-    ],
-    "nohoist": [
-      "**/dtslint"
     ]
   },
   "preconstruct": {
@@ -214,7 +206,7 @@
     "bundlesize": "^0.13.2",
     "codecov": "^2.3.1",
     "cssjanus": "^1.2.0",
-    "dtslint": "^0.3.0",
+    "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
@@ -263,5 +255,6 @@
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "3.3.2",
     "worker-loader": "2.0.0"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
