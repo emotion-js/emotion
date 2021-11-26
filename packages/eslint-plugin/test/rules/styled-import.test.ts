@@ -2,12 +2,12 @@
  * @jest-environment node
  */
 
-import { RuleTester } from 'eslint'
-import { rules as emotionRules } from '@emotion/eslint-plugin'
+import { TSESLint } from '@typescript-eslint/experimental-utils'
+import rule from '../../src/rules/styled-import'
+import { espreeParser } from '../test-utils'
 
-const rule = emotionRules['styled-import']
-
-RuleTester.setDefaultConfig({
+const ruleTester = new TSESLint.RuleTester({
+  parser: espreeParser,
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -16,8 +16,6 @@ RuleTester.setDefaultConfig({
     }
   }
 })
-
-const ruleTester = new RuleTester()
 
 ruleTester.run('emotion styled', rule, {
   valid: [
@@ -35,7 +33,7 @@ import styled from 'react-emotion'
       `.trim(),
       errors: [
         {
-          message: `styled should be imported from @emotion/styled`
+          messageId: 'incorrectImport'
         }
       ],
       output: `
