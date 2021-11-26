@@ -2,12 +2,12 @@
  * @jest-environment node
  */
 
-import { RuleTester } from 'eslint'
-import { rules as emotionRules } from '@emotion/eslint-plugin'
+import { TSESLint } from '@typescript-eslint/experimental-utils'
+import rule from '../../src/rules/jsx-import'
+import { espreeParser } from '../test-utils'
 
-const rule = emotionRules['jsx-import']
-
-RuleTester.setDefaultConfig({
+const ruleTester = new TSESLint.RuleTester({
+  parser: espreeParser,
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -16,8 +16,6 @@ RuleTester.setDefaultConfig({
     }
   }
 })
-
-const ruleTester = new RuleTester()
 
 ruleTester.run('emotion jsx', rule, {
   valid: [
@@ -73,6 +71,13 @@ ruleTester.run('emotion jsx', rule, {
 
       let ele = <div notCss={{}} />
       `
+    },
+    {
+      code: `
+        /** @jsx jsx */
+        import {jsx} from '@emotion/react'
+        let ele = <div css />
+      `
     }
   ],
 
@@ -84,8 +89,7 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -101,8 +105,8 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsxImportSource is set to @emotion/react'
+          messageId: 'cssProp',
+          data: { importSource: '@emotion/react' }
         }
       ],
       output: `
@@ -117,8 +121,8 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsxImportSource is set to @iChenLei/react'
+          messageId: 'cssProp',
+          data: { importSource: '@iChenLei/react' }
         }
       ],
       output: `
@@ -134,8 +138,8 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsxImportSource is set to @iChenLei/react'
+          messageId: 'cssProp',
+          data: { importSource: '@iChenLei/react' }
         }
       ],
       output: `
@@ -150,8 +154,7 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -168,8 +171,7 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -186,8 +188,7 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -203,8 +204,7 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -219,8 +219,7 @@ let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -231,13 +230,30 @@ let ele = <div css={{}} />
     },
     {
       code: `
+/** @jsx jsx */
+import * as emotion from '@emotion/react'
+let ele = <div css={\`color:hotpink;\`} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+/** @jsx jsx */
+/** @jsx emotion.jsx */
+import * as emotion from '@emotion/react'
+let ele = <div css={\`color:hotpink;\`} />
+      `.trim()
+    },
+    {
+      code: `
 import {jsx} from '@emotion/react'
 let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -254,12 +270,10 @@ let ele2 = <div css={{}} />
       `.trim(),
       errors: [
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         },
         {
-          message:
-            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+          messageId: 'cssPropWithPragma'
         }
       ],
       output: `
@@ -278,8 +292,7 @@ let ele2 = <div css={{}} />
           `.trim(),
       errors: [
         {
-          message:
-            'Template literals should be replaced with tagged template literals using `css` when using the css prop'
+          messageId: 'templateLiterals'
         }
       ],
       output: `
@@ -297,8 +310,7 @@ let ele2 = <div css={{}} />
           `.trim(),
       errors: [
         {
-          message:
-            'Template literals should be replaced with tagged template literals using `css` when using the css prop'
+          messageId: 'templateLiterals'
         }
       ],
       output: `
@@ -316,8 +328,7 @@ let ele2 = <div css={{}} />
           `.trim(),
       errors: [
         {
-          message:
-            'Template literals should be replaced with tagged template literals using `css` when using the css prop'
+          messageId: 'templateLiterals'
         }
       ],
       output: `

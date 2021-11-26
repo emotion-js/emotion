@@ -1,3 +1,6 @@
+import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/experimental-utils'
+import { createRule } from '../utils'
+
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 
@@ -6,9 +9,35 @@ const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 // to
 // <div css={css`color:hotpink;`} /> + import { css }
 
-export default {
+declare module '@typescript-eslint/experimental-utils/dist/ts-eslint/Rule' {
+  export interface SharedConfigurationSettings {
+    react?: { pragma?: string }
+  }
+}
+
+interface JSXConfig {
+  runtime: string
+  importSource?: string
+}
+
+type RuleOptions = [(JSXConfig | string)?]
+
+const messages = {
+  cssProp: `The css prop can only be used if jsxImportSource is set to {{ importSource }}`,
+  cssPropWithPragma: `The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma`,
+  templateLiterals: `Template literals should be replaced with tagged template literals using \`css\` when using the css prop`
+}
+
+export default createRule<RuleOptions, keyof typeof messages>({
+  name: __filename,
   meta: {
+    docs: {
+      category: 'Possible Errors',
+      description: 'Ensure jsx from @emotion/react is imported',
+      recommended: false
+    },
     fixable: 'code',
+    messages,
     schema: {
       type: 'array',
       items: {
@@ -29,11 +58,14 @@ export default {
       },
       uniqueItems: true,
       minItems: 0
-    }
+    },
+    type: 'problem'
   },
+  defaultOptions: [],
   create(context) {
     const jsxRuntimeMode = context.options.find(
-      option => option && option.runtime === 'automatic'
+      (option): option is JSXConfig =>
+        typeof option === 'object' && option.runtime === 'automatic'
     )
 
     if (jsxRuntimeMode) {
@@ -42,15 +74,14 @@ export default {
           if (node.name.name !== 'css') {
             return
           }
-          const importSource =
-            (jsxRuntimeMode || {}).importSource || '@emotion/react'
-          let jsxImportSourcePragmaNode
+          const importSource = jsxRuntimeMode?.importSource || '@emotion/react'
+          let jsxImportSourcePragmaComment: TSESTree.Comment | null = null
           let jsxImportSourceMatch
           let validJsxImportSource = false
           let sourceCode = context.getSourceCode()
-          let pragma = sourceCode.getAllComments().find(node => {
-            if (JSX_IMPORT_SOURCE_REGEX.test(node.value)) {
-              jsxImportSourcePragmaNode = node
+          let pragma = sourceCode.getAllComments().find(comment => {
+            if (JSX_IMPORT_SOURCE_REGEX.test(comment.value)) {
+              jsxImportSourcePragmaComment = comment
               return true
             }
           })
@@ -65,7 +96,8 @@ export default {
           if (!jsxImportSourceMatch) {
             context.report({
               node,
-              message: `The css prop can only be used if jsxImportSource is set to ${importSource}`,
+              messageId: 'cssProp',
+              data: { importSource },
               fix(fixer) {
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
@@ -73,13 +105,21 @@ export default {
                 )
               }
             })
-          } else if (!validJsxImportSource && jsxImportSourcePragmaNode) {
+          } else if (!validJsxImportSource && jsxImportSourcePragmaComment) {
             context.report({
               node,
-              message: `The css prop can only be used if jsxImportSource is set to ${importSource}`,
+              messageId: 'cssProp',
+              data: { importSource },
               fix(fixer) {
+                /* istanbul ignore if */
+                if (jsxImportSourcePragmaComment === null) {
+                  throw new Error(
+                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at https://github.com/emotion-js/emotion`
+                  )
+                }
+
                 return fixer.replaceText(
-                  jsxImportSourcePragmaNode,
+                  jsxImportSourcePragmaComment,
                   `/** @jsxImportSource ${importSource} */`
                 )
               }
@@ -95,12 +135,12 @@ export default {
           return
         }
         let hasJsxImport = false
-        let emotionCoreNode = null
-        let local = null
+        let emotionCoreNode = null as TSESTree.ImportDeclaration | null
+        let local: string | null = null
         let sourceCode = context.getSourceCode()
         sourceCode.ast.body.forEach(x => {
           if (
-            x.type === 'ImportDeclaration' &&
+            x.type === AST_NODE_TYPES.ImportDeclaration &&
             (x.source.value === '@emotion/react' ||
               x.source.value === '@emotion/core')
           ) {
@@ -108,13 +148,15 @@ export default {
 
             if (
               x.specifiers.length === 1 &&
-              x.specifiers[0].type === 'ImportNamespaceSpecifier'
+              x.specifiers[0].type === AST_NODE_TYPES.ImportNamespaceSpecifier
             ) {
               hasJsxImport = true
               local = x.specifiers[0].local.name + '.jsx'
             } else {
               let jsxSpecifier = x.specifiers.find(
-                x => x.type === 'ImportSpecifier' && x.imported.name === 'jsx'
+                x =>
+                  x.type === AST_NODE_TYPES.ImportSpecifier &&
+                  x.imported.name === 'jsx'
               )
               if (jsxSpecifier) {
                 hasJsxImport = true
@@ -138,10 +180,16 @@ export default {
         if (!hasJsxImport || !hasSetPragma) {
           context.report({
             node,
-            message:
-              'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma',
+            messageId: 'cssPropWithPragma',
             fix(fixer) {
               if (hasJsxImport) {
+                /* istanbul ignore if */
+                if (emotionCoreNode === null) {
+                  throw new Error(
+                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at https://github.com/emotion-js/emotion`
+                  )
+                }
+
                 return fixer.insertTextBefore(
                   emotionCoreNode,
                   `/** @jsx ${local} */\n`
@@ -154,7 +202,9 @@ export default {
                       emotionCoreNode.specifiers.length - 1
                     ]
 
-                  if (lastSpecifier.type === 'ImportDefaultSpecifier') {
+                  if (
+                    lastSpecifier.type === AST_NODE_TYPES.ImportDefaultSpecifier
+                  ) {
                     return fixer.insertTextAfter(lastSpecifier, ', { jsx }')
                   }
 
@@ -174,38 +224,48 @@ export default {
           })
           return
         }
+
+        /* istanbul ignore if */
+        if (emotionCoreNode === null) {
+          throw new Error(
+            `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at https://github.com/emotion-js/emotion`
+          )
+        }
+
+        const { specifiers } = emotionCoreNode
+        const { value } = node
+
         if (
-          node.value.type === 'JSXExpressionContainer' &&
-          node.value.expression.type === 'TemplateLiteral'
+          value &&
+          value.type === AST_NODE_TYPES.JSXExpressionContainer &&
+          value.expression.type === AST_NODE_TYPES.TemplateLiteral
         ) {
-          let cssSpecifier = emotionCoreNode.specifiers.find(
-            x => x.imported.name === 'css'
+          let cssSpecifier = specifiers.find(
+            x =>
+              x.type === AST_NODE_TYPES.ImportSpecifier &&
+              x.imported.name === 'css'
           )
           context.report({
             node,
-            message:
-              'Template literals should be replaced with tagged template literals using `css` when using the css prop',
+            messageId: 'templateLiterals',
             fix(fixer) {
               if (cssSpecifier) {
                 return fixer.insertTextBefore(
-                  node.value.expression,
+                  value.expression,
                   cssSpecifier.local.name
                 )
               }
-              let lastSpecifier =
-                emotionCoreNode.specifiers[
-                  emotionCoreNode.specifiers.length - 1
-                ]
+              let lastSpecifier = specifiers[specifiers.length - 1]
 
               if (context.getScope().variables.some(x => x.name === 'css')) {
                 return [
                   fixer.insertTextAfter(lastSpecifier, `, css as _css`),
-                  fixer.insertTextBefore(node.value.expression, '_css')
+                  fixer.insertTextBefore(value.expression, '_css')
                 ]
               }
               return [
                 fixer.insertTextAfter(lastSpecifier, `, css`),
-                fixer.insertTextBefore(node.value.expression, 'css')
+                fixer.insertTextBefore(value.expression, 'css')
               ]
             }
           })
@@ -213,4 +273,4 @@ export default {
       }
     }
   }
-}
+})
