@@ -1,3 +1,3 @@
-// TypeScript Version: 2.2
+// TypeScript Version: 4.0
 
 export * from '../src'

@@ -111,7 +111,9 @@ const Canvas1 = styled('canvas', {
 ;<Canvas1 />
 
 const styledWithForwardedExtraProp = styled('div', {
-  shouldForwardProp: prop => prop !== 'priority' && isPropValid(prop)
+  shouldForwardProp: prop =>
+    prop !== 'priority' &&
+    isPropValid(typeof prop === 'string' ? prop : prop.toString())
 })
 
 type Priority = 'info' | 'warning' | 'error'

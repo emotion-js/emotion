@@ -250,7 +250,7 @@
     "react18-dom": "npm:react-dom@alpha",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
-    "typescript": "^4.2.4",
+    "typescript": "^4.5.2",
     "unified": "^6.1.6",
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "3.3.2",

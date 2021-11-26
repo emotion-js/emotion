@@ -20,6 +20,8 @@ export type {
   CSSObject
 } from '@emotion/serialize'
 
+declare const process: { env: { NODE_ENV: string } }
+
 function insertWithoutScoping(
   cache: EmotionCache,
   serialized: SerializedStyles
