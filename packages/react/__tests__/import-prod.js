@@ -21,6 +21,12 @@ expect.addSnapshotSerializer({
 })
 
 test('it works', () => {
+  // Don't log a warning that we expect to occur
+  jest.spyOn(global.console, 'error').mockImplementation((...args) => {
+    if (args[0].startsWith('act(...) is not supported in production')) return
+    console.error(args)
+  })
+
   render(
     <div>
       <Comp>something</Comp>
