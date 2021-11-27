@@ -1,8 +1,9 @@
 /**
  * This is a test of @emotion/react/src/suppress-safari-class-name-mismatch.js.
  *
- * You need to disable @emotion/babel-plugin in nextjs/.babelrc.js for the test
- * to be valid, since the Babel plugin determines labels at compile time.
+ * You need to disable @emotion/babel-plugin in playgrounds/nextjs/.babelrc.js
+ * for the test to be valid, since the Babel plugin determines labels at compile
+ * time.
  */
 import Head from 'next/head'
 
@@ -33,7 +34,7 @@ export default function SafariClassNameMismatch() {
 
       <h1>Safari Class Name Mismatch</h1>
       <MyComponent />
-      {/* <MyComponent2 /> */}
+      <MyComponent2 />
     </div>
   )
 }
