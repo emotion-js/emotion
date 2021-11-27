@@ -6,6 +6,7 @@ import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
+import { suppressSafariClassNameMismatch } from './suppress-safari-class-name-mismatch'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -53,6 +54,9 @@ const Noop = () => null
 
 let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
   (props, cache, ref) => {
+    if (process.env.NODE_ENV !== 'production')
+      suppressSafariClassNameMismatch(cache)
+
     let cssProp = props.css
 
     // so that using `css` from `emotion` and passing the result to the css prop works
