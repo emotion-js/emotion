@@ -1,6 +1,7 @@
 import { ESLintUtils } from '@typescript-eslint/experimental-utils'
 import { parse as parsePath } from 'path'
-import { version } from '../package.json'
+
+const { version } = require('../package.json')
 
 const REPO_URL = 'https://github.com/emotion-js/emotion'
 
