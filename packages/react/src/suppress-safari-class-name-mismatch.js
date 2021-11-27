@@ -60,8 +60,8 @@ const jsEngineDoesProperTailCalls = !__properTailCallTestFunction().includes(
  *    that used the CSS prop. (Or the parent's parent, .etc)
  *
  * We have no way to prevent the class name mismatch, so we override
- * console.error and hide class name mismatch warnings if the styles in the
- * cache are the same except the label.
+ * console.error and hide class name mismatch warnings if it looks to be the
+ * result of failed label extraction.
  *
  * This code only runs in development.
  */
