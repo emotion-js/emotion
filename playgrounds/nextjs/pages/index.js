@@ -4,7 +4,7 @@ export default function Index() {
   return (
     <div>
       <Head>
-        <title>Safari Class Name Mismatch</title>
+        <title>Next.js Playground</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
