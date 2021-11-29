@@ -52,7 +52,7 @@
     "@emotion/css-prettifier": "1.0.0",
     "@emotion/server": "11.4.0",
     "@emotion/styled": "11.6.0",
-    "@types/react": "^16.9.11",
+    "@types/react": "^16.14.21",
     "dtslint": "^0.3.0",
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",

@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap-reboot.min.css'
+import '../public/bootstrap-reboot.min.css'
 
 import type { AppProps } from 'next/app'
 
