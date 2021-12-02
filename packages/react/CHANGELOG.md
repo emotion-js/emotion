@@ -1,10 +1,16 @@
 # @emotion/react
 
+## 11.7.0
+
+### Patch Changes
+
+- [#2534](https://github.com/emotion-js/emotion/pull/2534) [`57be9e8c`](https://github.com/emotion-js/emotion/commit/57be9e8cb20313bd2ed297a39c41ca0f0ca37ea8) Thanks [@srmagura](https://github.com/srmagura)! - Changed the implementation of the runtime label extraction in elements using the css prop (that only happens in development) to one that should yield more consistent results across browsers. This fixes some minor issues with React reporting hydration mismatches that wouldn't happen in production.
+
 ## 11.6.0
 
 ### Minor Changes
 
-- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (the upcoming API of the React 18) is used within a tree below our components.
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (an upcoming API in React 18) is used within a tree below our components.
 
 ### Patch Changes
 

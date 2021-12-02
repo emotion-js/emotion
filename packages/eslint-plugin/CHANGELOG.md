@@ -1,5 +1,11 @@
 # @emotion/eslint-plugin
 
+## 11.7.0
+
+### Minor Changes
+
+- [#2562](https://github.com/emotion-js/emotion/pull/2562) [`f046ae40`](https://github.com/emotion-js/emotion/commit/f046ae40bcae24400068311690a94ba2dbf20344) Thanks [@G-Rath](https://github.com/G-Rath)! - ESLint 8 has been added to the peer dependency range (ESLint 6 and ESLint 7 are still being supported).
+
 ## 11.5.0
 
 ### Patch Changes
