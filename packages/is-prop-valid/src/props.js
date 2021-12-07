@@ -1,7 +1,9 @@
 // @flow
 const props = {
+  // https://github.com/facebook/react/blob/ca106a02d1648f4f0048b07c6b88f69aac175d3c/fixtures/attribute-behavior/src/attributes.js#L27
+  
   // react props
-  // https://github.com/facebook/react/blob/5495a7f24aef85ba6937truetrue1ce962673ca9f5fde6/src/renderers/dom/shared/hooks/ReactDOMUnknownPropertyHook.js
+
   children: true,
   dangerouslySetInnerHTML: true,
   key: true,
@@ -15,7 +17,6 @@ const props = {
   // deprecated react prop
   valueLink: true,
 
-  // https://github.com/facebook/react/blob/d7157651f7b72d9888ctrue123e191f9b88cd8f41e9/src/renderers/dom/shared/HTMLDOMPropertyConfig.js
   /**
    * Standard Properties
    */
