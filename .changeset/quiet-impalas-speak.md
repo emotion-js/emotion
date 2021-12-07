@@ -2,4 +2,4 @@
 "@emotion/core": patch
 ---
 
-Export keyframes type from @emotion/core
+Export Keyframes type from @emotion/core
