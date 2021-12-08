@@ -1,5 +1,11 @@
 # @emotion/core
 
+## 10.3.1
+
+### Patch Changes
+
+- [#2576](https://github.com/emotion-js/emotion/pull/2576) [`33c01578`](https://github.com/emotion-js/emotion/commit/33c015780edc4f812d36ac7f0d228cd339873736) Thanks [@Methuselah96](https://github.com/Methuselah96)! - Export `Keyframes` type to avoid TypeScript inserting `import("@emotion/serialize").Keyframes` references into declaration files emitted based on a source files exporting `keyframes` result. This avoids issues with strict package managers that don't allow accessing undeclared dependencies.
+
 ## 10.3.0
 
 ### Minor Changes
