@@ -129,6 +129,13 @@ function getDeclaratorName(path, t) {
     return parent.node.id.name || ''
   }
 
+  if (parent.isArrowFunctionExpression()) {
+    const parentDeclaratorName = getDeclaratorName(parent, t)
+    if (parentDeclaratorName) {
+      return parentDeclaratorName
+    }
+  }
+
   // we could also have an object property
   const objPropertyLikeName = getObjPropertyLikeName(parent, t)
 

@@ -727,6 +727,138 @@ const {
 }} />));"
 `;
 
+exports[`emotion-babel-plugin css object-returned-by-function 1`] = `
+"import { css } from '@emotion/react'
+
+export default () => {
+  return {
+    color: css\`
+      color: hotpink;
+    \`,
+    colorFn1: () => css\`
+      color: hotpink;
+    \`,
+    colorFn2() {
+      return css\`
+        color: hotpink;
+      \`
+    }
+  }
+}
+
+export const { useStyles } = {
+  useStyles: () => {
+    return {
+      color: css\`
+        color: hotpink;
+      \`,
+      colorFn1: () => css\`
+        color: hotpink;
+      \`,
+      colorFn2() {
+        return css\`
+          color: hotpink;
+        \`
+      }
+    }
+  }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { css } from '@emotion/react';
+
+var _ref4 = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"f1tcxv-colorFn2\\",
+  styles: \\"color:hotpink;label:colorFn2;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFXZ0IiLCJmaWxlIjoib2JqZWN0LXJldHVybmVkLWJ5LWZ1bmN0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmV4cG9ydCBkZWZhdWx0ICgpID0+IHtcbiAgcmV0dXJuIHtcbiAgICBjb2xvcjogY3NzYFxuICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgYCxcbiAgICBjb2xvckZuMTogKCkgPT4gY3NzYFxuICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgYCxcbiAgICBjb2xvckZuMigpIHtcbiAgICAgIHJldHVybiBjc3NgXG4gICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgYFxuICAgIH1cbiAgfVxufVxuXG5leHBvcnQgY29uc3QgeyB1c2VTdHlsZXMgfSA9IHtcbiAgdXNlU3R5bGVzOiAoKSA9PiB7XG4gICAgcmV0dXJuIHtcbiAgICAgIGNvbG9yOiBjc3NgXG4gICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgYCxcbiAgICAgIGNvbG9yRm4xOiAoKSA9PiBjc3NgXG4gICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgYCxcbiAgICAgIGNvbG9yRm4yKCkge1xuICAgICAgICByZXR1cm4gY3NzYFxuICAgICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgICBgXG4gICAgICB9XG4gICAgfVxuICB9XG59Il19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref5 = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"1pr7txl-colorFn1\\",
+  styles: \\"color:hotpink;label:colorFn1;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFPdUIiLCJmaWxlIjoib2JqZWN0LXJldHVybmVkLWJ5LWZ1bmN0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmV4cG9ydCBkZWZhdWx0ICgpID0+IHtcbiAgcmV0dXJuIHtcbiAgICBjb2xvcjogY3NzYFxuICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgYCxcbiAgICBjb2xvckZuMTogKCkgPT4gY3NzYFxuICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgYCxcbiAgICBjb2xvckZuMigpIHtcbiAgICAgIHJldHVybiBjc3NgXG4gICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgYFxuICAgIH1cbiAgfVxufVxuXG5leHBvcnQgY29uc3QgeyB1c2VTdHlsZXMgfSA9IHtcbiAgdXNlU3R5bGVzOiAoKSA9PiB7XG4gICAgcmV0dXJuIHtcbiAgICAgIGNvbG9yOiBjc3NgXG4gICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgYCxcbiAgICAgIGNvbG9yRm4xOiAoKSA9PiBjc3NgXG4gICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgYCxcbiAgICAgIGNvbG9yRm4yKCkge1xuICAgICAgICByZXR1cm4gY3NzYFxuICAgICAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgICAgICBgXG4gICAgICB9XG4gICAgfVxuICB9XG59Il19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref6 = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"1agosxk-color\\",
+  styles: \\"color:hotpink;label:color;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJYyIsImZpbGUiOiJvYmplY3QtcmV0dXJuZWQtYnktZnVuY3Rpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZXhwb3J0IGRlZmF1bHQgKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIGNvbG9yOiBjc3NgXG4gICAgICBjb2xvcjogaG90cGluaztcbiAgICBgLFxuICAgIGNvbG9yRm4xOiAoKSA9PiBjc3NgXG4gICAgICBjb2xvcjogaG90cGluaztcbiAgICBgLFxuICAgIGNvbG9yRm4yKCkge1xuICAgICAgcmV0dXJuIGNzc2BcbiAgICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgICBgXG4gICAgfVxuICB9XG59XG5cbmV4cG9ydCBjb25zdCB7IHVzZVN0eWxlcyB9ID0ge1xuICB1c2VTdHlsZXM6ICgpID0+IHtcbiAgICByZXR1cm4ge1xuICAgICAgY29sb3I6IGNzc2BcbiAgICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgICBgLFxuICAgICAgY29sb3JGbjE6ICgpID0+IGNzc2BcbiAgICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgICBgLFxuICAgICAgY29sb3JGbjIoKSB7XG4gICAgICAgIHJldHVybiBjc3NgXG4gICAgICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgICAgIGBcbiAgICAgIH1cbiAgICB9XG4gIH1cbn0iXX0= */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+export default (() => {
+  return {
+    color: _ref6,
+    colorFn1: () => _ref5,
+
+    colorFn2() {
+      return _ref4;
+    }
+
+  };
+});
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"f1tcxv-colorFn2\\",
+  styles: \\"color:hotpink;label:colorFn2;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUE0QmtCIiwiZmlsZSI6Im9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiB7XG4gIHJldHVybiB7XG4gICAgY29sb3I6IGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGAsXG4gICAgY29sb3JGbjE6ICgpID0+IGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGAsXG4gICAgY29sb3JGbjIoKSB7XG4gICAgICByZXR1cm4gY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGBcbiAgICB9XG4gIH1cbn1cblxuZXhwb3J0IGNvbnN0IHsgdXNlU3R5bGVzIH0gPSB7XG4gIHVzZVN0eWxlczogKCkgPT4ge1xuICAgIHJldHVybiB7XG4gICAgICBjb2xvcjogY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGAsXG4gICAgICBjb2xvckZuMTogKCkgPT4gY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGAsXG4gICAgICBjb2xvckZuMigpIHtcbiAgICAgICAgcmV0dXJuIGNzc2BcbiAgICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgICAgYFxuICAgICAgfVxuICAgIH1cbiAgfVxufSJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref2 = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"1pr7txl-colorFn1\\",
+  styles: \\"color:hotpink;label:colorFn1;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3QnlCIiwiZmlsZSI6Im9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiB7XG4gIHJldHVybiB7XG4gICAgY29sb3I6IGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGAsXG4gICAgY29sb3JGbjE6ICgpID0+IGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGAsXG4gICAgY29sb3JGbjIoKSB7XG4gICAgICByZXR1cm4gY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGBcbiAgICB9XG4gIH1cbn1cblxuZXhwb3J0IGNvbnN0IHsgdXNlU3R5bGVzIH0gPSB7XG4gIHVzZVN0eWxlczogKCkgPT4ge1xuICAgIHJldHVybiB7XG4gICAgICBjb2xvcjogY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGAsXG4gICAgICBjb2xvckZuMTogKCkgPT4gY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGAsXG4gICAgICBjb2xvckZuMigpIHtcbiAgICAgICAgcmV0dXJuIGNzc2BcbiAgICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgICAgYFxuICAgICAgfVxuICAgIH1cbiAgfVxufSJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref3 = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"1agosxk-color\\",
+  styles: \\"color:hotpink;label:color;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxQmdCIiwiZmlsZSI6Im9iamVjdC1yZXR1cm5lZC1ieS1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiB7XG4gIHJldHVybiB7XG4gICAgY29sb3I6IGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGAsXG4gICAgY29sb3JGbjE6ICgpID0+IGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGAsXG4gICAgY29sb3JGbjIoKSB7XG4gICAgICByZXR1cm4gY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGBcbiAgICB9XG4gIH1cbn1cblxuZXhwb3J0IGNvbnN0IHsgdXNlU3R5bGVzIH0gPSB7XG4gIHVzZVN0eWxlczogKCkgPT4ge1xuICAgIHJldHVybiB7XG4gICAgICBjb2xvcjogY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGAsXG4gICAgICBjb2xvckZuMTogKCkgPT4gY3NzYFxuICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgIGAsXG4gICAgICBjb2xvckZuMigpIHtcbiAgICAgICAgcmV0dXJuIGNzc2BcbiAgICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgICAgYFxuICAgICAgfVxuICAgIH1cbiAgfVxufSJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+export const {
+  useStyles
+} = {
+  useStyles: () => {
+    return {
+      color: _ref3,
+      colorFn1: () => _ref2,
+
+      colorFn2() {
+        return _ref;
+      }
+
+    };
+  }
+};"
+`;
+
 exports[`emotion-babel-plugin css other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/react'
 
