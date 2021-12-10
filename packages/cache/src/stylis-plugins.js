@@ -101,7 +101,12 @@ export let compat = element => {
     element.column === parent.column && element.line === parent.line
 
   while (parent.type !== 'rule') {
-    if (parent.type !== '@media' && parent.type !== '@supports') {
+    if (
+      // @media
+      parent.type.charCodeAt(1) !== 109 &&
+      // @supports
+      parent.type.charCodeAt(1) !== 115
+    ) {
       return
     }
     parent = parent.parent
