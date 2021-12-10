@@ -89,8 +89,9 @@ export let compat = element => {
   if (
     element.type !== 'rule' ||
     !element.parent ||
-    // .length indicates if this rule contains pseudo or not
-    !element.length
+    // positive .length indicates that this rule contains pseudo
+    // negative .length indicates that this rule has been already prefixed
+    element.length < 1
   ) {
     return
   }
@@ -100,6 +101,9 @@ export let compat = element => {
     element.column === parent.column && element.line === parent.line
 
   while (parent.type !== 'rule') {
+    if (parent.type !== '@media' && parent.type !== '@supports') {
+      return
+    }
     parent = parent.parent
     if (!parent) return
   }
