@@ -28,9 +28,9 @@
     }
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "11.3.0",
-    "@emotion/css": "11.5.0",
-    "@emotion/css-prettifier": "1.0.0",
+    "@emotion/babel-plugin": "11.7.1",
+    "@emotion/css": "11.7.1",
+    "@emotion/css-prettifier": "1.0.1",
     "@types/node": "^10.11.4",
     "dtslint": "^0.3.0"
   },
