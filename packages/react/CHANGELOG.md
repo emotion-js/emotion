@@ -1,5 +1,16 @@
 # @emotion/react
 
+## 11.7.1
+
+### Patch Changes
+
+- [#2577](https://github.com/emotion-js/emotion/pull/2577) [`04681a5f`](https://github.com/emotion-js/emotion/commit/04681a5f520b3e3909e567fda200622494dd333b) Thanks [@Methuselah96](https://github.com/Methuselah96)! - Export `Keyframes` type to avoid TypeScript inserting `import("@emotion/serialize").Keyframes` references into declaration files emitted based on a source files exporting `keyframes` result. This avoids issues with strict package managers that don't allow accessing undeclared dependencies.
+
+* [#2590](https://github.com/emotion-js/emotion/pull/2590) [`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d) Thanks [@Andarist](https://github.com/Andarist)! - Upgraded and pinned the version of Stylis - the CSS parser that Emotion uses under the hood.
+
+* Updated dependencies [[`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d)]:
+  - @emotion/cache@11.7.1
+
 ## 11.7.0
 
 ### Patch Changes
