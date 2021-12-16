@@ -31,6 +31,7 @@ export {
   EmotionCache,
   FunctionInterpolation,
   Interpolation,
+  Keyframes,
   SerializedStyles
 }
 
