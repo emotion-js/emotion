@@ -46,7 +46,7 @@ export function SiteHeader() {
             marginRight: '1rem'
           }}
         >
-          <Image alt="Avatar" src="logo.png" height={36} width={36} />
+          <Image alt="Avatar" src="/logo.png" height={36} width={36} />
           <h4
             css={{
               display: 'none',
@@ -71,9 +71,9 @@ export function SiteHeader() {
         <ul
           css={{
             display: 'grid',
-            gridAutoFlow: ['column dense', undefined, 'column'],
-            gridColumn: ['2 / span 1', undefined, 'auto'],
-            gridRow: ['1', '1', 'auto'],
+            gridAutoFlow: 'column', // 'column dense', undefined, 'column'],
+            gridColumn: 'auto', // ['2 / span 1', undefined, 'auto'],
+            gridRow: 'auto', // '1', '1', 'auto'],
             alignItems: 'center',
             justifyItems: 'center',
             gap: '1rem',
