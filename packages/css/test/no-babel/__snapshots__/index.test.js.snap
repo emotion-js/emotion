@@ -12,7 +12,7 @@ exports[`css @supports 1`] = `
 />
 `;
 
-exports[`css component as selectors (object syntax) 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin."`;
+exports[`css component as selectors (object syntax) 1`] = `[Error: Component selectors can only be used in conjunction with @emotion/babel-plugin.]`;
 
 exports[`css component selectors without target 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin."`;
 

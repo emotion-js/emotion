@@ -19,9 +19,7 @@ exports[`array 1`] = `
     </style>
   </head>
   <body>
-    <div
-      id="root"
-    />
+    <div />
   </body>
 </html>
 `;
@@ -30,9 +28,7 @@ exports[`array 2`] = `
 <html>
   <head />
   <body>
-    <div
-      id="root"
-    />
+    <div />
   </body>
 </html>
 `;
@@ -49,9 +45,7 @@ exports[`basic 1`] = `
     </style>
   </head>
   <body>
-    <div
-      id="root"
-    />
+    <div />
   </body>
 </html>
 `;
@@ -60,9 +54,7 @@ exports[`basic 2`] = `
 <html>
   <head />
   <body>
-    <div
-      id="root"
-    />
+    <div />
   </body>
 </html>
 `;

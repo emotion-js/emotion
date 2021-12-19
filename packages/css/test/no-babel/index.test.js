@@ -130,21 +130,38 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('component as selectors (object syntax)', () => {
-    expect(() => {
-      const fontSize = '20px'
-      const H1 = styled('h1')({ fontSize })
-      const Thing = styled('div')({
-        display: 'flex',
-        [String(H1)]: {
-          color: 'green'
+    let errored = false
+    class ErrorBoundary extends React.Component {
+      static getDerivedStateFromError(error) {
+        errored = true
+        expect(error).toMatchSnapshot()
+        return { hasError: true }
+      }
+
+      render() {
+        if (this.state && this.state.hasError) {
+          return null
         }
-      })
-      renderer.create(
+
+        return this.props.children
+      }
+    }
+    const fontSize = '20px'
+    const H1 = styled('h1')({ fontSize })
+    const Thing = styled('div')({
+      display: 'flex',
+      [String(H1)]: {
+        color: 'green'
+      }
+    })
+    renderer.create(
+      <ErrorBoundary>
         <Thing>
           hello <H1>This will be green</H1> world
         </Thing>
-      )
-    }).toThrowErrorMatchingSnapshot()
+      </ErrorBoundary>
+    )
+    expect(errored).toBe(true)
   })
   test('component selectors without target', () => {
     const SomeComponent = styled('div')`
