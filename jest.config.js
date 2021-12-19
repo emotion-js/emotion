@@ -1,7 +1,6 @@
 module.exports = {
   testEnvironment: 'jsdom',
   transform: {
-    '\\.css$': '<rootDir>/test/styleTransform.js',
     '^.+\\.js?$': 'babel-jest'
   },
   watchPlugins: [
@@ -18,9 +17,5 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/babel-plugin/test/util.js'
-  ],
-  moduleNameMapper: {
-    '^react($|\\/.+)': 'react18$1',
-    '^react-dom($|\\/.+)': 'react18-dom$1'
-  }
+  ]
 }

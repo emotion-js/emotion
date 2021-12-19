@@ -28,3 +28,8 @@ export let safeQuerySelector = (selector: string): HTMLElement => {
   }
   return element
 }
+
+// React 18 doesn't use this attribute anymore
+// we normalize this to avoid snapshot mismatches between React versions
+export let stripDataReactRoot = (html: string): string =>
+  html.replace(' data-reactroot=""', '')

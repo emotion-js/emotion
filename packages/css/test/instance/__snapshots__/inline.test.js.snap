@@ -157,9 +157,7 @@ exports[`renderStylesToString renders large recursive component 1`] = `
 >
   .some-key-127stik{color:hotpink;}
 </style>
-<div class="some-key-127stik"
-     data-reactroot
->
+<div class="some-key-127stik">
   woah there
   <span>
     hello world

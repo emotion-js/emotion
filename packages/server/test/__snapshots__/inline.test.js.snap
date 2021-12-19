@@ -268,9 +268,7 @@ exports[`renderStylesToString renders large recursive component 1`] = `
 <style data-emotion="css 127stik">
   .css-127stik{color:#0147ae;}
 </style>
-<div class="css-127stik"
-     data-reactroot
->
+<div class="css-127stik">
   woah there
   <span>
     hello world
@@ -2110,7 +2108,6 @@ exports[`renderStylesToString skip undefined styles 1`] = `
 </style>
 <a href="css-fail"
    class="css-1gqet3"
-   data-reactroot
 >
 </a>
 `;

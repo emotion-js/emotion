@@ -3,6 +3,7 @@
  * @flow
  */
 import { JSDOM } from 'jsdom'
+import { stripDataReactRoot } from 'test-utils'
 
 let React
 let renderToString
@@ -38,9 +39,11 @@ describe('renderStylesToNodeStream', () => {
   test('renders large recursive component', async () => {
     const BigComponent = util.createBigComponent(emotion)
     expect(
-      await util.renderToStringWithStream(
-        <BigComponent count={200} />,
-        emotionServer
+      stripDataReactRoot(
+        await util.renderToStringWithStream(
+          <BigComponent count={200} />,
+          emotionServer
+        )
       )
     ).toMatchSnapshot()
   })

@@ -11,7 +11,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-let React
+let React = require('react')
 let ReactDOM
 let ReactDOMServer
 let render
@@ -631,8 +631,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     </head>
   `)
 })
-
-describe('useId', () => {
+;((React: any).useId ? describe : describe.skip)('useId', () => {
   test('no hydration mismatch for styled when using useId', () => {
     const finalHTML = disableBrowserEnvTemporarily(() => {
       resetAllModules()

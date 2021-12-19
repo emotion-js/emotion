@@ -1,6 +1,7 @@
 /**
  * @jest-environment node
  */
+import { stripDataReactRoot } from 'test-utils'
 import {
   getComponents,
   getInjectedRules,
@@ -42,8 +43,10 @@ describe('renderStylesToString', () => {
   test('renders large recursive component', () => {
     const BigComponent = createBigComponent(emotion)
     expect(
-      emotionServer.renderStylesToString(
-        renderToString(<BigComponent count={200} />)
+      stripDataReactRoot(
+        emotionServer.renderStylesToString(
+          renderToString(<BigComponent count={200} />)
+        )
       )
     ).toMatchSnapshot()
   })
