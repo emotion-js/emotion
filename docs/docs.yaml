@@ -20,7 +20,6 @@
     - labels
     - class-names
     - cache-provider
-    #- benchmarks
 
 - title: Tooling
   items:
