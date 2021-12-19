@@ -1,7 +1,10 @@
 import fs from 'fs'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import path from 'path'
+import matter from 'gray-matter'
 import { ReactElement, useState } from 'react'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { Title, DocWrapper } from '../../components'
 
 const docsDirectory = path.join(process.cwd(), '../docs')
@@ -21,22 +24,29 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-interface Doc {
-  title: string
-}
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const doc: Doc = { title: params!.slug as string }
+  const slug = params!.slug as string
+
+  const source = fs.readFileSync(path.join(docsDirectory, `${slug}.mdx`), {
+    encoding: 'utf8'
+  })
+  const { content, data } = matter(source)
+
+  const mdx = await serialize(content)
 
   return {
     props: {
-      doc
+      slug,
+      title: data.title,
+      mdx
     }
   }
 }
 
 export default function DocsPage({
-  doc
+  slug,
+  title,
+  mdx
 }: InferGetStaticPropsType<typeof getStaticProps>): ReactElement {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -51,7 +61,7 @@ export default function DocsPage({
         className="docSearch-content"
       >
         <div css={{ display: 'flex', alignItems: 'center' }}>
-          <Title>{doc.title}</Title>
+          <Title>{title}</Title>
           {/* <markdownComponents.a
             css={{ fontSize: 12, marginLeft: 'auto' }}
             href={
@@ -64,6 +74,9 @@ export default function DocsPage({
           </markdownComponents.a> */}
         </div>
 
+        <div>
+          <MDXRemote {...mdx} />
+        </div>
         {/* <div>
           <MDXProvider
             components={{
