@@ -15,3 +15,4 @@ public/
 .vscode
 .parcel-cache/
 .next
+*.orig
