@@ -1,18 +1,19 @@
 import { PropsWithChildren, ReactElement, useState } from 'react'
 import { DocGroup, DocMetadata } from '../queries'
 import { colors } from '../util'
-import { cx } from '@emotion/css'
 import Link from 'next/link'
 
 interface SidebarGroupProps {
+  activeSlug: string
   title: string
   docs: DocMetadata[]
-  // setSidebarOpenState: boolean => void,
-  // docMap: *,
-  //docName?: string
 }
 
-function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
+function SidebarGroup({
+  activeSlug,
+  title,
+  docs
+}: SidebarGroupProps): ReactElement {
   return (
     <>
       <h3
@@ -32,7 +33,7 @@ function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
         css={{
           listStyle: 'none',
           margin: 0,
-          marginBottom: '1rem',
+          marginBottom: '1.5rem',
           padding: 0
         }}
       >
@@ -55,13 +56,14 @@ function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
                       content: '""',
                       height: '2rem',
                       width: '0.5rem',
-                      transform: `translate3d(-2rem, -0.5rem, 0)`,
+                      transform: `translate(-2rem, -0.25rem)`,
                       position: 'absolute',
                       display: 'inline-block',
                       backgroundColor: colors.border
                     }
                   }
                 }}
+                className={activeSlug === doc.slug ? 'active' : undefined}
                 // activeClassName={cx('active', 'docSearch-lvl1')}
               >
                 {doc.title}
@@ -75,10 +77,12 @@ function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
 }
 
 interface DocWrapperProps {
+  activeSlug: string
   docGroups: DocGroup[]
 }
 
 export function DocWrapper({
+  activeSlug,
   docGroups,
   children
 }: PropsWithChildren<DocWrapperProps>): ReactElement {
@@ -88,7 +92,8 @@ export function DocWrapper({
     <div css={{ display: 'flex' }}>
       <main
         css={{
-          paddingRight: '1rem'
+          paddingRight: '2rem',
+          flex: 1
         }}
       >
         {children}
@@ -97,7 +102,7 @@ export function DocWrapper({
         css={{
           flexShrink: 0,
           width: 220,
-          paddingLeft: '1rem', // [0, 0, space[3]],
+          paddingLeft: '2rem', // [0, 0, space[3]],
           borderLeft: `1px solid ${colors.border}` /* [
             'none',
             'none',
@@ -108,7 +113,12 @@ export function DocWrapper({
         {/* <Carbon />
         <Search /> */}
         {docGroups.map(g => (
-          <SidebarGroup title={g.title} docs={g.docs} key={g.title} />
+          <SidebarGroup
+            activeSlug={activeSlug}
+            title={g.title}
+            docs={g.docs}
+            key={g.title}
+          />
         ))}
       </aside>
       {/* <ToggleSidebarButton setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}>

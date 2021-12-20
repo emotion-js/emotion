@@ -3,7 +3,7 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType
 } from 'next'
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { Title, DocWrapper } from '../../components'
@@ -11,7 +11,7 @@ import { docQueries } from '../../queries'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: docQueries.listSlugs().map(slug => ({
+    paths: docQueries.listMdxSlugs().map(slug => ({
       params: {
         slug
       }
@@ -23,17 +23,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const slug = params!.slug as string
 
-  const { title, content } = docQueries.get(slug)
+  const { title, content } = docQueries.getMdx(slug)
   const mdx = await serialize(content)
-
-  const docGroups = docQueries.getGroups()
 
   return {
     props: {
       slug,
       title,
       mdx,
-      docGroups
+      docGroups: docQueries.listGroups()
     }
   }
 }
@@ -45,7 +43,7 @@ export default function DocsPage({
   docGroups
 }: InferGetStaticPropsType<typeof getStaticProps>): ReactElement {
   return (
-    <DocWrapper docGroups={docGroups}>
+    <DocWrapper activeSlug={slug} docGroups={docGroups}>
       <div css={{ display: 'flex', alignItems: 'center' }}>
         <Title>{title}</Title>
         {/* <markdownComponents.a
