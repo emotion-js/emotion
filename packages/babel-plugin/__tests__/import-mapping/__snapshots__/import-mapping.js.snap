@@ -100,6 +100,33 @@ let SomeComp = nonDefaultStyled(\\"div\\", process.env.NODE_ENV === \\"productio
 });"
 `;
 
+exports[`import mapping non-default-styled-aliased 1`] = `
+"import { nonDefaultStyled as someAlias } from 'package-one'
+
+let SomeComp = someAlias.div({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { nonDefaultStyled as someAlias } from 'package-one';
+let SomeComp = someAlias(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"erjjkeh0\\"
+} : {
+  target: \\"erjjkeh0\\",
+  label: \\"SomeComp\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vbi1kZWZhdWx0LXN0eWxlZC1hbGlhc2VkLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVlIiwiZmlsZSI6Im5vbi1kZWZhdWx0LXN0eWxlZC1hbGlhc2VkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgbm9uRGVmYXVsdFN0eWxlZCBhcyBzb21lQWxpYXMgfSBmcm9tICdwYWNrYWdlLW9uZSdcblxubGV0IFNvbWVDb21wID0gc29tZUFsaWFzLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
 exports[`import mapping styled-with-base-specified 1`] = `
 "import { nonDefaultStyled } from 'package-four'
 
