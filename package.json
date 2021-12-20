@@ -261,6 +261,7 @@
     "react-test-renderer": "16.8.6",
     "react18": "npm:react@18.0.0-rc.0-next-aa8f2bdbc-20211215",
     "react18-dom": "npm:react-dom@18.0.0-rc.0-next-aa8f2bdbc-20211215",
+    "react18-test-renderer": "npm:react-test-renderer@18.0.0-rc.0-next-aa8f2bdbc-20211215",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
     "unified": "^6.1.6",

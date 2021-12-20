@@ -2,7 +2,11 @@
 import * as React from 'react'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
-import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  registerStyles
+} from '@emotion/utils'
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
@@ -51,6 +55,8 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 }
 
 const Insertion = ({ cache, serialized }) => {
+  registerStyles(cache, serialized, typeof type === 'string')
+
   const rules = useInsertionEffectMaybe(() =>
     insertStyles(cache, serialized, typeof type === 'string')
   )

@@ -25372,10 +25372,15 @@ react-icons@^2.2.7:
   dependencies:
     react-icon-base "2.1.0"
 
-react-is@17.0.2, react-is@^17.0.1:
+react-is@17.0.2, "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-is@18.0.0-rc.0-next-aa8f2bdbc-20211215:
+  version "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.0.0-rc.0-next-aa8f2bdbc-20211215.tgz#68ffa2826c10302a00b3e00b61f114b662994f56"
+  integrity sha512-/7F8d2H4G48zSBrJ+aaOKkCDzyEsyQ70qORL2zjUJPJqSWwy5Hbyc9ib4SttbfaAFXUAK1PYsDbwO05IiNfW1A==
 
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.12.0"
@@ -25566,6 +25571,14 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-shallow-renderer@^16.13.1:
+  version "16.14.1"
+  resolved "https://registry.yarnpkg.com/react-shallow-renderer/-/react-shallow-renderer-16.14.1.tgz#bf0d02df8a519a558fd9b8215442efa5c840e124"
+  integrity sha512-rkIMcQi01/+kxiTE9D3fdS959U1g7gs+/rborw++42m1O9FAQiNI/UNRZExVUoAOprn4umcXf+pFRou8i4zuBg==
+  dependencies:
+    object-assign "^4.1.1"
+    react-is "^16.12.0 || ^17.0.0"
+
 react-side-effect@^1.1.0:
   version "1.1.5"
   resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-1.1.5.tgz#f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d"
@@ -25596,6 +25609,16 @@ react-timer-mixin@^0.13.4:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+    scheduler "0.21.0-rc.0-next-aa8f2bdbc-20211215"
+
+"react18-test-renderer@npm:react-test-renderer@18.0.0-rc.0-next-aa8f2bdbc-20211215":
+  version "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-18.0.0-rc.0-next-aa8f2bdbc-20211215.tgz#9cd5c9bbf126cea1f88280f5ba286d5a5aa8a803"
+  integrity sha512-ts7u1xRRvG1s51L7JqXomMO3G5B8ijoOOI5XoRAjghreKLYOwzB0gKb8+dzzoq5fv5NxPlGPCBTAsk/Bsh+EyQ==
+  dependencies:
+    object-assign "^4.1.1"
+    react-is "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+    react-shallow-renderer "^16.13.1"
     scheduler "0.21.0-rc.0-next-aa8f2bdbc-20211215"
 
 "react18@npm:react@18.0.0-rc.0-next-aa8f2bdbc-20211215":
