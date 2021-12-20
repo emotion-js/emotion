@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { safeQuerySelector } from 'test-utils'
+import { safeQuerySelector, disableBrowserEnvTemporarily } from 'test-utils'
 
 // $FlowFixMe
 console.error = jest.fn()
@@ -46,30 +46,6 @@ const resetAllModules = () => {
   ClassNames = emotionReact.ClassNames
   createEmotionServer = require('@emotion/server/create-instance').default
   styled = require('@emotion/styled').default
-}
-
-const removeGlobalProp = prop => {
-  let descriptor = Object.getOwnPropertyDescriptor(global, prop)
-  Object.defineProperty(global, prop, {
-    value: undefined,
-    writable: true,
-    configurable: true
-  })
-  // $FlowFixMe
-  return () => Object.defineProperty(global, prop, descriptor)
-}
-
-const disableBrowserEnvTemporarily = <T>(fn: () => T): T => {
-  let restoreDocument = removeGlobalProp('document')
-  let restoreWindow = removeGlobalProp('window')
-  let restoreHTMLElement = removeGlobalProp('HTMLElement')
-  try {
-    return fn()
-  } finally {
-    restoreDocument()
-    restoreWindow()
-    restoreHTMLElement()
-  }
 }
 
 beforeEach(() => {
@@ -223,8 +199,8 @@ test('initializing another Emotion instance should not move already moved styles
   `)
 })
 
-test('global styles can be removed individually after rehydrating HTML SSRed with extractCriticalToChunks', () => {
-  const { app, styles } = disableBrowserEnvTemporarily(() => {
+test('global styles can be removed individually after rehydrating HTML SSRed with extractCriticalToChunks', async () => {
+  const { app, styles } = await disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
     let cache = createCache({ key: 'mui' })
@@ -353,8 +329,8 @@ test('global styles can be removed individually after rehydrating HTML SSRed wit
   `)
 })
 
-test('duplicated global styles can be removed safely after rehydrating HTML SSRed with extractCriticalToChunks', () => {
-  const { app, styles } = disableBrowserEnvTemporarily(() => {
+test('duplicated global styles can be removed safely after rehydrating HTML SSRed with extractCriticalToChunks', async () => {
+  const { app, styles } = await disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
     let cache = createCache({ key: 'muii' })
@@ -493,8 +469,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
   `)
 })
 
-test('duplicated global styles can be removed safely after rehydrating HTML SSRed with zero config approach', () => {
-  const { app } = disableBrowserEnvTemporarily(() => {
+test('duplicated global styles can be removed safely after rehydrating HTML SSRed with zero config approach', async () => {
+  const { app } = await disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
     let cache = createCache({ key: 'globcop' })
@@ -632,8 +608,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
   `)
 })
 ;((React: any).useId ? describe : describe.skip)('useId', () => {
-  test('no hydration mismatch for styled when using useId', () => {
-    const finalHTML = disableBrowserEnvTemporarily(() => {
+  test('no hydration mismatch for styled when using useId', async () => {
+    const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
       const StyledDivWithId = styled(function DivWithId({ className }) {
@@ -666,8 +642,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
   })
 
-  test('no hydration mismatch for css prop when using useId', () => {
-    const finalHTML = disableBrowserEnvTemporarily(() => {
+  test('no hydration mismatch for css prop when using useId', async () => {
+    const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
       function DivWithId({ className }: { className?: string }) {
@@ -709,8 +685,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
   })
 
-  test('no hydration mismatch for ClassNames when using useId', () => {
-    const finalHTML = disableBrowserEnvTemporarily(() => {
+  test('no hydration mismatch for ClassNames when using useId', async () => {
+    const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
       const DivWithId = ({ className }) => {

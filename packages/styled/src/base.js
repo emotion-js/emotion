@@ -9,8 +9,13 @@ import {
   type StyledElementType
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
-import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  registerStyles
+} from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+import useInsertionEffectMaybe from './useInsertionEffectMaybe'
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
@@ -18,7 +23,33 @@ You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
 let isBrowser = typeof document !== 'undefined'
-const Noop = () => null
+
+const Insertion = ({ cache, serialized, isStringTag }) => {
+  registerStyles(cache, serialized, isStringTag)
+
+  const rules = useInsertionEffectMaybe(() =>
+    insertStyles(cache, serialized, isStringTag)
+  )
+
+  if (!isBrowser && rules !== undefined) {
+    let serializedNames = serialized.name
+    let next = serialized.next
+    while (next !== undefined) {
+      serializedNames += ' ' + next.name
+      next = next.next
+    }
+    return (
+      <style
+        {...{
+          [`data-emotion`]: `${cache.key} ${serializedNames}`,
+          dangerouslySetInnerHTML: { __html: rules },
+          nonce: cache.sheet.nonce
+        }}
+      />
+    )
+  }
+  return null
+}
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -73,7 +104,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     // $FlowFixMe: we need to cast StatelessFunctionalComponent to our PrivateStyledComponent class
     const Styled: PrivateStyledComponent<Props> = withEmotionCache(
       (props, cache, ref) => {
-        const finalTag = (shouldUseAs && props.as) || baseTag
+        const FinalTag = (shouldUseAs && props.as) || baseTag
 
         let className = ''
         let classInterpolations = []
@@ -101,11 +132,6 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           cache.registered,
           mergedProps
         )
-        const rules = insertStyles(
-          cache,
-          serialized,
-          typeof finalTag === 'string'
-        )
         className += `${cache.key}-${serialized.name}`
         if (targetClassName !== undefined) {
           className += ` ${targetClassName}`
@@ -113,7 +139,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
         const finalShouldForwardProp =
           shouldUseAs && shouldForwardProp === undefined
-            ? getDefaultShouldForwardProp(finalTag)
+            ? getDefaultShouldForwardProp(FinalTag)
             : defaultShouldForwardProp
 
         let newProps = {}
@@ -132,30 +158,14 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         newProps.className = className
         newProps.ref = ref
 
-        const ele = React.createElement(finalTag, newProps)
-        let possiblyStyleElement = <Noop />
-        if (!isBrowser && rules !== undefined) {
-          let serializedNames = serialized.name
-          let next = serialized.next
-          while (next !== undefined) {
-            serializedNames += ' ' + next.name
-            next = next.next
-          }
-          possiblyStyleElement = (
-            <style
-              {...{
-                [`data-emotion`]: `${cache.key} ${serializedNames}`,
-                dangerouslySetInnerHTML: { __html: rules },
-                nonce: cache.sheet.nonce
-              }}
-            />
-          )
-        }
-        // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
         return (
           <>
-            {possiblyStyleElement}
-            {ele}
+            <Insertion
+              cache={cache}
+              serialized={serialized}
+              isStringTag={typeof FinalTag === 'string'}
+            />
+            <FinalTag {...newProps} />
           </>
         )
       }

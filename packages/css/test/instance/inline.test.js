@@ -1,7 +1,8 @@
-/**
- * @jest-environment node
- */
-import { stripDataReactRoot } from 'test-utils'
+import {
+  stripDataReactRoot,
+  disableBrowserEnvTemporarily,
+  safeQuerySelector
+} from 'test-utils'
 import {
   getComponents,
   getInjectedRules,
@@ -29,54 +30,53 @@ const resetAllModules = () => {
 }
 
 describe('renderStylesToString', () => {
-  beforeEach(resetAllModules)
-
-  test('renders styles with ids', () => {
-    const { Page1, Page2 } = getComponents(emotion, reactEmotion)
-    expect(
-      emotionServer.renderStylesToString(renderToString(<Page1 />))
-    ).toMatchSnapshot()
-    expect(
-      emotionServer.renderStylesToString(renderToString(<Page2 />))
-    ).toMatchSnapshot()
+  test('renders styles with ids', async () => {
+    await disableBrowserEnvTemporarily(() => {
+      resetAllModules()
+      const { Page1, Page2 } = getComponents(emotion, reactEmotion)
+      expect(
+        emotionServer.renderStylesToString(renderToString(<Page1 />))
+      ).toMatchSnapshot()
+      expect(
+        emotionServer.renderStylesToString(renderToString(<Page2 />))
+      ).toMatchSnapshot()
+    })
   })
-  test('renders large recursive component', () => {
-    const BigComponent = createBigComponent(emotion)
-    expect(
-      stripDataReactRoot(
-        emotionServer.renderStylesToString(
-          renderToString(<BigComponent count={200} />)
+  test('renders large recursive component', async () => {
+    await disableBrowserEnvTemporarily(() => {
+      resetAllModules()
+      const BigComponent = createBigComponent(emotion)
+      expect(
+        stripDataReactRoot(
+          emotionServer.renderStylesToString(
+            renderToString(<BigComponent count={200} />)
+          )
         )
-      )
-    ).toMatchSnapshot()
+      ).toMatchSnapshot()
+    })
   })
 })
 describe('hydration', () => {
-  beforeEach(resetAllModules)
+  test('only inserts rules that are not in the critical css', async () => {
+    const appHtml = await disableBrowserEnvTemporarily(() => {
+      resetAllModules()
 
-  afterEach(() => {
-    global.document = undefined
-    global.window = undefined
-    global.navigator = undefined
-  })
+      const { Page1 } = getComponents(emotion, reactEmotion)
+      return emotionServer.renderStylesToString(renderToString(<Page1 />))
+    })
 
-  test('only inserts rules that are not in the critical css', () => {
-    const { Page1 } = getComponents(emotion, reactEmotion)
-    const html = emotionServer.renderStylesToString(renderToString(<Page1 />))
-    expect(html).toMatchSnapshot()
-    const { window } = new JSDOM(html)
-    global.document = window.document
-    global.window = window
-    global.navigator = window.navigator
-    setHtml(html, document)
+    expect(appHtml).toMatchSnapshot()
+    document.body.innerHTML = `<div id="root">${appHtml}</div>`
 
     resetAllModules()
 
     expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
-    render(<NewPage1 />)
-    expect(getInjectedRules(document)).toMatchSnapshot()
+    render(<NewPage1 />, {
+      container: safeQuerySelector('#root')
+    })
+    expect(getInjectedRules()).toMatchSnapshot()
     expect(getCssFromChunks(emotion, document)).toMatchSnapshot()
   })
 })

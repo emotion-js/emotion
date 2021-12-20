@@ -1,9 +1,14 @@
 // @flow
 import * as React from 'react'
-import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  registerStyles
+} from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
+import useInsertionEffectMaybe from './useInsertionEffectMaybe'
 import { isBrowser } from './utils'
 
 type ClassNameArg =
@@ -88,30 +93,50 @@ type Props = {
   }) => React.Node
 }
 
-const Noop = () => null
+const Insertion = ({ cache, serializedArr }) => {
+  let rules = useInsertionEffectMaybe(() => {
+    let rules = ''
+    for (let i = 0; i < serializedArr.length; i++) {
+      let res = insertStyles(cache, serializedArr[i], false)
+      if (!isBrowser && res !== undefined) {
+        rules += res
+      }
+    }
+    if (!isBrowser) {
+      return rules
+    }
+  })
+
+  if (!isBrowser && rules.length !== 0) {
+    return (
+      <style
+        {...{
+          [`data-emotion`]: `${cache.key} ${serializedArr
+            .map(serialized => serialized.name)
+            .join(' ')}`,
+          dangerouslySetInnerHTML: { __html: rules },
+          nonce: cache.sheet.nonce
+        }}
+      />
+    )
+  }
+  return null
+}
 
 export const ClassNames: React.AbstractComponent<Props> =
   /* #__PURE__ */ withEmotionCache((props, cache) => {
-    let rules = ''
-    let serializedHashes = ''
     let hasRendered = false
+    let serializedArr = []
 
     let css = (...args: Array<any>) => {
       if (hasRendered && process.env.NODE_ENV !== 'production') {
         throw new Error('css can only be used during render')
       }
+
       let serialized = serializeStyles(args, cache.registered)
-      if (isBrowser) {
-        insertStyles(cache, serialized, false)
-      } else {
-        let res = insertStyles(cache, serialized, false)
-        if (res !== undefined) {
-          rules += res
-        }
-      }
-      if (!isBrowser) {
-        serializedHashes += ` ${serialized.name}`
-      }
+      serializedArr.push(serialized)
+      // registration has to happen here as the result of this might get consumed by `cx`
+      registerStyles(cache, serialized, false)
       return `${cache.key}-${serialized.name}`
     }
     let cx = (...args: Array<ClassNameArg>) => {
@@ -127,22 +152,10 @@ export const ClassNames: React.AbstractComponent<Props> =
     }
     let ele = props.children(content)
     hasRendered = true
-    let possiblyStyleElement = <Noop />
-    if (!isBrowser && rules.length !== 0) {
-      possiblyStyleElement = (
-        <style
-          {...{
-            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
-            dangerouslySetInnerHTML: { __html: rules },
-            nonce: cache.sheet.nonce
-          }}
-        />
-      )
-    }
-    // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
+
     return (
       <>
-        {possiblyStyleElement}
+        <Insertion cache={cache} serializedArr={serializedArr} />
         {ele}
       </>
     )

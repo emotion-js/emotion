@@ -5,6 +5,12 @@ import renderer from 'react-test-renderer'
 import { css } from '@emotion/css'
 import styled from '@emotion/styled'
 
+let consoleError = console.error
+
+afterEach(() => {
+  console.error = consoleError
+})
+
 describe('css', () => {
   test('random expression', () => {
     const cls2 = css`
@@ -130,22 +136,6 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('component as selectors (object syntax)', () => {
-    let errored = false
-    class ErrorBoundary extends React.Component {
-      static getDerivedStateFromError(error) {
-        errored = true
-        expect(error).toMatchSnapshot()
-        return { hasError: true }
-      }
-
-      render() {
-        if (this.state && this.state.hasError) {
-          return null
-        }
-
-        return this.props.children
-      }
-    }
     const fontSize = '20px'
     const H1 = styled('h1')({ fontSize })
     const Thing = styled('div')({
@@ -154,14 +144,23 @@ describe('css', () => {
         color: 'green'
       }
     })
-    renderer.create(
-      <ErrorBoundary>
+
+    const spy = jest.fn()
+    console.error = spy
+
+    expect(() =>
+      renderer.create(
         <Thing>
           hello <H1>This will be green</H1> world
         </Thing>
-      </ErrorBoundary>
-    )
-    expect(errored).toBe(true)
+      )
+    ).toThrowErrorMatchingSnapshot()
+
+    expect(spy.mock.calls.length).toBe(1)
+    // remove file paths from the stack trace
+    expect(
+      spy.mock.calls[0][0].replace(/(^\s+at\s[^\s]+).+$/gm, '$1')
+    ).toMatchSnapshot()
   })
   test('component selectors without target', () => {
     const SomeComponent = styled('div')`

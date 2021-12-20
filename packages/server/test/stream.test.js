@@ -1,9 +1,8 @@
-/**
- * @jest-environment node
- * @flow
- */
-import { JSDOM } from 'jsdom'
-import { stripDataReactRoot } from 'test-utils'
+import {
+  stripDataReactRoot,
+  disableBrowserEnvTemporarily,
+  safeQuerySelector
+} from 'test-utils'
 
 let React
 let renderToString
@@ -25,54 +24,52 @@ const resetAllModules = () => {
 }
 
 describe('renderStylesToNodeStream', () => {
-  beforeEach(resetAllModules)
-
   test('renders styles with ids', async () => {
-    const { Page1, Page2 } = util.getComponents(emotion, reactEmotion)
-    expect(
-      await util.renderToStringWithStream(<Page1 />, emotionServer)
-    ).toMatchSnapshot()
-    expect(
-      await util.renderToStringWithStream(<Page2 />, emotionServer)
-    ).toMatchSnapshot()
+    await disableBrowserEnvTemporarily(async () => {
+      resetAllModules()
+      const { Page1, Page2 } = util.getComponents(emotion, reactEmotion)
+      expect(
+        await util.renderToStringWithStream(<Page1 />, emotionServer)
+      ).toMatchSnapshot()
+      expect(
+        await util.renderToStringWithStream(<Page2 />, emotionServer)
+      ).toMatchSnapshot()
+    })
   })
   test('renders large recursive component', async () => {
-    const BigComponent = util.createBigComponent(emotion)
-    expect(
-      stripDataReactRoot(
-        await util.renderToStringWithStream(
-          <BigComponent count={200} />,
-          emotionServer
+    await disableBrowserEnvTemporarily(async () => {
+      resetAllModules()
+      const BigComponent = util.createBigComponent(emotion)
+      expect(
+        stripDataReactRoot(
+          await util.renderToStringWithStream(
+            <BigComponent count={200} />,
+            emotionServer
+          )
         )
-      )
-    ).toMatchSnapshot()
+      ).toMatchSnapshot()
+    })
   })
 })
 describe('hydration', () => {
-  beforeEach(resetAllModules)
-
-  afterEach(() => {
-    global.document = undefined
-    global.window = undefined
-    global.navigator = undefined
-  })
-
   test('only inserts rules that are not in the critical css', async () => {
-    const { Page1 } = util.getComponents(emotion, reactEmotion)
-    const html = await util.renderToStringWithStream(<Page1 />, emotionServer)
-    expect(html).toMatchSnapshot()
-    const { window } = new JSDOM(html)
-    global.document = window.document
-    global.window = window
-    global.navigator = window.navigator
-    util.setHtml(html, document)
+    const appHtml = await disableBrowserEnvTemporarily(() => {
+      resetAllModules()
+      const { Page1 } = util.getComponents(emotion, reactEmotion)
+      return util.renderToStringWithStream(<Page1 />, emotionServer)
+    })
+
+    expect(appHtml).toMatchSnapshot()
+    document.body.innerHTML = `<div id="root">${appHtml}</div>`
 
     resetAllModules()
 
     expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = util.getComponents(emotion, reactEmotion)
-    render(<NewPage1 />)
+    render(<NewPage1 />, {
+      container: safeQuerySelector('#root')
+    })
     expect(util.getInjectedRules(document)).toMatchSnapshot()
     expect(util.getCssFromChunks(emotion, document)).toMatchSnapshot()
   })

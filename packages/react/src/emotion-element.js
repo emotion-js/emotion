@@ -54,11 +54,11 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   return newProps
 }
 
-const Insertion = ({ cache, serialized }) => {
-  registerStyles(cache, serialized, typeof type === 'string')
+const Insertion = ({ cache, serialized, isStringTag }) => {
+  registerStyles(cache, serialized, isStringTag)
 
   const rules = useInsertionEffectMaybe(() =>
-    insertStyles(cache, serialized, typeof type === 'string')
+    insertStyles(cache, serialized, isStringTag)
   )
 
   if (!isBrowser && rules !== undefined) {
@@ -146,7 +146,11 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
 
     return (
       <>
-        <Insertion cache={cache} serialized={serialized} />
+        <Insertion
+          cache={cache}
+          serialized={serialized}
+          isStringTag={typeof type === 'string'}
+        />
         <WrappedComponent {...newProps} />
       </>
     )
