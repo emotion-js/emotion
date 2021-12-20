@@ -211,7 +211,7 @@ export const getCssFromChunks = (emotion: Emotion, document: Document) => {
   return prettify(css)
 }
 
-export const getInjectedRules = () =>
+export const getInjectedRules = (document: Document = global.document) =>
   prettify(
     Array.from(document.querySelectorAll('[data-emotion]'))
       .filter(node => !isSSRedStyle(node))
