@@ -10,7 +10,6 @@ import {
   getCssFromChunks,
   setHtml
 } from '../../../server/test/util'
-import { JSDOM } from 'jsdom'
 
 let React
 let renderToString

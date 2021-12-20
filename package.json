@@ -239,7 +239,6 @@
     "jest-junit": "^13.0.0",
     "jest-serializer-html": "^7.1.0",
     "jest-watch-typeahead": "^1.0.0",
-    "jsdom": "^16.6.0",
     "lint-staged": "^7.2.0",
     "module-alias": "^2.0.1",
     "multipipe": "^1.0.2",
