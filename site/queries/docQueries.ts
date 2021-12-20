@@ -4,21 +4,31 @@ import matter from 'gray-matter'
 import yaml from 'js-yaml'
 
 const docsDirectory = path.join(process.cwd(), '../docs')
+const packagesDirectory = path.join(process.cwd(), '../packages')
 
-function listSlugs(): string[] {
-  return fs
-    .readdirSync(docsDirectory)
-    .filter(filename => filename.endsWith('.mdx'))
-    .map(filename => filename.replace(/\.mdx$/, ''))
+function readYaml(): { title: string; items: string[] }[] {
+  return yaml.load(
+    fs.readFileSync(path.join(docsDirectory, 'docs.yaml'), {
+      encoding: 'utf8'
+    })
+  ) as { title: string; items: string[] }[]
 }
 
-function get(slug: string): { title: string; content: string } {
-  const source = fs.readFileSync(path.join(docsDirectory, `${slug}.mdx`), {
-    encoding: 'utf8'
-  })
+function listMdxSlugs(): string[] {
+  const slugs = []
 
-  const { data, content } = matter(source)
-  return { title: data.title, content }
+  for (const group of readYaml()) {
+    slugs.push(...group.items.filter(s => !s.startsWith('@emotion')))
+  }
+
+  return slugs
+}
+
+function listPackageNames(): string[] {
+  const group = readYaml().find(g => g.title === 'Packages')
+  if (!group) throw new Error('Could not find "Packages" group in docs.yaml.')
+
+  return group.items.map(p => p.replace('@emotion/', ''))
 }
 
 export interface DocMetadata {
@@ -28,27 +38,42 @@ export interface DocMetadata {
 
 export type DocGroup = { title: string; docs: DocMetadata[] }
 
-function getGroups(): DocGroup[] {
-  const slugToTitle: { [slug: string]: string } = Object.fromEntries(
-    listSlugs().map(slug => [slug, get(slug).title])
+function listGroups(): DocGroup[] {
+  const mdxSlugToTitle: { [slug: string]: string } = Object.fromEntries(
+    listMdxSlugs().map(slug => [slug, getMdx(slug).title])
   )
 
-  const rawGroups = yaml.load(
-    fs.readFileSync(path.join(docsDirectory, 'docs.yaml'), {
-      encoding: 'utf8'
-    })
-  ) as { title: string; items: string[] }[]
-
-  return rawGroups.map(g => ({
+  return readYaml().map(g => ({
     title: g.title,
 
     // Package READMEs don't have a title
-    docs: g.items.map(slug => ({ slug, title: slugToTitle[slug] ?? slug }))
+    docs: g.items.map(slug => ({ slug, title: mdxSlugToTitle[slug] ?? slug }))
   }))
 }
 
+function getMdx(slug: string): { title: string; content: string } {
+  const source = fs.readFileSync(path.join(docsDirectory, `${slug}.mdx`), {
+    encoding: 'utf8'
+  })
+
+  const { data, content } = matter(source)
+  return { title: data.title, content }
+}
+
+function getReadme(packageName: string): string {
+  const source = fs.readFileSync(
+    path.join(packagesDirectory, packageName, 'README.md'),
+    { encoding: 'utf8' }
+  )
+
+  // Remove initial <h1>
+  return source.replace(/# .*\n/, '')
+}
+
 export const docQueries = {
-  listSlugs,
-  get,
-  getGroups
+  listMdxSlugs,
+  listPackageNames,
+  listGroups,
+  getMdx,
+  getReadme
 }

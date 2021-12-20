@@ -12,7 +12,7 @@ export const animatedUnderline = css({
     display: 'block',
     width: '100%',
     marginTop: 2,
-    height: 2,
+    height: 3,
     transition: 'transform 250ms ease',
     transform: 'scaleX(0)',
     backgroundColor: colors.hightlight
@@ -54,6 +54,7 @@ export function SiteHeader() {
   return (
     <header
       css={{
+        backgroundColor: '#f6f6f6',
         borderBottom: `1px solid ${colors.grayBorder}`,
         boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
         paddingTop: '0.25rem',
@@ -68,7 +69,7 @@ export function SiteHeader() {
           alignItems: 'center'
         }}
       >
-        <Link href="/" passHref>
+        <Link href="/docs/introduction" passHref>
           <a
             css={{
               display: 'flex',
