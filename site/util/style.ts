@@ -6,7 +6,8 @@ export const colors = {
   //   dark: '#1D2029',
   //   reallyLightPink: '#f9e9fb',
   hightlight: '#C43BAD',
-  border: '#eac3e4'
+  border: '#eac3e4',
+  grayBorder: '#d2d2d2'
   // border: '#C865B9'
   //   bg: '#FAF9FA',
   //   color: '#1B1D1D',
@@ -21,4 +22,8 @@ export const mediaQueries = {
   lgUp: `@media (min-width: ${breakpoints.lg}px)`,
   xlUp: `@media (min-width: ${breakpoints.xl}px)`,
   xxlUp: `@media (min-width: ${breakpoints.xxl}px)`
+}
+
+export const styleConstants = {
+  containerWidth: 1100
 }

@@ -44,14 +44,8 @@ export default function DocsPage({
   mdx,
   docGroups
 }: InferGetStaticPropsType<typeof getStaticProps>): ReactElement {
-  const [sidebarOpen, setSidebarOpen] = useState(false) // TODO:SAM move this into DocWrapper?
-
   return (
-    <DocWrapper
-      sidebarOpen={sidebarOpen}
-      onSidebarOpenChange={setSidebarOpen}
-      docGroups={docGroups}
-    >
+    <DocWrapper docGroups={docGroups}>
       <div css={{ display: 'flex', alignItems: 'center' }}>
         <Title>{title}</Title>
         {/* <markdownComponents.a
