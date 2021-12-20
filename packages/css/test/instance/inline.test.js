@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import {
   getComponents,
   getInjectedRules,
@@ -9,6 +12,7 @@ import { JSDOM } from 'jsdom'
 
 let React
 let renderToString
+let render
 let emotion
 let emotionServer
 let reactEmotion
@@ -17,6 +21,7 @@ const resetAllModules = () => {
   jest.resetModules()
   React = require('react')
   renderToString = require('react-dom/server').renderToString
+  render = require('@testing-library/react/pure').render
   emotion = require('./emotion-instance')
   emotionServer = require('./emotion-instance')
   reactEmotion = require('./emotion-instance')
@@ -46,9 +51,10 @@ describe('renderStylesToString', () => {
 describe('hydration', () => {
   beforeEach(resetAllModules)
 
-  afterAll(() => {
+  afterEach(() => {
     global.document = undefined
     global.window = undefined
+    global.navigator = undefined
   })
 
   test('only inserts rules that are not in the critical css', () => {
@@ -58,6 +64,7 @@ describe('hydration', () => {
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window
+    global.navigator = window.navigator
     setHtml(html, document)
 
     resetAllModules()
@@ -65,8 +72,8 @@ describe('hydration', () => {
     expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
-    renderToString(<NewPage1 />)
-    expect(getInjectedRules()).toMatchSnapshot()
+    render(<NewPage1 />)
+    expect(getInjectedRules(document)).toMatchSnapshot()
     expect(getCssFromChunks(emotion, document)).toMatchSnapshot()
   })
 })
