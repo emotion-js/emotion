@@ -149,7 +149,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
         <Insertion
           cache={cache}
           serialized={serialized}
-          isStringTag={typeof type === 'string'}
+          isStringTag={typeof WrappedComponent === 'string'}
         />
         <WrappedComponent {...newProps} />
       </>

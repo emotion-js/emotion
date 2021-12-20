@@ -45,7 +45,7 @@ const removeGlobalProp = prop => {
   return () => Object.defineProperty(global, prop, descriptor)
 }
 
-export async function disableBrowserEnvTemporarily<T>(fn: () => T): T {
+export async function disableBrowserEnvTemporarily<T>(fn: () => T): Promise<T> {
   let restoreDocument = removeGlobalProp('document')
   let restoreWindow = removeGlobalProp('window')
   let restoreHTMLElement = removeGlobalProp('HTMLElement')
