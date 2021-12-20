@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   transform: {
     '\\.css$': '<rootDir>/test/styleTransform.js',
     '^.+\\.js?$': 'babel-jest'
