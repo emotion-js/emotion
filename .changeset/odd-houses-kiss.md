@@ -2,4 +2,7 @@
 '@emotion/babel-plugin': patch
 ---
 
-Fix babel plugin crash when on object with multiple styles is returned by a function
+author: @kddc
+author: @Andarist
+
+Improved label extraction for named function expressions and anonymous functions used as object property values.

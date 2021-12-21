@@ -129,11 +129,15 @@ function getDeclaratorName(path, t) {
     return parent.node.id.name || ''
   }
 
-  if (parent.isArrowFunctionExpression()) {
-    const parentDeclaratorName = getDeclaratorName(parent, t)
-    if (parentDeclaratorName) {
-      return parentDeclaratorName
+  if (parent.isFunctionExpression()) {
+    if (parent.node.id) {
+      return parent.node.id.name || ''
     }
+    return getDeclaratorName(parent, t)
+  }
+
+  if (parent.isArrowFunctionExpression()) {
+    return getDeclaratorName(parent, t)
   }
 
   // we could also have an object property
@@ -144,7 +148,7 @@ function getDeclaratorName(path, t) {
   }
 
   let variableDeclarator = parent.findParent(p => p.isVariableDeclarator())
-  if (!variableDeclarator) {
+  if (!variableDeclarator || !variableDeclarator.get('id').isIdentifier()) {
     return ''
   }
   return variableDeclarator.node.id.name
