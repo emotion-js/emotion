@@ -6,18 +6,14 @@ Emotion includes TypeScript definitions for `@emotion/react` and `@emotion/style
 
 ## @emotion/react
 
-The easiest way to use the css prop with TypeScript is with the new JSX
-transform and the `jsxImportSource` TSConfig option. For this approach, your
-TSConfig `compilerOptions` should contain
+The easiest way to use the css prop with TypeScript is with the new JSX transform and the `jsxImportSource` TSConfig option (available since TS 4.1). For this approach, your TSConfig `compilerOptions` should contain
 
 ```json
 "jsx": "react-jsx",
 "jsxImportSource": "@emotion/react"
 ```
 
-For most users, this is all the setup that is required. You can now define
-styles using the object syntax or template literal syntax and pass them to your
-components via the `css` prop.
+For most users, this is all the setup that is required. You can now define styles using the object syntax or template literal syntax and pass them to your components via the `css` prop.
 
 ```tsx
 import { css } from '@emotion/react'
@@ -35,7 +31,7 @@ const subtitleStyle = css`
 `
 ```
 
-Object styles are recommended since they are type-checked with the help of the [csstype](https://www.npmjs.com/package/csstype) package. For example, the following code will emit an error.
+Object styles are recommended since they are type checked with the help of the [csstype](https://www.npmjs.com/package/csstype) package. For example, the following code will emit an error.
 
 ```tsx
 import { css } from '@emotion/react';
@@ -48,23 +44,11 @@ const titleStyle = css({
 });
 ```
 
-<!-- When using our JSX factories the support for `css` prop is being added only for components that accepts `className` prop as they take provided `css` prop, resolves it and pass the generated `className` to the rendered component.
-
-It's not possible to leverage `css` prop support being added conditionally based on the type of a rendered component when not using our jsx pragma or the `react-jsx` transform. If you use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
-
-```ts
-/// <reference types="@emotion/react/types/css-prop" />
-```
--->
+When using our JSX factory, TypeScript only allows the `css` prop on components that accept a `className` prop. This is because `@emotion/react` resolves the value of the `css` prop to a class name and then passes this class name down to the rendered component.
 
 ### With the Babel plugin
 
-[`@emotion/babel-plugin`](/docs/babel) is completely optional for TypeScript
-users. If you not already using Babel, you probably shouldn't add it to your
-build tooling unless you truly need one of the features offered by
-`@emotion/babel-plugin`. On the other hand, there's no reason not to use
-`@emotion/babel-plugin` if you are already using Babel to transpile your
-TypeScript code.
+[`@emotion/babel-plugin`](/docs/babel) is completely optional for TypeScript users. If you not already using Babel, you probably shouldn't add it to your build tooling unless you truly need one of the features offered by `@emotion/babel-plugin`. On the other hand, there's no reason not to use `@emotion/babel-plugin` if you are already using Babel to transpile your TypeScript code.
 
 ### With the old JSX transform
 
@@ -73,6 +57,12 @@ If you are unable to upgrade to the `react-jsx` transform, you will need to spec
 ```tsx
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
+```
+
+It's not possible to leverage `css` prop support being added conditionally based on the type of a rendered component when not using our jsx pragma or the `react-jsx` transform. If you use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
+
+```ts
+/// <reference types="@emotion/react/types/css-prop" />
 ```
 
 ## @emotion/styled
