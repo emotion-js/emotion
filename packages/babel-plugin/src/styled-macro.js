@@ -38,12 +38,7 @@ export let styledTransformer = ({
       (styledBaseImport[0] === importSource &&
         styledBaseImport[1] === importSpecifierName)
     ) {
-      return importSpecifierName === 'default'
-        ? t.identifier(
-            path.get('specifiers').find(p => p.isImportDefaultSpecifier()).node
-              .local.name
-          )
-        : t.identifier(importSpecifierName)
+      return t.cloneNode(reference.node)
     }
 
     if (path.node) {

@@ -1,5 +1,15 @@
 # @emotion/babel-plugin
 
+## 11.7.2
+
+### Patch Changes
+
+- [#2585](https://github.com/emotion-js/emotion/pull/2585) [`b830c7dc`](https://github.com/emotion-js/emotion/commit/b830c7dc9da1c75c88e655150f04ef52b8176212) Thanks [@Andarist](https://github.com/Andarist)! - Fixed label extraction crashing in some cases involving variable declarations with array and object patterns.
+
+* [#2585](https://github.com/emotion-js/emotion/pull/2585) [`b830c7dc`](https://github.com/emotion-js/emotion/commit/b830c7dc9da1c75c88e655150f04ef52b8176212) Thanks [@kddc](https://github.com/kddc), [@Andarist](https://github.com/Andarist)! - Improved label extraction for named function expressions and anonymous functions used as object property values.
+
+- [#2602](https://github.com/emotion-js/emotion/pull/2602) [`b02f349d`](https://github.com/emotion-js/emotion/commit/b02f349d28df7bc77cad6d7e1b62aecef9f19405) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styled transformer sometimes not using the used local name for the imported named export when used with `importMap`.
+
 ## 11.7.1
 
 ### Patch Changes

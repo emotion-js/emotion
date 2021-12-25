@@ -170,7 +170,7 @@ const H1 = styled('h1', {
   shouldForwardProp: prop =>
     isPropValid(prop) && prop !== 'color'
 })(props => ({
-  color: 'hotpink'
+  color: props.color
 }))
 
 render(<H1 color="lightgreen">This is lightgreen.</H1>)
