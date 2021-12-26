@@ -6,7 +6,7 @@ export const colors = {
   //   dark: '#1D2029',
   //   reallyLightPink: '#f9e9fb',
   hightlight: '#C43BAD',
-  border: '#eac3e4',
+  pinkBorder: '#eac3e4',
   grayBorder: '#d2d2d2'
   // border: '#C865B9'
   //   bg: '#FAF9FA',
@@ -25,5 +25,9 @@ export const mediaQueries = {
 }
 
 export const styleConstants = {
-  containerWidth: 1100
+  containerWidth: 1100,
+
+  borderRadius: '0.25rem',
+
+  fontSizeSm: '0.875rem'
 }

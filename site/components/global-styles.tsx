@@ -11,7 +11,8 @@ export function GlobalStyles(): ReactElement {
           textDecoration: 'none'
         },
         'a:hover': {
-          color: colors.hightlight
+          color: colors.hightlight,
+          textDecoration: 'underline'
         }
       }}
     />
