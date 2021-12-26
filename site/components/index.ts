@@ -1,5 +1,5 @@
 export * from './site-header'
 export * from './doc-wrapper'
-export * from './doc-title'
+export * from './title'
 export * from './global-styles'
 export * from './markdown-css'
