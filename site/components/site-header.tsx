@@ -34,9 +34,16 @@ function HeaderLink({
       <a
         css={[
           {
+            display: 'inline-block',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
+            whiteSpace: 'nowrap',
             fontWeight: 500,
             color: colors.body,
-            textDecoration: 'none'
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'none'
+            }
           },
           animatedUnderline
         ]}
@@ -103,23 +110,14 @@ export function SiteHeader() {
         >
           <ul
             css={{
-              display: 'grid',
-              gridAutoFlow: 'column', // 'column dense', undefined, 'column'],
-              gridColumn: 'auto', // ['2 / span 1', undefined, 'auto'],
-              gridRow: 'auto', // '1', '1', 'auto'],
+              display: 'flex',
               alignItems: 'center',
               justifyItems: 'center',
-              gap: '1rem',
+              gap: '1.5rem',
               padding: 0,
               margin: '0 0 0 auto',
               overflow: 'auto',
-              listStyle: 'none',
-              'li a': {
-                display: 'inline-block',
-                paddingTop: '0.5rem',
-                paddingBottom: '0.5rem',
-                whiteSpace: 'nowrap'
-              }
+              listStyle: 'none'
             }}
           >
             <li>
@@ -130,14 +128,14 @@ export function SiteHeader() {
                 Docs
               </HeaderLink>
             </li>
-            <li>
+            {/* TODO:SAM <li>
               <HeaderLink
                 href="/community"
                 active={router.pathname === '/community'}
               >
                 Community
               </HeaderLink>
-            </li>
+            </li> */}
             <li>
               <HeaderLink href="https://github.com/emotion-js/emotion">
                 GitHub

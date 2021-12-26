@@ -7,10 +7,10 @@ import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import remarkPrism from 'remark-prism'
-import { DocWrapper } from '../../components'
+import { DocWrapper, Title } from '../../components'
 import { docQueries } from '../../queries'
-import { DocTitle } from '../../components/doc-title'
 import { remarkFixLinks } from '../../util/remark-fix-links'
+import { styleConstants } from '../../util'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -42,6 +42,44 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
       docGroups: docQueries.listGroups()
     }
   }
+}
+
+interface DocTitleProps {
+  title: string
+  slug: string
+}
+
+function DocTitle({ title, slug }: DocTitleProps): ReactElement {
+  let editUrl
+
+  if (slug.startsWith('@emotion/')) {
+    const packageName = slug.replace('@emotion/', '')
+    editUrl = `https://github.com/emotion-js/emotion/edit/main/packages/${packageName}/README.md`
+  } else {
+    editUrl = `https://github.com/emotion-js/emotion/edit/main/docs/${slug}.mdx`
+  }
+
+  return (
+    <div css={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+      <Title
+        css={{
+          margin: 0
+        }}
+      >
+        {title}
+      </Title>
+      <a
+        css={{
+          marginLeft: 'auto',
+          fontSize: styleConstants.fontSizeSm,
+          fontWeight: 'normal !important' as any
+        }}
+        href={editUrl}
+      >
+        ✏️ <span css={{ marginLeft: '0.25rem' }}>Edit this page</span>
+      </a>
+    </div>
+  )
 }
 
 export default function DocsPage({
