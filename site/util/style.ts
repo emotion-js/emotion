@@ -1,17 +1,11 @@
 export const colors = {
   body: '#212529',
   pink: '#D26AC2',
-  //   blue: '#46C9E5',
-  //   yellow: '#FFCA2A',
-  //   dark: '#1D2029',
-  //   reallyLightPink: '#f9e9fb',
   hightlight: '#C43BAD',
   pinkBorder: '#eac3e4',
-  grayBorder: '#d2d2d2'
-  // border: '#C865B9'
-  //   bg: '#FAF9FA',
-  //   color: '#1B1D1D',
-  //   parentBg: '#FBF8FD'
+  grayBorder: '#d2d2d2',
+  pinkBg: '#FBF8FD',
+  hotPink: '#c865b9'
 }
 
 const breakpoints = { sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400 }

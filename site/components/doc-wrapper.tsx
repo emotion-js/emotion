@@ -1,7 +1,8 @@
+import Link from 'next/link'
 import { PropsWithChildren, ReactElement, useState } from 'react'
 import { DocGroup, DocMetadata } from '../queries'
 import { colors } from '../util'
-import Link from 'next/link'
+import { markdownCss } from './markdown-css'
 
 interface SidebarGroupProps {
   activeSlug: string
@@ -92,10 +93,13 @@ export function DocWrapper({
   return (
     <div css={{ display: 'flex' }}>
       <main
-        css={{
-          paddingRight: '2rem',
-          flex: 1
-        }}
+        css={[
+          markdownCss,
+          {
+            paddingRight: '2rem',
+            flex: 1
+          }
+        ]}
       >
         {children}
       </main>

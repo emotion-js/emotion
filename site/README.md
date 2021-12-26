@@ -5,9 +5,14 @@
 All of the docs live in the `docs` in the root of this repository. They are in [Markdown](https://daringfireball.net/projects/markdown/basics) and they should include the following frontmatter at the top of each file that specifies the title for the page.
 
 ```yaml
+---
 title: 'Some Title'
 ---
 ```
+
+## Package READMEs
+
+Links in package READMEs should go to `https://emotion.sh/docs/{docName}` so that clicking the link on npmjs.com brings you to the Emotion website.
 
 ### Code Blocks
 
