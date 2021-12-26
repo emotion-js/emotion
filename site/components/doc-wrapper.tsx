@@ -47,7 +47,8 @@ function SidebarGroup({
                   paddingBottom: 6,
                   color: colors.body,
                   '&:hover': {
-                    color: colors.pink
+                    color: colors.pink,
+                    textDecoration: 'none'
                   },
                   '&.active': {
                     fontWeight: 600,
@@ -59,7 +60,7 @@ function SidebarGroup({
                       transform: `translate(-2rem, -0.25rem)`,
                       position: 'absolute',
                       display: 'inline-block',
-                      backgroundColor: colors.border
+                      backgroundColor: colors.pinkBorder
                     }
                   }
                 }}
@@ -103,7 +104,7 @@ export function DocWrapper({
           flexShrink: 0,
           width: 220,
           paddingLeft: '2rem', // [0, 0, space[3]],
-          borderLeft: `1px solid ${colors.border}` /* [
+          borderLeft: `1px solid ${colors.pinkBorder}` /* [
             'none',
             'none',
             `1px solid ${colors.lighten(0.25, colors.border)}`

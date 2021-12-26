@@ -6,7 +6,7 @@ import {
 import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
-import { Title, DocWrapper } from '../../components'
+import { Title, DocWrapper, markdownCss } from '../../components'
 import { docQueries } from '../../queries'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -58,7 +58,7 @@ export default function DocsPage({
           </markdownComponents.a> */}
       </div>
 
-      <div>
+      <div css={markdownCss}>
         <MDXRemote {...mdx} />
       </div>
       {/* <div>
