@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { PropsWithChildren, ReactElement, useState } from 'react'
 import { DocGroup, DocMetadata } from '../queries'
 import { colors } from '../util'
+import { CarbonAds } from './carbon-ads'
 import { markdownCss } from './markdown-css'
 
 interface SidebarGroupProps {
@@ -115,8 +116,8 @@ export function DocWrapper({
           ]*/
         }}
       >
-        {/* <Carbon />
-        <Search /> */}
+        <CarbonAds />
+        {/* <Search /> */}
         {docGroups.map(g => (
           <SidebarGroup
             activeSlug={activeSlug}
