@@ -35,10 +35,9 @@ function HeaderLink({
         css={[
           {
             display: 'inline-block',
-            paddingTop: '0.5rem',
-            paddingBottom: '0.5rem',
             whiteSpace: 'nowrap',
             fontWeight: 500,
+            lineHeight: 1.3,
             color: colors.body,
             textDecoration: 'none',
             '&:hover': {
@@ -81,25 +80,29 @@ export function SiteHeader() {
             css={{
               display: 'flex',
               alignItems: 'center',
-              color: colors.pink,
               textDecoration: 'none',
-              marginRight: '1rem'
+              marginRight: '1rem',
+              color: colors.pink,
+              '&:hover': {
+                textDecoration: 'none',
+                color: colors.hightlight
+              }
             }}
           >
             <Image alt="Avatar" src={logo} height={48} width={48} />
-            <h4
+            <h3
               css={{
                 display: 'none',
-                margin: 0,
-                marginLeft: '1rem',
-                fontWeight: 'bold',
                 [mediaQueries.lgUp]: {
-                  display: 'inline'
+                  display: 'inline',
+                  margin: 0,
+                  marginLeft: '1.5rem',
+                  fontWeight: 'bold'
                 }
               }}
             >
               Emotion
-            </h4>
+            </h3>
           </a>
         </Link>
         <nav
@@ -128,7 +131,7 @@ export function SiteHeader() {
                 Docs
               </HeaderLink>
             </li>
-            {/* TODO:SAM <li>
+            {/* TODO add back??? <li>
               <HeaderLink
                 href="/community"
                 active={router.pathname === '/community'}
