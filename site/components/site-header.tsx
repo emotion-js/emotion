@@ -1,6 +1,5 @@
 import { PropsWithChildren, ReactElement } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { colors, mediaQueries, styleConstants } from '../util'
 import { css } from '@emotion/react'
 import { useRouter } from 'next/router'
@@ -89,7 +88,8 @@ export function SiteHeader() {
               }
             }}
           >
-            <Image alt="Avatar" src={logo} height={48} width={48} />
+            {/* next/image is not compatible with `next export` */}
+            <img alt="Avatar" src="/logo-48x48.png" height={48} width={48} />
             <h3
               css={{
                 display: 'none',

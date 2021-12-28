@@ -8,7 +8,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href="/logo.png" />
+        <link rel="shortcut icon" href="/logo-32x32.png" />
       </Head>
       <GlobalStyles />
       <SiteHeader />

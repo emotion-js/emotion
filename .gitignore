@@ -4,7 +4,6 @@ dist/
 node_modules/
 *.log
 .idea
-site/build
 package-lock.json
 .DS_Store
 .cache
@@ -14,5 +13,8 @@ public/
 .env
 .vscode
 .parcel-cache/
-.next
 *.orig
+
+# Website
+site/out
+.next
