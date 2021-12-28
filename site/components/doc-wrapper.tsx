@@ -4,6 +4,7 @@ import { DocGroup, DocMetadata } from '../queries'
 import { colors } from '../util'
 import { CarbonAds } from './carbon-ads'
 import { markdownCss } from './markdown-css'
+import { Search } from './search'
 
 interface SidebarGroupProps {
   activeSlug: string
@@ -117,7 +118,7 @@ export function DocWrapper({
         }}
       >
         <CarbonAds />
-        {/* <Search /> */}
+        <Search />
         {docGroups.map(g => (
           <SidebarGroup
             activeSlug={activeSlug}
