@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import { colors, styleConstants } from '../util'
 
 export const markdownCss = css({
-  'h2, h3': { marginTop: '3rem', marginBottom: '1.5rem' },
+  'h2, h3, h4': { marginTop: '3rem', marginBottom: '1.5rem' },
 
   'p, li, code': { lineHeight: 1.7 },
 

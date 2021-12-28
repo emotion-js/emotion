@@ -3,6 +3,7 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType
 } from 'next'
+import Head from 'next/head'
 import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
@@ -89,9 +90,14 @@ export default function DocsPage({
   docGroups
 }: InferGetStaticPropsType<typeof getStaticProps>): ReactElement {
   return (
-    <DocWrapper activeSlug={slug} docGroups={docGroups}>
-      <DocTitle title={title} slug={slug} />
-      <MDXRemote {...mdx} />
-    </DocWrapper>
+    <>
+      <Head>
+        <title>Emotion – {title}</title>
+      </Head>
+      <DocWrapper activeSlug={slug} docGroups={docGroups}>
+        <DocTitle title={title} slug={slug} />
+        <MDXRemote {...mdx} />
+      </DocWrapper>
+    </>
   )
 }
