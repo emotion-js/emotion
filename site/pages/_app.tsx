@@ -1,8 +1,8 @@
 import '../public/bootstrap-reboot.min.css'
-import '@docsearch/css/dist/style.css'
+import '@docsearch/css'
+import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { SiteHeader, GlobalStyles } from '../components'
-import Head from 'next/head'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

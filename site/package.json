@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@docsearch/css": "^3.0.0-alpha.42",
     "@docsearch/react": "^3.0.0-alpha.42",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
