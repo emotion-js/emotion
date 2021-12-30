@@ -23,5 +23,6 @@ export const styleConstants = {
 
   borderRadius: '0.25rem',
 
-  fontSizeSm: '0.875rem'
+  fontSizeSm: '0.875rem',
+  fontSizeLg: '1.25rem'
 }

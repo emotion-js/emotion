@@ -1,5 +1,9 @@
 # [Emotion Site](https://emotion.sh)
 
+Run the site for development: `yarn dev` (in the `site` directory)
+
+Preview the production build of the site: `yarn build && yarn start`
+
 ## Docs
 
 All of the docs live in the `docs` in the root of this repository. They are in [Markdown](https://daringfireball.net/projects/markdown/basics) and they should include the following frontmatter at the top of each file that specifies the title for the page.
