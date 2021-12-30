@@ -16,6 +16,9 @@
  * @license MIT 2016-2018
  */
 
+// This has been tweaked to work with react-prism-renderer which is used by
+// react-live
+
 export const draculaPrism = `
 pre::-webkit-scrollbar {
   width: 14px;
@@ -32,7 +35,8 @@ pre::-webkit-scrollbar-thumb {
 }
 
 code[class*="language-"],
-pre[class*="language-"] {
+pre[class*="language-"],
+[language="jsx"] pre {
   color: #ccc;
   background: rgb(40, 41, 54);
   text-shadow: none;
@@ -112,6 +116,10 @@ pre[class*="language-"] {
 .limit-800
 {
   height: 800px !important;
+}
+
+.token.plain {
+  color: #ccc
 }
 
 .token.comment {

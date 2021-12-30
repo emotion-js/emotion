@@ -21,7 +21,8 @@ export const markdownCss = css({
     padding: '0.25rem'
   },
 
-  '.remark-highlight': {
+  // This targets code blocks
+  '.remark-highlight, .emotion-live-editor': {
     margin: '1.5rem 0'
   },
 

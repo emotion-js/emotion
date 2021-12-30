@@ -1,9 +1,14 @@
 import { ReactElement } from 'react'
-import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
-import dracula from 'prism-react-renderer/themes/dracula'
+import {
+  LiveProvider,
+  LiveError,
+  LivePreview,
+  LiveEditor,
+  EditorProps
+} from 'react-live'
 import { css } from '@emotion/react'
-import { colors } from '../../util'
-import { compile2 } from './compile2'
+import { colors, styleConstants } from '../../util'
+import { compile } from './compile'
 
 const borderRadius = '0.5rem'
 
@@ -14,6 +19,8 @@ const theCss = {
 
   editor: css({
     flex: 1,
+    backgroundColor: 'rgb(40, 41, 54)', // Copied from Prism theme
+    fontSize: styleConstants.fontSizeSm,
 
     borderStartStartRadius: borderRadius,
     borderEndStartRadius: borderRadius
@@ -48,6 +55,11 @@ const theCss = {
   })
 }
 
+const noTheme: EditorProps['theme'] = {
+  plain: {},
+  styles: []
+}
+
 interface LiveEditorProps {
   code: string
   language: 'jsx' | 'tsx'
@@ -58,14 +70,14 @@ export function EmotionLiveEditor({
   language
 }: LiveEditorProps): ReactElement {
   return (
-    <div css={theCss.container}>
+    <div className="emotion-live-editor" css={theCss.container}>
       <LiveProvider
         code={code}
         language={language}
         noInline
-        transformCode={compile2}
+        transformCode={compile}
       >
-        <LiveEditor theme={dracula} css={theCss.editor} />
+        <LiveEditor css={theCss.editor} theme={noTheme} />
         <LiveError css={[theCss.rightColumn, theCss.error]} />
         <LivePreview css={[theCss.rightColumn, theCss.preview]} />
       </LiveProvider>

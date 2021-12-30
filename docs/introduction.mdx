@@ -79,8 +79,28 @@ The [@emotion/react](https://www.npmjs.com/package/@emotion/react) package requi
 
 ```jsx
 // @live
-// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** jsx jsx */
+import { css, jsx } from '@emotion/react'
+
+const color = 'white'
+
+render(
+  <div
+    css={css`
+      padding: 32px;
+      background-color: hotpink;
+      font-size: 24px;
+      border-radius: 4px;
+      &:hover {
+        color: ${color};
+      }
+    `}
+  >
+    Hover to change color.
+  </div>
+)
+```
+
+```jsx
 import { css, jsx } from '@emotion/react'
 
 const color = 'white'
