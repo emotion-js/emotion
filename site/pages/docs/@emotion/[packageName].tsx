@@ -23,6 +23,8 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 
   // mdxOptions is duplicated in an attempt to prevent the client-side bundle
   // from containing any mdx/remark JS
+
+  // READMEs should not contain live code blocks
   const mdx = await serialize(content, {
     mdxOptions: { remarkPlugins: [remarkPrism, remarkFixLinks] }
   })

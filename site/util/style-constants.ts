@@ -5,7 +5,9 @@ export const colors = {
   pinkBorder: '#eac3e4',
   grayBorder: '#d2d2d2',
   pinkBg: '#FBF8FD',
-  hotPink: '#c865b9'
+  hotPink: '#c865b9',
+  danger: '#dc3545',
+  dangerBorder: '#f5c2c7'
 }
 
 const breakpoints = { sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400 }

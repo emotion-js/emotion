@@ -12,6 +12,10 @@ import { DocWrapper, Title } from '../../components'
 import { docQueries } from '../../queries'
 import { remarkFixLinks } from '../../util/remark-fix-links'
 import { styleConstants } from '../../util'
+import {
+  remarkLiveEditor,
+  EmotionLiveEditor
+} from '../../components/live-editor'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -32,7 +36,10 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   // mdxOptions is duplicated in an attempt to prevent the client-side bundle
   // from containing any mdx/remark JS
   const mdx = await serialize(content, {
-    mdxOptions: { remarkPlugins: [remarkPrism, remarkFixLinks] }
+    mdxOptions: {
+      // remarkLiveEditor must come before remarkPrism
+      remarkPlugins: [remarkLiveEditor, remarkPrism, remarkFixLinks]
+    }
   })
 
   return {
@@ -96,7 +103,12 @@ export default function DocsPage({
       </Head>
       <DocWrapper activeSlug={slug} docGroups={docGroups}>
         <DocTitle title={title} slug={slug} />
-        <MDXRemote {...mdx} />
+        <MDXRemote
+          {...mdx}
+          components={{
+            'live-editor': EmotionLiveEditor
+          }}
+        />
       </DocWrapper>
     </>
   )
