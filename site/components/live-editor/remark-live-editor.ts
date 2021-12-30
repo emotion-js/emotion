@@ -13,7 +13,7 @@ export function remarkLiveEditor() {
   return (markdownAST: any) =>
     visit(markdownAST, 'code', (node: CodeNode) => {
       if (
-        (node.lang === 'jsx' || node.lang === 'tsx') &&
+        node.lang === 'jsx' &&
         // This won't work if you don't use line comments but adding a whole
         // JS parser would be overkill
         node.value &&
