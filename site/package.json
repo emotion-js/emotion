@@ -8,6 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/standalone": "^7.16.6",
     "@docsearch/css": "^3.0.0-alpha.42",
     "@docsearch/react": "^3.0.0-alpha.42",
     "escape-goat": "^4.0.0",
@@ -23,6 +26,8 @@
     "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
+    "@types/babel__preset-env": "^7.9.2",
+    "@types/babel__standalone": "^7.1.4",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^12.20.37",
     "@types/react": "^18.0.9",

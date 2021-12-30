@@ -3,6 +3,7 @@ import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
 import dracula from 'prism-react-renderer/themes/dracula'
 import { css } from '@emotion/react'
 import { colors } from '../../util'
+import { compile2 } from './compile2'
 
 const borderRadius = '0.5rem'
 
@@ -58,7 +59,12 @@ export function EmotionLiveEditor({
 }: LiveEditorProps): ReactElement {
   return (
     <div css={theCss.container}>
-      <LiveProvider code={code} language={language} noInline>
+      <LiveProvider
+        code={code}
+        language={language}
+        noInline
+        transformCode={compile2}
+      >
         <LiveEditor theme={dracula} css={theCss.editor} />
         <LiveError css={[theCss.rightColumn, theCss.error]} />
         <LivePreview css={[theCss.rightColumn, theCss.preview]} />
