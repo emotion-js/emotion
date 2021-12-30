@@ -8,8 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
     "@babel/standalone": "^7.16.6",
     "@docsearch/css": "^3.0.0-alpha.42",
     "@docsearch/react": "^3.0.0-alpha.42",

@@ -1,2 +1,1 @@
-// This package doesn't have types currently
-declare module '@babel/preset-react'
+declare module '@emotion/babel-plugin' // TODO

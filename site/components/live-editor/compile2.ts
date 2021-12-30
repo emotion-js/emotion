@@ -1,18 +1,18 @@
-//import Babel from '@babel/standalone'
 import * as Babel from '@babel/standalone'
 
-import babelPresetReact from '@babel/preset-react'
-//import babelPluginEmotion from '@emotion/babel-plugin'
-
 const options = {
-  presets: [babelPresetReact]
-  //plugins: [[babelPluginEmotion, { sourceMap: false }]]
+  presets: [
+    Babel.availablePresets['env'],
+    [
+      Babel.availablePresets['react'],
+      { runtime: 'automatic', importSource: '@emotion/react' }
+    ]
+  ]
 }
 
 export function compile2(code: string): string {
-  code = `render(<b>BOLD</b>)`
-  return (
-    Babel.transform(code, options).code ??
-    'throw new Error("compilation failed")'
-  )
+  const result = Babel.transform(code, options).code
+  if (!result) throw new Error('Babel failed to compile the code.')
+  console.log(result)
+  return result
 }
