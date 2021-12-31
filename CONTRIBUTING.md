@@ -22,9 +22,9 @@
 
 ## Documentation Website Development
 
-- Run above installation steps and then
-- Run `yarn start:site` to run a development server of gatsby.
-- Run `yarn build:site` to create a build of the assets for the documentation website.
+- Run above installation steps and then `cd` to the `site` directory.
+- Run `yarn dev` to run the Next.js development server.
+- Run `yarn build` to create a build of the assets for the documentation website.
 
 ## Changesets
 
