@@ -22,8 +22,7 @@ Add `ThemeProvider` to the top level of your app and access the theme with `prop
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, ThemeProvider } from '@emotion/react'
+import { ThemeProvider } from '@emotion/react'
 
 const theme = {
   colors: {
@@ -33,9 +32,7 @@ const theme = {
 
 render(
   <ThemeProvider theme={theme}>
-    <div css={theme => ({ color: theme.colors.primary })}>
-      some other text
-    </div>
+    <div css={theme => ({ color: theme.colors.primary })}>some other text</div>
   </ThemeProvider>
 )
 ```
@@ -44,8 +41,7 @@ render(
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, ThemeProvider } from '@emotion/react'
+import { ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 
 const theme = {
@@ -69,8 +65,7 @@ render(
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, ThemeProvider, useTheme } from '@emotion/react'
+import { ThemeProvider, useTheme } from '@emotion/react'
 
 const theme = {
   colors: {
@@ -78,14 +73,9 @@ const theme = {
   }
 }
 
-function SomeText (props) {
+function SomeText(props) {
   const theme = useTheme()
-  return (
-    <div
-      css={{ color: theme.colors.primary }}
-      {...props}
-    />
-  )
+  return <div css={{ color: theme.colors.primary }} {...props} />
 }
 
 render(
@@ -170,8 +160,7 @@ A React hook that provides the current theme as its value. If the theme is updat
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, ThemeProvider, useTheme } from '@emotion/react'
+import { ThemeProvider, useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 
 const theme = {

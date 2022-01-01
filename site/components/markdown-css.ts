@@ -21,7 +21,12 @@ export const markdownCss = css({
     padding: '0.25rem'
   },
 
-  // This targets code blocks
+  // This targets code blocks but not live editors
+  '.remark-highlight': {
+    // overflowX: 'auto'
+  },
+
+  // This targets code blocks and live editors
   '.remark-highlight, .emotion-live-editor': {
     margin: '1.5rem 0'
   },
@@ -29,7 +34,7 @@ export const markdownCss = css({
   blockquote: {
     display: 'flex',
     alignItems: 'center',
-    margin: '2rem 0 0',
+    margin: '1.5rem 0',
     borderLeft: `5px solid ${colors.hotPink}`,
     backgroundColor: colors.pinkBg,
     padding: '1rem',

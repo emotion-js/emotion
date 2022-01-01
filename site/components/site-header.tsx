@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { colors, mediaQueries, styleConstants } from '../util'
 import { css } from '@emotion/react'
 import { useRouter } from 'next/router'
-import logo from '../public/logo.png'
+import { Container } from './container'
 
 export const animatedUnderline = css({
   '&::after': {
@@ -66,13 +66,15 @@ export function SiteHeader() {
         borderBottom: `1px solid ${colors.grayBorder}`,
         boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
         paddingTop: '0.25rem',
-        marginBottom: '2.5rem'
+        marginBottom: '1.5rem',
+
+        [mediaQueries.mdUp]: {
+          marginBottom: '2.5rem'
+        }
       }}
     >
-      <div
+      <Container
         css={{
-          margin: '0 auto',
-          maxWidth: styleConstants.containerWidth,
           display: 'flex',
           alignItems: 'center'
         }}
@@ -96,7 +98,7 @@ export function SiteHeader() {
             <h3
               css={{
                 display: 'none',
-                [mediaQueries.lgUp]: {
+                [mediaQueries.mdUp]: {
                   display: 'inline',
                   margin: 0,
                   marginLeft: '1.5rem',
@@ -111,7 +113,8 @@ export function SiteHeader() {
         <nav
           css={{
             marginLeft: 'auto',
-            overflowX: 'auto'
+            overflowX: 'auto',
+            padding: '0.5rem 0' // For proper scrollbar placement on mobile
           }}
         >
           <ul
@@ -121,8 +124,7 @@ export function SiteHeader() {
               justifyItems: 'center',
               gap: '1.5rem',
               padding: 0,
-              margin: '0 0 0 auto',
-              overflow: 'auto',
+              margin: 0,
               listStyle: 'none'
             }}
           >
@@ -156,7 +158,7 @@ export function SiteHeader() {
             </li>
           </ul>
         </nav>
-      </div>
+      </Container>
     </header>
   )
 }

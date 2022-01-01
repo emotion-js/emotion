@@ -6,8 +6,7 @@ It can be useful to customize emotion's options - i.e. to add custom Stylis plug
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { CacheProvider, jsx, css } from '@emotion/react'
+import { CacheProvider, css } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { prefixer } from 'stylis'
 
@@ -17,7 +16,7 @@ const myCache = createCache({
     customPlugin,
     // has to be included manually when customizing `stylisPlugins` if you want to have vendor prefixes added automatically
     prefixer
-  ],
+  ]
 })
 
 render(

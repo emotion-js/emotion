@@ -2,7 +2,7 @@ import '../public/bootstrap-reboot.min.css'
 import '@docsearch/css'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
-import { SiteHeader, GlobalStyles } from '../components'
+import { SiteHeader, GlobalStyles, Container } from '../components'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,9 +12,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <SiteHeader />
-      <div css={{ maxWidth: 1100, margin: '0 auto' }}>
+      <Container>
         <Component {...pageProps} />
-      </div>
+      </Container>
     </>
   )
 }

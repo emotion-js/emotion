@@ -6,8 +6,7 @@ Composition is one of the most powerful and useful patterns in Emotion. You can 
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const base = css`
   color: hotpink;
@@ -54,8 +53,7 @@ With Emotion though, you can create styles and combine them.
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const danger = css`
   color: red;
@@ -70,8 +68,8 @@ render(
   <div>
     <div css={base}>This will be turquoise</div>
     <div css={[danger, base]}>
-      This will be also be turquoise since the base styles
-      overwrite the danger styles.
+      This will be also be turquoise since the base styles overwrite the danger
+      styles.
     </div>
     <div css={[base, danger]}>This will be red</div>
   </div>

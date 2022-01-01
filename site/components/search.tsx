@@ -4,7 +4,13 @@ import { ReactElement } from 'react'
 
 const docSearchCustomizationCss = css({
   '.DocSearch-Button': {
-    margin: '0 auto 2rem 0'
+    margin: '0 auto 2rem 0',
+    width: '100%'
+  },
+
+  // Display the "Search" placeholder regardless of screen width
+  '.DocSearch-Button-Placeholder': {
+    display: 'block !important'
   }
 })
 
