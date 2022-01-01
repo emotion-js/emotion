@@ -1,10 +1,53 @@
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import { PropsWithChildren, ReactElement, useState } from 'react'
+import { useRouter } from 'next/router'
+import { PropsWithChildren, ReactElement, useEffect, useState } from 'react'
 import { DocGroup, DocMetadata } from '../queries'
-import { colors } from '../util'
+import { colors, mediaQueries } from '../util'
 import { CarbonAds } from './carbon-ads'
 import { markdownCss } from './markdown-css'
 import { Search } from './search'
+
+interface ToggleSidebarButtonProps {
+  sidebarOpen: boolean
+  onClick(): void
+}
+
+function ToggleSidebarButton({
+  sidebarOpen,
+  onClick
+}: ToggleSidebarButtonProps) {
+  return (
+    <button
+      css={{
+        position: 'fixed',
+        bottom: 0,
+        right: 0,
+        borderRadius: '50%',
+        backgroundColor: colors.hightlight,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1.1rem',
+        margin: '2rem',
+        width: '3.5rem',
+        height: '3.5rem',
+        lineHeight: 1,
+        transition: '150ms ease-in-out background-color',
+        border: 'none',
+        color: 'white',
+
+        [mediaQueries.mdUp]: {
+          display: 'none'
+        }
+      }}
+      onClick={onClick}
+    >
+      <FontAwesomeIcon icon={sidebarOpen ? faTimes : faBars} />
+    </button>
+  )
+}
 
 interface SidebarGroupProps {
   activeSlug: string
@@ -89,49 +132,71 @@ export function DocWrapper({
 }: PropsWithChildren<DocWrapperProps>): ReactElement {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
+  const path = useRouter().asPath
+
+  // Close sidebar when path changes
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [path])
+
   return (
-    <div css={{ display: 'flex' }}>
-      <main
-        css={[
-          markdownCss,
-          {
-            paddingRight: '2rem',
-            flex: 1
-          }
-        ]}
-      >
-        {children}
-      </main>
-      <aside
-        css={{
-          flexShrink: 0,
-          width: 220,
-          paddingLeft: '2rem', // [0, 0, space[3]],
-          borderLeft: `1px solid ${colors.pinkBorder}` /* [
-            'none',
-            'none',
-            `1px solid ${colors.lighten(0.25, colors.border)}`
-          ]*/
-        }}
-      >
-        <CarbonAds />
-        <Search />
-        {docGroups.map(g => (
-          <SidebarGroup
-            activeSlug={activeSlug}
-            title={g.title}
-            docs={g.docs}
-            key={g.title}
-          />
-        ))}
-      </aside>
-      {/* <ToggleSidebarButton setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}>
-        {sidebarOpen ? (
-          <CloseIcon color="white" size={32} />
-        ) : (
-          <MenuIcon color="white" size={32} />
-        )}
-      </ToggleSidebarButton> */}
-    </div>
+    <>
+      <div css={{ display: 'flex' }}>
+        <main
+          css={[
+            markdownCss,
+            {
+              display: sidebarOpen ? 'none' : 'block',
+
+              // This is necessary to prevent code blocks from overflowing on
+              // mobile
+              overflow: 'hidden',
+
+              [mediaQueries.mdUp]: {
+                display: 'block',
+                flex: 1
+              }
+            }
+          ]}
+        >
+          {children}
+        </main>
+        <aside
+          css={{
+            flexGrow: 1,
+            display: sidebarOpen ? 'block' : 'none',
+
+            [mediaQueries.mdUp]: {
+              flexGrow: 0,
+              flexShrink: 0,
+              width: 180,
+              display: 'block',
+              marginLeft: '2rem',
+              paddingLeft: '2rem',
+              borderLeft: `1px solid ${colors.pinkBorder}`
+            },
+
+            [mediaQueries.lgUp]: {
+              width: 220
+            }
+          }}
+        >
+          <CarbonAds />
+          <Search />
+          {docGroups.map(g => (
+            <SidebarGroup
+              activeSlug={activeSlug}
+              title={g.title}
+              docs={g.docs}
+              key={g.title}
+            />
+          ))}
+        </aside>
+      </div>
+      <ToggleSidebarButton
+        sidebarOpen={sidebarOpen}
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      />
+    </>
   )
 }

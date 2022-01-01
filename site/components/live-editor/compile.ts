@@ -28,6 +28,6 @@ export function compile(code: string): string {
 
     const message = (e as any).message
     const messageEscaped = message.replace(/`/g, '\\`') // Escape backticks
-    return `render(<div style={{ whiteSpace: 'pre', fontFamily: 'monospace', color: '${colors.danger}' }}>{\`${messageEscaped}\`}</div>)`
+    return `render(<div style={{ whiteSpace: 'pre-line', fontFamily: 'monospace', color: '${colors.danger}' }}>{\`${messageEscaped}\`}</div>)`
   }
 }

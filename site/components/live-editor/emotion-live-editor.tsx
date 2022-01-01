@@ -7,7 +7,7 @@ import {
   EditorProps
 } from 'react-live'
 import { css } from '@emotion/react'
-import { colors, styleConstants } from '../../util'
+import { colors, mediaQueries, styleConstants } from '../../util'
 import { compile } from './compile'
 
 const scope = {
@@ -45,7 +45,9 @@ const borderRadius = '0.5rem'
 
 const theCss = {
   container: css({
-    display: 'flex'
+    [mediaQueries.mdUp]: {
+      display: 'flex'
+    }
   }),
 
   editor: css({
@@ -54,20 +56,32 @@ const theCss = {
     caretColor: 'white',
     fontSize: styleConstants.fontSizeSm,
 
-    borderStartStartRadius: borderRadius,
-    borderEndStartRadius: borderRadius
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+
+    [mediaQueries.mdUp]: {
+      borderBottomLeftRadius: borderRadius,
+      borderTopRightRadius: 0
+    }
   }),
 
-  rightColumn: css({
+  result: css({
     flex: 1,
     padding: '0.5rem',
     display: 'flex',
     flexDirection: 'column',
 
     border: `1px solid ${colors.grayBorder}`,
-    borderLeftStyle: 'none',
-    borderStartEndRadius: borderRadius,
-    borderEndEndRadius: borderRadius
+    borderTopStyle: 'none',
+    borderBottomLeftRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+
+    [mediaQueries.mdUp]: {
+      borderTopStyle: 'solid',
+      borderLeftStyle: 'none',
+      borderTopRightRadius: borderRadius,
+      borderBottomLeftRadius: 0
+    }
   }),
 
   label: css({
@@ -77,7 +91,7 @@ const theCss = {
   }),
 
   error: css({
-    flex: 1,
+    flex: '1',
     padding: '0.5rem',
     marginBottom: 0,
     color: colors.danger
@@ -85,7 +99,8 @@ const theCss = {
 
   preview: css({
     flex: 1,
-    padding: '0.5rem',
+    padding: '0.5rem 0.5rem 1.5rem 0.5rem',
+    overflowX: 'auto',
 
     display: 'flex',
     alignItems: 'center',
@@ -118,7 +133,7 @@ export function EmotionLiveEditor({ code }: LiveEditorProps): ReactElement {
           scope={scope}
         >
           <LiveEditor css={theCss.editor} theme={noTheme} />
-          <div css={theCss.rightColumn}>
+          <div css={theCss.result}>
             <LiveError css={theCss.error} />
             <LivePreview css={theCss.preview} />
             <div css={theCss.label}>(Edit code to see changes)</div>

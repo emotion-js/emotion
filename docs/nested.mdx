@@ -6,8 +6,7 @@ Sometimes it's useful to nest selectors to target elements inside the current cl
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const paragraph = css`
   color: turquoise;
@@ -29,8 +28,7 @@ You can use `&` to select the current class nested in another element:
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const paragraph = css`
   color: turquoise;
@@ -42,13 +40,9 @@ const paragraph = css`
 render(
   <div>
     <header>
-      <p css={paragraph}>
-        This is green since it's inside a header
-      </p>
+      <p css={paragraph}>This is green since it's inside a header</p>
     </header>
-    <p css={paragraph}>
-      This is turquoise since it's not inside a header.
-    </p>
+    <p css={paragraph}>This is turquoise since it's not inside a header.</p>
   </div>
 )
 ```

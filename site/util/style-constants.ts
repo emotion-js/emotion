@@ -25,8 +25,6 @@ export const mediaQueries = {
 }
 
 export const styleConstants = {
-  containerWidth: 1100,
-
   borderRadius: '0.25rem',
 
   fontSizeSm: '0.875rem',

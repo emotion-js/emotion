@@ -11,7 +11,7 @@ import remarkPrism from 'remark-prism'
 import { DocWrapper, Title } from '../../components'
 import { docQueries } from '../../queries'
 import { remarkFixLinks } from '../../util/remark-fix-links'
-import { styleConstants } from '../../util'
+import { mediaQueries, styleConstants } from '../../util'
 import {
   remarkLiveEditor,
   EmotionLiveEditor
@@ -68,19 +68,30 @@ function DocTitle({ title, slug }: DocTitleProps): ReactElement {
   }
 
   return (
-    <div css={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+    <div
+      css={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '1rem'
+      }}
+    >
       <Title
         css={{
-          margin: 0
+          marginBottom: 0
         }}
       >
         {title}
       </Title>
       <a
         css={{
-          marginLeft: 'auto',
-          fontSize: styleConstants.fontSizeSm,
-          fontWeight: 'normal !important' as any
+          display: 'none',
+
+          [mediaQueries.mdUp]: {
+            display: 'block',
+            fontSize: styleConstants.fontSizeSm,
+            fontWeight: 'normal !important' as 'normal'
+          }
         }}
         href={editUrl}
       >
