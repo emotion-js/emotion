@@ -7,7 +7,11 @@ export const colors = {
   pinkBg: '#FBF8FD',
   hotPink: '#c865b9',
   danger: '#dc3545',
-  dangerBorder: '#f5c2c7'
+  dangerBorder: '#f5c2c7',
+
+  // See https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss if
+  // other grays are needed
+  gray500: '#adb5bd'
 }
 
 const breakpoints = { sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400 }
