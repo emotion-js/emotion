@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
 
+  // These take effect in development and should match the redirects in netlify.toml
   async redirects() {
     return [
       {
