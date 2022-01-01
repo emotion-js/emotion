@@ -20,6 +20,7 @@
     - labels
     - class-names
     - cache-provider
+    - community # There is code to hide this from the menu since it has its own navbar link
 
 - title: Tooling
   items:

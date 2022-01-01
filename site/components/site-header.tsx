@@ -56,6 +56,9 @@ function HeaderLink({
 export function SiteHeader() {
   const router = useRouter()
 
+  const path = router.asPath
+  const onCommunityPage = path === '/docs/community'
+
   return (
     <header
       css={{
@@ -74,7 +77,7 @@ export function SiteHeader() {
           alignItems: 'center'
         }}
       >
-        <Link href="/docs/introduction" passHref>
+        <Link href="/" passHref>
           <a
             css={{
               display: 'flex',
@@ -125,20 +128,17 @@ export function SiteHeader() {
           >
             <li>
               <HeaderLink
-                href="/docs/introduction"
-                active={router.pathname.startsWith('/docs')}
+                href="/docs"
+                active={router.pathname.startsWith('/docs') && !onCommunityPage}
               >
                 Docs
               </HeaderLink>
             </li>
-            {/* TODO add back??? <li>
-              <HeaderLink
-                href="/community"
-                active={router.pathname === '/community'}
-              >
+            <li>
+              <HeaderLink href="/docs/community" active={onCommunityPage}>
                 Community
               </HeaderLink>
-            </li> */}
+            </li>
             <li>
               <HeaderLink href="https://github.com/emotion-js/emotion">
                 GitHub

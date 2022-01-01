@@ -25,10 +25,6 @@ function SidebarGroup({
           fontSize: '1.25rem',
           marginBottom: 6
         }}
-        // className={cx({
-        //   'docSearch-lvl0':
-        //     docName !== undefined && docHeadingMap[docName] === item.title
-        // })}
       >
         {title}
       </h3>
@@ -40,41 +36,42 @@ function SidebarGroup({
           padding: 0
         }}
       >
-        {docs.map(doc => (
-          <li key={doc.slug}>
-            <Link href={`/docs/${doc.slug}`} passHref>
-              <a
-                css={{
-                  display: 'block',
-                  paddingTop: 6,
-                  paddingBottom: 6,
-                  color: colors.body,
-                  '&:hover': {
-                    color: colors.pink,
-                    textDecoration: 'none'
-                  },
-                  '&.active': {
-                    fontWeight: 600,
-                    color: colors.hightlight,
-                    '&::before': {
-                      content: '""',
-                      height: '2rem',
-                      width: '0.5rem',
-                      transform: `translate(-2rem, -0.25rem)`,
-                      position: 'absolute',
-                      display: 'inline-block',
-                      backgroundColor: colors.pinkBorder
+        {docs
+          .filter(doc => doc.slug !== 'community')
+          .map(doc => (
+            <li key={doc.slug}>
+              <Link href={`/docs/${doc.slug}`} passHref>
+                <a
+                  css={{
+                    display: 'block',
+                    paddingTop: 6,
+                    paddingBottom: 6,
+                    color: colors.body,
+                    '&:hover': {
+                      color: colors.pink,
+                      textDecoration: 'none'
+                    },
+                    '&.active': {
+                      fontWeight: 600,
+                      color: colors.hightlight,
+                      '&::before': {
+                        content: '""',
+                        height: '2rem',
+                        width: '0.5rem',
+                        transform: `translate(-2rem, -0.25rem)`,
+                        position: 'absolute',
+                        display: 'inline-block',
+                        backgroundColor: colors.pinkBorder
+                      }
                     }
-                  }
-                }}
-                className={activeSlug === doc.slug ? 'active' : undefined}
-                // activeClassName={cx('active', 'docSearch-lvl1')}
-              >
-                {doc.title}
-              </a>
-            </Link>
-          </li>
-        ))}
+                  }}
+                  className={activeSlug === doc.slug ? 'active' : undefined}
+                >
+                  {doc.title}
+                </a>
+              </Link>
+            </li>
+          ))}
       </ul>
     </>
   )
