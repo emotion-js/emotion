@@ -24,14 +24,14 @@ const scope = {
         return require('@emotion/cache')
       case '@emotion/react':
         return require('@emotion/react')
-      case '@emotion/react/jsx-runtime':
-        return require('@emotion/react/jsx-runtime')
       case '@emotion/styled':
         return require('@emotion/styled')
       case '@emotion/styled/base':
         return require('@emotion/styled/base')
       case '@emotion/is-prop-valid':
         return require('@emotion/is-prop-valid')
+      case 'react/jsx-runtime':
+        return require('react/jsx-runtime')
       case 'facepaint':
         return require('facepaint')
       default:
