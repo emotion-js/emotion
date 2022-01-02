@@ -8,7 +8,7 @@ import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import remarkPrism from 'remark-prism'
-import { DocWrapper, Title } from '../../components'
+import { DocWrapper, ResponsiveTable, Title } from '../../components'
 import { docQueries } from '../../queries'
 import { remarkFixLinks } from '../../util/remark-fix-links'
 import { mediaQueries, styleConstants } from '../../util'
@@ -117,6 +117,7 @@ export default function DocsPage({
         <MDXRemote
           {...mdx}
           components={{
+            table: ResponsiveTable,
             'live-editor': EmotionLiveEditor
           }}
         />

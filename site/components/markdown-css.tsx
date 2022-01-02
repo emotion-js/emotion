@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
-import { colors, styleConstants } from '../util'
+import React, { ReactElement, TableHTMLAttributes } from 'react'
+import { colors, mediaQueries, styleConstants } from '../util'
 
 export const markdownCss = css({
   'h2, h3, h4': { marginTop: '2rem', marginBottom: '1rem' },
@@ -57,6 +58,14 @@ export const markdownCss = css({
     }
   },
 
+  '.table-responsive-sm': {
+    overflowX: 'auto',
+
+    [mediaQueries.mdUp]: {
+      overflowX: 'initial'
+    }
+  },
+
   table: {
     margin: '1.5rem 0',
     width: '100%'
@@ -71,3 +80,13 @@ export const markdownCss = css({
     maxWidth: '100%'
   }
 })
+
+export function ResponsiveTable({
+  children
+}: React.TableHTMLAttributes<HTMLTableElement>): ReactElement {
+  return (
+    <div className="table-responsive-sm">
+      <table>{children}</table>
+    </div>
+  )
+}
