@@ -1,3 +1,5 @@
+const path = require('path')
+
 // To run bundle analyzer, set the `ANALYZE` environment variable to 'true'.
 // For example with PowerShell, run:
 // $Env:ANALYZE='true'; yarn build
@@ -28,5 +30,20 @@ module.exports = withBundleAnalyzer({
         permanent: true
       }
     ]
+  },
+
+  webpack: config => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          cosmiconfig: path.resolve(__dirname, 'module-stubs/cosmiconfig.cjs'),
+          'find-root': path.resolve(__dirname, 'module-stubs/find-root.cjs'),
+          resolve: path.resolve(__dirname, 'module-stubs/resolve.cjs')
+        }
+      }
+    }
   }
 })
