@@ -15,8 +15,13 @@ export function Container({
       css={{
         margin: '0 auto',
         maxWidth: 1132,
-        padding: '0 1rem',
-        [mediaQueries.mdUp]: { padding: '0 1.5rem' }
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+
+        [mediaQueries.mdUp]: {
+          paddingLeft: '1.5rem',
+          paddingRight: '1.5rem'
+        }
       }}
     >
       {children}

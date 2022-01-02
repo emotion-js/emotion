@@ -2,13 +2,13 @@
 
 > Jest testing utilities for emotion
 
-# Installation
+## Installation
 
 ```bash
 npm install --save-dev @emotion/jest
 ```
 
-# Snapshot Serializer
+## Snapshot Serializer
 
 The easiest way to test React components with emotion is with the snapshot serializer. You can register the serializer via the `snapshotSerializers` configuration property in your jest configuration like so:
 
@@ -55,9 +55,9 @@ test('renders with correct styles', () => {
 
 Refer to the [testing doc][emotion-testing] for more information about snapshot testing with emotion.
 
-## Options
+### Options
 
-### `classNameReplacer`
+#### `classNameReplacer`
 
 @emotion/jest's snapshot serializer replaces the hashes in class names with an index so that things like whitespace changes won't break snapshots. It optionally accepts a custom class name replacer, it defaults to the below.
 
@@ -79,7 +79,7 @@ expect.addSnapshotSerializer(
 )
 ```
 
-### `DOMElements`
+#### `DOMElements`
 
 @emotion/jest's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for DOM elements, you can do so by passing `{ DOMElements: false }`. For example:
 
@@ -90,9 +90,9 @@ import { createSerializer } from '@emotion/jest'
 expect.addSnapshotSerializer(createSerializer({ DOMElements: false }))
 ```
 
-# Custom matchers
+## Custom matchers
 
-## toHaveStyleRule
+### toHaveStyleRule
 
 To make more explicit assertions when testing your styled components you can use the `toHaveStyleRule` matcher.
 

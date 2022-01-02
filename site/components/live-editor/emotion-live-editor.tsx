@@ -51,7 +51,6 @@ const theCss = {
   }),
 
   editor: css({
-    flex: 1,
     backgroundColor: 'rgb(40, 41, 54)', // Copied from Prism theme
     caretColor: 'white',
     fontSize: styleConstants.fontSizeSm,
@@ -60,13 +59,13 @@ const theCss = {
     borderTopRightRadius: borderRadius,
 
     [mediaQueries.mdUp]: {
+      width: '50%',
       borderBottomLeftRadius: borderRadius,
       borderTopRightRadius: 0
     }
   }),
 
   result: css({
-    flex: 1,
     padding: '0.5rem',
     display: 'flex',
     flexDirection: 'column',
@@ -77,6 +76,7 @@ const theCss = {
     borderBottomRightRadius: borderRadius,
 
     [mediaQueries.mdUp]: {
+      width: '50%',
       borderTopStyle: 'solid',
       borderLeftStyle: 'none',
       borderTopRightRadius: borderRadius,

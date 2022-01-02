@@ -46,7 +46,8 @@ When using Enzyme, you can add `"@emotion/jest/enzyme-serializer"` instead.
 Or use `expect.addSnapshotSerializer` to add it like this:
 
 ```javascript
-import { createEnzymeSerializer } from '@emotion/jest/enzyme-serializer' // also adds the enzyme-to-json serializer
+// also adds the enzyme-to-json serializer
+import { createEnzymeSerializer } from '@emotion/jest/enzyme-serializer'
 
 expect.addSnapshotSerializer(createEnzymeSerializer())
 ```
