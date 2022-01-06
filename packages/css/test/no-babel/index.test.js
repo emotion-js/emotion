@@ -136,7 +136,7 @@ describe('css', () => {
 
     expect(tree).toMatchSnapshot()
   })
-  test.only('component as selectors (object syntax)', () => {
+  test('component as selectors (object syntax)', () => {
     const fontSize = '20px'
     const H1 = styled('h1')({ fontSize })
     const Thing = styled('div')({
