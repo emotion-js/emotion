@@ -1,34 +1,51 @@
-import * as Babel from '@babel/standalone'
-import { colors } from '../../util'
-import emotionBabelPlugin from '@emotion/babel-plugin'
+import {
+  CompilationFailureMessage,
+  CompilationRequestMessage,
+  CompilationSuccessMessage
+} from './message'
 
-const options = {
-  presets: [
-    // Convert imports to require
-    [Babel.availablePresets['env'], { modules: 'commonjs' }],
-    [
-      Babel.availablePresets['react'],
-      { runtime: 'automatic', importSource: '@emotion/react' }
-    ]
-  ],
-  plugins: [[emotionBabelPlugin, { sourceMap: false }]]
-}
+// Instantiate the worker in the browser only
+const worker =
+  typeof Worker === 'function'
+    ? new Worker(new URL('./babel-worker.ts', import.meta.url))
+    : undefined
 
-export function compile(code: string): string {
-  try {
-    const result = Babel.transform(code, options).code
-    if (!result) throw new Error('Babel failed to compile the code.')
-    console.log(result)
-    return result
-  } catch (e) {
-    // react-live doesn't currently handle errors thrown by `transform` functions.
-    // So we catch the error and return code that renders that error.
-    //
-    // TODO Fix https://github.com/FormidableLabs/react-live/issues/233
-    // and remove this hacky code.
+let count = 0
 
-    const message = (e as any).message
-    const messageEscaped = message.replace(/`/g, '\\`') // Escape backticks
-    return `render(<div style={{ whiteSpace: 'pre-line', fontFamily: 'monospace', color: '${colors.danger}' }}>{\`${messageEscaped}\`}</div>)`
-  }
+export function compile(code: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    if (!worker) {
+      resolve('')
+      return
+    }
+
+    const id = ++count
+
+    function handler({
+      data
+    }: MessageEvent<
+      CompilationSuccessMessage | CompilationFailureMessage
+    >): void {
+      if (data.id !== id) return
+      worker!.removeEventListener('message', handler)
+
+      switch (data.type) {
+        case 'success':
+          resolve(data.compiledCode)
+          break
+        case 'failure':
+          reject(new Error(data.errorMessage))
+          break
+        default:
+          throw new Error('Received an unexpected message.')
+      }
+    }
+    worker.addEventListener('message', handler)
+
+    const request: CompilationRequestMessage = {
+      id,
+      code
+    }
+    worker.postMessage(request)
+  })
 }

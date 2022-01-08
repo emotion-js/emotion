@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect } from 'react'
 import {
   LiveProvider,
   LiveError,
@@ -133,7 +133,7 @@ export function EmotionLiveEditor({ code }: LiveEditorProps): ReactElement {
           code={code}
           language="jsx"
           noInline
-          transformCode={compile}
+          transformCode={compile} // TODO:SAM
           scope={scope}
         >
           <LiveEditor css={theCss.editor} theme={noTheme} />
