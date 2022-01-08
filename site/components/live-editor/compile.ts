@@ -6,7 +6,10 @@ const options = {
   presets: [
     // Convert imports to require
     [Babel.availablePresets['env'], { modules: 'commonjs' }],
-    [Babel.availablePresets['react'], { runtime: 'automatic' }]
+    [
+      Babel.availablePresets['react'],
+      { runtime: 'automatic', importSource: '@emotion/react' }
+    ]
   ],
   plugins: [[emotionBabelPlugin, { sourceMap: false }]]
 }
