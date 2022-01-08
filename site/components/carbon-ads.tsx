@@ -1,5 +1,6 @@
-import React, { ReactElement, useRef } from 'react'
+import { ReactElement, useEffect, useRef } from 'react'
 import { Global, css } from '@emotion/react'
+import { useRouter } from 'next/router'
 
 const carbonCss = css`
   #carbonads {
@@ -75,13 +76,10 @@ const carbonCss = css`
 `
 
 export function CarbonAds(): ReactElement {
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
-  React.useEffect(() => {
-    if (!ref.current) {
-      console.error('Element ref for CarbonAds is not set.')
-      return
-    }
+  useEffect(() => {
+    if (!ref.current) return
 
     const script = document.createElement('script')
     script.async = true
@@ -91,6 +89,15 @@ export function CarbonAds(): ReactElement {
 
     ref.current.appendChild(script)
   }, [])
+
+  const router = useRouter()
+
+  // Change the ad when the user navigates to a different doc
+  useEffect(() => {
+    const _global = globalThis as { _carbonads?: { refresh(): void } }
+
+    _global._carbonads?.refresh()
+  }, [router.asPath])
 
   return (
     <>
