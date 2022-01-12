@@ -245,9 +245,7 @@ const Input5 = styled.input`
   })({})
 
   // $ExpectError
-  styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, {
-    shouldForwardProp: (prop: 'bar') => true
-  })({}) // eslint-disable-line
+  styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, { shouldForwardProp: (prop: 'bar') => true })({}) // prettier-ignore
 
   styled('div', { shouldForwardProp: (prop: 'color') => true })({})
 
@@ -259,7 +257,5 @@ const Input5 = styled.input`
   })({})
 
   // $ExpectError
-  styled<keyof JSX.IntrinsicElements>('div', {
-    shouldForwardProp: (prop: 'foo') => true
-  })({}) // eslint-disable-line
+  styled<keyof JSX.IntrinsicElements>('div', { shouldForwardProp: (prop: 'foo') => true })({}) // prettier-ignore
 }
