@@ -219,43 +219,29 @@ const Input5 = styled.input`
 }
 
 {
-  type StyledOptsParameterized = StyledOptions<{ a: string; b: number }>
+  const fc: React.FC<{ foo: string }> = props => <div {...props} />
 
-  const styledOpts0: StyledOptions = {
-    label: 'foo',
-    target: 'bar',
-    shouldForwardProp: p => true
-  }
-  const styledOpts1: StyledOptsParameterized = {
-    label: 'foo',
-    target: 'bar',
-    shouldForwardProp: (p: 'a' | 'b') => true
-  }
+  styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
 
-  const styledOptsBroken0: StyledOptsParameterized = {
-    label: 'foo',
-    target: 'bar',
-    shouldForwardProp: (p: 'c') => true // $ExpectError
-  }
-  const styledOptsBroken1: StyledOptions = {
-    label: 1, // $ExpectError
-    target: null, // $ExpectError
-    shouldForwardProp: (p1, p2) => true // $ExpectError
-  }
+  styled(fc, { shouldForwardProp: (prop: 'bar') => true })({}) // $ExpectError
 
-  interface Props {
-    foo: boolean
-  }
-  const options: StyledOptions<JSX.IntrinsicElements['div']> = {
-    label: 'foo',
-    target: 'bar',
-    shouldForwardProp: p => true
-  }
+  styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, {
+    shouldForwardProp: (prop: 'foo') => true
+  })({})
 
-  const test1 = styled('div', options)({ color: 'red' })
-  const test2 = styled('div', options)<Props>({ color: 'red' })
-  const test3 = styled(() => <div className="foo" />, options)({ color: 'red' })
-  const test4 = styled(() => <div className="foo" />, options)<Props>({
-    color: 'red'
-  })
+  styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, {
+    shouldForwardProp: (prop: 'bar') => true
+  })({}) // $ExpectError
+
+  styled('div', { shouldForwardProp: (prop: 'color') => true })({})
+
+  styled('div', { shouldForwardProp: (prop: 'foo') => true })({}) // $ExpectError
+
+  styled<keyof JSX.IntrinsicElements>('div', {
+    shouldForwardProp: (prop: 'color') => true
+  })({})
+
+  styled<keyof JSX.IntrinsicElements>('div', {
+    shouldForwardProp: (prop: 'foo') => true
+  })({}) // $ExpectError
 }
