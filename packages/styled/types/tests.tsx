@@ -228,12 +228,12 @@ const Input5 = styled.input`
   // $ExpectError
   styled(fc, { shouldForwardProp: (prop: 'bar') => true })({})
 
-  const shouldForwardProp1: StyledOptions['shouldForwardProp'] = (
-    prop: 'unknown'
-  ) => true
+  const shouldForwardProp1 = (prop: 'foo') => true
   styled(fc, { shouldForwardProp: shouldForwardProp1 })({})
 
-  const shouldForwardProp2 = (prop: 'foo') => true
+  const shouldForwardProp2: StyledOptions['shouldForwardProp'] = (
+    prop: 'unknown'
+  ) => true
   styled(fc, { shouldForwardProp: shouldForwardProp2 })({})
 
   const shouldForwardProp3 = (prop: 'unknown') => true
