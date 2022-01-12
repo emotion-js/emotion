@@ -223,25 +223,43 @@ const Input5 = styled.input`
 
   styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
 
-  styled(fc, { shouldForwardProp: (prop: 'bar') => true })({}) // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: string) => true })({})
+
+  // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: 'bar') => true })({})
+
+  const shouldForwardProp1: StyledOptions['shouldForwardProp'] = (
+    prop: 'unknown'
+  ) => true
+  styled(fc, { shouldForwardProp: shouldForwardProp1 })({})
+
+  const shouldForwardProp2 = (prop: 'foo') => true
+  styled(fc, { shouldForwardProp: shouldForwardProp2 })({})
+
+  const shouldForwardProp3 = (prop: 'unknown') => true
+  // $ExpectError
+  styled(fc, { shouldForwardProp: shouldForwardProp3 })({})
 
   styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, {
     shouldForwardProp: (prop: 'foo') => true
   })({})
 
+  // $ExpectError
   styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, {
     shouldForwardProp: (prop: 'bar') => true
-  })({}) // $ExpectError
+  })({}) // eslint-disable-line
 
   styled('div', { shouldForwardProp: (prop: 'color') => true })({})
 
-  styled('div', { shouldForwardProp: (prop: 'foo') => true })({}) // $ExpectError
+  // $ExpectError
+  styled('div', { shouldForwardProp: (prop: 'foo') => true })({})
 
   styled<keyof JSX.IntrinsicElements>('div', {
     shouldForwardProp: (prop: 'color') => true
   })({})
 
+  // $ExpectError
   styled<keyof JSX.IntrinsicElements>('div', {
     shouldForwardProp: (prop: 'foo') => true
-  })({}) // $ExpectError
+  })({}) // eslint-disable-line
 }
