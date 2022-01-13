@@ -1,14 +1,8 @@
-import { ReactElement, useEffect } from 'react'
-import {
-  LiveProvider,
-  LiveError,
-  LivePreview,
-  LiveEditor,
-  EditorProps
-} from 'react-live'
+import { ReactElement } from 'react'
+import { LiveProvider, LiveError, LivePreview, LiveEditor } from './components'
 import { css } from '@emotion/react'
 import { colors, mediaQueries, styleConstants } from '../../util'
-import { compile } from './compile'
+import { compile } from './compiler'
 
 const scope = {
   process: {
@@ -116,11 +110,6 @@ const theCss = {
   })
 }
 
-const noTheme: EditorProps['theme'] = {
-  plain: {},
-  styles: []
-}
-
 interface LiveEditorProps {
   code: string
 }
@@ -129,14 +118,8 @@ export function EmotionLiveEditor({ code }: LiveEditorProps): ReactElement {
   return (
     <div className="emotion-live-editor">
       <div css={theCss.container}>
-        <LiveProvider
-          code={code}
-          language="jsx"
-          noInline
-          transformCode={compile} // TODO:SAM
-          scope={scope}
-        >
-          <LiveEditor css={theCss.editor} theme={noTheme} />
+        <LiveProvider defaultCode={code} transformCode={compile} scope={scope}>
+          <LiveEditor css={theCss.editor} />
           <div css={theCss.result}>
             <LiveError css={theCss.error} />
             <LivePreview css={theCss.preview} />

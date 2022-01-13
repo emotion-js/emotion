@@ -14,6 +14,7 @@ public/
 .vscode
 .parcel-cache/
 *.orig
+*.tsbuildinfo
 
 # Website
 site/out
