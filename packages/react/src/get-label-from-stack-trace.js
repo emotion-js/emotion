@@ -1,18 +1,20 @@
 // @flow
 
+const getLastPart = (functionName: string): string => {
+  // The match may be something like 'Object.createEmotionProps' or
+  // 'Loader.prototype.render'
+  const parts = functionName.split('.')
+  return parts[parts.length - 1]
+}
+
 const getFunctionNameFromStackTraceLine = (line: string): ?string => {
   // V8
   let match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line)
-
-  if (match) {
-    // The match may be something like 'Object.createEmotionProps'
-    const parts = match[1].split('.')
-    return parts[parts.length - 1]
-  }
+  if (match) return getLastPart(match[1])
 
   // Safari / Firefox
   match = /^([A-Za-z0-9$.]+)@/.exec(line)
-  if (match) return match[1]
+  if (match) return getLastPart(match[1])
 
   return undefined
 }

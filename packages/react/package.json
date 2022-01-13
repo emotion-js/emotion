@@ -20,7 +20,7 @@
     "macro.js.flow"
   ],
   "sideEffects": false,
-  "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
+  "author": "Emotion Contributors",
   "license": "MIT",
   "scripts": {
     "test:typescript": "dtslint types"
