@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { StyledOptions } from '@emotion/styled'
+import styled, { StyledOptions, FilteringStyledOptions } from '@emotion/styled'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
@@ -219,6 +219,8 @@ const Input5 = styled.input`
 }
 
 {
+  // Props forwarding through StyledOptions and FilteringStyledOptions
+
   const fc: React.FC<{ foo: string }> = props => <div {...props} />
 
   styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
@@ -240,22 +242,44 @@ const Input5 = styled.input`
   // $ExpectError
   styled(fc, { shouldForwardProp: shouldForwardProp3 })({})
 
-  styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, {
-    shouldForwardProp: (prop: 'foo') => true
-  })({})
+  // $ExpectError
+  const shouldForwardProp4: StyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: 'unknown') => true
+
+  const shouldForwardProp5 = (prop: 'foo'): prop is 'foo' => true
+  styled(fc, { shouldForwardProp: shouldForwardProp5 })({})
+
+  const shouldForwardProp6: FilteringStyledOptions['shouldForwardProp'] = (
+    prop: 'foo'
+  ): prop is 'foo' => true
+
+  const shouldForwardProp7: FilteringStyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: 'foo'): prop is 'foo' => true
 
   // $ExpectError
-  styled<React.ComponentType<React.ComponentProps<typeof fc>>>(fc, { shouldForwardProp: (prop: 'bar') => true })({}) // prettier-ignore
+  const shouldForwardProp8: FilteringStyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: 'unknown'): prop is 'unknown' => true
+
+  const shouldForwardProp9: FilteringStyledOptions<
+    { foo: string; bar: string },
+    'foo'
+  >['shouldForwardProp'] = (prop: 'foo'): prop is 'foo' => true
+
+  // $ExpectError
+  const shouldForwardProp10: FilteringStyledOptions<
+    { foo: string; bar: string },
+    'foo'
+  >['shouldForwardProp'] = (prop: 'bar'): prop is 'bar' => true
 
   styled('div', { shouldForwardProp: (prop: 'color') => true })({})
 
-  // $ExpectError
-  styled('div', { shouldForwardProp: (prop: 'foo') => true })({})
-
-  styled<keyof JSX.IntrinsicElements>('div', {
-    shouldForwardProp: (prop: 'color') => true
+  styled('div', {
+    shouldForwardProp: (prop: 'color'): prop is 'color' => true
   })({})
 
   // $ExpectError
-  styled<keyof JSX.IntrinsicElements>('div', { shouldForwardProp: (prop: 'foo') => true })({}) // prettier-ignore
+  styled('div', { shouldForwardProp: (prop: 'foo') => true })({})
 }

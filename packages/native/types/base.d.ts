@@ -60,7 +60,7 @@ export type Interpolation<
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
-  Props,
+  Props = Record<PropertyKey, any>,
   ForwardedProps extends keyof Props = keyof Props
 > {
   shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
