@@ -30,7 +30,6 @@ export function LiveProvider({
         const transformedCode = await transformCode(code)
 
         setErrorMessage(undefined)
-        setElement(undefined)
 
         const element = await renderElementAsync(
           transformedCode,
