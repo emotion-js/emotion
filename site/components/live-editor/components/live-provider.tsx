@@ -44,7 +44,7 @@ export function LiveProvider({
     }
 
     effectAsync()
-  }, [defaultCode, scope, transformCode])
+  }, [code, scope, transformCode])
 
   return (
     <LiveContext.Provider
