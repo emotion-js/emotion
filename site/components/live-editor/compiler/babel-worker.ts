@@ -1,4 +1,7 @@
 import * as Babel from '@babel/standalone'
+
+// The line `"@emotion/babel-plugin": "file:../packages/babel-plugin",` in
+// package.json is currently required for this import to work with `next build`
 import emotionBabelPlugin from '@emotion/babel-plugin'
 import {
   CompilationFailureMessage,
