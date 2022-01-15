@@ -1,7 +1,9 @@
 import * as Babel from '@babel/standalone'
 
 // The line `"@emotion/babel-plugin": "file:../packages/babel-plugin",` in
-// package.json is currently required for this import to work with `next build`
+// package.json is required for this import to work with `next build` even
+// though `next dev` works fine. Have tried to create a minimal repro but it
+// worked. Maybe a Preconstruct issue?
 import emotionBabelPlugin from '@emotion/babel-plugin'
 import {
   CompilationFailureMessage,
