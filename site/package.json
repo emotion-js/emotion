@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@babel/standalone": "^7.16.6",
+    "@babel/standalone": "^7.16.9",
     "@docsearch/css": "^3.0.0-alpha.42",
     "@docsearch/react": "^3.0.0-alpha.42",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -19,7 +19,7 @@
     "facepaint": "^1.2.1",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
-    "next": "^12.0.7",
+    "next": "^12.0.8",
     "next-mdx-remote": "^3.0.8",
     "prism-react-renderer": "^1.2.1",
     "react": "16.14.0",
@@ -30,7 +30,7 @@
     "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^12.0.7",
+    "@next/bundle-analyzer": "^12.0.8",
     "@types/babel__standalone": "^7.1.4",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^12.20.37",

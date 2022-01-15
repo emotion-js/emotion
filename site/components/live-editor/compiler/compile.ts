@@ -7,7 +7,7 @@ import {
 // Instantiate the worker in the browser only
 const worker =
   typeof Worker === 'function'
-    ? new Worker(new URL('./babel-worker.ts', import.meta.url))
+    ? new Worker(new URL('babel-worker.ts', import.meta.url))
     : undefined
 
 let count = 0
