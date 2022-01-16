@@ -1,11 +1,6 @@
-/**
- * This is a test of @emotion/react/src/suppress-safari-class-name-mismatch.js.
- *
- * You need to disable @emotion/babel-plugin in playgrounds/nextjs/.babelrc.js
- * for the test to be valid, since the Babel plugin determines labels at compile
- * time.
- */
 import Head from 'next/head'
+import { css } from '@emotion/react'
+import { useEffect, useState } from 'react'
 
 // getLabelFromStackTrace will return 'MyComponent' on the server and undefined
 // in Safari
@@ -34,6 +29,20 @@ function MyComponent3() {
   )
 }
 
+// getLabelFromStackTrace will return 'MyComponent' on the server and undefined
+// in Safari. There is also a non-Emotion class name mismatch which should
+// result in a hydration warning.
+function MyComponent4() {
+  return (
+    <div
+      css={{ color: 'orchid' }}
+      className={typeof window === 'object' ? 'browser-class' : ''}
+    >
+      Some colored text 4
+    </div>
+  )
+}
+
 export default function SafariClassNameMismatch() {
   return (
     <div>
@@ -41,11 +50,25 @@ export default function SafariClassNameMismatch() {
         <title>Proper Tail Call Class Name Mismatch</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <h1>Proper Tail Call Class Name Mismatch</h1>
+      <p>
+        This is a test of
+        <code>
+          @emotion/react/src/suppress-proper-tail-call-class-name-mismatch.js
+        </code>
+        .
+      </p>
+      <p>
+        You have to comment out <code>@emotion/babel-plugin</code> in the
+        playground's
+        <code>.babelrc.js</code> for this to be a valid test since the Babel
+        plugin computes labels at compile time.
+      </p>
+
       <MyComponent />
       <MyComponent2 />
       <MyComponent3 />
+      <MyComponent4 />
     </div>
   )
 }

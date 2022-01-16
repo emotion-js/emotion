@@ -12,6 +12,10 @@ export function getRegisteredStyles(
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
+      // TODO:MAJOR There doesn't seem to be any reason for adding this
+      // semicolon, but removing it will change existing hashes which would be a
+      // breaking change. We should remove the extra semicolon in the next major
+      // version.
       registeredStyles.push(`${registered[className]};`)
     } else {
       rawClassName += `${className} `
@@ -27,12 +31,17 @@ export const insertStyles = (
 ) => {
   let className = `${cache.key}-${serialized.name}`
   if (
-    // we only need to add the styles to the registered cache if the
-    // class name could be used further down
-    // the tree but if it's a string tag, we know it won't
-    // so we don't have to add it to registered cache.
-    // this improves memory usage since we can avoid storing the whole style string
-    (isStringTag === false ||
+    // In dev, we always store the styles in the cache so that we can suppress
+    // benign class name mismatches, see
+    // suppress-proper-tail-call-class-name-mismatch.js.
+    //
+    // In production, we only need to add the styles to the registered cache if
+    // the class name could be used further down the tree but if it's a string
+    // tag, we know it won't so we don't have to add it to registered cache.
+    // this improves memory usage since we can avoid storing the whole style
+    // string.
+    (process.env.NODE_ENV !== 'production' ||
+      isStringTag === false ||
       // we need to always store it if we're in compat mode and
       // in node since emotion-server relies on whether a style is in
       // the registered cache to know whether a style is global or not

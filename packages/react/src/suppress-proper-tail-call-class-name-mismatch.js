@@ -1,3 +1,6 @@
+import { serializeStyles } from '@emotion/serialize'
+import { getRegisteredStyles } from '@emotion/utils'
+
 function classNameBelongsToCache(className, cacheKey) {
   // return className.startsWith(cacheKey + '-')
 
@@ -11,63 +14,109 @@ function getLabelFromClassName(className, cacheKey) {
   return className.match(new RegExp(`^${cacheKey}-.+-(.+)`))?.[1]
 }
 
-function isPossiblyBenignClassNameMismatchCore(
-  cache,
-  serverClassName,
-  browserClassName
-) {}
+// We don't use exec so it's fine to reuse a single RegExp instance
+const labelPattern = /label:[^\s;\n{]+;/g
 
-export function isPossiblyBenignClassNameMismatch(
-  cache,
-  serverClassNames,
-  browserClassNames
-) {
-  const serverClassNamesForCache = serverClassNames
-    .split(' ')
-    .filter(c => classNameBelongsToCache(c, cache.key))
+function areClassNamesEquivalent(serverClassName, browserClassName, cache) {
+  if (serverClassName === browserClassName) return true
 
-  const browserClassNamesForCache = browserClassNames
-    .split(' ')
-    .filter(c => classNameBelongsToCache(c, cache.key))
+  const serverLabel = getLabelFromClassName(serverClassName, cache.key)
+  if (!serverLabel) return false
 
-  // Server is missing a label. This is not the result of PTC and therefore is
-  // not benign.
-  if (serverClassNamesForCache.some(c => !getLabelFromClassName(c, cache.key)))
-    return false
+  // This code must be equivalent to the code used in emotion-element.js to add the
+  // runtime-generated label so that the serialized styles have the same hash
+  const browserStyles = cache.registered[browserClassName]
+  if (typeof browserStyles !== 'string') return false
 
-  if (
-    serverClassNamesForCache.length >= 1 &&
-    browserClassNamesForCache.length >= 1 &&
-    serverClassNamesForCache.length === browserClassNamesForCache.length
-  ) {
-    for (let i = 0; i < serverClassNamesForCache.length; i++) {
-      const serverLabel = getLabelFromClassName(
-        serverClassNamesForCache[i],
-        cache.key
-      )
-      const browserLabel = getLabelFromClassName(
-        browserClassNamesForCache[i],
-        cache.key
-      )
+  const serverLabelProperty = `label:${serverLabel};`
+  let newBrowserStyles
 
-      const isPossibleBenign =
-        typeof browserLabel === 'undefined' || serverLabel !== browserLabel
-
-      if (!isPossibleBenign) return false
-    }
-
-    // All mismatchs are benign
-    return true
+  if (labelPattern.test(browserStyles)) {
+    // browserClassName contains the wrong label
+    newBrowserStyles = serializeStyles(
+      browserStyles.replace(labelPattern, serverLabelProperty)
+    )
+  } else {
+    // browserClassName does not contain a label
+    newBrowserStyles = serializeStyles([browserStyles, serverLabelProperty])
   }
 
-  // This code can be reached for a few reasons:
-  // - These are non-Emotion class names.
-  // - The class names are from a different Emotion cache.
-  // - There were a different number of class names for this cache between the
-  //   server and browser.
-  //
-  // In any of these cases, we should not suppress the warning.
-  return false
+  const newBrowserClassName = `${cache.key}-${newBrowserStyles.name}`
+
+  return serverClassName === newBrowserClassName
+}
+
+export function isBenignClassNameMismatch(
+  serverClassNameString,
+  browserClassNameString,
+  cache
+) {
+  const nonCacheServerClassNames = serverClassNameString
+    .split(' ')
+    .filter(c => !classNameBelongsToCache(c, cache.key))
+
+  const cacheServerClassNames = serverClassNameString
+    .split(' ')
+    .filter(c => classNameBelongsToCache(c, cache.key))
+
+  const nonCacheBrowserClassNames = browserClassNameString
+    .split(' ')
+    .filter(c => !classNameBelongsToCache(c, cache.key))
+
+  const cacheBrowserClassNames = browserClassNameString
+    .split(' ')
+    .filter(c => classNameBelongsToCache(c, cache.key))
+
+  // Different number of class names - not benign.
+  if (nonCacheServerClassNames.length !== nonCacheBrowserClassNames.length)
+    return false
+
+  if (cacheServerClassNames.length !== cacheBrowserClassNames.length)
+    return false
+
+  // TODO:SAM This doesn't work
+  // for (let i = 0; i < nonCacheServerClassNames.length; i++) {
+  //   if (nonCacheServerClassNames[i] !== nonCacheBrowserClassNames[i]) {
+  //     // There is a class name mismatch for classes that do not come from this
+  //     // cache. This could either mean (1) the class name mismatch is not
+  //     // benign, or (2) the class name mismatch is benign but the classes come
+  //     // from a different cache (and that cache will suppress the hydration
+  //     // warning.)
+  //     return false
+  //   }
+  // }
+
+  let allExactMatches = true
+
+  for (let i = 0; i < cacheServerClassNames.length; i++) {
+    if (cacheServerClassNames[i] !== cacheBrowserClassNames[i]) {
+      allExactMatches = false
+      break
+    }
+  }
+
+  if (allExactMatches) {
+    // All class names for this cache match, so something else must be causing
+    // the hydration warning.
+    return false
+  }
+
+  // For each server class name, try to find the matching browser class name.
+  for (let i = 0; i < cacheServerClassNames.length; i++) {
+    if (
+      !cacheBrowserClassNames.some(c =>
+        areClassNamesEquivalent(cacheServerClassNames[i], c, cache)
+      )
+    ) {
+      // Could not find a browser class name that was equivalent to the server
+      // class except for the label, so this is not benign.
+      return false
+    }
+  }
+
+  // All the server class names having an equivalent browser class name, so this
+  // hydration warning is benign.
+  return true
 }
 
 const jsEngineDoesProperTailCalls = /* #__PURE__ */ (() => {
@@ -133,14 +182,14 @@ export function suppressProperTailCallClassNameMismatch(cache) {
       args[0] === 'Warning: Prop `%s` did not match. Server: %s Client: %s%s' &&
       args[1] === 'className'
     ) {
-      const serverClassNames = args[2].replace(/"/g, '')
-      const browserClassNames = args[3].replace(/"/g, '')
+      const serverClassNameString = args[2].replace(/"/g, '')
+      const browserClassNameString = args[3].replace(/"/g, '')
 
       if (
-        isPossiblyBenignClassNameMismatch(
-          cache,
-          serverClassNames,
-          browserClassNames
+        isBenignClassNameMismatch(
+          serverClassNameString,
+          browserClassNameString,
+          cache
         )
       ) {
         // Suppress the warning by not calling originalConsoleError

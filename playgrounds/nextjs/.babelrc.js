@@ -9,6 +9,6 @@ module.exports = {
         }
       }
     ]
-  ],
-  plugins: ['@emotion/babel-plugin']
+  ]
+  // plugins: ['@emotion/babel-plugin']
 }
