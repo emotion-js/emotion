@@ -37,6 +37,12 @@ function ToggleSidebarButton({
         transition: '150ms ease-in-out background-color',
         border: 'none',
         color: 'white',
+        zIndex: 500,
+
+        svg: {
+          // Necessary for Safari
+          width: '100%'
+        },
 
         [mediaQueries.mdUp]: {
           display: 'none'

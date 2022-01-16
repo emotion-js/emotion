@@ -5,6 +5,7 @@ import SimpleCodeEditor from 'react-simple-code-editor'
 
 // Use our customized instance of Prism, see prism-highlight-css.ts
 import Prism from 'prismjs'
+import { styleConstants } from '../../../util'
 
 interface LiveEditorProps {
   className?: string
@@ -43,7 +44,10 @@ export function LiveEditor({ className }: LiveEditorProps): ReactElement {
       highlight={highlightCode}
       css={{
         whiteSpace: 'pre',
-        fontFamily: 'monospace'
+        fontFamily: 'monospace',
+
+        // Fix text being strangely small in Safari
+        'pre, textarea': { fontSize: `${styleConstants.fontSizeSm} !important` }
       }}
     />
   )

@@ -94,7 +94,13 @@ export function SiteHeader() {
             }}
           >
             {/* next/image is not compatible with `next export` */}
-            <img alt="Avatar" src="/logo-48x48.png" height={48} width={48} />
+            <img
+              alt="Avatar"
+              src="/logo-48x48.png"
+              srcSet="/logo-96x96.png 2x"
+              height={48}
+              width={48}
+            />
             <h3
               css={{
                 display: 'none',
@@ -114,7 +120,10 @@ export function SiteHeader() {
           css={{
             marginLeft: 'auto',
             overflowX: 'auto',
-            padding: '0.5rem 0' // For proper scrollbar placement on mobile
+
+            // For proper scrollbar placement on mobile. Note, mobile scrollbars
+            // are pretty different between Safari and Chrome
+            padding: '0.25rem 0'
           }}
         >
           <ul

@@ -27,11 +27,6 @@ export const markdownCss = css({
     padding: '0.25rem'
   },
 
-  // This targets code blocks but not live editors
-  '.remark-highlight': {
-    // overflowX: 'auto'
-  },
-
   // This targets code blocks and live editors
   '.remark-highlight, .emotion-live-editor': {
     margin: '1.5rem 0'

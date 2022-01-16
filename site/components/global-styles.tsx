@@ -11,7 +11,6 @@ const globalCss = css({
     color: colors.hightlight,
     textDecoration: 'underline'
   }
-  // '.remark-highlight': { display: 'none' }
 })
 
 export function GlobalStyles(): ReactElement {
