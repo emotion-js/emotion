@@ -187,7 +187,7 @@
     "@babel/runtime": "^7.13.10",
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
-    "@manypkg/cli": "^0.16.1",
+    "@manypkg/cli": "^0.19.1",
     "@preconstruct/cli": "1.1.34",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.3",
