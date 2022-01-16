@@ -68,9 +68,7 @@ const carbonCss = css`
     }
 
     #carbonads .carbon-poweredby {
-      position: absolute;
-      left: 142px;
-      bottom: 0;
+      padding-left: 142px;
     }
   }
 `

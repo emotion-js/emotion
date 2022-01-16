@@ -57,7 +57,6 @@ const theCss = {
   editor: css({
     backgroundColor: 'rgb(40, 41, 54)', // Copied from Prism theme
     caretColor: 'white',
-    fontSize: styleConstants.fontSizeSm,
 
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
