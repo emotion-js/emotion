@@ -68,7 +68,7 @@ export default function SafariClassNameMismatch() {
       <MyComponent />
       <MyComponent2 />
       <MyComponent3 />
-      <MyComponent4 />
+      {/* <MyComponent4 /> */}
     </div>
   )
 }

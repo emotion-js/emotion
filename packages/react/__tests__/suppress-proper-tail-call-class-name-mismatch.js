@@ -3,7 +3,8 @@ import { serializeStyles } from '@emotion/serialize'
 import createCache from '@emotion/cache'
 import {
   isBenignClassNameMismatch,
-  suppressProperTailCallClassNameMismatch
+  suppressProperTailCallClassNameMismatch,
+  __addCacheKeyForTesting
 } from '../src/suppress-proper-tail-call-class-name-mismatch'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 
@@ -21,8 +22,17 @@ const isStringTag = true
 const cssObject0 = { color: 'orchid' }
 const cssObject1 = { color: 'turquoise' }
 
+function createBrowserCache(options) {
+  const cache = createCache(options)
+  __addCacheKeyForTesting(cache.key)
+
+  return cache
+}
+
 function getClassNameWithLabel(cache, cssObject, label = 'MyComponent') {
-  const serializedStyles = serializeStyles([cssObject, `label:${label};`])
+  // `css(cssObject)` is necessary to match the exact serialization behavior of
+  // emotion-element.js.
+  const serializedStyles = serializeStyles([css(cssObject), `label:${label};`])
   insertStyles(cache, serializedStyles, isStringTag)
 
   return `${cache.key}-${serializedStyles.name}`
@@ -41,7 +51,7 @@ describe('isBenignClassNameMismatch', () => {
       const serverCache = createCache({ key: 'emo' })
       const serverClassName = getClassNameWithLabel(serverCache, cssObject0)
 
-      const browserCache = createCache({ key: 'emo' })
+      const browserCache = createBrowserCache({ key: 'emo' })
       const browserClassName = getClassNameWithoutLabel(
         browserCache,
         cssObject0
@@ -69,7 +79,7 @@ describe('isBenignClassNameMismatch', () => {
       const serverClassName0 = getClassNameWithLabel(serverCache, cssObject0)
       const serverClassName1 = getClassNameWithLabel(serverCache, cssObject1)
 
-      const browserCache = createCache({ key: 'emo' })
+      const browserCache = createBrowserCache({ key: 'emo' })
       const browserClassName0 = getClassNameWithoutLabel(
         browserCache,
         cssObject0
@@ -95,13 +105,13 @@ describe('isBenignClassNameMismatch', () => {
       const serverCache1 = createCache({ key: 'emo-one' })
       const serverClassName1 = getClassNameWithLabel(serverCache1, cssObject1)
 
-      const browserCache0 = createCache({ key: 'emo-zero' })
+      const browserCache0 = createBrowserCache({ key: 'emo-zero' })
       const browserClassName0 = getClassNameWithoutLabel(
         browserCache0,
         cssObject0
       )
 
-      const browserCache1 = createCache({ key: 'emo-one' })
+      const browserCache1 = createBrowserCache({ key: 'emo-one' })
       const browserClassName1 = getClassNameWithoutLabel(
         browserCache1,
         cssObject1
@@ -121,7 +131,7 @@ describe('isBenignClassNameMismatch', () => {
     const serverCache = createCache({ key: 'emo' })
     const serverClassName = getClassNameWithLabel(serverCache, cssObject0)
 
-    const browserCache = createCache({ key: 'emo' })
+    const browserCache = createBrowserCache({ key: 'emo' })
     const browserClassName = getClassNameWithLabel(
       browserCache,
       cssObject0,
@@ -146,8 +156,8 @@ describe('isBenignClassNameMismatch', () => {
     const serverCache1 = createCache({ key: 'emo-one' })
     const serverClassName1 = getClassNameWithLabel(serverCache1, cssObject1)
 
-    const browserCache0 = createCache({ key: 'emo-zero' })
-    const browserCache1 = createCache({ key: 'emo-one' })
+    const browserCache0 = createBrowserCache({ key: 'emo-zero' })
+    const browserCache1 = createBrowserCache({ key: 'emo-one' })
     const browserClassName1 = getClassNameWithoutLabel(
       browserCache1,
       cssObject1
@@ -170,7 +180,7 @@ describe('isBenignClassNameMismatch', () => {
     const serverCache = createCache({ key: 'emo' })
     const serverClassName = getClassNameWithLabel(serverCache, cssObject0)
 
-    const browserCache = createCache({ key: 'emo' })
+    const browserCache = createBrowserCache({ key: 'emo' })
     const browserClassName = getClassNameWithoutLabel(browserCache, cssObject0)
 
     expect(

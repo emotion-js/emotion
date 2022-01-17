@@ -1,14 +1,6 @@
 import { serializeStyles } from '@emotion/serialize'
 import { getRegisteredStyles } from '@emotion/utils'
 
-function classNameBelongsToCache(className, cacheKey) {
-  // return className.startsWith(cacheKey + '-')
-
-  // The following implementation is used because startsWith is not available in
-  // IE. We can change this once IE support is dropped.
-  return className.substring(0, cacheKey.length + 1) === cacheKey + '-'
-}
-
 function getLabelFromClassName(className, cacheKey) {
   // This is safe because cacheKey can only contain lowercase letters and hyphen
   return className.match(new RegExp(`^${cacheKey}-.+-(.+)`))?.[1]
@@ -33,12 +25,19 @@ function areClassNamesEquivalent(serverClassName, browserClassName, cache) {
 
   if (labelPattern.test(browserStyles)) {
     // browserClassName contains the wrong label
+
     newBrowserStyles = serializeStyles(
       browserStyles.replace(labelPattern, serverLabelProperty)
     )
   } else {
     // browserClassName does not contain a label
-    newBrowserStyles = serializeStyles([browserStyles, serverLabelProperty])
+
+    // We add a semicolon here because that's what emotion-element.js /
+    // getRegisteredStyles does
+    newBrowserStyles = serializeStyles([
+      browserStyles + ';',
+      serverLabelProperty
+    ])
   }
 
   const newBrowserClassName = `${cache.key}-${newBrowserStyles.name}`
@@ -46,45 +45,77 @@ function areClassNamesEquivalent(serverClassName, browserClassName, cache) {
   return serverClassName === newBrowserClassName
 }
 
+function classNameBelongsToCache(className, cacheKey) {
+  // return className.startsWith(cacheKey + '-')
+
+  // The following implementation is used because startsWith is not available in
+  // IE. We can change this once IE support is dropped.
+  return className.substring(0, cacheKey.length + 1) === cacheKey + '-'
+}
+
+const allCacheKeys = new Set()
+
+export function __addCacheKeyForTesting(cacheKey) {
+  allCacheKeys.add(cacheKey)
+}
+
+function groupClassNames(classNameString, cacheKey) {
+  const thisCacheClassNames = []
+  const otherCacheClassNames = []
+  const nonEmotionClassNames = []
+
+  classNameString.split(' ').forEach(className => {
+    if (classNameBelongsToCache(className, cacheKey)) {
+      thisCacheClassNames.push(className)
+      return
+    }
+
+    if (
+      Array.from(allCacheKeys).some(key =>
+        classNameBelongsToCache(className, key)
+      )
+    ) {
+      otherCacheClassNames.push(className)
+      return
+    }
+
+    nonEmotionClassNames.push(className)
+  })
+
+  return {
+    thisCacheClassNames,
+    otherCacheClassNames,
+    nonEmotionClassNames
+  }
+}
+
 export function isBenignClassNameMismatch(
   serverClassNameString,
   browserClassNameString,
   cache
 ) {
-  const nonCacheServerClassNames = serverClassNameString
-    .split(' ')
-    .filter(c => !classNameBelongsToCache(c, cache.key))
+  const {
+    thisCacheClassNames: cacheServerClassNames,
+    nonEmotionClassNames: nonEmotionServerClassNames
+  } = groupClassNames(serverClassNameString, cache.key)
 
-  const cacheServerClassNames = serverClassNameString
-    .split(' ')
-    .filter(c => classNameBelongsToCache(c, cache.key))
-
-  const nonCacheBrowserClassNames = browserClassNameString
-    .split(' ')
-    .filter(c => !classNameBelongsToCache(c, cache.key))
-
-  const cacheBrowserClassNames = browserClassNameString
-    .split(' ')
-    .filter(c => classNameBelongsToCache(c, cache.key))
+  const {
+    thisCacheClassNames: cacheBrowserClassNames,
+    nonEmotionClassNames: nonEmotionBrowserClassNames
+  } = groupClassNames(browserClassNameString, cache.key)
 
   // Different number of class names - not benign.
-  if (nonCacheServerClassNames.length !== nonCacheBrowserClassNames.length)
+  if (nonEmotionServerClassNames.length !== nonEmotionBrowserClassNames.length)
     return false
 
   if (cacheServerClassNames.length !== cacheBrowserClassNames.length)
     return false
 
-  // TODO:SAM This doesn't work
-  // for (let i = 0; i < nonCacheServerClassNames.length; i++) {
-  //   if (nonCacheServerClassNames[i] !== nonCacheBrowserClassNames[i]) {
-  //     // There is a class name mismatch for classes that do not come from this
-  //     // cache. This could either mean (1) the class name mismatch is not
-  //     // benign, or (2) the class name mismatch is benign but the classes come
-  //     // from a different cache (and that cache will suppress the hydration
-  //     // warning.)
-  //     return false
-  //   }
-  // }
+  for (let i = 0; i < nonEmotionServerClassNames.length; i++) {
+    if (nonEmotionServerClassNames[i] !== nonEmotionBrowserClassNames[i]) {
+      return false
+    }
+  }
 
   let allExactMatches = true
 
@@ -94,7 +125,6 @@ export function isBenignClassNameMismatch(
       break
     }
   }
-
   if (allExactMatches) {
     // All class names for this cache match, so something else must be causing
     // the hydration warning.
@@ -114,7 +144,7 @@ export function isBenignClassNameMismatch(
     }
   }
 
-  // All the server class names having an equivalent browser class name, so this
+  // All the server class names have an equivalent browser class name, so this
   // hydration warning is benign.
   return true
 }
@@ -163,6 +193,7 @@ export function suppressProperTailCallClassNameMismatch(cache) {
   if (cachesForWhichConsoleErrorHasBeenOverridden.get(cache)) return
 
   cachesForWhichConsoleErrorHasBeenOverridden.set(cache, true)
+  allCacheKeys.add(cache.key)
 
   const originalConsoleError = console.error
 
