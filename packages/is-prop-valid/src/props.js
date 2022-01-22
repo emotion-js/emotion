@@ -20,6 +20,7 @@ const props = {
    * Standard Properties
    */
 
+  abbr: true,
   accept: true,
   acceptCharset: true,
   accessKey: true,
