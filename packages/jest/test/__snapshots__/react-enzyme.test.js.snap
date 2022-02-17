@@ -14,6 +14,12 @@ exports[`enzyme mount basic 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount class component with static default empty className 1`] = `
+<SomeComponent>
+  <div />
+</SomeComponent>
+`;
+
 exports[`enzyme mount conditional styles 1`] = `
 .emotion-0 {
   background-color: black;
@@ -80,6 +86,12 @@ exports[`enzyme mount fragment with multiple css prop elements 1`] = `
     className="emotion-2"
   />
 </Component>
+`;
+
+exports[`enzyme mount function component with static default empty className 1`] = `
+<SomeComponent>
+  <div />
+</SomeComponent>
 `;
 
 exports[`enzyme mount multiple selected components 1`] = `
@@ -482,6 +494,8 @@ exports[`enzyme shallow basic 1`] = `
 </div>
 `;
 
+exports[`enzyme shallow class component with static default empty className 1`] = `<div />`;
+
 exports[`enzyme shallow conditional styles 1`] = `
 .emotion-0 {
   background-color: black;
@@ -541,6 +555,8 @@ exports[`enzyme shallow fragment with multiple css prop elements 1`] = `
   />
 </Fragment>
 `;
+
+exports[`enzyme shallow function component with static default empty className 1`] = `<div />`;
 
 exports[`enzyme shallow multiple selected components 1`] = `
 Array [

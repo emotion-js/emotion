@@ -313,6 +313,30 @@ const cases = {
       return <Component />
     }
   },
+  'function component with static default empty className': {
+    render() {
+      function SomeComponent(props) {
+        return <div {...props} />
+      }
+      SomeComponent.defaultProps = {
+        className: ''
+      }
+      return <SomeComponent />
+    }
+  },
+  'class component with static default empty className': {
+    render() {
+      class SomeComponent extends React.Component {
+        render() {
+          return <div {...this.props} />
+        }
+      }
+      SomeComponent.defaultProps = {
+        className: ''
+      }
+      return <SomeComponent />
+    }
+  },
   'multiple selected components': {
     selector: tree =>
       // with simple `tree.find('[data-item]')` we get elements twice with `mount` since it selects both the css prop element and the host element
