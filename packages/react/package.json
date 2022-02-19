@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.8.0",
+  "version": "11.8.1",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
@@ -52,7 +52,7 @@
     "@emotion/css": "11.7.1",
     "@emotion/css-prettifier": "1.0.1",
     "@emotion/server": "11.4.0",
-    "@emotion/styled": "11.8.0",
+    "@emotion/styled": "11.8.1",
     "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
     "html-tag-names": "^1.1.2",
