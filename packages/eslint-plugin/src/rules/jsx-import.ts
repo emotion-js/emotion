@@ -1,5 +1,5 @@
 import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/experimental-utils'
-import { createRule } from '../utils'
+import { createRule, REPO_URL } from '../utils'
 
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
@@ -114,7 +114,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
                 /* istanbul ignore if */
                 if (jsxImportSourcePragmaComment === null) {
                   throw new Error(
-                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at https://github.com/emotion-js/emotion`
+                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at ${REPO_URL}`
                   )
                 }
 
@@ -186,7 +186,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
                 /* istanbul ignore if */
                 if (emotionCoreNode === null) {
                   throw new Error(
-                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at https://github.com/emotion-js/emotion`
+                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at ${REPO_URL}`
                   )
                 }
 
@@ -228,7 +228,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
         /* istanbul ignore if */
         if (emotionCoreNode === null) {
           throw new Error(
-            `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at https://github.com/emotion-js/emotion`
+            `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at ${REPO_URL}`
           )
         }
 

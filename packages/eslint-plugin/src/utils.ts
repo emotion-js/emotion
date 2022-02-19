@@ -3,7 +3,7 @@ import { parse as parsePath } from 'path'
 
 const { version } = require('../package.json')
 
-const REPO_URL = 'https://github.com/emotion-js/emotion'
+export const REPO_URL = 'https://github.com/emotion-js/emotion'
 
 export const createRule = ESLintUtils.RuleCreator(name => {
   const ruleName = parsePath(name).name
