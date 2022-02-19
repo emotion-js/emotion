@@ -1,6 +1,6 @@
 {
   "name": "@emotion/jest",
-  "version": "11.6.0",
+  "version": "11.8.0",
   "description": "Jest utilities for emotion",
   "main": "dist/emotion-jest.cjs.js",
   "module": "dist/emotion-jest.esm.js",
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "@emotion/css-prettifier": "^1.0.0",
+    "@emotion/css-prettifier": "^1.0.1",
     "chalk": "^4.1.0",
     "specificity": "^0.4.1",
-    "stylis": "^4.0.10"
+    "stylis": "4.0.13"
   },
   "peerDependencies": {
     "@types/jest": "^26.0.14 || ^27.0.0",
@@ -36,9 +36,9 @@
     }
   },
   "devDependencies": {
-    "@emotion/css": "11.5.0",
-    "@emotion/react": "11.6.0",
-    "@types/jest": "^26.0.14",
+    "@emotion/css": "11.7.1",
+    "@emotion/react": "11.8.1",
+    "@types/jest": "^27.0.3",
     "dtslint": "^0.3.0",
     "enzyme-to-json": "^3.6.1",
     "preact": "^8.2.9",

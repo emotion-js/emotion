@@ -2,7 +2,7 @@ import * as React from 'react'
 import renderer from 'react-test-renderer'
 import { Text, StyleSheet } from 'react-primitives'
 import { ThemeProvider } from '@emotion/react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { render } from '@testing-library/react'
 
 import styled from '@emotion/primitives'
 
@@ -56,19 +56,16 @@ describe('Emotion primitives', () => {
       display: ${props => props.theme.display};
     `
 
-    let mountNode = document.createElement('div')
-
-    render(
+    const { container, unmount } = render(
       <ThemeProvider theme={theme}>
         <StyledText id="something" style={{ backgroundColor: 'yellow' }}>
           Hello World
         </StyledText>
-      </ThemeProvider>,
-      mountNode
+      </ThemeProvider>
     )
-    expect(mountNode).toMatchSnapshot()
-    unmountComponentAtNode(mountNode)
-    expect(mountNode.querySelector('#something')).toBe(null)
+    expect(container).toMatchSnapshot()
+    unmount()
+    expect(container.querySelector('#something')).toBe(null)
   })
 
   test('should render the primitive on changing the props', () => {
@@ -130,10 +127,11 @@ describe('Emotion primitives', () => {
       color: hotpink;
     `
     let ref = React.createRef()
-    const rootNode = document.createElement('div')
-    render(<StyledText ref={ref} id="something" />, rootNode)
-    expect(ref.current).toBe(rootNode.firstElementChild)
-    unmountComponentAtNode(rootNode)
+    const { container, unmount } = render(
+      <StyledText ref={ref} id="something" />
+    )
+    expect(ref.current).toBe(container.firstElementChild)
+    unmount()
   })
 
   it('should pass props in withComponent', () => {

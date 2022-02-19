@@ -1,7 +1,7 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/dev-mode'
-import { render } from 'react-dom'
+import { render } from '@testing-library/react'
 import { jsx, css, CacheProvider, ThemeProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
@@ -11,9 +11,6 @@ console.error = jest.fn()
 beforeEach(() => {
   // $FlowFixMe
   document.head.innerHTML = ''
-  // $FlowFixMe
-  document.body.innerHTML = `<div id="root"></div>`
-
   jest.clearAllMocks()
 })
 
@@ -38,9 +35,9 @@ describe('EmotionElement', () => {
       </ThemeProvider>
     )
 
-    render(<Comp />, document.getElementById('root'))
+    render(<Comp />)
     expect(console.error).not.toHaveBeenCalled()
-    render(<Comp flag />, document.getElementById('root'))
+    render(<Comp flag />)
     expect(console.error).not.toHaveBeenCalled()
   })
 })
