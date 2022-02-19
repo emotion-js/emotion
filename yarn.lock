@@ -5598,7 +5598,7 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@testing-library/dom@^8.0.0":
+"@testing-library/dom@^8.5.0":
   version "8.11.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.11.1.tgz#03fa2684aa09ade589b460db46b4c7be9fc69753"
   integrity sha512-3KQDyx9r0RKYailW2MiYrSSKEfH0GTkI51UGEvJenvcoDoeRYs0PZpi2SXqtnMClQvCqdtTTpOfFETDTVADpAg==
@@ -5612,13 +5612,13 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/react@^12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-12.1.2.tgz#f1bc9a45943461fa2a598bb4597df1ae044cfc76"
-  integrity sha512-ihQiEOklNyHIpo2Y8FREkyD1QAea054U0MVbwH1m8N9TxeFz+KoJ9LkqoKqJlzx2JDm56DVwaJ1r36JYxZM05g==
+"@testing-library/react@13.0.0-alpha.5":
+  version "13.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.0.0-alpha.5.tgz#29bfc36b550e2a1025cbebf7254d5a0a46cb58c5"
+  integrity sha512-QrxKC/7pTE0ze3wLZNaenGJqsLcbAJL71XqU/ryJTL2pqZBjiJHuxZavl2ZQAxnBQkDQF9oh9my3bKPstWfnhA==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@testing-library/dom" "^8.0.0"
+    "@testing-library/dom" "^8.5.0"
 
 "@theme-ui/color-modes@0.12.0":
   version "0.12.0"
@@ -25372,10 +25372,15 @@ react-icons@^2.2.7:
   dependencies:
     react-icon-base "2.1.0"
 
-react-is@17.0.2, react-is@^17.0.1:
+react-is@17.0.2, "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-is@18.0.0-rc.0-next-aa8f2bdbc-20211215:
+  version "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.0.0-rc.0-next-aa8f2bdbc-20211215.tgz#68ffa2826c10302a00b3e00b61f114b662994f56"
+  integrity sha512-/7F8d2H4G48zSBrJ+aaOKkCDzyEsyQ70qORL2zjUJPJqSWwy5Hbyc9ib4SttbfaAFXUAK1PYsDbwO05IiNfW1A==
 
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.12.0"
@@ -25566,6 +25571,14 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-shallow-renderer@^16.13.1:
+  version "16.14.1"
+  resolved "https://registry.yarnpkg.com/react-shallow-renderer/-/react-shallow-renderer-16.14.1.tgz#bf0d02df8a519a558fd9b8215442efa5c840e124"
+  integrity sha512-rkIMcQi01/+kxiTE9D3fdS959U1g7gs+/rborw++42m1O9FAQiNI/UNRZExVUoAOprn4umcXf+pFRou8i4zuBg==
+  dependencies:
+    object-assign "^4.1.1"
+    react-is "^16.12.0 || ^17.0.0"
+
 react-side-effect@^1.1.0:
   version "1.1.5"
   resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-1.1.5.tgz#f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d"
@@ -25589,19 +25602,29 @@ react-timer-mixin@^0.13.4:
   resolved "https://registry.npmjs.org/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
 
-"react18-dom@npm:react-dom@alpha":
-  version "18.0.0-alpha-327d5c484-20211106"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-327d5c484-20211106.tgz#f8855d8e73876b5dbf6545ca02e14d8644a48008"
-  integrity sha512-yI2Kxy4/+nAFYHtC5uVIwXPURABwBhtqbEgjgRa9cITHsmZIO7AqDee0a5nXVSr8wWmtmbN1vSh29aDicuO03A==
+"react18-dom@npm:react-dom@18.0.0-rc.0-next-aa8f2bdbc-20211215":
+  version "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-rc.0-next-aa8f2bdbc-20211215.tgz#6ffd75da09e903b2a41a7864e5e593848161de49"
+  integrity sha512-Tst8hBrKMumjnAXiPf2rOhW6jH7tXJJiIK5lY4QYTEKfJfNDnVr/whkoXfH5bBW2co6/MZwdpNWTHzDCwCQ4qA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.21.0-alpha-327d5c484-20211106"
+    scheduler "0.21.0-rc.0-next-aa8f2bdbc-20211215"
 
-"react18@npm:react@alpha":
-  version "18.0.0-alpha-327d5c484-20211106"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-327d5c484-20211106.tgz#f0e29b20b8c371697207a9f7b73a7ab625bee4b7"
-  integrity sha512-CB3JnXquQ9FYkd8IpTlvdpyk+HN1fOUDB7NabXTfbycqqRxuKhtijv7W7F/mbTzPLLMrxV5LwUqrLFc25Zy+UQ==
+"react18-test-renderer@npm:react-test-renderer@18.0.0-rc.0-next-aa8f2bdbc-20211215":
+  version "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-18.0.0-rc.0-next-aa8f2bdbc-20211215.tgz#9cd5c9bbf126cea1f88280f5ba286d5a5aa8a803"
+  integrity sha512-ts7u1xRRvG1s51L7JqXomMO3G5B8ijoOOI5XoRAjghreKLYOwzB0gKb8+dzzoq5fv5NxPlGPCBTAsk/Bsh+EyQ==
+  dependencies:
+    object-assign "^4.1.1"
+    react-is "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+    react-shallow-renderer "^16.13.1"
+    scheduler "0.21.0-rc.0-next-aa8f2bdbc-20211215"
+
+"react18@npm:react@18.0.0-rc.0-next-aa8f2bdbc-20211215":
+  version "18.0.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-rc.0-next-aa8f2bdbc-20211215.tgz#83a27dd32f1f769e34c741cca75a1260c01911d0"
+  integrity sha512-9D3VLGHusmvuZB5/fD1rFC7Uqff35Nf77B4grAWH1RIoKQkvLHgwZkegInnN9dMEEf/OtJSgUcj9iJRtWugsjg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -26911,10 +26934,10 @@ scheduler@0.19.1, scheduler@^0.19.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@0.21.0-alpha-327d5c484-20211106:
-  version "0.21.0-alpha-327d5c484-20211106"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-327d5c484-20211106.tgz#16340fd4c7387ff58ad897b64715c0e3098e9489"
-  integrity sha512-VzlBG9d8m/2GwzXMjh7FoV6lpv/vOKdUYFCw3FCVY2aP/lN4oJkKwOlf4on2vEk855ckx+s3bR4eJLrlD7kZSw==
+scheduler@0.21.0-rc.0-next-aa8f2bdbc-20211215:
+  version "0.21.0-rc.0-next-aa8f2bdbc-20211215"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-rc.0-next-aa8f2bdbc-20211215.tgz#89e316e4865788a9c0e4efea98d79cc34f28151e"
+  integrity sha512-vpZzI3C5Jqy6lPikaLxQI5WxCvR699SBnlyRHCv9YHFSsrGgkhMTARPsfRdjBkMlsqzrpiaxSbc7JDZiWQIKDw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

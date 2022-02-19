@@ -12,9 +12,7 @@ exports[`composition works from old emotion css calls 1`] = `
     </style>
   </head>
   <body>
-    <div
-      id="root"
-    >
+    <div>
       <div
         class="css-ulmpz9"
       />
