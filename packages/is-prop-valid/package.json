@@ -1,6 +1,6 @@
 {
   "name": "@emotion/is-prop-valid",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A function to check whether a prop is valid for HTML and SVG elements",
   "main": "dist/emotion-is-prop-valid.cjs.js",
   "module": "dist/emotion-is-prop-valid.esm.js",

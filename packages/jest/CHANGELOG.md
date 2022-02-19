@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.8.0
+
+### Patch Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Adjusted Enzyme-related code path to accomodate for changes related to the refactor around using `React.useInsertionEffect`.
+
 ## 11.7.1
 
 ### Patch Changes

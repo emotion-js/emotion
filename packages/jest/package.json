@@ -1,6 +1,6 @@
 {
   "name": "@emotion/jest",
-  "version": "11.7.1",
+  "version": "11.8.0",
   "description": "Jest utilities for emotion",
   "main": "dist/emotion-jest.cjs.js",
   "module": "dist/emotion-jest.esm.js",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@emotion/css": "11.7.1",
-    "@emotion/react": "11.7.1",
+    "@emotion/react": "11.8.0",
     "@types/jest": "^27.0.3",
     "dtslint": "^0.3.0",
     "enzyme-to-json": "^3.6.1",

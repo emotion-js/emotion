@@ -1,5 +1,17 @@
 # @emotion/styled
 
+## 11.8.0
+
+### Minor Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Refactored code to use the upcoming `React.useInsertionEffect` when it's available (this is a new hook that is going to be introduced in React 18). This shouldn't have any effect on existing codebases and the change should be transparent.
+
+### Patch Changes
+
+- Updated dependencies [[`d2531639`](https://github.com/emotion-js/emotion/commit/d25316393639232df16ba836b407e3678eea5e4d), [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573)]:
+  - @emotion/is-prop-valid@1.1.2
+  - @emotion/utils@1.1.0
+
 ## 11.6.0
 
 ### Minor Changes
