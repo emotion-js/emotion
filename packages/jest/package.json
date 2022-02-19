@@ -39,13 +39,14 @@
     "@emotion/css": "11.7.1",
     "@emotion/react": "11.8.1",
     "@types/jest": "^27.0.3",
-    "dtslint": "^0.3.0",
+    "dtslint": "^4.2.1",
     "enzyme-to-json": "^3.6.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
     "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react-dom": "16.14.0",
+    "typescript": "^4.5.5"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
