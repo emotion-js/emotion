@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "@types/babel__core": "^7.1.16"
+    "@types/babel__core": "^7.1.18"
   }
 }

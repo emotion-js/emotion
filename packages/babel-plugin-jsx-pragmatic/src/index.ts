@@ -1,7 +1,7 @@
 import type {
   NodePath,
   PluginObj,
-  PluginPass as BabelPluginPass,
+  PluginPass,
   types as BabelTypes
 } from '@babel/core'
 import syntaxJsx from '@babel/plugin-syntax-jsx'
@@ -16,31 +16,22 @@ const findLast = <T>(arr: T[], predicate: (item: T) => boolean): T | null => {
   return null
 }
 
-// todo: PR these to @types/babel__core - PluginPass should extend Store
-// https://github.com/babel/babel/blob/4e50b2d9d9c376cee7a2cbf56553fe5b982ea53c/packages/babel-core/src/transformation/store.js
-interface BabelStore {
-  setDynamic(key: string, fn: () => unknown): void
-  set(key: string, val: unknown): void
-  get(key: string): unknown
-}
-
-type PluginPass = BabelPluginPass &
-  BabelStore & {
-    opts: {
-      module: string
-      import: string
-      export?: string
-    }
+interface PluginPassWithOpts extends PluginPass {
+  opts: {
+    module: string
+    import: string
+    export?: string
   }
+}
 
 export default function jsxPragmatic(babel: {
   types: typeof BabelTypes
-}): PluginObj<PluginPass> {
+}): PluginObj<PluginPassWithOpts> {
   const t = babel.types
 
   function addPragmaImport(
     path: NodePath<BabelTypes.Program>,
-    state: PluginPass
+    state: PluginPassWithOpts
   ) {
     const importDeclar = t.importDeclaration(
       [
