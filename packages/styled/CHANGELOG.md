@@ -1,5 +1,11 @@
 # @emotion/styled
 
+## 11.8.1
+
+### Patch Changes
+
+- [#2651](https://github.com/emotion-js/emotion/pull/2651) [`39ac5b99`](https://github.com/emotion-js/emotion/commit/39ac5b99483994a68fa2b51e23ad6c173f42f1c1) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a transpilation issue that caused `useInsertionEffect` to be referenced directly in the specifiers list of the import statement. This has caused build errors in the consuming tools since the import statement can only reference known exports of a module.
+
 ## 11.8.0
 
 ### Minor Changes
