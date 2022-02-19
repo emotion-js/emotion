@@ -14,8 +14,8 @@ type GlobalProps = {
   +styles: Styles | (Object => Styles)
 }
 
-const useInsertionEffect = (React: any).useInsertionEffect
-  ? (React: any).useInsertionEffect
+const useInsertionEffect = React['useInsertion' + 'Effect']
+  ? React['useInsertion' + 'Effect']
   : React.useLayoutEffect
 
 let warnedAboutCssPropForGlobal = false

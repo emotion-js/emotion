@@ -1,9 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 
 const isBrowser = typeof document !== 'undefined'
 
-const useInsertionEffect = React.useInsertionEffect
-  ? React.useInsertionEffect
+const useInsertionEffect = React['useInsertion' + 'Effect']
+  ? React['useInsertion' + 'Effect']
   : function useInsertionEffect(create) {
       create()
     }
