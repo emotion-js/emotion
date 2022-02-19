@@ -5,7 +5,7 @@ export default createRule({
   meta: {
     docs: {
       category: 'Best Practices',
-      description: 'Ensure vanilla emotion is not using',
+      description: 'Ensure vanilla emotion is not used',
       recommended: false
     },
     messages: {
