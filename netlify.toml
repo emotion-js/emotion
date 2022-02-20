@@ -3,7 +3,7 @@
   publish = "site/public"
 
 [build.environment]
-  NODE_VERSION = "10"
-  YARN_VERSION = "1.7.0"
-  YARN_FLAGS = "--frozen-lockfile"
+  NODE_VERSION = "16"
+  YARN_VERSION = "1.22.15"
+  YARN_FLAGS = "--immutable"
   NETLIFY = "true"
