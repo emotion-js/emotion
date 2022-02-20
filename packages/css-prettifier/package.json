@@ -18,7 +18,6 @@
     "@emotion/memoize": "^0.7.4",
     "stylis": "4.0.13"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   },
