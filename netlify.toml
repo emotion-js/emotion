@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build && npm run build:site"
+  command = "yarn build && yarn build:site"
   publish = "site/public"
 
 [build.environment]
