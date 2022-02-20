@@ -23,11 +23,8 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Install Yarn
-        run: npm install --global yarn
-
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
 
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@master

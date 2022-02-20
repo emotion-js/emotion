@@ -25,16 +25,10 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 12.x
-
-      - uses: actions/cache@v2
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --immutable
 
       - name: Run Tests
         run: yarn test:ci --color
@@ -53,16 +47,10 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 12.x
-
-      - uses: actions/cache@v2
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --immutable
 
       - name: Check Types
         run: yarn flow:check
@@ -77,16 +65,10 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 12.x
-
-      - uses: actions/cache@v2
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --immutable
 
       - name: Run Tests with React 18
         run: yarn test:react18:ci
@@ -101,16 +83,10 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 12.x
-
-      - uses: actions/cache@v2
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --immutable
 
       - name: Dist Tests
         run: yarn test:prod
@@ -125,16 +101,10 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 12.x
-
-      - uses: actions/cache@v2
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --immutable
 
       - name: ESLint
         run: yarn lint:check
@@ -168,17 +138,10 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 12.x
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --immutable
 
       - name: TypeScript
         run: cd packages/${{ matrix.package }} && yarn test:typescript
