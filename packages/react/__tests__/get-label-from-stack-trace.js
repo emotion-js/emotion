@@ -719,3 +719,35 @@ updateContainer@`
 
   // No SSR stack trace since this comes from a Gatsby project
 })
+
+/**
+ * See github.com/PeterlitsZo/FUCK/project-for-emotion
+ *
+ * I put it in playgrounds as a package. I cannot get the same error stack in
+ * cra, I am not sure that it depend on vite or not.
+ *
+ * I rename the `App.Space` with new name `App.MyComponent$9`.
+ */
+describe('issue #2615 - A sub component', () => {
+  test('Firefox', () => {
+    const stackTrace = `createEmotionProps@http://localhost:3000/@fs/home/peterlits/Project/emotion/packages/react/dist/emotion-element-c049f24e.browser.esm.js:211:17
+jsxDEV@http://localhost:3000/@fs/home/peterlits/Project/emotion/packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js:18:28
+App.MyComponent$9@http://localhost:3000/src/App.tsx:30:14
+renderWithHooks@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:10981:35
+mountIndeterminateComponent@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:12993:21
+beginWork@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:13692:22
+beginWork$1@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:16607:22
+performUnitOfWork@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:15949:20
+workLoopSync@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:15934:30
+performSyncWorkOnRoot@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:15671:17
+scheduleUpdateOnFiber@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:15345:36
+updateContainer@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:17477:23
+../../node_modules/react-dom/cjs/react-dom.development.js/legacyRenderSubtreeIntoContainer/<@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:17765:30
+unbatchedUpdates@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:15778:20
+legacyRenderSubtreeIntoContainer@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:17764:29
+render@http://localhost:3000/node_modules/.vite/react-dom.js?v=9677eae4:17827:18
+@http://localhost:3000/src/main.tsx:6:10`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBe(expectedLabel)
+  })
+})
