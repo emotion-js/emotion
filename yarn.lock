@@ -3985,8 +3985,6 @@ __metadata:
     chalk: ^4.1.0
     dtslint: ^4.2.1
     enzyme-to-json: ^3.6.1
-    preact: ^10.6.6
-    preact-render-to-json: ^3.6.6
     pretty-format: ^22.4.3
     react: 16.14.0
     react-dom: 16.14.0
@@ -33186,22 +33184,6 @@ dts-critic@latest:
   dependencies:
     jimp: ^0.14.0
   checksum: 8b7168218058d7638cbced8bb9db2a87a754ec2e6b21b2332921b54c7124cfd5ee19db4bcb3faab9ead7994e4ca9e04012d5e4c67d8e4b300c2eb21b8b2b1c49
-  languageName: node
-  linkType: hard
-
-"preact-render-to-json@npm:^3.6.6":
-  version: 3.6.6
-  resolution: "preact-render-to-json@npm:3.6.6"
-  peerDependencies:
-    preact: "*"
-  checksum: ed10e814852d998d86ec88fc999493194ddaf30e08496b73d14ae8a18c5f05cb6dc6bfdbfd575a80fd14c5cf07a3befd7e791cb24099e084ff1e103f80ae008c
-  languageName: node
-  linkType: hard
-
-"preact@npm:^10.6.6":
-  version: 10.7.1
-  resolution: "preact@npm:10.7.1"
-  checksum: e99d08bd38372e78ce1c84e68685cad66adf076bd95069bc8bcd32c9903a4df09c01d5b04aad849527362b67cc2c09446b647f72de4e67d0578fdea0f904f28f
   languageName: node
   linkType: hard
 
