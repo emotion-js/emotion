@@ -7,7 +7,12 @@ import {
   TextStyle,
   View
 } from 'react-native'
-import styled, { css, ReactNativeStyle, StyledOptions } from '@emotion/native'
+import styled, {
+  css,
+  ReactNativeStyle,
+  StyledOptions,
+  FilteringStyledOptions
+} from '@emotion/native'
 
 declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
@@ -168,16 +173,14 @@ export const ImageFullWidthContained = styled.Image`
 }
 
 {
-  const styledOpts: StyledOptions = {
-    shouldForwardProp: p => true
-  }
-  const styledOptsParameterized: StyledOptions<{ foo: string }> = {
-    shouldForwardProp: (p: 'foo') => true
-  }
-  const styledOptsParameterizedBroken: StyledOptions<{ foo: string }> = {
-    shouldForwardProp: (p: 'bar') => true // $ExpectError
-  }
-  const styledOptsBroken: StyledOptions = {
-    shouldForwardProp: (p1, p2) => true // $ExpectError
-  }
+  // Props forwarding through StyledOptions and FilteringStyledOptions
+
+  styled(View, { shouldForwardProp: (prop: 'testID') => true })({})
+
+  styled(View, {
+    shouldForwardProp: (prop: 'testID'): prop is 'testID' => true
+  })({})
+
+  // $ExpectError
+  styled(View, { shouldForwardProp: (prop: 'foo') => true })({})
 }

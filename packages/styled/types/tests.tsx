@@ -266,13 +266,13 @@ const Input5 = styled.input`
   const shouldForwardProp9: FilteringStyledOptions<
     { foo: string; bar: string },
     'foo'
-  >['shouldForwardProp'] = (prop: 'foo'): prop is 'foo' => true
+  >['shouldForwardProp'] = (prop: 'foo' | 'bar'): prop is 'foo' => true
 
   // $ExpectError
   const shouldForwardProp10: FilteringStyledOptions<
     { foo: string; bar: string },
     'foo'
-  >['shouldForwardProp'] = (prop: 'bar'): prop is 'bar' => true
+  >['shouldForwardProp'] = (prop: 'foo' | 'bar'): prop is 'bar' => true
 
   styled('div', { shouldForwardProp: (prop: 'color') => true })({})
 

@@ -17,7 +17,10 @@ export {
 
 export { ComponentSelector, Interpolation }
 
-/** Same as StyledOptions but shouldForwardProp must be a type guard */
+/**
+ * Same as StyledOptions but shouldForwardProp must be a type guard (https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates).
+ * Practical sense: you can define and reuse atomic `shouldForwardProp` filters that are strictly bound with some `ForwardedProps` type.
+ */
 export interface FilteringStyledOptions<
   Props = Record<PropertyKey, any>,
   ForwardedProps extends keyof Props = keyof Props

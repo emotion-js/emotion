@@ -18,6 +18,7 @@ export {
   ArrayInterpolation,
   CreateStyledComponent,
   CSSInterpolation,
+  FilteringStyledOptions,
   FunctionInterpolation,
   Interpolation,
   InterpolationPrimitive,
