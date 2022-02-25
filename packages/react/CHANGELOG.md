@@ -1,5 +1,26 @@
 # @emotion/react
 
+## 11.8.1
+
+### Patch Changes
+
+- [#2651](https://github.com/emotion-js/emotion/pull/2651) [`39ac5b99`](https://github.com/emotion-js/emotion/commit/39ac5b99483994a68fa2b51e23ad6c173f42f1c1) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a transpilation issue that caused `useInsertionEffect` to be referenced directly in the specifiers list of the import statement. This has caused build errors in the consuming tools since the import statement can only reference known exports of a module.
+
+## 11.8.0
+
+### Minor Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Refactored code to use the upcoming `React.useInsertionEffect` when it's available (this is a new hook that is going to be introduced in React 18). This shouldn't have any effect on existing codebases and the change should be transparent.
+
+### Patch Changes
+
+- [#2609](https://github.com/emotion-js/emotion/pull/2609) [`242f7d8c`](https://github.com/emotion-js/emotion/commit/242f7d8c9f3ddbba2a69664bcc0fa22501df849f) Thanks [@Andarist](https://github.com/Andarist)! - Added `@emotion/babel-plugin` as a dependency - this is an actual dependency of the `@emotion/react/macro` entrypoint and it has to be explicitly declared to fix compatibility with strict package managers.
+
+* [#2615](https://github.com/emotion-js/emotion/pull/2615) [`3d672acd`](https://github.com/emotion-js/emotion/commit/3d672acd4d379f5861012d6e6d38feadd212966a) Thanks [@srmagura](https://github.com/srmagura)! - Fix an edge case where runtime label extraction in class components led to invalid class names in Firefox. This only affected the development build of Emotion.
+
+* Updated dependencies [[`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573)]:
+  - @emotion/utils@1.1.0
+
 ## 11.7.1
 
 ### Patch Changes

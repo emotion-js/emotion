@@ -20,7 +20,7 @@ export function getRegisteredStyles(
   return rawClassName
 }
 
-export const insertStyles = (
+export const registerStyles = (
   cache: EmotionCache,
   serialized: SerializedStyles,
   isStringTag: boolean
@@ -42,6 +42,17 @@ export const insertStyles = (
   ) {
     cache.registered[className] = serialized.styles
   }
+}
+
+export const insertStyles = (
+  cache: EmotionCache,
+  serialized: SerializedStyles,
+  isStringTag: boolean
+) => {
+  registerStyles(cache, serialized, isStringTag)
+
+  let className = `${cache.key}-${serialized.name}`
+
   if (cache.inserted[serialized.name] === undefined) {
     let stylesForSSR = ''
     let current = serialized

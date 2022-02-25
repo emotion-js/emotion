@@ -28,9 +28,9 @@ declare module '@emotion/react' {
 const cssObject = {
   height: 100,
   width: '100%',
-  display: 'flex',
+  display: 'flex' as const,
   position: undefined
-} as const
+}
 
 const className = css`
   ${(true as boolean) && ''}

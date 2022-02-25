@@ -1,6 +1,13 @@
 // @flow
 import { sheet } from '@emotion/css'
 
+const consoleError = console.error
+
+afterEach(() => {
+  // $FlowFixMe
+  console.error = consoleError
+})
+
 describe('sheet', () => {
   beforeEach(() => {
     sheet.flush()
@@ -31,9 +38,14 @@ describe('sheet', () => {
 
   test('throws', () => {
     sheet.speedy(true)
-    const spy = jest.spyOn(global.console, 'error')
+    const spy = jest.fn()
+    // $FlowFixMe
+    console.error = spy
     sheet.insert('.asdfasdf4###112121211{')
-    expect(spy).toHaveBeenCalled()
+    expect(spy.mock.calls.length).toBe(1)
+    expect(spy.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"There was a problem inserting the following rule: \\".asdfasdf4###112121211{\\""`
+    )
   })
 
   test('.speedy throws when a rule has already been inserted', () => {

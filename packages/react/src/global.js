@@ -14,6 +14,10 @@ type GlobalProps = {
   +styles: Styles | (Object => Styles)
 }
 
+const useInsertionEffect = React['useInsertion' + 'Effect']
+  ? React['useInsertion' + 'Effect']
+  : React.useLayoutEffect
+
 let warnedAboutCssPropForGlobal = false
 
 // maintain place over rerenders.
@@ -84,7 +88,7 @@ export let Global: React.AbstractComponent<GlobalProps> =
 
     let sheetRef = React.useRef()
 
-    React.useLayoutEffect(() => {
+    useInsertionEffect(() => {
       const key = `${cache.key}-global`
 
       let sheet = new StyleSheet({
@@ -113,7 +117,7 @@ export let Global: React.AbstractComponent<GlobalProps> =
       }
     }, [cache])
 
-    React.useLayoutEffect(() => {
+    useInsertionEffect(() => {
       let sheetRefCurrent = (sheetRef.current: any)
       let [sheet, rehydrating] = sheetRefCurrent
       if (rehydrating) {
