@@ -6,6 +6,154 @@ Emotion is an extremely flexible library, but this can make it intimidating, esp
 
 ## Recommendations
 
+### Use TypeScript and object styles
+
+You don't get Intellisense or type checking when using CSS strings, e.g. `` css`color: blue` ``. You can improve the developer experience and prevent style bugs by using TypeScript and object styles which enable Intellisense and _some_ static type checking:
+
+```tsx
+const myCss = css({
+    color: 'blue',
+    grid: 1, // Error: Type 'number' is not assignable to type 'Grid | Grid[] | undefined'
+})
+```
+
+### Share styles via component reuse
+
+Suppose you are developing an application that needs to display error messages in many different components. All of the error messages should be red and bold. One way to accomplish this is by exporting the CSS from a shared file and importing the CSS in many places:
+
+```tsx
+export const errorCss = css({ 
+    color: 'red',
+    fontWeight: 'bold'
+})
+
+// Then, in one of your components:
+import { errorCss } from '...'
+
+return <p css={errorCss}>Failed to fizzle the frozzle.</p>
+```
+
+While there's absolutely nothing functionally wrong with this, we recommend sharing styles with component reuse in most cases. For example,
+
+```tsx
+export function ErrorMessage({ className, children }) {
+    return (
+        <p 
+            css={{ color: 'red', fontWeight: 'bold'}} 
+            className={className}
+        >
+            {children}
+        </p>
+    )
+}
+
+// Then, in one of your components
+import { ErrorMessage } from '...'
+
+return <ErrorMessage>Failed to fizzle the frozzle.</ErrorMessage>
+```
+
+One advantage of this approach is that you can add additional props and functionality to the `ErrorMessage` component with limited refactoring.
+
+### Colocate styles with components
+
+With normal CSS, the styles for a component are defined in a separate file. This makes maintenance more difficult because it's harder to tell which components use a given piece of CSS, and you can easily forget to update the relevant CSS after modifying a component. One of the main benefits of Emotion is that you can [colocate](https://kentcdodds.com/blog/colocation) your styles with your components. All this means is that the CSS for each of your React components should be in the same file as the component itself. This point is closely related to sharing styles via component reuse.
+
+### Use the `style` prop for dynamic styles
+
+The css prop or `styled` should be used for static styles, while the `style` prop (inline styles) should be used for truly dynamic styles. By dynamic styles, we mean styles that change frequently or are unique to a single element.
+
+Imagine you are displaying a list of user avatars in a forum application. Every avatar shares certain static CSS, like `width: 40px` and `border-radius: 50%`, but the avatar image is set via a `background-style` rule whose value is different for each avatar. If you pass all of this CSS through the CSS prop, you'll end up with a lot of nearly-duplicate CSS in the document. With 3 avatars, Emotion will create something like:
+
+```html
+<style>
+  .css-1udhswa {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-style: url(https://i.pravatar.cc/150?u=0);
+  }
+
+  .css-1cpwmbr {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-style: url(https://i.pravatar.cc/150?u=1);
+  }
+
+  .css-am987o {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-style: url(https://i.pravatar.cc/150?u=2);
+  }
+</style>
+```
+
+Now imagine if there are 100 avatars on the page! See [Michael Dougall's blog post] for a live example of this issue — it's under the Performance heading.
+
+You should also use the `style` prop if the styles will be updated frequently. If your application lets a user drag and drop an element, you likely have a `transform` property like ``transform: `translate(${x}px, ${y}px)` ``. This property should go through the `style` prop since `x` and `y` will change rapidly as the element is dragged.
+
+### If using React, prefer `@emotion/react` or `@emotion/styled` over `@emotion/css`
+
+There is nothing wrong with `@emotion/css`, but `@emotion/react` and `@emotion/styled` generally offer a better developer experience.
+
+### Use `@emotion/react` or `@emotion/styled`, but not both
+
+While the css prop and `styled` can peacefully coexist, it's better to pick one approach and use it consistently across your codebase. Whether you choose the css prop or `styled` is a matter of personal preference. (If you're curious, the css prop among the maintainers of Emotion.)
+
+### Consider defining styles outside your components
+
+For example:
+
+```tsx
+const cardCss = {
+    self: css({
+        backgroundColor: 'white',
+        border: '1px solid #eee',
+        borderRadius: '0.5rem',
+        padding: '1rem'
+    }),
+
+    title: css({
+        fontSize: '1.25rem'
+    })
+}
+
+export function Card({ title, children }) {
+    return (
+        <div css={cardCss.self}>
+            <h5 css={cardCss.title}>{title}</h5>
+            {children}
+        </div>
+    )
+}
+```
+
+Benefits of this approach:
+
+- Styles are only serialized once, instead of on every render.
+- It's no longer possible to accidentally pass dynamic styles through the css prop.
+- The JSX is arguably more readable with the CSS separated out into a different part of the file.
+
+### Define colors and other style constants as JavaScript variables
+
+Don't repeat yourself! If you are using a color, amount of padding, border radius, .etc throughout your application, add it to your theme or define it as a JavaScript constant, like
+
+```ts
+export const colors = {
+    primary: '#0d6efd',
+    success: '#198754',
+    danger: '#dc3545'
+}
+```
+
+### Don't use a theme unless your app supports multiple themes (or will eventually support multiple themes)
+
+Emotion allows you to define a [theme](/docs/theming.mdx) which you can use in style rules across your application. This feature is awesome if your app has multiple themes, like light mode and dark mode.
+
+On the other hand, if your app will only ever have a single theme, it's simpler to define colors and other style variables as JavaScript constants.
+
 ## Performance Optimization
 
 First, the golden rule of programming: premature optimization is the root of all evil! Emotion is a highly performant library and will not be a performance bottleneck in most applications. 
@@ -31,7 +179,17 @@ If Emotion-related code is indeed slowing down your app, here are some optimizat
 - Use the css prop for static styles and use the `style` prop for dynamic styles. See the [Recommendations](#Recommendations) section for more details on this.
 - Use [`@emotion/babel-plugin`](/docs/babel.mdx).
 
+## Should I use Emotion in my library?
+
+If you are writing a component library, carefully consider whether your library will depend on Emotion. A simple alternative is to include a regular CSS file in your package, which your users can then import via a normal `import` statement.
+
+If you're reading this, you probably know about Emotion's many benefits. Here are some drawbacks to consider:
+
+- Consumers of the library will have to use the same version of Emotion as the library. There will be issues if, for example, your library depends on Emotion 10 but a user's application depends on Emotion 11.
+- If your package only contains a handful of small components, Emotion may significantly increase your package's bundle size.
+- Emotion may be more error prone than a simple CSS file in certain edge cases. In a previous version of [react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton) which utilized Emotion 10, we received reports of styles not working in production environments, iframes, and the shadow DOM.
 
 ## Additional Reading
 
+- [Colocation](https://kentcdodds.com/blog/colocation) by Kent C. Dodds
 - [Change how you write your CSS-in-JS for better performance](https://douges.dev/blog/taming-the-beast-that-is-css-in-js) by Michael Dougall
