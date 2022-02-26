@@ -13,6 +13,7 @@
 
 - title: Advanced
   items:
+    - best-practices
     - keyframes
     - ssr
     - with-props
