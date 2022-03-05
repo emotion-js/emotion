@@ -17,9 +17,19 @@ const myCss = css({
 })
 ```
 
-### Share styles via component reuse
+### Colocate styles with components
 
-Suppose you are developing an application that needs to display error messages in many different components. All of the error messages should be red and bold. One way to accomplish this is by exporting the CSS from a shared file and importing the CSS in many places:
+With normal CSS, the styles for a component are defined in a separate file. This makes maintenance more difficult because it's harder to tell which components use a given piece of CSS, and you can easily forget to update the relevant CSS after modifying a component. One of the main benefits of Emotion is that you can [colocate](https://kentcdodds.com/blog/colocation) your styles with your components. All this means is that the CSS for a component should be in the same file as the component itself. This point is closely related to sharing styles via component reuse.
+
+### Consider how you will share styles
+
+There are two main approaches for sharing styles across an Emotion application.
+
+To illustrate the two methods, imagine we're developing an application that needs to display error messages in many different components. All of the error messages should be red and bold. Some error messages should also use a large font.
+
+#### Method 1: Export CSS objects
+
+The simplest way to share styles is to export CSS from a shared file and then import that CSS in many places:
 
 ```tsx
 export const errorCss = css({
@@ -27,13 +37,23 @@ export const errorCss = css({
   fontWeight: 'bold'
 })
 
-// Then, in one of your components:
+// Use arrays to compose styles
+export const largeErrorCss = css([errorCss, { fontSize: '1.5rem' }])
+```
+
+Then, in one of your components:
+
+```tsx
 import { errorCss } from '...'
 
 return <p css={errorCss}>Failed to fizzle the frozzle.</p>
 ```
 
-While there's absolutely nothing functionally wrong with this, we recommend sharing styles with component reuse in most cases. For example,
+This method is great when you only want to share CSS between components. A potential drawback of this method is that shared styles are not colocated with the components that use them.
+
+#### Method 2: Share styles via component reuse
+
+This method is slightly more complex but arguably more powerful than the previous method.
 
 ```tsx
 export function ErrorMessage({ className, children }) {
@@ -44,17 +64,30 @@ export function ErrorMessage({ className, children }) {
   )
 }
 
-// Then, in one of your components
+// `fontSize: '1.5rem'` is passed down to the ErrorMessage component via the
+// className prop, so ErrorMessage must accept a className prop for this to
+// work!
+export function LargeErrorMessage({ className, children }) {
+  return (
+    <ErrorMessage css={{ fontSize: '1.5rem' }} className={className}>
+      {children}
+    </ErrorMessage>
+  )
+}
+```
+
+Then, in one of your components:
+
+```tsx
 import { ErrorMessage } from '...'
 
 return <ErrorMessage>Failed to fizzle the frozzle.</ErrorMessage>
 ```
 
-One advantage of this approach is that you can add additional props and functionality to the `ErrorMessage` component with limited refactoring.
+Advantages of sharing styles via component reuse include:
 
-### Colocate styles with components
-
-With normal CSS, the styles for a component are defined in a separate file. This makes maintenance more difficult because it's harder to tell which components use a given piece of CSS, and you can easily forget to update the relevant CSS after modifying a component. One of the main benefits of Emotion is that you can [colocate](https://kentcdodds.com/blog/colocation) your styles with your components. All this means is that the CSS for a component should be in the same file as the component itself. This point is closely related to sharing styles via component reuse.
+- Component reuse allows you to share both logic and styles. You can easily add additional props and functionality to the `ErrorMessage` component with limited refactoring.
+- Styles are always colocated with their components.
 
 ### Use the `style` prop for dynamic styles
 
@@ -112,7 +145,7 @@ function Avatar({ imageUrl }) {
 }
 ```
 
-TypeScript users: you'll have to use a type assertion here: `style={{ ['--background-style' as any]: imageUrl }}`. [Reference](https://stackoverflow.com/a/52013197/752601)
+TypeScript users: you'll have to use a type assertion like `style={{ ['--background-style' as any]: imageUrl }}` as explained [here](https://stackoverflow.com/a/52013197/752601).
 
 ### If using React, prefer `@emotion/react` or `@emotion/styled` over `@emotion/css`
 
