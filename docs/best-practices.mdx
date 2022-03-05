@@ -91,6 +91,29 @@ Now imagine if there are 100 avatars on the page! See [Michael Dougall's blog po
 
 You should also use the `style` prop if the styles will be updated frequently. If your application lets a user drag and drop an element, you likely have a `transform` property like `` transform: `translate(${x}px, ${y}px)`  ``. This property should go through the `style` prop since `x` and `y` will change rapidly as the element is dragged.
 
+#### Advanced: CSS variables with `style`
+
+CSS variables can be used with the `style` prop to keep the CSS in a single place while "deferring" the actual value of a property. Going back to the avatar example above, you could define the following static CSS using the css prop:
+
+```css
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-style: var(--background-style);
+}
+```
+
+Then, for each avatar, you render an element which sets the value of the `--background-style` CSS variable:
+
+```tsx
+function Avatar({ imageUrl }) {
+  return <div className="avatar" style={{ '--background-style': imageUrl }} />
+}
+```
+
+TypeScript users: you'll have to use a type assertion here: `style={{ ['--background-style' as any]: imageUrl }}`. [Reference](https://stackoverflow.com/a/52013197/752601)
+
 ### If using React, prefer `@emotion/react` or `@emotion/styled` over `@emotion/css`
 
 There is nothing wrong with `@emotion/css`, but `@emotion/react` and `@emotion/styled` generally offer a better developer experience.
