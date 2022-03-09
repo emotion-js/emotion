@@ -5,7 +5,6 @@ import { ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 
-import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
 type Styles = Object | Array<Object>
