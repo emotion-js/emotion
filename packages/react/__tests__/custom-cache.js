@@ -57,7 +57,10 @@ test('Global should "inherit" sheet class from the cache', () => {
       super.insert(`/** ${this.key} */${rule}`)
     }
   }
-  cache.sheet = new MySheet({ key: 'test', container: document.head })
+  cache.sheet = new MySheet({
+    key: 'test',
+    container: safeQuerySelector('head')
+  })
 
   render(
     <CacheProvider value={cache}>
