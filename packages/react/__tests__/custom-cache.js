@@ -1,10 +1,11 @@
 // @flow
 /** @jsx jsx */
-import 'test-utils/next-env'
 import createCache from '@emotion/cache'
-import { jsx, CacheProvider, Global } from '@emotion/react'
+import { CacheProvider, Global, jsx } from '@emotion/react'
 import { StyleSheet } from '@emotion/sheet'
 import renderer from 'react-test-renderer'
+import { safeQuerySelector } from 'test-utils'
+import 'test-utils/next-env'
 
 function stylisPlugin(element) {
   if (element.type === 'decl' && element.value.startsWith('color:')) {
@@ -15,6 +16,11 @@ function stylisPlugin(element) {
 function render(ele) {
   return renderer.create(ele).toJSON()
 }
+
+beforeEach(() => {
+  safeQuerySelector('head').innerHTML = ''
+  safeQuerySelector('body').innerHTML = ''
+})
 
 test('with custom plugins', () => {
   let cache = createCache({
@@ -40,40 +46,42 @@ test('with custom plugins', () => {
   `)
 })
 
-test('with custom sheet', () => {
+test('Global should "inherit" sheet class from the cache', () => {
   // https://github.com/emotion-js/emotion/issues/2675
   let cache = createCache({
     key: 'test',
     speedy: false
   })
-
-  class GlobalSheet extends StyleSheet {
-    insert(rule) {
-      return super.insert('/** global */' + rule)
-    }
-  }
   class MySheet extends StyleSheet {
-    constructor(options) {
-      super(options)
-      if (Reflect.get(options.container, 'sheet')) {
-        return new GlobalSheet(options)
-      } else {
-        Reflect.set(options.container, 'sheet', this)
-      }
-    }
-
     insert(rule) {
       super.insert(`/** ${this.key} */${rule}`)
     }
   }
   cache.sheet = new MySheet({ key: 'test', container: document.head })
 
-  expect(
-    render(
-      <CacheProvider value={cache}>
-        <div css={{ display: 'flex', color: 'blue' }} />
-        <Global styles={{ body: { width: '0' } }} />
-      </CacheProvider>
-    )
-  ).toMatchInlineSnapshot()
+  render(
+    <CacheProvider value={cache}>
+      <div css={{ color: 'hotpink' }} />
+      <Global styles={{ body: { width: '0' } }} />
+    </CacheProvider>
+  )
+
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="test-global"
+        data-s=""
+      >
+
+        /** test-global */body{width:0;}
+      </style>
+      <style
+        data-emotion="test"
+        data-s=""
+      >
+
+        /** test */.test-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
 })
