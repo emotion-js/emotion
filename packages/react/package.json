@@ -30,7 +30,6 @@
     "@emotion/babel-plugin": "^11.7.1",
     "@emotion/cache": "^11.7.1",
     "@emotion/serialize": "^1.0.2",
-    "@emotion/sheet": "^1.1.0",
     "@emotion/utils": "^1.1.0",
     "@emotion/weak-memoize": "^0.2.5",
     "hoist-non-react-statics": "^3.3.1"
