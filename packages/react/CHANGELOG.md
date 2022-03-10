@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.8.2
+
+### Patch Changes
+
+- [#2677](https://github.com/emotion-js/emotion/pull/2677) [`ff3cb164`](https://github.com/emotion-js/emotion/commit/ff3cb16419b44578c7bab275dce7b5845b61db84) Thanks [@Jack-Works](https://github.com/Jack-Works)! - Change `Global` component to use the `StyleSheet` constructor of the current `cache.sheet`. This is useful when `cache.sheet` is not the default implementation. Thanks to that the inner sheet constructed by `Global` can share the behavior with its "main" sheet that is hold by the `cache`.
+
 ## 11.8.1
 
 ### Patch Changes
