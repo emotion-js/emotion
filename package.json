@@ -201,7 +201,6 @@
     "@types/react": "^16.9.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "babel-check-duplicated-nodes": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
     "babel-plugin-add-basic-constructor-for-react-components": "^0.1.0",
