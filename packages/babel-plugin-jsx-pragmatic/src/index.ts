@@ -1,17 +1,38 @@
+import type {
+  NodePath,
+  PluginObj,
+  PluginPass,
+  types as BabelTypes
+} from '@babel/core'
 import syntaxJsx from '@babel/plugin-syntax-jsx'
 
-const findLast = (arr, predicate) => {
+const findLast = <T>(arr: T[], predicate: (item: T) => boolean): T | null => {
   for (let i = arr.length - 1; i >= 0; i--) {
     if (predicate(arr[i])) {
       return arr[i]
     }
   }
+
+  return null
 }
 
-export default function jsxPragmatic(babel) {
+interface PluginPassWithOpts extends PluginPass {
+  opts: {
+    module: string
+    import: string
+    export?: string
+  }
+}
+
+export default function jsxPragmatic(babel: {
+  types: typeof BabelTypes
+}): PluginObj<PluginPassWithOpts> {
   const t = babel.types
 
-  function addPragmaImport(path, state) {
+  function addPragmaImport(
+    path: NodePath<BabelTypes.Program>,
+    state: PluginPassWithOpts
+  ) {
     const importDeclar = t.importDeclaration(
       [
         t.importSpecifier(
