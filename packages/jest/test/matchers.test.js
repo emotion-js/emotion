@@ -1,10 +1,13 @@
 import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 /** @jsx jsx */
+import * as React from 'react'
 import * as enzyme from 'enzyme'
 import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import { matchers } from '@emotion/jest'
+
+const isReact16 = React.version.split('.')[0] === '16'
 
 const { toHaveStyleRule } = matchers
 
@@ -52,73 +55,6 @@ describe('toHaveStyleRule', () => {
     const svgNode = tree.children[0]
 
     expect(svgNode).toHaveStyleRule('width', expect.stringMatching(/.*%$/))
-  })
-
-  it('supports enzyme `mount` method', () => {
-    const Component = () => (
-      <div css={divStyle}>
-        <svg css={svgStyle} />
-      </div>
-    )
-
-    const wrapper = enzyme.mount(<Component />)
-    expect(wrapper).toHaveStyleRule('color', 'red')
-    expect(wrapper).not.toHaveStyleRule('width', '100%')
-    const svgNode = wrapper.find('svg')
-    expect(svgNode).toHaveStyleRule('width', '100%')
-    expect(svgNode).not.toHaveStyleRule('color', 'red')
-  })
-
-  it('supports enzyme `render` method', () => {
-    const Component = () => (
-      <div css={divStyle}>
-        <svg css={svgStyle} />
-      </div>
-    )
-
-    const wrapper = enzyme.render(<Component />)
-    expect(wrapper).toHaveStyleRule('color', 'red')
-    expect(wrapper).not.toHaveStyleRule('width', '100%')
-    const svgNode = wrapper.find('svg')
-    expect(svgNode).toHaveStyleRule('width', '100%')
-    expect(svgNode).not.toHaveStyleRule('color', 'red')
-  })
-
-  it('supports enzyme `shallow` method', () => {
-    const Component = () => (
-      <div css={divStyle}>
-        <svg css={svgStyle} />
-      </div>
-    )
-
-    const wrapper = enzyme.shallow(<Component />)
-    expect(wrapper).toHaveStyleRule('color', 'red')
-    expect(wrapper).not.toHaveStyleRule('width', '100%')
-    const svgNode = wrapper.childAt(0)
-    expect(svgNode).toHaveStyleRule('width', '100%')
-    expect(svgNode).not.toHaveStyleRule('color', 'red')
-  })
-
-  it('supports styled components', () => {
-    const Div = styled('div')`
-      color: red;
-    `
-    const Svg = styled('svg')`
-      width: 100%;
-    `
-    ;['mount', 'render', 'shallow'].forEach(method => {
-      const wrapper = enzyme[method](
-        <Div>
-          <Svg />
-        </Div>
-      )
-      expect(wrapper).toHaveStyleRule('color', 'red')
-      expect(wrapper).not.toHaveStyleRule('width', '100%')
-      const svgNode =
-        method === 'render' ? wrapper.find('svg') : wrapper.find(Svg)
-      expect(svgNode).toHaveStyleRule('width', '100%')
-      expect(svgNode).not.toHaveStyleRule('color', 'red')
-    })
   })
 
   it('fails if no styles are found', () => {
@@ -364,5 +300,73 @@ describe('toHaveStyleRule', () => {
       .toJSON()
 
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
+  })
+  ;(isReact16 ? describe : describe.skip)('enzyme', () => {
+    it('supports enzyme `mount` method', () => {
+      const Component = () => (
+        <div css={divStyle}>
+          <svg css={svgStyle} />
+        </div>
+      )
+
+      const wrapper = enzyme.mount(<Component />)
+      expect(wrapper).toHaveStyleRule('color', 'red')
+      expect(wrapper).not.toHaveStyleRule('width', '100%')
+      const svgNode = wrapper.find('svg')
+      expect(svgNode).toHaveStyleRule('width', '100%')
+      expect(svgNode).not.toHaveStyleRule('color', 'red')
+    })
+
+    it('supports enzyme `render` method', () => {
+      const Component = () => (
+        <div css={divStyle}>
+          <svg css={svgStyle} />
+        </div>
+      )
+
+      const wrapper = enzyme.render(<Component />)
+      expect(wrapper).toHaveStyleRule('color', 'red')
+      expect(wrapper).not.toHaveStyleRule('width', '100%')
+      const svgNode = wrapper.find('svg')
+      expect(svgNode).toHaveStyleRule('width', '100%')
+      expect(svgNode).not.toHaveStyleRule('color', 'red')
+    })
+
+    it('supports enzyme `shallow` method', () => {
+      const Component = () => (
+        <div css={divStyle}>
+          <svg css={svgStyle} />
+        </div>
+      )
+
+      const wrapper = enzyme.shallow(<Component />)
+      expect(wrapper).toHaveStyleRule('color', 'red')
+      expect(wrapper).not.toHaveStyleRule('width', '100%')
+      const svgNode = wrapper.childAt(0)
+      expect(svgNode).toHaveStyleRule('width', '100%')
+      expect(svgNode).not.toHaveStyleRule('color', 'red')
+    })
+
+    it('supports styled components', () => {
+      const Div = styled('div')`
+        color: red;
+      `
+      const Svg = styled('svg')`
+        width: 100%;
+      `
+      ;['mount', 'render', 'shallow'].forEach(method => {
+        const wrapper = enzyme[method](
+          <Div>
+            <Svg />
+          </Div>
+        )
+        expect(wrapper).toHaveStyleRule('color', 'red')
+        expect(wrapper).not.toHaveStyleRule('width', '100%')
+        const svgNode =
+          method === 'render' ? wrapper.find('svg') : wrapper.find(Svg)
+        expect(svgNode).toHaveStyleRule('width', '100%')
+        expect(svgNode).not.toHaveStyleRule('color', 'red')
+      })
+    })
   })
 })

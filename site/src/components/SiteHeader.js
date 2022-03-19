@@ -30,7 +30,7 @@ export default function SiteHeader() {
         gridColumn: '1 /span 2'
       })}
     >
-      <a href="https://support.eji.org/give/153413/#!/donation/checkout">
+      <a href="https://supportukrainenow.org">
         <div
           css={{
             position: 'absolute',
@@ -53,7 +53,7 @@ export default function SiteHeader() {
               paddingBottom: 4
             }}
           >
-            Black Lives Matter.
+            🇺🇦 STOP WAR IN UKRAINE 🇺🇦
           </span>
         </div>
       </a>
