@@ -48,11 +48,11 @@ When using our JSX factory, TypeScript only allows the `css` prop on components 
 
 ### With the Babel plugin
 
-[`@emotion/babel-plugin`](/docs/babel) is completely optional for TypeScript users. If you are not already using Babel, you probably shouldn't add it to your build tooling unless you truly need one of the features offered by `@emotion/babel-plugin`. On the other hand, there's no reason not to use `@emotion/babel-plugin` if you are already using Babel to transpile your TypeScript code.
+[`@emotion/babel-plugin`](/docs/babel) is completely optional for TypeScript users. If you are not already using Babel, you probably shouldn't add it to your build tooling unless you truly need one of the features offered by this plugin. On the other hand, there's no reason not to use `@emotion/babel-plugin` if you are already using Babel to transpile your TypeScript code.
 
 ### With the old JSX transform
 
-If you are unable to upgrade to the `react-jsx` transform, you will need to specify the JSX factory at the top of every file:
+If you are unable to upgrade to the `react-jsx` transform (e.g. while using NextJS, which enforces `"jsx": "preserve"`), you may need to specify the JSX factory at the top of every file:
 
 ```tsx
 /** @jsx jsx */
@@ -61,7 +61,7 @@ import { jsx } from '@emotion/react'
 
 As a result, you may be not able to use the shorthand syntax `<></>` for React fragments, but you can still use `<Fragment></Fragment>`. This is a limitation of the TypeScript compiler not being able to independently specify jsx pragma and jsxFrag pragma.
 
-You can still use the css helper and pass the className yourself (ensure you are importing from the `@emotion/css` package, not `@emotion/react`).
+You can still use the css helper and pass the className yourself (but ensure you are importing from the `@emotion/css` package, not `@emotion/react`).
 
 ```tsx
 import { css } from '@emotion/css'
@@ -69,7 +69,8 @@ import { css } from '@emotion/css'
 const el = <div className={css({ background: 'black' })} />
 ```
 
-It's not possible to leverage `css` prop support being added conditionally based on the type of a rendered component when not using our jsx pragma or the `react-jsx` transform. If you use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
+Without using our JSX pragma or the `react-jsx` transform, it is not possible to leverage `css` props support being added conditionally, based on the type of a rendered component. However, if you use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have a special file that can be imported once anywhere in your app, which adds support for the `css` prop globally and for all components.
+This may also be useful if you're encountering issues running a NextJS app. It can be used like this:
 
 ```ts
 /// <reference types="@emotion/react/types/css-prop" />
