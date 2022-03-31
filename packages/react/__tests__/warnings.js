@@ -19,6 +19,7 @@ const validValues = [
   'inherit',
   '"some thing"',
   "'another thing'",
+  'var(--variable-name)',
   'url("http://www.example.com/test.png")',
   'linear-gradient(hotpink, #8be9fd)',
   'radial-gradient(hotpink, #8be9fd)',
