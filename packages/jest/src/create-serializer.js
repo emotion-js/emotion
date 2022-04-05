@@ -74,7 +74,8 @@ function getPrettyStylesFromClassNames(
 
 export type Options = {
   classNameReplacer?: (className: string, index: number) => string,
-  DOMElements?: boolean
+  DOMElements?: boolean,
+  includeStyles?: boolean
 }
 
 function filterEmotionProps(props = {}) {
@@ -183,7 +184,8 @@ function clean(node: any, classNames: string[]) {
 
 export function createSerializer({
   classNameReplacer,
-  DOMElements = true
+  DOMElements = true,
+  includeStyles = true
 }: Options = {}) {
   const cache = new WeakSet()
   const isTransformed = val => cache.has(val)
@@ -202,11 +204,9 @@ export function createSerializer({
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
     const classNames = getClassNamesFromNodes(nodes)
-    const styles = getPrettyStylesFromClassNames(
-      classNames,
-      elements,
-      config.indent
-    )
+    const styles = includeStyles
+      ? getPrettyStylesFromClassNames(classNames, elements, config.indent)
+      : ''
     clean(converted, classNames)
 
     nodes.forEach(cache.add, cache)

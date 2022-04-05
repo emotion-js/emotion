@@ -74,6 +74,16 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
 </div>"
 `;
 
+exports[`jest-emotion with style insertion disabled does not insert styles into snapshots 1`] = `
+"<div
+  class=\\"emotion-0\\"
+>
+  <svg
+    class=\\"emotion-1\\"
+  />
+</div>"
+`;
+
 exports[`prints speedy styles 1`] = `
 ".emotion-0 {
   color: hotpink;
