@@ -98,7 +98,7 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 })
 
-describe('jest-emotion with style insertion disabled', () => {
+test('jest-emotion with style insertion disabled does not insert styles into snapshots', () => {
   const emotionPlugin = createSerializer({ includeStyles: false })
 
   const divStyle = css`
@@ -109,20 +109,18 @@ describe('jest-emotion with style insertion disabled', () => {
     width: 100%;
   `
 
-  it('does not insert styles into snapshots', () => {
-    const divRef = React.createRef()
-    render(
-      <div css={divStyle} ref={divRef}>
-        <svg css={svgStyle} />
-      </div>
-    )
+  const divRef = React.createRef()
+  render(
+    <div css={divStyle} ref={divRef}>
+      <svg css={svgStyle} />
+    </div>
+  )
 
-    const output = prettyFormat(divRef.current, {
-      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
-    })
-
-    expect(output).toMatchSnapshot()
+  const output = prettyFormat(divRef.current, {
+    plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
   })
+
+  expect(output).toMatchSnapshot()
 })
 
 test('does not replace class names that are not from emotion', () => {
