@@ -98,7 +98,7 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 })
 
-test("allows to opt-out from styles printing", () => {
+test('allows to opt-out from styles printing', () => {
   const emotionPlugin = createSerializer({ includeStyles: false })
 
   const divStyle = css`
