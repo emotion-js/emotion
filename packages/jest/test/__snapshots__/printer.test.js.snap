@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`allows to opt-out from styles printing 1`] = `
+"<div
+  class=\\"emotion-0\\"
+>
+  <svg
+    class=\\"emotion-1\\"
+  />
+</div>"
+`;
+
 exports[`does not replace class names that are not from emotion 1`] = `
 ".emotion-0 {
   color: darkorchid;
@@ -70,16 +80,6 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
 >
   <svg
     className=\\"emotion-1\\"
-  />
-</div>"
-`;
-
-exports[`jest-emotion with style insertion disabled does not insert styles into snapshots 1`] = `
-"<div
-  class=\\"emotion-0\\"
->
-  <svg
-    class=\\"emotion-1\\"
   />
 </div>"
 `;
