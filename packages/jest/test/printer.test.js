@@ -98,7 +98,7 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 })
 
-test('jest-emotion with style insertion disabled does not insert styles into snapshots', () => {
+test("allows to opt-out from styles printing", () => {
   const emotionPlugin = createSerializer({ includeStyles: false })
 
   const divStyle = css`
