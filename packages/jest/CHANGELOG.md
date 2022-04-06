@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.9.0
+
+### Minor Changes
+
+- [#2709](https://github.com/emotion-js/emotion/pull/2709) [`1a25293f`](https://github.com/emotion-js/emotion/commit/1a25293fffa348d55bbf78e8855a6390bc54230b) Thanks [@thompsongl](https://github.com/thompsongl)! - Added `includeStyles` option to `createSerializer` to optionally disable styles printing.
+
 ## 11.8.0
 
 ### Patch Changes
