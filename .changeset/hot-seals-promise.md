@@ -2,4 +2,4 @@
 '@emotion/jest': patch
 ---
 
-Fixed `createEnzymeSerializer` missing the `includeStyles` option
+Fixed an issue with `createEnzymeSerializer` not handling the recently added `includeStyles` option.
