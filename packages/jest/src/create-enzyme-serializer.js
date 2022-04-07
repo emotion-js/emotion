@@ -66,11 +66,13 @@ const wrappedEnzymeSerializer = {
 
 export function createEnzymeSerializer({
   classNameReplacer,
-  DOMElements = true
+  DOMElements = true,
+  includeStyles = true
 }: Options = {}) {
   const emotionSerializer = createEmotionSerializer({
     classNameReplacer,
-    DOMElements
+    DOMElements,
+    includeStyles
   })
   return {
     test(node: *) {
