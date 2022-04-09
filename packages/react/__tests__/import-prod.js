@@ -1,8 +1,8 @@
 import 'test-utils/prod-mode'
 import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { css, Global } from '@emotion/react'
 import styled from '@emotion/styled'
-import { render } from '@testing-library/react'
 import prettify from '@emotion/css-prettifier'
 
 // using styled instead of the css prop because there was a really weird flow error
@@ -20,8 +20,23 @@ expect.addSnapshotSerializer({
   }
 })
 
-test('it works', () => {
-  render(
+// can't use RTL as production React 18 throws when it's trying to use `act`
+const render = children =>
+  new Promise(resolve => {
+    const el = document.createElement('div')
+    // $FlowFixMe
+    document.body.appendChild(el)
+
+    if (ReactDOM.createRoot) {
+      const root = ReactDOM.createRoot(el)
+      root.render(<div ref={resolve}>{children}</div>)
+    } else {
+      ReactDOM.render(children, el, resolve)
+    }
+  })
+
+test('it works', async () => {
+  await render(
     <div>
       <Comp>something</Comp>
 

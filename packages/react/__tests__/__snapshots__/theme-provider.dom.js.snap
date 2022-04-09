@@ -6,9 +6,7 @@ exports[`provider with theme value that changes 1`] = `
   padding: 4px;
 }
 
-<div
-  id="root"
->
+<div>
   <div
     class="emotion-0"
     id="the-thing"
@@ -22,9 +20,7 @@ exports[`provider with theme value that changes 2`] = `
   padding: 8px;
 }
 
-<div
-  id="root"
->
+<div>
   <div
     class="emotion-0"
     id="the-thing"

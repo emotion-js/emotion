@@ -6,14 +6,11 @@
     "lib": ["es6"],
     "module": "commonjs",
     "noEmit": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
     "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
     "target": "es5",
     "typeRoots": ["../"],
-    "types": []
+    "types": [],
+    "skipLibCheck": true
   },
   "include": ["./*.ts", "./*.tsx"]
 }

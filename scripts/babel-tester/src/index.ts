@@ -6,19 +6,40 @@ import path from 'path'
 import { promisify } from 'util'
 import checkDuplicatedNodes from 'babel-check-duplicated-nodes'
 
+type FixtureTestCase = {
+  filename: string
+  babelFileName: string
+  only: boolean
+  skip: boolean
+}
+
+type TestCase = {
+  code?: string
+  filename?: string
+  babelFileName?: string
+  plugins?: any[]
+}
+
+type TesterOptions = {
+  plugins?: any[]
+  presets?: any[]
+  transform?: (code: string) => string
+  filename?: string
+}
+
 const readFile = promisify(fs.readFile)
 
 const separator = '\n\n      ↓ ↓ ↓ ↓ ↓ ↓\n\n'
 
-const tester = allOpts => async opts => {
+const tester = (allOpts: TesterOptions) => async (opts: TestCase) => {
   let rawCode = opts.code
   if (!opts.code && opts.filename) {
     rawCode = await readFile(opts.filename, 'utf-8')
   }
   if (allOpts.transform) {
-    rawCode = allOpts.transform(rawCode)
+    rawCode = allOpts.transform(rawCode!)
   }
-  const { code, ast } = babel.transformSync(rawCode, {
+  const { code, ast } = babel.transformSync(rawCode!, {
     plugins: [
       'macros',
       '@babel/plugin-syntax-jsx',
@@ -32,13 +53,13 @@ const tester = allOpts => async opts => {
     configFile: false,
     ast: true,
     filename: 'babelFileName' in opts ? opts.babelFileName : 'emotion.js'
-  })
-  expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
+  })!
+  expect(() => checkDuplicatedNodes(babel, ast!)).not.toThrow()
 
   expect(`${rawCode}${separator}${code}`).toMatchSnapshot()
 }
 
-function doThing(dirname) {
+function readFixturesDir(dirname: string): string[] {
   const fixturesFolder = path.join(dirname, '__fixtures__')
   return fs
     .readdirSync(fixturesFolder)
@@ -46,25 +67,16 @@ function doThing(dirname) {
 }
 
 export default (
-  name /*: string */,
-  cases /*:
-    | {
-        [key: string]: {
-          code: string,
-          plugins?: any[],
-          babelFileName?: string
-        }
-      }
-    | string */,
-  opts /* ?: {
-    plugins?: Array<*>,
-    presets?: Array<*>,
-    transform?: string => string,
-    filename?: string
-  } */ = {}
+  name: string,
+  cases:
+    | string
+    | Record<string, { code: string; plugins?: any[]; babelFileName?: string }>,
+  opts: TesterOptions = {}
 ) => {
   if (typeof cases === 'string') {
-    cases = doThing(cases).reduce((accum, filename) => {
+    const fixtureCases = readFixturesDir(cases).reduce<
+      Record<string, FixtureTestCase>
+    >((accum, filename) => {
       let skip = false
       let only = false
       let testTitle = filename
@@ -83,6 +95,7 @@ export default (
       }
       return accum
     }, {})
+    return jestInCase(name, tester(opts), fixtureCases)
   }
 
   return jestInCase(name, tester(opts), cases)

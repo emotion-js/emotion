@@ -14,6 +14,8 @@ exports[`css @supports 1`] = `
 
 exports[`css component as selectors (object syntax) 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin."`;
 
+exports[`css component as selectors (object syntax) 2`] = `"The above error occurred in the <Styled(div)> component:"`;
+
 exports[`css component selectors without target 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin."`;
 
 exports[`css composition 1`] = `
