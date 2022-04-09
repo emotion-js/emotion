@@ -1,7 +1,6 @@
 import 'test-utils/dev-mode'
-import { throwIfFalsy } from 'test-utils'
+import { render } from '@testing-library/react'
 import * as React from 'react'
-import { render } from 'react-dom'
 import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
 
@@ -24,11 +23,9 @@ test('specificity with globals', () => {
       </SomeComponent>
     </div>
   )
-  throwIfFalsy(document.body).innerHTML = `<div id="root"></div>`
-  let root = throwIfFalsy(document.getElementById('root'))
 
-  render(<Comp itShouldNotBeThisColor="green" />, root)
+  const { rerender } = render(<Comp itShouldNotBeThisColor="green" />)
   expect(document.documentElement).toMatchSnapshot()
-  render(<Comp itShouldNotBeThisColor="yellow" />, root)
+  rerender(<Comp itShouldNotBeThisColor="yellow" />)
   expect(document.documentElement).toMatchSnapshot()
 })

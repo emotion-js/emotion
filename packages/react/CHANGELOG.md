@@ -1,10 +1,48 @@
 # @emotion/react
 
+## 11.8.1
+
+### Patch Changes
+
+- [#2651](https://github.com/emotion-js/emotion/pull/2651) [`39ac5b99`](https://github.com/emotion-js/emotion/commit/39ac5b99483994a68fa2b51e23ad6c173f42f1c1) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a transpilation issue that caused `useInsertionEffect` to be referenced directly in the specifiers list of the import statement. This has caused build errors in the consuming tools since the import statement can only reference known exports of a module.
+
+## 11.8.0
+
+### Minor Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Refactored code to use the upcoming `React.useInsertionEffect` when it's available (this is a new hook that is going to be introduced in React 18). This shouldn't have any effect on existing codebases and the change should be transparent.
+
+### Patch Changes
+
+- [#2609](https://github.com/emotion-js/emotion/pull/2609) [`242f7d8c`](https://github.com/emotion-js/emotion/commit/242f7d8c9f3ddbba2a69664bcc0fa22501df849f) Thanks [@Andarist](https://github.com/Andarist)! - Added `@emotion/babel-plugin` as a dependency - this is an actual dependency of the `@emotion/react/macro` entrypoint and it has to be explicitly declared to fix compatibility with strict package managers.
+
+* [#2615](https://github.com/emotion-js/emotion/pull/2615) [`3d672acd`](https://github.com/emotion-js/emotion/commit/3d672acd4d379f5861012d6e6d38feadd212966a) Thanks [@srmagura](https://github.com/srmagura)! - Fix an edge case where runtime label extraction in class components led to invalid class names in Firefox. This only affected the development build of Emotion.
+
+* Updated dependencies [[`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573)]:
+  - @emotion/utils@1.1.0
+
+## 11.7.1
+
+### Patch Changes
+
+- [#2577](https://github.com/emotion-js/emotion/pull/2577) [`04681a5f`](https://github.com/emotion-js/emotion/commit/04681a5f520b3e3909e567fda200622494dd333b) Thanks [@Methuselah96](https://github.com/Methuselah96)! - Export `Keyframes` type to avoid TypeScript inserting `import("@emotion/serialize").Keyframes` references into declaration files emitted based on a source files exporting `keyframes` result. This avoids issues with strict package managers that don't allow accessing undeclared dependencies.
+
+* [#2590](https://github.com/emotion-js/emotion/pull/2590) [`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d) Thanks [@Andarist](https://github.com/Andarist)! - Upgraded and pinned the version of Stylis - the CSS parser that Emotion uses under the hood.
+
+* Updated dependencies [[`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d)]:
+  - @emotion/cache@11.7.1
+
+## 11.7.0
+
+### Patch Changes
+
+- [#2534](https://github.com/emotion-js/emotion/pull/2534) [`57be9e8c`](https://github.com/emotion-js/emotion/commit/57be9e8cb20313bd2ed297a39c41ca0f0ca37ea8) Thanks [@srmagura](https://github.com/srmagura)! - Changed the implementation of the runtime label extraction in elements using the css prop (that only happens in development) to one that should yield more consistent results across browsers. This fixes some minor issues with React reporting hydration mismatches that wouldn't happen in production.
+
 ## 11.6.0
 
 ### Minor Changes
 
-- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (the upcoming API of the React 18) is used within a tree below our components.
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (an upcoming API in React 18) is used within a tree below our components.
 
 ### Patch Changes
 

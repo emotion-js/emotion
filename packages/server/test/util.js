@@ -196,10 +196,7 @@ const isSSRedStyle = node => {
   return attrib.length > 1
 }
 
-export const getCssFromChunks = (
-  emotion /*: Emotion */,
-  document /*: Document */
-) => {
+export const getCssFromChunks = (emotion /*: Emotion*/) => {
   const chunks = Array.from(
     emotion.sheet.tags[0].parentNode.querySelectorAll(`[data-emotion]`)
   ).filter(isSSRedStyle)
@@ -215,14 +212,6 @@ export const getInjectedRules = () =>
       .map(x => x.textContent || '')
       .join('')
   )
-
-export const setHtml = (html /*: string */, document /*: Document */) => {
-  if (document.body !== null) {
-    document.body.innerHTML = html
-  } else {
-    throw new Error('body does not exist on document')
-  }
-}
 
 export const renderToStringWithStream = (
   element /*: React.Element<*> */,

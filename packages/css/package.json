@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css",
-  "version": "11.5.0",
+  "version": "11.7.1",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-css.cjs.js",
   "module": "dist/emotion-css.esm.js",
@@ -17,8 +17,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/babel-plugin": "^11.0.0",
-    "@emotion/cache": "^11.5.0",
+    "@emotion/babel-plugin": "^11.7.1",
+    "@emotion/cache": "^11.7.1",
     "@emotion/serialize": "^1.0.0",
     "@emotion/sheet": "^1.0.3",
     "@emotion/utils": "^1.0.0"
@@ -33,7 +33,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.2.1",
+    "typescript": "^4.5.5"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

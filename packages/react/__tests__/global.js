@@ -1,6 +1,6 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { render } from '@testing-library/react'
 import {
   Global,
   keyframes,
@@ -15,13 +15,11 @@ console.error = jest.fn()
 
 beforeEach(() => {
   document.head.innerHTML = ''
-  document.body.innerHTML = `<div id="root"></div>`
-
   jest.resetAllMocks()
 })
 
 test('basic', () => {
-  render(
+  const { unmount } = render(
     <CacheProvider value={createCache({ key: 'css' })}>
       <Global
         styles={[
@@ -48,29 +46,27 @@ test('basic', () => {
           }
         ]}
       />
-    </CacheProvider>,
-    document.getElementById('root')
+    </CacheProvider>
   )
   expect(document.head).toMatchSnapshot()
   expect(document.body).toMatchSnapshot()
-  unmountComponentAtNode(document.getElementById('root'))
+  unmount()
   expect(document.head).toMatchSnapshot()
   expect(document.body).toMatchSnapshot()
 })
 
 test('updating more than 1 global rule', () => {
   const cache = createCache({ key: 'global-multiple-rules' })
-  const renderComponent = ({ background, color }) =>
-    render(
-      <CacheProvider value={cache}>
-        <Global styles={{ body: { background }, div: { color } }} />
-      </CacheProvider>,
-      document.getElementById('root')
-    )
 
-  renderComponent({ background: 'white', color: 'black' })
+  const Comp = ({ background, color }) => (
+    <CacheProvider value={cache}>
+      <Global styles={{ body: { background }, div: { color } }} />
+    </CacheProvider>
+  )
+
+  const { rerender } = render(<Comp background="white" color="black" />)
   expect(document.head).toMatchSnapshot()
-  renderComponent({ background: 'gray', color: 'white' })
+  rerender(<Comp background="gray" color="white" />)
   expect(document.head).toMatchSnapshot()
 })
 
@@ -78,7 +74,6 @@ test('no React hook order violations', () => {
   const theme = { color: 'blue' }
   const cache = createCache({ key: 'context' })
 
-  // $FlowFixMe
   const Comp = ({ flag }) => (
     <ThemeProvider theme={theme}>
       <CacheProvider value={cache}>
@@ -94,8 +89,8 @@ test('no React hook order violations', () => {
     </ThemeProvider>
   )
 
-  render(<Comp />, document.getElementById('root'))
+  render(<Comp />)
   expect(console.error).not.toHaveBeenCalled()
-  render(<Comp flag />, document.getElementById('root'))
+  render(<Comp flag />)
   expect(console.error).not.toHaveBeenCalled()
 })

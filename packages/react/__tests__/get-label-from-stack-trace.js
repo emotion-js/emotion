@@ -551,3 +551,171 @@ beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:27384:27`
     expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
   })
 })
+
+/**
+ * E.g.
+ *
+ * ```
+ * import React from 'react'
+ *
+ * var __extends =
+ *   (this && this.__extends) ||
+ *   (function () {
+ *     var extendStatics = function (d, b) {
+ *       extendStatics =
+ *         Object.setPrototypeOf ||
+ *         ({ __proto__: [] } instanceof Array &&
+ *           function (d, b) {
+ *             d.__proto__ = b
+ *           }) ||
+ *         function (d, b) {
+ *           for (var p in b)
+ *             if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]
+ *         }
+ *       return extendStatics(d, b)
+ *     }
+ *     return function (d, b) {
+ *       extendStatics(d, b)
+ *       function __() {
+ *         this.constructor = d
+ *       }
+ *       d.prototype =
+ *         b === null ? Object.create(b) : ((__.prototype = b.prototype), new __())
+ *     }
+ *   })()
+ *
+ * export const MyComponent$9 = (function (_super) {
+ *   __extends(MyComponent$9, _super)
+ *   function MyComponent$9() {
+ *     var _this = (_super !== null && _super.apply(this, arguments)) || this
+ *     return _this
+ *   }
+ *   MyComponent$9.prototype.render = function () {
+ *     // Defining a variable to prevent Proper Tail Call
+ *     const el = <div css={{ color: 'red' }} />
+ *     return el
+ *   }
+ *   return MyComponent$9
+ * })(React.PureComponent)
+ * ```
+ */
+describe('class component transpiled to ES 5', () => {
+  test('Chrome', () => {
+    const stackTrace = `Error
+    at createEmotionProps (emotion-element-10a9af6f.browser.esm.js?d0a2:168)
+    at jsxDEV (emotion-react-jsx-dev-runtime.browser.esm.js?cf67:18)
+    at MyComponent$9.render (MyComponent9.js?2fbf:37)
+    at finishClassComponent (react-dom.development.js?3c4a:17160)
+    at updateClassComponent (react-dom.development.js?3c4a:17110)
+    at beginWork (react-dom.development.js?3c4a:18620)
+    at beginWork$1 (react-dom.development.js?3c4a:23179)
+    at performUnitOfWork (react-dom.development.js?3c4a:22154)
+    at workLoopSync (react-dom.development.js?3c4a:22130)
+    at performSyncWorkOnRoot (react-dom.development.js?3c4a:21756)`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+
+  test('Firefox', () => {
+    const stackTrace = `createEmotionProps@webpack-internal:///../../packages/react/dist/emotion-element-10a9af6f.browser.esm.js:189:42
+jsxDEV@webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js:35:230
+MyComponent$9</MyComponent$9.prototype.render@webpack-internal:///./pages/MyComponent9.js:62:82
+finishClassComponent@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:17163:18
+updateClassComponent@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:17110:44
+beginWork@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:18620:16
+beginWork$1@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:23179:14
+performUnitOfWork@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:22154:12
+workLoopSync@webpack-internal:///../../node_modules/react-dom/cjs/react-dom.development.js:22130:22`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+
+  test('Safari', () => {
+    // No idea why the function name is just blank in this stack trace
+    const stackTrace = `createEmotionProps@http://localhost:3000/static/js/main.chunk.js:973:49
+jsxDEV@http://localhost:3000/static/js/main.chunk.js:1609:247
+@http://localhost:3000/static/js/main.chunk.js:2926:93
+finishClassComponent@http://localhost:3000/static/js/vendors~main.chunk.js:21433:41
+updateClassComponent@http://localhost:3000/static/js/vendors~main.chunk.js:21386:48
+beginWork$1@http://localhost:3000/static/js/vendors~main.chunk.js:27364:27
+performUnitOfWork@http://localhost:3000/static/js/vendors~main.chunk.js:26352:27
+workLoopSync@http://localhost:3000/static/js/vendors~main.chunk.js:26328:43
+performSyncWorkOnRoot@http://localhost:3000/static/js/vendors~main.chunk.js:25946:25`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+
+  test('SSR', () => {
+    const stackTrace = `Error
+    at Object.createEmotionProps (webpack-internal:///../../packages/react/dist/emotion-element-491a37fd.cjs.dev.js:201:42)
+    at jsxDEV (webpack-internal:///../../packages/react/jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.dev.js:22:75)
+    at MyComponent$9.render (webpack-internal:///./pages/MyComponent9.js:60:82)
+    at processChild (/Users/sammagura/Documents/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3134:18)
+    at resolve (/Users/sammagura/Documents/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:2960:5)
+    at ReactDOMServerRenderer.render (/Users/sammagura/Documents/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3435:22)
+    at ReactDOMServerRenderer.read (/Users/sammagura/Documents/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3373:29)
+    at Object.renderToString (/Users/sammagura/Documents/emotion/node_modules/react-dom/cjs/react-dom-server.node.development.js:3988:27)
+    at Object.renderPage (/Users/sammagura/Documents/emotion/node_modules/next/dist/server/render.js:621:45)
+    at Object.defaultGetInitialProps (/Users/sammagura/Documents/emotion/node_modules/next/dist/server/render.js:301:51)`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+})
+
+/**
+ * https://github.com/emotion-js/emotion/issues/2614
+ *
+ * Not sure how to reproduce this other than this repro project:
+ * https://github.com/srmagura/emotion-issue-2614
+ */
+describe('issue #2614 - class component transpiled to ES 5', () => {
+  test('Chrome', () => {
+    const stackTrace = `Error
+    at createEmotionProps (webpack-internal:///./node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js:183)
+    at Module.jsx (webpack-internal:///./node_modules/@emotion/react/dist/emotion-react.browser.esm.js:127)
+    at Loader.render (webpack-internal:///./node_modules/react-spinners/ScaleLoader.js:56)
+    at finishClassComponent (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:17485)
+    at updateClassComponent (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:17435)
+    at beginWork (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:19073)
+    at beginWork$1 (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:23935)
+    at performUnitOfWork (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:22771)
+    at workLoopSync (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:22702)
+    at renderRootSync (webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:22665)`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+
+  test('Firefox', () => {
+    const stackTrace = `createEmotionProps@webpack-internal:///./node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js:183:40
+jsx@webpack-internal:///./node_modules/@emotion/react/dist/emotion-react.browser.esm.js:127:105
+Loader.prototype.render@webpack-internal:///./node_modules/react-spinners/ScaleLoader.js:56:35
+finishClassComponent@webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:17485:31
+updateClassComponent@webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:17435:44
+beginWork@webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:19073:16
+beginWork$1@webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:23935:14
+performUnitOfWork@webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:22771:12
+workLoopSync@webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:22702:22`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+
+  test('Safari', () => {
+    // No idea why the function name is blank and there are no file locations
+    const stackTrace = `createEmotionProps@
+jsx@
+@
+finishClassComponent@
+updateClassComponent@
+beginWork$1@
+performUnitOfWork@
+workLoopSync@
+renderRootSync@
+performSyncWorkOnRoot@
+scheduleUpdateOnFiber@
+updateContainer@`
+
+    expect(getLabelFromStackTrace(stackTrace)).toBeUndefined()
+  })
+
+  // No SSR stack trace since this comes from a Gatsby project
+})
