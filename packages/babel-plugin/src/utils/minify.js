@@ -1,6 +1,10 @@
 // @flow
 import { compile } from 'stylis'
 
+const haveSameLocation = (element1, element2) => {
+  return element1.line === element2.line && element1.column === element2.column
+}
+
 const isAutoInsertedRule = element => {
   if (element.type !== 'rule' || !element.parent) {
     return false
@@ -11,7 +15,7 @@ const isAutoInsertedRule = element => {
     parent = parent.parent
   } while (parent && parent.type !== 'rule')
 
-  return !!parent && element.value === parent.value
+  return !!parent && haveSameLocation(element, parent)
 }
 
 const toInputTree = (elements, tree) => {
