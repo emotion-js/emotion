@@ -28,7 +28,7 @@
     }
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "11.7.2",
+    "@emotion/babel-plugin": "11.9.2",
     "@emotion/css": "11.9.0",
     "@emotion/css-prettifier": "1.0.1",
     "@types/node": "^10.11.4",
