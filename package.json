@@ -267,8 +267,5 @@
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "3.3.2",
     "worker-loader": "2.0.0"
-  },
-  "devDependencies": {
-    "eslint-codemod-utils": "^0.1.2"
   }
 }
