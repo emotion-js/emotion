@@ -2,4 +2,4 @@
 '@emotion/eslint-plugin': patch
 ---
 
-Don't error when trying to add jsx pragma
+Fixed a crash on empty css prop (`<div css />`) in the `@emotion/jsx-import` rule.

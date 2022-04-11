@@ -2,4 +2,4 @@
 '@emotion/eslint-plugin': patch
 ---
 
-Don't error if a component defines css prop without a value
+An empty css prop (`<div css />`) will now raise an error in the `@emotion/syntax-preference` rule instead of crashing on this case.
