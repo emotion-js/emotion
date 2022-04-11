@@ -76,6 +76,7 @@ ruleTester.run('emotion jsx', rule, {
       code: `
         /** @jsx jsx */
         import {jsx} from '@emotion/react'
+        // it's invalid but not for this rule
         let ele = <div css />
       `
     }

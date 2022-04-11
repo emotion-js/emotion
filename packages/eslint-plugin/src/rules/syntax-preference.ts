@@ -127,7 +127,15 @@ const createPreferredObjectVisitor = (
       return
     }
 
-    switch (node.value?.type) {
+    if (!node.value) {
+      context.report({
+        node: node,
+        messageId: 'emptyCssProp'
+      })
+      return
+    }
+
+    switch (node.value.type) {
       case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
         if (typeof node.value.value !== 'string') {
@@ -188,7 +196,15 @@ const createPreferredStringVisitor = (
       return
     }
 
-    switch (node.value?.type) {
+    if (!node.value) {
+      context.report({
+        node: node,
+        messageId: 'emptyCssProp'
+      })
+      return
+    }
+
+    switch (node.value.type) {
       case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
         if (typeof node.value.value !== 'string') {
@@ -211,6 +227,7 @@ type MessageId =
   | 'preferStringStyle'
   | 'preferObjectStyle'
   | 'preferWrappingWithCSS'
+  | 'emptyCssProp'
 
 type RuleContext = TSESLint.RuleContext<MessageId, RuleOptions>
 
@@ -225,7 +242,8 @@ export default createRule<RuleOptions, MessageId>({
     messages: {
       preferStringStyle: 'Styles should be written using strings.',
       preferObjectStyle: 'Styles should be written using objects.',
-      preferWrappingWithCSS: `Prefer wrapping your string styles with \`css\` call.`
+      preferWrappingWithCSS: `Prefer wrapping your string styles with \`css\` call.`,
+      emptyCssProp: `Empty \`css\` prop is not valid.`
     },
     schema: [
       {

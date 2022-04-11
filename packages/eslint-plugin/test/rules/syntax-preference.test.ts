@@ -57,10 +57,6 @@ ruleTester.run('syntax-preference (string)', rule, {
     {
       code: `css(cls, css\`color: hotpink;\`)`,
       options: ['string']
-    },
-    {
-      code: `const Foo = () => <div css />`,
-      options: ['string']
     }
   ],
 
@@ -138,6 +134,16 @@ ruleTester.run('syntax-preference (string)', rule, {
           type: AST_NODE_TYPES.ObjectExpression
         }
       ]
+    },
+    {
+      code: `const Foo = () => <div css />`,
+      options: ['string'],
+      errors: [
+        {
+          messageId: 'emptyCssProp',
+          type: AST_NODE_TYPES.JSXAttribute
+        }
+      ]
     }
   ]
 })
@@ -163,10 +169,6 @@ ruleTester.run('syntax-preference (object)', rule, {
     },
     {
       code: `const Foo = () => <div css={css({ color: 'hotpink' })} />`,
-      options: ['object']
-    },
-    {
-      code: `const Foo = () => <div css />`,
       options: ['object']
     }
   ],
@@ -247,6 +249,16 @@ ruleTester.run('syntax-preference (object)', rule, {
         {
           messageId: 'preferObjectStyle',
           type: AST_NODE_TYPES.TaggedTemplateExpression
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css />`,
+      options: ['object'],
+      errors: [
+        {
+          messageId: 'emptyCssProp',
+          type: AST_NODE_TYPES.JSXAttribute
         }
       ]
     }
