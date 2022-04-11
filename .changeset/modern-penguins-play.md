@@ -2,4 +2,4 @@
 '@emotion/eslint-plugin': minor
 ---
 
-Source code has been migrated to TypeScript. No changes should be required by users
+Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
