@@ -1,3 +1,10 @@
+import {
+  importDeclaration,
+  identifier,
+  importSpecifier,
+  literal
+} from 'eslint-codemod-utils'
+
 let simpleMappings = {
   '@emotion/core': '@emotion/react',
   emotion: '@emotion/css',
@@ -40,17 +47,23 @@ export default {
             node.source.value === '@emotion/css'
               ? '@emotion/react'
               : '@emotion/react/macro'
+          const replacementLiteral = literal({ value: replacement })
+
           context.report({
             node: node.source,
             message: `The default export of "${node.source.value}" in Emotion 10 has been moved to a named export, \`css\`, from "${replacement}" in Emotion 11, please import it from "${replacement}"`,
             fix: fixer =>
               fixer.replaceText(
                 node,
-                `import { css${
-                  node.specifiers[0].local.name === 'css'
-                    ? ''
-                    : ` as ${node.specifiers[0].local.name}`
-                } } from '${replacement}'`
+                importDeclaration({
+                  source: replacementLiteral,
+                  specifiers: [
+                    importSpecifier({
+                      ...node.specifiers[0],
+                      imported: identifier({ name: 'css' })
+                    })
+                  ]
+                }).toString()
               )
           })
         }

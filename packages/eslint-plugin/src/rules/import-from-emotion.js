@@ -1,3 +1,9 @@
+import {
+  importDeclaration,
+  importDefaultSpecifier,
+  literal
+} from 'eslint-codemod-utils'
+
 export default {
   meta: {
     fixable: 'code'
@@ -16,23 +22,34 @@ export default {
               if (node.specifiers[0].type === 'ImportNamespaceSpecifier') {
                 return
               }
+              const source = literal({ value: 'emotion' })
               // default specifiers are always first
               if (node.specifiers[0].type === 'ImportDefaultSpecifier') {
-                return fixer.replaceText(
-                  node,
-                  `import ${
-                    node.specifiers[0].local.name
-                  } from '@emotion/styled';\nimport { ${node.specifiers
-                    .filter(x => x.type === 'ImportSpecifier')
-                    .map(x =>
-                      x.local.name === x.imported.name
-                        ? x.local.name
-                        : `${x.imported.name} as ${x.local.name}`
-                    )
-                    .join(', ')} } from 'emotion';`
-                )
+                return [
+                  fixer.insertTextBefore(
+                    node,
+                    importDeclaration({
+                      ...node,
+                      specifiers: [importDefaultSpecifier(node.specifiers[0])],
+                      source: literal({ value: '@emotion/styled' })
+                    }).toString() + '\n'
+                  ),
+                  fixer.replaceText(
+                    node,
+                    importDeclaration({
+                      ...node,
+                      specifiers: node.specifiers.filter(
+                        node => node.type === 'ImportSpecifier'
+                      ),
+                      source
+                    }).toString()
+                  )
+                ]
               }
-              return fixer.replaceText(node.source, "'emotion'")
+              return fixer.replaceText(
+                node,
+                importDeclaration({ ...node, source }).toString()
+              )
             }
           })
         }
