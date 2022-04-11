@@ -2,10 +2,12 @@
  * @jest-environment node
  */
 
-const { RuleTester } = require('eslint')
-const rule = require('@emotion/eslint-plugin').rules['pkg-renaming']
+import { TSESLint } from '@typescript-eslint/experimental-utils'
+import rule from '../../src/rules/pkg-renaming'
+import { espreeParser } from '../test-utils'
 
-RuleTester.setDefaultConfig({
+const ruleTester = new TSESLint.RuleTester({
+  parser: espreeParser,
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -14,8 +16,6 @@ RuleTester.setDefaultConfig({
     }
   }
 })
-
-const ruleTester = new RuleTester()
 
 ruleTester.run('pkg-renaming', rule, {
   valid: [
@@ -31,8 +31,11 @@ ruleTester.run('pkg-renaming', rule, {
       code: `import { css } from 'emotion'`,
       errors: [
         {
-          message:
-            '"emotion" has been renamed to "@emotion/css", please import it from "@emotion/css" instead'
+          messageId: 'renamePackage',
+          data: {
+            beforeName: '"emotion"',
+            afterName: '"@emotion/css"'
+          }
         }
       ],
       output: `import { css } from '@emotion/css'`
@@ -41,8 +44,11 @@ ruleTester.run('pkg-renaming', rule, {
       code: `import { css } from '@emotion/core'`,
       errors: [
         {
-          message:
-            '"@emotion/core" has been renamed to "@emotion/react", please import it from "@emotion/react" instead'
+          messageId: 'renamePackage',
+          data: {
+            beforeName: '"@emotion/core"',
+            afterName: '"@emotion/react"'
+          }
         }
       ],
       output: `import { css } from '@emotion/react'`
@@ -51,8 +57,11 @@ ruleTester.run('pkg-renaming', rule, {
       code: `import css from '@emotion/css'`,
       errors: [
         {
-          message:
-            'The default export of "@emotion/css" in Emotion 10 has been moved to a named export, `css`, from "@emotion/react" in Emotion 11, please import it from "@emotion/react"'
+          messageId: 'exportChange',
+          data: {
+            name: '@emotion/css',
+            replacement: '@emotion/react'
+          }
         }
       ],
       output: `import { css } from '@emotion/react'`
@@ -61,8 +70,11 @@ ruleTester.run('pkg-renaming', rule, {
       code: `import css from '@emotion/css/macro'`,
       errors: [
         {
-          message:
-            'The default export of "@emotion/css/macro" in Emotion 10 has been moved to a named export, `css`, from "@emotion/react/macro" in Emotion 11, please import it from "@emotion/react/macro"'
+          messageId: 'exportChange',
+          data: {
+            name: '@emotion/css/macro',
+            replacement: '@emotion/react/macro'
+          }
         }
       ],
       output: `import { css } from '@emotion/react/macro'`
@@ -71,8 +83,7 @@ ruleTester.run('pkg-renaming', rule, {
       code: `import {ThemeProvider, withTheme} from 'emotion-theming'`,
       errors: [
         {
-          message:
-            '"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"'
+          messageId: 'emotionTheming'
         }
       ],
       output: `import {ThemeProvider, withTheme} from '@emotion/react'`

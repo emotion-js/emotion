@@ -2,12 +2,12 @@
  * @jest-environment node
  */
 
-import { RuleTester } from 'eslint'
-import { rules as emotionRules } from '@emotion/eslint-plugin'
+import { TSESLint } from '@typescript-eslint/experimental-utils'
+import rule from '../../src/rules/import-from-emotion'
+import { espreeParser } from '../test-utils'
 
-const rule = emotionRules['import-from-emotion']
-
-RuleTester.setDefaultConfig({
+const ruleTester = new TSESLint.RuleTester({
+  parser: espreeParser,
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -16,8 +16,6 @@ RuleTester.setDefaultConfig({
     }
   }
 })
-
-const ruleTester = new RuleTester()
 
 ruleTester.run('emotion jsx', rule, {
   valid: [
@@ -31,8 +29,7 @@ ruleTester.run('emotion jsx', rule, {
       code: `import { css } from 'react-emotion'`,
       errors: [
         {
-          message:
-            "emotion's exports should be imported directly from emotion rather than from react-emotion"
+          messageId: 'incorrectImport'
         }
       ],
       output: `import { css } from 'emotion'`
@@ -41,8 +38,7 @@ ruleTester.run('emotion jsx', rule, {
       code: `import styled, { css } from 'react-emotion'`,
       errors: [
         {
-          message:
-            "emotion's exports should be imported directly from emotion rather than from react-emotion"
+          messageId: 'incorrectImport'
         }
       ],
       output: `import styled from '@emotion/styled';\nimport { css } from 'emotion';`
@@ -51,8 +47,7 @@ ruleTester.run('emotion jsx', rule, {
       code: `import styled, { css as somethingElse } from 'react-emotion'`,
       errors: [
         {
-          message:
-            "emotion's exports should be imported directly from emotion rather than from react-emotion"
+          messageId: 'incorrectImport'
         }
       ],
       output: `import styled from '@emotion/styled';\nimport { css as somethingElse } from 'emotion';`
