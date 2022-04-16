@@ -25,7 +25,7 @@ sheet.insert('html { color: hotpink; }')
 type Options = {
   nonce?: string
   key: string
-  container: HTMLElement
+  container: Node
   speedy?: boolean
   prepend?: boolean
 }
