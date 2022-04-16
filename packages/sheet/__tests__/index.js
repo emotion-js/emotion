@@ -105,6 +105,23 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
+  it('should work with a ShadowRoot container', () => {
+    const div = document.createElement('div')
+    // $FlowFixMe
+    document.body.appendChild(div)
+    const container = div.attachShadow({ mode: 'open' })
+    const sheet = new StyleSheet({ ...defaultOptions, container })
+    expect(sheet.container).toBe(container)
+    sheet.insert(rule)
+    expect(document.documentElement).toMatchSnapshot()
+    // The shadowRoot is not serialized in the snapshot, so we need to take a
+    // separate snapshot of the shadowRoot's children.
+    expect(container.children).toMatchSnapshot()
+    expect(sheet.tags).toHaveLength(1)
+    expect(sheet.tags[0].parentNode).toBe(container)
+    sheet.flush()
+  })
+
   it('should accept prepend option', () => {
     const head = safeQuerySelector('head')
     const otherStyle = document.createElement('style')
