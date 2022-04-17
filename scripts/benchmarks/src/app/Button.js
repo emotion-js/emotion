@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableHighlight, Text } from 'react-native'
 import React, { Component } from 'react'
-import { bool, func, string } from 'prop-types'
+import { bool, func, string, any } from 'prop-types'
 
 export default class Button extends Component {
   static displayName = '@app/Button'
@@ -10,9 +10,9 @@ export default class Button extends Component {
     color: string,
     disabled: bool,
     onPress: func.isRequired,
-    style: TouchableHighlight.propTypes.style,
+    style: any,
     testID: string,
-    textStyle: Text.propTypes.style,
+    textStyle: any,
     title: string.isRequired
   }
 

@@ -15,6 +15,10 @@ type GlobalProps = {
 }
 */
 
+const useInsertionEffect = React['useInsertion' + 'Effect']
+  ? React['useInsertion' + 'Effect']
+  : React.useLayoutEffect
+
 let warnedAboutCssPropForGlobal = false
 
 // maintain place over rerenders.
@@ -42,9 +46,7 @@ export let Global /*: React.AbstractComponent<
   let serialized = serializeStyles(
     [styles],
     undefined,
-    typeof styles === 'function' || Array.isArray(styles)
-      ? React.useContext(ThemeContext)
-      : undefined
+    React.useContext(ThemeContext)
   )
 
   if (!isBrowser) {
@@ -88,7 +90,7 @@ export let Global /*: React.AbstractComponent<
 
   let sheetRef = React.useRef()
 
-  React.useLayoutEffect(() => {
+  useInsertionEffect(() => {
     const key = `${cache.key}-global`
 
     let sheet = new StyleSheet({
@@ -116,7 +118,7 @@ export let Global /*: React.AbstractComponent<
     }
   }, [cache])
 
-  React.useLayoutEffect(() => {
+  useInsertionEffect(() => {
     let sheetRefCurrent = sheetRef.current
     let [sheet, rehydrating] = sheetRefCurrent
     if (rehydrating) {

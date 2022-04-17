@@ -1,5 +1,36 @@
 # @emotion/jest
 
+## 11.8.0
+
+### Patch Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Adjusted Enzyme-related code path to accomodate for changes related to the refactor around using `React.useInsertionEffect`.
+
+## 11.7.1
+
+### Patch Changes
+
+- [#2590](https://github.com/emotion-js/emotion/pull/2590) [`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d) Thanks [@Andarist](https://github.com/Andarist)! - Upgraded and pinned the version of Stylis - the CSS parser that Emotion uses under the hood.
+
+- Updated dependencies [[`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d)]:
+  - @emotion/css-prettifier@1.0.1
+
+## 11.6.0
+
+### Minor Changes
+
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon), [@Andarist](https://github.com/Andarist)! - Adjusted the serialization logic to unwrap rendered elements from Fragments that had to be added to fix hydration mismatches caused by `React.useId` usage (the upcoming API of the React 18).
+
+## 11.5.0
+
+### Minor Changes
+
+- [#2456](https://github.com/emotion-js/emotion/pull/2456) [`500cdd82`](https://github.com/emotion-js/emotion/commit/500cdd828b65ad4b778c8a1459094b099d50f08a) Thanks [@billyjanitsch](https://github.com/billyjanitsch)! - Support typings for Jest v27
+
+### Patch Changes
+
+- [#2457](https://github.com/emotion-js/emotion/pull/2457) [`218e4f78`](https://github.com/emotion-js/emotion/commit/218e4f78ca03b36cd8ed595bc1a93892b9783eda) Thanks [@jcleefw](https://github.com/jcleefw)! - Add `RegExp` as a valid type for the `target` option accepted by `toHaveStyleRule`.
+
 ## 11.3.0
 
 ### Patch Changes

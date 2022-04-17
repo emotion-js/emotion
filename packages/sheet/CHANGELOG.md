@@ -1,5 +1,23 @@
 # @emotion/sheet
 
+## 1.1.0
+
+### Minor Changes
+
+- [#2521](https://github.com/emotion-js/emotion/pull/2521) [`516fe45`](https://github.com/emotion-js/emotion/commit/516fe458058c9ec8218740472b301e935801ebbc) Thanks [@mnajdova](https://github.com/mnajdova)! - Added `insertionPoint` option to the `Sheet`'s constructor. It can be used to insert rules after the specified element.
+
+## 1.0.3
+
+### Patch Changes
+
+- [#2447](https://github.com/emotion-js/emotion/pull/2447) [`f2eda829`](https://github.com/emotion-js/emotion/commit/f2eda8295429dd1892a06cbc9496321f2a55c10a) Thanks [@mdesantis](https://github.com/mdesantis)! - Fixed an issue with `sheet.flush()` crashing if its style elements were already detached by something else.
+
+## 1.0.2
+
+### Patch Changes
+
+- [#2393](https://github.com/emotion-js/emotion/pull/2393) [`405af5ca`](https://github.com/emotion-js/emotion/commit/405af5ca01dcc0cac64227db082ce3f483e1bb46) Thanks [@layershifter](https://github.com/layershifter)! - Do not log failed rule insertions in the speedy mode for even more vendor-prefixed pseudo-elements/classes like `:-moz-focus-inner`, `:-moz-focusring`, and `:-ms-clear`.
+
 ## 1.0.1
 
 ### Patch Changes

@@ -117,7 +117,7 @@ function isShallowEnzymeElement(
 }
 
 const createConvertEmotionElements =
-  (keys /*: string[] */, printer) => node => {
+  (keys /*: string[]*/) => (node /*: any*/) => {
     if (isPrimitive(node)) {
       return node
     }
@@ -141,7 +141,7 @@ const createConvertEmotionElements =
           type
         }
       } else {
-        return node.children[0]
+        return node.children[node.children.length - 1]
       }
     }
     if (isEmotionCssPropElementType(node)) {
@@ -200,7 +200,7 @@ export function createSerializer({
   ) {
     const elements = getStyleElements()
     const keys = getKeys(elements)
-    const convertEmotionElements = createConvertEmotionElements(keys, printer)
+    const convertEmotionElements = createConvertEmotionElements(keys)
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
     const classNames = getClassNamesFromNodes(nodes)

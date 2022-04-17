@@ -30,7 +30,7 @@ export default function SiteHeader() {
         gridColumn: '1 /span 2'
       })}
     >
-      <a href="https://support.eji.org/give/153413/#!/donation/checkout">
+      <a href="https://supportukrainenow.org">
         <div
           css={{
             position: 'absolute',
@@ -53,7 +53,7 @@ export default function SiteHeader() {
               paddingBottom: 4
             }}
           >
-            Black Lives Matter.
+            🇺🇦 STOP WAR IN UKRAINE 🇺🇦
           </span>
         </div>
       </a>
@@ -145,7 +145,7 @@ export default function SiteHeader() {
               </HeaderLink>
             </li>
             <li>
-              <HeaderLink to="https://join.slack.com/t/emotion-slack/shared_invite/zt-p7lflhc4-mxBbzPbzxoyyuQY54ow0PQ">
+              <HeaderLink to="https://join.slack.com/t/emotion-slack/shared_invite/zt-rmtwsy74-2uvyFdz5uxa8OiMguJJeuQ">
                 Slack
               </HeaderLink>
             </li>

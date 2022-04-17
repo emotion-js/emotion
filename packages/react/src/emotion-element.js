@@ -1,14 +1,15 @@
 import * as React from 'react'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
-import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  registerStyles
+} from '@emotion/utils'
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
-
-// those identifiers come from error stacks, so they have to be valid JS identifiers
-// thus we only need to replace what is a valid character for JS, but not for CSS
-const sanitizeIdentifier = (identifier /*: string */) =>
-  identifier.replace(/\$/g, '-')
+import { getLabelFromStackTrace } from './get-label-from-stack-trace'
+import useInsertionEffectMaybe from './useInsertionEffectMaybe'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -39,24 +40,47 @@ export const createEmotionProps = (
 
   newProps[typePropName] = type
 
-  if (process.env.NODE_ENV !== 'production') {
-    const error = new Error()
-    if (error.stack) {
-      // chrome
-      let match = error.stack.match(
-        /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
-      )
-      if (!match) {
-        // safari and firefox
-        match = error.stack.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
-      }
-      if (match) {
-        newProps[labelPropName] = sanitizeIdentifier(match[1])
-      }
-    }
+  // For performance, only call getLabelFromStackTrace in development and when
+  // the label hasn't already been computed
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    !!props.css &&
+    (typeof props.css !== 'object' ||
+      typeof props.css.name !== 'string' ||
+      props.css.name.indexOf('-') === -1)
+  ) {
+    const label = getLabelFromStackTrace(new Error().stack)
+    if (label) newProps[labelPropName] = label
   }
 
   return newProps
+}
+
+const Insertion = ({ cache, serialized, isStringTag }) => {
+  registerStyles(cache, serialized, isStringTag)
+
+  const rules = useInsertionEffectMaybe(() =>
+    insertStyles(cache, serialized, isStringTag)
+  )
+
+  if (!isBrowser && rules !== undefined) {
+    let serializedNames = serialized.name
+    let next = serialized.next
+    while (next !== undefined) {
+      serializedNames += ' ' + next.name
+      next = next.next
+    }
+    return (
+      <style
+        {...{
+          [`data-emotion`]: `${cache.key} ${serializedNames}`,
+          dangerouslySetInnerHTML: { __html: rules },
+          nonce: cache.sheet.nonce
+        }}
+      />
+    )
+  }
+  return null
 }
 
 let Emotion = /* #__PURE__ */ withEmotionCache(
@@ -73,7 +97,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
       cssProp = cache.registered[cssProp]
     }
 
-    let type = props[typePropName]
+    let WrappedComponent = props[typePropName]
     let registeredStyles = [cssProp]
     let className = ''
 
@@ -90,9 +114,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
     let serialized = serializeStyles(
       registeredStyles,
       undefined,
-      typeof cssProp === 'function' || Array.isArray(cssProp)
-        ? React.useContext(ThemeContext)
-        : undefined
+      React.useContext(ThemeContext)
     )
 
     if (
@@ -107,7 +129,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
         ])
       }
     }
-    const rules = insertStyles(cache, serialized, typeof type === 'string')
+
     className += `${cache.key}-${serialized.name}`
 
     const newProps = {}
@@ -124,28 +146,16 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
     newProps.ref = ref
     newProps.className = className
 
-    const ele = React.createElement(type, newProps)
-    if (!isBrowser && rules !== undefined) {
-      let serializedNames = serialized.name
-      let next = serialized.next
-      while (next !== undefined) {
-        serializedNames += ' ' + next.name
-        next = next.next
-      }
-      return (
-        <>
-          <style
-            {...{
-              [`data-emotion`]: `${cache.key} ${serializedNames}`,
-              dangerouslySetInnerHTML: { __html: rules },
-              nonce: cache.sheet.nonce
-            }}
-          />
-          {ele}
-        </>
-      )
-    }
-    return ele
+    return (
+      <>
+        <Insertion
+          cache={cache}
+          serialized={serialized}
+          isStringTag={typeof WrappedComponent === 'string'}
+        />
+        <WrappedComponent {...newProps} />
+      </>
+    )
   }
 )
 

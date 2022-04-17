@@ -1,6 +1,6 @@
 {
   "name": "@emotion/eslint-plugin",
-  "version": "11.2.0",
+  "version": "11.7.0",
   "description": "ESLint rules for emotion",
   "scripts": {
     "test:typescript": "exit 0"
@@ -19,9 +19,14 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin",
   "peerDependencies": {
-    "eslint": "6 || 7"
+    "eslint": "6 || 7 || 8"
+  },
+  "dependencies": {
+    "@typescript-eslint/experimental-utils": "^4.30.0"
   },
   "devDependencies": {
-    "eslint": "^7.10.0"
+    "@types/eslint": "^7.0.0",
+    "eslint": "^7.10.0",
+    "resolve-from": "^5.0.0"
   }
 }

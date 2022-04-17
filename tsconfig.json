@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react",
@@ -7,6 +8,7 @@
     "module": "commonjs",
     "noEmit": true,
     "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
     "strict": true,
     "target": "es5"
   },

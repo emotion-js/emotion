@@ -28,7 +28,8 @@ export type Options = {
   key: string,
   container?: HTMLElement,
   speedy?: boolean,
-  prepend?: boolean
+  prepend?: boolean,
+  insertionPoint?: HTMLElement
 }
 */
 
@@ -247,7 +248,8 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
       container: container,
       nonce: options.nonce,
       speedy: options.speedy,
-      prepend: options.prepend
+      prepend: options.prepend,
+      insertionPoint: options.insertionPoint
     }),
     nonce: options.nonce,
     inserted,

@@ -1,5 +1,82 @@
 # @emotion/react
 
+## 11.8.1
+
+### Patch Changes
+
+- [#2651](https://github.com/emotion-js/emotion/pull/2651) [`39ac5b99`](https://github.com/emotion-js/emotion/commit/39ac5b99483994a68fa2b51e23ad6c173f42f1c1) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a transpilation issue that caused `useInsertionEffect` to be referenced directly in the specifiers list of the import statement. This has caused build errors in the consuming tools since the import statement can only reference known exports of a module.
+
+## 11.8.0
+
+### Minor Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Refactored code to use the upcoming `React.useInsertionEffect` when it's available (this is a new hook that is going to be introduced in React 18). This shouldn't have any effect on existing codebases and the change should be transparent.
+
+### Patch Changes
+
+- [#2609](https://github.com/emotion-js/emotion/pull/2609) [`242f7d8c`](https://github.com/emotion-js/emotion/commit/242f7d8c9f3ddbba2a69664bcc0fa22501df849f) Thanks [@Andarist](https://github.com/Andarist)! - Added `@emotion/babel-plugin` as a dependency - this is an actual dependency of the `@emotion/react/macro` entrypoint and it has to be explicitly declared to fix compatibility with strict package managers.
+
+* [#2615](https://github.com/emotion-js/emotion/pull/2615) [`3d672acd`](https://github.com/emotion-js/emotion/commit/3d672acd4d379f5861012d6e6d38feadd212966a) Thanks [@srmagura](https://github.com/srmagura)! - Fix an edge case where runtime label extraction in class components led to invalid class names in Firefox. This only affected the development build of Emotion.
+
+* Updated dependencies [[`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573)]:
+  - @emotion/utils@1.1.0
+
+## 11.7.1
+
+### Patch Changes
+
+- [#2577](https://github.com/emotion-js/emotion/pull/2577) [`04681a5f`](https://github.com/emotion-js/emotion/commit/04681a5f520b3e3909e567fda200622494dd333b) Thanks [@Methuselah96](https://github.com/Methuselah96)! - Export `Keyframes` type to avoid TypeScript inserting `import("@emotion/serialize").Keyframes` references into declaration files emitted based on a source files exporting `keyframes` result. This avoids issues with strict package managers that don't allow accessing undeclared dependencies.
+
+* [#2590](https://github.com/emotion-js/emotion/pull/2590) [`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d) Thanks [@Andarist](https://github.com/Andarist)! - Upgraded and pinned the version of Stylis - the CSS parser that Emotion uses under the hood.
+
+* Updated dependencies [[`1554a7e2`](https://github.com/emotion-js/emotion/commit/1554a7e264e05780b2c5bd74ccb20a92005ba61d)]:
+  - @emotion/cache@11.7.1
+
+## 11.7.0
+
+### Patch Changes
+
+- [#2534](https://github.com/emotion-js/emotion/pull/2534) [`57be9e8c`](https://github.com/emotion-js/emotion/commit/57be9e8cb20313bd2ed297a39c41ca0f0ca37ea8) Thanks [@srmagura](https://github.com/srmagura)! - Changed the implementation of the runtime label extraction in elements using the css prop (that only happens in development) to one that should yield more consistent results across browsers. This fixes some minor issues with React reporting hydration mismatches that wouldn't happen in production.
+
+## 11.6.0
+
+### Minor Changes
+
+- [#2542](https://github.com/emotion-js/emotion/pull/2542) [`eb013d25`](https://github.com/emotion-js/emotion/commit/eb013d25722f4fd9af9acf699789bf6b8afac871) Thanks [@eps1lon](https://github.com/eps1lon)! - Fixed hydration mismatches if `React.useId` (an upcoming API in React 18) is used within a tree below our components.
+
+### Patch Changes
+
+- [#2551](https://github.com/emotion-js/emotion/pull/2551) [`99fcea04`](https://github.com/emotion-js/emotion/commit/99fcea04a27458b94982bb8fcd7d209f21278013) Thanks [@Andarist](https://github.com/Andarist)! - Shorten the path of the "private" `isolated-hoist-non-react-statics-do-not-use-this-in-your-code` entrypoint to avoid exeeding path limitations on Windows.
+
+- Updated dependencies [[`9e82a991`](https://github.com/emotion-js/emotion/commit/9e82a991624b18c20c46c5974e8a127c94a54711), [`516fe458`](https://github.com/emotion-js/emotion/commit/516fe458058c9ec8218740472b301e935801ebbc)]:
+  - @emotion/sheet@1.1.0
+  - @emotion/cache@11.6.0
+
+## 11.5.0
+
+### Patch Changes
+
+- [#2498](https://github.com/emotion-js/emotion/pull/2498) [`e5beae8e`](https://github.com/emotion-js/emotion/commit/e5beae8e320f3d1455e45efecdfeb7d757687a43) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an edge case issue with incorrect rules being generated. When a context selector (`&`) was used not at the beginning of a selector (which is not valid SCSS but is allowed by the Stylis parser that we are using) within a group of selectors containing a pseudoclass then it was not replaced correctly with the current context selector.
+
+* [#2500](https://github.com/emotion-js/emotion/pull/2500) [`eda5e687`](https://github.com/emotion-js/emotion/commit/eda5e687c0bc4eddcafb243a2b1028296fb45cba) Thanks [@Jarred-Sumner](https://github.com/Jarred-Sumner)! - Fix error loading @emotion/react in alternative JS environments
+
+* Updated dependencies [[`e5beae8e`](https://github.com/emotion-js/emotion/commit/e5beae8e320f3d1455e45efecdfeb7d757687a43), [`9ae4a91a`](https://github.com/emotion-js/emotion/commit/9ae4a91a08a6f7c5ca26a585f1c271a179db4623), [`f2eda829`](https://github.com/emotion-js/emotion/commit/f2eda8295429dd1892a06cbc9496321f2a55c10a)]:
+  - @emotion/cache@11.5.0
+  - @emotion/sheet@1.0.3
+
+## 11.4.1
+
+### Patch Changes
+
+- [#2441](https://github.com/emotion-js/emotion/pull/2441) [`24557d9d`](https://github.com/emotion-js/emotion/commit/24557d9d6409db453fdbaa031cb635820305f137) Thanks [@garronej](https://github.com/garronej)! - Exposed `__unsafe_useEmotionCache` which can be used to access the current Emotion's cache in an easier way than before. Using this might break 0-config SSR and is not recommended to be used unless there you know what you are doing and you are OK with the mentioned downside.
+
+* [#2424](https://github.com/emotion-js/emotion/pull/2424) [`cd25b62d`](https://github.com/emotion-js/emotion/commit/cd25b62da80119bfb1c74a8d0a3516fcd2f62e0e) Thanks [@tills13](https://github.com/tills13)! - Use theme context when rendering components at all times. This removes a conditional usage of a React hook that could break [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) in some scenarios.
+
+- [#2428](https://github.com/emotion-js/emotion/pull/2428) [`a69929d6`](https://github.com/emotion-js/emotion/commit/a69929d6ab47e834a3535525657829c81dd97b4a) Thanks [@eps1lon](https://github.com/eps1lon)! - Added display names to public React contexts in development builds. This helps to recognize them in React Developer Tools.
+
+- Updated dependencies [[`405af5ca`](https://github.com/emotion-js/emotion/commit/405af5ca01dcc0cac64227db082ce3f483e1bb46)]:
+  - @emotion/sheet@1.0.2
+
 ## 11.4.0
 
 ### Patch Changes

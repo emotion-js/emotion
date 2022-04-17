@@ -1,36 +1,26 @@
-import * as React from 'react'
-/** @jsx jsx */
-import { Global, jsx, keyframes } from '@emotion/react'
+/** @jsxImportSource @emotion/react */
+import React from 'react'
+import { Global } from '@emotion/react'
 
-let animation = keyframes({
-  'from,to': {
-    transform: 'scale(1)'
-  },
-  '50%': {
-    transform: 'scale(0.5)'
-  }
-})
+function App() {
+  return (
+    <div>
+      <Global
+        styles={{
+          body: {
+            padding: '2rem',
+            fontFamily: 'sans-serif'
+          },
+          h1: {
+            marginTop: 0
+          }
+        }}
+      />
 
-const App = () => (
-  <React.Fragment>
-    <Global
-      styles={{
-        body: {
-          padding: 0,
-          margin: 0,
-          fontFamily: 'sans-serif'
-        }
-      }}
-    />
-    <h1
-      css={{
-        color: 'hotpink',
-        animation: `${animation} 1s infinite`
-      }}
-    >
-      wow, some hotpink text!!
-    </h1>
-  </React.Fragment>
-)
+      <h1>CRA Playground</h1>
+      <div css={{ color: 'orchid' }}>Some colored text</div>
+    </div>
+  )
+}
 
 export default App

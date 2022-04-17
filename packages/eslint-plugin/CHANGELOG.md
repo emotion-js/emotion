@@ -1,5 +1,17 @@
 # @emotion/eslint-plugin
 
+## 11.7.0
+
+### Minor Changes
+
+- [#2562](https://github.com/emotion-js/emotion/pull/2562) [`f046ae40`](https://github.com/emotion-js/emotion/commit/f046ae40bcae24400068311690a94ba2dbf20344) Thanks [@G-Rath](https://github.com/G-Rath)! - ESLint 8 has been added to the peer dependency range (ESLint 6 and ESLint 7 are still being supported).
+
+## 11.5.0
+
+### Patch Changes
+
+- [#2353](https://github.com/emotion-js/emotion/pull/2353) [`d7d768e0`](https://github.com/emotion-js/emotion/commit/d7d768e056e6cd7a10c2de6ecb2b564e6444dac3) Thanks [@iChenLei](https://github.com/iChenLei)! - implement automatic adding of jsxImportSource pragma definition
+
 ## 11.2.0
 
 ### Patch Changes

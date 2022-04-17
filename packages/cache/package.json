@@ -1,6 +1,6 @@
 {
   "name": "@emotion/cache",
-  "version": "11.4.0",
+  "version": "11.7.1",
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
@@ -16,14 +16,15 @@
   },
   "dependencies": {
     "@emotion/memoize": "^0.7.4",
-    "@emotion/sheet": "^1.0.0",
+    "@emotion/sheet": "^1.1.0",
     "@emotion/utils": "^1.0.0",
     "@emotion/weak-memoize": "^0.2.5",
-    "stylis": "^4.0.3"
+    "stylis": "4.0.13"
   },
   "devDependencies": {
     "@emotion/hash": "*",
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.2.1",
+    "typescript": "^4.5.5"
   },
   "publishConfig": {
     "access": "public"

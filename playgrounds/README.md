@@ -1,6 +1,6 @@
 # Emotion Development Playgrounds
 
-These are intended to be places to experiment with behaviour that is hard to do in tests or a CodeSandbox. These are not intended to be perfect examples of how you would write emotion code with these other libraries as they will generally be focussed on edge cases.
+These are intended to be places to experiment with behaviour that is hard to do in tests or a CodeSandbox. These are not intended to be perfect examples of how you would write emotion code with these other libraries as they will generally be focused on edge cases.
 
 ## Getting Started
 

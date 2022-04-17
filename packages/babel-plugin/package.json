@@ -1,6 +1,6 @@
 {
   "name": "@emotion/babel-plugin",
-  "version": "11.3.0",
+  "version": "11.7.2",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-babel-plugin.cjs.js",
   "module": "dist/emotion-babel-plugin.esm.js",
@@ -24,7 +24,7 @@
     "escape-string-regexp": "^4.0.0",
     "find-root": "^1.1.0",
     "source-map": "^0.5.7",
-    "stylis": "^4.0.3"
+    "stylis": "4.0.13"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"

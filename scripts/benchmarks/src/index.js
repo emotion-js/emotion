@@ -1,12 +1,11 @@
 import App from './app/App'
-import impl from './impl'
+import implementations from './impl'
 import Tree from './cases/Tree'
 import SierpinskiTriangle from './cases/SierpinskiTriangle'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const implementations = impl
 const packageNames = Object.keys(implementations)
 
 const createTestBlock = fn => {

@@ -10,8 +10,13 @@ import {
   */
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
-import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  registerStyles
+} from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+import useInsertionEffectMaybe from './useInsertionEffectMaybe'
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
@@ -19,6 +24,33 @@ You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
 let isBrowser = typeof document !== 'undefined'
+
+const Insertion = ({ cache, serialized, isStringTag }) => {
+  registerStyles(cache, serialized, isStringTag)
+
+  const rules = useInsertionEffectMaybe(() =>
+    insertStyles(cache, serialized, isStringTag)
+  )
+
+  if (!isBrowser && rules !== undefined) {
+    let serializedNames = serialized.name
+    let next = serialized.next
+    while (next !== undefined) {
+      serializedNames += ' ' + next.name
+      next = next.next
+    }
+    return (
+      <style
+        {...{
+          [`data-emotion`]: `${cache.key} ${serializedNames}`,
+          dangerouslySetInnerHTML: { __html: rules },
+          nonce: cache.sheet.nonce
+        }}
+      />
+    )
+  }
+  return null
+}
 
 let createStyled /*: CreateStyled */ = (
   tag /*: any */,
@@ -76,7 +108,7 @@ let createStyled /*: CreateStyled */ = (
 
     const Styled /*: PrivateStyledComponent<Props> */ = withEmotionCache(
       (props, cache, ref) => {
-        const finalTag = (shouldUseAs && props.as) || baseTag
+        const FinalTag = (shouldUseAs && props.as) || baseTag
 
         let className = ''
         let classInterpolations = []
@@ -104,11 +136,6 @@ let createStyled /*: CreateStyled */ = (
           cache.registered,
           mergedProps
         )
-        const rules = insertStyles(
-          cache,
-          serialized,
-          typeof finalTag === 'string'
-        )
         className += `${cache.key}-${serialized.name}`
         if (targetClassName !== undefined) {
           className += ` ${targetClassName}`
@@ -116,7 +143,7 @@ let createStyled /*: CreateStyled */ = (
 
         const finalShouldForwardProp =
           shouldUseAs && shouldForwardProp === undefined
-            ? getDefaultShouldForwardProp(finalTag)
+            ? getDefaultShouldForwardProp(FinalTag)
             : defaultShouldForwardProp
 
         let newProps = {}
@@ -132,28 +159,16 @@ let createStyled /*: CreateStyled */ = (
         newProps.className = className
         newProps.ref = ref
 
-        const ele = React.createElement(finalTag, newProps)
-        if (!isBrowser && rules !== undefined) {
-          let serializedNames = serialized.name
-          let next = serialized.next
-          while (next !== undefined) {
-            serializedNames += ' ' + next.name
-            next = next.next
-          }
-          return (
-            <>
-              <style
-                {...{
-                  [`data-emotion`]: `${cache.key} ${serializedNames}`,
-                  dangerouslySetInnerHTML: { __html: rules },
-                  nonce: cache.sheet.nonce
-                }}
-              />
-              {ele}
-            </>
-          )
-        }
-        return ele
+        return (
+          <>
+            <Insertion
+              cache={cache}
+              serialized={serialized}
+              isStringTag={typeof FinalTag === 'string'}
+            />
+            <FinalTag {...newProps} />
+          </>
+        )
       }
     )
 
