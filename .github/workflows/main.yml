@@ -178,23 +178,9 @@ jobs:
     name: DTSLint
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
         package:
           - cache
-          - css
-          - hash
-          - is-prop-valid
-          - jest
-          - memoize
-          - native
-          - react
-          - serialize
-          - server
-          - sheet
-          - styled
-          - utils
-          - weak-memoize
 
     steps:
       - uses: actions/checkout@main
