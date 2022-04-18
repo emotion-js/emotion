@@ -11,6 +11,8 @@ import toJson from 'enzyme-to-json'
 import { matchers } from '@emotion/jest'
 import * as serializer from '@emotion/jest/enzyme-serializer'
 
+const isReact16 = React.version.split('.')[0] === '16'
+
 expect.extend(matchers)
 expect.addSnapshotSerializer(serializer)
 
@@ -349,7 +351,7 @@ const cases = {
   }
 }
 
-describe('enzyme', () => {
+;(isReact16 ? describe : describe.skip)('enzyme', () => {
   jestInCase(
     'shallow',
     ({ render, selector = identity }) => {

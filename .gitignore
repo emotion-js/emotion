@@ -13,3 +13,4 @@ public/
 .env
 .vscode
 .parcel-cache/
+*.orig

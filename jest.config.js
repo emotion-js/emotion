@@ -1,6 +1,6 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   transform: {
-    '\\.css$': '<rootDir>/test/styleTransform.js',
     '^.+\\.(tsx|ts|js)?$': 'babel-jest'
   },
   watchPlugins: [

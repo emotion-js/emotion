@@ -64,6 +64,12 @@ function getClassNameProp(node) {
 
 export function unwrapFromPotentialFragment(node) {
   if (node.type() === Symbol.for('react.fragment')) {
+    const isShallow = !!node.dive
+    if (isShallow) {
+      // render the `<Insertion/>` so it has a chance to insert rules in the JSDOM
+      node.children().first().dive()
+    }
+
     return node.children().last()
   }
   return node
