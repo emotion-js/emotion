@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - ts-migration
   pull_request:
 
 jobs:
@@ -111,7 +112,7 @@ jobs:
 
       - name: Run Tests with React 18
         run: yarn test:react18:ci
-    
+
   test_dist:
     name: Test Dist
     runs-on: ubuntu-latest
@@ -174,7 +175,7 @@ jobs:
       - name: ESLint
         run: yarn lint:check
 
-  typescript:
+  dtslint:
     name: DTSLint
     runs-on: ubuntu-latest
     strategy:
