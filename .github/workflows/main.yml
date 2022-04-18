@@ -177,10 +177,6 @@ jobs:
   typescript:
     name: DTSLint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package:
-          - cache
 
     steps:
       - uses: actions/checkout@main
