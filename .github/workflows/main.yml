@@ -175,6 +175,7 @@ jobs:
         run: yarn lint:check
 
   ts:
+    name: DTSLint
     runs-on: ubuntu-latest
 
     steps:
