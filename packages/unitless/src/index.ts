@@ -1,4 +1,4 @@
-let unitlessKeys = {
+let unitlessKeys: Record<string, 1> = {
   animationIterationCount: 1,
   borderImageOutset: 1,
   borderImageSlice: 1,
@@ -46,6 +46,6 @@ let unitlessKeys = {
   strokeMiterlimit: 1,
   strokeOpacity: 1,
   strokeWidth: 1
-} as const
+}
 
 export default unitlessKeys
