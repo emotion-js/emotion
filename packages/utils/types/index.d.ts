@@ -1,3 +1,5 @@
 // TypeScript Version: 2.2
 
-export * from '../src'
+/// <reference types="node" />
+
+export * from '..'

@@ -222,7 +222,5 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: ESLint
-        run: yarn lint:check
       - name: TypeScript
         run: cd packages/${{ matrix.package }} && yarn test:typescript
