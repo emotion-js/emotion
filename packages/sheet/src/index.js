@@ -66,7 +66,8 @@ export class StyleSheet {
   isSpeedy: boolean
   ctr: number
   tags: HTMLStyleElement[]
-  container: Node
+  // Using Node instead of HTMLElement since container may be a ShadowRoot
+  container: Node 
   key: string
   nonce: string | void
   prepend: boolean | void
