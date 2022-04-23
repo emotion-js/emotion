@@ -3,4 +3,4 @@
 '@emotion/sheet': patch
 ---
 
-The cache's `container` can be a `ShadowRoot`, or any other kind of `Node`
+`@emotion/cache` and `@emotion/sheet` now allow `container` to be a `ShadowRoot`, or any other kind of `Node`. This change only affects the TypeScript types.
