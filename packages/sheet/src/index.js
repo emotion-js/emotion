@@ -67,7 +67,7 @@ export class StyleSheet {
   ctr: number
   tags: HTMLStyleElement[]
   // Using Node instead of HTMLElement since container may be a ShadowRoot
-  container: Node 
+  container: Node
   key: string
   nonce: string | void
   prepend: boolean | void
