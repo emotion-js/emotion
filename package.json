@@ -138,10 +138,6 @@
       "react": "React",
       "react/jsx-runtime": "ReactJSX",
       "react/jsx-dev-runtime": "ReactJSXDev"
-    },
-    "___experimentalFlags_WILL_CHANGE_IN_PATCH": {
-      "newEntrypoints": true,
-      "newDistFilenames": true
     }
   },
   "bugs": {
@@ -194,7 +190,7 @@
     "@manypkg/cli": "^0.16.1",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@preconstruct/cli": "1.1.34",
+    "@preconstruct/cli": "^2.1.5",
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^10.11.4",
