@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`extractCritical returns static css 1`] = `
-Object {
+{
   "css": "@font-face {
   font-family: 'Patrick Hand SC';
   font-style: normal;
@@ -125,7 +125,7 @@ Object {
   >
   <img class="css-1h1w8ez-Image">
 </main>,
-  "ids": Array [
+  "ids": [
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
@@ -136,7 +136,7 @@ Object {
 `;
 
 exports[`extractCritical returns static css 2`] = `
-Object {
+{
   "css": "@font-face {
   font-family: 'Patrick Hand SC';
   font-style: normal;
@@ -247,7 +247,7 @@ Object {
     Hello
   </div>
 </main>,
-  "ids": Array [
+  "ids": [
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
@@ -257,7 +257,7 @@ Object {
 `;
 
 exports[`hydration only rules that are not in the critical css are inserted 1`] = `
-Object {
+{
   "css": "@font-face {
   font-family: 'Patrick Hand SC';
   font-style: normal;
@@ -381,7 +381,7 @@ Object {
   >
   <img class="css-1h1w8ez-Image">
 </main>,
-  "ids": Array [
+  "ids": [
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",

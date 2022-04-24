@@ -25,29 +25,29 @@ exports[`extractCriticalToChunks generates correct style tags using constructSty
 `;
 
 exports[`extractCriticalToChunks returns static css 1`] = `
-Object {
+{
   "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
 </main>,
-  "styles": Array [
-    Object {
+  "styles": [
+    {
       "css": "body {
   color: white;
 }",
-      "ids": Array [
+      "ids": [
         "l6h",
       ],
       "key": "css-global",
     },
-    Object {
+    {
       "css": "html {
   background: red;
 }",
-      "ids": Array [
+      "ids": [
         "10q49a4",
       ],
       "key": "css-global",
     },
-    Object {
+    {
       "css": ".css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
@@ -62,7 +62,7 @@ Object {
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
-      "ids": Array [
+      "ids": [
         "14e1j2p-hoverStyles-Something_Main",
       ],
       "key": "css",
@@ -72,29 +72,29 @@ Object {
 `;
 
 exports[`extractCriticalToChunks returns static css 2`] = `
-Object {
+{
   "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
 </main>,
-  "styles": Array [
-    Object {
+  "styles": [
+    {
       "css": "body {
   color: white;
 }",
-      "ids": Array [
+      "ids": [
         "l6h",
       ],
       "key": "css-global",
     },
-    Object {
+    {
       "css": "html {
   background: red;
 }",
-      "ids": Array [
+      "ids": [
         "10q49a4",
       ],
       "key": "css-global",
     },
-    Object {
+    {
       "css": ".css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
@@ -109,7 +109,7 @@ Object {
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
-      "ids": Array [
+      "ids": [
         "14e1j2p-hoverStyles-Something_Main",
       ],
       "key": "css",

@@ -87,8 +87,8 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
     container: safeQuerySelector('#root')
   })
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-  expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
+  expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
 test('initializing another Emotion instance should not move already moved styles elements', () => {

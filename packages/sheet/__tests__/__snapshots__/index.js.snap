@@ -169,7 +169,7 @@ exports[`StyleSheet should insert a rule with insertRule when in speedy 1`] = `
 `;
 
 exports[`StyleSheet should insert a rule with insertRule when in speedy 2`] = `
-Array [
+[
   CSSStyleRule {
     "__ends": 24,
     "__starts": 0,
@@ -182,7 +182,7 @@ Array [
     "style": CSSStyleDeclaration {
       "0": "color",
       "__starts": 5,
-      "_importants": Object {
+      "_importants": {
         "color": "",
       },
       "color": "hotpink",

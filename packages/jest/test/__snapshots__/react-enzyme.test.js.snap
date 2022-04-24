@@ -83,7 +83,7 @@ exports[`enzyme mount fragment with multiple css prop elements 1`] = `
 `;
 
 exports[`enzyme mount multiple selected components 1`] = `
-Array [
+[
   .emotion-0 {
   background-color: hotpink;
 }
@@ -253,7 +253,7 @@ exports[`enzyme mount theming 1`] = `
 <div>
   <Button
     theme={
-      Object {
+      {
         "main": "red",
       }
     }
@@ -266,14 +266,14 @@ exports[`enzyme mount theming 1`] = `
   </Button>
   <ThemeProvider
     theme={
-      Object {
+      {
         "main": "blue",
       }
     }
   >
     <Button
       theme={
-        Object {
+        {
           "main": "red",
         }
       }
@@ -543,7 +543,7 @@ exports[`enzyme shallow fragment with multiple css prop elements 1`] = `
 `;
 
 exports[`enzyme shallow multiple selected components 1`] = `
-Array [
+[
   .emotion-0 {
   background-color: hotpink;
 }
@@ -666,7 +666,7 @@ exports[`enzyme shallow theming 1`] = `
 <div>
   <Button
     theme={
-      Object {
+      {
         "main": "red",
       }
     }
@@ -675,14 +675,14 @@ exports[`enzyme shallow theming 1`] = `
   </Button>
   <ThemeProvider
     theme={
-      Object {
+      {
         "main": "blue",
       }
     }
   >
     <Button
       theme={
-        Object {
+        {
           "main": "red",
         }
       }
@@ -821,7 +821,7 @@ exports[`enzyme with prop containing css element in fragment 1`] = `
 
 <div>
   x
-  Array [
+  [
     "",
     <div
       className="emotion-0"
