@@ -19,6 +19,7 @@ module.exports = {
     '<rootDir>/packages/babel-plugin/test/util.js'
   ],
   snapshotFormat: {
-    escapeString: false
+    escapeString: false,
+    printBasicPrototype: false
   }
 }
