@@ -26,6 +26,7 @@ export const matchers: EmotionMatchers
 export interface CreateSerializerOptions {
   classNameReplacer?: (className: string, index: number) => string
   DOMElements?: boolean
+  includeStyles?: boolean
 }
 export function createSerializer(
   options?: CreateSerializerOptions

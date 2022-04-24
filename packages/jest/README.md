@@ -90,6 +90,17 @@ import { createSerializer } from '@emotion/jest'
 expect.addSnapshotSerializer(createSerializer({ DOMElements: false }))
 ```
 
+### `includeStyles`
+
+@emotion/jest's snapshot serializer inserts styles. If you would like to disable this behavior, you can do so by passing `{ includeStyles: false }`. For example:
+
+```jsx
+import { createSerializer } from '@emotion/jest'
+
+// configures @emotion/jest to not insert styles
+expect.addSnapshotSerializer(createSerializer({ includeStyles: false }))
+```
+
 # Custom matchers
 
 ## toHaveStyleRule

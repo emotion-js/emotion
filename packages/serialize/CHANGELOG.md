@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.0.3
+
+### Patch Changes
+
+- [#2700](https://github.com/emotion-js/emotion/pull/2700) [`d9357621`](https://github.com/emotion-js/emotion/commit/d935762131b1474f2474296ee4706f7ecd59b6dd) Thanks [@arturmuller](https://github.com/arturmuller)! - Fixed a false positive warning for `content` properties that included `var()`.
+
 ## 1.0.2
 
 ### Patch Changes
