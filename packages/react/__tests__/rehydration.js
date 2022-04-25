@@ -638,8 +638,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       container: safeQuerySelector('#root')
     })
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
+    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
   })
 
   test('no hydration mismatch for css prop when using useId', async () => {
@@ -681,8 +681,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       }
     )
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
+    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
   })
 
   test('no hydration mismatch for ClassNames when using useId', async () => {
@@ -736,7 +736,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       }
     )
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
+    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
   })
 })
