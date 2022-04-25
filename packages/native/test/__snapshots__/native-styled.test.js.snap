@@ -4,7 +4,7 @@ exports[`Emotion native styled primitive should work with \`withComponent\` 1`] 
 <Text
   decor="hotpink"
   style={
-    Array [
+    [
       92,
       undefined,
     ]
@@ -18,7 +18,7 @@ exports[`Emotion native styled should pass props in withComponent 1`] = `
 <View
   color="green"
   style={
-    Array [
+    [
       96,
       undefined,
     ]
@@ -30,7 +30,7 @@ exports[`Emotion native styled should pass props in withComponent 2`] = `
 <Text
   color="hotpink"
   style={
-    Array [
+    [
       97,
       undefined,
     ]
@@ -41,14 +41,14 @@ exports[`Emotion native styled should pass props in withComponent 2`] = `
 exports[`Emotion native styled should render <Image /> 1`] = `
 <Image
   source={
-    Object {
+    {
       "height": 150,
       "uri": "https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67",
       "width": 150,
     }
   }
   style={
-    Array [
+    [
       98,
       undefined,
     ]
@@ -59,9 +59,9 @@ exports[`Emotion native styled should render <Image /> 1`] = `
 exports[`Emotion native styled should render primitive with style prop 1`] = `
 <Text
   style={
-    Array [
+    [
       92,
-      Object {
+      {
         "padding": 10,
       },
     ]
@@ -75,7 +75,7 @@ exports[`Emotion native styled should render styles correctly from all nested st
 <Text
   backgroundColor="blue"
   style={
-    Array [
+    [
       101,
       undefined,
     ]
@@ -89,7 +89,7 @@ exports[`Emotion native styled should render the primitive on changing the props
 <Text
   decor="hotpink"
   style={
-    Array [
+    [
       91,
       undefined,
     ]
@@ -103,9 +103,9 @@ exports[`Emotion native styled should render the primitive when styles applied u
 <Text
   back="red"
   style={
-    Array [
+    [
       89,
-      Object {
+      {
         "fontSize": 40,
       },
     ]
@@ -118,7 +118,7 @@ exports[`Emotion native styled should render the primitive when styles applied u
 exports[`Emotion native styled should style any other component 1`] = `
 <Text
   style={
-    Array [
+    [
       92,
       undefined,
     ]
@@ -131,7 +131,7 @@ exports[`Emotion native styled should style any other component 1`] = `
 exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 <Text
   style={
-    Array [
+    [
       94,
       93,
     ]
@@ -144,7 +144,7 @@ exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 exports[`Emotion native styled should work with theming from @emotion/react 1`] = `
 <Text
   style={
-    Array [
+    [
       90,
       undefined,
     ]

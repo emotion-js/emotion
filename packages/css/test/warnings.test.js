@@ -68,8 +68,8 @@ it('does warn when @import rule is being inserted after order-insensitive rules'
   injectGlobal`@import 'custom.css';`
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
+    [
+      [
         "You're attempting to insert the following rule:
     @import 'custom.css';
 

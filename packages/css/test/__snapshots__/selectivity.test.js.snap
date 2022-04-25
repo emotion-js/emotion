@@ -126,7 +126,7 @@ exports[`css media query with nested selector without declarations on root 1`] =
 
 exports[`css should allow a weird class containing & when pseudoclass appears in the selector group 1`] = `
 ".css-13p6h3h:hover,
-.css-13p6h3h .t\\\\&t {
+.css-13p6h3h .t\\&t {
   background: blue;
 }"
 `;
@@ -255,7 +255,7 @@ exports[`orphaned pseudos single 1`] = `
 
 exports[`orphaned pseudos with nested atrule 1`] = `
 ".css-1vs75su::before {
-  content: \\"*\\";
+  content: "*";
   background: pink;
 }
 

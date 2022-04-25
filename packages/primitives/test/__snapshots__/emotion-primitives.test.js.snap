@@ -35,7 +35,7 @@ exports[`Emotion primitives should render <Image /> 1`] = `
 <div
   className="css-view-1dbjc4n r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
   style={
-    Object {
+    {
       "borderBottomColor": "rgba(255,105,180,1.00)",
       "borderBottomStyle": "solid",
       "borderBottomWidth": "2px",
@@ -63,7 +63,7 @@ exports[`Emotion primitives should render primitive with style prop 1`] = `
   className="css-text-901oao r-color-185hjl9"
   dir="auto"
   style={
-    Object {
+    {
       "paddingBottom": "10px",
       "paddingLeft": "10px",
       "paddingRight": "10px",
@@ -89,7 +89,7 @@ exports[`Emotion primitives should render the primitive when styles applied usin
   className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
   dir="auto"
   style={
-    Object {
+    {
       "fontSize": "40px",
     }
   }

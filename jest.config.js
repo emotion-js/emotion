@@ -17,5 +17,9 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/babel-plugin/test/util.js'
-  ]
+  ],
+  snapshotFormat: {
+    escapeString: false,
+    printBasicPrototype: false
+  }
 }

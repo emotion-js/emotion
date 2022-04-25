@@ -163,11 +163,11 @@ test('kebab-case', () => {
   css({ '--primary-color': 'hotpink' })
   css({ ':last-of-type': null })
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-                    Array [
-                      Array [
+                    [
+                      [
                         "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
                       ],
-                      Array [
+                      [
                         "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
                       ],
                     ]
@@ -192,8 +192,8 @@ test('keyframes interpolated into plain string', () => {
     <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
   )
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-            Array [
-              Array [
+            [
+              [
                 "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
 
             Instead of doing this:
@@ -246,8 +246,8 @@ test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
   )
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
+    [
+      [
         "You have passed styles created with \`css\` from \`@emotion/react\` package to the \`cx\`.
     \`cx\` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the \`css\` received from <ClassNames/> component.",
       ],
@@ -269,8 +269,8 @@ test('@import nested in scoped `css`', () => {
   )
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
+    [
+      [
         "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
       ],
     ]
@@ -291,8 +291,8 @@ test('@import prepended with other rules', () => {
   )
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
+    [
+      [
         "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
       ],
     ]
@@ -309,7 +309,7 @@ test('@import prepended by other @import', () => {
     />
   )
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
 test('when using `jsx` multiple static children should not result in a key-related warning', () => {
@@ -319,5 +319,5 @@ test('when using `jsx` multiple static children should not result in a key-relat
       <div />
     </div>
   )
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
 })
