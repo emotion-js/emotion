@@ -271,3 +271,24 @@ exports[`StyleSheet should work if insertionPoint is last element 1`] = `
   <body />
 </html>
 `;
+
+exports[`StyleSheet should work with a ShadowRoot container 1`] = `
+<html>
+  <head />
+  <body>
+    <div />
+  </body>
+</html>
+`;
+
+exports[`StyleSheet should work with a ShadowRoot container 2`] = `
+HTMLCollection [
+  <style
+    data-emotion=""
+    data-s=""
+  >
+    
+    html { color: hotpink; }
+  </style>,
+]
+`;
