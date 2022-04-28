@@ -12,10 +12,10 @@ exports[`jest-emotion with preact replaces class names and inserts styles into p
 }
 
 <div
-  class=\\"emotion-0\\"
+  class="emotion-0"
 >
   <svg
-    class=\\"emotion-1\\"
+    class="emotion-1"
   />
 </div>"
 `;
