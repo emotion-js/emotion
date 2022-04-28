@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
+    "@definitelytyped/dtslint": "0.0.112",
     "@emotion/react": "11.9.0",
-    "dtslint": "^4.2.1",
     "react": "16.14.0",
     "typescript": "^4.5.5"
   },

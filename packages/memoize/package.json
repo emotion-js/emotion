@@ -14,7 +14,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "dtslint": "^4.2.1",
+    "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
   },
   "files": [
