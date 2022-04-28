@@ -18,7 +18,7 @@ export class StyleSheet {
   container: Node
   key: string
   nonce?: string
-  before?: Element | null
+  before?: ChildNode | null
   constructor(options?: Options)
   insert(rule: string): void
   flush(): void
