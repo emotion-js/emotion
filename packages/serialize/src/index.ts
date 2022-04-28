@@ -6,6 +6,8 @@ import * as CSS from 'csstype'
 
 export type { RegisteredCache, SerializedStyles }
 
+declare const process: { env: { NODE_ENV: string } }
+
 type Cursor = {
   name: string
   styles: string
