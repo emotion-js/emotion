@@ -21,7 +21,7 @@ exports[`custom shouldForwardProp works 1`] = `
   <rect
     height="100"
     style={
-      Object {
+      {
         "stroke": "#ff0000",
       }
     }
@@ -112,7 +112,7 @@ exports[`prop filtering on composed styled components that are string tags 1`] =
 `;
 
 exports[`shouldForwardProp should get inherited for wrapped styled components 1`] = `
-Array [
+[
   .emotion-0 {
   background-color: red;
 }

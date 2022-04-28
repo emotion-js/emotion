@@ -57,4 +57,4 @@ exports[`should accept insertionPoint option 1`] = `
 </head>
 `;
 
-exports[`throws correct error with invalid key 1`] = `"Emotion key must only contain lower case alphabetical characters and - but \\".\\" was passed"`;
+exports[`throws correct error with invalid key 1`] = `"Emotion key must only contain lower case alphabetical characters and - but "." was passed"`;
