@@ -176,27 +176,8 @@ jobs:
         run: yarn lint:check
 
   dtslint:
-    name: DTSLint
+    name: dtslint
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        package:
-          - cache
-          - css
-          - hash
-          - is-prop-valid
-          - jest
-          - memoize
-          - native
-          - react
-          - serialize
-          - server
-          - sheet
-          - styled
-          - utils
-          - weak-memoize
-
     steps:
       - uses: actions/checkout@main
 
@@ -222,5 +203,5 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: TypeScript
+      - name: dtslint
         run: cd packages/${{ matrix.package }} && yarn test:typescript

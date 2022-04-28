@@ -125,9 +125,6 @@
       "site",
       "scripts/*",
       "playgrounds/*"
-    ],
-    "nohoist": [
-      "**/dtslint"
     ]
   },
   "preconstruct": {
