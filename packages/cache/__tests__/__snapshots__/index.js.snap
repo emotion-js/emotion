@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should accept container option 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: blue;
+}
+
+<body>
+  
+    
+  <div
+    id="container"
+  >
+    
+  
+    <style
+      data-emotion="test-container"
+      data-s=""
+    >
+      
+      .emotion-0{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;color:blue;}
+    </style>
+  </div>
+  <div>
+    <div
+      class="emotion-0"
+    />
+  </div>
+</body>
+`;
+
 exports[`should accept insertionPoint option 1`] = `
 <head>
   

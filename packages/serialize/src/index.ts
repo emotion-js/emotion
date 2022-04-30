@@ -167,6 +167,11 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+const noComponentSelectorMessage =
+  'Component selectors can only be used in conjunction with ' +
+  '@emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware ' +
+  'compiler transform.'
+
 function handleInterpolation(
   mergedProps: unknown | undefined,
   registered: RegisteredCache | undefined,
@@ -181,9 +186,7 @@ function handleInterpolation(
       process.env.NODE_ENV !== 'production' &&
       String(componentSelector) === 'NO_COMPONENT_SELECTOR'
     ) {
-      throw new Error(
-        'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
-      )
+      throw new Error(noComponentSelectorMessage)
     }
     return componentSelector as unknown as string
   }
@@ -324,9 +327,7 @@ function createStringFromObject(
           key === 'NO_COMPONENT_SELECTOR' &&
           process.env.NODE_ENV !== 'production'
         ) {
-          throw new Error(
-            'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
-          )
+          throw new Error(noComponentSelectorMessage)
         }
         if (
           Array.isArray(value) &&

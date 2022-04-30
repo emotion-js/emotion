@@ -90,7 +90,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     }
   }
   let inserted = {}
-  let container /*: HTMLElement */
+  let container /* : Node */
   const nodesToHydrate = []
   if (isBrowser) {
     container = options.container || document.head
