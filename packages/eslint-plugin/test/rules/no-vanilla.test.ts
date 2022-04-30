@@ -4,7 +4,7 @@
 
 import { TSESLint } from '@typescript-eslint/experimental-utils'
 import rule from '../../src/rules/no-vanilla'
-import { espreeParser } from '../test-utils'
+import { espreeParser, RuleModuleForTesting } from '../test-utils'
 
 const ruleTester = new TSESLint.RuleTester({
   parser: espreeParser,
@@ -17,7 +17,7 @@ const ruleTester = new TSESLint.RuleTester({
   }
 })
 
-ruleTester.run('no-vanilla', rule, {
+ruleTester.run('no-vanilla', rule as unknown as RuleModuleForTesting, {
   valid: [{ code: `import { css } from '@emotion/react'` }],
   invalid: [
     {

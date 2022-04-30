@@ -1,4 +1,4 @@
-import { createRule } from '../utils'
+import { createRule, EmotionESLintRule } from '../utils'
 
 export default createRule({
   name: __filename,
@@ -27,4 +27,4 @@ export default createRule({
       }
     }
   }
-})
+}) as EmotionESLintRule

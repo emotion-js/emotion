@@ -1,5 +1,5 @@
 import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/experimental-utils'
-import { createRule } from '../utils'
+import { createRule, EmotionESLintRule } from '../utils'
 
 export default createRule({
   name: __filename,
@@ -65,4 +65,4 @@ export default createRule({
       }
     }
   }
-})
+}) as EmotionESLintRule

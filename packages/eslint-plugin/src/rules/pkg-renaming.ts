@@ -1,5 +1,5 @@
 import { AST_NODE_TYPES } from '@typescript-eslint/experimental-utils'
-import { createRule } from '../utils'
+import { createRule, EmotionESLintRule } from '../utils'
 
 const simpleMappings = new Map<unknown, string>([
   ['@emotion/core', '@emotion/react'],
@@ -85,4 +85,4 @@ export default createRule({
       }
     }
   }
-})
+}) as EmotionESLintRule
