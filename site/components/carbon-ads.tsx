@@ -5,9 +5,7 @@ import { useRouter } from 'next/router'
 const carbonCss = css`
   #carbonads {
     display: block;
-
     overflow: hidden;
-    margin-bottom: 2rem;
   }
 
   #carbonads a,
@@ -100,7 +98,13 @@ export function CarbonAds(): ReactElement {
   return (
     <>
       <Global styles={carbonCss} />
-      <div ref={ref} />
+      <div
+        ref={ref}
+        css={{
+          marginBottom: '2rem',
+          minHeight: 200 // To prevent layout shift when the ad changes
+        }}
+      />
     </>
   )
 }
