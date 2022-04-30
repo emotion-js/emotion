@@ -9,7 +9,7 @@
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
     "test:react18": "jest -c jest-react18.config.js",
-    "test:typescript": "yarn workspaces run test:typescript",
+    "test:typescript": "yarn workspaces foreach --verbose --exclude emotion-monorepo run test:typescript",
     "test:ci": "jest --coverage --no-cache --ci --runInBand",
     "test:react18:ci": "yarn test:react18 --coverage --no-cache --ci --runInBand",
     "test:prod": "yarn build && jest -c jest.dist.js --no-cache --ci --runInBand",
@@ -255,5 +255,5 @@
     "webpack-bundle-analyzer": "3.3.2",
     "worker-loader": "2.0.0"
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.2.0"
 }

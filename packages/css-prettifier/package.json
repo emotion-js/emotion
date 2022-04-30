@@ -2,9 +2,6 @@
   "name": "@emotion/css-prettifier",
   "version": "1.0.1",
   "description": "Simple Stylis-based CSS prettifier",
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "keywords": [
     "emotion"
   ],
