@@ -21,10 +21,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set Node.js 12.x
+      - name: Set Node.js 14.x
         uses: actions/setup-node@main
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -56,10 +56,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - name: Set Node.js 12.x
+      - name: Set Node.js 14.x
         uses: actions/setup-node@main
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -87,10 +87,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - name: Set Node.js 12.x
+      - name: Set Node.js 14.x
         uses: actions/setup-node@main
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -118,10 +118,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - name: Set Node.js 12.x
+      - name: Set Node.js 14.x
         uses: actions/setup-node@main
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -149,10 +149,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - name: Set Node.js 12.x
+      - name: Set Node.js 14.x
         uses: actions/setup-node@main
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -199,10 +199,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - name: Set Node.js 12.x
+      - name: Set Node.js 14.x
         uses: actions/setup-node@main
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
