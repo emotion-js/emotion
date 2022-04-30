@@ -118,7 +118,7 @@ export default function DocsPage({
           {...mdx}
           components={{
             table: ResponsiveTable,
-            'live-editor': EmotionLiveEditor
+            EmotionLiveEditor
           }}
         />
       </DocWrapper>
