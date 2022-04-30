@@ -39,13 +39,12 @@ module.exports = withBundleAnalyzer({
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
+
+          // These packages reference Node.js stuff, but we need to use them on
+          // the client side for the live editors, so we have to stub them out
           cosmiconfig: path.resolve(__dirname, 'module-stubs/cosmiconfig.cjs'),
           'find-root': path.resolve(__dirname, 'module-stubs/find-root.cjs'),
-          resolve: path.resolve(__dirname, 'module-stubs/resolve.cjs'),
-          '@emotion/babel-plugin': path.resolve(
-            __dirname,
-            '../packages/babel-plugin'
-          )
+          resolve: path.resolve(__dirname, 'module-stubs/resolve.cjs')
         }
       }
     }
