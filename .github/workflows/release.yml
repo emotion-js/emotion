@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js 12.x
-        uses: actions/setup-node@master
+        uses: actions/setup-node@main
         with:
           node-version: 12.x
 
