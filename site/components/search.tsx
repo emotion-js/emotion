@@ -20,6 +20,7 @@ export function Search(): ReactElement {
     <>
       <Global styles={docSearchCustomizationCss} />
       <DocSearch
+        appId="BH4D9OD16A"
         indexName="emotion_sh"
         apiKey="d160789a17f10ba962c4bce1b298fbbb"
       />

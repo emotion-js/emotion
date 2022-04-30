@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@babel/standalone": "^7.16.9",
-    "@docsearch/css": "^3.0.0-alpha.42",
-    "@docsearch/react": "^3.0.0-alpha.42",
+    "@docsearch/css": "^3.0.0",
+    "@docsearch/react": "^3.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
