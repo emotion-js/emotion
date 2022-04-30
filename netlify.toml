@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "16"
-  YARN_VERSION = "1.22.17"
+  YARN_VERSION = "1.22.18"
   YARN_FLAGS = "--frozen-lockfile"
   NETLIFY = "true"
 
