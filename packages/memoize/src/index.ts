@@ -1,12 +1,8 @@
-function memoize<K extends PropertyKey, V>(fn: (arg: K) => V): (arg: K) => V
-function memoize<V>(fn: (arg: string) => V): (arg: string) => V
-function memoize<K extends PropertyKey, V>(fn: (arg: K) => V): (arg: K) => V {
-  const cache: Record<K, V> = Object.create(null)
+export default function memoize<V>(fn: (arg: string) => V): (arg: string) => V {
+  const cache: Record<string, V> = Object.create(null)
 
-  return (arg: K) => {
+  return (arg: string) => {
     if (cache[arg] === undefined) cache[arg] = fn(arg)
     return cache[arg]
   }
 }
-
-export default memoize
