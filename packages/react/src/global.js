@@ -5,7 +5,6 @@ import { ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 
-import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
 type Styles = Object | Array<Object>
@@ -13,6 +12,10 @@ type Styles = Object | Array<Object>
 type GlobalProps = {
   +styles: Styles | (Object => Styles)
 }
+
+const useInsertionEffect = React['useInsertion' + 'Effect']
+  ? React['useInsertion' + 'Effect']
+  : React.useLayoutEffect
 
 let warnedAboutCssPropForGlobal = false
 
@@ -84,10 +87,11 @@ export let Global: React.AbstractComponent<GlobalProps> =
 
     let sheetRef = React.useRef()
 
-    React.useLayoutEffect(() => {
+    useInsertionEffect(() => {
       const key = `${cache.key}-global`
 
-      let sheet = new StyleSheet({
+      // use case of https://github.com/emotion-js/emotion/issues/2675
+      let sheet = new cache.sheet.constructor({
         key,
         nonce: cache.sheet.nonce,
         container: cache.sheet.container,
@@ -113,7 +117,7 @@ export let Global: React.AbstractComponent<GlobalProps> =
       }
     }, [cache])
 
-    React.useLayoutEffect(() => {
+    useInsertionEffect(() => {
       let sheetRefCurrent = (sheetRef.current: any)
       let [sheet, rehydrating] = sheetRefCurrent
       if (rehydrating) {

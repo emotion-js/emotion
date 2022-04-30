@@ -1,5 +1,23 @@
 # @emotion/jest
 
+## 11.9.1
+
+### Patch Changes
+
+- [#2715](https://github.com/emotion-js/emotion/pull/2715) [`37434836`](https://github.com/emotion-js/emotion/commit/3743483613b8fcb84bc25dde1fcd51a079b009b9) Thanks [@thompsongl](https://github.com/thompsongl)! - Fixed an issue with `createEnzymeSerializer` not handling the recently added `includeStyles` option.
+
+## 11.9.0
+
+### Minor Changes
+
+- [#2709](https://github.com/emotion-js/emotion/pull/2709) [`1a25293f`](https://github.com/emotion-js/emotion/commit/1a25293fffa348d55bbf78e8855a6390bc54230b) Thanks [@thompsongl](https://github.com/thompsongl)! - Added `includeStyles` option to `createSerializer` to optionally disable styles printing.
+
+## 11.8.0
+
+### Patch Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Adjusted Enzyme-related code path to accomodate for changes related to the refactor around using `React.useInsertionEffect`.
+
 ## 11.7.1
 
 ### Patch Changes

@@ -40,7 +40,7 @@ test('basic', () => {
     }
   }
   expect(rules).toMatchInlineSnapshot(`
-    Array [
+    [
       "@import url(https://some-url);",
       "h1 {color: hotpink;}",
       ".css-1lrxbo5 {color: hotpink;}",

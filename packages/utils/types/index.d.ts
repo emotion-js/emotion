@@ -39,11 +39,19 @@ export interface SerializedStyles {
 }
 
 export const isBrowser: boolean
+
 export function getRegisteredStyles(
   registered: RegisteredCache,
   registeredStyles: Array<string>,
   classNames: string
 ): string
+
+export function registerStyles(
+  cache: EmotionCache,
+  serialized: SerializedStyles,
+  isStringTag: boolean
+): void
+
 export function insertStyles(
   cache: EmotionCache,
   serialized: SerializedStyles,

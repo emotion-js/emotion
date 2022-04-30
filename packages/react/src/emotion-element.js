@@ -2,10 +2,15 @@
 import * as React from 'react'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
-import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  registerStyles
+} from '@emotion/utils'
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
+import useInsertionEffectMaybe from './useInsertionEffectMaybe'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -49,7 +54,32 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   return newProps
 }
 
-const Noop = () => null
+const Insertion = ({ cache, serialized, isStringTag }) => {
+  registerStyles(cache, serialized, isStringTag)
+
+  const rules = useInsertionEffectMaybe(() =>
+    insertStyles(cache, serialized, isStringTag)
+  )
+
+  if (!isBrowser && rules !== undefined) {
+    let serializedNames = serialized.name
+    let next = serialized.next
+    while (next !== undefined) {
+      serializedNames += ' ' + next.name
+      next = next.next
+    }
+    return (
+      <style
+        {...{
+          [`data-emotion`]: `${cache.key} ${serializedNames}`,
+          dangerouslySetInnerHTML: { __html: rules },
+          nonce: cache.sheet.nonce
+        }}
+      />
+    )
+  }
+  return null
+}
 
 let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
   (props, cache, ref) => {
@@ -65,7 +95,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
       cssProp = cache.registered[cssProp]
     }
 
-    let type = props[typePropName]
+    let WrappedComponent = props[typePropName]
     let registeredStyles = [cssProp]
     let className = ''
 
@@ -97,7 +127,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
         ])
       }
     }
-    const rules = insertStyles(cache, serialized, typeof type === 'string')
+
     className += `${cache.key}-${serialized.name}`
 
     const newProps = {}
@@ -114,30 +144,14 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
     newProps.ref = ref
     newProps.className = className
 
-    const ele = React.createElement(type, newProps)
-    let possiblyStyleElement = <Noop />
-    if (!isBrowser && rules !== undefined) {
-      let serializedNames = serialized.name
-      let next = serialized.next
-      while (next !== undefined) {
-        serializedNames += ' ' + next.name
-        next = next.next
-      }
-      possiblyStyleElement = (
-        <style
-          {...{
-            [`data-emotion`]: `${cache.key} ${serializedNames}`,
-            dangerouslySetInnerHTML: { __html: rules },
-            nonce: cache.sheet.nonce
-          }}
-        />
-      )
-    }
-    // Need to return the same number of siblings or else `React.useId` will cause hydration mismatches.
     return (
       <>
-        {possiblyStyleElement}
-        {ele}
+        <Insertion
+          cache={cache}
+          serialized={serialized}
+          isStringTag={typeof WrappedComponent === 'string'}
+        />
+        <WrappedComponent {...newProps} />
       </>
     )
   }

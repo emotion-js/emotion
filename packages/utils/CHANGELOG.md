@@ -1,5 +1,11 @@
 # @emotion/utils
 
+## 1.1.0
+
+### Minor Changes
+
+- [#2600](https://github.com/emotion-js/emotion/pull/2600) [`2f27156a`](https://github.com/emotion-js/emotion/commit/2f27156a73f94c3aac82e4ed492cbfdc97225573) Thanks [@Andarist](https://github.com/Andarist)! - Introduced `registerStyles` helper that is shared across between other packages. This is just an internal util that shouldn't be used by packages other than `@emotion/*` packages.
+
 ## 1.0.0
 
 ### Major Changes

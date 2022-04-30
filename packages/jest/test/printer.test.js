@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import ReactDOM from 'react-dom'
 import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
@@ -8,6 +7,7 @@ import prettyFormat from 'pretty-format'
 import { css, jsx, CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { createSerializer } from '@emotion/jest'
+import { render } from '@testing-library/react'
 import { ignoreConsoleErrors } from 'test-utils'
 
 let emotionPlugin = createSerializer()
@@ -41,11 +41,10 @@ describe('jest-emotion with dom elements', () => {
 
   it('replaces class names and inserts styles into DOM element snapshots', () => {
     const divRef = React.createRef()
-    ReactDOM.render(
+    render(
       <div css={divStyle} ref={divRef}>
         <svg css={svgStyle} />
-      </div>,
-      document.createElement('div')
+      </div>
     )
 
     const output = prettyFormat(divRef.current, {
@@ -85,11 +84,10 @@ describe('jest-emotion with DOM elements disabled', () => {
 
   it('does not replace class names or insert styles into DOM element snapshots', () => {
     const divRef = React.createRef()
-    ReactDOM.render(
+    render(
       <div css={divStyle} ref={divRef}>
         <svg css={svgStyle} />
-      </div>,
-      document.createElement('div')
+      </div>
     )
 
     const output = prettyFormat(divRef.current, {
@@ -98,6 +96,31 @@ describe('jest-emotion with DOM elements disabled', () => {
 
     expect(output).toMatchSnapshot()
   })
+})
+
+test('allows to opt-out from styles printing', () => {
+  const emotionPlugin = createSerializer({ includeStyles: false })
+
+  const divStyle = css`
+    color: red;
+  `
+
+  const svgStyle = css`
+    width: 100%;
+  `
+
+  const divRef = React.createRef()
+  render(
+    <div css={divStyle} ref={divRef}>
+      <svg css={svgStyle} />
+    </div>
+  )
+
+  const output = prettyFormat(divRef.current, {
+    plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+  })
+
+  expect(output).toMatchSnapshot()
 })
 
 test('does not replace class names that are not from emotion', () => {

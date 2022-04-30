@@ -1,21 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`allows to opt-out from styles printing 1`] = `
+"<div
+  class="emotion-0"
+>
+  <svg
+    class="emotion-1"
+  />
+</div>"
+`;
+
 exports[`does not replace class names that are not from emotion 1`] = `
 ".emotion-0 {
   color: darkorchid;
 }
 
 <div
-  className=\\"net-42 net emotion-0\\"
+  className="net-42 net emotion-0"
 />"
 `;
 
 exports[`jest-emotion with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
-  class=\\"css-q1yspt-divStyle\\"
+  class="css-q1yspt-divStyle"
 >
   <svg
-    class=\\"css-18ku24t-svgStyle\\"
+    class="css-18ku24t-svgStyle"
   />
 </div>"
 `;
@@ -30,10 +40,10 @@ exports[`jest-emotion with DOM elements disabled replaces class names and insert
 }
 
 <div
-  className=\\"emotion-0\\"
+  className="emotion-0"
 >
   <svg
-    className=\\"emotion-1\\"
+    className="emotion-1"
   />
 </div>"
 `;
@@ -48,10 +58,10 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
 }
 
 <div
-  class=\\"emotion-0\\"
+  class="emotion-0"
 >
   <svg
-    class=\\"emotion-1\\"
+    class="emotion-1"
   />
 </div>"
 `;
@@ -66,10 +76,10 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
 }
 
 <div
-  className=\\"emotion-0\\"
+  className="emotion-0"
 >
   <svg
-    className=\\"emotion-1\\"
+    className="emotion-1"
   />
 </div>"
 `;
@@ -80,6 +90,6 @@ exports[`prints speedy styles 1`] = `
 }
 
 <div
-  className=\\"emotion-0\\"
+  className="emotion-0"
 />"
 `;

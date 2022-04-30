@@ -2,10 +2,15 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import 'test-utils/dev-mode'
-import { throwIfFalsy, safeQuerySelector } from 'test-utils'
+import { render, fireEvent } from '@testing-library/react'
+import { safeQuerySelector } from 'test-utils'
 import * as React from 'react'
 import { jsx, ThemeProvider } from '@emotion/react'
-import { render } from 'react-dom'
+
+beforeEach(() => {
+  // $FlowFixMe
+  document.head.innerHTML = ''
+})
 
 test('provider with theme value that changes', () => {
   class ThemeTest extends React.Component<*, *> {
@@ -27,19 +32,9 @@ test('provider with theme value that changes', () => {
       )
     }
   }
-  let head = throwIfFalsy(document.head)
-  let body = throwIfFalsy(document.body)
 
-  head.innerHTML = ''
-  body.innerHTML = '<div id="root"></div>'
-
-  let root = safeQuerySelector('#root')
-
-  render(<ThemeTest />, root)
-  expect(root).toMatchSnapshot()
-  throwIfFalsy(safeQuerySelector('#the-thing')).click()
-  expect(root).toMatchSnapshot()
-
-  head.innerHTML = ''
-  body.innerHTML = '<div id="root"></div>'
+  const { container } = render(<ThemeTest />)
+  expect(container).toMatchSnapshot()
+  fireEvent.click(safeQuerySelector('#the-thing'))
+  expect(container).toMatchSnapshot()
 })

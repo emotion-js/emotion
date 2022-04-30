@@ -19,9 +19,7 @@ exports[`specificity with globals 1`] = `
     </style>
   </head>
   <body>
-    <div
-      id="root"
-    >
+    <div>
       <div
         id="root"
       >
@@ -56,9 +54,7 @@ exports[`specificity with globals 2`] = `
     </style>
   </head>
   <body>
-    <div
-      id="root"
-    >
+    <div>
       <div
         id="root"
       >

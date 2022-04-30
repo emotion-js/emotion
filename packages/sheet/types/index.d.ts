@@ -4,7 +4,7 @@
 export interface Options {
   nonce?: string
   key: string
-  container: HTMLElement
+  container: Node
   speedy?: boolean
   /** @deprecate use `insertionPoint` instead */
   prepend?: boolean
@@ -15,10 +15,10 @@ export class StyleSheet {
   isSpeedy: boolean
   ctr: number
   tags: Array<HTMLStyleElement>
-  container: HTMLElement
+  container: Node
   key: string
   nonce?: string
-  before?: Element | null
+  before?: ChildNode | null
   constructor(options?: Options)
   insert(rule: string): void
   flush(): void

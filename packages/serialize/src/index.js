@@ -61,7 +61,7 @@ let processStyleValue = (
 
 if (process.env.NODE_ENV !== 'production') {
   let contentValuePattern =
-    /(attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
+    /(var|attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
   let contentValues = ['normal', 'none', 'initial', 'inherit', 'unset']
 
   let oldProcessStyleValue = processStyleValue
@@ -106,6 +106,11 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+const noComponentSelectorMessage =
+  'Component selectors can only be used in conjunction with ' +
+  '@emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware ' +
+  'compiler transform.'
+
 function handleInterpolation(
   mergedProps: void | Object,
   registered: RegisteredCache | void,
@@ -119,9 +124,7 @@ function handleInterpolation(
       process.env.NODE_ENV !== 'production' &&
       interpolation.toString() === 'NO_COMPONENT_SELECTOR'
     ) {
-      throw new Error(
-        'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
-      )
+      throw new Error(noComponentSelectorMessage)
     }
     return interpolation
   }
@@ -247,9 +250,7 @@ function createStringFromObject(
           key === 'NO_COMPONENT_SELECTOR' &&
           process.env.NODE_ENV !== 'production'
         ) {
-          throw new Error(
-            'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
-          )
+          throw new Error(noComponentSelectorMessage)
         }
         if (
           Array.isArray(value) &&

@@ -5,6 +5,13 @@ import renderer from 'react-test-renderer'
 import { css } from '@emotion/css'
 import styled from '@emotion/styled'
 
+let consoleError = console.error
+
+afterEach(() => {
+  // $FlowFixMe
+  console.error = consoleError
+})
+
 describe('css', () => {
   test('random expression', () => {
     const cls2 = css`
@@ -130,21 +137,29 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('component as selectors (object syntax)', () => {
-    expect(() => {
-      const fontSize = '20px'
-      const H1 = styled('h1')({ fontSize })
-      const Thing = styled('div')({
-        display: 'flex',
-        [String(H1)]: {
-          color: 'green'
-        }
-      })
+    const fontSize = '20px'
+    const H1 = styled('h1')({ fontSize })
+    const Thing = styled('div')({
+      display: 'flex',
+      [String(H1)]: {
+        color: 'green'
+      }
+    })
+
+    const spy = jest.fn()
+    // $FlowFixMe
+    console.error = spy
+
+    expect(() =>
       renderer.create(
         <Thing>
           hello <H1>This will be green</H1> world
         </Thing>
       )
-    }).toThrowErrorMatchingSnapshot()
+    ).toThrowErrorMatchingSnapshot()
+
+    expect(spy.mock.calls.length).toBe(1)
+    expect(spy.mock.calls[0][0].split('\n')[0]).toMatchSnapshot()
   })
   test('component selectors without target', () => {
     const SomeComponent = styled('div')`

@@ -1,18 +1,16 @@
 // @flow
 import 'test-utils/dev-mode'
 import * as React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { render } from '@testing-library/react'
 import { Global, ThemeProvider } from '@emotion/react'
 
 beforeEach(() => {
   // $FlowFixMe
   document.head.innerHTML = ''
-  // $FlowFixMe
-  document.body.innerHTML = `<div id="root"></div>`
 })
 
 test('basic', () => {
-  render(
+  const { unmount } = render(
     <ThemeProvider theme={{ color: 'green' }}>
       <Global
         styles={theme => ({
@@ -21,17 +19,15 @@ test('basic', () => {
           }
         })}
       />
-    </ThemeProvider>,
-    // $FlowFixMe
-    document.getElementById('root')
+    </ThemeProvider>
   )
   expect(document.documentElement).toMatchSnapshot()
-  unmountComponentAtNode(document.getElementById('root'))
+  unmount()
   expect(document.documentElement).toMatchSnapshot()
 })
 
 test('array', () => {
-  render(
+  const { unmount } = render(
     <ThemeProvider theme={{ color: 'green', fontSize: 16 }}>
       <Global
         styles={[
@@ -39,10 +35,9 @@ test('array', () => {
           theme => ({ html: { fontSize: theme.fontSize } })
         ]}
       />
-    </ThemeProvider>, // $FlowFixMe
-    document.getElementById('root')
+    </ThemeProvider>
   )
   expect(document.documentElement).toMatchSnapshot()
-  unmountComponentAtNode(document.getElementById('root'))
+  unmount()
   expect(document.documentElement).toMatchSnapshot()
 })

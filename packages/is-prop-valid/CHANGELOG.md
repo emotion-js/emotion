@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.1.2
+
+### Patch Changes
+
+- [#2621](https://github.com/emotion-js/emotion/pull/2621) [`d2531639`](https://github.com/emotion-js/emotion/commit/d25316393639232df16ba836b407e3678eea5e4d) Thanks [@andreasmcdermott](https://github.com/andreasmcdermott)! - Added [`abbr`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th#attr-abbr) prop to the allowlist of forwardable props.
+
 ## 1.1.1
 
 ### Patch Changes

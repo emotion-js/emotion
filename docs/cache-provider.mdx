@@ -9,6 +9,8 @@ import { CacheProvider, css } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { prefixer } from 'stylis'
 
+const customPlugin = () => {}
+
 const myCache = createCache({
   key: 'my-prefix-key',
   stylisPlugins: [

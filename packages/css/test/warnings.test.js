@@ -19,6 +19,7 @@ const validValues = [
   'inherit',
   '"some thing"',
   "'another thing'",
+  'var(--variable-name)',
   'url("http://www.example.com/test.png")',
   'linear-gradient(hotpink, #8be9fd)',
   'radial-gradient(hotpink, #8be9fd)',
@@ -67,8 +68,8 @@ it('does warn when @import rule is being inserted after order-insensitive rules'
   injectGlobal`@import 'custom.css';`
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
+    [
+      [
         "You're attempting to insert the following rule:
     @import 'custom.css';
 
