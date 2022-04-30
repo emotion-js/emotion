@@ -2898,22 +2898,6 @@
     "@docsearch/css" "3.0.0-alpha.42"
     algoliasearch "^4.0.0"
 
-"@emotion/babel-plugin@file:packages/babel-plugin":
-  version "11.9.2"
-  dependencies:
-    "@babel/helper-module-imports" "^7.12.13"
-    "@babel/plugin-syntax-jsx" "^7.12.13"
-    "@babel/runtime" "^7.13.10"
-    "@emotion/hash" "^0.8.0"
-    "@emotion/memoize" "^0.7.5"
-    "@emotion/serialize" "^1.0.2"
-    babel-plugin-macros "^2.6.1"
-    convert-source-map "^1.5.0"
-    escape-string-regexp "^4.0.0"
-    find-root "^1.1.0"
-    source-map "^0.5.7"
-    stylis "4.0.13"
-
 "@emotion/is-prop-valid@^0.8.1":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
