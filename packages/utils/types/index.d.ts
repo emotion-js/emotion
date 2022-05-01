@@ -42,7 +42,7 @@ export const isBrowser: boolean
 
 export function getRegisteredStyles(
   registered: RegisteredCache,
-  registeredStyles: Array<string>,
+  registeredStyles: ReadonlyArray<string>,
   classNames: string
 ): string
 
