@@ -293,6 +293,7 @@ const props = {
   end: true,
   exponent: true,
   externalResourcesRequired: true,
+  fetchPriority: true,
   fill: true,
   fillOpacity: true,
   fillRule: true,
