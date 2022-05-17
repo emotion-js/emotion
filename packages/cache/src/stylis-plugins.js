@@ -167,7 +167,8 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
   )
 
   if (unsafePseudoClasses && cache.compat !== true) {
-    for (const element of children) {
+    for (let i = 0; i < children.length; i++) {
+      const element = children[i]
       if (element && isIgnoringComment(last(element.children))) {
         return
       }
