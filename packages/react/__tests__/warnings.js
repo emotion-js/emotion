@@ -110,7 +110,15 @@ describe('unsafe pseudo classes', () => {
           [pseudoClass]: {
             color: 'rebeccapurple'
           }
-        }
+        },
+        'multiple selectors': css`
+          * {
+            color: red;
+          }
+          ${pseudoClass} {
+            color: rebeccapurple;
+          }
+        `
       }
 
       Object.keys(styles).forEach(type => {

@@ -32,6 +32,20 @@ exports[`does not warn when valid values are passed for the content property 1`]
 
 exports[`global with css prop 1`] = `null`;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:first-child {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child /* [flag] */" in a style object 1`] = `
 .emotion-0:first-child {
   color: rebeccapurple;
@@ -44,6 +58,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child /* [flag] */" in a style string 1`] = `
 .emotion-0:first-child {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child :nth-child(3) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:first-child :nth-child(3) {
   color: rebeccapurple;
 }
 
@@ -72,6 +100,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 />
 `;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child span /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:first-child span {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child span /* [flag] */" in a style object 1`] = `
 .emotion-0:first-child span {
   color: rebeccapurple;
@@ -84,6 +126,21 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child span /* [flag] */" in a style string 1`] = `
 .emotion-0:first-child span {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child, :nth-child(3) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:first-child,
+.emotion-0:nth-child(3) {
   color: rebeccapurple;
 }
 
@@ -114,6 +171,21 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 />
 `;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child, span /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:first-child,
+.emotion-0 span {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child, span /* [flag] */" in a style object 1`] = `
 .emotion-0:first-child,
 .emotion-0 span {
@@ -128,6 +200,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child, span /* [flag] */" in a style string 1`] = `
 .emotion-0:first-child,
 .emotion-0 span {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child:nth-child(3) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:first-child:nth-child(3) {
   color: rebeccapurple;
 }
 
@@ -156,6 +242,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 />
 `;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":not(:first-child) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:not(:first-child) {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":not(:first-child) /* [flag] */" in a style object 1`] = `
 .emotion-0:not(:first-child) {
   color: rebeccapurple;
@@ -168,6 +268,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":not(:first-child) /* [flag] */" in a style string 1`] = `
 .emotion-0:not(:first-child) {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":not(:nth-child(3)) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:not(:nth-child(3)) {
   color: rebeccapurple;
 }
 
@@ -196,6 +310,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 />
 `;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":nth-child(3) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:nth-child(3) {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":nth-child(3) /* [flag] */" in a style object 1`] = `
 .emotion-0:nth-child(3) {
   color: rebeccapurple;
@@ -208,6 +336,20 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":nth-child(3) /* [flag] */" in a style string 1`] = `
 .emotion-0:nth-child(3) {
+  color: rebeccapurple;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":nth-last-child(7) /* [flag] */" in a style multiple selectors 1`] = `
+.emotion-0 * {
+  color: red;
+}
+
+.emotion-0:nth-last-child(7) {
   color: rebeccapurple;
 }
 
