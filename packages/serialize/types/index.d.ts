@@ -64,6 +64,6 @@ export type Interpolation<Props> =
 
 export function serializeStyles<Props>(
   args: Array<TemplateStringsArray | Interpolation<Props>>,
-  registered: RegisteredCache,
+  registered?: RegisteredCache,
   props?: Props
 ): SerializedStyles
