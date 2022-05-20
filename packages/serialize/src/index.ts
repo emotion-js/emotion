@@ -385,12 +385,12 @@ let cursor: Cursor | undefined
 
 export function serializeStyles<Props>(
   args: Array<TemplateStringsArray | Interpolation<Props>>,
-  registered: RegisteredCache,
+  registered?: RegisteredCache,
   mergedProps?: Props
 ): SerializedStyles
 export function serializeStyles(
   args: Array<TemplateStringsArray | Interpolation<unknown>>,
-  registered: RegisteredCache,
+  registered?: RegisteredCache,
   mergedProps?: unknown
 ): SerializedStyles {
   if (
