@@ -122,7 +122,7 @@ let processStyleValue = (
 
 if (process.env.NODE_ENV !== 'production') {
   let contentValuePattern =
-    /(attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
+    /(var|attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
   let contentValues = ['normal', 'none', 'initial', 'inherit', 'unset']
 
   let oldProcessStyleValue = processStyleValue
@@ -167,6 +167,11 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+const noComponentSelectorMessage =
+  'Component selectors can only be used in conjunction with ' +
+  '@emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware ' +
+  'compiler transform.'
+
 function handleInterpolation(
   mergedProps: unknown | undefined,
   registered: RegisteredCache | undefined,
@@ -181,9 +186,7 @@ function handleInterpolation(
       process.env.NODE_ENV !== 'production' &&
       String(componentSelector) === 'NO_COMPONENT_SELECTOR'
     ) {
-      throw new Error(
-        'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
-      )
+      throw new Error(noComponentSelectorMessage)
     }
     return componentSelector as unknown as string
   }
@@ -324,9 +327,7 @@ function createStringFromObject(
           key === 'NO_COMPONENT_SELECTOR' &&
           process.env.NODE_ENV !== 'production'
         ) {
-          throw new Error(
-            'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
-          )
+          throw new Error(noComponentSelectorMessage)
         }
         if (
           Array.isArray(value) &&
@@ -385,12 +386,12 @@ let cursor: Cursor | undefined
 
 export function serializeStyles<Props>(
   args: Array<TemplateStringsArray | Interpolation<Props>>,
-  registered: RegisteredCache,
+  registered?: RegisteredCache,
   mergedProps?: Props
 ): SerializedStyles
 export function serializeStyles(
   args: Array<TemplateStringsArray | Interpolation<unknown>>,
-  registered: RegisteredCache,
+  registered?: RegisteredCache,
   mergedProps?: unknown
 ): SerializedStyles {
   if (

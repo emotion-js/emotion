@@ -10,17 +10,17 @@ export default () => <Global styles={{ color: 'hotpink' }} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
 import * as React from 'react';
 import { Global } from '@emotion/react';
 
-var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"3sn2xs\\",
-  styles: \\"color:hotpink\\"
+var _ref = process.env.NODE_ENV === "production" ? {
+  name: "3sn2xs",
+  styles: "color:hotpink"
 } : {
-  name: \\"3sn2xs\\",
-  styles: \\"color:hotpink\\",
+  name: "3sn2xs",
+  styles: "color:hotpink",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 

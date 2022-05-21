@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`applies class when css prop is set to nil on wrapper component 1`] = `
-Array [
+[
   .emotion-0 {
   color: hotpink;
 }

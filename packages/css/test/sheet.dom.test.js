@@ -43,7 +43,7 @@ describe('sheet', () => {
     sheet.insert('.asdfasdf4###112121211{')
     expect(spy.mock.calls.length).toBe(1)
     expect(spy.mock.calls[0][0]).toMatchInlineSnapshot(
-      `"There was a problem inserting the following rule: \\".asdfasdf4###112121211{\\""`
+      `"There was a problem inserting the following rule: ".asdfasdf4###112121211{""`
     )
   })
 

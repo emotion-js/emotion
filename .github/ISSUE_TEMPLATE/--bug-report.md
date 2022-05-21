@@ -26,7 +26,7 @@ assignees: ''
 **To reproduce:**
 
 <!--
-    Please edit this CodeSandbox (https://codesandbox.io/s/zljgy)
+    Please edit this CodeSandbox (https://codesandbox.io/s/emotion-issue-template-y306ue)
     to help us reproduce your issue. Alternatively, create a GitHub repository.
     Issues without a reproducible example will take longer to get addressed.
 -->
