@@ -3,7 +3,7 @@ import {
   TSESLint,
   TSESTree
 } from '@typescript-eslint/experimental-utils'
-import { createRule } from '../utils'
+import { createRule, EmotionESLintRule } from '../utils'
 
 /**
  * @fileoverview Choose between string or object syntax
@@ -265,4 +265,4 @@ export default createRule<RuleOptions, MessageId>({
         return {}
     }
   }
-})
+}) as EmotionESLintRule

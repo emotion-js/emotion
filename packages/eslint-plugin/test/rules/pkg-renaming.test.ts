@@ -4,7 +4,7 @@
 
 import { TSESLint } from '@typescript-eslint/experimental-utils'
 import rule from '../../src/rules/pkg-renaming'
-import { espreeParser } from '../test-utils'
+import { RuleModuleForTesting, espreeParser } from '../test-utils'
 
 const ruleTester = new TSESLint.RuleTester({
   parser: espreeParser,
@@ -17,7 +17,7 @@ const ruleTester = new TSESLint.RuleTester({
   }
 })
 
-ruleTester.run('pkg-renaming', rule, {
+ruleTester.run('pkg-renaming', rule as unknown as RuleModuleForTesting, {
   valid: [
     {
       code: `

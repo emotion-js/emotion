@@ -1,5 +1,5 @@
 import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/experimental-utils'
-import { createRule, REPO_URL } from '../utils'
+import { createRule, EmotionESLintRule, REPO_URL } from '../utils'
 
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
@@ -273,4 +273,4 @@ export default createRule<RuleOptions, keyof typeof messages>({
       }
     }
   }
-})
+}) as EmotionESLintRule
