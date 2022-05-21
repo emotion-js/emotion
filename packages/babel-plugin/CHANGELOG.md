@@ -1,5 +1,23 @@
 # @emotion/babel-plugin
 
+## 11.9.2
+
+### Patch Changes
+
+- [#2721](https://github.com/emotion-js/emotion/pull/2721) [`ae0f650b`](https://github.com/emotion-js/emotion/commit/ae0f650b5ad8ef658b61edca6157fe208be23b43) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue in the minifying logic that could remove rules with the same context values as their parent rules. Like in the example below:
+
+  ```js
+  styled.div`
+    > div {
+      color: blue;
+
+      > div {
+        color: hotpink;
+      }
+    }
+  `
+  ```
+
 ## 11.7.2
 
 ### Patch Changes

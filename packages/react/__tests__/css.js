@@ -334,6 +334,6 @@ it("doesn't try to insert invalid rules caused by object style's value being fal
     </CacheProvider>
   )
 
-  expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
-  expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
 })

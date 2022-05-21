@@ -38,7 +38,8 @@ class Search extends React.Component /* <Props, State> */ {
     addCallback(loaded => {
       if (loaded) {
         window.docsearch({
-          apiKey: 'd160789a17f10ba962c4bce1b298fbbb',
+          appId: '12939UANWC',
+          apiKey: 'a1728a14089135f149b2997e1fb14cf0',
           indexName: 'emotion_sh',
           inputSelector: '#algolia-doc-search',
           handleSelected: (input, event, suggestion) => {

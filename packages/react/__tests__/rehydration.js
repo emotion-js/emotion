@@ -84,8 +84,8 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
     container: safeQuerySelector('#root')
   })
 
-  expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
-  expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
 test('initializing another Emotion instance should not move already moved styles elements', () => {
@@ -635,8 +635,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       container: safeQuerySelector('#root')
     })
 
-    expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
   })
 
   test('no hydration mismatch for css prop when using useId', async () => {
@@ -678,8 +678,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       }
     )
 
-    expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
   })
 
   test('no hydration mismatch for ClassNames when using useId', async () => {
@@ -733,7 +733,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       }
     )
 
-    expect(console.error.mock.calls).toMatchInlineSnapshot(`Array []`)
-    expect(console.warn.mock.calls).toMatchInlineSnapshot(`Array []`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
   })
 })

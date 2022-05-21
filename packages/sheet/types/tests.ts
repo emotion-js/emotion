@@ -60,3 +60,9 @@ styleSheet.flush()
 styleSheet.flush(undefined as any)
 // $ExpectError
 styleSheet.flush(...(undefined as any as Array<any>))
+
+const shadowRoot = document.createElement('div').attachShadow({ mode: 'open' })
+const shadowStyleSheet = new StyleSheet({
+  key: 'abc',
+  container: shadowRoot
+})

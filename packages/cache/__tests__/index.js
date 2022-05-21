@@ -33,3 +33,24 @@ it('should accept insertionPoint option', () => {
 
   expect(document.head).toMatchSnapshot()
 })
+
+it('should accept container option', () => {
+  const body = safeQuerySelector('body')
+
+  body.innerHTML = `
+    <div id="container" />
+  `
+
+  const cache = createCache({
+    key: 'test-container',
+    container: safeQuerySelector('#container')
+  })
+
+  render(
+    <CacheProvider value={cache}>
+      <div css={{ display: 'flex', color: 'blue' }} />
+    </CacheProvider>
+  )
+
+  expect(document.body).toMatchSnapshot()
+})

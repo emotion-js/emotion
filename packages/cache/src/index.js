@@ -90,7 +90,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     }
   }
   let inserted = {}
-  let container /*: HTMLElement */
+  let container /* : Node */
   const nodesToHydrate = []
   if (isBrowser) {
     container = options.container || document.head
@@ -245,7 +245,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     key,
     sheet: new StyleSheet({
       key,
-      container: container,
+      container,
       nonce: options.nonce,
       speedy: options.speedy,
       prepend: options.prepend,
