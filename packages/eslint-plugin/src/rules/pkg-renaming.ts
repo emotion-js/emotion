@@ -1,4 +1,4 @@
-import { AST_NODE_TYPES } from '@typescript-eslint/experimental-utils'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 import { createRule } from '../utils'
 
 const simpleMappings = new Map<unknown, string>([
@@ -14,20 +14,21 @@ const simpleMappings = new Map<unknown, string>([
   ['emotion-server', '@emotion/server']
 ])
 
-export default createRule({
+const messages = {
+  renamePackage: `{{ beforeName }} has been renamed to {{ afterName }}, please import it from {{ afterName }} instead`,
+  exportChange: `The default export of "{{ name }}" in Emotion 10 has been moved to a named export, \`css\`, from "{{ replacement }}" in Emotion 11, please import it from "{{ replacement }}"`,
+  emotionTheming: `"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"`
+}
+
+export default createRule<never[], keyof typeof messages>({
   name: __filename,
   meta: {
     docs: {
-      category: 'Best Practices',
       description: 'Internal rule',
       recommended: false
     },
     fixable: 'code',
-    messages: {
-      renamePackage: `{{ beforeName }} has been renamed to {{ afterName }}, please import it from {{ afterName }} instead`,
-      exportChange: `The default export of "{{ name }}" in Emotion 10 has been moved to a named export, \`css\`, from "{{ replacement }}" in Emotion 11, please import it from "{{ replacement }}"`,
-      emotionTheming: `"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"`
-    },
+    messages,
     schema: [],
     type: 'problem'
   },

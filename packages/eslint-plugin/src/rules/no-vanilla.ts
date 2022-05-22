@@ -1,16 +1,17 @@
 import { createRule } from '../utils'
 
-export default createRule({
+const messages = {
+  vanillaEmotion: 'Vanilla emotion should not be used'
+}
+
+export default createRule<never[], keyof typeof messages>({
   name: __filename,
   meta: {
     docs: {
-      category: 'Best Practices',
       description: 'Ensure vanilla emotion is not used',
       recommended: false
     },
-    messages: {
-      vanillaEmotion: 'Vanilla emotion should not be used'
-    },
+    messages,
     schema: [],
     type: 'problem'
   },

@@ -1,8 +1,4 @@
-import {
-  AST_NODE_TYPES,
-  TSESLint,
-  TSESTree
-} from '@typescript-eslint/experimental-utils'
+import { AST_NODE_TYPES, TSESLint, TSESTree } from '@typescript-eslint/utils'
 import { createRule } from '../utils'
 
 /**
@@ -235,7 +231,6 @@ export default createRule<RuleOptions, MessageId>({
   name: __filename,
   meta: {
     docs: {
-      category: 'Stylistic Issues',
       description: 'Choose between styles written as strings or objects',
       recommended: false
     },

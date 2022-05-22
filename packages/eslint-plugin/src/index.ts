@@ -5,7 +5,7 @@ import styledImport from './rules/styled-import'
 import jsxImport from './rules/jsx-import'
 import pkgRenaming from './rules/pkg-renaming'
 
-export let rules = {
+export const rules = {
   'import-from-emotion': importFromEmotion,
   'no-vanilla': noVanilla,
   'syntax-preference': syntaxPreference,

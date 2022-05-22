@@ -8,7 +8,7 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-import { AST_NODE_TYPES, TSESLint } from '@typescript-eslint/experimental-utils'
+import { AST_NODE_TYPES, TSESLint } from '@typescript-eslint/utils'
 import rule from '../../src/rules/syntax-preference'
 import { espreeParser } from '../test-utils'
 
