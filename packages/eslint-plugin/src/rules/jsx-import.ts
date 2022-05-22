@@ -1,5 +1,5 @@
-import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/experimental-utils'
-import { createRule, EmotionESLintRule, REPO_URL } from '../utils'
+import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/utils'
+import { createRule, REPO_URL } from '../utils'
 
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
@@ -9,13 +9,13 @@ const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 // to
 // <div css={css`color:hotpink;`} /> + import { css }
 
-declare module '@typescript-eslint/experimental-utils/dist/ts-eslint/Rule' {
+declare module '@typescript-eslint/utils/dist/ts-eslint/Rule' {
   export interface SharedConfigurationSettings {
     react?: { pragma?: string }
   }
 }
 
-interface JSXConfig {
+type JSXConfig = {
   runtime: string
   importSource?: string
 }
@@ -32,7 +32,6 @@ export default createRule<RuleOptions, keyof typeof messages>({
   name: __filename,
   meta: {
     docs: {
-      category: 'Possible Errors',
       description: 'Ensure jsx from @emotion/react is imported',
       recommended: false
     },
@@ -273,4 +272,4 @@ export default createRule<RuleOptions, keyof typeof messages>({
       }
     }
   }
-}) as EmotionESLintRule
+})

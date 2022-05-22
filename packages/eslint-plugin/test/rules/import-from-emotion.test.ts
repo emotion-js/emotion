@@ -2,9 +2,9 @@
  * @jest-environment node
  */
 
-import { TSESLint } from '@typescript-eslint/experimental-utils'
+import { TSESLint } from '@typescript-eslint/utils'
 import rule from '../../src/rules/import-from-emotion'
-import { RuleModuleForTesting, espreeParser } from '../test-utils'
+import { espreeParser } from '../test-utils'
 
 const ruleTester = new TSESLint.RuleTester({
   parser: espreeParser,
@@ -17,7 +17,7 @@ const ruleTester = new TSESLint.RuleTester({
   }
 })
 
-ruleTester.run('emotion jsx', rule as unknown as RuleModuleForTesting, {
+ruleTester.run('emotion jsx', rule, {
   valid: [
     {
       code: `import { css } from 'emotion'`

@@ -2,9 +2,9 @@
  * @jest-environment node
  */
 
-import { TSESLint } from '@typescript-eslint/experimental-utils'
+import { TSESLint } from '@typescript-eslint/utils'
 import rule from '../../src/rules/pkg-renaming'
-import { RuleModuleForTesting, espreeParser } from '../test-utils'
+import { espreeParser } from '../test-utils'
 
 const ruleTester = new TSESLint.RuleTester({
   parser: espreeParser,
@@ -17,7 +17,7 @@ const ruleTester = new TSESLint.RuleTester({
   }
 })
 
-ruleTester.run('pkg-renaming', rule as unknown as RuleModuleForTesting, {
+ruleTester.run('pkg-renaming', rule, {
   valid: [
     {
       code: `

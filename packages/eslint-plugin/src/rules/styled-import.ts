@@ -1,18 +1,19 @@
-import { AST_NODE_TYPES } from '@typescript-eslint/experimental-utils'
-import { createRule, EmotionESLintRule } from '../utils'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
+import { createRule } from '../utils'
 
-export default createRule({
+const messages = {
+  incorrectImport: 'styled should be imported from @emotion/styled'
+}
+
+export default createRule<never[], keyof typeof messages>({
   name: __filename,
   meta: {
     docs: {
-      category: 'Best Practices',
       description: 'Ensure styled is imported from @emotion/styled',
       recommended: false
     },
     fixable: 'code',
-    messages: {
-      incorrectImport: 'styled should be imported from @emotion/styled'
-    },
+    messages,
     schema: [],
     type: 'problem'
   },
@@ -37,4 +38,4 @@ export default createRule({
       }
     }
   }
-}) as EmotionESLintRule
+})
