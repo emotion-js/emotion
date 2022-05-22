@@ -26,13 +26,13 @@ export interface FilteringStyledOptions<
   ForwardedProps extends keyof Props = keyof Props
 > {
   label?: string
-  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
+  shouldForwardProp?: (propName: PropertyKey) => propName is ForwardedProps
   target?: string
 }
 
 export interface StyledOptions<Props = Record<PropertyKey, any>> {
   label?: string
-  shouldForwardProp?(propName: keyof Props): boolean
+  shouldForwardProp?: (propName: keyof Props) => boolean
   target?: string
 }
 
