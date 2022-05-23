@@ -98,6 +98,31 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 })
 
+test('allows to opt-out from styles printing', () => {
+  const emotionPlugin = createSerializer({ includeStyles: false })
+
+  const divStyle = css`
+    color: red;
+  `
+
+  const svgStyle = css`
+    width: 100%;
+  `
+
+  const divRef = React.createRef()
+  render(
+    <div css={divStyle} ref={divRef}>
+      <svg css={svgStyle} />
+    </div>
+  )
+
+  const output = prettyFormat(divRef.current, {
+    plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+  })
+
+  expect(output).toMatchSnapshot()
+})
+
 test('does not replace class names that are not from emotion', () => {
   let tree = renderer
     .create(

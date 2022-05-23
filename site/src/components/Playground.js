@@ -31,6 +31,8 @@ export const scope = {
         return require('@emotion/is-prop-valid')
       case 'facepaint':
         return require('facepaint')
+      case 'stylis':
+        return require('stylis')
       default:
         // eslint-disable-next-line no-throw-literal
         throw `Module "${moduleName}" not found`

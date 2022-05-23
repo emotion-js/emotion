@@ -5,7 +5,6 @@ import { ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 
-import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
 type Styles = Object | Array<Object>
@@ -91,7 +90,8 @@ export let Global: React.AbstractComponent<GlobalProps> =
     useInsertionEffect(() => {
       const key = `${cache.key}-global`
 
-      let sheet = new StyleSheet({
+      // use case of https://github.com/emotion-js/emotion/issues/2675
+      let sheet = new cache.sheet.constructor({
         key,
         nonce: cache.sheet.nonce,
         container: cache.sheet.container,
