@@ -90,6 +90,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
 - [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
 - [emotion-native-extended](https://github.com/ItsWendell/emotion-native-extended) - Better styling support for Emotion Native with [React Native Extended Stylesheet](https://github.com/vitalets/react-native-extended-stylesheet)
+- [medi-q](https://github.com/Karibash/medi-q) - A type-safe media query library that does not depend on any particular framework
 
 ### In the Wild
 
