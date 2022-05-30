@@ -63,10 +63,10 @@ export type Interpolation<
  * Practical sense: you can define and reuse atomic `shouldForwardProp` filters that are strictly bound with some `ForwardedProps` type.
  */
 export interface FilteringStyledOptions<
-  Props = Record<PropertyKey, any>,
+  Props = Record<string, any>,
   ForwardedProps extends keyof Props = keyof Props
 > {
-  shouldForwardProp?: (propName: PropertyKey) => propName is ForwardedProps
+  shouldForwardProp?: (propName: keyof Props) => propName is ForwardedProps
 }
 
 export interface StyledOptions<Props = Record<PropertyKey, any>> {

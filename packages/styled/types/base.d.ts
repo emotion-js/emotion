@@ -2,12 +2,8 @@
 // TypeScript Version: 3.2
 
 import * as React from 'react'
-import {
-  ComponentSelector,
-  Interpolation,
-  InterpolationPrimitive
-} from '@emotion/serialize'
-import { PropsOf, DistributiveOmit, Theme } from '@emotion/react'
+import { ComponentSelector, Interpolation } from '@emotion/serialize'
+import { PropsOf, Theme } from '@emotion/react'
 
 export {
   ArrayInterpolation,
@@ -22,15 +18,15 @@ export { ComponentSelector, Interpolation }
  * Practical sense: you can define and reuse atomic `shouldForwardProp` filters that are strictly bound with some `ForwardedProps` type.
  */
 export interface FilteringStyledOptions<
-  Props = Record<PropertyKey, any>,
+  Props = Record<string, any>,
   ForwardedProps extends keyof Props = keyof Props
 > {
   label?: string
-  shouldForwardProp?: (propName: PropertyKey) => propName is ForwardedProps
+  shouldForwardProp?: (propName: keyof Props) => propName is ForwardedProps
   target?: string
 }
 
-export interface StyledOptions<Props = Record<PropertyKey, any>> {
+export interface StyledOptions<Props = Record<string, any>> {
   label?: string
   shouldForwardProp?: (propName: keyof Props) => boolean
   target?: string

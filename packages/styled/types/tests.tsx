@@ -221,7 +221,7 @@ const Input5 = styled.input`
 {
   // Props forwarding through StyledOptions and FilteringStyledOptions
 
-  const fc: React.FC<{ foo: string }> = props => <div {...props} />
+  const fc: React.FC<{ foo: string }> = () => null
 
   styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
 
@@ -230,52 +230,61 @@ const Input5 = styled.input`
   // $ExpectError
   styled(fc, { shouldForwardProp: (prop: 'bar') => true })({})
 
-  const shouldForwardProp1 = (prop: 'foo') => true
-  styled(fc, { shouldForwardProp: shouldForwardProp1 })({})
+  styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
 
-  const shouldForwardProp2: StyledOptions['shouldForwardProp'] = (
+  // $ExpectError
+  const shouldForwardProp1: StyledOptions['shouldForwardProp'] = (
     prop: 'unknown'
   ) => true
-  styled(fc, { shouldForwardProp: shouldForwardProp2 })({})
-
-  const shouldForwardProp3 = (prop: 'unknown') => true
-  // $ExpectError
-  styled(fc, { shouldForwardProp: shouldForwardProp3 })({})
+  styled(fc, { shouldForwardProp: shouldForwardProp1 })({})
 
   // $ExpectError
-  const shouldForwardProp4: StyledOptions<{
+  styled(fc, { shouldForwardProp: (prop: 'unknown') => true })({})
+
+  // $ExpectError
+  const shouldForwardProp2: StyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: 'unknown') => true
 
-  const shouldForwardProp5 = (prop: 'foo'): prop is 'foo' => true
-  styled(fc, { shouldForwardProp: shouldForwardProp5 })({})
+  styled(fc, { shouldForwardProp: (prop: 'foo'): prop is 'foo' => true })({})
 
-  const shouldForwardProp6: FilteringStyledOptions['shouldForwardProp'] = (
+  const shouldForwardProp3: FilteringStyledOptions['shouldForwardProp'] = (
+    prop: string
+  ): prop is 'foo' => true
+
+  // $ExpectError
+  const shouldForwardProp4: FilteringStyledOptions['shouldForwardProp'] = (
     prop: 'foo'
   ): prop is 'foo' => true
 
-  const shouldForwardProp7: FilteringStyledOptions<{
+  const shouldForwardProp5: FilteringStyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: 'foo'): prop is 'foo' => true
 
   // $ExpectError
-  const shouldForwardProp8: FilteringStyledOptions<{
+  const shouldForwardProp6: FilteringStyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: 'unknown'): prop is 'unknown' => true
 
-  const shouldForwardProp9: FilteringStyledOptions<
+  const shouldForwardProp7: FilteringStyledOptions<
     { foo: string; bar: string },
     'foo'
   >['shouldForwardProp'] = (prop: 'foo' | 'bar'): prop is 'foo' => true
 
   // $ExpectError
-  const shouldForwardProp10: FilteringStyledOptions<
+  const shouldForwardProp8: FilteringStyledOptions<
     { foo: string; bar: string },
     'foo'
   >['shouldForwardProp'] = (prop: 'foo' | 'bar'): prop is 'bar' => true
 
+  styled('div', {
+    shouldForwardProp: (prop: keyof JSX.IntrinsicElements['div']) => true
+  })({})
+
+  // $ExpectError
   styled('div', { shouldForwardProp: (prop: 'color') => true })({})
 
+  // $ExpectError
   styled('div', {
     shouldForwardProp: (prop: 'color'): prop is 'color' => true
   })({})
