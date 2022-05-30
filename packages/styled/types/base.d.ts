@@ -18,7 +18,7 @@ export { ComponentSelector, Interpolation }
  * Practical sense: you can define and reuse atomic `shouldForwardProp` filters that are strictly bound with some `ForwardedProps` type.
  */
 export interface FilteringStyledOptions<
-  Props extends {} = {},
+  Props = {},
   ForwardedProps extends keyof Props = keyof Props
 > {
   label?: string
@@ -28,7 +28,7 @@ export interface FilteringStyledOptions<
   target?: string
 }
 
-export interface StyledOptions<Props extends {} = {}> {
+export interface StyledOptions<Props = {}> {
   label?: string
   shouldForwardProp?: (propName: PropertyKey) => boolean
   target?: string
