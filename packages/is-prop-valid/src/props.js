@@ -480,11 +480,7 @@ const props = {
   y2: true,
   yChannelSelector: true,
   z: true,
-  zoomAndPan: true,
-  // preact
-  for: true,
-  class: true,
-  autofocus: true
+  zoomAndPan: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
