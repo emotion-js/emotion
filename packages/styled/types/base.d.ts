@@ -19,10 +19,10 @@ export { ComponentSelector, Interpolation }
  */
 export interface FilteringStyledOptions<
   Props = Record<string, any>,
-  ForwardedProps extends keyof Props = keyof Props
+  ForwardedProps extends keyof Props & string = keyof Props & string
 > {
   label?: string
-  shouldForwardProp?: (propName: string) => propName is ForwardedProps & string
+  shouldForwardProp?: (propName: string) => propName is ForwardedProps
   target?: string
 }
 
@@ -121,7 +121,8 @@ export interface CreateStyledComponent<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -150,7 +151,8 @@ export interface CreateStyled {
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -171,7 +173,8 @@ export interface CreateStyled {
 
   <
     Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] &
+      string = keyof JSX.IntrinsicElements[Tag] & string
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>

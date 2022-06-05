@@ -64,9 +64,9 @@ export type Interpolation<
  */
 export interface FilteringStyledOptions<
   Props = Record<string, any>,
-  ForwardedProps extends keyof Props = keyof Props
+  ForwardedProps extends keyof Props & string = keyof Props & string
 > {
-  shouldForwardProp?: (propName: string) => propName is ForwardedProps & string
+  shouldForwardProp?: (propName: string) => propName is ForwardedProps
 }
 
 export interface StyledOptions<Props = Record<string, any>> {
@@ -149,7 +149,8 @@ export interface CreateStyledComponent<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -178,7 +179,8 @@ export interface CreateStyled {
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
