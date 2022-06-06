@@ -102,6 +102,7 @@ exports[`prop filtering on composed styled components that are string tags 1`] =
   aria-label="some label"
   className="emotion-0 emotion-1"
   data-wow="value"
+  for="other reasons"
   href="link"
   is={true}
   kind={true}
