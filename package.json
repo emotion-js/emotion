@@ -125,9 +125,6 @@
       "site",
       "scripts/*",
       "playgrounds/*"
-    ],
-    "nohoist": [
-      "**/dtslint"
     ]
   },
   "preconstruct": {
@@ -209,7 +206,6 @@
     "bundlesize": "^0.13.2",
     "codecov": "^2.3.1",
     "cssjanus": "^1.2.0",
-    "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
