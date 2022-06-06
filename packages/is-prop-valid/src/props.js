@@ -480,7 +480,14 @@ const props = {
   y2: true,
   yChannelSelector: true,
   z: true,
-  zoomAndPan: true
+  zoomAndPan: true,
+
+  // For preact. We have this code here even though Emotion doesn't support
+  // Preact, since @emotion/is-prop-valid is used by some libraries outside of
+  // the context of Emotion.
+  for: true,
+  class: true,
+  autofocus: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
