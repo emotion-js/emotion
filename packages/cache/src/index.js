@@ -92,8 +92,7 @@ let createCache = (options: Options): EmotionCache => {
     }
   }
   let inserted = {}
-  // $FlowFixMe
-  let container: HTMLElement
+  let container: Node
   const nodesToHydrate = []
   if (isBrowser) {
     container = options.container || ((document.head: any): HTMLHeadElement)
@@ -250,7 +249,7 @@ let createCache = (options: Options): EmotionCache => {
     key,
     sheet: new StyleSheet({
       key,
-      container: ((container: any): HTMLElement),
+      container: ((container: any): Node),
       nonce: options.nonce,
       speedy: options.speedy,
       prepend: options.prepend,

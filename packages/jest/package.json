@@ -36,13 +36,11 @@
     }
   },
   "devDependencies": {
+    "@definitelytyped/dtslint": "0.0.112",
     "@emotion/css": "11.9.0",
     "@emotion/react": "11.9.0",
     "@types/jest": "^27.0.3",
-    "dtslint": "^4.2.1",
     "enzyme-to-json": "^3.6.1",
-    "preact": "^8.2.9",
-    "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
     "react": "16.14.0",
     "react-dom": "16.14.0",

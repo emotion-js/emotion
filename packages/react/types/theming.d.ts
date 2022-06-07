@@ -7,7 +7,7 @@ import { DistributiveOmit, PropsOf } from './helper'
 
 export interface ThemeProviderProps {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
 export interface ThemeProvider {

@@ -481,7 +481,10 @@ const props = {
   yChannelSelector: true,
   z: true,
   zoomAndPan: true,
-  // preact
+
+  // For preact. We have this code here even though Emotion doesn't support
+  // Preact, since @emotion/is-prop-valid is used by some libraries outside of
+  // the context of Emotion.
   for: true,
   class: true,
   autofocus: true

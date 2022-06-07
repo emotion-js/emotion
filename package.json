@@ -125,9 +125,6 @@
       "site",
       "scripts/*",
       "playgrounds/*"
-    ],
-    "nohoist": [
-      "**/dtslint"
     ]
   },
   "preconstruct": {
@@ -138,10 +135,6 @@
       "react": "React",
       "react/jsx-runtime": "ReactJSX",
       "react/jsx-dev-runtime": "ReactJSXDev"
-    },
-    "___experimentalFlags_WILL_CHANGE_IN_PATCH": {
-      "newEntrypoints": true,
-      "newDistFilenames": true
     }
   },
   "bugs": {
@@ -194,11 +187,11 @@
     "@manypkg/cli": "^0.16.1",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@preconstruct/cli": "1.1.34",
+    "@preconstruct/cli": "^2.1.5",
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^10.11.4",
-    "@types/react": "^16.9.11",
+    "@types/react": "^18.0.9",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "babel-flow-types": "^1.2.3",
@@ -213,7 +206,6 @@
     "bundlesize": "^0.13.2",
     "codecov": "^2.3.1",
     "cssjanus": "^1.2.0",
-    "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",

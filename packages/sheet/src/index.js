@@ -42,7 +42,7 @@ function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
 export type Options = {
   nonce?: string,
   key: string,
-  container: HTMLElement,
+  container: Node,
   speedy?: boolean,
   prepend?: boolean,
   insertionPoint?: HTMLElement
@@ -66,7 +66,8 @@ export class StyleSheet {
   isSpeedy: boolean
   ctr: number
   tags: HTMLStyleElement[]
-  container: HTMLElement
+  // Using Node instead of HTMLElement since container may be a ShadowRoot
+  container: Node
   key: string
   nonce: string | void
   prepend: boolean | void
