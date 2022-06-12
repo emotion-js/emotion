@@ -1,5 +1,11 @@
 # @emotion/sheet
 
+## 1.1.1
+
+### Patch Changes
+
+- [#2728](https://github.com/emotion-js/emotion/pull/2728) [`6c2d7a60`](https://github.com/emotion-js/emotion/commit/6c2d7a6010af85502ae33d14dcbd3bb62ed7612e) Thanks [@Peeja](https://github.com/Peeja)! - TypeScript type for the `container` option has been adjusted. It will now accept a `ShadowRoot`, or any other kind of `Node`.
+
 ## 1.1.0
 
 ### Minor Changes
