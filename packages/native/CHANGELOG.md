@@ -1,5 +1,15 @@
 # @emotion/native
 
+## 11.9.3
+
+### Patch Changes
+
+- [#2759](https://github.com/emotion-js/emotion/pull/2759) Thanks [@srmagura](https://github.com/srmagura), [@Andarist](https://github.com/Andarist)! - Change the argument of the `shouldForwardProp` option of `styled` from `PropertyKey` to `string` in the TypeScript definitions.
+
+* [#2333](https://github.com/emotion-js/emotion/pull/2333) [`3055efdd`](https://github.com/emotion-js/emotion/commit/3055efddf8f9fb14b148fda466dcb4eb9affc525) Thanks [@Andarist](https://github.com/Andarist)! - `shouldForwardProp` has been changed from being a bivariant method to a contravariant function - it improves the type-safety for those that type this option.
+
+- [#2333](https://github.com/emotion-js/emotion/pull/2333) [`3055efdd`](https://github.com/emotion-js/emotion/commit/3055efddf8f9fb14b148fda466dcb4eb9affc525) Thanks [@antongolub](https://github.com/antongolub)! - `FilteringStyledOptions` and `StyledOptions` types no longer require a type argument for the `Props` generic.
+
 ## 11.0.0
 
 ### Major Changes

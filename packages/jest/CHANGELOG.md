@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.9.3
+
+### Patch Changes
+
+- [#2749](https://github.com/emotion-js/emotion/pull/2749) [`fd22cace`](https://github.com/emotion-js/emotion/commit/fd22cacee60e7e7c2b512af47a9ce374f7896362) Thanks [@Andarist](https://github.com/Andarist)! - Added a dedicated error for a situation when `toHaveStyleRule` receives an array.
+
 ## 11.9.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.1.3
+
+### Patch Changes
+
+- [#2759](https://github.com/emotion-js/emotion/pull/2759) Thanks [@srmagura](https://github.com/srmagura)! - Change the type of the argument to `isPropValid` from `PropertyKey` to `string` in the TypeScript definitions.
+
 ## 1.1.2
 
 ### Patch Changes
