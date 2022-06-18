@@ -7,6 +7,50 @@
     "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
     "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
   },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./types/index.d.ts",
+        "browser": "./dist/emotion-react.browser.esm.js",
+        "default": "./dist/emotion-react.esm.js"
+      },
+      "require": {
+        "types": "./types/index.d.ts",
+        "browser": "./dist/emotion-react.browser.cjs.js",
+        "default": "./dist/emotion-react.cjs.js"
+      }
+    },
+    "./macro": {
+      "types": "./macro.d.ts",
+      "default": "./macro.js"
+    },
+    "./jsx-runtime": {
+      "import": {
+        "types": "./types/jsx-runtime.d.ts",
+        "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
+      },
+      "require": {
+        "types": "./types/jsx-runtime.d.ts",
+        "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.js",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+      }
+    },
+    "./jsx-dev-runtime": {
+      "import": {
+        "types": "./types/jsx-dev-runtime.d.ts",
+        "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
+      },
+      "require": {
+        "types": "./types/jsx-dev-runtime.d.ts",
+        "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.js",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+      }
+    },
+    "./dist/*": "./dist/*.js",
+    "./package.json": "./package.json"
+  },
   "types": "types/index.d.ts",
   "files": [
     "src",
