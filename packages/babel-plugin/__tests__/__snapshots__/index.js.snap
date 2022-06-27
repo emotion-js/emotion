@@ -71,7 +71,7 @@ import _styled from "@emotion/styled/base";
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
 // @flow
-const MyComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+const MyComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "eck06en0"
 } : {
   target: "eck06en0",
@@ -327,7 +327,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 import * as React from 'react';
 import { jsx } from '@emotion/react';
 const MyObject = {
-  MyProperty: _styled("div", process.env.NODE_ENV === "production" ? {
+  MyProperty: /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
     target: "erl9uiw0"
   } : {
     target: "erl9uiw0",
