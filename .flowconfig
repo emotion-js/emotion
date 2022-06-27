@@ -7,6 +7,7 @@
 .*/node_modules/graphql/.*
 .*/node_modules/metro.*
 .*/node_modules/@parcel/.*
+.*/node_modules/babel-plugin-macros/.*
 
 [untyped]
 .*/node_modules/polished/.*
