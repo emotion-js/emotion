@@ -9,7 +9,7 @@
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/core": "^7.18.5",
     "@emotion/babel-plugin": "^11.0.0",
     "babel-plugin-react-native-web": "^0.17.5",
     "d3-scale-chromatic": "^3.0.0",
