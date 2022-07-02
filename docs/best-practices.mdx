@@ -19,13 +19,13 @@ const myCss = css({
 
 ### Colocate styles with components
 
-With normal CSS, the styles for a component are defined in a separate file. This makes maintenance more difficult because it's harder to tell which components use a given piece of CSS, and you can easily forget to update the relevant CSS after modifying a component. One of the main benefits of Emotion is that you can [colocate](https://kentcdodds.com/blog/colocation) your styles with your components. All this means is that the CSS for a component should be in the same file as the component itself. This point is closely related to sharing styles via component reuse.
+With normal CSS, the styles for a component are defined in a separate file. This makes maintenance more difficult because it's harder to tell which components use a given piece of CSS, and you can easily forget to update the relevant CSS after modifying a component. One of the main benefits of Emotion is that you can [colocate](https://kentcdodds.com/blog/colocation) your styles with your components. All this means is that the CSS for a component should be in the same file as the component itself.
 
 ### Consider how you will share styles
 
 There are two main approaches for sharing styles across an Emotion application.
 
-To illustrate the two methods, imagine we're developing an application that needs to display error messages in many different components. All of the error messages should be red and bold. Some error messages should also use a large font.
+To illustrate the two methods, let's imagine we're developing an application that needs to display error messages in many different components. All of the error messages should be red and bold. Some error messages should also use a large font.
 
 #### Method 1: Export CSS objects
 
@@ -120,9 +120,17 @@ Imagine you are displaying a list of user avatars in a forum application. Every 
 </style>
 ```
 
-Now imagine if there are 100 avatars on the page! See [Michael Dougall's blog post](https://douges.dev/blog/taming-the-beast-that-is-css-in-js) for a live example of this issue — it's under the Performance heading.
+Now imagine how much CSS there would be if there were 100 avatars on the page!
 
-You should also use the `style` prop if the styles will be updated frequently. If your application lets a user drag and drop an element, you likely have a `transform` property like `` transform: `translate(${x}px, ${y}px)`  ``. This property should go through the `style` prop since `x` and `y` will change rapidly as the element is dragged.
+You should also use the `style` prop if the styles will be updated frequently. If your application lets a user drag and drop an element, you likely have a `transform` property like
+
+```ts
+{
+  transform: `translate(${x}px, ${y}px)`
+}
+```
+
+This property should go through the `style` prop since `x` and `y` will change rapidly as the element is dragged.
 
 #### Advanced: CSS variables with `style`
 
@@ -145,11 +153,11 @@ function Avatar({ imageUrl }) {
 }
 ```
 
-TypeScript users: you'll have to use a type assertion like `style={{ ['--background-style' as any]: imageUrl }}` as explained [here](https://stackoverflow.com/a/52013197/752601).
+If you're using TypeScript, you'll have to use a type assertion like `style={{ ['--background-style' as any]: imageUrl }}` as explained [here](https://stackoverflow.com/a/52013197/752601).
 
 ### If using React, prefer `@emotion/react` or `@emotion/styled` over `@emotion/css`
 
-There is nothing wrong with `@emotion/css`, but `@emotion/react` and `@emotion/styled` generally offer a better developer experience.
+`@emotion/react` and `@emotion/styled` generally offer a better developer experience over class names (`@emotion/css`) when using React.
 
 ### Use the css prop or `@emotion/styled`, but not both
 
@@ -234,7 +242,7 @@ If Emotion-related code is indeed slowing down your app, here are some optimizat
 
 - Call `css` on your object style or CSS string **outside** your component so that the styles are only serialized once instead of on every render. See the Recommendations section for more details on this.
 - Use the css prop for static styles and use the `style` prop for dynamic styles. See the Recommendations section for more details on this.
-- Use [`@emotion/babel-plugin`](/docs/babel.mdx).
+- Use [`@emotion/babel-plugin`](/docs/babel.mdx), which peforms some compile-time optimizations to the css prop.
 
 ## Additional Reading
 
