@@ -34,6 +34,8 @@ const scope: Scope = {
         return require('@emotion/is-prop-valid')
       case 'facepaint':
         return require('facepaint')
+      case 'stylis':
+        return require('stylis')
 
       // Not used unless the user adds a jsxImportSource directive
       case 'react/jsx-runtime':
