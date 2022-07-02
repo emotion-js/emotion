@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement } from 'react'
+import { PropsWithChildren, ReactElement, useState } from 'react'
 import { DocGroup, DocMetadata } from '../queries'
 import { colors } from '../util'
 import { cx } from '@emotion/css'
@@ -17,11 +17,9 @@ function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
     <>
       <h3
         css={{
-          fontWeight: 800,
+          fontWeight: 'bold',
           fontSize: '1.25rem',
-          marginTop: '1rem',
-          marginBottom: 0, // or space[1]
-          lineHeight: '2rem'
+          marginBottom: 6
         }}
         // className={cx({
         //   'docSearch-lvl0':
@@ -34,36 +32,33 @@ function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
         css={{
           listStyle: 'none',
           margin: 0,
+          marginBottom: '1rem',
           padding: 0
         }}
       >
         {docs.map(doc => (
           <li key={doc.slug}>
-            <Link href={`/docs/${doc.slug}`}>
+            <Link href={`/docs/${doc.slug}`} passHref>
               <a
                 css={{
                   display: 'block',
-                  fontWeight: 300,
-                  textDecoration: 'none',
-                  margin: 0,
                   paddingTop: 6,
                   paddingBottom: 6,
-                  // paddingTop: [12, 12, 6],
-                  // paddingBottom: [12, 12, 6],
-                  // paddingLeft: [12, 12, 0],
-                  // paddingRight: [12, 12, 0],
-                  '&:hover': { color: colors.border },
+                  color: colors.body,
+                  '&:hover': {
+                    color: colors.pink
+                  },
                   '&.active': {
                     fontWeight: 600,
-                    // color: 'none', [colors.hightlight, colors.hightlight, 'none'],
+                    color: colors.hightlight,
                     '&::before': {
                       content: '""',
-                      height: '2rem', // [42, 42, 32],
-                      width: 6, // [8, 8, 6],
+                      height: '2rem',
+                      width: '0.5rem',
                       transform: `translate3d(-2rem, -0.5rem, 0)`,
                       position: 'absolute',
                       display: 'inline-block',
-                      backgroundColor: colors.border // colors.lighten(0.25, colors.border)
+                      backgroundColor: colors.border
                     }
                   }
                 }}
@@ -81,27 +76,27 @@ function SidebarGroup({ title, docs }: SidebarGroupProps): ReactElement {
 
 interface DocWrapperProps {
   docGroups: DocGroup[]
-
-  sidebarOpen: boolean
-  onSidebarOpenChange(sidebarOpen: boolean): void
 }
 
 export function DocWrapper({
   docGroups,
-  sidebarOpen,
-  onSidebarOpenChange,
   children
 }: PropsWithChildren<DocWrapperProps>): ReactElement {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
-    <>
+    <div css={{ display: 'flex' }}>
+      <main
+        css={{
+          paddingRight: '1rem'
+        }}
+      >
+        {children}
+      </main>
       <aside
         css={{
-          /*display: [
-            sidebarOpen ? 'block' : 'none',
-            sidebarOpen ? 'block' : 'none',
-            'block'
-          ],*/
-          gridColumn: '2 / span 1', // ['1 / span 2', '1 / span 2', '2 / span 1'],
+          flexShrink: 0,
+          width: 220,
           paddingLeft: '1rem', // [0, 0, space[3]],
           borderLeft: `1px solid ${colors.border}` /* [
             'none',
@@ -112,41 +107,10 @@ export function DocWrapper({
       >
         {/* <Carbon />
         <Search /> */}
-        {/*docList.map(item => {
-          return (
-            <Match path="/docs/:docName" key={item.title}>
-              {({ match }: { match?: { docName: string } }) => {
-                return (
-                  <SidebarGroup
-                    item={item}
-                    sidebarOpen={sidebarOpen}
-                    setSidebarOpenState={setSidebarOpen}
-                    docMap={docMap}
-                    docName={match && match.docName}
-                  />
-                )
-              }} 
-            </Match>
-          )
-        })*/}
         {docGroups.map(g => (
           <SidebarGroup title={g.title} docs={g.docs} key={g.title} />
         ))}
       </aside>
-      <main
-        css={{
-          // display: [
-          //   sidebarOpen ? 'none' : 'block',
-          //   sidebarOpen ? 'none' : 'block',
-          //   'block'
-          // ],
-          gridRow: 2,
-          gridColumn: '1 / span 1', // ['1 / span 2', '1 / span 2', '1 / span 1'],
-          paddingRight: 0
-        }}
-      >
-        {children}
-      </main>
       {/* <ToggleSidebarButton setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}>
         {sidebarOpen ? (
           <CloseIcon color="white" size={32} />
@@ -154,6 +118,6 @@ export function DocWrapper({
           <MenuIcon color="white" size={32} />
         )}
       </ToggleSidebarButton> */}
-    </>
+    </div>
   )
 }

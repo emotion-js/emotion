@@ -1,9 +1,10 @@
 import { PropsWithChildren, ReactElement } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { colors, mediaQueries } from '../util'
+import { colors, mediaQueries, styleConstants } from '../util'
 import { css } from '@emotion/react'
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
+import logo from '../public/logo.png'
 
 export const animatedUnderline = css({
   '&::after': {
@@ -29,7 +30,7 @@ function HeaderLink({
   children
 }: HeaderLinkProps): ReactElement {
   return (
-    <Link href={href}>
+    <Link href={href} passHref>
       <a
         css={[
           {
@@ -53,97 +54,107 @@ export function SiteHeader() {
   return (
     <header
       css={{
-        gridColumn: '1 / span 2',
-        display: 'flex',
-        alignItems: 'center'
+        borderBottom: `1px solid ${colors.grayBorder}`,
+        boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
+        paddingTop: '0.25rem',
+        marginBottom: '2rem'
       }}
     >
-      <Link href="/">
-        <a
+      <div
+        css={{
+          margin: '0 auto',
+          maxWidth: styleConstants.containerWidth,
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        <Link href="/" passHref>
+          <a
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+              color: colors.pink,
+              textDecoration: 'none',
+              marginRight: '1rem'
+            }}
+          >
+            <Image alt="Avatar" src={logo} height={48} width={48} />
+            <h4
+              css={{
+                display: 'none',
+                margin: 0,
+                marginLeft: '1rem',
+                fontWeight: 'bold',
+                [mediaQueries.lgUp]: {
+                  display: 'inline'
+                }
+              }}
+            >
+              Emotion
+            </h4>
+          </a>
+        </Link>
+        <nav
           css={{
-            display: 'flex',
-            alignItems: 'center',
-            color: colors.pink,
-            textDecoration: 'none',
-            marginRight: '1rem'
+            marginLeft: 'auto',
+            overflowX: 'auto'
           }}
         >
-          <Image alt="Avatar" src="/logo.png" height={36} width={36} />
-          <h4
+          <ul
             css={{
-              display: 'none',
-              margin: 0,
-              marginLeft: '1rem',
-              fontWeight: 'bold',
-              [mediaQueries.lgUp]: {
-                display: 'inline'
+              display: 'grid',
+              gridAutoFlow: 'column', // 'column dense', undefined, 'column'],
+              gridColumn: 'auto', // ['2 / span 1', undefined, 'auto'],
+              gridRow: 'auto', // '1', '1', 'auto'],
+              alignItems: 'center',
+              justifyItems: 'center',
+              gap: '1rem',
+              padding: 0,
+              margin: '0 0 0 auto',
+              overflow: 'auto',
+              listStyle: 'none',
+              'li a': {
+                display: 'inline-block',
+                paddingTop: '0.5rem',
+                paddingBottom: '0.5rem',
+                whiteSpace: 'nowrap'
               }
             }}
           >
-            Emotion
-          </h4>
-        </a>
-      </Link>
-      <nav
-        css={{
-          marginLeft: 'auto',
-          overflowX: 'auto'
-        }}
-      >
-        <ul
-          css={{
-            display: 'grid',
-            gridAutoFlow: 'column', // 'column dense', undefined, 'column'],
-            gridColumn: 'auto', // ['2 / span 1', undefined, 'auto'],
-            gridRow: 'auto', // '1', '1', 'auto'],
-            alignItems: 'center',
-            justifyItems: 'center',
-            gap: '1rem',
-            padding: 0,
-            margin: '0 0 0 auto',
-            overflow: 'auto',
-            listStyle: 'none',
-            'li a': {
-              display: 'inline-block',
-              paddingTop: '0.5rem',
-              paddingBottom: '0.5rem',
-              whiteSpace: 'nowrap'
-            }
-          }}
-        >
-          <li>
-            <HeaderLink
-              href="/docs/introduction"
-              active={router.pathname.startsWith('/docs')}
-            >
-              Docs
-            </HeaderLink>
-          </li>
-          <li>
-            <HeaderLink
-              href="/community"
-              active={router.pathname === '/community'}
-            >
-              Community
-            </HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="https://github.com/emotion-js/emotion">
-              GitHub
-            </HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="https://join.slack.com/t/emotion-slack/shared_invite/zt-rmtwsy74-2uvyFdz5uxa8OiMguJJeuQ">
-              Slack
-            </HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="https://5faaafd0bd0f3f0008469537--emotion.netlify.app">
-              v10 Docs
-            </HeaderLink>
-          </li>
-        </ul>
-      </nav>
+            <li>
+              <HeaderLink
+                href="/docs/introduction"
+                active={router.pathname.startsWith('/docs')}
+              >
+                Docs
+              </HeaderLink>
+            </li>
+            <li>
+              <HeaderLink
+                href="/community"
+                active={router.pathname === '/community'}
+              >
+                Community
+              </HeaderLink>
+            </li>
+            <li>
+              <HeaderLink href="https://github.com/emotion-js/emotion">
+                GitHub
+              </HeaderLink>
+            </li>
+            <li>
+              <HeaderLink href="https://join.slack.com/t/emotion-slack/shared_invite/zt-rmtwsy74-2uvyFdz5uxa8OiMguJJeuQ">
+                Slack
+              </HeaderLink>
+            </li>
+            <li>
+              <HeaderLink href="https://5faaafd0bd0f3f0008469537--emotion.netlify.app">
+                v10 Docs
+              </HeaderLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   )
 }

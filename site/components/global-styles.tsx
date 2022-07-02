@@ -6,8 +6,12 @@ export function GlobalStyles(): ReactElement {
   return (
     <Global
       styles={{
+        a: {
+          color: colors.pink,
+          textDecoration: 'none'
+        },
         'a:hover': {
-          color: colors.pink
+          color: colors.hightlight
         }
       }}
     />
