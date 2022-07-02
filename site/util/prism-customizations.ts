@@ -34,5 +34,5 @@ Prism.languages.insertBefore('jsx', 'template-string', {
         alias: 'language-css'
       }
     }
-  } as any // @types/prismjs are messed up: https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/58208
+  }
 })
