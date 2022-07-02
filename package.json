@@ -190,7 +190,7 @@
     "@preconstruct/cli": "^2.1.5",
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^27.0.3",
-    "@types/node": "^10.11.4",
+    "@types/node": "^12.20.37",
     "@types/react": "^18.0.9",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-eslint": "^10.1.0",
