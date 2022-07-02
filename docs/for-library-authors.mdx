@@ -2,12 +2,10 @@
 title: 'For Library Authors'
 ---
 
-**Should I use Emotion in my library?**
+**If you are writing a component library, carefully consider whether your library will depend on Emotion.** A simple alternative is to include a regular CSS file in your package, which your users bring in via a normal `import` statement.
 
-If you are writing a component library, carefully consider whether your library will depend on Emotion. A simple alternative is to include a regular CSS file in your package, which your users bring in via a normal `import` statement.
+If you're reading this, you probably know about Emotion's many benefits. **Here are some drawbacks to consider:**
 
-If you're reading this, you probably know about Emotion's many benefits. Here are some drawbacks to consider:
-
-- Consumers of the library will have to use the same version of Emotion as the library. There will be issues if, for example, your library depends on Emotion 10 but a user's application depends on Emotion 11.
+- Consuming applications will have to use the same version of Emotion as the library. There will be issues if, for example, your library depends on Emotion 11 but a user's application depends on Emotion 10.
 - If your package only contains a handful of small components, Emotion may significantly increase your package's bundle size.
-- Emotion may be more error prone than a simple CSS file in certain edge cases. In a previous version of [react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton) which utilized Emotion 10, we received reports of styles not working in production builds, iframes, and the shadow DOM.
+- Emotion may be more error prone than a simple CSS file in certain edge cases. For example, in a previous version of [react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton) which utilized Emotion 10, we received reports of styles not working in production builds, iframes, and the shadow DOM.
