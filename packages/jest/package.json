@@ -24,7 +24,7 @@
     "stylis": "4.0.13"
   },
   "peerDependencies": {
-    "@types/jest": "^26.0.14 || ^27.0.0",
+    "@types/jest": "^26.0.14 || ^27.0.0 || ^28.0.0",
     "enzyme-to-json": "^3.2.1"
   },
   "peerDependenciesMeta": {
