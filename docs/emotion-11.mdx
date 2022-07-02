@@ -4,7 +4,7 @@ title: 'Emotion 11'
 
 Emotion 11 is a slight evolution over the Emotion 10. It focuses mainly on the developer experience, TS types improvements, switches internals to hooks and to the new version of the parser that we use: [Stylis](https://github.com/thysultan/stylis.js).
 
-# Package renaming
+## Package renaming
 
 One of the most significant changes is that most of the user-facing packages have been renamed.
 
@@ -16,6 +16,7 @@ Most of this renaming can be done automatically via a codemod, following these s
 1. Run `eslint` with the `--fix` flag. For example: `yarn eslint --config .eslintrc --ext .js,.jsx "." --fix`
 
 The full list of renamed packages:
+
 - `@emotion/core` → `@emotion/react`
 - `emotion` → `@emotion/css`
 - `emotion-theming` → moved into ` @emotion/react`
@@ -26,13 +27,13 @@ The full list of renamed packages:
 - `eslint-plugin-emotion` → `@emotion/eslint-plugin`
 - `jest-emotion` → `@emotion/jest`
 
-# Hooks
+## Hooks
 
 Use hooks internally for improved bundle size and a better tree in React DevTools 🎉.
 
-# TypeScript
+## TypeScript
 
-## Types overhaul
+### Types overhaul
 
 TypeScript types have been significantly restructured.
 
@@ -45,7 +46,7 @@ TypeScript types have been significantly restructured.
 
 If you encounter build issues after upgrade, try removing any manually specified generic types and let them be inferred.
 
-## Theme type
+### Theme type
 
 It's now easier to provide a type for `Theme`. Instead of creating custom instances (like before) you can augment the builtin `Theme` interface like this:
 
@@ -60,7 +61,7 @@ declare module '@emotion/react' {
 }
 ```
 
-## css prop types
+### css prop types
 
 The way in which we provide TypeScript support for the `css` prop has changed. Based on the usage of our JSX factories, we can add support for `css` prop only for components that support `className` prop (as our JSX factory functions take the provided `css` prop, resolve it and pass the generated `className` to the rendered component).
 
@@ -76,7 +77,7 @@ However, if you are stuck with older version of TypeScript or using the classic 
 
 In this particular case we are forced to extend the existing `React.Attributes` interface. Previously we've been extending both `React.DOMAttributes` and `JSX.IntrinsicAttributes`. This change is really minor and shouldn't affect any consuming code.
 
-# Stylis v4
+## Stylis v4
 
 The parser we use ([Stylis](https://github.com/thysultan/stylis.js)) got upgraded. It fixes some long-standing parsing edge cases while being smaller and faster 🚀
 
@@ -87,13 +88,13 @@ It has been completely rewritten and comes with some breaking changes. The most 
 - the prefixer is now just a plugin which happens to be included in the default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`. You can import `prefixer` from the `stylis` module to do that.
 - `@import` rules are no longer special-cased. The responsibility to put them first has been moved to the author of the styles. They also can't be nested within other rules now. It's only possible to write them at the top level of global styles.
 
-# Emotion's caches
+## Emotion's caches
 
 The `key` option is now required when creating a custom instance of a cache. Please make sure it's unique (and not equal to `'css'`) as it's used for linking styles to your cache. If multiple caches share the same key they might "fight" for each other's style elements.
 
 The new `prepend` option can make Emotion add style tags at the beginning of the specified DOM container instead of the end.
 
-# Other
+## Other
 
 There are a lot of less substantial changes than what has been described here, some of them might even be breaking changes but are not relevant to the majority of users. Therefore to learn more about all of the changes please read through the full list of changes contained in the respective changelogs:
 

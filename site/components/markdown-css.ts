@@ -2,32 +2,50 @@ import { css } from '@emotion/react'
 import { colors, styleConstants } from '../util'
 
 export const markdownCss = css({
-  'h1, h2, h3': { marginTop: '3rem', marginBottom: '1.5rem' },
+  'h2, h3': { marginTop: '3rem', marginBottom: '1.5rem' },
 
-  code: {
+  'p, li, code': { lineHeight: 1.7 },
+
+  a: {
+    fontWeight: 500,
+    color: colors.hightlight
+  },
+
+  hr: { border: `1px solid ${colors.pinkBorder}`, opacity: 1 },
+
+  // This targets inline code only, not code blocks
+  'code:not([class*="language-"])': {
     color: colors.body,
     backgroundColor: 'rgba(117, 63, 131, 0.07)',
     borderRadius: styleConstants.borderRadius,
-    fontSize: styleConstants.fontSizeSm,
     padding: '0.25rem'
   },
 
-  'h1 code, h2 code, h3 code, h4 code, h5 code, h6 code': {
-    fontSize: 'inherit'
+  '.remark-highlight': {
+    margin: '1.5rem 0'
   },
 
-  a: {
-    display: 'inline-block',
-    fontWeight: 500,
-    color: colors.hightlight
-    // '&.anchor': {
-    //   backgroundColor: 'initial',
-    //   borderBottom: 'initial'
-    // },
-    // code: {
-    //   '&:hover': { color: colors.border }
-    // }
-  },
+  blockquote: {
+    display: 'flex',
+    alignItems: 'center',
+    margin: '2rem 0 0',
+    borderLeft: `5px solid ${colors.hotPink}`,
+    backgroundColor: colors.pinkBg,
+    padding: '1rem',
 
-  hr: { border: `1px solid ${colors.pinkBorder}`, opacity: 1 }
+    p: {
+      margin: 0,
+
+      '&:first-of-type': {
+        fontWeight: 700,
+        marginTop: 0
+      },
+
+      '&:nth-of-type(2)': {
+        marginTop: '0.25rem',
+        marginLeft: '0.5rem',
+        padding: '0 1rem'
+      }
+    }
+  }
 })

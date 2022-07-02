@@ -58,7 +58,7 @@ export function SiteHeader() {
         borderBottom: `1px solid ${colors.grayBorder}`,
         boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
         paddingTop: '0.25rem',
-        marginBottom: '2rem'
+        marginBottom: '2.5rem'
       }}
     >
       <div
