@@ -1,7 +1,25 @@
 import { PropsWithChildren, ReactElement } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { animatedUnderline, colors, mediaQueries } from '../utils'
+import { colors, mediaQueries } from '../util'
+import { css } from '@emotion/react'
+import { useRouter } from 'next/dist/client/router'
+
+export const animatedUnderline = css({
+  '&::after': {
+    content: '""',
+    display: 'block',
+    width: '100%',
+    marginTop: 2,
+    height: 2,
+    transition: 'transform 250ms ease',
+    transform: 'scaleX(0)',
+    backgroundColor: colors.hightlight
+  },
+  '&.active::after, &:hover::after': {
+    transform: 'scaleX(1)'
+  }
+})
 
 type HeaderLinkProps = PropsWithChildren<{ href: string; active?: boolean }>
 
@@ -10,16 +28,18 @@ function HeaderLink({
   active = false,
   children
 }: HeaderLinkProps): ReactElement {
-  // TODO:SAM active styles
   return (
     <Link href={href}>
       <a
         css={[
           {
-            fontWeight: 500
+            fontWeight: 500,
+            color: colors.body,
+            textDecoration: 'none'
           },
           animatedUnderline
         ]}
+        className={active ? 'active' : undefined}
       >
         {children}
       </a>
@@ -28,10 +48,12 @@ function HeaderLink({
 }
 
 export function SiteHeader() {
+  const router = useRouter()
+
   return (
     <header
       css={{
-        gridColumn: '1 /span 2',
+        gridColumn: '1 / span 2',
         display: 'flex',
         alignItems: 'center'
       }}
@@ -91,14 +113,19 @@ export function SiteHeader() {
         >
           <li>
             <HeaderLink
-              // TODO:SAM active
-              href="/docs"
+              href="/docs/introduction"
+              active={router.pathname.startsWith('/docs')}
             >
               Docs
             </HeaderLink>
           </li>
           <li>
-            <HeaderLink href="/community">Community</HeaderLink>
+            <HeaderLink
+              href="/community"
+              active={router.pathname === '/community'}
+            >
+              Community
+            </HeaderLink>
           </li>
           <li>
             <HeaderLink href="https://github.com/emotion-js/emotion">
