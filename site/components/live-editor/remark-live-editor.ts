@@ -7,10 +7,13 @@ interface CodeNode {
   type: string
   lang?: string | null
   value?: string | null
+
+  name?: string | null
+  attributes?: { type: 'mdxJsxAttribute'; name: string; value: string }[]
 }
 
 export function remarkLiveEditor() {
-  return (markdownAST: any) =>
+  return (markdownAST: any) => {
     visit(markdownAST, 'code', (node: CodeNode) => {
       if (
         node.lang === 'jsx' &&
@@ -20,11 +23,13 @@ export function remarkLiveEditor() {
         liveRegex.test(node.value)
       ) {
         const code = node.value.replace('// @live', '').trim()
-        node.type = `html`
 
-        // Make sure there is no leading/trailing whitespace in this string - it
-        // will result in an <undefined> HTML element
-        node.value = htmlEscape`<live-editor code="${code}" language="${node.lang}"></live-editor>`
+        node.type = 'mdxJsxFlowElement'
+        node.name = 'EmotionLiveEditor'
+        node.attributes = [
+          { type: 'mdxJsxAttribute', name: 'code', value: code }
+        ]
       }
     })
+  }
 }
