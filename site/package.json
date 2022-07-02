@@ -5,7 +5,8 @@
   "scripts": {
     "build": "next build && next export",
     "dev": "next dev",
-    "start": "next start"
+    "start": "next start",
+    "test:typescript": "exit 0"
   },
   "dependencies": {
     "@babel/standalone": "^7.18.7",
