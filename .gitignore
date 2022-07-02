@@ -10,6 +10,8 @@ package-lock.json
 .cache
 public/
 !playgrounds/cra/public
+!site/public
 .env
 .vscode
 .parcel-cache/
+.next
