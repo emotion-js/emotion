@@ -51,6 +51,7 @@ render(
 ```jsx
 // @live
 import styled from '@emotion/styled'
+
 const Basic = ({ className }) => <div className={className}>Some text</div>
 
 const Fancy = styled(Basic)`
@@ -72,8 +73,10 @@ const Section = styled.section`
   background: #333;
   color: #fff;
 `
+
 // this component has the same styles as Section but it renders an aside
 const Aside = Section.withComponent('aside')
+
 render(
   <div>
     <Section>This is a section</Section>
@@ -226,14 +229,15 @@ import styled from '@emotion/styled'
 
 const Example = styled('span')`
   color: lightgreen;
-  & > a {
+
+  & > strong {
     color: hotpink;
   }
 `
 
 render(
   <Example>
-    This is <a>nested</a>.
+    This is <strong>nested</strong>.
   </Example>
 )
 ```
