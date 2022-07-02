@@ -1,4 +1,5 @@
 import '../public/bootstrap-reboot.min.css'
+import '@docsearch/css/dist/style.css'
 import type { AppProps } from 'next/app'
 import { SiteHeader, GlobalStyles } from '../components'
 
