@@ -12,7 +12,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <SiteHeader />
-      <Container>
+      <Container css={{ paddingBottom: '2rem' }}>
         <Component {...pageProps} />
       </Container>
     </>

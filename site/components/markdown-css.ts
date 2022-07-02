@@ -4,6 +4,11 @@ import { colors, styleConstants } from '../util'
 export const markdownCss = css({
   'h2, h3, h4': { marginTop: '2rem', marginBottom: '1rem' },
 
+  h2: {
+    paddingBottom: '0.5rem',
+    borderBottom: `1px solid ${colors.pinkBorder}`
+  },
+
   'p, li, code': { lineHeight: 1.7 },
 
   a: {
@@ -33,7 +38,6 @@ export const markdownCss = css({
 
   blockquote: {
     display: 'flex',
-    alignItems: 'center',
     margin: '1.5rem 0',
     borderLeft: `5px solid ${colors.hotPink}`,
     backgroundColor: colors.pinkBg,
@@ -43,15 +47,27 @@ export const markdownCss = css({
       margin: 0,
 
       '&:first-of-type': {
-        fontWeight: 700,
-        marginTop: 0
+        fontWeight: 700
       },
 
       '&:nth-of-type(2)': {
-        marginTop: '0.25rem',
         marginLeft: '0.5rem',
         padding: '0 1rem'
       }
     }
+  },
+
+  table: {
+    margin: '1.5rem 0',
+    width: '100%'
+  },
+
+  'td, th': {
+    padding: '0.75rem',
+    border: `1px solid ${colors.grayBorder}`
+  },
+
+  img: {
+    maxWidth: '100%'
   }
 })

@@ -1,5 +1,4 @@
 import * as Babel from '@babel/standalone'
-import { htmlEscape } from 'escape-goat'
 import { colors } from '../../util'
 
 const options = {
