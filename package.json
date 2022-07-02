@@ -29,7 +29,6 @@
   "resolutions": {
     "**/react": "16.14.0",
     "**/react-dom": "16.14.0",
-    "**/@types/react": "16.14.21",
     "**/browserslist": "^3.2.8",
     "**/graphql-type-json": "0.2.4"
   },

@@ -34,7 +34,8 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   const { title, content } = docQueries.getMdx(slug)
 
   // mdxOptions is duplicated in an attempt to prevent the client-side bundle
-  // from containing any mdx/remark JS
+  // from containing any mdx/remark JS. This is recommended by the
+  // next-mdx-remote README.
   const mdx = await serialize(content, {
     mdxOptions: {
       // remarkLiveEditor must come before remarkPrism

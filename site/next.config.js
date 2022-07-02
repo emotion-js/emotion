@@ -1,8 +1,6 @@
 const path = require('path')
 
 // To run bundle analyzer, set the `ANALYZE` environment variable to 'true'.
-// For example with PowerShell, run:
-// $Env:ANALYZE='true'; yarn build
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
