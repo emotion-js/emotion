@@ -7,9 +7,6 @@ node_modules/
 package-lock.json
 .DS_Store
 .cache
-public/
-!playgrounds/cra/public
-!site/public
 .env
 .vscode
 .parcel-cache/
