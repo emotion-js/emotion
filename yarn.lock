@@ -2907,7 +2907,7 @@
     tar "^2.2.2"
     tar-stream "^2.1.4"
 
-"@docsearch/css@3.0.0-alpha.42":
+"@docsearch/css@3.0.0-alpha.42", "@docsearch/css@^3.0.0-alpha.42":
   version "3.0.0-alpha.42"
   resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.0.0-alpha.42.tgz#deb6049e999d6ca9451eba4793cb5b6da28c8773"
   integrity sha512-AGwI2AXUacYhVOHmYnsXoYDJKO6Ued2W+QO80GERbMLhC7GH5tfvtW5REs/s7jSdcU3vzFoxT8iPDBCh/PkrlQ==
