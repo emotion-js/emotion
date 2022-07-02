@@ -1,10 +1,16 @@
 import { ReactElement } from 'react'
-import { LiveProvider, LiveError, LivePreview, LiveEditor } from './components'
+import {
+  LiveProvider,
+  LiveError,
+  LivePreview,
+  LiveEditor,
+  Scope
+} from './components'
 import { css } from '@emotion/react'
 import { colors, mediaQueries, styleConstants } from '../../util'
 import { compile } from './compiler'
 
-const scope = {
+const scope: Scope = {
   process: {
     env: {
       NODE_ENV: process.env.NODE_ENV

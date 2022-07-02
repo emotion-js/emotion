@@ -3,22 +3,20 @@ import { useContext, ReactElement } from 'react'
 import { LiveContext } from './live-context'
 import SimpleCodeEditor from 'react-simple-code-editor'
 
-const language = 'jsx'
+// Use our customized instance of Prism, see prism-highlight-css.ts
+import Prism from 'prismjs'
 
 interface LiveEditorProps {
   className?: string
-  prism?: unknown
 }
 
-export function LiveEditor({
-  className,
-  prism
-}: LiveEditorProps): ReactElement {
+export function LiveEditor({ className }: LiveEditorProps): ReactElement {
   const { code, onCodeChange } = useContext(LiveContext)
 
   function highlightCode(code: string): ReactElement {
+    // `Prism as any` is necessary because of this issue: https://github.com/FormidableLabs/prism-react-renderer/issues/136
     return (
-      <Highlight Prism={prism as any} code={code} language={language}>
+      <Highlight Prism={Prism as any} code={code} language="jsx">
         {({ tokens, getLineProps, getTokenProps }) => (
           <>
             {tokens.map((line, i) => (
