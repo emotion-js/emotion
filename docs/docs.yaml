@@ -23,6 +23,7 @@
     - cache-provider
     - performance
     - for-library-authors
+    - community # There is code to hide this from the menu since it has its own navbar link
 
 - title: Tooling
   items:
