@@ -19,12 +19,17 @@ export const markdownCss = css({
 
   hr: { border: `1px solid ${colors.pinkBorder}`, opacity: 1 },
 
-  // This targets inline code only, not code blocks
+  // This targets inline code only
   'code:not([class*="language-"])': {
     color: colors.body,
     backgroundColor: 'rgba(117, 63, 131, 0.07)',
     borderRadius: styleConstants.borderRadius,
     padding: '0.25rem'
+  },
+
+  // This targets code blocks only
+  '.remark-highlight pre code': {
+    fontSize: '1rem !important'
   },
 
   // This targets code blocks and live editors
