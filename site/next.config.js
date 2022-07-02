@@ -41,7 +41,11 @@ module.exports = withBundleAnalyzer({
           ...config.resolve.alias,
           cosmiconfig: path.resolve(__dirname, 'module-stubs/cosmiconfig.cjs'),
           'find-root': path.resolve(__dirname, 'module-stubs/find-root.cjs'),
-          resolve: path.resolve(__dirname, 'module-stubs/resolve.cjs')
+          resolve: path.resolve(__dirname, 'module-stubs/resolve.cjs'),
+          '@emotion/babel-plugin': path.resolve(
+            __dirname,
+            '../packages/babel-plugin'
+          )
         }
       }
     }
