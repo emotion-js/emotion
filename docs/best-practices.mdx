@@ -217,33 +217,6 @@ Emotion allows you to define a [theme](/docs/theming.mdx) which you can use in s
 
 On the other hand, if your app will only ever have a single theme, it's simpler to define colors and other style variables as JavaScript constants.
 
-## Performance Optimization
-
-First, the golden rule of programming: premature optimization is the root of all evil! Emotion is a highly performant library and will not be a performance bottleneck in most applications.
-
-If you are experiencing poor performance, the first step is to profile your app using the React DevTools. Use the profiler results to determine whether the slowdown is caused by Emotion or something else.
-
-If Emotion-related code is indeed slowing down your app, here are some optimizations you can attempt:
-
-- Reduce the frequency at which your components render using `React.memo` and other standard optimization techniques.
-- Reduce the number of component instances that use Emotion. For example: suppose you need to render 10,000 instances of a component that uses the css prop. Emotion has to do a small amount of work for each of the 10,000 component instances. A more performant approach is to use the css prop on a single parent element, using a CSS selector to target each of the 10,000 elements with the same piece of CSS:
-
-  ```tsx
-  render(
-    <div
-      css={{
-        '.my-component': { color: 'red' }
-      }}
-    >
-      {/* render the 10,000 instances of MyComponent here */}
-    </div>
-  )
-  ```
-
-- Call `css` on your object style or CSS string **outside** your component so that the styles are only serialized once instead of on every render. See the Recommendations section for more details on this.
-- Use the css prop for static styles and use the `style` prop for dynamic styles. See the Recommendations section for more details on this.
-- Use [`@emotion/babel-plugin`](/docs/babel.mdx), which peforms some compile-time optimizations to the css prop.
-
 ## Additional Reading
 
 - [Colocation](https://kentcdodds.com/blog/colocation) by Kent C. Dodds

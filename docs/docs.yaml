@@ -21,8 +21,8 @@
     - labels
     - class-names
     - cache-provider
+    - performance
     - for-library-authors
-    #- benchmarks
 
 - title: Tooling
   items:
