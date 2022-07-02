@@ -70,7 +70,11 @@ function UkraineBanner() {
           css={{
             fontWeight: 'bold',
             color: '#fff',
-            fontSize: 28
+            fontSize: 20,
+
+            [mediaQueries.mdUp]: {
+              fontSize: 28
+            }
           }}
         >
           🇺🇦 STOP WAR IN UKRAINE 🇺🇦

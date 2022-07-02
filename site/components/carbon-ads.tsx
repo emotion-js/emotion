@@ -1,6 +1,7 @@
 import { ReactElement, useEffect, useRef } from 'react'
 import { Global, css } from '@emotion/react'
 import { useRouter } from 'next/router'
+import { mediaQueries } from '../util'
 
 const carbonCss = css`
   #carbonads {
@@ -102,7 +103,10 @@ export function CarbonAds(): ReactElement {
         ref={ref}
         css={{
           marginBottom: '2rem',
-          minHeight: 200 // To prevent layout shift when the ad changes
+
+          [mediaQueries.mdUp]: {
+            minHeight: 200 // To prevent layout shift when the ad changes
+          }
         }}
       />
     </>
