@@ -14,7 +14,6 @@ const docSearchCustomizationCss = css({
   }
 })
 
-// This is causing a hydration warning. Reported here: https://github.com/algolia/docsearch/issues/1242
 export function Search(): ReactElement {
   return (
     <>

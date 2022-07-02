@@ -16,8 +16,7 @@
  * @license MIT 2016-2018
  */
 
-// This has been tweaked to work with react-prism-renderer which is used by
-// react-live
+// This has been tweaked to work with react-prism-renderer
 
 export const draculaPrism = `
 pre::-webkit-scrollbar {
