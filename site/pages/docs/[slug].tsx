@@ -12,7 +12,10 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { DocWrapper, ResponsiveTable, Title } from '../../components'
 import { docQueries } from '../../queries'
-import { remarkFixLinks } from '../../util/remark-fix-links'
+import {
+  remarkFixLinks,
+  remarkResponsiveTables
+} from '../../util/remark-plugins'
 import { mediaQueries, styleConstants } from '../../util'
 import {
   remarkLiveEditor,
@@ -41,7 +44,12 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   const mdx = await serialize(content, {
     mdxOptions: {
       // remarkLiveEditor must come before remarkPrism
-      remarkPlugins: [remarkLiveEditor, remarkPrism, remarkFixLinks],
+      remarkPlugins: [
+        remarkLiveEditor,
+        remarkPrism,
+        remarkFixLinks,
+        remarkResponsiveTables
+      ],
 
       // rehypeSlug must come first
       rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
@@ -123,7 +131,7 @@ export default function DocsPage({
         <MDXRemote
           {...mdx}
           components={{
-            table: ResponsiveTable,
+            ResponsiveTable,
             EmotionLiveEditor
           }}
         />

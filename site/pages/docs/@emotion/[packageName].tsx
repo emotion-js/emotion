@@ -4,7 +4,10 @@ import remarkPrism from 'remark-prism'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { docQueries } from '../../../queries'
-import { remarkFixLinks } from '../../../util/remark-fix-links'
+import {
+  remarkFixLinks,
+  remarkResponsiveTables
+} from '../../../util/remark-plugins'
 import DocsPage from '../[slug]'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -29,7 +32,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   // READMEs should not contain live code blocks
   const mdx = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkPrism, remarkFixLinks],
+      remarkPlugins: [remarkPrism, remarkFixLinks, remarkResponsiveTables],
 
       // rehypeSlug must come first
       rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
