@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticPropsContext } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import remarkPrism from 'remark-prism'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { docQueries } from '../../../queries'
 import { remarkFixLinks } from '../../../util/remark-fix-links'
 import DocsPage from '../[slug]'
@@ -26,7 +28,12 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 
   // READMEs should not contain live code blocks
   const mdx = await serialize(content, {
-    mdxOptions: { remarkPlugins: [remarkPrism, remarkFixLinks] }
+    mdxOptions: {
+      remarkPlugins: [remarkPrism, remarkFixLinks],
+
+      // rehypeSlug must come first
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+    }
   })
 
   const fullPackageName = `@emotion/${packageName}`

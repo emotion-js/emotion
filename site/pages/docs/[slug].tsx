@@ -8,6 +8,8 @@ import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import remarkPrism from 'remark-prism'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { DocWrapper, ResponsiveTable, Title } from '../../components'
 import { docQueries } from '../../queries'
 import { remarkFixLinks } from '../../util/remark-fix-links'
@@ -39,7 +41,10 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   const mdx = await serialize(content, {
     mdxOptions: {
       // remarkLiveEditor must come before remarkPrism
-      remarkPlugins: [remarkLiveEditor, remarkPrism, remarkFixLinks]
+      remarkPlugins: [remarkLiveEditor, remarkPrism, remarkFixLinks],
+
+      // rehypeSlug must come first
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
     }
   })
 

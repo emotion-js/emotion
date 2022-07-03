@@ -156,7 +156,7 @@ export function DocWrapper({
 
               // This is necessary to prevent code blocks from overflowing on
               // mobile
-              overflow: 'hidden',
+              maxWidth: '100%',
 
               [mediaQueries.mdUp]: {
                 display: 'block',

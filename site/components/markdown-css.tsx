@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import React, { ReactElement, TableHTMLAttributes } from 'react'
+import React, { ReactElement } from 'react'
 import { colors, mediaQueries, styleConstants } from '../util'
 
 export const markdownCss = css({
@@ -15,6 +15,37 @@ export const markdownCss = css({
   a: {
     fontWeight: 500,
     color: colors.hightlight
+  },
+
+  '.icon-link': {
+    display: 'none',
+    float: 'left',
+    paddingRight: '0.5rem',
+    marginLeft: '-1.75rem',
+    lineHeight: 1,
+    width: '1.75rem',
+    height: '1.25rem',
+    backgroundImage: 'url(/link.svg)',
+    backgroundSize: '1.25rem',
+    backgroundRepeat: 'no-repeat'
+  },
+
+  'h2 .icon-link': {
+    marginTop: '0.75rem'
+  },
+
+  'h3 .icon-link': {
+    marginTop: '0.5rem'
+  },
+
+  'h4 .icon-link': {
+    marginTop: '0.4rem'
+  },
+
+  'h2:hover, h3:hover, h4:hover': {
+    '.icon-link': {
+      display: 'block'
+    }
   },
 
   hr: { border: `1px solid ${colors.pinkBorder}`, opacity: 1 },
