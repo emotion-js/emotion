@@ -4,6 +4,10 @@
   "description": "internal utils for emotion",
   "main": "dist/emotion-utils.cjs.js",
   "module": "dist/emotion-utils.esm.js",
+  "exports": {
+    "require": "./dist/emotion-utils.cjs.js",
+    "import": "./dist/emotion-utils.esm.js"
+  },
   "browser": {
     "./dist/emotion-utils.cjs.js": "./dist/emotion-utils.browser.cjs.js",
     "./dist/emotion-utils.esm.js": "./dist/emotion-utils.browser.esm.js"

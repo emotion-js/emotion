@@ -3,6 +3,10 @@
   "version": "11.9.3",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
+  "exports": {
+    "require": "./dist/emotion-react.cjs.js",
+    "import": "./dist/emotion-react.esm.js"
+  },
   "browser": {
     "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
     "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"

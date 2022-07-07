@@ -1,4 +1,8 @@
 {
   "main": "dist/emotion-jest-enzyme.cjs.js",
-  "module": "dist/emotion-jest-enzyme.esm.js"
+  "module": "dist/emotion-jest-enzyme.esm.js",
+  "exports": {
+    "require": "./dist/emotion-jest-enzyme.cjs.js",
+    "import": "./dist/emotion-jest-enzyme.esm.js"
+  }
 }

@@ -4,6 +4,10 @@
   "description": "An object of css properties that don't accept values with units",
   "main": "dist/emotion-unitless.cjs.js",
   "module": "dist/emotion-unitless.esm.js",
+  "exports": {
+    "require": "./dist/emotion-unitless.cjs.js",
+    "import": "./dist/emotion-unitless.esm.js"
+  },
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/unitless",
   "scripts": {

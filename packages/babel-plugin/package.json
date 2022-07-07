@@ -4,6 +4,10 @@
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-babel-plugin.cjs.js",
   "module": "dist/emotion-babel-plugin.esm.js",
+  "exports": {
+    "require": "./dist/emotion-babel-plugin.cjs.js",
+    "import": "./dist/emotion-babel-plugin.esm.js"
+  },
   "files": [
     "src",
     "lib",

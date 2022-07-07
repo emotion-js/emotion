@@ -4,6 +4,10 @@
   "description": "Style and render React Native components using emotion",
   "main": "dist/emotion-native.cjs.js",
   "module": "dist/emotion-native.esm.js",
+  "exports": {
+    "require": "./dist/emotion-native.cjs.js",
+    "import": "./dist/emotion-native.esm.js"
+  },
   "scripts": {
     "test:typescript": "dtslint types"
   },

@@ -4,6 +4,10 @@
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-css.cjs.js",
   "module": "dist/emotion-css.esm.js",
+  "exports": {
+    "require": "./dist/emotion-css.cjs.js",
+    "import": "./dist/emotion-css.esm.js"
+  },
   "types": "types/index.d.ts",
   "files": [
     "src",

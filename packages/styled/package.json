@@ -4,6 +4,10 @@
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",
+  "exports": {
+    "require": "./dist/emotion-styled.cjs.js",
+    "import": "./dist/emotion-styled.esm.js"
+  },
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/styled",

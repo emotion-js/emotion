@@ -3,6 +3,10 @@
   "version": "11.0.0",
   "main": "dist/emotion-primitives.cjs.js",
   "module": "dist/emotion-primitives.esm.js",
+  "exports": {
+    "require": "./dist/emotion-primitives.cjs.js",
+    "import": "./dist/emotion-primitives.esm.js"
+  },
   "scripts": {
     "test:typescript": "exit 0"
   },

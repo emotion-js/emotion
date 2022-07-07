@@ -1,5 +1,9 @@
 {
   "main": "dist/emotion-jest-serializer.cjs.js",
   "module": "dist/emotion-jest-serializer.esm.js",
+  "exports": {
+    "require": "./dist/emotion-jest-serializer.cjs.js",
+    "import": "./dist/emotion-jest-serializer.esm.js"
+  },
   "types": "../types/serializer"
 }
