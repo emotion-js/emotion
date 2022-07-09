@@ -41,6 +41,9 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   // Runtime labeling is an opt-in feature because:
   // - It causes hydration warnings when using Safari and SSR
   // - It can degrade performance if there are a huge number of elements
+  //
+  // Even if the flag is set, we still don't compute the label if it has already
+  // been determined by the Babel plugin.
   if (
     process.env.NODE_ENV !== 'production' &&
     globalThis.EMOTION_RUNTIME_AUTO_LABEL &&
