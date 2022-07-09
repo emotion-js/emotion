@@ -56,8 +56,8 @@ beforeEach(() => {
 test("cache created in render doesn't cause a hydration mismatch", () => {
   safeQuerySelector('body').innerHTML = [
     '<div id="root">',
-    '<style data-emotion="stl 1pdkrhd">.stl-1pdkrhd-App {color: hotpink;}</style>',
-    '<div class="stl-1pdkrhd">Hello world!</div>',
+    '<style data-emotion="stl 168r6j">.stl-1pdkrhd {color: hotpink;}</style>',
+    '<div class="stl-168r6j">Hello world!</div>',
     '</div>'
   ].join('')
 
@@ -87,21 +87,7 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
     container: safeQuerySelector('#root')
   })
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-    [
-      [
-        "Warning: Prop \`%s\` did not match. Server: %s Client: %s%s",
-        "className",
-        ""stl-1pdkrhd"",
-        ""stl-168r6j"",
-        "
-        in div (created by EmotionCssPropInternal)
-        in EmotionCssPropInternal (created by App)
-        in Wrapper (created by App)
-        in App",
-      ],
-    ]
-  `)
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
   expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
