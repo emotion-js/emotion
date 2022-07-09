@@ -38,6 +38,17 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 
   newProps[typePropName] = type
 
+  // This can be replaced with just globalThis once IE support is dropped
+
+  let globalContext =
+    // $FlowIgnore
+    typeof globalThis !== 'undefined'
+      ? // $FlowIgnore
+        globalThis // eslint-disable-line no-undef
+      : typeof document !== 'undefined'
+      ? window
+      : global
+
   // Runtime labeling is an opt-in feature because:
   // - It causes hydration warnings when using Safari and SSR
   // - It can degrade performance if there are a huge number of elements
@@ -46,7 +57,8 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   // been determined by the Babel plugin.
   if (
     process.env.NODE_ENV !== 'production' &&
-    globalThis.EMOTION_RUNTIME_AUTO_LABEL &&
+    // $FlowFixMe
+    globalContext.EMOTION_RUNTIME_AUTO_LABEL &&
     !!props.css &&
     (typeof props.css !== 'object' ||
       typeof props.css.name !== 'string' ||

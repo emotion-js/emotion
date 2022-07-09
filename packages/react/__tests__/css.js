@@ -13,6 +13,11 @@ console.error = jest.fn()
 // $FlowFixMe
 console.warn = jest.fn()
 
+beforeEach(() => {
+  // $FlowFixMe
+  delete globalThis.EMOTION_RUNTIME_AUTO_LABEL
+})
+
 afterEach(() => {
   jest.clearAllMocks()
   safeQuerySelector('body').innerHTML = ''
@@ -189,7 +194,28 @@ test('speedy option from a custom cache is inherited for <Global/> styles', () =
   expect(safeQuerySelector('body style').textContent).toEqual('')
 })
 
+it('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', () => {
+  let SomeComp = props => {
+    return (
+      <div
+        {...props}
+        css={{
+          color: 'hotpink'
+        }}
+      >
+        something
+      </div>
+    )
+  }
+  const tree = renderer.create(<SomeComp />)
+
+  expect(tree.toJSON().props.className).toMatch(/css-[^-]+/)
+})
+
 test('autoLabel without babel', () => {
+  // $FlowFixMe
+  globalThis.EMOTION_RUNTIME_AUTO_LABEL = true
+
   let SomeComp = props => {
     return (
       <div
@@ -208,6 +234,9 @@ test('autoLabel without babel', () => {
 })
 
 test('autoLabel without babel (sanitized)', () => {
+  // $FlowFixMe
+  globalThis.EMOTION_RUNTIME_AUTO_LABEL = true
+
   let SomeComp$ = props => {
     return (
       <div {...props} css={{ color: 'hotpink' }}>
