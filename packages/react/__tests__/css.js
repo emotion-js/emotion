@@ -1,5 +1,6 @@
 // @flow
 /** @jsx jsx */
+/* global globalThis */
 import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'
 import * as React from 'react'
