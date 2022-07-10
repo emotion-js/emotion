@@ -1,4 +1,5 @@
 import transform, { Style } from 'css-to-react-native'
+import { AbstractStyleSheet } from './types'
 import { interleave } from './utils'
 
 // this is for handleInterpolation
@@ -71,17 +72,6 @@ function handleInterpolation(
     interpolation.forEach(handleInterpolation, this)
   }
   lastType = type
-}
-
-type NamedStyles<T> = { [P in keyof T]: unknown }
-
-// This is based on the StyleSheet type from @types/react-native
-interface AbstractStyleSheet {
-  create<T extends NamedStyles<T> | NamedStyles<any>>(
-    styles: T | NamedStyles<T>
-  ): T
-
-  flatten(style?: unknown[]): unknown
 }
 
 // Use platform specific StyleSheet method for creating the styles.
