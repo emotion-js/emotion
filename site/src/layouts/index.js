@@ -7,6 +7,7 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 import SiteHeader from '../components/SiteHeader'
 import { constants, mq } from '../utils/style'
+import Carbon from '../components/Carbon'
 import { Global } from '@emotion/react'
 
 const TemplateWrapper = ({
@@ -26,6 +27,7 @@ const TemplateWrapper = ({
 
       <div
         css={mq({
+          position: 'relative',
           display: 'grid',
           gridTemplateColumns: [
             '36px 1fr',
@@ -46,6 +48,17 @@ const TemplateWrapper = ({
       >
         {!sidebarOpen && <SiteHeader />}
         {children}
+        <Carbon
+          // 64em is the maxWidth of the template wrapper, on top of that this needs at least 220px on both sides of that
+          // which leads us to approximately minWidth of 92em
+          mediaQuery="screen and (min-width: 92em)"
+          css={{
+            position: 'fixed',
+            left: space[2],
+            bottom: space[2],
+            width: 220
+          }}
+        />
       </div>
     </React.Fragment>
   )

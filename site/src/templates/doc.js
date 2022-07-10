@@ -2,8 +2,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { mq, colors } from '../utils/style'
+import { mq, colors, space } from '../utils/style'
 import Playground from '../components/Playground'
+import Carbon from '../components/Carbon'
 import * as markdownComponents from '../utils/markdown-styles'
 import memoize from '@emotion/memoize'
 import Layout from '../layouts'
@@ -106,6 +107,10 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
           sidebarOpen={this.state.sidebarOpen}
           setSidebarOpen={this.setSidebarOpen}
         >
+          <Carbon
+            mediaQuery="screen and (max-width: 92em)"
+            css={{ paddingBottom: space[2] }}
+          />
           <div
             css={{
               alignItems: 'center',
