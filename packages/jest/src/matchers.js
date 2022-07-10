@@ -44,6 +44,11 @@ function toHaveStyleRule(
   value,
   options /* ?: { target?: string | RegExp, media?: string } */ = {}
 ) {
+  if (Array.isArray(received)) {
+    throw new Error(
+      '`toHaveStyleRule` expects to receive a single element but it received an array.'
+    )
+  }
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())

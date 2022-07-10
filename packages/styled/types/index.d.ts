@@ -12,6 +12,7 @@ export {
   Interpolation,
   StyledComponent,
   StyledOptions,
+  FilteringStyledOptions,
   CreateStyledComponent
 } from './base'
 

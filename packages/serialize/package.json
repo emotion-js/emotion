@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "serialization utils for emotion",
   "main": "dist/emotion-serialize.cjs.js",
   "module": "dist/emotion-serialize.esm.js",
@@ -21,7 +21,7 @@
     "csstype": "^3.0.2"
   },
   "devDependencies": {
-    "dtslint": "^4.2.1",
+    "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
   },
   "files": [

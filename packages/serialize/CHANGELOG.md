@@ -1,5 +1,13 @@
 # @emotion/serialize
 
+## 1.0.4
+
+### Patch Changes
+
+- [#2727](https://github.com/emotion-js/emotion/pull/2727) [`26e4e3e8`](https://github.com/emotion-js/emotion/commit/26e4e3e8b68479f0e3cb8fbec723da47afd6ac98) Thanks [@srmagura](https://github.com/srmagura)! - Changed the error message "Component selectors can only be used in conjunction with @emotion/babel-plugin" to reference the new SWC Emotion plugin which will support component selectors soon.
+
+* [#2572](https://github.com/emotion-js/emotion/pull/2572) [`5e81f213`](https://github.com/emotion-js/emotion/commit/5e81f213980e9ba2cfa35256476673b68d47fc33) Thanks [@otakustay](https://github.com/otakustay)! - Changed the `registered` parameter to be declared as optional in the TypeScript definition to match the runtime requirement.
+
 ## 1.0.3
 
 ### Patch Changes
