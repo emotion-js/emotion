@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from '@emotion/styled'
+import styled, { StyledOptions, FilteringStyledOptions } from '@emotion/styled'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
@@ -216,4 +216,88 @@ const Input5 = styled.input`
   ;<StyledCompWithoutAs as="section" />
   // $ExpectError
   ;<StyledCompWithoutAs as={Section} />
+}
+
+{
+  // Props forwarding through StyledOptions and FilteringStyledOptions
+
+  const fc: React.FC<{ foo: string }> = () => null
+
+  // we can't accept a "known" prop here because we need to include `AdditionalProps` and those aren't available yet
+  // `Props` represent the actual props of a component while `AdditionalProps` represent props used only for styling purposes
+  // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
+
+  styled(fc, { shouldForwardProp: (prop: string) => true })({})
+
+  // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: 'bar') => true })({})
+  // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
+
+  // $ExpectError
+  const shouldForwardProp1: StyledOptions['shouldForwardProp'] = (
+    prop: 'unknown'
+  ) => true
+  styled(fc, { shouldForwardProp: shouldForwardProp1 })({})
+
+  // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: 'unknown') => true })({})
+
+  // $ExpectError
+  const shouldForwardProp2: StyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: 'unknown') => true
+
+  styled(fc, { shouldForwardProp: (prop: string): prop is 'foo' => true })({})
+  // $ExpectError
+  styled(fc, { shouldForwardProp: (prop: 'foo'): prop is 'foo' => true })({})
+
+  const shouldForwardProp3: FilteringStyledOptions['shouldForwardProp'] = (
+    prop: string
+  ): prop is 'foo' => true
+
+  // $ExpectError
+  const shouldForwardProp4: FilteringStyledOptions['shouldForwardProp'] = (
+    prop: 'foo'
+  ): prop is 'foo' => true
+
+  const shouldForwardProp5: FilteringStyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: string): prop is 'foo' => true
+  // $ExpectError
+  const shouldForwardProp6: FilteringStyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: 'foo'): prop is 'foo' => true
+
+  // $ExpectError
+  const shouldForwardProp7: FilteringStyledOptions<{
+    foo: string
+  }>['shouldForwardProp'] = (prop: 'unknown'): prop is 'unknown' => true
+
+  const shouldForwardProp8: FilteringStyledOptions<
+    { foo: string; bar: string },
+    'foo'
+  >['shouldForwardProp'] = (prop: string): prop is 'foo' => true
+
+  // $ExpectError
+  const shouldForwardProp9: FilteringStyledOptions<
+    { foo: string; bar: string },
+    'foo'
+  >['shouldForwardProp'] = (prop: 'foo' | 'bar'): prop is 'bar' => true
+
+  styled('div', {
+    shouldForwardProp: (prop: string) => true
+  })({})
+
+  // $ExpectError
+  styled('div', { shouldForwardProp: (prop: 'color') => true })({})
+
+  styled('div', {
+    // $ExpectError
+    shouldForwardProp: (prop: 'color'): prop is 'color' => true
+  })({})
+
+  // $ExpectError
+  styled('div', { shouldForwardProp: (prop: 'foo') => true })({})
 }

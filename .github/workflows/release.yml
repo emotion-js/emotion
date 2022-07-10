@@ -13,24 +13,11 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js 12.x
-        uses: actions/setup-node@master
-        with:
-          node-version: 12.x
-
-      - name: Install Yarn
-        run: npm install --global yarn
-
-      - name: Install Dependencies
-        run: yarn --frozen-lockfile
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
       - name: Create Release Pull Request or Publish to npm
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           publish: yarn release
         env:

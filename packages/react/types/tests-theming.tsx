@@ -14,9 +14,21 @@ declare const CompFC: React.FC<Props>
 declare class CompC extends React.Component<Props & { theme: Theme }> {}
 
 const WrappedCompC = withTheme(CompC)
+;<ThemeProvider theme={theme}>
+  <WrappedCompC prop />
+</ThemeProvider>
+;<ThemeProvider theme={() => theme}>
+  <div />
+</ThemeProvider>
+;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })}>
+  <div />
+</ThemeProvider>
+// $ExpectError
+;<ThemeProvider theme={theme} />
+// $ExpectError
+;<ThemeProvider theme={theme}>{CompFC}</ThemeProvider>
+// $ExpectError
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
-;<ThemeProvider theme={() => theme} />
-;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
 
 const ThemedFC = withTheme(CompFC)
 ;<ThemedFC prop />
@@ -85,4 +97,6 @@ const style2: ObjectStyleDefinition = {
 }
 
 // Can use ThemeProvider
-;<ThemeProvider theme={{ primary: 'val' }} />
+;<ThemeProvider theme={{ primary: 'val' }}>
+  <div />
+</ThemeProvider>
