@@ -1,4 +1,4 @@
-export function interleave(vals /*: Array */) {
+export function interleave(vals: any[]): any[] {
   let strings = vals[0]
   let finalArray = [strings[0]]
   for (let i = 1, len = vals.length; i < len; i++) {

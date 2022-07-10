@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@emotion/react": "11.9.3",
+    "@types/css-to-react-native": "^3.0.0",
     "react": "16.14.0"
   },
   "homepage": "https://emotion.sh",
