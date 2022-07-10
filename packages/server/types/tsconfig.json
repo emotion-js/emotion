@@ -3,7 +3,9 @@
     "baseUrl": "../",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["es6"],
+
+    // dom is needed because @emotion/server references packages that use DOM types
+    "lib": ["es6", "dom"],
     "module": "commonjs",
     "noEmit": true,
     "strict": true,
