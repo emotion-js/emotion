@@ -5086,10 +5086,10 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@preconstruct/cli@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.1.5.tgz#f7f6d06809f382521589af15f67b87009b240c58"
-  integrity sha512-bMnGTkaotxq+xoOkXoUOfTFvxBX/ZUxukcacf3mx3G7Iz5m/T4ZGzSOU12pxl64e+rVWGTKlUsgaDSgyFkup0A==
+"@preconstruct/cli@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.1.8.tgz#7adb77d1db4e88b4bb33ce0ac31a3df5dc17d414"
+  integrity sha512-s5nrYvNxNDZOgwcjaNfqdkDClbKEDO15ZlH2l7CSunO99/Atj0kHSpKXho6mipJtSRYXGiMzOVN2qH7Dl29XzQ==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.7"
@@ -30601,8 +30601,10 @@ watchpack@^1.7.4:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
+    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
+    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
