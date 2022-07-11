@@ -8,6 +8,25 @@
     "./dist/emotion-utils.cjs.js": "./dist/emotion-utils.browser.cjs.js",
     "./dist/emotion-utils.esm.js": "./dist/emotion-utils.browser.esm.js"
   },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "browser": {
+        "production": {
+          "module": "./dist/emotion-utils.browser.esm.prod.js",
+          "default": "./dist/emotion-utils.browser.cjs.prod.js"
+        },
+        "module": "./dist/emotion-utils.browser.esm.dev.js",
+        "default": "./dist/emotion-utils.browser.cjs.js"
+      },
+      "production": {
+        "module": "./dist/emotion-utils.esm.prod.js",
+        "default": "./dist/emotion-utils.cjs.prod.js"
+      },
+      "module": "./dist/emotion-utils.esm.dev.js",
+      "default": "./dist/emotion-utils.cjs.js"
+    }
+  },
   "types": "types/index.d.ts",
   "license": "MIT",
   "scripts": {
@@ -25,5 +44,13 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
+  },
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser",
+        "worker"
+      ]
+    }
   }
 }
