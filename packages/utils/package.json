@@ -5,27 +5,18 @@
   "main": "dist/emotion-utils.cjs.js",
   "module": "dist/emotion-utils.esm.js",
   "browser": {
-    "./dist/emotion-utils.cjs.js": "./dist/emotion-utils.browser.cjs.js",
     "./dist/emotion-utils.esm.js": "./dist/emotion-utils.browser.esm.js"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "browser": {
-        "production": {
-          "module": "./dist/emotion-utils.browser.esm.prod.js",
-          "default": "./dist/emotion-utils.browser.cjs.prod.js"
-        },
-        "module": "./dist/emotion-utils.browser.esm.dev.js",
-        "default": "./dist/emotion-utils.browser.cjs.js"
+      "module": {
+        "worker": "./dist/emotion-utils.worker.esm.js",
+        "browser": "./dist/emotion-utils.browser.esm.js",
+        "default": "./dist/emotion-utils.esm.js"
       },
-      "production": {
-        "module": "./dist/emotion-utils.esm.prod.js",
-        "default": "./dist/emotion-utils.cjs.prod.js"
-      },
-      "module": "./dist/emotion-utils.esm.dev.js",
       "default": "./dist/emotion-utils.cjs.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "types": "types/index.d.ts",
   "license": "MIT",

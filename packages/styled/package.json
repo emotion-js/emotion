@@ -51,43 +51,26 @@
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {
-    "./dist/emotion-styled.cjs.js": "./dist/emotion-styled.browser.cjs.js",
     "./dist/emotion-styled.esm.js": "./dist/emotion-styled.browser.esm.js"
   },
   "exports": {
-    "./package.json": "./package.json",
+    "./base": {
+      "module": {
+        "worker": "./base/dist/emotion-styled-base.worker.esm.js",
+        "browser": "./base/dist/emotion-styled-base.browser.esm.js",
+        "default": "./base/dist/emotion-styled-base.esm.js"
+      },
+      "default": "./base/dist/emotion-styled-base.cjs.js"
+    },
     ".": {
-      "browser": {
-        "production": {
-          "module": "./dist/emotion-styled.browser.esm.prod.js",
-          "default": "./dist/emotion-styled.browser.cjs.prod.js"
-        },
-        "module": "./dist/emotion-styled.browser.esm.dev.js",
-        "default": "./dist/emotion-styled.browser.cjs.js"
+      "module": {
+        "worker": "./dist/emotion-styled.worker.esm.js",
+        "browser": "./dist/emotion-styled.browser.esm.js",
+        "default": "./dist/emotion-styled.esm.js"
       },
-      "production": {
-        "module": "./dist/emotion-styled.esm.prod.js",
-        "default": "./dist/emotion-styled.cjs.prod.js"
-      },
-      "module": "./dist/emotion-styled.esm.dev.js",
       "default": "./dist/emotion-styled.cjs.js"
     },
-    "./base": {
-      "browser": {
-        "production": {
-          "module": "./base/dist/emotion-styled-base.browser.esm.prod.js",
-          "default": "./base/dist/emotion-styled-base.browser.cjs.prod.js"
-        },
-        "module": "./base/dist/emotion-styled-base.browser.esm.dev.js",
-        "default": "./base/dist/emotion-styled-base.browser.cjs.js"
-      },
-      "production": {
-        "module": "./base/dist/emotion-styled-base.esm.prod.js",
-        "default": "./base/dist/emotion-styled-base.cjs.prod.js"
-      },
-      "module": "./base/dist/emotion-styled-base.esm.dev.js",
-      "default": "./base/dist/emotion-styled-base.cjs.js"
-    }
+    "./package.json": "./package.json"
   },
   "preconstruct": {
     "umdName": "emotionStyled",

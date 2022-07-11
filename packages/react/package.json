@@ -4,75 +4,42 @@
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
-    "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
     "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "browser": {
-        "production": {
-          "module": "./dist/emotion-react.browser.esm.prod.js",
-          "default": "./dist/emotion-react.browser.cjs.prod.js"
-        },
-        "module": "./dist/emotion-react.browser.esm.dev.js",
-        "default": "./dist/emotion-react.browser.cjs.js"
+      "module": {
+        "worker": "./dist/emotion-react.worker.esm.js",
+        "browser": "./dist/emotion-react.browser.esm.js",
+        "default": "./dist/emotion-react.esm.js"
       },
-      "production": {
-        "module": "./dist/emotion-react.esm.prod.js",
-        "default": "./dist/emotion-react.cjs.prod.js"
-      },
-      "module": "./dist/emotion-react.esm.dev.js",
       "default": "./dist/emotion-react.cjs.js"
     },
     "./jsx-runtime": {
-      "browser": {
-        "production": {
-          "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.prod.js",
-          "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.prod.js"
-        },
-        "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.dev.js",
-        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.js"
+      "module": {
+        "worker": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.esm.js",
+        "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
       },
-      "production": {
-        "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.prod.js",
-        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.prod.js"
-      },
-      "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.dev.js",
       "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
     },
+    "./_isolated-hnrs": {
+      "module": {
+        "worker": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.esm.js",
+        "browser": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
+      },
+      "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+    },
     "./jsx-dev-runtime": {
-      "browser": {
-        "production": {
-          "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.prod.js",
-          "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.prod.js"
-        },
-        "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.dev.js",
-        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.js"
+      "module": {
+        "worker": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.esm.js",
+        "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
       },
-      "production": {
-        "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.prod.js",
-        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.prod.js"
-      },
-      "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.dev.js",
       "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
     },
-    "./_isolated-hnrs": {
-      "browser": {
-        "production": {
-          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.prod.js",
-          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.prod.js"
-        },
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.dev.js",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.js"
-      },
-      "production": {
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.prod.js",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.prod.js"
-      },
-      "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.dev.js",
-      "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
-    }
+    "./package.json": "./package.json"
   },
   "types": "types/index.d.ts",
   "files": [
