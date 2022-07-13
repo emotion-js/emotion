@@ -14,10 +14,35 @@ There are 2 ways to get started with the `css` prop.
 Both methods result in the same compiled code.
 After adding the preset or setting the pragma as a comment, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
 
-|        | Input                      | Output                                              |
-| ------ | -------------------------- | --------------------------------------------------- |
-| Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
-| After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Input</th>
+      <th>Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Before</td>
+      <td>
+        <code>&lt;img src="avatar.png" /&gt;</code>
+      </td>
+      <td>
+        <code>React.createElement('img', &#123; src: 'avatar.png' &#125;)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>After</td>
+      <td>
+        <code>&lt;img src="avatar.png" /&gt;</code>
+      </td>
+      <td>
+        <code>jsx('img', &#123; src: 'avatar.png' &#125;)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #### Babel Preset
 
@@ -105,9 +130,6 @@ The `css` prop accepts object styles directly and does not require an additional
 
 ```jsx
 // @live
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-
 render(
   <div
     css={{
@@ -130,9 +152,7 @@ To pass string styles, you must use `css` which is exported by `@emotion/react`,
 
 ```jsx
 // @live
-// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const color = 'darkgreen'
 
@@ -165,10 +185,7 @@ The precedence order may seem counter-intuitive, but it allows components with s
 
 The `P` component in this example has its default styles overridden in the `ArticleText` component.
 
-```js
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-
+```jsx
 const P = props => (
   <p
     css={{
@@ -196,10 +213,7 @@ const ArticleText = props => (
 
 The `ArticleText` component can be customized and the styles composed with its default styles. The result is passed `P` and the process repeats.
 
-```js
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-
+```jsx
 const P = props => (
   <p
     css={{
