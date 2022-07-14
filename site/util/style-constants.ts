@@ -11,7 +11,7 @@ export const colors = {
 
   // See https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss if
   // other grays are needed
-  gray100: '#f8f9fa', // '#f6f6f6',
+  gray100: '#f8f9fa',
   gray500: '#adb5bd'
 }
 
