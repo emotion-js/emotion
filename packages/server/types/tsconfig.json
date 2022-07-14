@@ -4,7 +4,8 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
 
-    // dom is needed because @emotion/server references packages that use DOM types
+    // dom is needed because @emotion/server imports from @emotion/css, which
+    // imports from @emotion/sheet, which uses DOM types.
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "noEmit": true,
