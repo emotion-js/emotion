@@ -8,14 +8,12 @@ import { ReactElement } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import remarkPrism from 'remark-prism'
+import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { DocWrapper, ResponsiveTable, Title } from '../../components'
 import { docQueries } from '../../queries'
-import {
-  remarkFixLinks,
-  remarkResponsiveTables
-} from '../../util/remark-plugins'
+import { remarkFixLinks } from '../../util/remark-fix-links'
 import { mediaQueries, styleConstants } from '../../util'
 import {
   remarkLiveEditor,
@@ -43,12 +41,11 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   // next-mdx-remote README.
   const mdx = await serialize(content, {
     mdxOptions: {
-      // remarkLiveEditor must come before remarkPrism
       remarkPlugins: [
-        remarkLiveEditor,
+        remarkLiveEditor, // Must come before remarkPrism
         remarkPrism,
         remarkFixLinks,
-        remarkResponsiveTables
+        remarkGfm
       ],
 
       // rehypeSlug must come first
@@ -131,7 +128,7 @@ export default function DocsPage({
         <MDXRemote
           {...mdx}
           components={{
-            ResponsiveTable,
+            table: ResponsiveTable,
             EmotionLiveEditor
           }}
         />
