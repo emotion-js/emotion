@@ -95,7 +95,7 @@ export function SiteHeader() {
       <UkraineBanner />
       <header
         css={{
-          backgroundColor: '#f6f6f6',
+          backgroundColor: colors.gray100,
           borderBottom: `1px solid ${colors.grayBorder}`,
           boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
           paddingTop: '0.25rem',

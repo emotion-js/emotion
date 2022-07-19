@@ -77,27 +77,10 @@ require('@babel/core').transform(code, {
 
 This preset enables the `css` prop for an entire project via a single entry to the babel configuration. After adding the preset, compiled JSX code will use Emotion's `jsx` function instead of `React.createElement`.
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Input</th>
-      <th>Output</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Before</td>
-      <td><code>&lt;img src="avatar.png" /&gt;</code></td>
-      <td><code>React.createElement('img', &#123; src: 'avatar.png' &#125;)</code></td>
-    </tr>
-    <tr>
-      <td>After</td>
-      <td><code>&lt;img src="avatar.png" /&gt;</code></td>
-      <td><code>jsx('img', &#123; src: 'avatar.png' &#125;)</code></td>
-    </tr>
-  </tbody>
-</table>
+|        | Input                      | Output                                              |
+| ------ | -------------------------- | --------------------------------------------------- |
+| Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
+| After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
 `import { jsx } from '@emotion/react'` is automatically added to the top of files where required.
 

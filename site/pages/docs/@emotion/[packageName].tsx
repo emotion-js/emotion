@@ -1,13 +1,11 @@
 import { GetStaticPaths, GetStaticPropsContext } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import remarkPrism from 'remark-prism'
+import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { docQueries } from '../../../queries'
-import {
-  remarkFixLinks,
-  remarkResponsiveTables
-} from '../../../util/remark-plugins'
+import { remarkFixLinks } from '../../../util/remark-fix-links'
 import DocsPage from '../[slug]'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -32,7 +30,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   // READMEs should not contain live code blocks
   const mdx = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkPrism, remarkFixLinks, remarkResponsiveTables],
+      remarkPlugins: [remarkPrism, remarkFixLinks, remarkGfm],
 
       // rehypeSlug must come first
       rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
