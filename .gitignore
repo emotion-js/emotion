@@ -4,12 +4,15 @@ dist/
 node_modules/
 *.log
 .idea
-site/build
 package-lock.json
 .DS_Store
 .cache
-public/
-!playgrounds/cra/public
 .env
 .vscode
 .parcel-cache/
+*.orig
+*.tsbuildinfo
+
+# Website
+site/out
+.next

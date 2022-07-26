@@ -12,7 +12,7 @@ Emotion 10 is a significant change to Emotion, so it requires some changes to yo
 >
 > Emotion 10 requires `React` 16.3 or greater.
 
-# Thinking
+## Thinking
 
 The most significant change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together (you can still use class names directly if you want to, but you won't get new features like zero-config server rendering).
 
@@ -31,9 +31,7 @@ let important = css`
 `
 
 const SomeComponent = props => (
-  <div
-    className={cx(basic, props.important && important)}
-  />
+  <div className={cx(basic, props.important && important)} />
 )
 ```
 
@@ -55,13 +53,13 @@ const SomeComponent = props => (
 )
 ```
 
-# Incremental Migration
+## Incremental Migration
 
 Incremental migration is something really important to Emotion because we don't want anyone to have to rewrite their entire app.
 
 The upgrades to Emotion 10 are split into two parts. The first part can be done automatically by using [`eslint-plugin-emotion`](./eslint-plugin-emotion#emotion-10-codemods).
 
-## Codemoddable
+### Codemoddable
 
 - Change all `react-emotion` imports so that `styled` is imported from `@emotion/styled` and all the `emotion` exports are split into a second import.
 
@@ -125,7 +123,7 @@ let element = (
 )
 ```
 
-## Manual Steps
+### Manual Steps
 
 - Add compat cache with provider
 
@@ -145,7 +143,7 @@ render(
 )
 ```
 
-## Manual Steps Over Time
+### Manual Steps Over Time
 
 - Change `css` usage to `css` prop
 
@@ -206,7 +204,6 @@ let element = (
 
 - Replace `injectGlobal` with `Global` styles
 
-
 ```jsx
 import { injectGlobal } from 'emotion'
 
@@ -220,7 +217,7 @@ injectGlobal`
 
 import { Global, css } from '@emotion/core'
 
-<Global
+;<Global
   styles={css`
     * {
       box-sizing: border-box;

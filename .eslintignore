@@ -4,5 +4,8 @@ coverage/
 node_modules/
 stylis.min.js
 /demo/dist
-/packages/site/build
 flow-typed/
+
+# This is to prevent ESLint parsing errors in the website which is written in
+# TypeScript. TODO: Reenable once the codebase is converted to TypeScript.
+/site/
