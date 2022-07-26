@@ -21,12 +21,6 @@ styleSheet.flush()
 
 */
 
-declare const process: {
-  env: {
-    NODE_ENV: string
-  }
-}
-
 function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   if (tag.sheet) {
     return tag.sheet
