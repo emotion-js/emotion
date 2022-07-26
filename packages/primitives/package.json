@@ -51,7 +51,27 @@
     "access": "public"
   },
   "browser": {
-    "./dist/emotion-primitives.cjs.js": "./dist/emotion-primitives.browser.cjs.js",
     "./dist/emotion-primitives.esm.js": "./dist/emotion-primitives.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "browser": "./dist/emotion-primitives.browser.esm.js",
+        "default": "./dist/emotion-primitives.esm.js"
+      },
+      "default": "./dist/emotion-primitives.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": "./macro.js"
+  },
+  "preconstruct": {
+    "exports": {
+      "extra": {
+        "./macro": "./macro.js"
+      },
+      "envConditions": [
+        "browser"
+      ]
+    }
   }
 }

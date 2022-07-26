@@ -4,6 +4,14 @@
   "description": "Style and render React Native components using emotion",
   "main": "dist/emotion-native.cjs.js",
   "module": "dist/emotion-native.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-native.esm.js",
+      "default": "./dist/emotion-native.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": "./macro.js"
+  },
   "scripts": {
     "test:typescript": "dtslint types"
   },
@@ -51,8 +59,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "browser": {
-    "./dist/emotion-native.cjs.js": "./dist/emotion-native.browser.cjs.js",
-    "./dist/emotion-native.esm.js": "./dist/emotion-native.browser.esm.js"
+  "preconstruct": {
+    "exports": {
+      "extra": {
+        "./macro": "./macro.js"
+      }
+    }
   }
 }

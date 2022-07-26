@@ -70,7 +70,8 @@
       },
       "default": "./dist/emotion-styled.cjs.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./macro": "./macro.js"
   },
   "preconstruct": {
     "umdName": "emotionStyled",
@@ -82,7 +83,10 @@
       "envConditions": [
         "browser",
         "worker"
-      ]
+      ],
+      "extra": {
+        "./macro": "./macro.js"
+      }
     }
   }
 }
