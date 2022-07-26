@@ -90,34 +90,30 @@ export let styledTransformer = ({
     createStyledComponentPath = reference.parentPath
   }
 
-  const styledCallLikeWithStylesPath = createStyledComponentPath
-    ? createStyledComponentPath.parentPath
-    : reference.parentPath.parentPath.isTaggedTemplateExpression()
-    ? reference.parentPath.parentPath
-    : null
-
-  if (styledCallLikeWithStylesPath) {
-    let node = transformExpressionWithStyles({
-      path: styledCallLikeWithStylesPath,
-      state,
-      babel,
-      shouldLabel: false
-    })
-    if (node && isWeb) {
-      // we know the argument length will be 1 since that's the only time we will have a node since it will be static
-      styledCallLikeWithStylesPath.node.arguments[0] = node
-    }
+  if (!createStyledComponentPath) {
+    return
   }
 
-  if (createStyledComponentPath) {
-    createStyledComponentPath.parentPath.addComment('leading', '#__PURE__')
-    if (isWeb) {
-      createStyledComponentPath.node.arguments[1] = getStyledOptions(
-        t,
-        createStyledComponentPath,
-        state
-      )
-    }
+  const styledCallLikeWithStylesPath = createStyledComponentPath.parentPath
+
+  let node = transformExpressionWithStyles({
+    path: styledCallLikeWithStylesPath,
+    state,
+    babel,
+    shouldLabel: false
+  })
+  if (node && isWeb) {
+    // we know the argument length will be 1 since that's the only time we will have a node since it will be static
+    styledCallLikeWithStylesPath.node.arguments[0] = node
+  }
+
+  createStyledComponentPath.parentPath.addComment('leading', '#__PURE__')
+  if (isWeb) {
+    createStyledComponentPath.node.arguments[1] = getStyledOptions(
+      t,
+      createStyledComponentPath,
+      state
+    )
   }
 }
 
