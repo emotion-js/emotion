@@ -1,0 +1,223 @@
+---
+title: 'Best Practices'
+---
+
+Emotion is an extremely flexible library, but this can make it intimidating, especially for new users. This guide contains several recommendations for how to use Emotion in your application. Keep in mind, these are only recommendations, not requirements!
+
+## Recommendations
+
+### Use TypeScript and object styles
+
+You don't get Intellisense or type checking when using CSS strings, e.g. `` css`color: blue` ``. You can improve the developer experience and prevent style bugs by using TypeScript and object styles, which enable Intellisense and _some_ static type checking:
+
+```tsx
+const myCss = css({
+  color: 'blue',
+  grid: 1 // Error: Type 'number' is not assignable to type 'Grid | Grid[] | undefined'
+})
+```
+
+### Colocate styles with components
+
+With normal CSS, the styles for a component are defined in a separate file. This makes maintenance more difficult because it's harder to tell which components use a given piece of CSS, and you can easily forget to update the relevant CSS after modifying a component. One of the main benefits of Emotion is that you can [colocate](https://kentcdodds.com/blog/colocation) your styles with your components. All this means is that the CSS for a component should be in the same file as the component itself.
+
+### Consider how you will share styles
+
+There are two main approaches for sharing styles across an Emotion application.
+
+To illustrate the two methods, let's imagine we're developing an application that needs to display error messages in many different components. All of the error messages should be red and bold. Some error messages should also use a large font.
+
+#### Method 1: Export CSS objects
+
+The simplest way to share styles is to export CSS from a shared file and then import that CSS in many places:
+
+```tsx
+export const errorCss = css({
+  color: 'red',
+  fontWeight: 'bold'
+})
+
+// Use arrays to compose styles
+export const largeErrorCss = css([errorCss, { fontSize: '1.5rem' }])
+```
+
+Then, in one of your components:
+
+```tsx
+import { errorCss } from '...'
+
+return <p css={errorCss}>Failed to fizzle the frozzle.</p>
+```
+
+This method is great when you only want to share CSS between components. A potential drawback of this method is that shared styles are not colocated with the components that use them.
+
+#### Method 2: Share styles via component reuse
+
+This method is slightly more complex but arguably more powerful than the previous method.
+
+```tsx
+export function ErrorMessage({ className, children }) {
+  return (
+    <p css={{ color: 'red', fontWeight: 'bold' }} className={className}>
+      {children}
+    </p>
+  )
+}
+
+// `fontSize: '1.5rem'` is passed down to the ErrorMessage component via the
+// className prop, so ErrorMessage must accept a className prop for this to
+// work!
+export function LargeErrorMessage({ className, children }) {
+  return (
+    <ErrorMessage css={{ fontSize: '1.5rem' }} className={className}>
+      {children}
+    </ErrorMessage>
+  )
+}
+```
+
+Then, in one of your components:
+
+```tsx
+import { ErrorMessage } from '...'
+
+return <ErrorMessage>Failed to fizzle the frozzle.</ErrorMessage>
+```
+
+Advantages of sharing styles via component reuse include:
+
+- Component reuse allows you to share both logic and styles. You can easily add additional props and functionality to the `ErrorMessage` component with limited refactoring.
+- Styles are always colocated with their components.
+
+### Use the `style` prop for dynamic styles
+
+The css prop or `styled` should be used for static styles, while the `style` prop (inline styles) should be used for truly dynamic styles. By dynamic styles, we mean styles that change frequently or are unique to a single element.
+
+Imagine you are displaying a list of user avatars in a forum application. Every avatar shares certain static CSS, like `width: 40px` and `border-radius: 50%`, but the avatar image is set via a `background-style` rule whose value is different for each avatar. If you pass all of this CSS through the CSS prop, you'll end up with a lot of nearly-duplicate CSS in the document. With 3 avatars, Emotion will create something like:
+
+```html
+<style>
+  .css-1udhswa {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-style: url(https://i.pravatar.cc/150?u=0);
+  }
+
+  .css-1cpwmbr {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-style: url(https://i.pravatar.cc/150?u=1);
+  }
+
+  .css-am987o {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-style: url(https://i.pravatar.cc/150?u=2);
+  }
+</style>
+```
+
+Now imagine how much CSS there would be if there were 100 avatars on the page!
+
+You should also use the `style` prop if the styles will be updated frequently. If your application lets a user drag and drop an element, you likely have a `transform` property like
+
+```ts
+{
+  transform: `translate(${x}px, ${y}px)`
+}
+```
+
+This property should go through the `style` prop since `x` and `y` will change rapidly as the element is dragged.
+
+#### Advanced: CSS variables with `style`
+
+CSS variables can be used with the `style` prop to keep the CSS in a single place while "deferring" the actual value of a property. Going back to the avatar example above, you could define the following static CSS using the css prop:
+
+```css
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-style: var(--background-style);
+}
+```
+
+Then, for each avatar, you render an element which sets the value of the `--background-style` CSS variable:
+
+```tsx
+function Avatar({ imageUrl }) {
+  return <div className="avatar" style={{ '--background-style': imageUrl }} />
+}
+```
+
+If you're using TypeScript, you'll have to use a type assertion like `style={{ ['--background-style' as any]: imageUrl }}` as explained [here](https://stackoverflow.com/a/52013197/752601).
+
+### If using React, prefer `@emotion/react` or `@emotion/styled` over `@emotion/css`
+
+`@emotion/react` and `@emotion/styled` generally offer a better developer experience over class names (`@emotion/css`) when using React.
+
+### Use the css prop or `@emotion/styled`, but not both
+
+While the css prop and `styled` can peacefully coexist, it's better to pick one approach and use it consistently across your codebase. Whether you choose the css prop or `styled` is a matter of personal preference. (If you're curious, the css prop is more popular among the maintainers of Emotion.)
+
+### Consider defining styles outside your components
+
+For example:
+
+```tsx
+import { css } from '@emotion/react'
+
+const cardCss = {
+  self: css({
+    backgroundColor: 'white',
+    border: '1px solid #eee',
+    borderRadius: '0.5rem',
+    padding: '1rem'
+  }),
+
+  title: css({
+    fontSize: '1.25rem'
+  })
+}
+
+export function Card({ title, children }) {
+  return (
+    <div css={cardCss.self}>
+      <h5 css={cardCss.title}>{title}</h5>
+      {children}
+    </div>
+  )
+}
+```
+
+Benefits of this approach:
+
+- Styles are only serialized once, instead of on every render.
+- It's no longer possible to accidentally pass dynamic styles through the css prop.
+- The JSX is arguably more readable with the CSS separated out into a different part of the file.
+
+### Define colors and other style constants as JavaScript variables
+
+Don't repeat yourself! If you are using a color, padding, border radius, .etc throughout your application, add it to your theme or define it as a JavaScript constant, like
+
+```ts
+export const colors = {
+  primary: '#0d6efd',
+  success: '#198754',
+  danger: '#dc3545'
+}
+```
+
+### Don't use a theme unless your app supports multiple themes (or will eventually support multiple themes)
+
+Emotion allows you to define a [theme](/docs/theming.mdx) which you can use in style rules across your application. This feature is awesome if your app has multiple themes, like light mode and dark mode.
+
+On the other hand, if your app will only ever have a single theme, it's simpler to define colors and other style variables as JavaScript constants.
+
+## Additional Reading
+
+- [Colocation](https://kentcdodds.com/blog/colocation) by Kent C. Dodds
+- [Change how you write your CSS-in-JS for better performance](https://douges.dev/blog/taming-the-beast-that-is-css-in-js) by Michael Dougall

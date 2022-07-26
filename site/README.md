@@ -1,13 +1,22 @@
 # [Emotion Site](https://emotion.sh)
 
+Run the site for development: `yarn dev` (in the `site` directory)
+
+Preview the production build of the site: `yarn build && yarn start`
+
 ## Docs
 
 All of the docs live in the `docs` in the root of this repository. They are in [Markdown](https://daringfireball.net/projects/markdown/basics) and they should include the following frontmatter at the top of each file that specifies the title for the page.
 
 ```yaml
+---
 title: 'Some Title'
 ---
 ```
+
+## Package READMEs
+
+Links in package READMEs should go to `https://emotion.sh/docs/{docName}` so that clicking the link on npmjs.com brings you to the Emotion website.
 
 ### Code Blocks
 
@@ -20,7 +29,3 @@ When the langauge is `jsx` and the code block has a `// @live` comment, it will 
 render('some react element')
 \`\`\`
 ```
-
-### Links
-
-All links to other pages on the docs should be linked to with `https://emotion.sh/docs/doc-name`, these links are transformed so they are local links.
