@@ -102,12 +102,14 @@ export let styledTransformer = ({
     babel,
     shouldLabel: false
   })
+
   if (node && isWeb) {
     // we know the argument length will be 1 since that's the only time we will have a node since it will be static
     styledCallLikeWithStylesPath.node.arguments[0] = node
   }
 
-  createStyledComponentPath.parentPath.addComment('leading', '#__PURE__')
+  styledCallLikeWithStylesPath.addComment('leading', '#__PURE__')
+
   if (isWeb) {
     createStyledComponentPath.node.arguments[1] = getStyledOptions(
       t,
