@@ -197,7 +197,7 @@
     "benchmark": "^2.1.4",
     "bolt-check": "^0.3.0",
     "bundlesize": "^0.13.2",
-    "codecov": "^2.3.1",
+    "codecov": "^3.7.1",
     "cssjanus": "^1.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
