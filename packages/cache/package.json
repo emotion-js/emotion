@@ -5,8 +5,17 @@
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
   "browser": {
-    "./dist/emotion-cache.cjs.js": "./dist/emotion-cache.browser.cjs.js",
     "./dist/emotion-cache.esm.js": "./dist/emotion-cache.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "browser": "./dist/emotion-cache.browser.esm.js",
+        "default": "./dist/emotion-cache.esm.js"
+      },
+      "default": "./dist/emotion-cache.cjs.js"
+    },
+    "./package.json": "./package.json"
   },
   "types": "types/index.d.ts",
   "license": "MIT",
@@ -33,5 +42,12 @@
     "src",
     "dist",
     "types/*.d.ts"
-  ]
+  ],
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser"
+      ]
+    }
+  }
 }

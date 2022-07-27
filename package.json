@@ -134,6 +134,7 @@
       "react/jsx-runtime": "ReactJSX",
       "react/jsx-dev-runtime": "ReactJSXDev"
     },
+    "exports": true,
     "___experimentalFlags_WILL_CHANGE_IN_PATCH": {
       "exports": true
     }

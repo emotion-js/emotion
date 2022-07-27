@@ -4,6 +4,25 @@
   "description": "Jest utilities for emotion",
   "main": "dist/emotion-jest.cjs.js",
   "module": "dist/emotion-jest.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-jest.esm.js",
+      "default": "./dist/emotion-jest.cjs.js"
+    },
+    "./enzyme": {
+      "module": "./enzyme/dist/emotion-jest-enzyme.esm.js",
+      "default": "./enzyme/dist/emotion-jest-enzyme.cjs.js"
+    },
+    "./serializer": {
+      "module": "./serializer/dist/emotion-jest-serializer.esm.js",
+      "default": "./serializer/dist/emotion-jest-serializer.cjs.js"
+    },
+    "./enzyme-serializer": {
+      "module": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.esm.js",
+      "default": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "types": "types/index.d.ts",
   "files": [
     "src",

@@ -22,8 +22,14 @@
     "dist",
     "types/*.d.ts"
   ],
-  "browser": {
-    "./dist/emotion-weak-memoize.cjs.js": "./dist/emotion-weak-memoize.browser.cjs.js",
-    "./dist/emotion-weak-memoize.esm.js": "./dist/emotion-weak-memoize.browser.esm.js"
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-weak-memoize.esm.js",
+      "default": "./dist/emotion-weak-memoize.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "preconstruct": {
+    "exports": true
   }
 }
