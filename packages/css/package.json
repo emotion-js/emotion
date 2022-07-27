@@ -33,7 +33,7 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
   },

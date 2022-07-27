@@ -10,8 +10,8 @@
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.12.17",
-    "@babel/runtime": "^7.13.10",
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
+    "@babel/runtime": "^7.18.3",
     "@emotion/babel-plugin": "^11.2.0",
     "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5"
   },
@@ -26,6 +26,6 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/core": "^7.13.10"
+    "@babel/core": "^7.18.5"
   }
 }

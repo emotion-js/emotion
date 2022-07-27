@@ -7,7 +7,7 @@
 .*/node_modules/graphql/.*
 .*/node_modules/metro.*
 .*/node_modules/@parcel/.*
-
+.*/node_modules/resolve/.*
 
 [untyped]
 .*/node_modules/polished/.*
@@ -19,7 +19,6 @@
 
 [declarations]
 .*/node_modules/react-native/.*
-
 
 [options]
 server.max_workers=1
