@@ -60,12 +60,11 @@ export let styledTransformer = ({
 
     return addImport(state, baseImportSource, baseSpecifierName, 'styled')
   }
-  let isCall = false
+  let createStyledComponentPath = null
   if (
     t.isMemberExpression(reference.parent) &&
     reference.parent.computed === false
   ) {
-    isCall = true
     if (
       // checks if the first character is lowercase
       // becasue we don't want to transform the member expression if
@@ -80,39 +79,43 @@ export let styledTransformer = ({
     } else {
       reference.replaceWith(getStyledIdentifier())
     }
+
+    createStyledComponentPath = reference.parentPath
   } else if (
     reference.parentPath &&
-    reference.parentPath.parentPath &&
     t.isCallExpression(reference.parentPath) &&
     reference.parent.callee === reference.node
   ) {
-    isCall = true
     reference.replaceWith(getStyledIdentifier())
+    createStyledComponentPath = reference.parentPath
   }
 
-  if (reference.parentPath && reference.parentPath.parentPath) {
-    const styledCallPath = reference.parentPath.parentPath
-    let node = transformExpressionWithStyles({
-      path: styledCallPath,
-      state,
-      babel,
-      shouldLabel: false
-    })
-    if (node && isWeb) {
-      // we know the argument length will be 1 since that's the only time we will have a node since it will be static
-      styledCallPath.node.arguments[0] = node
-    }
+  if (!createStyledComponentPath) {
+    return
   }
 
-  if (isCall) {
-    reference.addComment('leading', '#__PURE__')
-    if (isWeb) {
-      reference.parentPath.node.arguments[1] = getStyledOptions(
-        t,
-        reference.parentPath,
-        state
-      )
-    }
+  const styledCallLikeWithStylesPath = createStyledComponentPath.parentPath
+
+  let node = transformExpressionWithStyles({
+    path: styledCallLikeWithStylesPath,
+    state,
+    babel,
+    shouldLabel: false
+  })
+
+  if (node && isWeb) {
+    // we know the argument length will be 1 since that's the only time we will have a node since it will be static
+    styledCallLikeWithStylesPath.node.arguments[0] = node
+  }
+
+  styledCallLikeWithStylesPath.addComment('leading', '#__PURE__')
+
+  if (isWeb) {
+    createStyledComponentPath.node.arguments[1] = getStyledOptions(
+      t,
+      createStyledComponentPath,
+      state
+    )
   }
 }
 

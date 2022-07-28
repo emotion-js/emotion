@@ -17,7 +17,7 @@
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "@babel/plugin-syntax-jsx": "^7.12.13"
+    "@babel/plugin-syntax-jsx": "^7.17.12"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
@@ -30,6 +30,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10"
+    "@babel/core": "^7.18.5"
   }
 }

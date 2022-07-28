@@ -1,5 +1,11 @@
 # @emotion/babel-plugin
 
+## 11.9.5
+
+### Patch Changes
+
+- [#2799](https://github.com/emotion-js/emotion/pull/2799) [`5b99a849`](https://github.com/emotion-js/emotion/commit/5b99a849364119d979c6d1fe5e5a0e9ea4e74011) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with the lack of `/*#__PURE__*/` annotations before styled calls transformed from tagged template expressions.
+
 ## 11.9.2
 
 ### Patch Changes
