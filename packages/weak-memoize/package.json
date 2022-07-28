@@ -28,8 +28,5 @@
       "default": "./dist/emotion-weak-memoize.cjs.js"
     },
     "./package.json": "./package.json"
-  },
-  "preconstruct": {
-    "exports": true
   }
 }

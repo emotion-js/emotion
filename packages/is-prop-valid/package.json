@@ -31,8 +31,5 @@
       "default": "./dist/emotion-is-prop-valid.cjs.js"
     },
     "./package.json": "./package.json"
-  },
-  "preconstruct": {
-    "exports": true
   }
 }

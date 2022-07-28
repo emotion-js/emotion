@@ -22,8 +22,5 @@
       "default": "./dist/emotion-unitless.cjs.js"
     },
     "./package.json": "./package.json"
-  },
-  "preconstruct": {
-    "exports": true
   }
 }

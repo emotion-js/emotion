@@ -28,8 +28,5 @@
       "default": "./dist/emotion-memoize.cjs.js"
     },
     "./package.json": "./package.json"
-  },
-  "preconstruct": {
-    "exports": true
   }
 }

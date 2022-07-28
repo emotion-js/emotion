@@ -28,8 +28,5 @@
       "default": "./dist/emotion-hash.cjs.js"
     },
     "./package.json": "./package.json"
-  },
-  "preconstruct": {
-    "exports": true
   }
 }
