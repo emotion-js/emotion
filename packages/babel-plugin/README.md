@@ -301,7 +301,7 @@ This option assumes that you are using something to make `@emotion/react`'s `jsx
 
 This option allows you to tell @emotion/babel-plugin what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
-An example.js
+An example file:
 
 ```js
 import { anotherExport } from 'my-package';
