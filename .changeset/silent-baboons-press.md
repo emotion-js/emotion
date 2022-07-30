@@ -2,4 +2,4 @@
 '@emotion/server': patch
 ---
 
-Update emotion server types to support all exported members
+Added missing TypeScript declarations for `extractCriticalToChunks` and `constructStyleTagsFromChunks` exports.
