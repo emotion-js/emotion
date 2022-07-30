@@ -21,6 +21,9 @@
   "peerDependencies": {
     "eslint": "6 || 7 || 8"
   },
+  "dependencies": {
+    "eslint-codemod-utils": "^0.1.2"
+  },
   "devDependencies": {
     "eslint": "^7.10.0"
   }

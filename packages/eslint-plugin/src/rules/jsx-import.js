@@ -1,3 +1,10 @@
+import {
+  identifier,
+  importDeclaration,
+  importSpecifier,
+  literal
+} from 'eslint-codemod-utils'
+
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 
@@ -147,28 +154,35 @@ export default {
                   `/** @jsx ${local} */\n`
                 )
               }
+              const jsxSpecifier = importSpecifier({
+                local: identifier({ name: 'jsx' }),
+                imported: identifier({ name: 'jsx' })
+              })
+              const importNode = importDeclaration({
+                specifiers: [jsxSpecifier],
+                source: literal({ value: '@emotion/react' })
+              })
+
               if (hasSetPragma) {
                 if (emotionCoreNode) {
-                  let lastSpecifier =
-                    emotionCoreNode.specifiers[
-                      emotionCoreNode.specifiers.length - 1
-                    ]
-
-                  if (lastSpecifier.type === 'ImportDefaultSpecifier') {
-                    return fixer.insertTextAfter(lastSpecifier, ', { jsx }')
-                  }
-
-                  return fixer.insertTextAfter(lastSpecifier, ', jsx')
+                  return fixer.replaceText(
+                    emotionCoreNode,
+                    importDeclaration({
+                      specifiers:
+                        emotionCoreNode.specifiers.concat(jsxSpecifier),
+                      source: literal({ value: '@emotion/react' })
+                    })
+                  )
                 }
 
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
-                  `import { jsx } from '@emotion/react'\n`
+                  `${importNode}\n`
                 )
               }
               return fixer.insertTextBefore(
                 sourceCode.ast.body[0],
-                `/** @jsx jsx */\nimport { jsx } from '@emotion/react'\n`
+                `/** @jsx jsx */\n${importNode}\n`
               )
             }
           })

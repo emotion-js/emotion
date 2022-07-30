@@ -8828,6 +8828,11 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-codemod-utils@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-codemod-utils/-/eslint-codemod-utils-0.1.2.tgz#d97b2b082f34f1a96b31bbeaa391182c2fb7bdfe"
+  integrity sha512-5LMHGiXxG29y9bpFpNTz/PstKZhzlohNi57+/zaC4Bz6rUV40Fm6EAoBW48ToBc4MTFChkuWyRofjA7o89vXow==
+
 eslint-config-prettier@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
