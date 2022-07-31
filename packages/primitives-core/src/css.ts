@@ -1,19 +1,21 @@
-import transform from 'css-to-react-native'
+import transform, { Style } from 'css-to-react-native'
+import { AbstractStyleSheet } from './types'
 import { interleave } from './utils'
 
 // this is for handleInterpolation
 // they're reset on every call to css
 // this is done so we don't create a new
 // handleInterpolation function on every css call
-let styles
-let generated = {}
+let styles: unknown[] | undefined
+let generated: Record<string, unknown> = {}
 let buffer = ''
-let lastType
+let lastType: string | undefined
 
 function handleInterpolation(
-  interpolation,
-  i /*: number */,
-  arr /*: Array<*> */
+  this: unknown,
+  interpolation: any,
+  i: number,
+  arr: any[]
 ) {
   let type = typeof interpolation
 
@@ -44,7 +46,7 @@ function handleInterpolation(
   if (lastType === 'string' && (isRnStyle || isIrrelevant)) {
     let converted = convertStyles(buffer)
     if (converted !== undefined) {
-      styles.push(converted)
+      styles!.push(converted)
     }
     buffer = ''
   }
@@ -58,13 +60,13 @@ function handleInterpolation(
     if (arr.length - 1 === i) {
       let converted = convertStyles(buffer)
       if (converted !== undefined) {
-        styles.push(converted)
+        styles!.push(converted)
       }
       buffer = ''
     }
   }
   if (isRnStyle) {
-    styles.push(interpolation)
+    styles!.push(interpolation)
   }
   if (Array.isArray(interpolation)) {
     interpolation.forEach(handleInterpolation, this)
@@ -74,10 +76,10 @@ function handleInterpolation(
 
 // Use platform specific StyleSheet method for creating the styles.
 // This enables us to use the css``/css({}) in any environment (Native | Sketch | Web)
-export function createCss(StyleSheet /*: Object */) {
-  return function css(...args) {
+export function createCss(StyleSheet: AbstractStyleSheet) {
+  return function css(this: unknown, ...args: any[]) {
     const prevBuffer = buffer
-    let vals
+    let vals: any[]
 
     // these are declared earlier
     // this is done so we don't create a new
@@ -89,7 +91,7 @@ export function createCss(StyleSheet /*: Object */) {
     if (args[0] == null || args[0].raw === undefined) {
       vals = args
     } else {
-      vals = interleave(args)
+      vals = interleave(args as [any, ...any[]])
     }
 
     try {
@@ -111,7 +113,7 @@ export function createCss(StyleSheet /*: Object */) {
 
 let propertyValuePattern = /\s*([^\s]+)\s*:\s*(.+?)\s*$/
 
-function convertPropertyValue(style) {
+function convertPropertyValue(this: [string, string][], style: string): void {
   // Get prop name and prop value
   let match = propertyValuePattern.exec(style)
   // match[2] will be " " in cases where there is no value
@@ -121,14 +123,14 @@ function convertPropertyValue(style) {
     // be the whole string so we remove it
     match.shift()
     // yes i know this looks funny
-    this.push(match)
+    this.push(match as unknown as [string, string])
   }
 }
 
-function convertStyles(str /*: string */) {
+function convertStyles(str: string): Style | undefined {
   if (str.trim() === '') return
 
-  const stylePairs = []
+  const stylePairs: [string, string][] = []
 
   const parsedString = str.split(';')
 
@@ -137,9 +139,9 @@ function convertStyles(str /*: string */) {
   try {
     return transform(stylePairs)
   } catch (error) {
-    const msg = error.message
+    const msg = (error as { message?: string } | undefined)?.message
 
-    if (msg.includes('Failed to parse declaration')) {
+    if (msg && msg.includes('Failed to parse declaration')) {
       const values = msg
         .replace('Failed to parse declaration ', '')
         .replace(/"/g, '')
