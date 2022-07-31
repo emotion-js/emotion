@@ -1,5 +1,11 @@
 # @emotion/hash
 
+## 0.9.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. This fixes how our default exports are treated by Node.js when using their native support for ES modules. It also limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
 ## 0.8.0
 
 ### Minor Changes
