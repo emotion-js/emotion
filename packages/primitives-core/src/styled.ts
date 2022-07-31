@@ -92,6 +92,8 @@ export function createStyled(
         withComponent: typeof withComponent
       }
 
+      castedStyled.withComponent = withComponent
+
       return castedStyled
     }
   }
