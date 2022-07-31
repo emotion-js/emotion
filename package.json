@@ -133,6 +133,10 @@
       "react": "React",
       "react/jsx-runtime": "ReactJSX",
       "react/jsx-dev-runtime": "ReactJSXDev"
+    },
+    "exports": true,
+    "___experimentalFlags_WILL_CHANGE_IN_PATCH": {
+      "exports": true
     }
   },
   "bugs": {
@@ -183,7 +187,7 @@
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
     "@manypkg/cli": "^0.19.1",
-    "@preconstruct/cli": "^2.1.5",
+    "@preconstruct/cli": "^2.2.1",
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^12.20.37",

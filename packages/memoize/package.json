@@ -22,8 +22,11 @@
     "dist",
     "types/*.d.ts"
   ],
-  "browser": {
-    "./dist/emotion-memoize.cjs.js": "./dist/emotion-memoize.browser.cjs.js",
-    "./dist/emotion-memoize.esm.js": "./dist/emotion-memoize.browser.esm.js"
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-memoize.esm.js",
+      "default": "./dist/emotion-memoize.cjs.js"
+    },
+    "./package.json": "./package.json"
   }
 }

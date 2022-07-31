@@ -51,14 +51,42 @@
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {
-    "./dist/emotion-styled.cjs.js": "./dist/emotion-styled.browser.cjs.js",
     "./dist/emotion-styled.esm.js": "./dist/emotion-styled.browser.esm.js"
+  },
+  "exports": {
+    "./base": {
+      "module": {
+        "worker": "./base/dist/emotion-styled-base.worker.esm.js",
+        "browser": "./base/dist/emotion-styled-base.browser.esm.js",
+        "default": "./base/dist/emotion-styled-base.esm.js"
+      },
+      "default": "./base/dist/emotion-styled-base.cjs.js"
+    },
+    ".": {
+      "module": {
+        "worker": "./dist/emotion-styled.worker.esm.js",
+        "browser": "./dist/emotion-styled.browser.esm.js",
+        "default": "./dist/emotion-styled.esm.js"
+      },
+      "default": "./dist/emotion-styled.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": "./macro.js"
   },
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
       "./index.js",
       "./base.js"
-    ]
+    ],
+    "exports": {
+      "envConditions": [
+        "browser",
+        "worker"
+      ],
+      "extra": {
+        "./macro": "./macro.js"
+      }
+    }
   }
 }

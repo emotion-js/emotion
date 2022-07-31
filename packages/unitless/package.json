@@ -16,8 +16,11 @@
     "src",
     "dist"
   ],
-  "browser": {
-    "./dist/emotion-unitless.cjs.js": "./dist/emotion-unitless.browser.cjs.js",
-    "./dist/emotion-unitless.esm.js": "./dist/emotion-unitless.browser.esm.js"
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-unitless.esm.js",
+      "default": "./dist/emotion-unitless.cjs.js"
+    },
+    "./package.json": "./package.json"
   }
 }

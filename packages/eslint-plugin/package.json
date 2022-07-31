@@ -13,6 +13,14 @@
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
   "main": "dist/emotion-eslint-plugin.cjs.js",
+  "module": "dist/emotion-eslint-plugin.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-eslint-plugin.esm.js",
+      "default": "./dist/emotion-eslint-plugin.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "engines": {
     "node": ">=6"
   },

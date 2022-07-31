@@ -3,7 +3,6 @@
   "module": "dist/emotion-react-jsx-runtime.esm.js",
   "umd:main": "dist/emotion-react-jsx-runtime.umd.min.js",
   "browser": {
-    "./dist/emotion-react-jsx-runtime.cjs.js": "./dist/emotion-react-jsx-runtime.browser.cjs.js",
     "./dist/emotion-react-jsx-runtime.esm.js": "./dist/emotion-react-jsx-runtime.browser.esm.js"
   },
   "types": "../types/jsx-runtime",

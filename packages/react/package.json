@@ -4,8 +4,44 @@
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
-    "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
     "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "worker": "./dist/emotion-react.worker.esm.js",
+        "browser": "./dist/emotion-react.browser.esm.js",
+        "default": "./dist/emotion-react.esm.js"
+      },
+      "default": "./dist/emotion-react.cjs.js"
+    },
+    "./jsx-runtime": {
+      "module": {
+        "worker": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.esm.js",
+        "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
+      },
+      "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+    },
+    "./_isolated-hnrs": {
+      "module": {
+        "worker": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.esm.js",
+        "browser": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
+      },
+      "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+    },
+    "./jsx-dev-runtime": {
+      "module": {
+        "worker": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.esm.js",
+        "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
+      },
+      "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./types/css-prop": "./types/css-prop.d.ts",
+    "./macro": "./macro.js"
   },
   "types": "types/index.d.ts",
   "files": [
@@ -70,6 +106,16 @@
       "./jsx-dev-runtime.js",
       "./_isolated-hnrs.js"
     ],
-    "umdName": "emotionReact"
+    "umdName": "emotionReact",
+    "exports": {
+      "envConditions": [
+        "browser",
+        "worker"
+      ],
+      "extra": {
+        "./types/css-prop": "./types/css-prop.d.ts",
+        "./macro": "./macro.js"
+      }
+    }
   }
 }

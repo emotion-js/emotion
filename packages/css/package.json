@@ -52,11 +52,28 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "umd:main": "dist/emotion-css.umd.min.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-css.esm.js",
+      "default": "./dist/emotion-css.cjs.js"
+    },
+    "./create-instance": {
+      "module": "./create-instance/dist/emotion-css-create-instance.esm.js",
+      "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": "./macro.js"
+  },
   "preconstruct": {
     "umdName": "emotion",
     "entrypoints": [
       "./index.js",
       "./create-instance.js"
-    ]
+    ],
+    "exports": {
+      "extra": {
+        "./macro": "./macro.js"
+      }
+    }
   }
 }

@@ -5,8 +5,17 @@
   "main": "dist/emotion-sheet.cjs.js",
   "module": "dist/emotion-sheet.esm.js",
   "browser": {
-    "./dist/emotion-sheet.cjs.js": "./dist/emotion-sheet.browser.cjs.js",
     "./dist/emotion-sheet.esm.js": "./dist/emotion-sheet.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "browser": "./dist/emotion-sheet.browser.esm.js",
+        "default": "./dist/emotion-sheet.esm.js"
+      },
+      "default": "./dist/emotion-sheet.cjs.js"
+    },
+    "./package.json": "./package.json"
   },
   "types": "types/index.d.ts",
   "license": "MIT",
@@ -25,5 +34,12 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
+  },
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser"
+      ]
+    }
   }
 }

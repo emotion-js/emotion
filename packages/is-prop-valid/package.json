@@ -25,8 +25,11 @@
     "dist",
     "types/*.d.ts"
   ],
-  "browser": {
-    "./dist/emotion-is-prop-valid.cjs.js": "./dist/emotion-is-prop-valid.browser.cjs.js",
-    "./dist/emotion-is-prop-valid.esm.js": "./dist/emotion-is-prop-valid.browser.esm.js"
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-is-prop-valid.esm.js",
+      "default": "./dist/emotion-is-prop-valid.cjs.js"
+    },
+    "./package.json": "./package.json"
   }
 }
