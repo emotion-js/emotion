@@ -10,3 +10,4 @@ runs:
 
     - name: Install Dependencies
       run: yarn --immutable
+      shell: bash
