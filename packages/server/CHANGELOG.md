@@ -1,5 +1,18 @@
 # @emotion/server
 
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. This fixes how our default exports are treated by Node.js when using their native support for ES modules. It also limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- [#2835](https://github.com/emotion-js/emotion/pull/2835) [`fa7f494d`](https://github.com/emotion-js/emotion/commit/fa7f494d13fbcbad8a1fb765acba0610e084b7e5) Thanks [@manishco](https://github.com/manishco)! - Added missing TypeScript declarations for `extractCriticalToChunks` and `constructStyleTagsFromChunks` exports.
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228), [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/utils@1.2.0
+
 ## 11.4.0
 
 ### Minor Changes
