@@ -10,6 +10,9 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@emotion/memoize": "^0.8.0"
   },
