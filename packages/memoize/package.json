@@ -10,9 +10,6 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"

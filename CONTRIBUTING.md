@@ -1,7 +1,7 @@
 ## Prerequisites
 
-- [Node.js](http://nodejs.org/) >= v7 must be installed.
-- [Yarn](https://yarnpkg.com/en/docs/install)
+- [Node.js](http://nodejs.org/) >= v16 must be installed.
+- We are using Yarn Modern so you need either a global install of Yarn v1 (`npm i -g yarn`) or you need to [enable Corepack](https://yarnpkg.com/getting-started/install).
 
 ## Installation
 

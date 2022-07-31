@@ -13,9 +13,6 @@
   },
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/babel-preset-css-prop",
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.17.12",
     "@babel/runtime": "^7.18.3",
