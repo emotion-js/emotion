@@ -79,7 +79,7 @@ function handleInterpolation(
 export function createCss(StyleSheet: AbstractStyleSheet) {
   return function css(this: unknown, ...args: any[]) {
     const prevBuffer = buffer
-    let vals
+    let vals: any[]
 
     // these are declared earlier
     // this is done so we don't create a new
@@ -91,7 +91,7 @@ export function createCss(StyleSheet: AbstractStyleSheet) {
     if (args[0] == null || args[0].raw === undefined) {
       vals = args
     } else {
-      vals = interleave(args)
+      vals = interleave(args as [any, ...any[]])
     }
 
     try {

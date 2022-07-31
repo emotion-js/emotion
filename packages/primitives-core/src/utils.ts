@@ -1,6 +1,8 @@
-export function interleave(vals: any[]): any[] {
+export function interleave(
+  vals: [TemplateStringsArray, ...unknown[]]
+): unknown[] {
   let strings = vals[0]
-  let finalArray = [strings[0]]
+  let finalArray: unknown[] = [strings[0]]
   for (let i = 1, len = vals.length; i < len; i++) {
     finalArray.push(vals[i])
     if (strings[i] !== undefined) {

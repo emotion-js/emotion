@@ -46,7 +46,7 @@ export function createStyled(
       if (rawStyles[0] == null || rawStyles[0].raw === undefined) {
         styles = rawStyles
       } else {
-        styles = interleave(rawStyles)
+        styles = interleave(rawStyles as [any, ...any[]])
       }
 
       // do we really want to use the same infra as the web since it only really uses theming?
@@ -83,12 +83,16 @@ export function createStyled(
         return React.createElement(finalTag, newProps)
       })
 
-      ;(Styled as any).withComponent = (newComponent: React.ElementType) =>
-        createEmotion(newComponent)(...styles)
-
       Styled.displayName = `emotion(${getDisplayName(component)})`
 
-      return Styled
+      const withComponent = (newComponent: React.ElementType) =>
+        createEmotion(newComponent)(...styles)
+
+      const castedStyled = Styled as typeof Styled & {
+        withComponent: typeof withComponent
+      }
+
+      return castedStyled
     }
   }
 }
