@@ -36,9 +36,6 @@
     "@emotion/hash": "*",
     "typescript": "^4.5.5"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "src",
     "dist",

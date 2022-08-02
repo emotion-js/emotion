@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "16"
   YARN_VERSION = "1.22.19"
-  YARN_FLAGS = "--frozen-lockfile"
+  YARN_FLAGS = "--immutable"
   NETLIFY = "true"
 
 # These take effect in production and should match the redirects in next.config.js

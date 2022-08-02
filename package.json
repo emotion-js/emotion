@@ -9,7 +9,7 @@
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
     "test:react18": "jest -c jest-react18.config.js",
-    "test:typescript": "yarn workspaces run test:typescript",
+    "test:typescript": "yarn workspaces foreach --verbose --exclude emotion-monorepo run test:typescript",
     "test:ci": "jest --coverage --no-cache --ci --runInBand",
     "test:react18:ci": "yarn test:react18 --coverage --no-cache --ci --runInBand",
     "test:prod": "yarn build && jest -c jest.dist.js --no-cache --ci --runInBand",
@@ -21,16 +21,10 @@
     "flow": "flow",
     "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
     "preinstall": "node ./scripts/ensure-yarn.js",
-    "postinstall": "patch-package && opencollective postinstall && preconstruct dev && manypkg check",
+    "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish"
-  },
-  "resolutions": {
-    "**/react": "16.14.0",
-    "**/react-dom": "16.14.0",
-    "**/browserslist": "^3.2.8",
-    "**/graphql-type-json": "0.2.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -234,7 +228,6 @@
     "normalize.css": "^8.0.0",
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
-    "patch-package": "^6.4.7",
     "polished": "^1.2.1",
     "prettier": "^2.3.0",
     "raf": "^3.4.0",
@@ -250,5 +243,9 @@
     "through": "^2.3.8",
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
+  },
+  "packageManager": "yarn@3.2.2",
+  "resolutions": {
+    "jest-snapshot@27.4.5": "patch:jest-snapshot@npm:27.4.5#.yarn/patches/jest-snapshot-npm-27.4.5-6ace6bf68e.patch"
   }
 }

@@ -6,7 +6,7 @@ import { jsx, css, CacheProvider } from '@emotion/react'
 import { createTriangle } from './triangle.js'
 import { css as cssClassName } from '@emotion/css'
 import { renderStylesToString } from '@emotion/server'
-import EmotionServer from '@emotion/server/create-instance/dist/emotion-server-create-instance.cjs.js'
+import EmotionServer from '@emotion/server/create-instance'
 import EmotionCache from '@emotion/cache'
 import { insertStyles } from '@emotion/utils'
 
