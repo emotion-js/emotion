@@ -10,6 +10,7 @@
   "exports": {
     ".": {
       "module": {
+        "worker": "./dist/emotion-cache.worker.esm.js",
         "browser": "./dist/emotion-cache.browser.esm.js",
         "default": "./dist/emotion-cache.esm.js"
       },
@@ -46,7 +47,8 @@
   "preconstruct": {
     "exports": {
       "envConditions": [
-        "browser"
+        "browser",
+        "worker"
       ]
     }
   }
