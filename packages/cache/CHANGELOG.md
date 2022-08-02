@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.10.1
+
+### Patch Changes
+
+- [#2842](https://github.com/emotion-js/emotion/pull/2842) [`28e9b499`](https://github.com/emotion-js/emotion/commit/28e9b4996f45d209bfc821927f9c41e378ebc10b) Thanks [@Andarist](https://github.com/Andarist)! - Thanks to the recently added `exports` field, the package now includes a `worker` condition that can be utilized by properly configured bundlers when targeting worker-like environments. It fixes the issue with browser-specific files being prioritized by some bundlers when targeting workers.
+
 ## 11.10.0
 
 ### Minor Changes
