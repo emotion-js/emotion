@@ -244,5 +244,8 @@
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@3.2.2",
+  "resolutions": {
+    "jest-snapshot@27.4.5": "patch:jest-snapshot@npm:27.4.5#.yarn/patches/jest-snapshot-npm-27.4.5-6ace6bf68e.patch"
+  }
 }
