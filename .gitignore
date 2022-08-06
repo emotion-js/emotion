@@ -22,4 +22,5 @@ package-lock.json
 
 # Website
 /site/out
+/site/.tsc-output
 .next
