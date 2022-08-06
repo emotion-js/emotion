@@ -4,4 +4,4 @@ coverage/
 node_modules/
 stylis.min.js
 /demo/dist
-/packages/site/build
+/site/out

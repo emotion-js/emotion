@@ -55,11 +55,12 @@ render(
 npm i @emotion/react
 ```
 
-The ["@emotion/react"](https://www.npmjs.com/package/@emotion/react) package requires React and is recommended for users of that framework if possible.
+The [@emotion/react](https://www.npmjs.com/package/@emotion/react) package requires React and is recommended for users of that framework if possible.
 
 - Best when using React with a build environment that can be configured.
 
 - `css` prop support
+
   - Similar to the `style` prop, but also has support for auto vendor-prefixing, nested selectors, and media queries.
 
   - Allows developers to skip the `styled` API abstraction and style components and elements directly.
@@ -78,9 +79,7 @@ The ["@emotion/react"](https://www.npmjs.com/package/@emotion/react) package req
 
 ```jsx
 // @live
-// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const color = 'white'
 

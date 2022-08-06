@@ -84,7 +84,7 @@ let SomeComp = nonDefaultStyled.div({ color: 'hotpink' })
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
 import { nonDefaultStyled } from 'package-one';
-let SomeComp = nonDefaultStyled("div", process.env.NODE_ENV === "production" ? {
+let SomeComp = /*#__PURE__*/nonDefaultStyled("div", process.env.NODE_ENV === "production" ? {
   target: "e1dq5q4a0"
 } : {
   target: "e1dq5q4a0",
@@ -111,7 +111,7 @@ let SomeComp = someAlias.div({ color: 'hotpink' })
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
 import { nonDefaultStyled as someAlias } from 'package-one';
-let SomeComp = someAlias("div", process.env.NODE_ENV === "production" ? {
+let SomeComp = /*#__PURE__*/someAlias("div", process.env.NODE_ENV === "production" ? {
   target: "erjjkeh0"
 } : {
   target: "erjjkeh0",
@@ -139,7 +139,7 @@ import { something as _styled } from "package-four/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
-let SomeComp = _styled("div", process.env.NODE_ENV === "production" ? {
+let SomeComp = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e16az05m0"
 } : {
   target: "e16az05m0",

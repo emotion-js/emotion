@@ -1,11 +1,47 @@
 {
   "name": "@emotion/react",
-  "version": "11.9.3",
+  "version": "11.10.0",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
-    "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
     "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "worker": "./dist/emotion-react.worker.esm.js",
+        "browser": "./dist/emotion-react.browser.esm.js",
+        "default": "./dist/emotion-react.esm.js"
+      },
+      "default": "./dist/emotion-react.cjs.js"
+    },
+    "./jsx-runtime": {
+      "module": {
+        "worker": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.esm.js",
+        "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
+      },
+      "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+    },
+    "./_isolated-hnrs": {
+      "module": {
+        "worker": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.esm.js",
+        "browser": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
+      },
+      "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+    },
+    "./jsx-dev-runtime": {
+      "module": {
+        "worker": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.esm.js",
+        "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
+      },
+      "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./types/css-prop": "./types/css-prop.d.ts",
+    "./macro": "./macro.js"
   },
   "types": "types/index.d.ts",
   "files": [
@@ -26,12 +62,12 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@emotion/babel-plugin": "^11.7.1",
-    "@emotion/cache": "^11.9.3",
-    "@emotion/serialize": "^1.0.4",
-    "@emotion/utils": "^1.1.0",
-    "@emotion/weak-memoize": "^0.2.5",
+    "@babel/runtime": "^7.18.3",
+    "@emotion/babel-plugin": "^11.10.0",
+    "@emotion/cache": "^11.10.0",
+    "@emotion/serialize": "^1.1.0",
+    "@emotion/utils": "^1.2.0",
+    "@emotion/weak-memoize": "^0.3.0",
     "hoist-non-react-statics": "^3.3.1"
   },
   "peerDependencies": {
@@ -47,12 +83,12 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/css": "11.9.0",
-    "@emotion/css-prettifier": "1.0.1",
-    "@emotion/server": "11.4.0",
-    "@emotion/styled": "11.9.3",
+    "@emotion/css": "11.10.0",
+    "@emotion/css-prettifier": "1.1.0",
+    "@emotion/server": "11.10.0",
+    "@emotion/styled": "11.10.0",
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1",
@@ -70,6 +106,16 @@
       "./jsx-dev-runtime.js",
       "./_isolated-hnrs.js"
     ],
-    "umdName": "emotionReact"
+    "umdName": "emotionReact",
+    "exports": {
+      "envConditions": [
+        "browser",
+        "worker"
+      ],
+      "extra": {
+        "./types/css-prop": "./types/css-prop.d.ts",
+        "./macro": "./macro.js"
+      }
+    }
   }
 }

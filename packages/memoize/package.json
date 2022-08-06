@@ -1,6 +1,6 @@
 {
   "name": "@emotion/memoize",
-  "version": "0.7.5",
+  "version": "0.8.0",
   "description": "emotion's memoize utility",
   "main": "dist/emotion-memoize.cjs.js",
   "module": "dist/emotion-memoize.esm.js",
@@ -21,8 +21,11 @@
     "src",
     "dist"
   ],
-  "browser": {
-    "./dist/emotion-memoize.cjs.js": "./dist/emotion-memoize.browser.cjs.js",
-    "./dist/emotion-memoize.esm.js": "./dist/emotion-memoize.browser.esm.js"
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-memoize.esm.js",
+      "default": "./dist/emotion-memoize.cjs.js"
+    },
+    "./package.json": "./package.json"
   }
 }

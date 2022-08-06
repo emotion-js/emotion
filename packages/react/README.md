@@ -45,4 +45,4 @@ render(
 )
 ```
 
-More documentation is available at https://emotion.sh.
+More documentation is available at [https://emotion.sh](https://emotion.sh).

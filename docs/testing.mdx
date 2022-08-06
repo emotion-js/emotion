@@ -8,7 +8,7 @@ By diffing the serialized value of your React tree Jest can show you what change
 
 By default snapshots with emotion show generated class names. Adding [@emotion/jest](https://github.com/emotion-js/emotion/tree/main/packages/jest) allows you to output the actual styles being applied.
 
-<img height="360px" src="https://user-images.githubusercontent.com/514026/31314015-02b79ca6-abc3-11e7-8f70-1edb31c7f43b.jpg"/>
+<img src="https://user-images.githubusercontent.com/514026/31314015-02b79ca6-abc3-11e7-8f70-1edb31c7f43b.jpg" />
 
 ### Installation
 
@@ -42,9 +42,9 @@ When using Enzyme, you can add `"@emotion/jest/enzyme-serializer"` instead.
 
 Or use `expect.addSnapshotSerializer` to add it like this:
 
-
 ```javascript
-import { createEnzymeSerializer } from '@emotion/jest/enzyme-serializer' // also adds the enzyme-to-json serializer
+// also adds the enzyme-to-json serializer
+import { createEnzymeSerializer } from '@emotion/jest/enzyme-serializer'
 
 expect.addSnapshotSerializer(createEnzymeSerializer())
 ```
@@ -55,10 +55,7 @@ Writing a test with `@emotion/jest` involves creating a snapshot from the `react
 
 ```jsx
 import React from 'react'
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import renderer from 'react-test-renderer'
-
 
 const Button = props => (
   <button
@@ -71,9 +68,7 @@ const Button = props => (
 
 test('Button renders correctly', () => {
   expect(
-    renderer
-      .create(<Button>This is hotpink.</Button>)
-      .toJSON()
+    renderer.create(<Button>This is hotpink.</Button>).toJSON()
   ).toMatchSnapshot()
 })
 ```
