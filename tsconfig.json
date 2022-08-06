@@ -3,16 +3,21 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["es6", "dom"],
-    "module": "commonjs",
+    "lib": ["ES2019", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "target": "es5",
-    "types": []
+    "target": "ES2019",
+    "types": [],
+
+    // These options required for `site`
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
+    "incremental": true
   },
   "include": ["packages", "scripts", "site", "test", "playgrounds"],
   "exclude": [
