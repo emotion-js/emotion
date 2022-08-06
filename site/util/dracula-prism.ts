@@ -39,8 +39,6 @@ pre[class*="language-"],
   color: #ccc;
   background: rgb(40, 41, 54);
   text-shadow: none;
-  font-family: PT Mono, Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
-    monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
