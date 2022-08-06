@@ -1,0 +1,14 @@
+diff --git a/build/InlineSnapshots.js b/build/InlineSnapshots.js
+index 5f9c3d5816c5e944f6810bc42ff67ed649d84a2b..1ec2ce5d6a5a81ccd8cd898fb65be432b04cb514 100644
+--- a/build/InlineSnapshots.js
++++ b/build/InlineSnapshots.js
+@@ -219,7 +219,8 @@ const saveSnapshotsForFile = (snapshots, sourceFilePath, prettier) => {
+     filename: sourceFilePath,
+     plugins,
+     presets,
+-    root: path.dirname(sourceFilePath)
++    // Jest 27-28 currently can't locate our `babel.config.js` correctly, see: https://github.com/facebook/jest/issues/11741
++    // root: path.dirname(sourceFilePath)
+   });
+ 
+   if (!ast) {

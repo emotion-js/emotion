@@ -1,5 +1,25 @@
 # @emotion/cache
 
+## 11.10.1
+
+### Patch Changes
+
+- [#2842](https://github.com/emotion-js/emotion/pull/2842) [`28e9b499`](https://github.com/emotion-js/emotion/commit/28e9b4996f45d209bfc821927f9c41e378ebc10b) Thanks [@Andarist](https://github.com/Andarist)! - Thanks to the recently added `exports` field, the package now includes a `worker` condition that can be utilized by properly configured bundlers when targeting worker-like environments. It fixes the issue with browser-specific files being prioritized by some bundlers when targeting workers.
+
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228), [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/memoize@0.8.0
+  - @emotion/sheet@1.2.0
+  - @emotion/utils@1.2.0
+  - @emotion/weak-memoize@0.3.0
+
 ## 11.9.3
 
 ### Patch Changes
