@@ -1,4 +1,4 @@
-type NamedStyles<T> = { [P in keyof T]: unknown }
+type NamedStyles<T> = { [P in keyof T]: any }
 
 // This is based on the StyleSheet type from @types/react-native
 export interface AbstractStyleSheet {

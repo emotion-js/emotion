@@ -1,6 +1,6 @@
 import isPropValid from '@emotion/is-prop-valid'
 
-const forwardableProps = {
+const forwardableProps: Record<string, boolean> = {
   // primitive props
   abortPrefetch: true,
   accessibilityComponentType: true,
@@ -48,7 +48,7 @@ const forwardableProps = {
   textBreakStrategy: true
 }
 
-export function testPickPropsOnPrimitiveComponent(prop /*: string */) {
+export function testPickPropsOnPrimitiveComponent(prop: string): boolean {
   return (
     forwardableProps[prop] === true ||
     // This will allow the standard react props
@@ -58,6 +58,6 @@ export function testPickPropsOnPrimitiveComponent(prop /*: string */) {
   )
 }
 
-export function testPickPropsOnOtherComponent(prop /*: string */) {
+export function testPickPropsOnOtherComponent(prop: string): boolean {
   return prop !== 'theme'
 }

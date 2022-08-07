@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
+    "@types/react-primitives": "^0.6.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "react": "16.14.0",

@@ -2574,6 +2574,7 @@ __metadata:
     "@emotion/babel-plugin": ^11.10.0
     "@emotion/is-prop-valid": ^1.2.0
     "@emotion/primitives-core": ^11.10.0
+    "@types/react-primitives": ^0.6.2
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.5
     react: 16.14.0
@@ -5858,12 +5859,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-native@npm:*":
+  version: 0.69.5
+  resolution: "@types/react-native@npm:0.69.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: 4ced60f7233e28d632061e86d7494319564b62db334d328056ecc1ac10904e286bd802f3152ec4a37106238fe99b5ea5b9ae89d8bcb14f4b336e836c6af2042e
+  languageName: node
+  linkType: hard
+
 "@types/react-native@npm:^0.63.2":
   version: 0.63.61
   resolution: "@types/react-native@npm:0.63.61"
   dependencies:
     "@types/react": "*"
   checksum: 245ffbfcc64746933589c57b784070d93dd1b6d3968f34ebc8dcc605a50e3a2b0d30836cf6b641d18f4562476a9a9e51fdc04dbb6349a68891bb03a06f04b519
+  languageName: node
+  linkType: hard
+
+"@types/react-primitives@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "@types/react-primitives@npm:0.6.2"
+  dependencies:
+    "@types/react": "*"
+    "@types/react-native": "*"
+  checksum: 8cad3f8f75dec5a0e7190c5707a4ecc75c88cb460a004f82836ec37c7b5a10b55eb2a40adeefbbccaf89c2b89ada8d8e6aa1ae4f1e186ddbb2ca2713ca9bbf55
   languageName: node
   linkType: hard
 

@@ -6,7 +6,9 @@ import {
   testPickPropsOnOtherComponent
 } from './test-props'
 
-function getShouldForwardProp(component /*: React.ElementType */) {
+function getShouldForwardProp(
+  component: React.ElementType
+): (prop: string) => boolean {
   switch (component) {
     case View:
     case Text:
@@ -20,23 +22,19 @@ function getShouldForwardProp(component /*: React.ElementType */) {
 /**
  * a function that returns a styled component which render styles on multiple targets with same code
  */
-
-/*
-type CreateStyledComponent = (
-  ...styles: any
-) => React.StatelessFunctionalComponent<any> & {
-  withComponent: (component: any) => React.StatelessFunctionalComponent<any>
+type CreateStyledComponent = (...styles: any) => React.FC<any> & {
+  withComponent: (component: any) => React.FC<any>
 }
 
-type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
+/** @internal */
+export type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
 
 export type Styled = BaseStyled & {
-  View: CreateStyledComponent,
-  Text: CreateStyledComponent,
+  View: CreateStyledComponent
+  Text: CreateStyledComponent
   Image: CreateStyledComponent
 }
-*/
 
-let styled /*: Styled */ = createStyled(StyleSheet, { getShouldForwardProp })
+let styled: BaseStyled = createStyled(StyleSheet, { getShouldForwardProp })
 
 export { styled }
