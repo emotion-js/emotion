@@ -3,6 +3,7 @@
   "version": "11.10.0",
   "main": "dist/emotion-primitives.cjs.js",
   "module": "dist/emotion-primitives.esm.js",
+  "types": "dist/emotion-primitives.cjs.d.ts",
   "files": [
     "src",
     "dist",
