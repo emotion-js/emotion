@@ -26,10 +26,12 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@types/react-primitives": "^0.6.2",
+    "@types/react-test-renderer": "^16",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "react": "16.14.0",
-    "react-primitives": "^0.8.1"
+    "react-primitives": "^0.8.1",
+    "react-test-renderer": "16.8.6"
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",

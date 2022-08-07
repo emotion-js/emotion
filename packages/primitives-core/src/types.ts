@@ -1,10 +1,24 @@
+// This is based on the StyleSheet types from @types/react-native
+
+type Falsy = undefined | null | false
+
+interface RecursiveArray<T>
+  extends Array<T | ReadonlyArray<T> | RecursiveArray<T>> {}
+
+type RegisteredStyle<T> = number & { __registeredStyleBrand: T }
+
+type StyleProp<T> =
+  | T
+  | RegisteredStyle<T>
+  | RecursiveArray<T | RegisteredStyle<T> | Falsy>
+  | Falsy
+
 type NamedStyles<T> = { [P in keyof T]: any }
 
-// This is based on the StyleSheet type from @types/react-native
 export interface AbstractStyleSheet {
   create<T extends NamedStyles<T> | NamedStyles<any>>(
     styles: T | NamedStyles<T>
-  ): T
+  ): { [P in keyof T]: number }
 
-  flatten(style?: unknown[]): unknown
+  flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T
 }

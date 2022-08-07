@@ -2575,10 +2575,12 @@ __metadata:
     "@emotion/is-prop-valid": ^1.2.0
     "@emotion/primitives-core": ^11.10.0
     "@types/react-primitives": ^0.6.2
+    "@types/react-test-renderer": ^16
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.5
     react: 16.14.0
     react-primitives: ^0.8.1
+    react-test-renderer: 16.8.6
   peerDependencies:
     "@babel/core": ^7.0.0
     react: ">=16.8.0"
@@ -5887,6 +5889,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-test-renderer@npm:^16":
+  version: 16.9.5
+  resolution: "@types/react-test-renderer@npm:16.9.5"
+  dependencies:
+    "@types/react": ^16
+  checksum: 5ba383f05342c9bdd3bdd431591586b76d01d673f7446bf0a035f990cdb8a84c8944994089bf179855b39324f516ed1461e23c7f27e2522210a7acaba60a5172
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.0.9":
   version: 18.0.14
   resolution: "@types/react@npm:18.0.14"
@@ -5895,6 +5906,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 608eb57a383eedc54c79949673e5e8314f6b0c61542bff58721c8c47a18c23e2832e77c656050c2c2c004b62cf25582136c7c56fe1b6263a285c065fae31dbcf
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^16":
+  version: 16.14.30
+  resolution: "@types/react@npm:16.14.30"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: b0810f92b8bf086b6da5cb96bfff2babe957517a34518e439aed75402a12271555d00f3e30de5f1a5cc97b2f6e37eccdf3538546add8d0deace771e16048d2ac
   languageName: node
   linkType: hard
 

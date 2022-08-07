@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-primitives'
-import { createStyled } from '@emotion/primitives-core'
+import { createStyled, StyledOptions } from '@emotion/primitives-core'
 import {
   testPickPropsOnPrimitiveComponent,
   testPickPropsOnOtherComponent
@@ -27,7 +27,10 @@ type CreateStyledComponent = (...styles: any) => React.FC<any> & {
 }
 
 /** @internal */
-export type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
+export type BaseStyled = (
+  tag: React.ElementType,
+  options?: StyledOptions | undefined
+) => CreateStyledComponent
 
 export type Styled = BaseStyled & {
   View: CreateStyledComponent

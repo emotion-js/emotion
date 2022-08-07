@@ -16,6 +16,7 @@ describe('Emotion primitives', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
+    // @ts-expect-error
     expect(() => styled.TEXT({})).toThrow()
   })
 
@@ -23,7 +24,7 @@ describe('Emotion primitives', () => {
     const Text = styled.Text`
       color: red;
       font-size: 20px;
-      background-color: ${props => props.back};
+      background-color: ${(props: any) => props.back};
     `
     const tree = renderer
       .create(
@@ -37,7 +38,7 @@ describe('Emotion primitives', () => {
 
   it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
-      color: ${props => props.theme.backgroundColor};
+      color: ${(props: any) => props.theme.backgroundColor};
     `
 
     const tree = renderer
@@ -53,7 +54,7 @@ describe('Emotion primitives', () => {
 
   it('should unmount with theming', () => {
     const StyledText = styled.Text`
-      display: ${props => props.theme.display};
+      display: ${(props: any) => props.theme.display};
     `
 
     const { container, unmount } = render(
@@ -69,7 +70,7 @@ describe('Emotion primitives', () => {
   })
 
   test('should render the primitive on changing the props', () => {
-    const Text = styled.Text({ padding: '20px' }, props => ({
+    const Text = styled.Text({ padding: '20px' }, (props: any) => ({
       color: props.decor
     }))
     const tree = renderer
@@ -102,7 +103,7 @@ describe('Emotion primitives', () => {
 
   test('primitive should work with `withComponent`', () => {
     const StyledText = styled.Text`
-      color: ${props => props.decor};
+      color: ${(props: any) => props.decor};
     `
     const Name = StyledText.withComponent(Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
@@ -116,7 +117,7 @@ describe('Emotion primitives', () => {
     const Title = () => <Text>Hello World</Text>
     const StyledTitle = styled(Title)`
       font-size: 20px;
-      font-style: ${props => props.sty};
+      font-style: ${(props: any) => props.sty};
     `
     const tree = renderer.create(<StyledTitle sty="italic" />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -136,7 +137,7 @@ describe('Emotion primitives', () => {
 
   it('should pass props in withComponent', () => {
     const ViewOne = styled.View`
-      background-color: ${props => props.color};
+      background-color: ${(props: any) => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
     const ViewTwo = ViewOne.withComponent(Text)
@@ -167,11 +168,11 @@ describe('Emotion primitives', () => {
 
   test('custom shouldForwardProp works', () => {
     const Text = styled.Text``
-    const Title = props => <Text {...props} />
+    const Title = (props: any) => <Text {...props} />
     const StyledTitle = styled(Title, {
       shouldForwardProp: prop => prop !== 'color' && prop !== 'theme'
     })`
-      color: ${props => props.color};
+      color: ${(props: any) => props.color};
     `
 
     const tree = renderer

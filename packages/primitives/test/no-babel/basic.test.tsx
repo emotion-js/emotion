@@ -43,7 +43,7 @@ test('should render the primitive when styles applied using object style notatio
   const Text = styled.Text`
     color: red;
     font-size: 20px;
-    background-color: ${props => props.back};
+    background-color: ${(props: any) => props.back};
   `
   const tree = renderer
     .create(

@@ -7,7 +7,7 @@ import { interleave } from './utils'
 // this is done so we don't create a new
 // handleInterpolation function on every css call
 let styles: unknown[] | undefined
-let generated: Record<string, unknown> = {}
+let generated: Record<string, number> = {}
 let buffer = ''
 let lastType: string | undefined
 
