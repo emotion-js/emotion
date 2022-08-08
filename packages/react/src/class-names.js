@@ -42,7 +42,7 @@ let classnames = (args: Array<ClassNameArg>): string => {
           ) {
             console.error(
               'You have passed styles created with `css` from `@emotion/react` package to the `cx`.\n' +
-                '`cx` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the `css` received from <ClassNames/> component.'
+              '`cx` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the `css` received from <ClassNames/> component.'
             )
           }
           toAdd = ''
@@ -93,7 +93,7 @@ type Props = {
   }) => React.Node
 }
 
-const Insertion = ({ cache, serializedArr }) => {
+const Insertion = React.memo(({ cache, serializedArr }) => {
   let rules = useInsertionEffectMaybe(() => {
     let rules = ''
     for (let i = 0; i < serializedArr.length; i++) {
@@ -121,45 +121,45 @@ const Insertion = ({ cache, serializedArr }) => {
     )
   }
   return null
-}
+})
 
 export const ClassNames: React.AbstractComponent<Props> =
   /* #__PURE__ */ withEmotionCache((props, cache) => {
-    let hasRendered = false
-    let serializedArr = []
+  let hasRendered = false
+  let serializedArr = []
 
-    let css = (...args: Array<any>) => {
-      if (hasRendered && process.env.NODE_ENV !== 'production') {
-        throw new Error('css can only be used during render')
-      }
+  let css = (...args: Array<any>) => {
+    if (hasRendered && process.env.NODE_ENV !== 'production') {
+      throw new Error('css can only be used during render')
+    }
 
-      let serialized = serializeStyles(args, cache.registered)
-      serializedArr.push(serialized)
-      // registration has to happen here as the result of this might get consumed by `cx`
-      registerStyles(cache, serialized, false)
-      return `${cache.key}-${serialized.name}`
+    let serialized = serializeStyles(args, cache.registered)
+    serializedArr.push(serialized)
+    // registration has to happen here as the result of this might get consumed by `cx`
+    registerStyles(cache, serialized, false)
+    return `${cache.key}-${serialized.name}`
+  }
+  let cx = (...args: Array<ClassNameArg>) => {
+    if (hasRendered && process.env.NODE_ENV !== 'production') {
+      throw new Error('cx can only be used during render')
     }
-    let cx = (...args: Array<ClassNameArg>) => {
-      if (hasRendered && process.env.NODE_ENV !== 'production') {
-        throw new Error('cx can only be used during render')
-      }
-      return merge(cache.registered, css, classnames(args))
-    }
-    let content = {
-      css,
-      cx,
-      theme: React.useContext(ThemeContext)
-    }
-    let ele = props.children(content)
-    hasRendered = true
+    return merge(cache.registered, css, classnames(args))
+  }
+  let content = {
+    css,
+    cx,
+    theme: React.useContext(ThemeContext)
+  }
+  let ele = props.children(content)
+  hasRendered = true
 
-    return (
-      <>
-        <Insertion cache={cache} serializedArr={serializedArr} />
-        {ele}
-      </>
-    )
-  })
+  return (
+    <>
+      <Insertion cache={cache} serializedArr={serializedArr} />
+      {ele}
+    </>
+  )
+})
 
 if (process.env.NODE_ENV !== 'production') {
   ClassNames.displayName = 'EmotionClassNames'

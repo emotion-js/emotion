@@ -54,7 +54,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   return newProps
 }
 
-const Insertion = ({ cache, serialized, isStringTag }) => {
+const Insertion = React.memo(({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
 
   const rules = useInsertionEffectMaybe(() =>
@@ -79,9 +79,9 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
     )
   }
   return null
-}
+})
 
-let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
+let Emotion = /* #__PURE__ */ withEmotionCache < any, any> (
   (props, cache, ref) => {
     let cssProp = props.css
 

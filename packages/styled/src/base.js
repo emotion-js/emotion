@@ -24,7 +24,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 
 let isBrowser = typeof document !== 'undefined'
 
-const Insertion = ({ cache, serialized, isStringTag }) => {
+const Insertion = React.memo(({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
 
   const rules = useInsertionEffectMaybe(() =>
@@ -49,7 +49,7 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
     )
   }
   return null
-}
+})
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
