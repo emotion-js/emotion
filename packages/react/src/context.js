@@ -45,7 +45,7 @@ if (!isBrowser) {
   withEmotionCache = () => withEmotionCache < Props > (
     func: (props: Props, cache: EmotionCache) => React.Node
   ): React.StatelessFunctionalComponent < Props > {
-    return React.memo((props: Props) => {
+    return (props: Props) => {
       let cache = useContext(EmotionCacheContext)
       if (cache === null) {
         // yes, we're potentially creating this on every render
@@ -62,7 +62,7 @@ if (!isBrowser) {
       } else {
         return func(props, cache)
       }
-    })
+    }
   }
 }
 
