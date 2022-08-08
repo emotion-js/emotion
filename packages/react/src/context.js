@@ -7,16 +7,16 @@ import { isBrowser } from './utils'
 
 let EmotionCacheContext: React.Context<EmotionCache | null> =
   /* #__PURE__ */ React.createContext(
-    // we're doing this to avoid preconstruct's dead code elimination in this one case
-    // because this module is primarily intended for the browser and node
-    // but it's also required in react native and similar environments sometimes
-    // and we could have a special build just for that
-    // but this is much easier and the native packages
-    // might use a different theme context in the future anyway
-    typeof HTMLElement !== 'undefined'
-      ? /* #__PURE__ */ createCache({ key: 'css' })
-      : null
-  )
+  // we're doing this to avoid preconstruct's dead code elimination in this one case
+  // because this module is primarily intended for the browser and node
+  // but it's also required in react native and similar environments sometimes
+  // and we could have a special build just for that
+  // but this is much easier and the native packages
+  // might use a different theme context in the future anyway
+  typeof HTMLElement !== 'undefined'
+    ? /* #__PURE__ */ createCache({ key: 'css' })
+    : null
+)
 
 if (process.env.NODE_ENV !== 'production') {
   EmotionCacheContext.displayName = 'EmotionCacheContext'
@@ -29,23 +29,23 @@ export let __unsafe_useEmotionCache =
     return useContext(EmotionCacheContext)
   }
 
-let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
+let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>> (
   func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
-): React.AbstractComponent<Props> {
+): React.AbstractComponent < Props > {
   // $FlowFixMe
   return forwardRef((props: Props, ref: Ref) => {
     // the cache will never be null in the browser
     let cache = ((useContext(EmotionCacheContext): any): EmotionCache)
 
-    return func(props, cache, ref)
-  })
+  return func(props, cache, ref)
+})
 }
 
 if (!isBrowser) {
-  withEmotionCache = function withEmotionCache<Props>(
+  withEmotionCache = () => withEmotionCache < Props > (
     func: (props: Props, cache: EmotionCache) => React.Node
-  ): React.StatelessFunctionalComponent<Props> {
-    return (props: Props) => {
+  ): React.StatelessFunctionalComponent < Props > {
+    return React.memo((props: Props) => {
       let cache = useContext(EmotionCacheContext)
       if (cache === null) {
         // yes, we're potentially creating this on every render
@@ -62,7 +62,7 @@ if (!isBrowser) {
       } else {
         return func(props, cache)
       }
-    }
+    })
   }
 }
 
