@@ -17,6 +17,7 @@
       "check-preblock"
     ],
 
-    "no-unnecessary-generics": false
+    "no-unnecessary-generics": false,
+    "no-default-import": false
   }
 }

@@ -1,4 +1,3 @@
-// @flow
 import { SourceMapGenerator } from 'source-map'
 import convert from 'convert-source-map'
 
@@ -6,7 +5,7 @@ function getGeneratorOpts(file) {
   return file.opts.generatorOpts ? file.opts.generatorOpts : file.opts
 }
 
-export function makeSourceMapGenerator(file: *) {
+export function makeSourceMapGenerator(file) {
   const generatorOpts = getGeneratorOpts(file)
   const filename = generatorOpts.sourceFileName
   const generator = new SourceMapGenerator({
@@ -19,12 +18,12 @@ export function makeSourceMapGenerator(file: *) {
 }
 
 export function getSourceMap(
-  offset: {
+  offset /*: {
     line: number,
     column: number
-  },
-  state: *
-): string {
+  } */,
+  state
+) /*: string */ {
   const generator = makeSourceMapGenerator(state.file)
   const generatorOpts = getGeneratorOpts(state.file)
   if (

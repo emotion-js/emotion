@@ -1,11 +1,9 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { jsx, css, Global, keyframes, ClassNames } from '@emotion/react'
 import renderer from 'react-test-renderer'
 import { render } from '@testing-library/react'
 
-// $FlowFixMe
 console.error = jest.fn()
 
 const validValues = [
@@ -45,7 +43,6 @@ it('does not warn when valid values are passed for the content property', () => 
 const invalidValues = ['this is not valid', '']
 
 it('does warn when invalid values are passed for the content property', () => {
-  // $FlowFixMe
   invalidValues.forEach(value => {
     expect(() =>
       renderer.create(<div css={{ content: value }} />)
@@ -75,7 +72,7 @@ describe('unsafe pseudo classes', () => {
             color: hotpink;
           }
         `
-        const match = (pseudoClass.match(/(:first|:nth|:nth-last)-child/): any)
+        const match = pseudoClass.match(/(:first|:nth|:nth-last)-child/)
         expect(match).not.toBeNull()
         expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
         expect(console.error).toBeCalledWith(
@@ -118,9 +115,7 @@ describe('unsafe pseudo classes', () => {
           /\/\* \S+ \*\//g,
           '/* [flag] */'
         )}" in a style ${type}`, () => {
-          const match = (pseudoClass.match(
-            /(:first|:nth|:nth-last)-child/
-          ): any)
+          const match = pseudoClass.match(/(:first|:nth|:nth-last)-child/)
           expect(match).not.toBeNull()
           expect(
             renderer.create(<div css={styles[type]} />).toJSON()
@@ -135,7 +130,6 @@ describe('unsafe pseudo classes', () => {
 test('global with css prop', () => {
   let tree = renderer
     .create(
-      // $FlowFixMe
       <Global
         css={{
           html: {
@@ -162,7 +156,7 @@ test('kebab-case', () => {
   css({ '@media (min-width 800px)': undefined })
   css({ '--primary-color': 'hotpink' })
   css({ ':last-of-type': null })
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
                     [
                       [
                         "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
@@ -191,7 +185,7 @@ test('keyframes interpolated into plain string', () => {
   renderer.create(
     <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
   )
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
             [
               [
                 "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
@@ -234,7 +228,6 @@ test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
       {({ cx }) => (
         <div
           className={cx(
-            // $FlowFixMe
             css`
               color: hotpink;
             `,
@@ -245,7 +238,7 @@ test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
     </ClassNames>
   )
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
     [
       [
         "You have passed styles created with \`css\` from \`@emotion/react\` package to the \`cx\`.
@@ -268,7 +261,7 @@ test('@import nested in scoped `css`', () => {
     />
   )
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
     [
       [
         "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
@@ -290,7 +283,7 @@ test('@import prepended with other rules', () => {
     />
   )
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
     [
       [
         "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
@@ -309,7 +302,7 @@ test('@import prepended by other @import', () => {
     />
   )
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
 test('when using `jsx` multiple static children should not result in a key-related warning', () => {
@@ -319,5 +312,5 @@ test('when using `jsx` multiple static children should not result in a key-relat
       <div />
     </div>
   )
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
 })

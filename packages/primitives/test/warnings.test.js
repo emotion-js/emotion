@@ -1,7 +1,5 @@
-// @flow
 import { css } from '@emotion/primitives'
 
-// $FlowFixMe
 console.error = jest.fn()
 
 afterEach(() => {

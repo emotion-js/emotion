@@ -1,5 +1,3 @@
-// @flow
-
 import { serializeStyles } from '@emotion/serialize'
 import minify from './minify'
 import { getLabelFromPath } from './label'
@@ -14,19 +12,15 @@ import createNodeEnvConditional from './create-node-env-conditional'
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
 
-export let transformExpressionWithStyles = ({
+export let transformExpressionWithStyles = (
+  { babel, state, path, shouldLabel, sourceMap = '' } /*: {
   babel,
   state,
   path,
-  shouldLabel,
-  sourceMap = ''
-}: {
-  babel: *,
-  state: *,
-  path: *,
   shouldLabel: boolean,
   sourceMap?: string
-}): * => {
+} */
+) => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {

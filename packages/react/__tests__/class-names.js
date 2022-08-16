@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import 'test-utils/next-env'
 import { ClassNames, ThemeProvider } from '@emotion/react'

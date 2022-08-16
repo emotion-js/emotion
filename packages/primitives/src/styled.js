@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-primitives'
 import { createStyled } from '@emotion/primitives-core'
@@ -7,7 +6,7 @@ import {
   testPickPropsOnOtherComponent
 } from './test-props'
 
-function getShouldForwardProp(component: React.ElementType) {
+function getShouldForwardProp(component /*: React.ElementType */) {
   switch (component) {
     case View:
     case Text:
@@ -22,6 +21,7 @@ function getShouldForwardProp(component: React.ElementType) {
  * a function that returns a styled component which render styles on multiple targets with same code
  */
 
+/*
 type CreateStyledComponent = (
   ...styles: any
 ) => React.StatelessFunctionalComponent<any> & {
@@ -35,7 +35,8 @@ export type Styled = BaseStyled & {
   Text: CreateStyledComponent,
   Image: CreateStyledComponent
 }
+*/
 
-let styled: Styled = createStyled(StyleSheet, { getShouldForwardProp })
+let styled /*: Styled */ = createStyled(StyleSheet, { getShouldForwardProp })
 
 export { styled }

@@ -1,7 +1,7 @@
 /** @jsx jsx
  * @jest-environment node
  */
-// @flow
+
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import testCases from 'jest-in-case'

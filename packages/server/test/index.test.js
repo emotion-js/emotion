@@ -57,11 +57,12 @@ describe('extractCritical', () => {
           )
         )
 
-        expect((console.error: any).mock.calls).toMatchObject([])
+        expect(console.error.mock.calls).toMatchObject([])
       })
     })
   })
 })
+
 describe('hydration', () => {
   test('only rules that are not in the critical css are inserted', async () => {
     const { html, ids, css } = await disableBrowserEnvTemporarily(() => {

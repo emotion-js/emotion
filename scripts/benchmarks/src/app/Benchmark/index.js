@@ -4,19 +4,17 @@
  * https://github.com/paularmstrong/react-component-benchmark
  */
 
-/* global $Values */
-/**
- * @flow
- */
 import * as Timing from './timing'
 import React, { Component } from 'react'
 import { getMean, getMedian, getStdDev } from './math'
 
+/*
 import type {
   BenchResultsType,
   FullSampleTimingType,
   SampleTimingType
 } from './types'
+*/
 
 export const BenchmarkType = {
   MOUNT: 'mount',
@@ -25,9 +23,9 @@ export const BenchmarkType = {
 }
 
 const shouldRender = (
-  cycle: number,
-  type: $Values<typeof BenchmarkType>
-): boolean => {
+  cycle /*: number */,
+  type /*: $Values<typeof BenchmarkType> */
+) /*: boolean */ => {
   switch (type) {
     // Render every odd iteration (first, third, etc)
     // Mounts and unmounts the component
@@ -43,9 +41,9 @@ const shouldRender = (
 }
 
 const shouldRecord = (
-  cycle: number,
-  type: $Values<typeof BenchmarkType>
-): boolean => {
+  cycle /*: number */,
+  type /*: $Values<typeof BenchmarkType> */
+) /*: boolean */ => {
   switch (type) {
     // Record every odd iteration (when mounted: first, third, etc)
     case BenchmarkType.MOUNT:
@@ -62,10 +60,10 @@ const shouldRecord = (
 }
 
 const isDone = (
-  cycle: number,
-  sampleCount: number,
-  type: $Values<typeof BenchmarkType>
-): boolean => {
+  cycle /*: number */,
+  sampleCount /*: number */,
+  type /*: $Values<typeof BenchmarkType> */
+) /*: boolean */ => {
   switch (type) {
     case BenchmarkType.MOUNT:
       return cycle >= sampleCount * 2 - 1
@@ -78,8 +76,9 @@ const isDone = (
   }
 }
 
-const sortNumbers = (a: number, b: number): number => a - b
+const sortNumbers = (a /*: number */, b /*: number */) /*: number */ => a - b
 
+/*
 type BenchmarkPropsType = {
   component: typeof React.Component,
   forceLayout?: boolean,
@@ -95,19 +94,19 @@ type BenchmarkStateType = {
   cycle: number,
   running: boolean
 }
+*/
 
 /**
  * Benchmark
  * TODO: documentation
  */
-export default class Benchmark extends Component<
+export default class Benchmark extends Component /* <
   BenchmarkPropsType,
   BenchmarkStateType
-> {
-  _raf: ?Function
-  _startTime: number
-  _samples: Array<SampleTimingType>
-
+> */ {
+  _raf /*: ?Function */
+  _startTime /*: number */
+  _samples /*: Array<SampleTimingType> */
   static displayName = 'Benchmark'
 
   static defaultProps = {
@@ -118,7 +117,7 @@ export default class Benchmark extends Component<
 
   static Type = BenchmarkType
 
-  constructor(props: BenchmarkPropsType, context?: {}) {
+  constructor(props /*: BenchmarkPropsType */, context /* ?: {} */) {
     super(props, context)
     const cycle = 0
     const componentProps = props.getComponentProps({ cycle })
@@ -131,7 +130,7 @@ export default class Benchmark extends Component<
     this._samples = []
   }
 
-  componentWillReceiveProps(nextProps: BenchmarkPropsType) {
+  componentWillReceiveProps(nextProps /*: BenchmarkPropsType */) {
     if (nextProps) {
       this.setState(state => ({
         componentProps: nextProps.getComponentProps(state.cycle)
@@ -140,8 +139,8 @@ export default class Benchmark extends Component<
   }
 
   componentWillUpdate(
-    nextProps: BenchmarkPropsType,
-    nextState: BenchmarkStateType
+    nextProps /*: BenchmarkPropsType */,
+    nextState /*: BenchmarkStateType */
   ) {
     if (nextState.running && !this.state.running) {
       this._startTime = Timing.now()
@@ -217,24 +216,24 @@ export default class Benchmark extends Component<
     }
 
     this._raf = window.requestAnimationFrame(() => {
-      this.setState((state: BenchmarkStateType) => ({
+      this.setState((state /*: BenchmarkStateType */) => ({
         cycle: state.cycle + 1,
         componentProps
       }))
     })
   }
 
-  getSamples(): Array<FullSampleTimingType> {
+  getSamples() /*: Array<FullSampleTimingType> */ {
     return this._samples.reduce(
       (
-        memo: Array<FullSampleTimingType>,
+        memo /*: Array<FullSampleTimingType> */,
         {
           scriptingStart,
           scriptingEnd,
           layoutStart,
           layoutEnd
-        }: SampleTimingType
-      ): Array<FullSampleTimingType> => {
+        } /*: SampleTimingType */
+      ) /*: Array<FullSampleTimingType> */ => {
         memo.push({
           start: scriptingStart,
           end: layoutEnd || scriptingEnd || 0,
@@ -249,7 +248,7 @@ export default class Benchmark extends Component<
     )
   }
 
-  _handleComplete(endTime: number) {
+  _handleComplete(endTime /*: number */) {
     const { onComplete } = this.props
     const samples = this.getSamples()
 

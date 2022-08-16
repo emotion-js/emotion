@@ -1,4 +1,3 @@
-// @flow
 import {
   transformExpressionWithStyles,
   getStyledOptions,
@@ -13,15 +12,16 @@ const getReferencedSpecifier = (path, specifierName) => {
     : specifiers.find(p => p.node.local.name === specifierName)
 }
 
-export let styledTransformer = ({
-  state,
-  babel,
-  path,
-  importSource,
-  reference,
-  importSpecifierName,
-  options: { styledBaseImport, isWeb }
-}: {
+export let styledTransformer = (
+  {
+    state,
+    babel,
+    path,
+    importSource,
+    reference,
+    importSpecifierName,
+    options: { styledBaseImport, isWeb }
+  } /*: {
   state: Object,
   babel: Object,
   path: any,
@@ -29,7 +29,8 @@ export let styledTransformer = ({
   importSpecifierName: string,
   reference: Object,
   options: { styledBaseImport?: [string, string], isWeb: boolean }
-}) => {
+} */
+) => {
   let t = babel.types
 
   let getStyledIdentifier = () => {
@@ -119,17 +120,19 @@ export let styledTransformer = ({
   }
 }
 
-export let createStyledMacro = ({
-  importSource,
-  originalImportSource = importSource,
-  baseImportName = 'default',
-  isWeb
-}: {
+export let createStyledMacro = (
+  {
+    importSource,
+    originalImportSource = importSource,
+    baseImportName = 'default',
+    isWeb
+  } /*: {
   importSource: string,
   originalImportSource?: string,
   baseImportName?: string,
   isWeb: boolean
-}) =>
+} */
+) =>
   createTransformerMacro(
     {
       default: [

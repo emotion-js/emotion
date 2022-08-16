@@ -1,6 +1,5 @@
 /** @jsx jsx
  * @jest-environment node
- * @flow
  */
 import { jsx, Global } from '@emotion/react'
 import createEmotionServer from '@emotion/server/create-instance'

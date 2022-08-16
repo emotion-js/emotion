@@ -4,14 +4,13 @@
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-css.cjs.js",
   "module": "dist/emotion-css.esm.js",
-  "types": "types/index.d.ts",
+  "types": "dist/emotion-css.cjs.d.ts",
   "files": [
     "src",
     "dist",
     "types",
     "macro.js",
     "macro.d.ts",
-    "macro.js.flow",
     "create-instance"
   ],
   "scripts": {
@@ -67,8 +66,8 @@
   "preconstruct": {
     "umdName": "emotion",
     "entrypoints": [
-      "./index.js",
-      "./create-instance.js"
+      "./index.ts",
+      "./create-instance.ts"
     ],
     "exports": {
       "extra": {

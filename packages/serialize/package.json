@@ -4,7 +4,7 @@
   "description": "serialization utils for emotion",
   "main": "dist/emotion-serialize.cjs.js",
   "module": "dist/emotion-serialize.esm.js",
-  "types": "types/index.d.ts",
+  "types": "dist/emotion-serialize.cjs.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/serialize",
   "publishConfig": {
@@ -26,8 +26,7 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "browser": {
     "./dist/emotion-serialize.esm.js": "./dist/emotion-serialize.browser.esm.js"

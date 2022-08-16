@@ -1,10 +1,7 @@
-// @flow
 /** @jsx jsx */
 import { safeQuerySelector, disableBrowserEnvTemporarily } from 'test-utils'
 
-// $FlowFixMe
 console.error = jest.fn()
-// $FlowFixMe
 console.warn = jest.fn()
 
 afterEach(() => {
@@ -87,8 +84,8 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
     container: safeQuerySelector('#root')
   })
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
-  expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
 test('initializing another Emotion instance should not move already moved styles elements', () => {
@@ -607,13 +604,13 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     </head>
   `)
 })
-;((React: any).useId ? describe : describe.skip)('useId', () => {
+;(React.useId ? describe : describe.skip)('useId', () => {
   test('no hydration mismatch for styled when using useId', async () => {
     const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
       const StyledDivWithId = styled(function DivWithId({ className }) {
-        const id = (React: any).useId()
+        const id = React.useId()
         return <div className={className} id={id} />
       })({
         border: '1px solid black'
@@ -627,7 +624,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     resetAllModules()
 
     const StyledDivWithId = styled(function DivWithId({ className }) {
-      const id = (React: any).useId()
+      const id = React.useId()
       return <div className={className} id={id} />
     })({
       border: '1px solid black'
@@ -638,16 +635,16 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       container: safeQuerySelector('#root')
     })
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
   })
 
   test('no hydration mismatch for css prop when using useId', async () => {
     const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()
 
-      function DivWithId({ className }: { className?: string }) {
-        const id = (React: any).useId()
+      function DivWithId({ className } /*: { className?: string }*/) {
+        const id = React.useId()
         return <div id={id} className={className} />
       }
 
@@ -664,8 +661,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
 
     resetAllModules()
 
-    function DivWithId({ className }: { className?: string }) {
-      const id = (React: any).useId()
+    function DivWithId({ className } /*: { className?: string }*/) {
+      const id = React.useId()
       return <div id={id} className={className} />
     }
 
@@ -681,8 +678,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       }
     )
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
   })
 
   test('no hydration mismatch for ClassNames when using useId', async () => {
@@ -690,7 +687,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       resetAllModules()
 
       const DivWithId = ({ className }) => {
-        const id = (React: any).useId()
+        const id = React.useId()
         return <div id={id} className={className} />
       }
 
@@ -714,7 +711,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     resetAllModules()
 
     const DivWithId = ({ className }) => {
-      const id = (React: any).useId()
+      const id = React.useId()
       return <div id={id} className={className} />
     }
 
@@ -736,7 +733,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
       }
     )
 
-    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
-    expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+    expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
   })
 })

@@ -1,4 +1,3 @@
-// @flow
 import {
   transformExpressionWithStyles,
   createTransformerMacro,
@@ -6,19 +5,15 @@ import {
   addImport
 } from './utils'
 
-export const transformCssCallExpression = ({
-  state,
-  babel,
-  path,
-  sourceMap,
-  annotateAsPure = true
-}: {
+export const transformCssCallExpression = (
+  { state, babel, path, sourceMap, annotateAsPure = true } /*: {
   state: *,
   babel: *,
   path: *,
   sourceMap?: string,
   annotateAsPure?: boolean
-}) => {
+} */
+) => {
   let node = transformExpressionWithStyles({
     babel,
     state,
@@ -34,15 +29,13 @@ export const transformCssCallExpression = ({
   }
 }
 
-export const transformCsslessArrayExpression = ({
-  state,
-  babel,
-  path
-}: {
+export const transformCsslessArrayExpression = (
+  { state, babel, path } /*: {
   babel: *,
   state: *,
   path: *
-}) => {
+} */
+) => {
   let t = babel.types
   let expressionPath = path.get('value.expression')
   let sourceMap =
@@ -72,17 +65,14 @@ export const transformCsslessArrayExpression = ({
   }
 }
 
-export const transformCsslessObjectExpression = ({
-  state,
-  babel,
-  path,
-  cssImport
-}: {
+export const transformCsslessObjectExpression = (
+  { state, babel, path, cssImport } /*: {
   babel: *,
   state: *,
   path: *,
   cssImport: { importSource: string, cssExport: string }
-}) => {
+} */
+) => {
   let t = babel.types
   let expressionPath = path.get('value.expression')
   let sourceMap =
@@ -115,31 +105,25 @@ export const transformCsslessObjectExpression = ({
   }
 }
 
-let cssTransformer = ({
-  state,
-  babel,
-  reference
-}: {
+let cssTransformer = (
+  { state, babel, reference } /*: {
   state: any,
   babel: any,
   reference: any
-}) => {
+} */
+) => {
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
-let globalTransformer = ({
-  state,
-  babel,
-  reference,
-  importSource,
-  options
-}: {
+let globalTransformer = (
+  { state, babel, reference, importSource, options } /*: {
   state: any,
   babel: any,
   reference: any,
   importSource: string,
   options: { cssExport?: string }
-}) => {
+} */
+) => {
   const t = babel.types
 
   if (

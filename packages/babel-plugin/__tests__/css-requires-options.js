@@ -1,4 +1,3 @@
-// @flow
 import nodePath from 'path'
 import babelTester from 'babel-tester'
 import plugin from '@emotion/babel-plugin'

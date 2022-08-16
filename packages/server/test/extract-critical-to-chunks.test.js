@@ -1,11 +1,10 @@
 /**
  * @jest-environment node
- * @flow
  */
 
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import type { Emotion } from '@emotion/css/create-instance'
+/* import type { Emotion } from '@emotion/css/create-instance' */
 import { prettifyCriticalChunks } from './util'
 
 let emotion = require('@emotion/css')
@@ -13,8 +12,8 @@ let reactEmotion = require('@emotion/styled')
 let emotionServer = require('@emotion/server')
 
 export const getComponents = (
-  emotion: Emotion,
-  { default: styled }: { default: Function }
+  emotion /*: Emotion */,
+  { default: styled } /*: { default: Function } */
 ) => {
   let Provider = require('@emotion/react').CacheProvider
   let Global = require('@emotion/react').Global

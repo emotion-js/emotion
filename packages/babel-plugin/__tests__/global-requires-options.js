@@ -1,4 +1,3 @@
-// @flow
 import babelTester from 'babel-tester'
 import plugin from '@emotion/babel-plugin'
 

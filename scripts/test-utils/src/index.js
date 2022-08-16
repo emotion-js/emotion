@@ -1,27 +1,24 @@
-// @flow
 /* eslint-env jest */
 
-export function throwIfFalsy(something: *) {
+export function throwIfFalsy(something) {
   if (something) {
     return something
   }
   throw new Error('something is falsy')
 }
 
-export function ignoreConsoleErrors(cb: () => mixed) {
+export function ignoreConsoleErrors(cb /*: () => mixed */) {
   let oldConsoleError = console.error
-  // $FlowFixMe
   console.error = jest.fn()
 
   try {
     cb()
   } finally {
-    // $FlowFixMe
     console.error = oldConsoleError
   }
 }
 
-export let safeQuerySelector = (selector: string): HTMLElement => {
+export let safeQuerySelector = (selector /*: string */) /*: HTMLElement */ => {
   let element = document.querySelector(selector)
   if (!element) {
     throw new Error(`Could not find element matching selector "${selector}"`)
@@ -31,7 +28,7 @@ export let safeQuerySelector = (selector: string): HTMLElement => {
 
 // React 18 doesn't use this attribute anymore
 // we normalize this to avoid snapshot mismatches between React versions
-export let stripDataReactRoot = (html: string): string =>
+export let stripDataReactRoot = (html /*: string*/) /*: string*/ =>
   html.replace(' data-reactroot=""', '')
 
 const removeGlobalProp = prop => {
@@ -45,7 +42,8 @@ const removeGlobalProp = prop => {
   return () => Object.defineProperty(global, prop, descriptor)
 }
 
-export async function disableBrowserEnvTemporarily<T>(fn: () => T): Promise<T> {
+// TODO: export async function disableBrowserEnvTemporarily<T>(fn: () => T): Promise<T> {
+export async function disableBrowserEnvTemporarily(fn) {
   let restoreDocument = removeGlobalProp('document')
   let restoreWindow = removeGlobalProp('window')
   let restoreHTMLElement = removeGlobalProp('HTMLElement')

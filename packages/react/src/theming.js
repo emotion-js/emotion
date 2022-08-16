@@ -1,16 +1,18 @@
-// @flow
 import * as React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
 import hoistNonReactStatics from './_isolated-hnrs'
 
-export const ThemeContext = /* #__PURE__ */ React.createContext<Object>({})
+export const ThemeContext = /* #__PURE__ */ React.createContext({})
 if (process.env.NODE_ENV !== 'production') {
   ThemeContext.displayName = 'EmotionThemeContext'
 }
 
 export const useTheme = () => React.useContext(ThemeContext)
 
-const getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
+const getTheme = (
+  outerTheme /*: Object */,
+  theme /*: Object | (Object => Object) */
+) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
@@ -43,12 +45,14 @@ let createCacheWithTheme = /* #__PURE__ */ weakMemoize(outerTheme => {
   })
 })
 
+/*
 type ThemeProviderProps = {
   theme: Object | (Object => Object),
   children: React.Node
 }
+*/
 
-export const ThemeProvider = (props: ThemeProviderProps) => {
+export const ThemeProvider = (props /*: ThemeProviderProps */) => {
   let theme = React.useContext(ThemeContext)
 
   if (props.theme !== theme) {
@@ -61,16 +65,15 @@ export const ThemeProvider = (props: ThemeProviderProps) => {
   )
 }
 
-export function withTheme<Config: {}>(
-  Component: React.AbstractComponent<Config>
-): React.AbstractComponent<$Diff<Config, { theme: Object }>> {
+export function withTheme /* <Config: {}> */(
+  Component /*: React.AbstractComponent<Config> */
+) /*: React.AbstractComponent<$Diff<Config, { theme: Object }>> */ {
   const componentName = Component.displayName || Component.name || 'Component'
   let render = (props, ref) => {
     let theme = React.useContext(ThemeContext)
 
     return <Component theme={theme} ref={ref} {...props} />
   }
-  // $FlowFixMe
   let WithTheme = React.forwardRef(render)
 
   WithTheme.displayName = `WithTheme(${componentName})`

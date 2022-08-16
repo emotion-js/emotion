@@ -1,4 +1,3 @@
-// @flow
 function defaultClassNameReplacer(className, index) {
   return `emotion-${index}`
 }
@@ -6,14 +5,14 @@ function defaultClassNameReplacer(className, index) {
 const componentSelectorClassNamePattern = /^e[a-zA-Z0-9]+[0-9]+$/
 
 export const replaceClassNames = (
-  classNames: Array<string>,
-  styles: string,
-  code: string,
-  keys: Array<string>,
-  classNameReplacer: (
+  classNames /*: Array<string> */,
+  styles /*: string */,
+  code /*: string */,
+  keys /*: Array<string> */,
+  classNameReplacer /*: (
     className: string,
     index: number
-  ) => string = defaultClassNameReplacer
+  ) => string */ = defaultClassNameReplacer
 ) => {
   let index = 0
   let keyPattern = new RegExp(`^(${keys.join('|')})-`)

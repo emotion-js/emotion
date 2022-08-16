@@ -1,4 +1,3 @@
-// @flow
 import { sheet } from '@emotion/css'
 
 const consoleError = console.error

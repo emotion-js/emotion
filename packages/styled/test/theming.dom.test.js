@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/legacy-env'
 import React from 'react'
 import styled from '@emotion/styled'

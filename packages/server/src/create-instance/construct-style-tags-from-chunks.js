@@ -1,13 +1,14 @@
-// @flow
-import type { EmotionCache } from '@emotion/utils'
+/* import type { EmotionCache } from '@emotion/utils' */
 import { generateStyleTag } from './utils'
 
 const createConstructStyleTagsFromChunks =
-  (cache: EmotionCache, nonceString: string) =>
-  (criticalData: {
-    html: string,
-    styles: Array<{ key: string, ids: Array<string>, css: string }>
-  }) => {
+  (cache /*: EmotionCache */, nonceString /*: string */) =>
+  (
+    criticalData /*: {
+  html: string,
+  styles: Array<{ key: string, ids: Array<string>, css: string }>
+} */
+  ) => {
     let styleTagsString = ''
 
     criticalData.styles.forEach(item => {

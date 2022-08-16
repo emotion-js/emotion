@@ -304,8 +304,8 @@ This option allows you to tell @emotion/babel-plugin what imports it should look
 An example file:
 
 ```js
-import { anotherExport } from 'my-package';
-import { someExport, thisIsTheJsxExport } from 'some-package';
+import { anotherExport } from 'my-package'
+import { someExport, thisIsTheJsxExport } from 'some-package'
 ```
 
 An example config:

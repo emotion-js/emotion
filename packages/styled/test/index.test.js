@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'react-test-renderer'
@@ -301,7 +300,6 @@ describe('styled', () => {
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
-        // $FlowFixMe
         styled(undefined)`
           display: flex;
         `
@@ -391,7 +389,7 @@ describe('styled', () => {
   })
 
   test('name with class component', () => {
-    class SomeComponent extends React.Component<{ className: string }> {
+    class SomeComponent extends React.Component /* <{ className: string }> */ {
       render() {
         return <div className={this.props.className} />
       }

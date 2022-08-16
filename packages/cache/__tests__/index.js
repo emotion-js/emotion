@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'

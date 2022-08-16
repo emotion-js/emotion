@@ -1,4 +1,3 @@
-// @flow
 import isPropValid from '@emotion/is-prop-valid'
 
 const forwardableProps = {
@@ -49,7 +48,7 @@ const forwardableProps = {
   textBreakStrategy: true
 }
 
-export function testPickPropsOnPrimitiveComponent(prop: string) {
+export function testPickPropsOnPrimitiveComponent(prop /*: string */) {
   return (
     forwardableProps[prop] === true ||
     // This will allow the standard react props
@@ -59,6 +58,6 @@ export function testPickPropsOnPrimitiveComponent(prop: string) {
   )
 }
 
-export function testPickPropsOnOtherComponent(prop: string) {
+export function testPickPropsOnOtherComponent(prop /*: string */) {
   return prop !== 'theme'
 }

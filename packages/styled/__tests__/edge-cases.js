@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/next-env'
 import * as React from 'react'
 import renderer from 'react-test-renderer'

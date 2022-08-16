@@ -1,11 +1,10 @@
-// @flow
 import findRoot from 'find-root'
 import memoize from '@emotion/memoize'
 import nodePath from 'path'
 import hashString from '@emotion/hash'
 import escapeRegexp from 'escape-string-regexp'
 
-let hashArray = (arr: Array<string>) => hashString(arr.join(''))
+let hashArray = (arr /*: Array<string> */) => hashString(arr.join(''))
 
 const unsafeRequire = require
 
@@ -15,7 +14,7 @@ const separator = new RegExp(escapeRegexp(nodePath.sep), 'g')
 
 const normalizePath = path => nodePath.normalize(path).replace(separator, '/')
 
-export function getTargetClassName(state: *, t: *) {
+export function getTargetClassName(state, t) {
   if (state.emotionTargetClassNameCount === undefined) {
     state.emotionTargetClassNameCount = 0
   }

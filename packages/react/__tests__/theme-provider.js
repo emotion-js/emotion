@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { ignoreConsoleErrors } from 'test-utils'
@@ -57,7 +56,6 @@ cases(
       expect(() => {
         renderer.create(
           <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
-            {/* $FlowFixMe */}
             <ThemeProvider theme={value}>
               <div
                 css={({ color, padding, backgroundColor }) => ({

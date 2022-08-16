@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import 'test-utils/dev-mode'
@@ -13,7 +12,7 @@ beforeEach(() => {
 })
 
 test('provider with theme value that changes', () => {
-  class ThemeTest extends React.Component<*, *> {
+  class ThemeTest extends React.Component {
     state = { theme: { color: 'hotpink', padding: 4 } }
     render() {
       return (

@@ -31,7 +31,6 @@ describe('Emotion native css', () => {
     // this test checks the keys instead of the objects
     // because we care about the order of the keys
     expect(
-      // $FlowFixMe
       Object.keys(
         StyleSheet.flatten(
           css({ color: 'green' }, `background-color:yellow;`, { flex: 2 })
@@ -39,7 +38,6 @@ describe('Emotion native css', () => {
       )
     ).toEqual(['color', 'backgroundColor', 'flex'])
     expect(
-      // $FlowFixMe
       Object.keys(
         StyleSheet.flatten(
           css([
@@ -52,7 +50,6 @@ describe('Emotion native css', () => {
       )
     ).toEqual(['color', 'backgroundColor', 'flex'])
     expect(
-      // $FlowFixMe
       Object.keys(
         StyleSheet.flatten(
           css([
@@ -68,7 +65,6 @@ describe('Emotion native css', () => {
       )
     ).toEqual(['color', 'backgroundColor', 'flex'])
     expect(
-      // $FlowFixMe
       Object.keys(
         StyleSheet.flatten(
           css([

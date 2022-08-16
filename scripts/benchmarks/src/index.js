@@ -1,4 +1,3 @@
-// @flow
 import App from './app/App'
 import implementations from './impl'
 import Tree from './cases/Tree'

@@ -1,4 +1,3 @@
-// @flow
 import createEmotion from '@emotion/css/create-instance'
 import { container, css, sheet } from './emotion-instance'
 

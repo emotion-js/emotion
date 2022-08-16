@@ -1,11 +1,11 @@
-// @flow
-import type {
+/* import type {
   ElementType,
   StatelessFunctionalComponent,
   AbstractComponent
-} from 'react'
+} from 'react' */
 import isPropValid from '@emotion/is-prop-valid'
 
+/*
 export type Interpolations = Array<any>
 
 export type StyledElementType<Props> =
@@ -33,11 +33,12 @@ export type PrivateStyledComponent<Props> = StyledComponent<Props> & {
   __emotion_styles: any,
   __emotion_forwardProp: any
 }
+*/
 
 const testOmitPropsOnStringTag = isPropValid
-const testOmitPropsOnComponent = (key: string) => key !== 'theme'
+const testOmitPropsOnComponent = (key /*: string */) => key !== 'theme'
 
-export const getDefaultShouldForwardProp = (tag: ElementType) =>
+export const getDefaultShouldForwardProp = (tag /*: ElementType */) =>
   typeof tag === 'string' &&
   // 96 is one less than the char code
   // for "a" so this is checking that
@@ -47,16 +48,16 @@ export const getDefaultShouldForwardProp = (tag: ElementType) =>
     : testOmitPropsOnComponent
 
 export const composeShouldForwardProps = (
-  tag: PrivateStyledComponent<any>,
-  options: StyledOptions | void,
-  isReal: boolean
+  tag /*: PrivateStyledComponent<any> */,
+  options /*: StyledOptions | void */,
+  isReal /*: boolean */
 ) => {
   let shouldForwardProp
   if (options) {
     const optionsShouldForwardProp = options.shouldForwardProp
     shouldForwardProp =
       tag.__emotion_forwardProp && optionsShouldForwardProp
-        ? (propName: string) =>
+        ? (propName /*: string */) =>
             tag.__emotion_forwardProp(propName) &&
             optionsShouldForwardProp(propName)
         : optionsShouldForwardProp
@@ -69,6 +70,7 @@ export const composeShouldForwardProps = (
   return shouldForwardProp
 }
 
+/*
 export type CreateStyledComponent = <Props>(
   ...args: Interpolations
 ) => StyledComponent<Props>
@@ -81,3 +83,4 @@ export type CreateStyled = {
   [key: string]: CreateStyledComponent,
   bind: () => CreateStyled
 }
+*/

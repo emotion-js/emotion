@@ -1,11 +1,9 @@
-// @flow
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render } from '@testing-library/react'
 import { Global, ThemeProvider } from '@emotion/react'
 
 beforeEach(() => {
-  // $FlowFixMe
   document.head.innerHTML = ''
 })
 

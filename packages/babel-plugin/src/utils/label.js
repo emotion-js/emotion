@@ -1,20 +1,21 @@
-// @flow
 import nodePath from 'path'
 
+/*
 type LabelFormatOptions = {
   name: string,
   path: string
 }
+*/
 
 const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
 
-const sanitizeLabelPart = (labelPart: string) =>
+const sanitizeLabelPart = (labelPart /*: string */) =>
   labelPart.trim().replace(invalidClassNameCharacters, '-')
 
 function getLabel(
-  identifierName?: string,
-  labelFormat?: string | (LabelFormatOptions => string),
-  filename: string
+  identifierName /* ?: string */,
+  labelFormat /* ?: string | (LabelFormatOptions => string) */,
+  filename /*: string */
 ) {
   if (!identifierName) return null
 
@@ -45,7 +46,7 @@ function getLabel(
     .replace(/\[dirname\]/gi, sanitizeLabelPart(localDirname))
 }
 
-export function getLabelFromPath(path: *, state: *, t: *) {
+export function getLabelFromPath(path, state, t) {
   return getLabel(
     getIdentifierName(path, t),
     state.opts.labelFormat,
@@ -72,7 +73,6 @@ const getObjPropertyLikeName = (path, t) => {
 }
 
 function getDeclaratorName(path, t) {
-  // $FlowFixMe
   const parent = path.findParent(
     p =>
       p.isVariableDeclarator() ||
@@ -154,14 +154,13 @@ function getDeclaratorName(path, t) {
   return variableDeclarator.node.id.name
 }
 
-function getIdentifierName(path: *, t: *) {
+function getIdentifierName(path, t) {
   let objPropertyLikeName = getObjPropertyLikeName(path.parentPath, t)
 
   if (objPropertyLikeName) {
     return objPropertyLikeName
   }
 
-  // $FlowFixMe
   let classOrClassPropertyParent = path.findParent(
     p => t.isClassProperty(p) || t.isClass(p)
   )

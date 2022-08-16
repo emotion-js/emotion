@@ -1,4 +1,3 @@
-// @flow
 import { safeQuerySelector } from 'test-utils'
 import hashString from '@emotion/hash'
 import createCache from '@emotion/cache'

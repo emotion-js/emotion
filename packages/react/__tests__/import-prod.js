@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/prod-mode'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -28,8 +27,8 @@ const render = children =>
     // $FlowFixMe
     document.body.appendChild(el)
 
-    if ((ReactDOM: any).createRoot) {
-      const root = (ReactDOM: any).createRoot(el)
+    if (ReactDOM.createRoot) {
+      const root = ReactDOM.createRoot(el)
       root.render(<div ref={resolve}>{children}</div>)
     } else {
       ReactDOM.render(children, el, resolve)

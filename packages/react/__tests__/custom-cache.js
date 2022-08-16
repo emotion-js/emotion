@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import createCache from '@emotion/cache'
 import { CacheProvider, Global, jsx } from '@emotion/react'

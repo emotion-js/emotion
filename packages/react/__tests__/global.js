@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render } from '@testing-library/react'
@@ -15,7 +14,6 @@ import createCache from '@emotion/cache'
 console.error = jest.fn()
 
 beforeEach(() => {
-  // $FlowFixMe
   document.head.innerHTML = ''
   jest.resetAllMocks()
 })
@@ -76,7 +74,6 @@ test('no React hook order violations', () => {
   const theme = { color: 'blue' }
   const cache = createCache({ key: 'context' })
 
-  // $FlowFixMe
   const Comp = ({ flag }) => (
     <ThemeProvider theme={theme}>
       <CacheProvider value={cache}>
