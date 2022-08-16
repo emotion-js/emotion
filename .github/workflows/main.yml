@@ -36,7 +36,7 @@ jobs:
       - uses: ./.github/actions/ci-setup
 
       - name: Check Types
-        run: yarn tsc
+        run: yarn tsc:all
 
   test_react18:
     name: Test React 18
