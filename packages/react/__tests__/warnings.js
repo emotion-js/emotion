@@ -86,55 +86,42 @@ describe('unsafe pseudo classes', () => {
   })
 
   describe(`does not warn when using with flag: ${ignoreSsrFlag}`, () => {
-    const ignoredUnsafePseudoClasses = [
-      `:first-child ${ignoreSsrFlag}`,
-      `:not(:first-child) ${ignoreSsrFlag}`,
-      `:nth-child(3) ${ignoreSsrFlag}`,
-      `:not(:nth-child(3)) ${ignoreSsrFlag}`,
-      `:nth-last-child(7) ${ignoreSsrFlag}`,
-      `:first-child span ${ignoreSsrFlag}`,
-      `:first-child, span ${ignoreSsrFlag}`,
-      `:first-child :nth-child(3) ${ignoreSsrFlag}`,
-      `:first-child, :nth-child(3) ${ignoreSsrFlag}`,
-      `:first-child:nth-child(3) ${ignoreSsrFlag}`
-    ]
-
-    ignoredUnsafePseudoClasses.forEach(pseudoClass => {
-      const styles = {
-        string: css`
-          ${pseudoClass} {
-            color: rebeccapurple;
-          }
-        `,
-        object: {
-          [pseudoClass]: {
-            color: 'rebeccapurple'
-          }
-        },
-        'multiple selectors': css`
-          * {
-            color: red;
-          }
-          ${pseudoClass} {
+    describe.each([
+      {
+        type: 'string',
+        getStyle: pseudoClass => css`
+          ${pseudoClass} ${ignoreSsrFlag} {
             color: rebeccapurple;
           }
         `
-      }
-
-      Object.keys(styles).forEach(type => {
-        it(`"${pseudoClass.replace(
-          /\/\* \S+ \*\//g,
-          '/* [flag] */'
-        )}" in a style ${type}`, () => {
-          const match = (pseudoClass.match(
-            /(:first|:nth|:nth-last)-child/
-          ): any)
-          expect(match).not.toBeNull()
-          expect(
-            renderer.create(<div css={styles[type]} />).toJSON()
-          ).toMatchSnapshot()
-          expect(console.error).not.toBeCalled()
+      },
+      {
+        type: 'object',
+        getStyle: pseudoClass => ({
+          [`${pseudoClass} ${ignoreSsrFlag}`]: {
+            color: 'rebeccapurple'
+          }
         })
+      }
+    ])(`with $type styles`, ({ getStyle }) => {
+      test.each([
+        { pseudoClass: `:first-child` },
+        { pseudoClass: `:not(:first-child)` },
+        { pseudoClass: `:nth-child(3)` },
+        { pseudoClass: `:not(:nth-child(3))` },
+        { pseudoClass: `:nth-last-child(7)` },
+        { pseudoClass: `:first-child span` },
+        { pseudoClass: `:first-child, span` },
+        { pseudoClass: `:first-child :nth-child(3)` },
+        { pseudoClass: `:first-child, :nth-child(3)` },
+        { pseudoClass: `:first-child:nth-child(3)` }
+      ])('$pseudoClass', ({ pseudoClass }) => {
+        const match = (pseudoClass.match(/(:first|:nth|:nth-last)-child/): any)
+        expect(match).not.toBeNull()
+        expect(
+          renderer.create(<div css={getStyle(pseudoClass)} />).toJSON()
+        ).toMatchSnapshot()
+        expect(console.error).not.toBeCalled()
       })
     })
   })
