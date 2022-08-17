@@ -32,6 +32,64 @@ exports[`does not warn when valid values are passed for the content property 1`]
 
 exports[`global with css prop 1`] = `null`;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on a global rule 1`] = `null`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on the rule that follows a declaration 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+.emotion-0>*:first-child {
+  margin-left: 0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on the rule that follows another rule 1`] = `
+.emotion-0>* {
+  margin-left: 10px;
+}
+
+.emotion-0>*:first-child {
+  margin-left: 0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on the rule that preceeds a declaration 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+.emotion-0>*:first-child {
+  margin-left: 0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on the rule that preceeds another rule 1`] = `
+.emotion-0>*:first-child {
+  margin-left: 0;
+}
+
+.emotion-0>* {
+  margin-left: 10px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ with object styles :first-child :nth-child(3) 1`] = `
 .emotion-0:first-child :nth-child(3) {
   color: rebeccapurple;

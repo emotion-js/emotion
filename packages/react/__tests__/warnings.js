@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { jsx, css, Global, keyframes, ClassNames } from '@emotion/react'
+import styled from '@emotion/styled'
 import renderer from 'react-test-renderer'
 import { render } from '@testing-library/react'
 
@@ -123,6 +124,99 @@ describe('unsafe pseudo classes', () => {
         ).toMatchSnapshot()
         expect(console.error).not.toBeCalled()
       })
+    })
+
+    test('does not warn when using the flag on the rule that follows another rule', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                '& > *': {
+                  marginLeft: 10
+                },
+                [`& > *:first-child${ignoreSsrFlag}`]: {
+                  marginLeft: 0
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
+    })
+
+    test('does not warn when using the flag on the rule that preceeds another rule', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                [`& > *:first-child${ignoreSsrFlag}`]: {
+                  marginLeft: 0
+                },
+                '& > *': {
+                  marginLeft: 10
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
+    })
+
+    test('does not warn when using the flag on the rule that follows a declaration', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                color: 'hotpink',
+                [`& > *:first-child${ignoreSsrFlag}`]: {
+                  marginLeft: 0
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
+    })
+
+    test.only('does not warn when using the flag on the rule that preceeds a declaration', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                [`& > *:first-child${ignoreSsrFlag}`]: {
+                  marginLeft: 0
+                },
+                color: 'hotpink'
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
+    })
+
+    test('does not warn when using the flag on a global rule', () => {
+      expect(
+        renderer
+          .create(
+            <Global
+              styles={{
+                [`body > *:first-child${ignoreSsrFlag}`]: {
+                  marginLeft: 0
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
     })
   })
 })
