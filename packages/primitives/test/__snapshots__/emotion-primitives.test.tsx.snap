@@ -77,7 +77,7 @@ exports[`Emotion primitives should render primitive with style prop 1`] = `
 
 exports[`Emotion primitives should render the primitive on changing the props 1`] = `
 <div
-  className="css-text-901oao r-color-185hjl9 r-paddingBottom-k8qxaj r-paddingLeft-b5h31w r-paddingRight-1ah4tor r-paddingTop-1knelpx"
+  className="css-text-901oao r-color-185hjl9 r-padding-1pcd2l5"
   dir="auto"
 >
   Emotion Primitives
