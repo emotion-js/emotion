@@ -18,7 +18,7 @@ type NamedStyles<T> = { [P in keyof T]: any }
 export interface AbstractStyleSheet {
   create<T extends NamedStyles<T> | NamedStyles<any>>(
     styles: T | NamedStyles<T>
-  ): { [P in keyof T]: number }
+  ): T
 
   flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T
 }
