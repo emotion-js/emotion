@@ -61,6 +61,7 @@ test('order with string and object', () => {
       )
     )
   ).toEqual(['color', 'backgroundColor', 'flex'])
+
   expect(
     Object.keys(
       StyleSheet.flatten(
