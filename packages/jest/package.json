@@ -1,9 +1,28 @@
 {
   "name": "@emotion/jest",
-  "version": "11.9.1",
+  "version": "11.10.0",
   "description": "Jest utilities for emotion",
   "main": "dist/emotion-jest.cjs.js",
   "module": "dist/emotion-jest.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-jest.esm.js",
+      "default": "./dist/emotion-jest.cjs.js"
+    },
+    "./enzyme": {
+      "module": "./enzyme/dist/emotion-jest-enzyme.esm.js",
+      "default": "./enzyme/dist/emotion-jest-enzyme.cjs.js"
+    },
+    "./serializer": {
+      "module": "./serializer/dist/emotion-jest-serializer.esm.js",
+      "default": "./serializer/dist/emotion-jest-serializer.cjs.js"
+    },
+    "./enzyme-serializer": {
+      "module": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.esm.js",
+      "default": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -17,14 +36,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@emotion/css-prettifier": "^1.0.1",
+    "@babel/runtime": "^7.18.3",
+    "@emotion/css-prettifier": "^1.1.0",
     "chalk": "^4.1.0",
     "specificity": "^0.4.1",
     "stylis": "4.0.13"
   },
   "peerDependencies": {
-    "@types/jest": "^26.0.14 || ^27.0.0",
+    "@types/jest": "^26.0.14 || ^27.0.0 || ^28.0.0",
     "enzyme-to-json": "^3.2.1"
   },
   "peerDependenciesMeta": {
@@ -36,13 +55,11 @@
     }
   },
   "devDependencies": {
-    "@emotion/css": "11.9.0",
-    "@emotion/react": "11.9.0",
+    "@definitelytyped/dtslint": "0.0.112",
+    "@emotion/css": "11.10.0",
+    "@emotion/react": "11.10.0",
     "@types/jest": "^27.0.3",
-    "dtslint": "^4.2.1",
     "enzyme-to-json": "^3.6.1",
-    "preact": "^8.2.9",
-    "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
     "react": "16.14.0",
     "react-dom": "16.14.0",

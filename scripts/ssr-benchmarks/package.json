@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node bench.js",
-    "start-basic": "NODE_ENV=production node basic.js",
-    "test:typescript": "exit 0"
+    "start-basic": "NODE_ENV=production node basic.js"
   },
   "dependencies": {
     "benchmark": "^2.1.4",

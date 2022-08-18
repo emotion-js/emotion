@@ -18,9 +18,7 @@ To use it, import what you need, for example use [the css prop](/docs/css-prop.m
 
 ```jsx
 // @live
-// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const style = css`
   color: hotpink;
@@ -114,7 +112,7 @@ If you are using Babel's env option emotion must also be first for each environm
 }
 ```
 
-# Vanilla
+## Vanilla
 
 If you're not using React, you can use vanilla Emotion from the `@emotion/css` package. Most of the documentation here focuses on the React-specific version of Emotion, but most of the concepts in the React-specific version also apply to vanilla Emotion.
 

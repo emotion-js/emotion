@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, DistributiveOmit, Theme } from '@emotion/react'
+import { PropsOf, Theme } from '@emotion/react'
 
 export {
   ArrayInterpolation,
@@ -15,17 +15,17 @@ export { ComponentSelector, Interpolation }
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
-  Props,
-  ForwardedProps extends keyof Props = keyof Props
+  Props = Record<string, any>,
+  ForwardedProps extends keyof Props & string = keyof Props & string
 > {
   label?: string
-  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
+  shouldForwardProp?: (propName: string) => propName is ForwardedProps
   target?: string
 }
 
-export interface StyledOptions<Props> {
+export interface StyledOptions<Props = Record<string, any>> {
   label?: string
-  shouldForwardProp?(propName: PropertyKey): boolean
+  shouldForwardProp?: (propName: string) => boolean
   target?: string
 }
 
@@ -118,7 +118,8 @@ export interface CreateStyledComponent<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -147,7 +148,8 @@ export interface CreateStyled {
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -168,7 +170,8 @@ export interface CreateStyled {
 
   <
     Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] &
+      string = keyof JSX.IntrinsicElements[Tag] & string
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>

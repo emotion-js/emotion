@@ -1,0 +1,13 @@
+name: 'CI setup'
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        cache: yarn
+
+    - name: Install Dependencies
+      run: yarn --immutable
+      shell: bash

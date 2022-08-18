@@ -1,5 +1,17 @@
 # @emotion/sheet
 
+## 1.2.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+## 1.1.1
+
+### Patch Changes
+
+- [#2728](https://github.com/emotion-js/emotion/pull/2728) [`6c2d7a60`](https://github.com/emotion-js/emotion/commit/6c2d7a6010af85502ae33d14dcbd3bb62ed7612e) Thanks [@Peeja](https://github.com/Peeja)! - TypeScript type for the `container` option has been adjusted. It will now accept a `ShadowRoot`, or any other kind of `Node`.
+
 ## 1.1.0
 
 ### Minor Changes

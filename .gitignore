@@ -4,12 +4,22 @@ dist/
 node_modules/
 *.log
 .idea
-site/build
 package-lock.json
 .DS_Store
 .cache
-public/
-!playgrounds/cra/public
 .env
 .vscode
 .parcel-cache/
+*.orig
+*.tsbuildinfo
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Website
+site/out
+.next

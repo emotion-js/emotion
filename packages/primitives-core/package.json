@@ -1,12 +1,9 @@
 {
   "name": "@emotion/primitives-core",
-  "version": "11.0.0",
+  "version": "11.10.0",
   "description": "Shared utilities for emotion primitives and native",
   "main": "dist/emotion-primitives-core.cjs.js",
   "module": "dist/emotion-primitives-core.esm.js",
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "files": [
     "src",
     "dist"
@@ -20,7 +17,7 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@emotion/react": "11.9.0",
+    "@emotion/react": "11.10.0",
     "react": "16.14.0"
   },
   "homepage": "https://emotion.sh",
@@ -41,7 +38,23 @@
     "access": "public"
   },
   "browser": {
-    "./dist/emotion-primitives-core.cjs.js": "./dist/emotion-primitives-core.browser.cjs.js",
     "./dist/emotion-primitives-core.esm.js": "./dist/emotion-primitives-core.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "browser": "./dist/emotion-primitives-core.browser.esm.js",
+        "default": "./dist/emotion-primitives-core.esm.js"
+      },
+      "default": "./dist/emotion-primitives-core.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser"
+      ]
+    }
   }
 }

@@ -60,14 +60,14 @@ export type Interpolation<
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
-  Props,
-  ForwardedProps extends keyof Props = keyof Props
+  Props = Record<string, any>,
+  ForwardedProps extends keyof Props & string = keyof Props & string
 > {
-  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
+  shouldForwardProp?: (propName: string) => propName is ForwardedProps
 }
 
-export interface StyledOptions<Props> {
-  shouldForwardProp?(propName: PropertyKey): boolean
+export interface StyledOptions<Props = Record<string, any>> {
+  shouldForwardProp?: (propName: string) => boolean
 }
 
 /**
@@ -146,7 +146,8 @@ export interface CreateStyledComponent<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
@@ -175,7 +176,8 @@ export interface CreateStyled {
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> &
+      string = keyof React.ComponentProps<C> & string
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>

@@ -1,5 +1,24 @@
 # @emotion/babel-plugin
 
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/hash@0.9.0
+  - @emotion/memoize@0.8.0
+  - @emotion/serialize@1.1.0
+
+## 11.9.5
+
+### Patch Changes
+
+- [#2799](https://github.com/emotion-js/emotion/pull/2799) [`5b99a849`](https://github.com/emotion-js/emotion/commit/5b99a849364119d979c6d1fe5e5a0e9ea4e74011) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with the lack of `/*#__PURE__*/` annotations before styled calls transformed from tagged template expressions.
+
 ## 11.9.2
 
 ### Patch Changes

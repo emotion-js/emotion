@@ -1,20 +1,17 @@
 {
   "name": "@emotion/primitives",
-  "version": "11.0.0",
+  "version": "11.10.0",
   "main": "dist/emotion-primitives.cjs.js",
   "module": "dist/emotion-primitives.esm.js",
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "files": [
     "src",
     "dist",
     "macro.js"
   ],
   "dependencies": {
-    "@emotion/babel-plugin": "^11.0.0",
-    "@emotion/is-prop-valid": "^1.0.0",
-    "@emotion/primitives-core": "^11.0.0"
+    "@emotion/babel-plugin": "^11.10.0",
+    "@emotion/is-prop-valid": "^1.2.0",
+    "@emotion/primitives-core": "^11.10.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",
@@ -27,7 +24,7 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/core": "^7.18.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "react": "16.14.0",
@@ -51,7 +48,27 @@
     "access": "public"
   },
   "browser": {
-    "./dist/emotion-primitives.cjs.js": "./dist/emotion-primitives.browser.cjs.js",
     "./dist/emotion-primitives.esm.js": "./dist/emotion-primitives.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "browser": "./dist/emotion-primitives.browser.esm.js",
+        "default": "./dist/emotion-primitives.esm.js"
+      },
+      "default": "./dist/emotion-primitives.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": "./macro.js"
+  },
+  "preconstruct": {
+    "exports": {
+      "extra": {
+        "./macro": "./macro.js"
+      },
+      "envConditions": [
+        "browser"
+      ]
+    }
   }
 }

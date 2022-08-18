@@ -1,5 +1,28 @@
 # @emotion/jest
 
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/css-prettifier@1.1.0
+
+## 11.9.4
+
+### Patch Changes
+
+- [#2771](https://github.com/emotion-js/emotion/pull/2771) [`9b4ce70d`](https://github.com/emotion-js/emotion/commit/9b4ce70d05a3f6acc9364a88eb1b77577fadaab6) Thanks [@srmagura](https://github.com/srmagura)! - Fix a dependency conflict when `@emotion/jest` was installed alongside `@types/jest@^28`.
+
+## 11.9.3
+
+### Patch Changes
+
+- [#2749](https://github.com/emotion-js/emotion/pull/2749) [`fd22cace`](https://github.com/emotion-js/emotion/commit/fd22cacee60e7e7c2b512af47a9ce374f7896362) Thanks [@Andarist](https://github.com/Andarist)! - Added a dedicated error for a situation when `toHaveStyleRule` receives an array.
+
 ## 11.9.1
 
 ### Patch Changes

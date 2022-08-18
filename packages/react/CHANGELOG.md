@@ -1,5 +1,32 @@
 # @emotion/react
 
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+* [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - Thanks to the added `exports` field, the package now includes a `worker` condition that can be utilized by properly configured bundlers when targeting worker-like environments. It fixes the issue with browser-specific files being prioritized by some bundlers when targeting workers.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228), [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/babel-plugin@11.10.0
+  - @emotion/cache@11.10.0
+  - @emotion/serialize@1.1.0
+  - @emotion/utils@1.2.0
+  - @emotion/weak-memoize@0.3.0
+
+## 11.9.3
+
+### Patch Changes
+
+- [#2766](https://github.com/emotion-js/emotion/pull/2766) [`5b3f4d78`](https://github.com/emotion-js/emotion/commit/5b3f4d78d54552f9785836bc2cc56d3f789afc47) Thanks [@Andarist](https://github.com/Andarist)! - `ThemeProviderProps["children"]` was marked as a required prop as `ThemeProvider` should always wrap some subtree.
+
+- Updated dependencies [[`26e4e3e8`](https://github.com/emotion-js/emotion/commit/26e4e3e8b68479f0e3cb8fbec723da47afd6ac98), [`6c2d7a60`](https://github.com/emotion-js/emotion/commit/6c2d7a6010af85502ae33d14dcbd3bb62ed7612e), [`5e81f213`](https://github.com/emotion-js/emotion/commit/5e81f213980e9ba2cfa35256476673b68d47fc33)]:
+  - @emotion/serialize@1.0.4
+  - @emotion/cache@11.9.3
+
 ## 11.9.0
 
 ### Patch Changes

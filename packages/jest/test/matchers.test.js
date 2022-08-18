@@ -301,6 +301,27 @@ describe('toHaveStyleRule', () => {
 
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
   })
+
+  it('should throw a friendly error when it receives an array', () => {
+    const tree = renderer
+      .create(
+        <>
+          <div
+            css={css`
+              color: hotpink;
+            `}
+          />
+          {'Some text'}
+        </>
+      )
+      .toJSON()
+
+    expect(() =>
+      expect(tree).toHaveStyleRule('color', 'hotpink')
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"\`toHaveStyleRule\` expects to receive a single element but it received an array."`
+    )
+  })
   ;(isReact16 ? describe : describe.skip)('enzyme', () => {
     it('supports enzyme `mount` method', () => {
       const Component = () => (

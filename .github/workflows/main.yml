@@ -17,31 +17,8 @@ jobs:
           - windows-latest
     runs-on: ${{matrix.platform}}
     steps:
-      - uses: actions/checkout@main
-        with:
-          fetch-depth: 0
-
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
       - name: Run Tests
         run: yarn test:ci --color
@@ -54,29 +31,8 @@ jobs:
     name: Flow
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
       - name: Check Types
         run: yarn flow:check
@@ -85,29 +41,8 @@ jobs:
     name: Test React 18
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
       - name: Run Tests with React 18
         run: yarn test:react18:ci
@@ -116,29 +51,8 @@ jobs:
     name: Test Dist
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
       - name: Dist Tests
         run: yarn test:prod
@@ -147,81 +61,18 @@ jobs:
     name: Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
       - name: ESLint
         run: yarn lint:check
 
   typescript:
-    name: DTSLint
+    name: dtslint
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        package:
-          - cache
-          - css
-          - hash
-          - is-prop-valid
-          - jest
-          - memoize
-          - native
-          - react
-          - serialize
-          - server
-          - sheet
-          - styled
-          - utils
-          - weak-memoize
-
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
 
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@main
-        with:
-          node-version: 12.x
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn
-
-      - name: ESLint
-        run: yarn lint:check
-      - name: TypeScript
-        run: cd packages/${{ matrix.package }} && yarn test:typescript
+      - name: dtslint
+        run: yarn test:typescript

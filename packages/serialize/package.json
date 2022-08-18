@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "serialization utils for emotion",
   "main": "dist/emotion-serialize.cjs.js",
   "module": "dist/emotion-serialize.esm.js",
@@ -14,14 +14,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/hash": "^0.8.0",
-    "@emotion/memoize": "^0.7.4",
-    "@emotion/unitless": "^0.7.5",
-    "@emotion/utils": "^1.0.0",
+    "@emotion/hash": "^0.9.0",
+    "@emotion/memoize": "^0.8.0",
+    "@emotion/unitless": "^0.8.0",
+    "@emotion/utils": "^1.2.0",
     "csstype": "^3.0.2"
   },
   "devDependencies": {
-    "dtslint": "^4.2.1",
+    "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
   },
   "files": [
@@ -30,7 +30,23 @@
     "types/*.d.ts"
   ],
   "browser": {
-    "./dist/emotion-serialize.cjs.js": "./dist/emotion-serialize.browser.cjs.js",
     "./dist/emotion-serialize.esm.js": "./dist/emotion-serialize.browser.esm.js"
+  },
+  "exports": {
+    ".": {
+      "module": {
+        "browser": "./dist/emotion-serialize.browser.esm.js",
+        "default": "./dist/emotion-serialize.esm.js"
+      },
+      "default": "./dist/emotion-serialize.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser"
+      ]
+    }
   }
 }
