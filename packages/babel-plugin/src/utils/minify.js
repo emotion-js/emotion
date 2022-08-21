@@ -5,18 +5,10 @@ const haveSameLocation = (element1, element2) => {
   return element1.line === element2.line && element1.column === element2.column
 }
 
-const isAutoInsertedRule = element => {
-  if (element.type !== 'rule' || !element.parent) {
-    return false
-  }
-
-  let parent = element
-  do {
-    parent = parent.parent
-  } while (parent && parent.type !== 'rule')
-
-  return !!parent && haveSameLocation(element, parent)
-}
+const isAutoInsertedRule = element =>
+  element.type === 'rule' &&
+  element.parent &&
+  haveSameLocation(element, element.parent)
 
 const toInputTree = (elements, tree) => {
   for (let i = 0; i < elements.length; i++) {
