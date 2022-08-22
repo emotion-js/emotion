@@ -45,6 +45,41 @@ const SomeComponent = /*#__PURE__*/_styled('div', process.env.NODE_ENV === "prod
 })(_templateObject());"
 `;
 
+exports[`@emotion/styled.macro auto-inserted-rule-in-at-rule-preceeded-by-interpolation 1`] = `
+"import styled from '@emotion/styled/macro'
+import { css } from '@emotion/react'
+
+const fullWidth = css\`
+  width: 100%;
+\`
+
+const StyledRoot = styled.div\`
+  \${fullWidth}
+
+  button {
+    @media (min-width: 768px) {
+      color: red;
+    }
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from "@emotion/styled/base";
+import { css } from '@emotion/react';
+const fullWidth = css\`
+  width: 100%;
+\`;
+
+const StyledRoot = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
+  target: "e10xv6gg0"
+} : {
+  target: "e10xv6gg0",
+  label: "StyledRoot"
+})(fullWidth, " button{@media (min-width: 768px){color:red;}}" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dG8taW5zZXJ0ZWQtcnVsZS1pbi1hdC1ydWxlLXByZWNlZWRlZC1ieS1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU82QiIsImZpbGUiOiJhdXRvLWluc2VydGVkLXJ1bGUtaW4tYXQtcnVsZS1wcmVjZWVkZWQtYnktaW50ZXJwb2xhdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkL21hY3JvJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmNvbnN0IGZ1bGxXaWR0aCA9IGNzc2BcbiAgd2lkdGg6IDEwMCU7XG5gXG5cbmNvbnN0IFN0eWxlZFJvb3QgPSBzdHlsZWQuZGl2YFxuICAke2Z1bGxXaWR0aH1cblxuICBidXR0b24ge1xuICAgIEBtZWRpYSAobWluLXdpZHRoOiA3NjhweCkge1xuICAgICAgY29sb3I6IHJlZDtcbiAgICB9XG4gIH1cbmBcbiJdfQ== */"));"
+`;
+
 exports[`@emotion/styled.macro basic 1`] = `
 "import styled from '@emotion/styled/macro'
 
