@@ -1,9 +1,10 @@
 import { css } from '@emotion/native'
 import { StyleSheet } from 'react-native'
+import { Interpolation, ReactNativeStyle } from '../src/base'
 
 jest.mock('react-native')
 
-let returnArguments = (...args) => args
+let returnArguments = <A extends unknown[]>(...args: A): A => args
 
 describe('Emotion native css', () => {
   test('basic', () => {
@@ -83,8 +84,12 @@ describe('Emotion native css', () => {
   it('allows function interpolations when this.mergedProps is defined', () => {
     expect(
       StyleSheet.flatten(
-        css.call({ thing: true }, props => ({
-          color: props.thing && 'hotpink'
+        css.call<
+          { thing: boolean },
+          Interpolation<{ thing: boolean }, ReactNativeStyle>[],
+          ReactNativeStyle
+        >({ thing: true }, (props: { thing: boolean }) => ({
+          color: props.thing ? 'hotpink' : undefined
         }))
       )
     ).toEqual({ color: 'hotpink' })
@@ -93,8 +98,12 @@ describe('Emotion native css', () => {
   it('works with nested functions', () => {
     expect(
       StyleSheet.flatten(
-        css.call({ thing: true }, props => () => ({
-          color: props.thing && 'hotpink'
+        css.call<
+          { thing: boolean },
+          Interpolation<{ thing: boolean }, ReactNativeStyle>[],
+          ReactNativeStyle
+        >({ thing: true }, props => () => ({
+          color: props.thing ? 'hotpink' : undefined
         }))
       )
     ).toEqual({ color: 'hotpink' })
@@ -103,7 +112,11 @@ describe('Emotion native css', () => {
   it('works with functions in tagged template literals', () => {
     expect(
       StyleSheet.flatten(
-        css.call(
+        css.call<
+          unknown,
+          [TemplateStringsArray, () => string],
+          ReactNativeStyle
+        >(
           {},
           ...returnArguments`
         color: ${() => 'hotpink'};

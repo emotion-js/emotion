@@ -18,10 +18,9 @@
   "files": [
     "src",
     "dist",
-    "types/*.d.ts",
     "macro.js"
   ],
-  "types": "types/index.d.ts",
+  "types": "./dist/emotion-native.cjs.d.ts",
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",

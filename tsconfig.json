@@ -18,7 +18,6 @@
   "exclude": [
     "node_modules",
     "packages/*/types/test/*",
-    "packages/*/types/test*",
-    "packages/native"
+    "packages/*/types/test*"
   ]
 }
