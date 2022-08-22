@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.10.2
+
+### Patch Changes
+
+- [#2751](https://github.com/emotion-js/emotion/pull/2751) [`0ffd6068`](https://github.com/emotion-js/emotion/commit/0ffd6068fe1c455788c0099b350ea771ce5657ee) Thanks [@Andarist](https://github.com/Andarist), [@kyoncy](https://github.com/kyoncy)! - Fix `/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */` not disabling the warning when there are multiple blocks of CSS.
+
 ## 11.10.1
 
 ### Patch Changes

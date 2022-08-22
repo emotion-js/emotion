@@ -2344,7 +2344,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/babel-plugin@11.10.0, @emotion/babel-plugin@^11.0.0, @emotion/babel-plugin@^11.10.0, @emotion/babel-plugin@workspace:packages/babel-plugin":
+"@emotion/babel-plugin@11.10.2, @emotion/babel-plugin@^11.0.0, @emotion/babel-plugin@^11.10.0, @emotion/babel-plugin@workspace:packages/babel-plugin":
   version: 0.0.0-use.local
   resolution: "@emotion/babel-plugin@workspace:packages/babel-plugin"
   dependencies:
@@ -2621,7 +2621,7 @@ __metadata:
   resolution: "@emotion/server@workspace:packages/server"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": 11.10.0
+    "@emotion/babel-plugin": 11.10.2
     "@emotion/css": 11.10.0
     "@emotion/css-prettifier": 1.1.0
     "@emotion/utils": ^1.2.0

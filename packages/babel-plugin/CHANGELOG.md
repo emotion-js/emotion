@@ -1,5 +1,11 @@
 # @emotion/babel-plugin
 
+## 11.10.2
+
+### Patch Changes
+
+- [#2858](https://github.com/emotion-js/emotion/pull/2858) [`005e211d`](https://github.com/emotion-js/emotion/commit/005e211d53a4a1a34509400e41402b8910875fda) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue in the styles minifier that caused interpolations to be sometimes included more than once in the output.
+
 ## 11.10.0
 
 ### Minor Changes
