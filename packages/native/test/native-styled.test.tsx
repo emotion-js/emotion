@@ -1,26 +1,34 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import { Text, StyleSheet } from 'react-primitives'
 import { ThemeProvider } from '@emotion/react'
-import { render } from '@testing-library/react'
+import styled, { css } from '@emotion/native'
+import reactNative from 'react-native'
 
-import styled from '@emotion/primitives'
+const StyleSheet = reactNative.StyleSheet
 
-jest.mock('react-primitives')
+jest.mock('react-native')
+
+console.error = jest.fn()
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
+type MyTheme = typeof theme
 
-describe('Emotion primitives', () => {
+declare module '@emotion/react' {
+  export interface Theme extends MyTheme {}
+}
+
+describe('Emotion native styled', () => {
   test('should not throw an error when used valid primitive', () => {
     expect(() => styled.Text({})).not.toThrow()
   })
 
   test('should throw an error when used invalid primitive', () => {
+    // @ts-expect-error
     expect(() => styled.TEXT({})).toThrow()
   })
 
   test('should render the primitive when styles applied using object style notation', () => {
-    const Text = styled.Text`
+    const Text = styled.Text<{ back: string }>`
       color: red;
       font-size: 20px;
       background-color: ${props => props.back};
@@ -51,25 +59,8 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should unmount with theming', () => {
-    const StyledText = styled.Text`
-      display: ${props => props.theme.display};
-    `
-
-    const { container, unmount } = render(
-      <ThemeProvider theme={theme}>
-        <StyledText id="something" style={{ backgroundColor: 'yellow' }}>
-          Hello World
-        </StyledText>
-      </ThemeProvider>
-    )
-    expect(container).toMatchSnapshot()
-    unmount()
-    expect(container.querySelector('#something')).toBe(null)
-  })
-
   test('should render the primitive on changing the props', () => {
-    const Text = styled.Text({ padding: '20px' }, props => ({
+    const Text = styled.Text<{ decor: string }>({ padding: '20px' }, props => ({
       color: props.decor
     }))
     const tree = renderer
@@ -93,18 +84,17 @@ describe('Emotion primitives', () => {
     const Text = styled.Text`
       font-size: 10px;
     `
-
     const tree = renderer
-      .create(<Text style={styles.foo}>Emotion Primitives</Text>)
+      .create(<Text style={styles.foo}>Emotion primitives</Text>)
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('primitive should work with `withComponent`', () => {
-    const StyledText = styled.Text`
+    const Text = styled.Text<{ decor: string }>`
       color: ${props => props.decor};
     `
-    const Name = StyledText.withComponent(Text)
+    const Name = Text.withComponent(reactNative.Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -114,7 +104,7 @@ describe('Emotion primitives', () => {
       color: hotpink;
     `
     const Title = () => <Text>Hello World</Text>
-    const StyledTitle = styled(Title)`
+    const StyledTitle = styled(Title)<{ sty: string }>`
       font-size: 20px;
       font-style: ${props => props.sty};
     `
@@ -122,24 +112,12 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('ref', () => {
-    const StyledText = styled.Text`
-      color: hotpink;
-    `
-    let ref = React.createRef()
-    const { container, unmount } = render(
-      <StyledText ref={ref} id="something" />
-    )
-    expect(ref.current).toBe(container.firstElementChild)
-    unmount()
-  })
-
   it('should pass props in withComponent', () => {
-    const ViewOne = styled.View`
+    const ViewOne = styled.View<{ color: string }>`
       background-color: ${props => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
-    const ViewTwo = ViewOne.withComponent(Text)
+    const ViewTwo = ViewOne.withComponent(reactNative.Text)
     const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
 
     expect(treeOne).toMatchSnapshot()
@@ -148,7 +126,7 @@ describe('Emotion primitives', () => {
 
   it('should render <Image />', () => {
     const Image = styled.Image`
-      border: 2px solid hotpink;
+      border-radius: 2px;
     `
     const tree = renderer
       .create(
@@ -165,18 +143,33 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('custom shouldForwardProp works', () => {
-    const Text = styled.Text``
-    const Title = props => <Text {...props} />
-    const StyledTitle = styled(Title, {
-      shouldForwardProp: prop => prop !== 'color' && prop !== 'theme'
-    })`
-      color: ${props => props.color};
+  it('Log error message if units are not specified when using shorthand properties', () => {
+    const Text = styled.Text`
+      margin: 20px;
+      padding: 20;
+    `
+
+    renderer.create(<Text>Hello World</Text>)
+
+    expect(console.error).toBeCalledWith(
+      "'padding' shorthand property requires units for example - padding: 20px or padding: 10px 20px 40px 50px"
+    )
+  })
+
+  it('should render styles correctly from all nested style factories', () => {
+    const bgColor = (color: string) => css`
+      background-color: ${color};
+    `
+
+    const Text = styled.Text<{ backgroundColor: string }>`
+      color: hotpink;
+      ${({ backgroundColor }) => bgColor(backgroundColor)};
     `
 
     const tree = renderer
-      .create(<StyledTitle color="hotpink">{'Emotion'}</StyledTitle>)
+      .create(<Text backgroundColor="blue">Hello World</Text>)
       .toJSON()
+
     expect(tree).toMatchSnapshot()
   })
 })

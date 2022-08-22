@@ -1,7 +1,7 @@
 import { css } from '@emotion/primitives'
 import { StyleSheet } from 'react-native'
 
-let returnArguments = (...args) => args
+let returnArguments = (...args: any[]) => args
 
 test('basic', () => {
   expect(
@@ -61,6 +61,7 @@ test('order with string and object', () => {
       )
     )
   ).toEqual(['color', 'backgroundColor', 'flex'])
+
   expect(
     Object.keys(
       StyleSheet.flatten(
@@ -80,7 +81,7 @@ test('order with string and object', () => {
 it('allows function interpolations when this is defined', () => {
   expect(
     StyleSheet.flatten(
-      css.call({ thing: true }, props => ({
+      css.call({ thing: true }, (props: { thing: boolean }) => ({
         color: props.thing && 'hotpink'
       }))
     )
@@ -90,7 +91,7 @@ it('allows function interpolations when this is defined', () => {
 it('works with nested functions', () => {
   expect(
     StyleSheet.flatten(
-      css.call({ thing: true }, props => () => ({
+      css.call({ thing: true }, (props: { thing: boolean }) => () => ({
         color: props.thing && 'hotpink'
       }))
     )

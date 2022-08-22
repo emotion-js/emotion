@@ -11,7 +11,7 @@ interface CreateStyledOptions {
   getShouldForwardProp(cmp: React.ElementType): (prop: string) => boolean
 }
 
-interface StyledOptions {
+export interface StyledOptions {
   shouldForwardProp?(prop: string): boolean
 }
 

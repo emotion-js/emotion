@@ -1,10 +1,10 @@
 // Definitions by: Pat Sissons <https://github.com/patsissons>
 // TypeScript Version: 3.4
 
+import { StyleSheet } from 'react-native'
+import { createStyled } from '@emotion/primitives-core'
 import { Theme } from '@emotion/react'
 import * as RN from 'react-native'
-
-type ReactNative = typeof RN
 
 export type ReactNativeStyle = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
 
@@ -202,4 +202,9 @@ export interface CreateStyled {
   >
 }
 
-export const styled: CreateStyled
+/**
+ * a function that returns a styled component which render styles in React Native
+ */
+let styled = createStyled(StyleSheet)
+
+export { styled }
