@@ -11,6 +11,7 @@ jest.mock('react-native')
 console.error = jest.fn()
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
+type Theme = typeof theme
 
 describe('Emotion native styled', () => {
   test('should not throw an error when used valid primitive', () => {
@@ -18,11 +19,12 @@ describe('Emotion native styled', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
+    // @ts-expect-error
     expect(() => styled.TEXT({})).toThrow()
   })
 
   test('should render the primitive when styles applied using object style notation', () => {
-    const Text = styled.Text`
+    const Text = styled.Text<{ back: string }>`
       color: red;
       font-size: 20px;
       background-color: ${props => props.back};
@@ -39,12 +41,12 @@ describe('Emotion native styled', () => {
 
   it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
-      color: ${props => props.theme.backgroundColor};
+      color: ${props => (props.theme as unknown as Theme).backgroundColor};
     `
 
     const tree = renderer
       .create(
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme as any}>
           <Text>Hello World</Text>
         </ThemeProvider>
       )
@@ -54,7 +56,7 @@ describe('Emotion native styled', () => {
   })
 
   test('should render the primitive on changing the props', () => {
-    const Text = styled.Text({ padding: '20px' }, props => ({
+    const Text = styled.Text<{ decor: string }>({ padding: '20px' }, props => ({
       color: props.decor
     }))
     const tree = renderer
@@ -85,7 +87,7 @@ describe('Emotion native styled', () => {
   })
 
   test('primitive should work with `withComponent`', () => {
-    const Text = styled.Text`
+    const Text = styled.Text<{ decor: string }>`
       color: ${props => props.decor};
     `
     const Name = Text.withComponent(reactNative.Text)
@@ -98,7 +100,7 @@ describe('Emotion native styled', () => {
       color: hotpink;
     `
     const Title = () => <Text>Hello World</Text>
-    const StyledTitle = styled(Title)`
+    const StyledTitle = styled(Title)<{ sty: string }>`
       font-size: 20px;
       font-style: ${props => props.sty};
     `
@@ -107,7 +109,7 @@ describe('Emotion native styled', () => {
   })
 
   it('should pass props in withComponent', () => {
-    const ViewOne = styled.View`
+    const ViewOne = styled.View<{ color: string }>`
       background-color: ${props => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
@@ -151,11 +153,11 @@ describe('Emotion native styled', () => {
   })
 
   it('should render styles correctly from all nested style factories', () => {
-    const bgColor = color => css`
+    const bgColor = (color: string) => css`
       background-color: ${color};
     `
 
-    const Text = styled.Text`
+    const Text = styled.Text<{ backgroundColor: string }>`
       color: hotpink;
       ${({ backgroundColor }) => bgColor(backgroundColor)};
     `
