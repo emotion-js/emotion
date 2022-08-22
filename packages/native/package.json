@@ -20,14 +20,13 @@
     "dist",
     "macro.js"
   ],
-  "types": "./dist/emotion-native.cjs.d.ts",
+  "types": "dist/emotion-native.cjs.d.ts",
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",
     "@types/react-native": "^0.63.2",
     "react": "16.14.0",
-    "react-native": "^0.63.2",
-    "typescript": "^4.5.5"
+    "react-native": "^0.63.2"
   },
   "dependencies": {
     "@emotion/primitives-core": "^11.10.0"

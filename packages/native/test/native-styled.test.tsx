@@ -11,7 +11,11 @@ jest.mock('react-native')
 console.error = jest.fn()
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
-type Theme = typeof theme
+type MyTheme = typeof theme
+
+declare module '@emotion/react' {
+  export interface Theme extends MyTheme {}
+}
 
 describe('Emotion native styled', () => {
   test('should not throw an error when used valid primitive', () => {
@@ -41,12 +45,12 @@ describe('Emotion native styled', () => {
 
   it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
-      color: ${props => (props.theme as unknown as Theme).backgroundColor};
+      color: ${props => props.theme.backgroundColor};
     `
 
     const tree = renderer
       .create(
-        <ThemeProvider theme={theme as any}>
+        <ThemeProvider theme={theme}>
           <Text>Hello World</Text>
         </ThemeProvider>
       )

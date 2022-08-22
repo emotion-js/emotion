@@ -13,6 +13,21 @@ import {
 import React from 'react'
 import { Theme } from '@emotion/react'
 
+export type {
+  ArrayCSSInterpolation,
+  ArrayInterpolation,
+  CreateStyledComponent,
+  CSSInterpolation,
+  FilteringStyledOptions,
+  FunctionInterpolation,
+  Interpolation,
+  InterpolationPrimitive,
+  ObjectInterpolation,
+  ReactNativeStyle,
+  StyledComponent,
+  StyledOptions
+} from './base'
+
 export interface EmotionNativeCss {
   <StyleType extends ReactNativeStyle = ReactNativeStyle>(
     template: TemplateStringsArray,
