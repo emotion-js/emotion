@@ -2542,7 +2542,6 @@ __metadata:
     "@types/react-native": ^0.63.2
     react: 16.14.0
     react-native: ^0.63.2
-    typescript: ^4.5.5
   peerDependencies:
     "@babel/core": ^7.0.0
     react-native: ">=0.14.0 <1"
