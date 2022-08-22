@@ -42,7 +42,6 @@ export interface EmotionNativeCss {
     ...args: Array<CSSInterpolation>
   ): StyleType
 
-  // TODO:SAM:CHANGESET Added this overload
   <MergedProps, StyleType extends ReactNativeStyle = ReactNativeStyle>(
     this: MergedProps,
     ...args: Array<Interpolation<MergedProps, StyleType>>
@@ -68,8 +67,6 @@ type HostFunctionComponent<C extends React.FunctionComponent<any>> =
   >
 
 type RN = typeof ReactNative
-
-// TODO:SAM:CHANGESET removed ToolbarAndroid which was removed in RN 0.61
 
 const components = [
   'ActivityIndicator',
