@@ -3,12 +3,7 @@
     "baseUrl": "../",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "es6",
-      // dom is needed here because @emotion/server depends on @emotion/css
-      // which depends on @emotion/sheet, which depends on DOM types
-      "dom"
-    ],
+    "lib": ["es6"],
     "module": "commonjs",
     "noEmit": true,
     "strict": true,
