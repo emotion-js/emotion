@@ -23,7 +23,7 @@
     "preinstall": "node ./scripts/ensure-yarn.js",
     "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
-    "version-packages": "changeset version && yarn",
+    "version-packages": "changeset version && yarn --no-immutable",
     "release": "yarn build && changeset publish"
   },
   "author": "Kye Hohenberger",
