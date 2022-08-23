@@ -143,7 +143,7 @@ describe('unsafe pseudo classes', () => {
           )
           .toJSON()
       ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
         [
           [
             "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
@@ -169,7 +169,7 @@ describe('unsafe pseudo classes', () => {
           )
           .toJSON()
       ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
         [
           [
             "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
@@ -193,7 +193,7 @@ describe('unsafe pseudo classes', () => {
           )
           .toJSON()
       ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
         [
           [
             "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
@@ -217,7 +217,7 @@ describe('unsafe pseudo classes', () => {
           )
           .toJSON()
       ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
         [
           [
             "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
@@ -240,7 +240,7 @@ describe('unsafe pseudo classes', () => {
           )
           .toJSON()
       ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
         [
           [
             "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
