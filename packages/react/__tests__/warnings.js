@@ -126,6 +126,129 @@ describe('unsafe pseudo classes', () => {
       })
     })
 
+    test('does warn when not using the flag on the rule that follows another rule', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                '& > *': {
+                  marginLeft: 10
+                },
+                [`& > *:first-child$`]: {
+                  marginLeft: 0
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
+          ],
+        ]
+      `)
+    })
+
+    test('does warn when not using the flag on the rule that preceeds another rule', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                [`& > *:first-child`]: {
+                  marginLeft: 0
+                },
+                '& > *': {
+                  marginLeft: 10
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
+          ],
+        ]
+      `)
+    })
+
+    test('does warn when not using the flag on the rule that follows a declaration', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                color: 'hotpink',
+                [`& > *:first-child`]: {
+                  marginLeft: 0
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
+          ],
+        ]
+      `)
+    })
+
+    test('does warn when not using the flag on the rule that preceeds a declaration', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={{
+                [`& > *:first-child`]: {
+                  marginLeft: 0
+                },
+                color: 'hotpink'
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
+          ],
+        ]
+      `)
+    })
+
+    test('does warn when not using the flag on a global rule', () => {
+      expect(
+        renderer
+          .create(
+            <Global
+              styles={{
+                [`body > *:first-child`]: {
+                  marginLeft: 0
+                }
+              }}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
+          ],
+        ]
+      `)
+    })
+
     test('does not warn when using the flag on the rule that follows another rule', () => {
       expect(
         renderer
@@ -184,7 +307,7 @@ describe('unsafe pseudo classes', () => {
       expect(console.error).not.toBeCalled()
     })
 
-    test.only('does not warn when using the flag on the rule that preceeds a declaration', () => {
+    test('does not warn when using the flag on the rule that preceeds a declaration', () => {
       expect(
         renderer
           .create(
