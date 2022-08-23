@@ -186,15 +186,15 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
       : // global rule at the root level
         children
 
-    for (let i = 0; i < commentContainer.length; i++) {
+    for (let i = commentContainer.length - 1; i >= 0; i--) {
       const node = commentContainer[i]
 
-      if (node.line > element.line) {
+      if (node.line < element.line) {
         break
       }
 
       // it is quite weird but comments are *usually* put at `column: element.column - 1`
-      // so we seek for the node that is later than the rule's `element` and check the previous element
+      // so we seek *from the end* for the node that is earlier than the rule's `element` and check that
       // this will also match inputs like this:
       // .a {
       //   /* comm */
@@ -209,10 +209,8 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
       // }
       // with such inputs we wouldn't have to search for the comment at all
       // TODO: consider changing this comment placement in the next major version
-      if (node.column > element.column) {
-        const previousNode = commentContainer[i - 1]
-
-        if (isIgnoringComment(previousNode)) {
+      if (node.column < element.column) {
+        if (isIgnoringComment(node)) {
           return
         }
         break
