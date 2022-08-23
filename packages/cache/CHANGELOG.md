@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.10.3
+
+### Patch Changes
+
+- [#2864](https://github.com/emotion-js/emotion/pull/2864) [`b9b8b749`](https://github.com/emotion-js/emotion/commit/b9b8b7493d6aea7cb2543aa1925eb2cac9636be9) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a regression that could cause a crash when looking for an ignoring comment for unsafe pseudo-classes.
+
 ## 11.10.2
 
 ### Patch Changes
