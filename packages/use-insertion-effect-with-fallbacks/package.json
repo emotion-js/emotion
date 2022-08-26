@@ -1,0 +1,38 @@
+{
+  "name": "@emotion/use-insertion-effect-with-fallbacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/emotion-use-insertion-effect-with-fallbacks.cjs.js",
+  "module": "dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
+  "browser": {
+    "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/use-insertion-effect-with-fallbacks",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "module": {
+        "worker": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.esm.js",
+        "browser": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js"
+      },
+      "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser",
+        "worker"
+      ]
+    }
+  }
+}

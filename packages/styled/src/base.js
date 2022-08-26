@@ -15,7 +15,7 @@ import {
   registerStyles
 } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
-import useInsertionEffectMaybe from './useInsertionEffectMaybe'
+import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
@@ -27,7 +27,7 @@ let isBrowser = typeof document !== 'undefined'
 const Insertion = ({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
 
-  const rules = useInsertionEffectMaybe(() =>
+  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
     insertStyles(cache, serialized, isStringTag)
   )
 
