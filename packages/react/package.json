@@ -66,6 +66,7 @@
     "@emotion/babel-plugin": "^11.10.0",
     "@emotion/cache": "^11.10.0",
     "@emotion/serialize": "^1.1.0",
+    "@emotion/use-insertion-effect-with-fallbacks": "^1.0.0",
     "@emotion/utils": "^1.2.0",
     "@emotion/weak-memoize": "^0.3.0",
     "hoist-non-react-statics": "^3.3.1"
