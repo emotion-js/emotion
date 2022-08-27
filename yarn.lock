@@ -2684,6 +2684,8 @@ __metadata:
 "@emotion/use-insertion-effect-with-fallbacks@^1.0.0, @emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks":
   version: 0.0.0-use.local
   resolution: "@emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks"
+  dependencies:
+    react: 16.14.0
   peerDependencies:
     react: ">=16.8.0"
   languageName: unknown
