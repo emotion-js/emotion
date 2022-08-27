@@ -19,6 +19,9 @@
   "peerDependencies": {
     "react": ">=16.8.0"
   },
+  "devDependencies": {
+    "react": "16.14.0"
+  },
   "exports": {
     ".": {
       "module": {
