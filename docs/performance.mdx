@@ -2,7 +2,67 @@
 title: 'Performance'
 ---
 
-Emotion is a highly performant library and will not be a performance bottleneck in most applications. That said, if you are experiencing poor performance, the tips on this page can help. As always, remember the golden rule of programming: premature optimization is the root of all evil!
+## The Cost of Runtime CSS-in-JS
+
+Emotion and other runtime CSS-in-JS libraries can offer a more convenient and less error prone method to style web applications. However, this convenience can come at the cost of performance. Runtime CSS-in-JS is generally less performant than plain CSS for a number of reasons:
+
+1. Styles are inserted into the document each time a new Emotion-powered component is mounted. Frequently inserting new styles invalidates the web browser's style cache, meaning the browser must do additional work to rebuild that cache. _This problem is unavoidable, but also usually imperceptible._
+1. CSS-in-JS libraries must "serialize" your CSS, whether it's written via a string template or object styles, into plain CSS that can be inserted into a `<style>` tag. Unless you call `css(...)` outside your component, this serialization happens each time one of your components renders and can negatively affect the overall performance of your application. _This problem can be mitigated by (1) calling `css(...)` outside of a component so that serialization only happens one time, and (2) keeping the total number of components using CSS-in-JS low._
+1. Including a CSS-in-JS library in your bundle increases bundle size. _This is not a cause for concern unless minimizing page load time is important for your project's success._
+
+It's important to understand that these performance drawbacks are in no way specific to Emotion — all of these points apply to other runtime CSS-in-JS libraries (e.g. styled-components) as well.
+
+**This section is not meant to discourage you from adopting Emotion into your project** — the goal is to make you think critically about the tradeoffs between developer experience and performance.
+
+If you decide not to adopt a runtime CSS-in-JS library, it's worth looking into CSS Modules and compile-time CSS-in-JS libraries since these tools solve some of the problems as runtime CSS-in-JS, but with a potentially lower performance cost.
+
+## Performance Anti-Pattern: Excessive Prop-Based Styling
+
+When using Emotion, it can be tempting to define components that serve as "style primitives" such as a `<Box>` component:
+
+```jsx
+function Box({
+  flex,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  flexDirection,
+  padding,
+  margin,
+  backgroundColor,
+  color,
+  /* and so on */
+  children
+}) {
+  return (
+    <div
+      css={{
+        flex,
+        flexGrow,
+        flexShrink,
+        flexDirection,
+        flexBasis,
+        flexDirection,
+        padding,
+        margin,
+        backgroundColor,
+        color
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+```
+
+While this pattern can be quite convenient, it is not ideal from a performance standpoint. A component like `<Box>` could easily be rendered 100 times on a page of your application, and each time React rerenders the tree, Emotion must serialize the styles for each `<Box>`. Even if this only takes 0.5 ms per `<Box>`, that still adds up to 50 ms of render time! And that's before factoring in all of your other components.
+
+Alternatives to the styling pattern shown above include:
+
+- Foregoing prop-based styling so that the code can be refactored to perform style serialization outside of render.
+- Using Emotion's `<Global />` component or a plain CSS file to define styles that will be used widely throughout the application. This approach is far more performant if, for example, you want to apply the style `color: #444` to all `<p>` elements. You could define a `<Paragraph>` component that uses the css prop to set the color, but this would significantly degrade render performance.
+
+## Optimizing an Emotion-based Application
 
 **The first step in improving your app's performance is to profile it using the React DevTools.** Use the profiler results to determine whether the slowdown is caused by Emotion or something else.
 
