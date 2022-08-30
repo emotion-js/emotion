@@ -2471,7 +2471,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/css": 11.10.0
     "@emotion/css-prettifier": ^1.1.0
-    "@emotion/react": 11.10.0
+    "@emotion/react": 11.10.4
     "@types/jest": ^27.0.3
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2539,7 +2539,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.10.0
+    "@emotion/react": 11.10.4
     css-to-react-native: ^3.0.0
     react: 16.14.0
   peerDependencies:
@@ -2570,7 +2570,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.10.0, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@11.10.4, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
@@ -2583,8 +2583,8 @@ __metadata:
     "@emotion/css-prettifier": 1.1.0
     "@emotion/serialize": ^1.1.0
     "@emotion/server": 11.10.0
-    "@emotion/styled": 11.10.0
-    "@emotion/use-insertion-effect-with-fallbacks": ^0.0.0
+    "@emotion/styled": 11.10.4
+    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
     "@emotion/utils": ^1.2.0
     "@emotion/weak-memoize": ^0.3.0
     hoist-non-react-statics: ^3.3.1
@@ -2648,7 +2648,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/styled@11.10.0, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
+"@emotion/styled@11.10.4, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
@@ -2657,9 +2657,9 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.10.0
     "@emotion/is-prop-valid": ^1.2.0
-    "@emotion/react": 11.10.0
+    "@emotion/react": 11.10.4
     "@emotion/serialize": ^1.1.0
-    "@emotion/use-insertion-effect-with-fallbacks": ^0.0.0
+    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
     "@emotion/utils": ^1.2.0
     react: 16.14.0
     typescript: ^4.5.5
@@ -2681,7 +2681,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/use-insertion-effect-with-fallbacks@^0.0.0, @emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks":
+"@emotion/use-insertion-effect-with-fallbacks@^1.0.0, @emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks":
   version: 0.0.0-use.local
   resolution: "@emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks"
   dependencies:
