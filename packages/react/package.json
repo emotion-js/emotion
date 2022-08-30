@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.10.0",
+  "version": "11.10.4",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
@@ -66,7 +66,7 @@
     "@emotion/babel-plugin": "^11.10.0",
     "@emotion/cache": "^11.10.0",
     "@emotion/serialize": "^1.1.0",
-    "@emotion/use-insertion-effect-with-fallbacks": "^0.0.0",
+    "@emotion/use-insertion-effect-with-fallbacks": "^1.0.0",
     "@emotion/utils": "^1.2.0",
     "@emotion/weak-memoize": "^0.3.0",
     "hoist-non-react-statics": "^3.3.1"
@@ -89,7 +89,7 @@
     "@emotion/css": "11.10.0",
     "@emotion/css-prettifier": "1.1.0",
     "@emotion/server": "11.10.0",
-    "@emotion/styled": "11.10.0",
+    "@emotion/styled": "11.10.4",
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1",
