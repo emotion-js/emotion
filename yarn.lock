@@ -2584,7 +2584,7 @@ __metadata:
     "@emotion/serialize": ^1.1.0
     "@emotion/server": 11.10.0
     "@emotion/styled": 11.10.0
-    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
+    "@emotion/use-insertion-effect-with-fallbacks": ^0.0.0
     "@emotion/utils": ^1.2.0
     "@emotion/weak-memoize": ^0.3.0
     hoist-non-react-statics: ^3.3.1
@@ -2659,7 +2659,7 @@ __metadata:
     "@emotion/is-prop-valid": ^1.2.0
     "@emotion/react": 11.10.0
     "@emotion/serialize": ^1.1.0
-    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
+    "@emotion/use-insertion-effect-with-fallbacks": ^0.0.0
     "@emotion/utils": ^1.2.0
     react: 16.14.0
     typescript: ^4.5.5
@@ -2681,7 +2681,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/use-insertion-effect-with-fallbacks@^1.0.0, @emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks":
+"@emotion/use-insertion-effect-with-fallbacks@^0.0.0, @emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks":
   version: 0.0.0-use.local
   resolution: "@emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks"
   dependencies:
