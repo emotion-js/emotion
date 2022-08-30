@@ -23,7 +23,7 @@
     "preinstall": "node ./scripts/ensure-yarn.js",
     "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
-    "version-packages": "changeset version && yarn --no-immutable",
+    "version-packages": "changeset version && yarn --mode=\"update-lockfile\"",
     "release": "yarn build && changeset publish"
   },
   "author": "Kye Hohenberger",
@@ -244,7 +244,7 @@
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "resolutions": {
     "jest-snapshot@27.4.5": "patch:jest-snapshot@npm:27.4.5#.yarn/patches/jest-snapshot-npm-27.4.5-6ace6bf68e.patch"
   }
