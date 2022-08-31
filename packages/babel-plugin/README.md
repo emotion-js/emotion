@@ -183,7 +183,7 @@ This option enables the following:
 
 ### `autoLabel`
 
-`'dev-only' | 'always' | 'never'`, , defaults to `dev-only`.
+`'dev-only' | 'always' | 'never'`, defaults to `dev-only`.
 
 This option enables the following:
 
