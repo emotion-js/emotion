@@ -1,0 +1,36 @@
+---
+title: 'ESLint Plugin React'
+---
+
+The eslint rule react/no-unknown-property from the [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) package, with a version > 7.31.1, got a fix which now triggers an eslint error if the emotion css property is used on an element.
+
+To fix this linting error one solution is to add the following rule to your eslintrc.* configuration file:
+
+eslintrc.js example:
+
+```js
+    "rules": {
+        "react/no-unknown-property": ['error', { ignore: ['css'] }]
+    }
+```
+
+eslintrc.json example:
+
+```json
+    "rules": {
+        "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+    },
+```
+
+eslintrc.yaml example:
+
+```yaml
+rules:
+  react/no-unknown-property:
+    - error
+    - ignore: ["css"]
+```
+
+> Note
+>
+> You might want to fine tune your eslint configuration and only apply this rule to a file or a group of files in which the emotion css property is actually being used, to do so you can use the overrides key in your eslint configuration: [ESLint documentation: How do overrides work?](https://eslint.org/docs/latest/user-guide/configuring/configuration-files#how-do-overrides-work)
