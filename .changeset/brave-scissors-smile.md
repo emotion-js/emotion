@@ -1,5 +1,5 @@
 ---
-'@emotion/jest': minor
+'@emotion/jest': patch
 ---
 
-Support typings for Jest v29
+Fix a dependency conflict when `@emotion/jest` was installed alongside `@types/jest@^29`.
