@@ -28,7 +28,7 @@
     "escape-string-regexp": "^4.0.0",
     "find-root": "^1.1.0",
     "source-map": "^0.5.7",
-    "stylis": "4.0.13"
+    "stylis": "4.1.2"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
