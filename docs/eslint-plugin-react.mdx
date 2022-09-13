@@ -1,0 +1,15 @@
+---
+title: 'eslint-plugin-react'
+---
+
+The [`react/no-unknown-property` rule](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md) from [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) will produce an error if the `css` prop is passed to a DOM element. This violation of the rule can be safely ignored because `@emotion/react` intercepts the `css` prop before it is applied to the DOM element.
+
+The rule can be configured to ignore the `css` prop like so:
+
+```json
+{
+  "rules": {
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+  }
+}
+```
