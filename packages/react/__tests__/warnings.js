@@ -30,7 +30,9 @@ const validValues = [
   'counter(chapter_counter)',
   'counters(section_counter, ".")',
   'attr(value string)',
-  'open-quote counter(chapter_counter)'
+  'open-quote counter(chapter_counter)',
+  // https://github.com/emotion-js/emotion/issues/2895
+  'element(name)'
 ]
 
 beforeEach(() => {
@@ -43,7 +45,7 @@ it('does not warn when valid values are passed for the content property', () => 
   expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
 })
 
-const invalidValues = ['this is not valid', '']
+const invalidValues = ['this is not valid', '', 'element']
 
 it('does warn when invalid values are passed for the content property', () => {
   // $FlowFixMe

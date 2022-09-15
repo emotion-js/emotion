@@ -23,6 +23,7 @@ exports[`does not warn when valid values are passed for the content property 1`]
   content: counters(section_counter, ".");
   content: attr(value string);
   content: open-quote counter(chapter_counter);
+  content: element(name);
 }
 
 <div
