@@ -17,9 +17,9 @@ export { default as css } from './css'
 if (process.env.NODE_ENV !== 'production') {
   const isBrowser = typeof document !== 'undefined'
   // #1727 for some reason Jest evaluates modules twice if some consuming module gets mocked with jest.mock
-  const isJest = typeof jest !== 'undefined'
+  const isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined'
 
-  if (isBrowser && !isJest) {
+  if (isBrowser && !isTestEnv) {
     // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
     const globalContext =
       // $FlowIgnore
