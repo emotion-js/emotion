@@ -2,7 +2,7 @@
 
 ## Rule Details
 
-This rule ensures that `jsx` from `@emotion/react is imported`. This rule can usually be auto-fixed so you should not usually have to do anything yourself.
+This rule ensures that `jsx` from `@emotion/react` is imported. This rule can usually be auto-fixed so you should not usually have to do anything yourself.
 
 Examples of **incorrect** code for this rule.
 
