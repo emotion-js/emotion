@@ -2,4 +2,4 @@
 '@emotion/sheet': patch
 ---
 
-Add -ms-expand and -ms-reveal to ignored prefixes
+Do not log failed rule insertions in the speedy mode for even more vendor-prefixed pseudo-elements/classes like `:-ms-expand` and `:-ms-reveal`.
