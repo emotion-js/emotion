@@ -29,7 +29,7 @@
     "@emotion/sheet": "^1.2.0",
     "@emotion/utils": "^1.2.0",
     "@emotion/weak-memoize": "^0.3.0",
-    "stylis": "4.0.13"
+    "stylis": "4.1.2"
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
