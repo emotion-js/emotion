@@ -2361,7 +2361,7 @@ __metadata:
     escape-string-regexp: ^4.0.0
     find-root: ^1.1.0
     source-map: ^0.5.7
-    stylis: 4.1.2
+    stylis: 4.1.3
   peerDependencies:
     "@babel/core": ^7.0.0
   languageName: unknown
@@ -2391,7 +2391,7 @@ __metadata:
     "@emotion/sheet": ^1.2.0
     "@emotion/utils": ^1.2.0
     "@emotion/weak-memoize": ^0.3.0
-    stylis: 4.1.2
+    stylis: 4.1.3
     typescript: ^4.5.5
   languageName: unknown
   linkType: soft
@@ -2401,7 +2401,7 @@ __metadata:
   resolution: "@emotion/css-prettifier@workspace:packages/css-prettifier"
   dependencies:
     "@emotion/memoize": ^0.8.0
-    stylis: 4.1.2
+    stylis: 4.1.3
   languageName: unknown
   linkType: soft
 
@@ -2479,7 +2479,7 @@ __metadata:
     react: 16.14.0
     react-dom: 16.14.0
     specificity: ^0.4.1
-    stylis: 4.1.2
+    stylis: 4.1.3
     typescript: ^4.5.5
   peerDependencies:
     "@types/jest": ^26.0.14 || ^27.0.0 || ^28.0.0 || ^29.0.0
@@ -28332,10 +28332,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylis@npm:4.1.2":
-  version: 4.1.2
-  resolution: "stylis@npm:4.1.2"
-  checksum: de5771526216ca156f7ccdece70d0e2b4d5611a2a64f34d0165707b06bd8b6ba7913f2eb9b7998c0f9145077079f46d5084b6a60c97ec10b8d776bef293e9f8c
+"stylis@npm:4.1.3":
+  version: 4.1.3
+  resolution: "stylis@npm:4.1.3"
+  checksum: d04dbffcb9bf2c5ca8d8dc09534203c75df3bf711d33973ea22038a99cc475412a350b661ebd99cbc01daa50d7eedcf0d130d121800eb7318759a197023442a6
   languageName: node
   linkType: hard
 
