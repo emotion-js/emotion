@@ -1,5 +1,18 @@
 # @emotion/react
 
+## 11.10.5
+
+### Patch Changes
+
+- [#2905](https://github.com/emotion-js/emotion/pull/2905) [`4c0005f6`](https://github.com/emotion-js/emotion/commit/4c0005f677d5847e7f931a1473ac58b834606c57) Thanks [@p-m-p](https://github.com/p-m-p)! - Do not warn about `@emotion/react` being loaded twice in Vitest as that might easily happen with mocked modules.
+
+* [#2929](https://github.com/emotion-js/emotion/pull/2929) [`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02) Thanks [@Andarist](https://github.com/Andarist)! - The support for `@container` queries has been added by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)) .
+
+* Updated dependencies [[`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02), [`c02b1214`](https://github.com/emotion-js/emotion/commit/c02b12145a94df011e0fd6ffd54197a4d9369783), [`d8a13bca`](https://github.com/emotion-js/emotion/commit/d8a13bcae81812d3dff643bcf446709f965f0909)]:
+  - @emotion/babel-plugin@11.10.5
+  - @emotion/serialize@1.1.1
+  - @emotion/cache@11.10.5
+
 ## 11.10.4
 
 ### Patch Changes

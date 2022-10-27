@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.1.1
+
+### Patch Changes
+
+- [#2896](https://github.com/emotion-js/emotion/pull/2896) [`c02b1214`](https://github.com/emotion-js/emotion/commit/c02b12145a94df011e0fd6ffd54197a4d9369783) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue that prevented using `content: "element(name)"`. This is a valid special value and doesn't need to be quoted.
+
 ## 1.1.0
 
 ### Minor Changes

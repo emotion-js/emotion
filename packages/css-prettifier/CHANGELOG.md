@@ -1,5 +1,11 @@
 # @emotion/css-prettifier
 
+## 1.1.1
+
+### Patch Changes
+
+- [#2929](https://github.com/emotion-js/emotion/pull/2929) [`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02) Thanks [@Andarist](https://github.com/Andarist)! - Updated the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
 ## 1.1.0
 
 ### Minor Changes
