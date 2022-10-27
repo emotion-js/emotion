@@ -1,5 +1,14 @@
 # @emotion/cache
 
+## 11.10.5
+
+### Patch Changes
+
+- [#2890](https://github.com/emotion-js/emotion/pull/2890) [`d8a13bca`](https://github.com/emotion-js/emotion/commit/d8a13bcae81812d3dff643bcf446709f965f0909) Thanks [@Andarist](https://github.com/Andarist)! - An edge case issue with some specific CSS variables being treated as prefixable declarations got fixed by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+- Updated dependencies [[`61c66963`](https://github.com/emotion-js/emotion/commit/61c66963dd8426b59d1ec424b5d1b41a371f9d49)]:
+  - @emotion/sheet@1.2.1
+
 ## 11.10.3
 
 ### Patch Changes

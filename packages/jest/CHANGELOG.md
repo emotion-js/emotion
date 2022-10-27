@@ -1,5 +1,16 @@
 # @emotion/jest
 
+## 11.10.5
+
+### Patch Changes
+
+- [#2884](https://github.com/emotion-js/emotion/pull/2884) [`da1e68e8`](https://github.com/emotion-js/emotion/commit/da1e68e829c53114dc1aab79b09e32a37d731fcf) Thanks [@billyjanitsch](https://github.com/billyjanitsch)! - Fix a dependency conflict when `@emotion/jest` was installed alongside `@types/jest@^29`.
+
+* [#2929](https://github.com/emotion-js/emotion/pull/2929) [`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02) Thanks [@Andarist](https://github.com/Andarist)! - Updated the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+* Updated dependencies [[`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02)]:
+  - @emotion/css-prettifier@1.1.1
+
 ## 11.10.0
 
 ### Minor Changes
