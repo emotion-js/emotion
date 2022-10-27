@@ -2,4 +2,4 @@
 '@emotion/react': patch
 ---
 
-Include vitest global check when omitting the warning about duplicate instantiation in mocked modules. Will only capture vitest global `vi` if globals are configured.
+Do not warn about `@emotion/react` being loaded twice in Vitest as that might easily happen with mocked modules.

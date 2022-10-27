@@ -16,7 +16,7 @@ export { default as css } from './css'
 
 if (process.env.NODE_ENV !== 'production') {
   const isBrowser = typeof document !== 'undefined'
-  // #1727 for some reason Jest evaluates modules twice if some consuming module gets mocked with jest.mock
+  // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
   const isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined'
 
   if (isBrowser && !isTestEnv) {
