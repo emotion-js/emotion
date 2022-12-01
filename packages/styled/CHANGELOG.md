@@ -1,5 +1,15 @@
 # @emotion/styled
 
+## 11.10.5
+
+### Patch Changes
+
+- [#2929](https://github.com/emotion-js/emotion/pull/2929) [`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02) Thanks [@Andarist](https://github.com/Andarist)! - The support for `@container` queries has been added by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)) .
+
+- Updated dependencies [[`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02), [`c02b1214`](https://github.com/emotion-js/emotion/commit/c02b12145a94df011e0fd6ffd54197a4d9369783)]:
+  - @emotion/babel-plugin@11.10.5
+  - @emotion/serialize@1.1.1
+
 ## 11.10.4
 
 ### Patch Changes

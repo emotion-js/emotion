@@ -7,7 +7,6 @@ import {
   middleware,
   rulesheet,
   stringify,
-  prefixer,
   COMMENT
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
@@ -18,6 +17,7 @@ import {
   createUnsafeSelectorsAlarm,
   incorrectImportAlarm
 } from './stylis-plugins'
+import { prefixer } from './prefixer'
 import type { StylisPlugin } from './types'
 
 let isBrowser = typeof document !== 'undefined'
