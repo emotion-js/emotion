@@ -2810,9 +2810,9 @@ __metadata:
   linkType: hard
 
 "@hapi/hoek@npm:8.x.x":
-  version: 8.1.0
-  resolution: "@hapi/hoek@npm:8.1.0"
-  checksum: e30796ef17161e59bfb33767c7b33012ddc8ed736e542e11bfe2ec711a4a783157156b4197daa7744a20932c6062e35190cf30eafcf3a513466afeee7be046e8
+  version: 8.5.1
+  resolution: "@hapi/hoek@npm:8.5.1"
+  checksum: 8f8ce36be4f5e5d7a712072d4a028a4a95beec7a7da3a7a6e9a0c07d697f04c19b37d93751db352c314ea831f7e2120569a035dc6a351ed8c0444f1d3b275621
   languageName: node
   linkType: hard
 
