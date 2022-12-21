@@ -440,6 +440,24 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount with prop containing empty classname 1`] = `
+<Thing
+  renderProp={
+    <span
+      className=""
+    >
+      Hi
+    </span>
+  }
+>
+  <div>
+    <span>
+      Hi
+    </span>
+  </div>
+</Thing>
+`;
+
 exports[`enzyme mount with prop containing regular element 1`] = `
 <Test
   element={
@@ -793,6 +811,14 @@ exports[`enzyme shallow with prop containing css element with other props 1`] = 
   </p>
    
   World!
+</div>
+`;
+
+exports[`enzyme shallow with prop containing empty classname 1`] = `
+<div>
+  <span>
+    Hi
+  </span>
 </div>
 `;
 

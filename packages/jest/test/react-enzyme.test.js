@@ -187,6 +187,14 @@ const cases = {
       )
     }
   },
+  'with prop containing empty classname': {
+    render() {
+      const Thing = ({ renderProp }) => {
+        return <div>{renderProp}</div>
+      }
+      return <Thing renderProp={<span className="">Hi</span>} />
+    }
+  },
   'with array of styles as css prop': {
     render() {
       const style1 = css`
