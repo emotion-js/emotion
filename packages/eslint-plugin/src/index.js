@@ -7,11 +7,20 @@ import styledImport from './rules/styled-import'
 import jsxImport from './rules/jsx-import'
 import pkgRenaming from './rules/pkg-renaming'
 
+export let configs = {
+  react: {
+    'import-from-emotion': 'error',
+    'jsx-import': 'error',
+    'no-vanilla': 'error',
+    'styled-import': 'error'
+  }
+}
+
 export let rules = {
   'import-from-emotion': importFromEmotion,
-  'no-vanilla': noVanilla,
-  'syntax-preference': syntaxPreference,
-  'styled-import': styledImport,
   'jsx-import': jsxImport,
-  'pkg-renaming': pkgRenaming
+  'no-vanilla': noVanilla,
+  'pkg-renaming': pkgRenaming,
+  'styled-import': styledImport,
+  'syntax-preference': syntaxPreference
 }
