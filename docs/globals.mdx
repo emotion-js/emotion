@@ -8,22 +8,27 @@ Sometimes you might want to insert global css like resets or font faces. You can
 // @live
 import { Global, css } from '@emotion/react'
 
+// For performance, move global styles outside of the render cycle when possible
+const hotPink = css`
+  .some-class {
+    color: hotpink !important;
+  }
+`
+
+const someClass = {
+  '.some-class': {
+    fontSize: 50,
+    textAlign: 'center'
+  }
+}
+
 render(
   <div>
     <Global
-      styles={css`
-        .some-class {
-          color: hotpink !important;
-        }
-      `}
+      styles={hotPink}
     />
     <Global
-      styles={{
-        '.some-class': {
-          fontSize: 50,
-          textAlign: 'center'
-        }
-      }}
+      styles={someClass}
     />
     <div className="some-class">This is hotpink now!</div>
   </div>
