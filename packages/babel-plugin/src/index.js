@@ -90,7 +90,7 @@ export default function (babel: *, options: *) {
   return {
     name: '@emotion',
     // https://github.com/babel/babel/blob/0c97749e0fe8ad845b902e0b23a24b308b0bf05d/packages/babel-plugin-syntax-jsx/src/index.ts#L9-L18
-    manipulateOptions(opts, parserOpts) {
+    manipulateOptions(opts: *, parserOpts: *) {
       const { plugins } = parserOpts
 
       if (
