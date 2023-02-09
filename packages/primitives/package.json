@@ -14,17 +14,10 @@
     "@emotion/primitives-core": "^11.10.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
     "react": ">=16.8.0",
     "react-primitives": "^0.8.1"
   },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    }
-  },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "react": "16.14.0",
