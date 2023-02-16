@@ -23,7 +23,6 @@
   ],
   "types": "types/index.d.ts",
   "devDependencies": {
-    "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",
     "@types/react-native": "^0.63.2",
     "react": "16.14.0",
@@ -34,13 +33,7 @@
     "@emotion/primitives-core": "^11.10.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
     "react-native": ">=0.14.0 <1"
-  },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    }
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",

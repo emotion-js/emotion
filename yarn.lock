@@ -2350,7 +2350,6 @@ __metadata:
   dependencies:
     "@babel/core": ^7.18.5
     "@babel/helper-module-imports": ^7.16.7
-    "@babel/plugin-syntax-jsx": ^7.17.12
     "@babel/runtime": ^7.18.3
     "@emotion/hash": ^0.9.0
     "@emotion/memoize": ^0.8.0
@@ -2362,8 +2361,6 @@ __metadata:
     find-root: ^1.1.0
     source-map: ^0.5.7
     stylis: 4.1.3
-  peerDependencies:
-    "@babel/core": ^7.0.0
   languageName: unknown
   linkType: soft
 
@@ -2409,7 +2406,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/css@workspace:packages/css"
   dependencies:
-    "@babel/core": ^7.18.5
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.10.5
     "@emotion/cache": ^11.10.5
@@ -2417,11 +2413,6 @@ __metadata:
     "@emotion/sheet": ^1.2.1
     "@emotion/utils": ^1.2.0
     typescript: ^4.5.5
-  peerDependencies:
-    "@babel/core": ^7.0.0
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -2519,7 +2510,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/native@workspace:packages/native"
   dependencies:
-    "@babel/core": ^7.18.5
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/primitives-core": ^11.10.0
     "@types/react-native": ^0.63.2
@@ -2527,11 +2517,7 @@ __metadata:
     react-native: ^0.63.2
     typescript: ^4.5.5
   peerDependencies:
-    "@babel/core": ^7.0.0
     react-native: ">=0.14.0 <1"
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -2552,7 +2538,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives@workspace:packages/primitives"
   dependencies:
-    "@babel/core": ^7.18.5
     "@emotion/babel-plugin": ^11.10.0
     "@emotion/is-prop-valid": ^1.2.0
     "@emotion/primitives-core": ^11.10.0
@@ -2561,12 +2546,8 @@ __metadata:
     react: 16.14.0
     react-primitives: ^0.8.1
   peerDependencies:
-    "@babel/core": ^7.0.0
     react: ">=16.8.0"
     react-primitives: ^0.8.1
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -2574,7 +2555,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
-    "@babel/core": ^7.18.5
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.10.5
@@ -2593,11 +2573,8 @@ __metadata:
     svg-tag-names: ^1.1.1
     typescript: ^4.5.5
   peerDependencies:
-    "@babel/core": ^7.0.0
     react: ">=16.8.0"
   peerDependenciesMeta:
-    "@babel/core":
-      optional: true
     "@types/react":
       optional: true
   languageName: unknown
@@ -2652,7 +2629,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
-    "@babel/core": ^7.18.5
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.10.5
@@ -2664,12 +2640,9 @@ __metadata:
     react: 16.14.0
     typescript: ^4.5.5
   peerDependencies:
-    "@babel/core": ^7.0.0
     "@emotion/react": ^11.0.0-rc.0
     react: ">=16.8.0"
   peerDependenciesMeta:
-    "@babel/core":
-      optional: true
     "@types/react":
       optional: true
   languageName: unknown
