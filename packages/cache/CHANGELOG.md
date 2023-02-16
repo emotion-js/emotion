@@ -107,7 +107,7 @@
 
 ### Patch Changes
 
-- [#2361](https://github.com/emotion-js/emotion/pull/2361) [`38f9d44f`](https://github.com/emotion-js/emotion/commit/38f9d44f919dccbf66c835ccde3f08ab927a4940) Thanks [@danieldelcore](https://github.com/danieldelcore), [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fixed moving of client-side inserted style tags from Emotion 10 when intending to hydrate Emotion 11 styles resulting in losing styles in production
+- [#2361](https://github.com/emotion-js/emotion/pull/2361) [`38f9d44f`](https://github.com/emotion-js/emotion/commit/38f9d44f919dccbf66c835ccde3f08ab927a4940) Thanks [@danieldelcore](https://github.com/danieldelcore), [@emmatown](https://github.com/emmatown)! - Fixed moving of client-side inserted style tags from Emotion 10 when intending to hydrate Emotion 11 styles resulting in losing styles in production
 
 ## 11.1.3
 
@@ -266,7 +266,7 @@
 
 ### Major Changes
 
-- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
+- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@emmatown](https://github.com/emmatown)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
 
 ## 10.0.29
 
@@ -297,7 +297,7 @@
 
 ### Patch Changes
 
-- [10514a86](https://github.com/emotion-js/emotion/commit/10514a8635dcaa55b85c7bff90e2a9e14d1ba61f) [#1482](https://github.com/emotion-js/emotion/pull/1482) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove react native bundles in favour of different isBrowser detection
+- [10514a86](https://github.com/emotion-js/emotion/commit/10514a8635dcaa55b85c7bff90e2a9e14d1ba61f) [#1482](https://github.com/emotion-js/emotion/pull/1482) Thanks [@emmatown](https://github.com/emmatown)! - Remove react native bundles in favour of different isBrowser detection
   - [16ff2330](https://github.com/emotion-js/emotion/commit/16ff233061e35fe71bfb1671da54ac12d6fc9eeb) [#1483](https://github.com/emotion-js/emotion/pull/1483) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - nth selector will no longer warn when using extract critical
 
 ## 10.0.15
@@ -310,4 +310,4 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool
