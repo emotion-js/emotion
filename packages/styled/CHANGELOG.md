@@ -1,5 +1,14 @@
 # @emotion/styled
 
+## 11.10.6
+
+### Patch Changes
+
+- [#2985](https://github.com/emotion-js/emotion/pull/2985) [`4e172c2a`](https://github.com/emotion-js/emotion/commit/4e172c2ae4e5237500ec84688d76ebf253ab1fdc) Thanks [@emmatown](https://github.com/emmatown)! - Remove peer dependency on `@babel/core`
+
+- Updated dependencies [[`4e172c2a`](https://github.com/emotion-js/emotion/commit/4e172c2ae4e5237500ec84688d76ebf253ab1fdc)]:
+  - @emotion/babel-plugin@11.10.6
+
 ## 11.10.5
 
 ### Patch Changes
