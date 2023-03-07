@@ -611,6 +611,12 @@ exports[`enzyme shallow nested displayName 1`] = `
 </div>
 `;
 
+exports[`enzyme shallow nested self-enclosed styled 1`] = `
+<div>
+  <Greeting />
+</div>
+`;
+
 exports[`enzyme shallow nested styled 1`] = `
 <div>
   <Greeting>

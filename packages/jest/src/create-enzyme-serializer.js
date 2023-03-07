@@ -15,7 +15,7 @@ const enzymeToJsonSerializer = createEnzymeToJsonSerializer({
       return json
     }
     const isRealStyled = json.node.type.__emotion_real === json.node.type
-    if (isRealStyled) {
+    if (isRealStyled && json.children) {
       return {
         ...json,
         children: json.children.slice(-1)
