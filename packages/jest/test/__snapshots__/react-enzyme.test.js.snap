@@ -151,6 +151,20 @@ exports[`enzyme mount nested displayName 1`] = `
 </div>
 `;
 
+exports[`enzyme mount nested self-enclosed styled 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+<div>
+  <Greeting>
+    <div
+      className="emotion-0 emotion-1"
+    />
+  </Greeting>
+</div>
+`;
+
 exports[`enzyme mount nested styled 1`] = `
 .emotion-0 {
   background-color: red;

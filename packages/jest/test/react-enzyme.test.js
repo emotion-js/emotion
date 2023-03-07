@@ -348,6 +348,18 @@ const cases = {
         </ul>
       )
     }
+  },
+  'nested self-enclosed styled': {
+    render() {
+      const Greeting = styled.div`
+        background-color: blue;
+      `
+      return (
+        <div>
+          <Greeting />
+        </div>
+      )
+    }
   }
 }
 
