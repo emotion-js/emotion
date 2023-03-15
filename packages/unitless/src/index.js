@@ -2,6 +2,7 @@
 
 let unitlessKeys: { [key: string]: 1 } = {
   animationIterationCount: 1,
+  aspectRatio: 1,
   borderImageOutset: 1,
   borderImageSlice: 1,
   borderImageWidth: 1,
