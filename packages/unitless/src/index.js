@@ -38,8 +38,10 @@ let unitlessKeys: { [key: string]: 1 } = {
   zIndex: 1,
   zoom: 1,
   WebkitLineClamp: 1,
+  
 
   // SVG-related properties
+  shadowOpacity: 1 , 
   fillOpacity: 1,
   floodOpacity: 1,
   stopOpacity: 1,
