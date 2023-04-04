@@ -8,8 +8,14 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions: {}
 jobs:
   release:
+    permissions:
+      contents: write # to create release 
+      issues: write # to post issue comments
+      pull-requests: write # to create pull request 
+
     name: Release
     runs-on: ubuntu-latest
     steps:

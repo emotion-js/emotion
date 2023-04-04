@@ -51,7 +51,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 
 - Billy Vong ([billyvg](https://github.com/billyvg))
 - Kent C. Dodds ([kentcdodds](https://github.com/kentcdodds))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Nitin Tulswani ([nitin42](https://github.com/nitin42))
 
 ## v9.2.6 (2018-07-15)
@@ -70,7 +70,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 
 - Iacopo ([pasix](https://github.com/pasix))
 - Melvin Groenhoff ([mgroenhoff](https://github.com/mgroenhoff))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.2.5 (2018-07-07)
 
@@ -92,12 +92,12 @@ Emotion 10 is a big change that we're really excited about with improvements to 
   - [#748](https://github.com/emotion-js/emotion/pull/748) update link to site in examples section. ([@bpote](https://github.com/bpote))
   - [#636](https://github.com/emotion-js/emotion/pull/636) Add eslint-plugin-emotion to docs. ([@alex-pex](https://github.com/alex-pex))
 - `babel-plugin-emotion`, `emotion-theming`, `emotion`, `jest-emotion`, `site`
-  - [#720](https://github.com/emotion-js/emotion/pull/720) Use emotion-next in the site, update to gatsby v2 and add Community page. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#720](https://github.com/emotion-js/emotion/pull/720) Use emotion-next in the site, update to gatsby v2 and add Community page. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
 - `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion-theming`, `emotion`, `eslint-plugin-emotion`, `jest-emotion`, `preact-emotion`, `react-emotion`
-  - [#747](https://github.com/emotion-js/emotion/pull/747) Change build system and update Jest. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#747](https://github.com/emotion-js/emotion/pull/747) Change build system and update Jest. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 7
 
@@ -106,7 +106,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Brisha Pote ([bpote](https://github.com/bpote))
 - Junyoung Clare Jang ([Ailrun](https://github.com/Ailrun))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Nitin Tulswani ([nitin42](https://github.com/nitin42))
 
 ## v9.2.4 (2018-06-22)
@@ -114,7 +114,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :rocket: Enhancement
 
 - `babel-plugin-emotion`, `create-emotion`
-  - [#741](https://github.com/emotion-js/emotion/pull/741) Improve labels and upgrade @emotion/stylis. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#741](https://github.com/emotion-js/emotion/pull/741) Improve labels and upgrade @emotion/stylis. ([@emmatown](https://github.com/emmatown))
 - `jest-emotion`
   - [#723](https://github.com/emotion-js/emotion/pull/723) Add typings for jest-emotion. ([@Ailrun](https://github.com/Ailrun))
 
@@ -139,7 +139,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Junyoung Clare Jang ([Ailrun](https://github.com/Ailrun))
 - Konrad Kruk ([konradk](https://github.com/konradk))
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.2.3 (2018-06-09)
 
@@ -157,11 +157,11 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :bug: Bug Fix
 
 - `create-emotion-styled`, `create-emotion`, `emotion-theming`, `emotion`, `preact-emotion`, `react-emotion`
-  - [#704](https://github.com/emotion-js/emotion/pull/704) Update rollup to fix bundle size regression. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#704](https://github.com/emotion-js/emotion/pull/704) Update rollup to fix bundle size regression. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.2.0 (2018-06-07)
 
@@ -189,9 +189,9 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`, `create-emotion`, `emotion-server`, `emotion`
-  - [#650](https://github.com/emotion-js/emotion/pull/650) Remove comments from styles in babel-plugin-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#650](https://github.com/emotion-js/emotion/pull/650) Remove comments from styles in babel-plugin-emotion. ([@emmatown](https://github.com/emmatown))
 - `jest-emotion`
-  - [#641](https://github.com/emotion-js/emotion/pull/641) Fix jest-emotion in certain cases with nested selectors. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#641](https://github.com/emotion-js/emotion/pull/641) Fix jest-emotion in certain cases with nested selectors. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
@@ -217,7 +217,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - `babel-plugin-emotion`, `site`
   - [#674](https://github.com/emotion-js/emotion/pull/674) Update yarn.lock. ([@Ailrun](https://github.com/Ailrun))
 - `create-emotion`, `emotion`
-  - [#643](https://github.com/emotion-js/emotion/pull/643) Deprecate passing functions to css and cx. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#643](https://github.com/emotion-js/emotion/pull/643) Deprecate passing functions to css and cx. ([@emmatown](https://github.com/emmatown))
 - `react-emotion`
   - [#635](https://github.com/emotion-js/emotion/pull/635) Add StyledComponent to allowed Interpolation types. ([@mvestergaard](https://github.com/mvestergaard))
 
@@ -232,7 +232,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
 - Mathias Vestergaard ([mvestergaard](https://github.com/mvestergaard))
 - Melvin Groenhoff ([mgroenhoff](https://github.com/mgroenhoff))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Scott Martin Hutcheson ([smhutch](https://github.com/smhutch))
 - osdevisnot ([osdevisnot](https://github.com/osdevisnot))
 
@@ -241,13 +241,13 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :rocket: Enhancement
 
 - `create-emotion`, `emotion`
-  - [#634](https://github.com/emotion-js/emotion/pull/634) Support array fallback syntax in objects. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-  - [#633](https://github.com/emotion-js/emotion/pull/633) Add warning for invalid content values in objects. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#634](https://github.com/emotion-js/emotion/pull/634) Support array fallback syntax in objects. ([@emmatown](https://github.com/emmatown))
+  - [#633](https://github.com/emotion-js/emotion/pull/633) Add warning for invalid content values in objects. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 2
 
 - Andrew Hutchings ([ahutchings](https://github.com/ahutchings))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.1.2 (2018-04-17)
 
@@ -263,7 +263,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :house: Internal
 
 - `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-utils`, `emotion`, `site`
-  - [#628](https://github.com/emotion-js/emotion/pull/628) Remove emotion-utils and use packages from emotion-js/next. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#628](https://github.com/emotion-js/emotion/pull/628) Remove emotion-utils and use packages from emotion-js/next. ([@emmatown](https://github.com/emmatown))
 - `create-emotion`, `emotion`
   - [#624](https://github.com/emotion-js/emotion/pull/624) Closes [#623](https://github.com/emotion-js/emotion/issues/623) (remove redundant HTML attribute). ([@karol-majewski](https://github.com/karol-majewski))
 - `create-emotion-styled`, `emotion-utils`
@@ -276,7 +276,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Karol Majewski ([karol-majewski](https://github.com/karol-majewski))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Rob Szewczyk ([rszewczyk](https://github.com/rszewczyk))
 - Thomas Ingram ([ravinggenius](https://github.com/ravinggenius))
 
@@ -285,16 +285,16 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :rocket: Enhancement
 
 - `create-emotion`, `emotion-server`, `emotion`, `react-emotion`
-  - [#609](https://github.com/emotion-js/emotion/pull/609) Allow labels to be composed. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#609](https://github.com/emotion-js/emotion/pull/609) Allow labels to be composed. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
 - `create-emotion-styled`
-  - [#612](https://github.com/emotion-js/emotion/pull/612) Use @emotion/is-prop-valid for checking valid props on string tags. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#612](https://github.com/emotion-js/emotion/pull/612) Use @emotion/is-prop-valid for checking valid props on string tags. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamiltosn))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.1.0 (2018-03-24)
 
@@ -306,13 +306,13 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :bug: Bug Fix
 
 - `create-emotion`
-  - [#605](https://github.com/emotion-js/emotion/pull/605) Fix SSR with multiple createEmotion calls with the same context. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#605](https://github.com/emotion-js/emotion/pull/605) Fix SSR with multiple createEmotion calls with the same context. ([@emmatown](https://github.com/emmatown))
 - `emotion`
   - [#596](https://github.com/emotion-js/emotion/pull/596) Remove fontface type. ([@renanrboliveira](https://github.com/renanrboliveira))
 - `react-emotion`
   - [#590](https://github.com/emotion-js/emotion/pull/590) Fixed TSLint errors. ([@alex-pex](https://github.com/alex-pex))
 - `create-emotion-styled`, `react-emotion`
-  - [#589](https://github.com/emotion-js/emotion/pull/589) Carry styles from flattened components with withComponent. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#589](https://github.com/emotion-js/emotion/pull/589) Carry styles from flattened components with withComponent. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`
   - [#584](https://github.com/emotion-js/emotion/pull/584) Preserve existing options passed to styled calls. ([@Andarist](https://github.com/Andarist))
 
@@ -321,7 +321,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Alexandre PAIXAO ([alex-pex](https://github.com/alex-pex))
 - Felix Jung ([felixjung](https://github.com/felixjung))
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Rajan Singh ([woahitsraj](https://github.com/woahitsraj))
 - Renan R. Oliveira ([renanrboliveira](https://github.com/renanrboliveira))
 - Utopia፲ ([utopiaio](https://github.com/utopiaio))
@@ -356,7 +356,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 #### :bug: Bug Fix
 
 - `create-emotion-styled`, `create-emotion`, `emotion`
-  - [#568](https://github.com/emotion-js/emotion/pull/568) Change component selector error throwing. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#568](https://github.com/emotion-js/emotion/pull/568) Change component selector error throwing. ([@emmatown](https://github.com/emmatown))
 - `emotion-utils`
   - [#567](https://github.com/emotion-js/emotion/pull/567) Line clamp property needs webkit vendor prefix. ([@jschr](https://github.com/jschr))
 
@@ -365,7 +365,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Alex LaFroscia ([alexlafroscia](https://github.com/alexlafroscia))
 - Chris Bolin ([chrisbolin](https://github.com/chrisbolin))
 - Jordan Schroter ([jschr](https://github.com/jschr))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Sergey Galchenko ([sgal](https://github.com/sgal))
 
 ## v9.0.0 (2018-02-04)
@@ -375,9 +375,9 @@ Emotion 9 introduces [instances](https://emotion.sh/docs/create-emotion), jest-e
 #### :rocket: Enhancement
 
 - `jest-emotion`
-  - [#495](https://github.com/emotion-js/emotion/pull/495) Add jest-emotion ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#495](https://github.com/emotion-js/emotion/pull/495) Add jest-emotion ([@emmatown](https://github.com/emmatown))
 - `emotion-server`
-  - [#448](https://github.com/emotion-js/emotion/pull/448) Add SSR streaming API and stuff ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#448](https://github.com/emotion-js/emotion/pull/448) Add SSR streaming API and stuff ([@emmatown](https://github.com/emmatown))
 
 #### Migrating from Emotion 8
 
@@ -443,7 +443,7 @@ npm install --save jest-emotion
 #### :boom: Breaking Change
 
 - `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `jest-emotion`, `preact-emotion`, `react-emotion`, `site`
-  - [#464](https://github.com/emotion-js/emotion/pull/464) Add Instances. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#464](https://github.com/emotion-js/emotion/pull/464) Add Instances. ([@emmatown](https://github.com/emmatown))
 
 #### :rocket: Enhancement
 
@@ -457,7 +457,7 @@ npm install --save jest-emotion
 - `emotion-theming`
   - [#497](https://github.com/emotion-js/emotion/pull/497) Fixed nested themes not being republished on outer theme changes. ([@Andarist](https://github.com/Andarist))
 - `jest-emotion`
-  - [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
@@ -468,14 +468,14 @@ npm install --save jest-emotion
 - `create-emotion`
   - [#550](https://github.com/emotion-js/emotion/pull/550) Check for `document` instead of `window`. ([@alexlafroscia](https://github.com/alexlafroscia))
 - `emotion-utils`
-  - [#544](https://github.com/emotion-js/emotion/pull/544) Change hash implementation. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#544](https://github.com/emotion-js/emotion/pull/544) Change hash implementation. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 12
 
 - Evan Scott ([probablyup](https://github.com/probablyup))
 - Mark Holmes ([smlmrkhlms](https://github.com/smlmrkhlms))
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Yegor Borisenco ([pimmey](https://github.com/pimmey))
 - Dara Hak ([darahak](https://github.com/darahak))
 - Divyanshu Maithani ([divyanshu013](https://github.com/divyanshu013))
@@ -492,32 +492,32 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `create-emotion-styled`, `emotion`, `site`
-  - [#540](https://github.com/emotion-js/emotion/pull/540) Fix create-emotion-styled proxy with react-hot-loader and add appearance: none to search input. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#540](https://github.com/emotion-js/emotion/pull/540) Fix create-emotion-styled proxy with react-hot-loader and add appearance: none to search input. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
 - `create-emotion`
   - [#550](https://github.com/emotion-js/emotion/pull/550) Check for `document` instead of `window`. ([@alexlafroscia](https://github.com/alexlafroscia))
 - `emotion-utils`
-  - [#544](https://github.com/emotion-js/emotion/pull/544) Change hash implementation. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#544](https://github.com/emotion-js/emotion/pull/544) Change hash implementation. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 3
 
 - Alex LaFroscia ([alexlafroscia](https://github.com/alexlafroscia))
 - Devin Otway ([TroutZen](https://github.com/TroutZen))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.0.0-2 (2018-01-17)
 
 #### :rocket: Enhancement
 
 - `create-emotion-styled`, `create-emotion`, `emotion-utils`, `emotion`, `react-emotion`
-  - [#516](https://github.com/emotion-js/emotion/pull/516) Throw a nice error when using the styled shorthand without babel-plugin-emotion and remove duplication in component selector code. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#516](https://github.com/emotion-js/emotion/pull/516) Throw a nice error when using the styled shorthand without babel-plugin-emotion and remove duplication in component selector code. ([@emmatown](https://github.com/emmatown))
 
 #### :bug: Bug Fix
 
 - `create-emotion`, `emotion`
-  - [#532](https://github.com/emotion-js/emotion/pull/532) Fix extra whitespace in cx. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#532](https://github.com/emotion-js/emotion/pull/532) Fix extra whitespace in cx. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
@@ -527,14 +527,14 @@ npm install --save jest-emotion
   - [#509](https://github.com/emotion-js/emotion/pull/509) fix Readme markdown list syntax. ([@ryota-murakami](https://github.com/ryota-murakami))
   - [#505](https://github.com/emotion-js/emotion/pull/505) Fixed jest-glamor-react -> jest-emotion upgrade description. ([@Andarist](https://github.com/Andarist))
 - `site`
-  - [#530](https://github.com/emotion-js/emotion/pull/530) Add search to docs. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#530](https://github.com/emotion-js/emotion/pull/530) Add search to docs. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`
   - [#514](https://github.com/emotion-js/emotion/pull/514) Better example for hoist option. ([@Andarist](https://github.com/Andarist))
 
 #### :house: Internal
 
 - `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion`, `site`
-  - [#534](https://github.com/emotion-js/emotion/pull/534) Update prettier and add .prettierrc.yaml. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#534](https://github.com/emotion-js/emotion/pull/534) Update prettier and add .prettierrc.yaml. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`, `benchmarks`, `emotion`
   - [#525](https://github.com/emotion-js/emotion/pull/525) chore: upgrade to babel-plugin-macros. ([@Haroenv](https://github.com/Haroenv))
 - Other
@@ -547,7 +547,7 @@ npm install --save jest-emotion
 - Divyanshu Maithani ([divyanshu013](https://github.com/divyanshu013))
 - Haroen Viaene ([Haroenv](https://github.com/Haroenv))
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Mouad Debbar ([mdebbar](https://github.com/mdebbar))
 - Oliver Turner ([oliverturner](https://github.com/oliverturner))
 - [ARChilton](https://github.com/ARChilton)
@@ -558,18 +558,18 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`, `create-emotion`, `emotion-theming`, `emotion`, `jest-emotion`, `react-emotion`
-  - [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v9.0.0-0 (2017-12-23)
 
 #### :boom: Breaking Change
 
 - `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `jest-emotion`, `preact-emotion`, `react-emotion`, `site`
-  - [#464](https://github.com/emotion-js/emotion/pull/464) Add Instances. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#464](https://github.com/emotion-js/emotion/pull/464) Add Instances. ([@emmatown](https://github.com/emmatown))
 
 #### :rocket: Enhancement
 
@@ -595,7 +595,7 @@ npm install --save jest-emotion
 - Evan Scott ([probablyup](https://github.com/probablyup))
 - Mark Holmes ([smlmrkhlms](https://github.com/smlmrkhlms))
 - Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Yegor Borisenco ([pimmey](https://github.com/pimmey))
 
 ## v8.0.12 (2017-12-01)
@@ -608,7 +608,7 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`
-  - [#483](https://github.com/emotion-js/emotion/pull/483) Fix css prop in babel 7 with module transformer and fix source maps in latest babel 7 beta. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#483](https://github.com/emotion-js/emotion/pull/483) Fix css prop in babel 7 with module transformer and fix source maps in latest babel 7 beta. ([@emmatown](https://github.com/emmatown))
 - `emotion`
   - [#480](https://github.com/emotion-js/emotion/pull/480) Do not add px to css custom-properties. ([@TrySound](https://github.com/TrySound))
 
@@ -616,7 +616,7 @@ npm install --save jest-emotion
 
 - Bogdan Chadkin ([TrySound](https://github.com/TrySound))
 - Evan Scott ([probablyup](https://github.com/probablyup))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.11 (2017-11-24)
 
@@ -625,19 +625,19 @@ npm install --save jest-emotion
 - `babel-plugin-emotion`, `emotion`, `react-emotion`
   - [#465](https://github.com/emotion-js/emotion/pull/465) Add SVG attributes. ([@sleepycat](https://github.com/sleepycat))
 - `babel-plugin-emotion`, `emotion`
-  - [#458](https://github.com/emotion-js/emotion/pull/458) Fix source maps without a semicolon or newline after the last declaration. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#458](https://github.com/emotion-js/emotion/pull/458) Fix source maps without a semicolon or newline after the last declaration. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
 - `emotion-theming`
-  - [#459](https://github.com/emotion-js/emotion/pull/459) Create rollup builds with Babel 7. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#459](https://github.com/emotion-js/emotion/pull/459) Create rollup builds with Babel 7. ([@emmatown](https://github.com/emmatown))
 - `emotion-theming`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
-  - [#457](https://github.com/emotion-js/emotion/pull/457) Update rollup. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#457](https://github.com/emotion-js/emotion/pull/457) Update rollup. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 2
 
 - Mike Williamson ([sleepycat](https://github.com/sleepycat))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.10 (2017-11-07)
 
@@ -651,7 +651,7 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`, `benchmarks`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`, `site`
-  - [#440](https://github.com/emotion-js/emotion/pull/440) Babel 7 compatibility and change tests. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#440](https://github.com/emotion-js/emotion/pull/440) Babel 7 compatibility and change tests. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
@@ -685,7 +685,7 @@ npm install --save jest-emotion
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
 - Kyle Shevlin ([kyleshevlin](https://github.com/kyleshevlin))
 - Kyle Warren ([malectro](https://github.com/malectro))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - ZΛNDΞR ([mrmartineau](https://github.com/mrmartineau))
 
 ## v8.0.9 (2017-10-23)
@@ -702,7 +702,7 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`, `emotion`
-  - [#428](https://github.com/emotion-js/emotion/pull/428) Fix editing styles in devtools with source maps. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#428](https://github.com/emotion-js/emotion/pull/428) Fix editing styles in devtools with source maps. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
@@ -728,7 +728,7 @@ npm install --save jest-emotion
 - Eric Kennedy ([ekeric13](https://github.com/ekeric13))
 - Gregg Brewster ([greggb](https://github.com/greggb))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Ruslan Vasiliev ([ervasive](https://github.com/ervasive))
 
 ## v8.0.8 (2017-10-16)
@@ -768,7 +768,7 @@ npm install --save jest-emotion
 - Gregg Brewster ([greggb](https://github.com/greggb))
 - Justin Hall ([wKovacs64](https://github.com/wKovacs64))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Renato Ribeiro ([renatorib](https://github.com/renatorib))
 
 ## v8.0.6 (2017-10-14)
@@ -781,7 +781,7 @@ npm install --save jest-emotion
 #### :house: Internal
 
 - `babel-plugin-emotion`, `emotion`, `react-emotion`, `stylis-plugin-emotion`
-  - [#406](https://github.com/emotion-js/emotion/pull/406) Remove stylis-plugin-emotion and use stylis-rule-sheet. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#406](https://github.com/emotion-js/emotion/pull/406) Remove stylis-plugin-emotion and use stylis-rule-sheet. ([@emmatown](https://github.com/emmatown))
 - `emotion`
   - [#392](https://github.com/emotion-js/emotion/pull/392) Remove flatten. ([@tkh44](https://github.com/tkh44))
 
@@ -790,7 +790,7 @@ npm install --save jest-emotion
 - Cameron Martin ([cameron-martin](https://github.com/cameron-martin))
 - Hosmel Quintana ([hosmelq](https://github.com/hosmelq))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.5 (2017-10-07)
 
@@ -813,11 +813,11 @@ npm install --save jest-emotion
 #### :house: Internal
 
 - `emotion`, `react-emotion`
-  - [#387](https://github.com/emotion-js/emotion/pull/387) Insert nested selectors differently. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#387](https://github.com/emotion-js/emotion/pull/387) Insert nested selectors differently. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.3 (2017-10-06)
 
@@ -849,33 +849,33 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `react-emotion`
-  - [#364](https://github.com/emotion-js/emotion/pull/364) Make the theme prop always exist. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#364](https://github.com/emotion-js/emotion/pull/364) Make the theme prop always exist. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-13 (2017-10-01)
 
 #### :bug: Bug Fix
 
 - `react-emotion`
-  - [#364](https://github.com/emotion-js/emotion/pull/364) Make the theme prop always exist. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#364](https://github.com/emotion-js/emotion/pull/364) Make the theme prop always exist. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-12 (2017-10-01)
 
 #### :rocket: Enhancement
 
 - `emotion`, `react-emotion`
-  - [#363](https://github.com/emotion-js/emotion/pull/363) Recursively call functions in styled with props. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#363](https://github.com/emotion-js/emotion/pull/363) Recursively call functions in styled with props. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-11 (2017-09-30)
 
@@ -892,12 +892,12 @@ npm install --save jest-emotion
 #### :house: Internal
 
 - `emotion`, `react-emotion`
-  - [#359](https://github.com/emotion-js/emotion/pull/359) Hoist some functions in react-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#359](https://github.com/emotion-js/emotion/pull/359) Hoist some functions in react-emotion. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 2
 
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-10 (2017-09-29)
 
@@ -927,7 +927,7 @@ npm install --save jest-emotion
 #### :rocket: Enhancement
 
 - `emotion`
-  - [#347](https://github.com/emotion-js/emotion/pull/347) Allow external stylis plugins. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#347](https://github.com/emotion-js/emotion/pull/347) Allow external stylis plugins. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
@@ -936,7 +936,7 @@ npm install --save jest-emotion
 #### Committers: 2
 
 - Apostolos Tsakpinis ([apostolos](https://github.com/apostolos))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-7 (2017-09-25)
 
@@ -967,22 +967,22 @@ npm install --save jest-emotion
 - `react-emotion`, `site`
   - [#232](https://github.com/emotion-js/emotion/pull/232) Allow Styled tags to be updated via withComponent. ([@ifyoumakeit](https://github.com/ifyoumakeit))
 - `emotion`
-  - [#335](https://github.com/emotion-js/emotion/pull/335) Add a WeakMap cache to createStringFromObject. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#335](https://github.com/emotion-js/emotion/pull/335) Add a WeakMap cache to createStringFromObject. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`, `emotion`, `site`
   - [#332](https://github.com/emotion-js/emotion/pull/332) Add support for object arguments in css prop with source maps. ([@tkh44](https://github.com/tkh44))
 
 #### :house: Internal
 
 - `emotion`
-  - [#339](https://github.com/emotion-js/emotion/pull/339) Don't abstract WeakMap cache. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#339](https://github.com/emotion-js/emotion/pull/339) Don't abstract WeakMap cache. ([@emmatown](https://github.com/emmatown))
 - Other
-  - [#333](https://github.com/emotion-js/emotion/pull/333) Run benchmarks and tests in parallel and cache packages node_modules. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#333](https://github.com/emotion-js/emotion/pull/333) Run benchmarks and tests in parallel and cache packages node_modules. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 3
 
 - Dave Garwacke ([ifyoumakeit](https://github.com/ifyoumakeit))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-5 (2017-09-24)
 
@@ -994,44 +994,44 @@ npm install --save jest-emotion
 #### :bug: Bug Fix
 
 - `emotion`
-  - [#326](https://github.com/emotion-js/emotion/pull/326) At rule fixes. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#326](https://github.com/emotion-js/emotion/pull/326) At rule fixes. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
 - `benchmarks`
-  - [#328](https://github.com/emotion-js/emotion/pull/328) Benchmarks on Travis. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#328](https://github.com/emotion-js/emotion/pull/328) Benchmarks on Travis. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 2
 
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-4 (2017-09-22)
 
 #### :bug: Bug Fix
 
 - `emotion`
-  - [#324](https://github.com/emotion-js/emotion/pull/324) Fix multiple nested selectors in media queries. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#324](https://github.com/emotion-js/emotion/pull/324) Fix multiple nested selectors in media queries. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-3 (2017-09-22)
 
 #### :boom: Breaking Change
 
 - `babel-plugin-emotion`, `emotion-server`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
-  - [#322](https://github.com/emotion-js/emotion/pull/322) Move emotion to peerDependencies. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#322](https://github.com/emotion-js/emotion/pull/322) Move emotion to peerDependencies. ([@emmatown](https://github.com/emmatown))
 
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`, `emotion-server`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
-  - [#322](https://github.com/emotion-js/emotion/pull/322) Move emotion to peerDependencies. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#322](https://github.com/emotion-js/emotion/pull/322) Move emotion to peerDependencies. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-2 (2017-09-22)
 
@@ -1043,18 +1043,18 @@ npm install --save jest-emotion
 #### Committers: 2
 
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-1 (2017-09-21)
 
 #### :bug: Bug Fix
 
 - `babel-plugin-emotion`, `emotion`
-  - [#317](https://github.com/emotion-js/emotion/pull/317) Media query nested selector fix. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#317](https://github.com/emotion-js/emotion/pull/317) Media query nested selector fix. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v8.0.2-0 (2017-09-20)
 
@@ -1092,18 +1092,18 @@ npm install --save jest-emotion
 #### Committers: 2
 
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.3.2 (2017-09-14)
 
 #### :rocket: Enhancement
 
 - `babel-plugin-emotion`
-  - [#306](https://github.com/emotion-js/emotion/pull/306) Allow all imports to be configurable. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#306](https://github.com/emotion-js/emotion/pull/306) Allow all imports to be configurable. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.3.0 (2017-09-13)
 
@@ -1115,7 +1115,7 @@ npm install --save jest-emotion
 #### :house: Internal
 
 - `babel-plugin-emotion`, `emotion`, `react-emotion`
-  - [#304](https://github.com/emotion-js/emotion/pull/304) Use babel-plugin-codegen to generate props regex. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#304](https://github.com/emotion-js/emotion/pull/304) Use babel-plugin-codegen to generate props regex. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`
   - [#298](https://github.com/emotion-js/emotion/pull/298) upgrade to babel-macros 1.0.0. ([@kentcdodds](https://github.com/kentcdodds))
 
@@ -1123,7 +1123,7 @@ npm install --save jest-emotion
 
 - Christopher Biscardi ([ChristopherBiscardi](https://github.com/ChristopherBiscardi))
 - Kent C. Dodds ([kentcdodds](https://github.com/kentcdodds))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.2.1 (2017-09-05)
 
@@ -1138,7 +1138,7 @@ npm install --save jest-emotion
 - `babel-plugin-emotion`
   - [#293](https://github.com/emotion-js/emotion/pull/293) Fix flowtype errors in babel-plugin-emotion. ([@bigslycat](https://github.com/bigslycat))
 - `babel-plugin-emotion`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
-  - [#280](https://github.com/emotion-js/emotion/pull/280) Change rollup config. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#280](https://github.com/emotion-js/emotion/pull/280) Change rollup config. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`, `emotion-server`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
   - [#276](https://github.com/emotion-js/emotion/pull/276) chore: update packages to deeplink into their respective directories. ([@probablyup](https://github.com/probablyup))
 
@@ -1147,7 +1147,7 @@ npm install --save jest-emotion
 - Christopher Biscardi ([ChristopherBiscardi](https://github.com/ChristopherBiscardi))
 - Divyagnan Kandala ([divyagnan](https://github.com/divyagnan))
 - Evan Scott ([probablyup](https://github.com/probablyup))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - Pavel ([bigslycat](https://github.com/bigslycat))
 - Siddharth Kshetrapal ([siddharthkp](https://github.com/siddharthkp))
 
@@ -1156,11 +1156,11 @@ npm install --save jest-emotion
 #### :rocket: Enhancement
 
 - `emotion`, `preact-emotion`
-  - [#273](https://github.com/tkh44/emotion/pull/273) Add preact-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#273](https://github.com/tkh44/emotion/pull/273) Add preact-emotion. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.1.1 (2017-08-20)
 
@@ -1172,44 +1172,44 @@ npm install --save jest-emotion
 #### :memo: Documentation
 
 - `emotion`
-  - [#269](https://github.com/tkh44/emotion/pull/269) Fix react size badges in readme. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#269](https://github.com/tkh44/emotion/pull/269) Fix react size badges in readme. ([@emmatown](https://github.com/emmatown))
 
 #### Commiteters: 2
 
 - Matija Marohnić ([silvenon](https://github.com/silvenon))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.1.0 (2017-08-18)
 
 #### :rocket: Enhancement
 
 - `babel-plugin-emotion`, `emotion-server`, `emotion`
-  - [#265](https://github.com/tkh44/emotion/pull/265) Fix nested interpolated media queries and support random interpolations in injectGlobal. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#265](https://github.com/tkh44/emotion/pull/265) Fix nested interpolated media queries and support random interpolations in injectGlobal. ([@emmatown](https://github.com/emmatown))
 - `babel-plugin-emotion`, `emotion-server`, `emotion-utils`, `emotion`, `react-emotion`
-  - [#259](https://github.com/tkh44/emotion/pull/259) Split everything into its own package with Lerna. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#259](https://github.com/tkh44/emotion/pull/259) Split everything into its own package with Lerna. ([@emmatown](https://github.com/emmatown))
 - Other
-  - [#253](https://github.com/tkh44/emotion/pull/253) Add identifier name to styled class. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  - [#253](https://github.com/tkh44/emotion/pull/253) Add identifier name to styled class. ([@emmatown](https://github.com/emmatown))
 
 #### :bug: Bug Fix
 
-- [#256](https://github.com/tkh44/emotion/pull/256) Fix nested selectors without parent declaration. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#256](https://github.com/tkh44/emotion/pull/256) Fix nested selectors without parent declaration. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
 - [#252](https://github.com/tkh44/emotion/pull/252) Add documentation for nested selectors. ([@silvenon](https://github.com/silvenon))
-- [#250](https://github.com/tkh44/emotion/pull/250) Remove Vue from the babel-macros doc. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#250](https://github.com/tkh44/emotion/pull/250) Remove Vue from the babel-macros doc. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 2
 
 - Matija Marohnić ([silvenon](https://github.com/silvenon))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.12 (2017-08-09)
 
 #### :bug: Bug Fix
 
-- [#243](https://github.com/tkh44/emotion/pull/243) Pass filename to PostCSS correctly. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-- [#236](https://github.com/tkh44/emotion/pull/236) Filter props on composed components. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#243](https://github.com/tkh44/emotion/pull/243) Pass filename to PostCSS correctly. ([@emmatown](https://github.com/emmatown))
+- [#236](https://github.com/tkh44/emotion/pull/236) Filter props on composed components. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
@@ -1218,53 +1218,53 @@ npm install --save jest-emotion
 #### :house: Internal
 
 - [#237](https://github.com/tkh44/emotion/pull/237) adding theming to dev dependencies. ([@areai51](https://github.com/areai51))
-- [#238](https://github.com/tkh44/emotion/pull/238) Make the styled content function return an object. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#238](https://github.com/tkh44/emotion/pull/238) Make the styled content function return an object. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 3
 
 - EGOIST ([egoist](https://github.com/egoist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 - [areai51](https://github.com/areai51)
 
 ## v7.0.11 (2017-08-05)
 
 #### :house: Internal
 
-- [#233](https://github.com/tkh44/emotion/pull/233) Add postcss as a dependency. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-- [#231](https://github.com/tkh44/emotion/pull/231) Use ESLint directly. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#233](https://github.com/tkh44/emotion/pull/233) Add postcss as a dependency. ([@emmatown](https://github.com/emmatown))
+- [#231](https://github.com/tkh44/emotion/pull/231) Use ESLint directly. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.10 (2017-08-04)
 
 #### :memo: Documentation
 
-- [#230](https://github.com/tkh44/emotion/pull/230) Fix typo in react gzip size badge. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#230](https://github.com/tkh44/emotion/pull/230) Fix typo in react gzip size badge. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.9 (2017-08-04)
 
 #### :rocket: Enhancement
 
-- [#227](https://github.com/tkh44/emotion/pull/227) Prop filtering. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#227](https://github.com/tkh44/emotion/pull/227) Prop filtering. ([@emmatown](https://github.com/emmatown))
 - [#228](https://github.com/tkh44/emotion/pull/228) Spread out fragments earlier so that we can do redic nesting. ([@tkh44](https://github.com/tkh44))
 - [#225](https://github.com/tkh44/emotion/pull/225) Remove theming. ([@tkh44](https://github.com/tkh44))
 
 #### Committers: 2
 
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.7 (2017-08-02)
 
 #### :rocket: Enhancement
 
-- [#221](https://github.com/tkh44/emotion/pull/221) Random object interpolations. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#221](https://github.com/tkh44/emotion/pull/221) Random object interpolations. ([@emmatown](https://github.com/emmatown))
 
 #### :bug: Bug Fix
 
@@ -1274,7 +1274,7 @@ npm install --save jest-emotion
 #### Committers: 2
 
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.6 (2017-08-01)
 
@@ -1290,64 +1290,64 @@ npm install --save jest-emotion
 
 #### :bug: Bug Fix
 
-- [#218](https://github.com/tkh44/emotion/pull/218) Fix SSR hydration. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#218](https://github.com/tkh44/emotion/pull/218) Fix SSR hydration. ([@emmatown](https://github.com/emmatown))
 - [#214](https://github.com/tkh44/emotion/pull/214) [Fix] #196. ([@bogas04](https://github.com/bogas04))
 
 #### Committers: 2
 
 - Divjot Singh ([bogas04](https://github.com/bogas04))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.4 (2017-07-30)
 
 #### :bug: Bug Fix
 
-- [#205](https://github.com/tkh44/emotion/pull/205) Fix prefixed selectors in objects. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-- [#204](https://github.com/tkh44/emotion/pull/204) Fix shorthand property syntax in object styles and use spread syntax instead of transform in tests. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-- [#203](https://github.com/tkh44/emotion/pull/203) Component as selector fix. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#205](https://github.com/tkh44/emotion/pull/205) Fix prefixed selectors in objects. ([@emmatown](https://github.com/emmatown))
+- [#204](https://github.com/tkh44/emotion/pull/204) Fix shorthand property syntax in object styles and use spread syntax instead of transform in tests. ([@emmatown](https://github.com/emmatown))
+- [#203](https://github.com/tkh44/emotion/pull/203) Component as selector fix. ([@emmatown](https://github.com/emmatown))
 
 #### :memo: Documentation
 
-- [#207](https://github.com/tkh44/emotion/pull/207) Fix logo alignment on npm. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-- [#206](https://github.com/tkh44/emotion/pull/206) Remove attr from Usage with CSS Modules docs. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#207](https://github.com/tkh44/emotion/pull/207) Fix logo alignment on npm. ([@emmatown](https://github.com/emmatown))
+- [#206](https://github.com/tkh44/emotion/pull/206) Remove attr from Usage with CSS Modules docs. ([@emmatown](https://github.com/emmatown))
 - [#190](https://github.com/tkh44/emotion/pull/190) [Update] import `styled` from 'emotion/react'. ([@bogas04](https://github.com/bogas04))
 
 #### Committers: 2
 
 - Divjot Singh ([bogas04](https://github.com/bogas04))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.3 (2017-07-28)
 
 #### :rocket: Enhancement
 
-- [#202](https://github.com/tkh44/emotion/pull/202) Render fewer components when composing components. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#202](https://github.com/tkh44/emotion/pull/202) Render fewer components when composing components. ([@emmatown](https://github.com/emmatown))
 
 #### Committers: 1
 
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.2 (2017-07-28)
 
 #### :rocket: Enhancement
 
 - [#197](https://github.com/tkh44/emotion/pull/197) Prefix objects css props. ([@tkh44](https://github.com/tkh44))
-- [#200](https://github.com/tkh44/emotion/pull/200) Auto import css for css prop. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#200](https://github.com/tkh44/emotion/pull/200) Auto import css for css prop. ([@emmatown](https://github.com/emmatown))
 
 #### :bug: Bug Fix
 
-- [#192](https://github.com/tkh44/emotion/pull/192) Use postcss-nested and postcss-safe-parser instead of styled-components fork and pass filename to postcss. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#192](https://github.com/tkh44/emotion/pull/192) Use postcss-nested and postcss-safe-parser instead of styled-components fork and pass filename to postcss. ([@emmatown](https://github.com/emmatown))
 
 #### :house: Internal
 
-- [#191](https://github.com/tkh44/emotion/pull/191) More tests, use fns from utils and rework core. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#191](https://github.com/tkh44/emotion/pull/191) More tests, use fns from utils and rework core. ([@emmatown](https://github.com/emmatown))
 - [#193](https://github.com/tkh44/emotion/pull/193) Use spread over Object.assign. ([@bogas04](https://github.com/bogas04))
 
 #### Committers: 3
 
 - Divjot Singh ([bogas04](https://github.com/bogas04))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))
 
 ## v7.0.1 (2017-07-27)
 
@@ -1357,12 +1357,12 @@ npm install --save jest-emotion
 
 #### :house: Internal
 
-- [#182](https://github.com/tkh44/emotion/pull/182) Move fbjs imports for warning and camelizeStyleName. ([@mitchellhamilton](https://github.com/mitchellhamilton))
-- [#176](https://github.com/tkh44/emotion/pull/176) Update jest-glamor-react. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- [#182](https://github.com/tkh44/emotion/pull/182) Move fbjs imports for warning and camelizeStyleName. ([@emmatown](https://github.com/emmatown))
+- [#176](https://github.com/tkh44/emotion/pull/176) Update jest-glamor-react. ([@emmatown](https://github.com/emmatown))
 - [#175](https://github.com/tkh44/emotion/pull/175) Clean up css operations. ([@tkh44](https://github.com/tkh44))
 
 #### Committers: 3
 
 - Sunil Pai ([threepointone](https://github.com/threepointone))
 - Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Emma Hamilton ([emmatown](https://github.com/emmatown))

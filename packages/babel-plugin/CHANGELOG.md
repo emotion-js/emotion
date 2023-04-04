@@ -1,5 +1,11 @@
 # @emotion/babel-plugin
 
+## 11.10.6
+
+### Patch Changes
+
+- [#2985](https://github.com/emotion-js/emotion/pull/2985) [`4e172c2a`](https://github.com/emotion-js/emotion/commit/4e172c2ae4e5237500ec84688d76ebf253ab1fdc) Thanks [@emmatown](https://github.com/emmatown)! - Remove peer dependency on `@babel/core`
+
 ## 11.10.5
 
 ### Patch Changes
@@ -100,9 +106,9 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `babel-plugin-emotion` to `@emotion/babel-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` in your Babel config.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Rename `babel-plugin-emotion` to `@emotion/babel-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` in your Babel config.
 
-* [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
+* [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
 
 * [`c65c5d88`](https://github.com/emotion-js/emotion/commit/c65c5d887002d76557eaefcb98091d795b13f9a9) [#1622](https://github.com/emotion-js/emotion/pull/1622) Thanks [@Andarist](https://github.com/Andarist)! - Drop Babel 6 support
 
@@ -118,7 +124,7 @@
 
 ### Minor Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 - [`c672175b`](https://github.com/emotion-js/emotion/commit/c672175b52e86de43b3d4092a8fe34b2023ceae8) [#1130](https://github.com/emotion-js/emotion/pull/1130) Thanks [@jtmthf](https://github.com/jtmthf)! - Adjust how arrays passed to css prop are transformed so function elements can be resolved at runtime.
 
@@ -220,7 +226,7 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `babel-plugin-emotion` to `@emotion/babel-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` in your Babel config.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Rename `babel-plugin-emotion` to `@emotion/babel-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` in your Babel config.
 
 * [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe) [#1656](https://github.com/emotion-js/emotion/pull/1656) Thanks [@Andarist](https://github.com/Andarist)! - `autoLabel` option no longer is a simple boolean. Instead we accept now 3 values: `dev-only` (the default), `always` and `never`.
 
@@ -263,17 +269,17 @@
 
 ### Major Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
 
-* [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
+* [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
 
 ### Minor Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Added the `importMap` option which allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 ### Patch Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix issue with not updating referenced import when bailing out on already transpiled vanilla emotion nodes (a regression introduced in #1602)
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Fix issue with not updating referenced import when bailing out on already transpiled vanilla emotion nodes (a regression introduced in #1602)
 - Updated dependencies [[`8a896a31`](https://github.com/emotion-js/emotion/commit/8a896a31434a1d2f69e1f1467c446c884c929387), [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85)]:
   - @emotion/serialize@0.11.15-next.1
 
@@ -288,7 +294,7 @@
 
 ### Major Changes
 
-- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
+- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@emmatown](https://github.com/emmatown)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
 
 ### Patch Changes
 
@@ -388,7 +394,7 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool
 
 ## 10.0.13
 

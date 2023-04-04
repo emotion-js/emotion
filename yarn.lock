@@ -2344,13 +2344,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/babel-plugin@11.10.5, @emotion/babel-plugin@^11.0.0, @emotion/babel-plugin@^11.10.0, @emotion/babel-plugin@^11.10.5, @emotion/babel-plugin@workspace:packages/babel-plugin":
+"@emotion/babel-plugin@11.10.6, @emotion/babel-plugin@^11.0.0, @emotion/babel-plugin@^11.10.0, @emotion/babel-plugin@^11.10.6, @emotion/babel-plugin@workspace:packages/babel-plugin":
   version: 0.0.0-use.local
   resolution: "@emotion/babel-plugin@workspace:packages/babel-plugin"
   dependencies:
     "@babel/core": ^7.18.5
     "@babel/helper-module-imports": ^7.16.7
-    "@babel/plugin-syntax-jsx": ^7.17.12
     "@babel/runtime": ^7.18.3
     "@emotion/hash": ^0.9.0
     "@emotion/memoize": ^0.8.0
@@ -2362,8 +2361,6 @@ __metadata:
     find-root: ^1.1.0
     source-map: ^0.5.7
     stylis: 4.1.3
-  peerDependencies:
-    "@babel/core": ^7.0.0
   languageName: unknown
   linkType: soft
 
@@ -2405,23 +2402,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/css@11.10.5, @emotion/css@workspace:packages/css":
+"@emotion/css@11.10.6, @emotion/css@workspace:packages/css":
   version: 0.0.0-use.local
   resolution: "@emotion/css@workspace:packages/css"
   dependencies:
-    "@babel/core": ^7.18.5
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": ^11.10.5
+    "@emotion/babel-plugin": ^11.10.6
     "@emotion/cache": ^11.10.5
     "@emotion/serialize": ^1.1.1
     "@emotion/sheet": ^1.2.1
     "@emotion/utils": ^1.2.0
     typescript: ^4.5.5
-  peerDependencies:
-    "@babel/core": ^7.0.0
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -2469,9 +2460,9 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/css": 11.10.5
+    "@emotion/css": 11.10.6
     "@emotion/css-prettifier": ^1.1.1
-    "@emotion/react": 11.10.5
+    "@emotion/react": 11.10.6
     "@types/jest": ^27.0.3
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2519,7 +2510,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/native@workspace:packages/native"
   dependencies:
-    "@babel/core": ^7.18.5
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/primitives-core": ^11.10.0
     "@types/react-native": ^0.63.2
@@ -2527,11 +2517,7 @@ __metadata:
     react-native: ^0.63.2
     typescript: ^4.5.5
   peerDependencies:
-    "@babel/core": ^7.0.0
     react-native: ">=0.14.0 <1"
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -2539,7 +2525,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.10.5
+    "@emotion/react": 11.10.6
     css-to-react-native: ^3.0.0
     react: 16.14.0
   peerDependencies:
@@ -2552,8 +2538,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives@workspace:packages/primitives"
   dependencies:
-    "@babel/core": ^7.18.5
-    "@emotion/babel-plugin": ^11.10.0
+    "@emotion/babel-plugin": ^11.10.6
     "@emotion/is-prop-valid": ^1.2.0
     "@emotion/primitives-core": ^11.10.0
     enzyme: ^3.11.0
@@ -2561,29 +2546,24 @@ __metadata:
     react: 16.14.0
     react-primitives: ^0.8.1
   peerDependencies:
-    "@babel/core": ^7.0.0
     react: ">=16.8.0"
     react-primitives: ^0.8.1
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.10.5, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@11.10.6, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
-    "@babel/core": ^7.18.5
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": ^11.10.5
+    "@emotion/babel-plugin": ^11.10.6
     "@emotion/cache": ^11.10.5
-    "@emotion/css": 11.10.5
+    "@emotion/css": 11.10.6
     "@emotion/css-prettifier": 1.1.1
     "@emotion/serialize": ^1.1.1
     "@emotion/server": 11.10.0
-    "@emotion/styled": 11.10.5
+    "@emotion/styled": 11.10.6
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
     "@emotion/utils": ^1.2.0
     "@emotion/weak-memoize": ^0.3.0
@@ -2593,11 +2573,8 @@ __metadata:
     svg-tag-names: ^1.1.1
     typescript: ^4.5.5
   peerDependencies:
-    "@babel/core": ^7.0.0
     react: ">=16.8.0"
   peerDependenciesMeta:
-    "@babel/core":
-      optional: true
     "@types/react":
       optional: true
   languageName: unknown
@@ -2622,8 +2599,8 @@ __metadata:
   resolution: "@emotion/server@workspace:packages/server"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": 11.10.5
-    "@emotion/css": 11.10.5
+    "@emotion/babel-plugin": 11.10.6
+    "@emotion/css": 11.10.6
     "@emotion/css-prettifier": 1.1.1
     "@emotion/utils": ^1.2.0
     "@types/node": ^12.20.37
@@ -2648,28 +2625,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/styled@11.10.5, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
+"@emotion/styled@11.10.6, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
-    "@babel/core": ^7.18.5
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": ^11.10.5
+    "@emotion/babel-plugin": ^11.10.6
     "@emotion/is-prop-valid": ^1.2.0
-    "@emotion/react": 11.10.5
+    "@emotion/react": 11.10.6
     "@emotion/serialize": ^1.1.1
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
     "@emotion/utils": ^1.2.0
     react: 16.14.0
     typescript: ^4.5.5
   peerDependencies:
-    "@babel/core": ^7.0.0
     "@emotion/react": ^11.0.0-rc.0
     react: ">=16.8.0"
   peerDependenciesMeta:
-    "@babel/core":
-      optional: true
     "@types/react":
       optional: true
   languageName: unknown
