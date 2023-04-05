@@ -1,6 +1,6 @@
 {
   "name": "@emotion/cache",
-  "version": "11.10.5",
+  "version": "11.10.7",
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
