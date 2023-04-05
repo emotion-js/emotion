@@ -35,6 +35,16 @@ exports[`global with css prop 1`] = `null`;
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on a global rule 1`] = `null`;
 
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on a rule that is defined in another one 1`] = `
+.emotion-0 div span:first-child {
+  border-bottom-left-radius: 0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on the rule that follows a declaration 1`] = `
 .emotion-0 {
   color: hotpink;
@@ -92,6 +102,16 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 `;
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does warn when not using the flag on a global rule 1`] = `null`;
+
+exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does warn when not using the flag on a rule that is defined in another one 1`] = `
+.emotion-0 div span:first-child {
+  border-bottom-left-radius: 0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does warn when not using the flag on the rule that follows a declaration 1`] = `
 .emotion-0 {
