@@ -165,8 +165,8 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
   )
 
   if (unsafePseudoClasses) {
-    const isNested = element.parent === children[0]
-    // in nested rules comments become children of the "auto-inserted" rule
+    const isNested = !!element.parent
+    // in nested rules comments become children of the "auto-inserted" rule and that's always the `element.parent`
     //
     // considering this input:
     // .a {
@@ -182,7 +182,7 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
     //   .b {}
     // }
     const commentContainer = isNested
-      ? children[0].children
+      ? element.parent.children
       : // global rule at the root level
         children
 
