@@ -20,7 +20,7 @@
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/css-prettifier",
   "dependencies": {
     "@emotion/memoize": "^0.8.0",
-    "stylis": "4.1.3"
+    "stylis": "4.1.4"
   },
   "publishConfig": {
     "access": "public"
