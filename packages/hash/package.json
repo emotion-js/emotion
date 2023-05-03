@@ -22,6 +22,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-hash.esm.js",
+      "import": "./dist/emotion-hash.cjs.mjs",
       "default": "./dist/emotion-hash.cjs.js"
     },
     "./package.json": "./package.json"

@@ -11,6 +11,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-css-prettifier.esm.js",
+      "import": "./dist/emotion-css-prettifier.cjs.mjs",
       "default": "./dist/emotion-css-prettifier.cjs.js"
     },
     "./package.json": "./package.json"

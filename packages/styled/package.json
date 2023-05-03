@@ -56,6 +56,7 @@
         "browser": "./base/dist/emotion-styled-base.browser.esm.js",
         "default": "./base/dist/emotion-styled-base.esm.js"
       },
+      "import": "./base/dist/emotion-styled-base.cjs.mjs",
       "default": "./base/dist/emotion-styled-base.cjs.js"
     },
     ".": {
@@ -64,6 +65,7 @@
         "browser": "./dist/emotion-styled.browser.esm.js",
         "default": "./dist/emotion-styled.esm.js"
       },
+      "import": "./dist/emotion-styled.cjs.mjs",
       "default": "./dist/emotion-styled.cjs.js"
     },
     "./package.json": "./package.json",

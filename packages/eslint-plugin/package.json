@@ -14,6 +14,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-eslint-plugin.esm.js",
+      "import": "./dist/emotion-eslint-plugin.cjs.mjs",
       "default": "./dist/emotion-eslint-plugin.cjs.js"
     },
     "./package.json": "./package.json"

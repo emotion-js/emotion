@@ -13,6 +13,7 @@
         "browser": "./dist/emotion-react.browser.esm.js",
         "default": "./dist/emotion-react.esm.js"
       },
+      "import": "./dist/emotion-react.cjs.mjs",
       "default": "./dist/emotion-react.cjs.js"
     },
     "./jsx-runtime": {
@@ -21,6 +22,7 @@
         "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
         "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
       },
+      "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
       "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
     },
     "./_isolated-hnrs": {
@@ -29,6 +31,7 @@
         "browser": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
         "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
       },
+      "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
       "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
     },
     "./jsx-dev-runtime": {
@@ -37,6 +40,7 @@
         "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
         "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
       },
+      "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
       "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
     },
     "./package.json": "./package.json",

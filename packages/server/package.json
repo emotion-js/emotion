@@ -61,6 +61,7 @@
         "browser": "./dist/emotion-server.browser.esm.js",
         "default": "./dist/emotion-server.esm.js"
       },
+      "import": "./dist/emotion-server.cjs.mjs",
       "default": "./dist/emotion-server.cjs.js"
     },
     "./create-instance": {
@@ -68,6 +69,7 @@
         "browser": "./create-instance/dist/emotion-server-create-instance.browser.esm.js",
         "default": "./create-instance/dist/emotion-server-create-instance.esm.js"
       },
+      "import": "./create-instance/dist/emotion-server-create-instance.cjs.mjs",
       "default": "./create-instance/dist/emotion-server-create-instance.cjs.js"
     },
     "./package.json": "./package.json"

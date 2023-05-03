@@ -46,10 +46,12 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-css.esm.js",
+      "import": "./dist/emotion-css.cjs.mjs",
       "default": "./dist/emotion-css.cjs.js"
     },
     "./create-instance": {
       "module": "./create-instance/dist/emotion-css-create-instance.esm.js",
+      "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
       "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
     },
     "./package.json": "./package.json",
