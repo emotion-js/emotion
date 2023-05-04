@@ -41,9 +41,7 @@
     "dist",
     "base",
     "types/*.d.ts",
-    "macro.d.ts",
-    "macro.js",
-    "macro.js.flow"
+    "macro.*"
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {
@@ -56,6 +54,7 @@
         "browser": "./base/dist/emotion-styled-base.browser.esm.js",
         "default": "./base/dist/emotion-styled-base.esm.js"
       },
+      "import": "./base/dist/emotion-styled-base.cjs.mjs",
       "default": "./base/dist/emotion-styled-base.cjs.js"
     },
     ".": {
@@ -64,10 +63,17 @@
         "browser": "./dist/emotion-styled.browser.esm.js",
         "default": "./dist/emotion-styled.esm.js"
       },
+      "import": "./dist/emotion-styled.cjs.mjs",
       "default": "./dist/emotion-styled.cjs.js"
     },
     "./package.json": "./package.json",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "preconstruct": {
     "umdName": "emotionStyled",
@@ -81,7 +87,13 @@
         "worker"
       ],
       "extra": {
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

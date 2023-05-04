@@ -9,9 +9,7 @@
     "src",
     "dist",
     "types",
-    "macro.js",
-    "macro.d.ts",
-    "macro.js.flow",
+    "macro.*",
     "create-instance"
   ],
   "scripts": {
@@ -46,14 +44,22 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-css.esm.js",
+      "import": "./dist/emotion-css.cjs.mjs",
       "default": "./dist/emotion-css.cjs.js"
     },
     "./create-instance": {
       "module": "./create-instance/dist/emotion-css-create-instance.esm.js",
+      "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
       "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
     },
     "./package.json": "./package.json",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "preconstruct": {
     "umdName": "emotion",
@@ -63,7 +69,13 @@
     ],
     "exports": {
       "extra": {
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

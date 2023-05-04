@@ -7,10 +7,17 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-native.esm.js",
+      "import": "./dist/emotion-native.cjs.mjs",
       "default": "./dist/emotion-native.cjs.js"
     },
     "./package.json": "./package.json",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "scripts": {
     "test:typescript": "dtslint types"
@@ -19,7 +26,7 @@
     "src",
     "dist",
     "types/*.d.ts",
-    "macro.js"
+    "macro.*"
   ],
   "types": "types/index.d.ts",
   "devDependencies": {
@@ -55,7 +62,13 @@
   "preconstruct": {
     "exports": {
       "extra": {
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

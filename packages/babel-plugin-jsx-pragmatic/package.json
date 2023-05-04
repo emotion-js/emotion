@@ -7,6 +7,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-babel-plugin-jsx-pragmatic.esm.js",
+      "import": "./dist/emotion-babel-plugin-jsx-pragmatic.cjs.mjs",
       "default": "./dist/emotion-babel-plugin-jsx-pragmatic.cjs.js"
     },
     "./package.json": "./package.json"

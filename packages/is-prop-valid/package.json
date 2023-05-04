@@ -28,6 +28,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-is-prop-valid.esm.js",
+      "import": "./dist/emotion-is-prop-valid.cjs.mjs",
       "default": "./dist/emotion-is-prop-valid.cjs.js"
     },
     "./package.json": "./package.json"
