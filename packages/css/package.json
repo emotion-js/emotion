@@ -53,7 +53,13 @@
       "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
     },
     "./package.json": "./package.json",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "preconstruct": {
     "umdName": "emotion",

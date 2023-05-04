@@ -45,7 +45,13 @@
     },
     "./package.json": "./package.json",
     "./types/css-prop": "./types/css-prop.d.ts",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "types": "types/index.d.ts",
   "files": [
