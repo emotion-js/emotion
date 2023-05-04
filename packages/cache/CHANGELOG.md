@@ -1,5 +1,17 @@
 # @emotion/cache
 
+## 11.10.8
+
+### Patch Changes
+
+- [#3025](https://github.com/emotion-js/emotion/pull/3025) [`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a parsing issue with `&` within nested functions in declaration values by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+## 11.10.7
+
+### Patch Changes
+
+- [#3019](https://github.com/emotion-js/emotion/pull/3019) [`b02be0ba`](https://github.com/emotion-js/emotion/commit/b02be0bae0048df4b3a8567436bc31059b00d213) Thanks [@Andarist](https://github.com/Andarist)! - Fixed `/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */` not disabling the warning for rules defined inside other rules.
+
 ## 11.10.5
 
 ### Patch Changes

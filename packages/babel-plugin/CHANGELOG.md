@@ -1,5 +1,11 @@
 # @emotion/babel-plugin
 
+## 11.10.8
+
+### Patch Changes
+
+- [#3025](https://github.com/emotion-js/emotion/pull/3025) [`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f) Thanks [@Andarist](https://github.com/Andarist)! - Updated the underlying parser ([stylis](https://github.com/thysultan/stylis)) to 4.1.4
+
 ## 11.10.6
 
 ### Patch Changes

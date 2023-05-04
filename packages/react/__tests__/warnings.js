@@ -343,6 +343,50 @@ describe('unsafe pseudo classes', () => {
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
+
+    test('does warn when not using the flag on a rule that is defined in another one', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={css`
+                div {
+                  span:first-child {
+                    border-bottom-left-radius: 0;
+                  }
+                }
+              `}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+        [
+          [
+            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
+          ],
+        ]
+      `)
+    })
+
+    test('does not warn when using the flag on a rule that is defined in another one', () => {
+      expect(
+        renderer
+          .create(
+            <div
+              css={css`
+                div {
+                  span:first-child${ignoreSsrFlag} {
+                    border-bottom-left-radius: 0;
+                  }
+                }
+              `}
+            />
+          )
+          .toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
+    })
   })
 })
 

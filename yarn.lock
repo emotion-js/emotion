@@ -2344,7 +2344,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/babel-plugin@11.10.6, @emotion/babel-plugin@^11.0.0, @emotion/babel-plugin@^11.10.0, @emotion/babel-plugin@^11.10.6, @emotion/babel-plugin@workspace:packages/babel-plugin":
+"@emotion/babel-plugin@11.10.8, @emotion/babel-plugin@^11.0.0, @emotion/babel-plugin@^11.10.0, @emotion/babel-plugin@^11.10.6, @emotion/babel-plugin@^11.10.8, @emotion/babel-plugin@workspace:packages/babel-plugin":
   version: 0.0.0-use.local
   resolution: "@emotion/babel-plugin@workspace:packages/babel-plugin"
   dependencies:
@@ -2360,7 +2360,7 @@ __metadata:
     escape-string-regexp: ^4.0.0
     find-root: ^1.1.0
     source-map: ^0.5.7
-    stylis: 4.1.3
+    stylis: 4.1.4
   languageName: unknown
   linkType: soft
 
@@ -2378,7 +2378,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/cache@^11.10.5, @emotion/cache@workspace:packages/cache":
+"@emotion/cache@^11.10.8, @emotion/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@emotion/cache@workspace:packages/cache"
   dependencies:
@@ -2388,27 +2388,27 @@ __metadata:
     "@emotion/sheet": ^1.2.1
     "@emotion/utils": ^1.2.0
     "@emotion/weak-memoize": ^0.3.0
-    stylis: 4.1.3
+    stylis: 4.1.4
     typescript: ^4.5.5
   languageName: unknown
   linkType: soft
 
-"@emotion/css-prettifier@1.1.1, @emotion/css-prettifier@^1.1.1, @emotion/css-prettifier@workspace:packages/css-prettifier":
+"@emotion/css-prettifier@1.1.2, @emotion/css-prettifier@^1.1.2, @emotion/css-prettifier@workspace:packages/css-prettifier":
   version: 0.0.0-use.local
   resolution: "@emotion/css-prettifier@workspace:packages/css-prettifier"
   dependencies:
     "@emotion/memoize": ^0.8.0
-    stylis: 4.1.3
+    stylis: 4.1.4
   languageName: unknown
   linkType: soft
 
-"@emotion/css@11.10.6, @emotion/css@workspace:packages/css":
+"@emotion/css@11.10.8, @emotion/css@workspace:packages/css":
   version: 0.0.0-use.local
   resolution: "@emotion/css@workspace:packages/css"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": ^11.10.6
-    "@emotion/cache": ^11.10.5
+    "@emotion/babel-plugin": ^11.10.8
+    "@emotion/cache": ^11.10.8
     "@emotion/serialize": ^1.1.1
     "@emotion/sheet": ^1.2.1
     "@emotion/utils": ^1.2.0
@@ -2460,9 +2460,9 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/css": 11.10.6
-    "@emotion/css-prettifier": ^1.1.1
-    "@emotion/react": 11.10.6
+    "@emotion/css": 11.10.8
+    "@emotion/css-prettifier": ^1.1.2
+    "@emotion/react": 11.10.8
     "@types/jest": ^27.0.3
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2470,7 +2470,7 @@ __metadata:
     react: 16.14.0
     react-dom: 16.14.0
     specificity: ^0.4.1
-    stylis: 4.1.3
+    stylis: 4.1.4
     typescript: ^4.5.5
   peerDependencies:
     "@types/jest": ^26.0.14 || ^27.0.0 || ^28.0.0 || ^29.0.0
@@ -2525,7 +2525,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.10.6
+    "@emotion/react": 11.10.8
     css-to-react-native: ^3.0.0
     react: 16.14.0
   peerDependencies:
@@ -2551,19 +2551,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.10.6, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@11.10.8, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": ^11.10.6
-    "@emotion/cache": ^11.10.5
-    "@emotion/css": 11.10.6
-    "@emotion/css-prettifier": 1.1.1
+    "@emotion/babel-plugin": ^11.10.8
+    "@emotion/cache": ^11.10.8
+    "@emotion/css": 11.10.8
+    "@emotion/css-prettifier": 1.1.2
     "@emotion/serialize": ^1.1.1
     "@emotion/server": 11.10.0
-    "@emotion/styled": 11.10.6
+    "@emotion/styled": 11.10.8
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
     "@emotion/utils": ^1.2.0
     "@emotion/weak-memoize": ^0.3.0
@@ -2599,9 +2599,9 @@ __metadata:
   resolution: "@emotion/server@workspace:packages/server"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": 11.10.6
-    "@emotion/css": 11.10.6
-    "@emotion/css-prettifier": 1.1.1
+    "@emotion/babel-plugin": 11.10.8
+    "@emotion/css": 11.10.8
+    "@emotion/css-prettifier": 1.1.2
     "@emotion/utils": ^1.2.0
     "@types/node": ^12.20.37
     html-tokenize: ^2.0.0
@@ -2625,15 +2625,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/styled@11.10.6, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
+"@emotion/styled@11.10.8, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/babel-plugin": ^11.10.6
+    "@emotion/babel-plugin": ^11.10.8
     "@emotion/is-prop-valid": ^1.2.0
-    "@emotion/react": 11.10.6
+    "@emotion/react": 11.10.8
     "@emotion/serialize": ^1.1.1
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
     "@emotion/utils": ^1.2.0
@@ -28305,10 +28305,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylis@npm:4.1.3":
-  version: 4.1.3
-  resolution: "stylis@npm:4.1.3"
-  checksum: d04dbffcb9bf2c5ca8d8dc09534203c75df3bf711d33973ea22038a99cc475412a350b661ebd99cbc01daa50d7eedcf0d130d121800eb7318759a197023442a6
+"stylis@npm:4.1.4":
+  version: 4.1.4
+  resolution: "stylis@npm:4.1.4"
+  checksum: cd929bd89709def13b47e6c16b11317bf996a09b4e987fc45a235549c3adf49d41531e017d7df511daa095bc9468c923ae9094a934fe9c62440b7351874dafb7
   languageName: node
   linkType: hard
 
