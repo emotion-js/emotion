@@ -20,7 +20,7 @@
     "src",
     "dist",
     "types/*.d.ts",
-    "macro.js"
+    "macro.*"
   ],
   "types": "types/index.d.ts",
   "devDependencies": {
@@ -56,7 +56,13 @@
   "preconstruct": {
     "exports": {
       "extra": {
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

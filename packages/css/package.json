@@ -9,9 +9,7 @@
     "src",
     "dist",
     "types",
-    "macro.js",
-    "macro.d.ts",
-    "macro.js.flow",
+    "macro.*",
     "create-instance"
   ],
   "scripts": {
@@ -65,7 +63,13 @@
     ],
     "exports": {
       "extra": {
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

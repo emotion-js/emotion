@@ -55,9 +55,7 @@
     "jsx-dev-runtime",
     "_isolated-hnrs",
     "types/*.d.ts",
-    "macro.js",
-    "macro.d.ts",
-    "macro.js.flow"
+    "macro.*"
   ],
   "sideEffects": false,
   "author": "Emotion Contributors",
@@ -114,7 +112,13 @@
       ],
       "extra": {
         "./types/css-prop": "./types/css-prop.d.ts",
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

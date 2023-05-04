@@ -6,7 +6,7 @@
   "files": [
     "src",
     "dist",
-    "macro.js"
+    "macro.*"
   ],
   "dependencies": {
     "@emotion/babel-plugin": "^11.10.6",
