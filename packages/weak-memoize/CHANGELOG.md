@@ -1,5 +1,11 @@
 # @emotion/weak-memoize
 
+## 0.3.1
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @emotion/unitless
 
+## 0.8.1
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+* [#3012](https://github.com/emotion-js/emotion/pull/3012) [`e6e5b3d7`](https://github.com/emotion-js/emotion/commit/e6e5b3d71ade7b986ab364fc0cb770e7eda16049) Thanks [@sgrishchenko](https://github.com/sgrishchenko)! - Add `aspectRatio` as a unitless property
+
 ## 0.8.0
 
 ### Minor Changes

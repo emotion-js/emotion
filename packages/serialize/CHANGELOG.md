@@ -1,5 +1,17 @@
 # @emotion/serialize
 
+## 1.1.2
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+- Updated dependencies [[`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247), [`e6e5b3d7`](https://github.com/emotion-js/emotion/commit/e6e5b3d71ade7b986ab364fc0cb770e7eda16049)]:
+  - @emotion/hash@0.9.1
+  - @emotion/memoize@0.8.1
+  - @emotion/unitless@0.8.1
+  - @emotion/utils@1.2.1
+
 ## 1.1.1
 
 ### Patch Changes
