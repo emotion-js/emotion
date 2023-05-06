@@ -44,7 +44,7 @@
     "@emotion/css-prettifier": "^1.1.2",
     "chalk": "^4.1.0",
     "specificity": "^0.4.1",
-    "stylis": "4.1.4"
+    "stylis": "4.2.0"
   },
   "peerDependencies": {
     "@types/jest": "^26.0.14 || ^27.0.0 || ^28.0.0 || ^29.0.0",
