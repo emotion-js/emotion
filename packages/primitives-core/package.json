@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives-core",
-  "version": "11.10.0",
+  "version": "11.11.0",
   "description": "Shared utilities for emotion primitives and native",
   "main": "dist/emotion-primitives-core.cjs.js",
   "module": "dist/emotion-primitives-core.esm.js",
@@ -17,7 +17,7 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@emotion/react": "11.10.8",
+    "@emotion/react": "11.11.0",
     "react": "16.14.0"
   },
   "homepage": "https://emotion.sh",
