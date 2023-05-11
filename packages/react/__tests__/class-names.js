@@ -64,6 +64,33 @@ test('cx', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
+test('should use toString() of object', () => {
+  const tree = renderer.create(
+    <ClassNames>
+      {({ css, cx }) => {
+        let secondClassButItsInsertedFirst = css`
+          color: green;
+        `
+        let firstClassButItsInsertedSecond = css`
+          color: hotpink;
+        `
+
+        return (
+          <div
+            className={cx(
+              firstClassButItsInsertedSecond,
+              { toString: () => 'some-other-class' },
+              secondClassButItsInsertedFirst
+            )}
+          />
+        )
+      }}
+    </ClassNames>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 test('css and cx throws when used after render', () => {
   let cx, css
   renderer.create(

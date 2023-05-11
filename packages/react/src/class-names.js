@@ -14,7 +14,7 @@ import { isBrowser } from './utils'
 type ClassNameArg =
   | string
   | boolean
-  | { [key: string]: boolean }
+  | { [key: string]: boolean | (() => string) }
   | Array<ClassNameArg>
   | null
   | void
@@ -46,10 +46,18 @@ let classnames = (args: Array<ClassNameArg>): string => {
             )
           }
           toAdd = ''
-          for (const k in arg) {
-            if (arg[k] && k) {
-              toAdd && (toAdd += ' ')
-              toAdd += k
+
+          if (
+            arg.toString !== Object.prototype.toString &&
+            !arg.toString.toString().includes('[native code]')
+          ) {
+            toAdd += arg.toString()
+          } else {
+            for (const k in arg) {
+              if (arg[k] && k) {
+                toAdd && (toAdd += ' ')
+                toAdd += k
+              }
             }
           }
         }
