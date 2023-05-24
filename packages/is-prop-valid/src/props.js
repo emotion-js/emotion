@@ -117,6 +117,8 @@ const props = {
   open: true,
   optimum: true,
   pattern: true,
+  // used for customizing web component's shadow root children
+  part: true,
   placeholder: true,
   playsInline: true,
   poster: true,
