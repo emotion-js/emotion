@@ -20,7 +20,7 @@ type ReactJSXIntrinsicClassAttributes<T> = JSX.IntrinsicClassAttributes<T>
 type ReactJSXIntrinsicElements = JSX.IntrinsicElements
 
 export namespace EmotionJSX {
-  type ElementType = ReactJSXElementType;
+  type ElementType = ReactJSXElementType
   interface Element extends ReactJSXElement {}
   interface ElementClass extends ReactJSXElementClass {}
   interface ElementAttributesProperty
