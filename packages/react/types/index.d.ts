@@ -96,6 +96,7 @@ export function ClassNames(props: ClassNamesProps): ReactElement
 export const jsx: typeof createElement
 export namespace jsx {
   namespace JSX {
+    type ElementType = EmotionJSX.ElementType
     interface Element extends EmotionJSX.Element {}
     interface ElementClass extends EmotionJSX.ElementClass {}
     interface ElementAttributesProperty

@@ -9,6 +9,7 @@ type WithConditionalCSSProp<P> = 'className' extends keyof P
   : {}
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace
+type ReactJSXElementType = JSX.ElementType
 type ReactJSXElement = JSX.Element
 type ReactJSXElementClass = JSX.ElementClass
 type ReactJSXElementAttributesProperty = JSX.ElementAttributesProperty
@@ -19,6 +20,7 @@ type ReactJSXIntrinsicClassAttributes<T> = JSX.IntrinsicClassAttributes<T>
 type ReactJSXIntrinsicElements = JSX.IntrinsicElements
 
 export namespace EmotionJSX {
+  type ElementType = ReactJSXElementType;
   interface Element extends ReactJSXElement {}
   interface ElementClass extends ReactJSXElementClass {}
   interface ElementAttributesProperty
