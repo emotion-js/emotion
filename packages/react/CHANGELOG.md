@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.11.1
+
+### Patch Changes
+
+- [#3048](https://github.com/emotion-js/emotion/pull/3048) [`9357f337`](https://github.com/emotion-js/emotion/commit/9357f337200ef38f9c6df5d4dd7c20772478ea42) Thanks [@naari3](https://github.com/naari3)! - Added `ElementType` to the Emotion's `JSX` namespace. It's defined in the same way as the one in `@types/react` and should make it possible to use components that return `string`s, `Promise`s and other types that are valid in React.
+
 ## 11.11.0
 
 ### Minor Changes
