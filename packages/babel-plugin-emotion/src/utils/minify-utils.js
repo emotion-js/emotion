@@ -91,6 +91,7 @@ export const minify = (code: string) => {
     .filter(line => line.length > 0 && !isLineComment(line)) // Removes lines containing only line comments
     .map(stripLineComment) // Remove line comments inside text
     .join(' ') // Rejoin all lines
+    .replace(/ +/g, ' ') //Replace multiple space with single space
 
   return compressSymbols(newCode)
 }

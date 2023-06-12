@@ -210,11 +210,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 const cls1 =
 /*#__PURE__*/
 _css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"hn2j47-cls1\\",
-  styles: \\"content:'  {  }  ';;label:cls1;\\"
+  name: \\"17m8lkp-cls1\\",
+  styles: \\"content:' { } ';;label:cls1;\\"
 } : {
-  name: \\"hn2j47-cls1\\",
-  styles: \\"content:'  {  }  ';;label:cls1;\\",
+  name: \\"17m8lkp-cls1\\",
+  styles: \\"content:' { } ';;label:cls1;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvZXMtbm90LW1pbmlmeS1pbnNpZGUtY29udGVudC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZ0IiLCJmaWxlIjoiZG9lcy1ub3QtbWluaWZ5LWluc2lkZS1jb250ZW50LXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbi9tYWNybydcblxuY29uc3QgY2xzMSA9IGNzc2BcbiAgY29udGVudDogJyAgeyAgfSAgJztcbmBcbi8vIHByZXR0aWVyLWlnbm9yZVxuY29uc3QgY2xzMiA9IGNzc2BcbiAgY29udGVudDogXCIgIHsgIH0gIFwiO1xuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 }); // prettier-ignore
@@ -223,11 +223,11 @@ _css(process.env.NODE_ENV === \\"production\\" ? {
 const cls2 =
 /*#__PURE__*/
 _css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"nh732h-cls2\\",
-  styles: \\"content:\\\\\\"  {  }  \\\\\\";;label:cls2;\\"
+  name: \\"1yy69pt-cls2\\",
+  styles: \\"content:\\\\\\" { } \\\\\\";;label:cls2;\\"
 } : {
-  name: \\"nh732h-cls2\\",
-  styles: \\"content:\\\\\\"  {  }  \\\\\\";;label:cls2;\\",
+  name: \\"1yy69pt-cls2\\",
+  styles: \\"content:\\\\\\" { } \\\\\\";;label:cls2;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvZXMtbm90LW1pbmlmeS1pbnNpZGUtY29udGVudC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNZ0IiLCJmaWxlIjoiZG9lcy1ub3QtbWluaWZ5LWluc2lkZS1jb250ZW50LXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbi9tYWNybydcblxuY29uc3QgY2xzMSA9IGNzc2BcbiAgY29udGVudDogJyAgeyAgfSAgJztcbmBcbi8vIHByZXR0aWVyLWlnbm9yZVxuY29uc3QgY2xzMiA9IGNzc2BcbiAgY29udGVudDogXCIgIHsgIH0gIFwiO1xuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"

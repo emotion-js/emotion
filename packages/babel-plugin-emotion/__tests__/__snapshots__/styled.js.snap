@@ -340,6 +340,52 @@ class Thing {
 }"
 `;
 
+exports[`@emotion/babel-plugin-core styled many-spaces 1`] = `
+"import styled from '@emotion/styled';
+
+function cssStyleGetter(input) { 
+    input = input / 4;
+    return input;
+}
+
+
+const PageBox = styled.div\`
+    height:     calc(      100%        -       \${p => {
+      const  absoluteValue  = cssStyleGetter(100);
+      return 2 * absoluteValue + 4;
+    }});
+    width:      calc(      100%        -       \${p => {
+      const absoluteValue  = cssStyleGetter(80);
+      return 2 * absoluteValue + 8;
+    }});
+\`;
+
+export default PageBox;
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+function cssStyleGetter(input) {
+  input = input / 4;
+  return input;
+}
+
+const PageBox = _styled(\\"div\\", {
+  target: \\"e115ny3s0\\",
+  label: \\"PageBox\\"
+})(\\"height:calc( 100% - \\", p => {
+  const absoluteValue = cssStyleGetter(100);
+  return 2 * absoluteValue + 4;
+}, \\");width:calc( 100% - \\", p => {
+  const absoluteValue = cssStyleGetter(80);
+  return 2 * absoluteValue + 8;
+}, \\");\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnktc3BhY2VzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVEwQiIsImZpbGUiOiJtYW55LXNwYWNlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuZnVuY3Rpb24gY3NzU3R5bGVHZXR0ZXIoaW5wdXQpIHsgXG4gICAgaW5wdXQgPSBpbnB1dCAvIDQ7XG4gICAgcmV0dXJuIGlucHV0O1xufVxuXG5cbmNvbnN0IFBhZ2VCb3ggPSBzdHlsZWQuZGl2YFxuICAgIGhlaWdodDogICAgIGNhbGMoICAgICAgMTAwJSAgICAgICAgLSAgICAgICAke3AgPT4ge1xuICAgICAgY29uc3QgIGFic29sdXRlVmFsdWUgID0gY3NzU3R5bGVHZXR0ZXIoMTAwKTtcbiAgICAgIHJldHVybiAyICogYWJzb2x1dGVWYWx1ZSArIDQ7XG4gICAgfX0pO1xuICAgIHdpZHRoOiAgICAgIGNhbGMoICAgICAgMTAwJSAgICAgICAgLSAgICAgICAke3AgPT4ge1xuICAgICAgY29uc3QgYWJzb2x1dGVWYWx1ZSAgPSBjc3NTdHlsZUdldHRlcig4MCk7XG4gICAgICByZXR1cm4gMiAqIGFic29sdXRlVmFsdWUgKyA4O1xuICAgIH19KTtcbmA7XG5cbmV4cG9ydCBkZWZhdWx0IFBhZ2VCb3g7XG4iXX0= */\\"));
+
+export default PageBox;"
+`;
+
 exports[`@emotion/babel-plugin-core styled more-than-10-interpolations 1`] = `
 "import styled from '@emotion/styled'
 
