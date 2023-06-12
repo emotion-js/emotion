@@ -341,26 +341,31 @@ class Thing {
 `;
 
 exports[`@emotion/styled.macro many-spaces 1`] = `
-"import styled from '@emotion/styled/macro';
+"import styled from '@emotion/styled/macro'
 
-function cssStyleGetter(input) { 
-    input = input / 4;
-    return input;
+function cssStyleGetter(input) {
+  input = input / 4
+  return input
 }
 
-
 const PageBox = styled.div\`
-    height:     calc(      100%        -       \${p => {
-      const  absoluteValue  = cssStyleGetter(100);
-      return 2 * absoluteValue + 4;
-    }});
-    width:      calc(      100%        -       \${p => {
-      const absoluteValue  = cssStyleGetter(80);
-      return 2 * absoluteValue + 8;
-    }});
-\`;
+  height: calc(
+    100% -
+      \${p => {
+        const absoluteValue = cssStyleGetter(100)
+        return 2 * absoluteValue + 4
+      }}
+  );
+  width: calc(
+    100% -
+      \${p => {
+        const absoluteValue = cssStyleGetter(80)
+        return 2 * absoluteValue + 8
+      }}
+  );
+\`
 
-export default PageBox;
+export default PageBox
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -378,10 +383,10 @@ const PageBox = _styled(\\"div\\", {
 })(\\"height:calc( 100% - \\", p => {
   const absoluteValue = cssStyleGetter(100);
   return 2 * absoluteValue + 4;
-}, \\");width:calc( 100% - \\", p => {
+}, \\" );width:calc( 100% - \\", p => {
   const absoluteValue = cssStyleGetter(80);
   return 2 * absoluteValue + 8;
-}, \\");\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnktc3BhY2VzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVEwQiIsImZpbGUiOiJtYW55LXNwYWNlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkL21hY3JvJztcblxuZnVuY3Rpb24gY3NzU3R5bGVHZXR0ZXIoaW5wdXQpIHsgXG4gICAgaW5wdXQgPSBpbnB1dCAvIDQ7XG4gICAgcmV0dXJuIGlucHV0O1xufVxuXG5cbmNvbnN0IFBhZ2VCb3ggPSBzdHlsZWQuZGl2YFxuICAgIGhlaWdodDogICAgIGNhbGMoICAgICAgMTAwJSAgICAgICAgLSAgICAgICAke3AgPT4ge1xuICAgICAgY29uc3QgIGFic29sdXRlVmFsdWUgID0gY3NzU3R5bGVHZXR0ZXIoMTAwKTtcbiAgICAgIHJldHVybiAyICogYWJzb2x1dGVWYWx1ZSArIDQ7XG4gICAgfX0pO1xuICAgIHdpZHRoOiAgICAgIGNhbGMoICAgICAgMTAwJSAgICAgICAgLSAgICAgICAke3AgPT4ge1xuICAgICAgY29uc3QgYWJzb2x1dGVWYWx1ZSAgPSBjc3NTdHlsZUdldHRlcig4MCk7XG4gICAgICByZXR1cm4gMiAqIGFic29sdXRlVmFsdWUgKyA4O1xuICAgIH19KTtcbmA7XG5cbmV4cG9ydCBkZWZhdWx0IFBhZ2VCb3g7XG4iXX0= */\\"));
+}, \\" );\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnktc3BhY2VzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU8wQiIsImZpbGUiOiJtYW55LXNwYWNlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkL21hY3JvJ1xuXG5mdW5jdGlvbiBjc3NTdHlsZUdldHRlcihpbnB1dCkge1xuICBpbnB1dCA9IGlucHV0IC8gNFxuICByZXR1cm4gaW5wdXRcbn1cblxuY29uc3QgUGFnZUJveCA9IHN0eWxlZC5kaXZgXG4gIGhlaWdodDogY2FsYyhcbiAgICAxMDAlIC1cbiAgICAgICR7cCA9PiB7XG4gICAgICAgIGNvbnN0IGFic29sdXRlVmFsdWUgPSBjc3NTdHlsZUdldHRlcigxMDApXG4gICAgICAgIHJldHVybiAyICogYWJzb2x1dGVWYWx1ZSArIDRcbiAgICAgIH19XG4gICk7XG4gIHdpZHRoOiBjYWxjKFxuICAgIDEwMCUgLVxuICAgICAgJHtwID0+IHtcbiAgICAgICAgY29uc3QgYWJzb2x1dGVWYWx1ZSA9IGNzc1N0eWxlR2V0dGVyKDgwKVxuICAgICAgICByZXR1cm4gMiAqIGFic29sdXRlVmFsdWUgKyA4XG4gICAgICB9fVxuICApO1xuYFxuXG5leHBvcnQgZGVmYXVsdCBQYWdlQm94XG4iXX0= */\\"));
 
 export default PageBox;"
 `;

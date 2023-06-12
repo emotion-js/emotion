@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`@emotion/core/macro basic 1`] = `
-"import {keyframes} from '@emotion/core/macro'
+"import { keyframes } from '@emotion/core/macro'
 
 const animationStyle = keyframes\`
   from {background-color: red;}
   to {background-color: yellow;}
 \`
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -22,13 +23,13 @@ _keyframes(process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"1tcgv5x-animationStyle\\",
   styles: \\"from{background-color:red;}to{background-color:yellow;};label:animationStyle;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJiYXNpYy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCBhbmltYXRpb25TdHlsZSA9IGtleWZyYW1lc2BcbiAgZnJvbSB7YmFja2dyb3VuZC1jb2xvcjogcmVkO31cbiAgdG8ge2JhY2tncm91bmQtY29sb3I6IHllbGxvdzt9XG5gIl19 */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJiYXNpYy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGtleWZyYW1lcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IGFuaW1hdGlvblN0eWxlID0ga2V5ZnJhbWVzYFxuICBmcm9tIHtiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7fVxuICB0byB7YmFja2dyb3VuZC1jb2xvcjogeWVsbG93O31cbmBcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
 
 exports[`@emotion/core/macro comments 1`] = `
-"import {keyframes} from '@emotion/core/macro'
+"import { keyframes } from '@emotion/core/macro'
 
 const animationStyle = keyframes\`
 
@@ -43,6 +44,7 @@ dfwf */
   to {background-color: yellow;}
 \`
 
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { keyframes as _keyframes } from \\"@emotion/core\\";
@@ -57,7 +59,7 @@ _keyframes(process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"1tcgv5x-animationStyle\\",
   styles: \\"from{background-color:red;}to{background-color:yellow;};label:animationStyle;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbW1lbnRzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJjb21tZW50cy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCBhbmltYXRpb25TdHlsZSA9IGtleWZyYW1lc2BcblxuLy8gZGlzcGxheTpmbGV4O1xuXG4vKlxud2VmXG5cbmRmd2YgKi9cblxuICBmcm9tIHtiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7fVxuICB0byB7YmFja2dyb3VuZC1jb2xvcjogeWVsbG93O31cbmAiXX0= */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbW1lbnRzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJjb21tZW50cy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGtleWZyYW1lcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IGFuaW1hdGlvblN0eWxlID0ga2V5ZnJhbWVzYFxuXG4vLyBkaXNwbGF5OmZsZXg7XG5cbi8qXG53ZWZcblxuZGZ3ZiAqL1xuXG4gIGZyb20ge2JhY2tncm91bmQtY29sb3I6IHJlZDt9XG4gIHRvIHtiYWNrZ3JvdW5kLWNvbG9yOiB5ZWxsb3c7fVxuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
@@ -87,20 +89,29 @@ const rotate360 =
 _keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");};label:rotate360;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSTJCIiwiZmlsZSI6ImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBrZXlmcmFtZXMgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5sZXQgZW5kaW5nUm90YXRpb24gPSB3aW5kb3cud2hhdGV2ZXJcblxuY29uc3Qgcm90YXRlMzYwID0ga2V5ZnJhbWVzYFxuICBmcm9tIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcbiAgfVxuICB0byB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoJHtlbmRpbmdSb3RhdGlvbn0pO1xuICB9XG5gXG4iXX0= */\\"));"
 `;
 
-exports[`@emotion/core/macro many-spaces 1`] = `
-"import {keyframes} from '@emotion/core/macro'
+exports[`@emotion/core/macro many-extra-lines 1`] = `
+"import { keyframes } from '@emotion/core/macro'
 
-function cssStyleGetter(input) { 
-    input = input / 4;
-    return input;
+function cssStyleGetter(input) {
+  input = input / 4
+  return input
 }
 
 const animation = keyframes\`  
 
-    0% {    box-shadow:     10      56     \${      cssStyleGetter(20)}     }
+    0% {    box-shadow:     10      56     
+        
+                                                \${cssStyleGetter(20)}     }
 
-    100%{   box-shadow:     10      10     \${      cssStyleGetter(40)}     }
-\`; 
+
+
+
+
+    100%{   box-shadow:     10      10    
+                                            
+                                                \${cssStyleGetter(40)}     }
+\`
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -113,15 +124,43 @@ function cssStyleGetter(input) {
 
 const animation =
 /*#__PURE__*/
-_keyframes(\\"0%{box-shadow:10 56 \\", cssStyleGetter(20), \\"}100%{box-shadow:10 10 \\", cssStyleGetter(40), \\"};label:animation;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnktc3BhY2VzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU8yQiIsImZpbGUiOiJtYW55LXNwYWNlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5mdW5jdGlvbiBjc3NTdHlsZUdldHRlcihpbnB1dCkgeyBcbiAgICBpbnB1dCA9IGlucHV0IC8gNDtcbiAgICByZXR1cm4gaW5wdXQ7XG59XG5cbmNvbnN0IGFuaW1hdGlvbiA9IGtleWZyYW1lc2AgIFxuXG4gICAgMCUgeyAgICBib3gtc2hhZG93OiAgICAgMTAgICAgICA1NiAgICAgJHsgICAgICBjc3NTdHlsZUdldHRlcigyMCl9ICAgICB9XG5cbiAgICAxMDAleyAgIGJveC1zaGFkb3c6ICAgICAxMCAgICAgIDEwICAgICAkeyAgICAgIGNzc1N0eWxlR2V0dGVyKDQwKX0gICAgIH1cbmA7ICJdfQ== */\\"));"
+_keyframes(\\"0%{box-shadow:10 56 \\", cssStyleGetter(20), \\"}100%{box-shadow:10 10 \\", cssStyleGetter(40), \\"};label:animation;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnktZXh0cmEtbGluZXMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBTzJCIiwiZmlsZSI6Im1hbnktZXh0cmEtbGluZXMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBrZXlmcmFtZXMgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5mdW5jdGlvbiBjc3NTdHlsZUdldHRlcihpbnB1dCkge1xuICBpbnB1dCA9IGlucHV0IC8gNFxuICByZXR1cm4gaW5wdXRcbn1cblxuY29uc3QgYW5pbWF0aW9uID0ga2V5ZnJhbWVzYCAgXG5cbiAgICAwJSB7ICAgIGJveC1zaGFkb3c6ICAgICAxMCAgICAgIDU2ICAgICBcbiAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAke2Nzc1N0eWxlR2V0dGVyKDIwKX0gICAgIH1cblxuXG5cblxuXG4gICAgMTAwJXsgICBib3gtc2hhZG93OiAgICAgMTAgICAgICAxMCAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAke2Nzc1N0eWxlR2V0dGVyKDQwKX0gICAgIH1cbmBcbiJdfQ== */\\"));"
+`;
+
+exports[`@emotion/core/macro many-spaces 1`] = `
+"import { keyframes } from '@emotion/core/macro'
+
+function cssStyleGetter(input) {
+  input = input / 4
+  return input
+}
+
+const animation = keyframes\`  
+
+    0% {    box-shadow:     10      56     \${cssStyleGetter(20)}     }
+
+    100%{   box-shadow:     10      10     \${cssStyleGetter(40)}     }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { keyframes as _keyframes } from \\"@emotion/core\\";
+
+function cssStyleGetter(input) {
+  input = input / 4;
+  return input;
+}
+
+const animation =
+/*#__PURE__*/
+_keyframes(\\"0%{box-shadow:10 56 \\", cssStyleGetter(20), \\"}100%{box-shadow:10 10 \\", cssStyleGetter(40), \\"};label:animation;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnktc3BhY2VzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU8yQiIsImZpbGUiOiJtYW55LXNwYWNlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGtleWZyYW1lcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmZ1bmN0aW9uIGNzc1N0eWxlR2V0dGVyKGlucHV0KSB7XG4gIGlucHV0ID0gaW5wdXQgLyA0XG4gIHJldHVybiBpbnB1dFxufVxuXG5jb25zdCBhbmltYXRpb24gPSBrZXlmcmFtZXNgICBcblxuICAgIDAlIHsgICAgYm94LXNoYWRvdzogICAgIDEwICAgICAgNTYgICAgICR7Y3NzU3R5bGVHZXR0ZXIoMjApfSAgICAgfVxuXG4gICAgMTAwJXsgICBib3gtc2hhZG93OiAgICAgMTAgICAgICAxMCAgICAgJHtjc3NTdHlsZUdldHRlcig0MCl9ICAgICB9XG5gXG4iXX0= */\\"));"
 `;
 
 exports[`@emotion/core/macro more-than-10-interpolation 1`] = `
-"
+"import { keyframes } from '@emotion/core/macro'
 
-  import {keyframes} from '@emotion/core/macro'
-
-  const animationStyle = keyframes\`
+const animationStyle = keyframes\`
     from {
         border-radius: \${'3px'};
         padding: \${'25px'};
@@ -140,17 +179,18 @@ exports[`@emotion/core/macro more-than-10-interpolation 1`] = `
     }
   \`
 
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { keyframes as _keyframes } from \\"@emotion/core\\";
 
 const animationStyle =
 /*#__PURE__*/
-_keyframes(\\"from{border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;}to{border-radius:4px;padding:30px;width:550px;z-index:\\", 80, \\";font-size:20px;text-align:right;};label:animationStyle;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vcmUtdGhhbi0xMC1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlrQyIsImZpbGUiOiJtb3JlLXRoYW4tMTAtaW50ZXJwb2xhdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuXG4gIGltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG4gIGNvbnN0IGFuaW1hdGlvblN0eWxlID0ga2V5ZnJhbWVzYFxuICAgIGZyb20ge1xuICAgICAgICBib3JkZXItcmFkaXVzOiAkeyczcHgnfTtcbiAgICAgICAgcGFkZGluZzogJHsnMjVweCd9O1xuICAgICAgICB3aWR0aDogJHsnNTAwcHgnfTtcbiAgICAgICAgei1pbmRleDogJHsxMDB9O1xuICAgICAgICBmb250LXNpemU6ICR7JzE4cHgnfTtcbiAgICAgICAgdGV4dC1hbGlnbjogJHsnY2VudGVyJ307XG4gICAgfVxuICAgIHRvIHtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogJHsnNHB4J307XG4gICAgICAgIHBhZGRpbmc6ICR7JzMwcHgnfTtcbiAgICAgICAgd2lkdGg6ICR7JzU1MHB4J307XG4gICAgICAgIHotaW5kZXg6ICR7ODB9O1xuICAgICAgICBmb250LXNpemU6ICR7JzIwcHgnfTtcbiAgICAgICAgdGV4dC1hbGlnbjogJHsncmlnaHQnfTtcbiAgICB9XG4gIGAiXX0= */\\"));"
+_keyframes(\\"from{border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;}to{border-radius:4px;padding:30px;width:550px;z-index:\\", 80, \\";font-size:20px;text-align:right;};label:animationStyle;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vcmUtdGhhbi0xMC1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJtb3JlLXRoYW4tMTAtaW50ZXJwb2xhdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGtleWZyYW1lcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IGFuaW1hdGlvblN0eWxlID0ga2V5ZnJhbWVzYFxuICAgIGZyb20ge1xuICAgICAgICBib3JkZXItcmFkaXVzOiAkeyczcHgnfTtcbiAgICAgICAgcGFkZGluZzogJHsnMjVweCd9O1xuICAgICAgICB3aWR0aDogJHsnNTAwcHgnfTtcbiAgICAgICAgei1pbmRleDogJHsxMDB9O1xuICAgICAgICBmb250LXNpemU6ICR7JzE4cHgnfTtcbiAgICAgICAgdGV4dC1hbGlnbjogJHsnY2VudGVyJ307XG4gICAgfVxuICAgIHRvIHtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogJHsnNHB4J307XG4gICAgICAgIHBhZGRpbmc6ICR7JzMwcHgnfTtcbiAgICAgICAgd2lkdGg6ICR7JzU1MHB4J307XG4gICAgICAgIHotaW5kZXg6ICR7ODB9O1xuICAgICAgICBmb250LXNpemU6ICR7JzIwcHgnfTtcbiAgICAgICAgdGV4dC1hbGlnbjogJHsncmlnaHQnfTtcbiAgICB9XG4gIGBcbiJdfQ== */\\"));"
 `;
 
 exports[`@emotion/core/macro multiple-calls 1`] = `
-"import {keyframes} from '@emotion/core/macro'
+"import { keyframes } from '@emotion/core/macro'
 
 const animationStyle = keyframes\`
   from {background-color: red;}
@@ -172,6 +212,7 @@ const animation = keyframes\`
     }
 \`
 
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { keyframes as _keyframes } from \\"@emotion/core\\";
@@ -186,7 +227,7 @@ _keyframes(process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"1tcgv5x-animationStyle\\",
   styles: \\"from{background-color:red;}to{background-color:yellow;};label:animationStyle;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm11bHRpcGxlLWNhbGxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJtdWx0aXBsZS1jYWxscy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCBhbmltYXRpb25TdHlsZSA9IGtleWZyYW1lc2BcbiAgZnJvbSB7YmFja2dyb3VuZC1jb2xvcjogcmVkO31cbiAgdG8ge2JhY2tncm91bmQtY29sb3I6IHllbGxvdzt9XG5gXG5cbmNvbnN0IGFuaW1hdGlvbiA9IGtleWZyYW1lc2BcbiAgICBmcm9tLCAyMCUsIDUzJSwgODAlLCB0byB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLDAsMCk7XG4gICAgfVxuICAgIDQwJSwgNDMlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC0zMHB4LCAwKTtcbiAgICB9XG4gICAgNzAlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC0xNXB4LCAwKTtcbiAgICB9XG4gICAgOTAlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsLTRweCwwKTtcbiAgICB9XG5gIl19 */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm11bHRpcGxlLWNhbGxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJtdWx0aXBsZS1jYWxscy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGtleWZyYW1lcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IGFuaW1hdGlvblN0eWxlID0ga2V5ZnJhbWVzYFxuICBmcm9tIHtiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7fVxuICB0byB7YmFja2dyb3VuZC1jb2xvcjogeWVsbG93O31cbmBcblxuY29uc3QgYW5pbWF0aW9uID0ga2V5ZnJhbWVzYFxuICAgIGZyb20sIDIwJSwgNTMlLCA4MCUsIHRvIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsMCwwKTtcbiAgICB9XG4gICAgNDAlLCA0MyUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgLTMwcHgsIDApO1xuICAgIH1cbiAgICA3MCUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgLTE1cHgsIDApO1xuICAgIH1cbiAgICA5MCUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwtNHB4LDApO1xuICAgIH1cbmBcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
@@ -198,31 +239,29 @@ _keyframes(process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"w88hop-animation\\",
   styles: \\"from,20%,53%,80%,to{transform:translate3d(0,0,0);}40%,43%{transform:translate3d(0,-30px,0);}70%{transform:translate3d(0,-15px,0);}90%{transform:translate3d(0,-4px,0);};label:animation;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm11bHRpcGxlLWNhbGxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU8yQiIsImZpbGUiOiJtdWx0aXBsZS1jYWxscy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCBhbmltYXRpb25TdHlsZSA9IGtleWZyYW1lc2BcbiAgZnJvbSB7YmFja2dyb3VuZC1jb2xvcjogcmVkO31cbiAgdG8ge2JhY2tncm91bmQtY29sb3I6IHllbGxvdzt9XG5gXG5cbmNvbnN0IGFuaW1hdGlvbiA9IGtleWZyYW1lc2BcbiAgICBmcm9tLCAyMCUsIDUzJSwgODAlLCB0byB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLDAsMCk7XG4gICAgfVxuICAgIDQwJSwgNDMlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC0zMHB4LCAwKTtcbiAgICB9XG4gICAgNzAlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC0xNXB4LCAwKTtcbiAgICB9XG4gICAgOTAlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsLTRweCwwKTtcbiAgICB9XG5gIl19 */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm11bHRpcGxlLWNhbGxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU8yQiIsImZpbGUiOiJtdWx0aXBsZS1jYWxscy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGtleWZyYW1lcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IGFuaW1hdGlvblN0eWxlID0ga2V5ZnJhbWVzYFxuICBmcm9tIHtiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7fVxuICB0byB7YmFja2dyb3VuZC1jb2xvcjogeWVsbG93O31cbmBcblxuY29uc3QgYW5pbWF0aW9uID0ga2V5ZnJhbWVzYFxuICAgIGZyb20sIDIwJSwgNTMlLCA4MCUsIHRvIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsMCwwKTtcbiAgICB9XG4gICAgNDAlLCA0MyUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgLTMwcHgsIDApO1xuICAgIH1cbiAgICA3MCUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgLTE1cHgsIDApO1xuICAgIH1cbiAgICA5MCUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwtNHB4LDApO1xuICAgIH1cbmBcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
 
 exports[`@emotion/core/macro no-call 1`] = `
-"import {keyframes} from '@emotion/core/macro'
+"import { keyframes } from '@emotion/core/macro'
 
 const animationStyle = keyframes
 
-console.log(keyframes);
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { keyframes as _keyframes } from \\"@emotion/core\\";
 const
 /*#__PURE__*/
-animationStyle = _keyframes;
-
-/*#__PURE__*/
-console.log(_keyframes, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vLWNhbGwuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSUEiLCJmaWxlIjoibm8tY2FsbC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7a2V5ZnJhbWVzfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCBhbmltYXRpb25TdHlsZSA9IGtleWZyYW1lc1xuXG5jb25zb2xlLmxvZyhrZXlmcmFtZXMpOyJdfQ== */\\");"
+animationStyle = _keyframes;"
 `;
 
 exports[`@emotion/core/macro no-import 1`] = `
 "import '@emotion/core/macro'
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -233,6 +272,7 @@ exports[`@emotion/core/macro other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/core/macro'
 
 nonExistantImport()
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
