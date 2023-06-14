@@ -294,3 +294,58 @@ if (!document.getElementById('root').hasChildNodes()) {
 > Note:
 >
 > The `sheet.speedy` call has to be run before anything that inserts styles so it has to be put into it's own file that's imported before anything else.
+
+## SvelteKit
+
+To use emotion's SSR with SvelteKit you need server hooks in `src/hooks.server.ts` that replace `%sveltekit.style%` in `src/app.html` with styles.
+
+src/lib/server/renderer.js
+```js
+import createEmotionServer from '@emotion/server/create-instance'
+import { cache } from '@emotion/css'
+
+export const renderStatic = async (html) => {
+  if (html === undefined) {
+    throw new Error('did you forget to return html from renderToString?')
+  }
+  const { extractCritical } = createEmotionServer(cache)
+  const { ids, css } = extractCritical(html)
+
+  return { html, ids, css }
+}
+```
+
+src/hooks.server.js
+```js
+import { renderStatic } from '$lib/server/renderer'
+
+export const handle = (async ({ event, resolve }) => {
+  const response = await resolve(event, {
+    transformPageChunk: async ({ html }) => {
+      const { css, ids } = await renderStatic(html)
+      const style = `<style data-emotion-css="${ids.join(' ')}">${css}</style>`
+      
+      return html.replace('%sveltekit.style%', style)
+    }
+  })
+
+  return response
+})
+```
+
+src/app.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    %sveltekit.head%
+    %sveltekit.style%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>
+```
