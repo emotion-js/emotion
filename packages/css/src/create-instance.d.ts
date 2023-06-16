@@ -1,2 +1,2 @@
-export * from '../types'
-export { default } from '../types'
+export * from '../types/create-instance'
+export { default } from '../types/create-instance'
