@@ -1,5 +1,11 @@
 # emotion
 
+## 11.11.2
+
+### Patch Changes
+
+- [#3057](https://github.com/emotion-js/emotion/pull/3057) [`8f665262`](https://github.com/emotion-js/emotion/commit/8f66526244be77a29f04db2d4154664961beb3e6) Thanks [@emmatown](https://github.com/emmatown)! - Fix `@emotion/css/create-instance` types in TypeScript module resolution modes that support the `exports` field
+
 ## 11.11.0
 
 ### Minor Changes

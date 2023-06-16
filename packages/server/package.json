@@ -31,7 +31,7 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "@emotion/babel-plugin": "11.11.0",
-    "@emotion/css": "11.11.0",
+    "@emotion/css": "11.11.2",
     "@emotion/css-prettifier": "1.1.3",
     "@types/node": "^12.20.37",
     "typescript": "^4.5.5"
