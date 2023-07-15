@@ -1,12 +1,5 @@
-import {
-  EmotionCache,
-  RegisteredCache,
-  SerializedStyles,
-  StyleSheet,
-  getRegisteredStyles,
-  insertStyles,
-  isBrowser
-} from '@emotion/utils'
+import type { EmotionCache, RegisteredCache } from '@emotion/cache'
+import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 
 declare const testCache: EmotionCache
 declare const testRegisteredCache: RegisteredCache
