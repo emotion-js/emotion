@@ -312,6 +312,13 @@ export const serializeStyles = function (
   registered: RegisteredCache | void,
   mergedProps: void | Object
 ): SerializedStyles {
+  // special optimization for a case where the only argument is a function, which might return already serialized style (e.g. {name:'xyz12345', styles:'color:red'})
+  if (args.length === 1 && typeof args[0] === 'function') {
+    const previousCursor = cursor
+    args = [args[0](mergedProps, registered)]
+    cursor = previousCursor
+  }
+
   if (
     args.length === 1 &&
     typeof args[0] === 'object' &&
