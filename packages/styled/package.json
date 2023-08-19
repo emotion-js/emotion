@@ -20,7 +20,8 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0-rc.0",
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "@types/react": ">=16.8.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
