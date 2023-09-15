@@ -127,5 +127,11 @@
         }
       }
     }
+  },
+  "imports": {
+    "#jsx-runtime": {
+      "react-server": "./jsx-runtime-server.js",
+      "default": "./jsx-runtime-client.js"
+    }
   }
 }
