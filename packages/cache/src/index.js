@@ -32,18 +32,18 @@ export type Options = {
   insertionPoint?: HTMLElement
 }
 
-let getServerStylisCache = isBrowser
-  ? undefined
-  : weakMemoize(() =>
-      memoize(() => {
-        let cache = {}
-        return cache
-      })
-    )
-
 const defaultStylisPlugins = [prefixer]
 
 let createCache = (options: Options): EmotionCache => {
+  let getServerStylisCache = isBrowser
+    ? undefined
+    : weakMemoize(() =>
+        memoize(() => {
+          let cache = {}
+          return cache
+        })
+      )
+
   let key = options.key
 
   if (process.env.NODE_ENV !== 'production' && !key) {
