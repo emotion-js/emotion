@@ -37,7 +37,7 @@ let getServerStylisCache = isBrowser
   : weakMemoize(() =>
       memoize(() => {
         let cache = {}
-        return name => cache[name]
+        return cache
       })
     )
 
