@@ -4,4 +4,4 @@
 '@emotion/serialize': minor
 ---
 
-fix(regex): global flag should not be reuse without reset lastIndex
+fix(regex): global flag should not reuse without reset lastIndex
