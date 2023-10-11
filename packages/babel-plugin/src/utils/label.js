@@ -6,10 +6,11 @@ type LabelFormatOptions = {
   path: string
 }
 
-const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
+const getInvalidClassNameCharactersRegex = () =>
+  /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
 
 const sanitizeLabelPart = (labelPart: string) =>
-  labelPart.trim().replace(invalidClassNameCharacters, '-')
+  labelPart.trim().replace(getInvalidClassNameCharactersRegex(), '-')
 
 function getLabel(
   identifierName?: string,

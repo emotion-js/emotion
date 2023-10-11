@@ -16,8 +16,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 const UNDEFINED_AS_OBJECT_KEY_ERROR =
   "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key)."
 
-let hyphenateRegex = /[A-Z]|^ms/g
-let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
+const getHyphenateRegex = () => /[A-Z]|^ms/g
+const getAnimationRegex = () => /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
 const isProcessableValue = value => value != null && typeof value !== 'boolean'
@@ -25,7 +25,7 @@ const isProcessableValue = value => value != null && typeof value !== 'boolean'
 const processStyleName = /* #__PURE__ */ memoize((styleName: string) =>
   isCustomProperty(styleName)
     ? styleName
-    : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+    : styleName.replace(getHyphenateRegex(), '-$&').toLowerCase()
 )
 
 let processStyleValue = (
@@ -36,7 +36,7 @@ let processStyleValue = (
     case 'animation':
     case 'animationName': {
       if (typeof value === 'string') {
-        return value.replace(animationRegex, (match, p1, p2) => {
+        return value.replace(getAnimationRegex(), (match, p1, p2) => {
           cursor = {
             name: p1,
             styles: p2,
@@ -67,7 +67,7 @@ if (process.env.NODE_ENV !== 'production') {
   let oldProcessStyleValue = processStyleValue
 
   let msPattern = /^-ms-/
-  let hyphenPattern = /-(.)/g
+  const getHyphenPattern = () => /-(.)/g
 
   let hyphenatedCache = {}
 
@@ -98,7 +98,7 @@ if (process.env.NODE_ENV !== 'production') {
       console.error(
         `Using kebab-case for css properties in objects is not supported. Did you mean ${key
           .replace(msPattern, 'ms-')
-          .replace(hyphenPattern, (str, char) => char.toUpperCase())}?`
+          .replace(getHyphenPattern(), (str, char) => char.toUpperCase())}?`
       )
     }
 
@@ -192,7 +192,7 @@ function handleInterpolation(
       if (process.env.NODE_ENV !== 'production') {
         const matched = []
         const replaced = interpolation.replace(
-          animationRegex,
+          getAnimationRegex(),
           (match, p1, p2) => {
             const fakeVarName = `animation${matched.length}`
             matched.push(
@@ -297,9 +297,9 @@ function createStringFromObject(
 
 let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
-let sourceMapPattern
+let getSourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
-  sourceMapPattern =
+  getSourceMapPattern = () =>
     /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
 }
 
@@ -347,7 +347,7 @@ export const serializeStyles = function (
   let sourceMap
 
   if (process.env.NODE_ENV !== 'production') {
-    styles = styles.replace(sourceMapPattern, match => {
+    styles = styles.replace(getSourceMapPattern(), match => {
       sourceMap = match
       return ''
     })

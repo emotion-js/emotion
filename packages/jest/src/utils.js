@@ -152,7 +152,7 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
 
 const keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
-const removeCommentPattern = /\/\*[\s\S]*?\*\//g
+const getRemoveCommentPattern = () => /\/\*[\s\S]*?\*\//g
 
 const getElementRules = (element: HTMLStyleElement): string[] => {
   const nonSpeedyRule = element.textContent
@@ -256,7 +256,7 @@ export function getStylesFromClassNames(
     })
   }
 
-  return (keyframesStyles + styles).replace(removeCommentPattern, '')
+  return (keyframesStyles + styles).replace(getRemoveCommentPattern(), '')
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {
