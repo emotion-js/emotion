@@ -1,6 +1,6 @@
 // @flow
 
-const isBrowser = (document) => typeof document !== 'undefined'
+const isBrowser = document => typeof document !== 'undefined'
 
 function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
