@@ -1,6 +1,6 @@
 // @flow
 
-const isBrowser = typeof document !== 'undefined'
+const isBrowser = (document) => typeof document !== 'undefined'
 
 function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
@@ -260,7 +260,7 @@ export function getStylesFromClassNames(
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {
-  if (!isBrowser) {
+  if (!isBrowser(document)) {
     throw new Error(
       'jest-emotion requires jsdom. See https://jestjs.io/docs/en/configuration#testenvironment-string for more information.'
     )
