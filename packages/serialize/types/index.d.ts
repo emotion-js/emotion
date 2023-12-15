@@ -15,7 +15,8 @@ export type CSSPropertiesWithMultiValues = {
 
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
 
-export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+export interface ArrayCSSInterpolation
+  extends ReadonlyArray<CSSInterpolation> {}
 
 export type InterpolationPrimitive =
   | null
