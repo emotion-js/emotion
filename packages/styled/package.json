@@ -14,7 +14,7 @@
     "@babel/runtime": "^7.18.3",
     "@emotion/babel-plugin": "^11.11.0",
     "@emotion/is-prop-valid": "^1.2.1",
-    "@emotion/serialize": "^1.1.2",
+    "@emotion/serialize": "^1.1.3",
     "@emotion/use-insertion-effect-with-fallbacks": "^1.0.1",
     "@emotion/utils": "^1.2.1"
   },
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/react": "11.11.1",
+    "@emotion/react": "11.11.3",
     "react": "16.14.0",
     "typescript": "^4.5.5"
   },

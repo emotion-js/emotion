@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.1.3
+
+### Patch Changes
+
+- [#3141](https://github.com/emotion-js/emotion/pull/3141) [`45c440fb`](https://github.com/emotion-js/emotion/commit/45c440fbc86b90750f275f497d11382f09ec1d2e) Thanks [@Cerber-Ursi](https://github.com/Cerber-Ursi)! - Replace arrays with readonly arrays in CSS type definitions, following changes in `csstype`
+
 ## 1.1.2
 
 ### Patch Changes

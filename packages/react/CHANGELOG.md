@@ -1,5 +1,14 @@
 # @emotion/react
 
+## 11.11.3
+
+### Patch Changes
+
+- [#3101](https://github.com/emotion-js/emotion/pull/3101) [`49c20b4f`](https://github.com/emotion-js/emotion/commit/49c20b4faa3b9aec0ca96066c126cbaaabbf2d5c) Thanks [@kyvong](https://github.com/kyvong)! - Fix Theme import for newer Typescript module resolution modes
+
+- Updated dependencies [[`45c440fb`](https://github.com/emotion-js/emotion/commit/45c440fbc86b90750f275f497d11382f09ec1d2e)]:
+  - @emotion/serialize@1.1.3
+
 ## 11.11.1
 
 ### Patch Changes

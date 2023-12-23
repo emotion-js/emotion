@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "serialization utils for emotion",
   "main": "dist/emotion-serialize.cjs.js",
   "module": "dist/emotion-serialize.esm.js",
