@@ -2462,7 +2462,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/css": 11.11.2
     "@emotion/css-prettifier": ^1.1.3
-    "@emotion/react": 11.11.1
+    "@emotion/react": 11.11.3
     "@types/jest": ^27.0.3
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2525,7 +2525,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.11.1
+    "@emotion/react": 11.11.3
     css-to-react-native: ^3.0.0
     react: 16.14.0
   peerDependencies:
@@ -2551,7 +2551,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.11.1, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@11.11.3, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
@@ -2561,7 +2561,7 @@ __metadata:
     "@emotion/cache": ^11.11.0
     "@emotion/css": 11.11.2
     "@emotion/css-prettifier": 1.1.3
-    "@emotion/serialize": ^1.1.2
+    "@emotion/serialize": ^1.1.3
     "@emotion/server": 11.11.0
     "@emotion/styled": 11.11.0
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
@@ -2580,7 +2580,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/serialize@^1.1.2, @emotion/serialize@workspace:packages/serialize":
+"@emotion/serialize@^1.1.2, @emotion/serialize@^1.1.3, @emotion/serialize@workspace:packages/serialize":
   version: 0.0.0-use.local
   resolution: "@emotion/serialize@workspace:packages/serialize"
   dependencies:
@@ -2633,8 +2633,8 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.11.0
     "@emotion/is-prop-valid": ^1.2.1
-    "@emotion/react": 11.11.1
-    "@emotion/serialize": ^1.1.2
+    "@emotion/react": 11.11.3
+    "@emotion/serialize": ^1.1.3
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
     "@emotion/utils": ^1.2.1
     react: 16.14.0
