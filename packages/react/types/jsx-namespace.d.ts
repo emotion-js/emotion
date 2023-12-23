@@ -1,6 +1,6 @@
 import 'react'
 import { Interpolation } from '@emotion/serialize'
-import { Theme } from './index'
+import { Theme } from '@emotion/react'
 
 type WithConditionalCSSProp<P> = 'className' extends keyof P
   ? string extends P['className' & keyof P]
