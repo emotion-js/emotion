@@ -483,6 +483,18 @@ exports[`styled objects 1`] = `
 </h1>
 `;
 
+exports[`styled objects with dynamic value 1`] = `
+.emotion-0 {
+  padding: 0.5rem;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled objects with spread properties 1`] = `
 .emotion-0 {
   font-size: 20px;
