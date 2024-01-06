@@ -15,41 +15,11 @@ import {
   registerStyles
 } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
-import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
-
-let isBrowser = typeof document !== 'undefined'
-
-const Insertion = ({ cache, serialized, isStringTag }) => {
-  registerStyles(cache, serialized, isStringTag)
-
-  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
-    insertStyles(cache, serialized, isStringTag)
-  )
-
-  if (!isBrowser && rules !== undefined) {
-    let serializedNames = serialized.name
-    let next = serialized.next
-    while (next !== undefined) {
-      serializedNames += ' ' + next.name
-      next = next.next
-    }
-    return (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
-      />
-    )
-  }
-  return null
-}
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -158,13 +128,36 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         newProps.className = className
         newProps.ref = ref
 
+        const isStringTag = typeof FinalTag === 'string'
+
+        // registerStyles(cache, serialized, isStringTag)
+        const rules = insertStyles(cache, serialized, isStringTag)
+
+        let styleElement
+
+        if (rules !== undefined) {
+          let serializedNames = serialized.name
+          let next = serialized.next
+          while (next !== undefined) {
+            serializedNames += ' ' + next.name
+            next = next.next
+          }
+          styleElement = (
+            <style
+              {...{
+                [`data-emotion`]: `${cache.key} ${serializedNames}`,
+                href: serializedNames.map(n => `${cache.key}-${n}`),
+                dangerouslySetInnerHTML: { __html: rules },
+                nonce: cache.sheet.nonce,
+                precedence: 'emotion' // TODO: should this be unique per cache key or something?
+              }}
+            />
+          )
+        }
+
         return (
           <>
-            <Insertion
-              cache={cache}
-              serialized={serialized}
-              isStringTag={typeof FinalTag === 'string'}
-            />
+            {styleElement}
             <FinalTag {...newProps} />
           </>
         )

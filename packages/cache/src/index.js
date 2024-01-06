@@ -53,34 +53,6 @@ let createCache = (options: Options): EmotionCache => {
     )
   }
 
-  if (isBrowser && key === 'css') {
-    const ssrStyles = document.querySelectorAll(
-      `style[data-emotion]:not([data-s])`
-    )
-
-    // get SSRed styles out of the way of React's hydration
-    // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
-    // note this very very intentionally targets all style elements regardless of the key to ensure
-    // that creating a cache works inside of render of a React component
-    Array.prototype.forEach.call(ssrStyles, (node: HTMLStyleElement) => {
-      // we want to only move elements which have a space in the data-emotion attribute value
-      // because that indicates that it is an Emotion 11 server-side rendered style elements
-      // while we will already ignore Emotion 11 client-side inserted styles because of the :not([data-s]) part in the selector
-      // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
-      // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
-      // will not result in the Emotion 10 styles being destroyed
-      const dataEmotionAttribute = ((node.getAttribute(
-        'data-emotion'
-      ): any): string)
-      if (dataEmotionAttribute.indexOf(' ') === -1) {
-        return
-      }
-
-      ;((document.head: any): HTMLHeadElement).appendChild(node)
-      node.setAttribute('data-s', '')
-    })
-  }
-
   const stylisPlugins = options.stylisPlugins || defaultStylisPlugins
 
   if (process.env.NODE_ENV !== 'production') {
@@ -93,26 +65,6 @@ let createCache = (options: Options): EmotionCache => {
   }
   let inserted = {}
   let container: Node
-  const nodesToHydrate = []
-  if (isBrowser) {
-    container = options.container || ((document.head: any): HTMLHeadElement)
-
-    Array.prototype.forEach.call(
-      // this means we will ignore elements which don't have a space in them which
-      // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
-      document.querySelectorAll(`style[data-emotion^="${key} "]`),
-      (node: HTMLStyleElement) => {
-        const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
-          ' '
-        )
-        // $FlowFixMe
-        for (let i = 1; i < attrib.length; i++) {
-          inserted[attrib[i]] = true
-        }
-        nodesToHydrate.push(node)
-      }
-    )
-  }
 
   let insert: (
     selector: string,
@@ -167,6 +119,7 @@ let createCache = (options: Options): EmotionCache => {
       sheet: StyleSheet,
       shouldCache: boolean
     ): void => {
+      let rules = ''
       currentSheet = sheet
       if (
         process.env.NODE_ENV !== 'production' &&
@@ -174,7 +127,8 @@ let createCache = (options: Options): EmotionCache => {
       ) {
         currentSheet = {
           insert: (rule: string) => {
-            sheet.insert(rule + ((serialized.map: any): string))
+            // sheet.insert(rule + ((serialized.map: any): string))
+            rules += rule + ((serialized.map: any): string)
           }
         }
       }
@@ -184,6 +138,8 @@ let createCache = (options: Options): EmotionCache => {
       if (shouldCache) {
         cache.inserted[serialized.name] = true
       }
+
+      return rules
     }
   } else {
     const finalizingPlugins = [stringify]
@@ -261,7 +217,7 @@ let createCache = (options: Options): EmotionCache => {
     insert
   }
 
-  cache.sheet.hydrate(nodesToHydrate)
+  // cache.sheet.hydrate(nodesToHydrate)
 
   return cache
 }

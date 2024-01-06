@@ -54,7 +54,7 @@ export const insertStyles = (
   let className = `${cache.key}-${serialized.name}`
 
   if (cache.inserted[serialized.name] === undefined) {
-    let stylesForSSR = ''
+    let styles = ''
     let current = serialized
     do {
       let maybeStyles = cache.insert(
@@ -63,13 +63,14 @@ export const insertStyles = (
         cache.sheet,
         true
       )
-      if (!isBrowser && maybeStyles !== undefined) {
-        stylesForSSR += maybeStyles
+      if (maybeStyles !== undefined) {
+        styles += maybeStyles
       }
       current = current.next
     } while (current !== undefined)
-    if (!isBrowser && stylesForSSR.length !== 0) {
-      return stylesForSSR
+
+    if (styles.length !== 0) {
+      return styles
     }
   }
 }

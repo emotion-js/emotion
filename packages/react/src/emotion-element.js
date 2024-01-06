@@ -10,7 +10,6 @@ import {
 import { hasOwnProperty, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
-import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -52,33 +51,6 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   }
 
   return newProps
-}
-
-const Insertion = ({ cache, serialized, isStringTag }) => {
-  registerStyles(cache, serialized, isStringTag)
-
-  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
-    insertStyles(cache, serialized, isStringTag)
-  )
-
-  if (!isBrowser && rules !== undefined) {
-    let serializedNames = serialized.name
-    let next = serialized.next
-    while (next !== undefined) {
-      serializedNames += ' ' + next.name
-      next = next.next
-    }
-    return (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
-      />
-    )
-  }
-  return null
 }
 
 let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
@@ -144,13 +116,36 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
     newProps.ref = ref
     newProps.className = className
 
+    const isStringTag = typeof WrappedComponent === 'string'
+
+    // registerStyles(cache, serialized, isStringTag)
+    const rules = insertStyles(cache, serialized, isStringTag)
+
+    let styleElement
+
+    if (rules !== undefined) {
+      let serializedNames = serialized.name
+      let next = serialized.next
+      while (next !== undefined) {
+        serializedNames += ' ' + next.name
+        next = next.next
+      }
+      styleElement = (
+        <style
+          {...{
+            [`data-emotion`]: `${cache.key} ${serializedNames}`,
+            href: serializedNames.map(n => `${cache.key}-${n}`),
+            dangerouslySetInnerHTML: { __html: rules },
+            nonce: cache.sheet.nonce,
+            precedence: 'emotion' // TODO: should this be unique per cache key or something?
+          }}
+        />
+      )
+    }
+
     return (
       <>
-        <Insertion
-          cache={cache}
-          serialized={serialized}
-          isStringTag={typeof WrappedComponent === 'string'}
-        />
+        {styleElement}
         <WrappedComponent {...newProps} />
       </>
     )
