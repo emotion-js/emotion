@@ -93,6 +93,7 @@ type Props = {
   }) => React.Node
 }
 
+// TODO: tweak this
 const Insertion = ({ cache, serializedArr }) => {
   let rules = useInsertionEffectAlwaysWithSyncFallback(() => {
     let rules = ''

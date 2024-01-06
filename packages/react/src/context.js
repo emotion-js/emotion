@@ -41,6 +41,7 @@ let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   })
 }
 
+// TODO: rethink thisa
 if (!isBrowser) {
   withEmotionCache = function withEmotionCache<Props>(
     func: (props: Props, cache: EmotionCache) => React.Node

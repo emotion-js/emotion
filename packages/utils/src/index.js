@@ -37,7 +37,7 @@ export const registerStyles = (
       // in node since emotion-server relies on whether a style is in
       // the registered cache to know whether a style is global or not
       // also, note that this check will be dead code eliminated in the browser
-      (isBrowser === false && cache.compat !== undefined)) &&
+      (isBrowser === false && cache.compat !== undefined)) && // TODO: rethink this
     cache.registered[className] === undefined
   ) {
     cache.registered[className] = serialized.styles

@@ -86,6 +86,7 @@ let createCache = (options: Options): EmotionCache => {
     )
   }
 
+  // TODO: those codepaths should be consolidated
   if (isBrowser) {
     let currentSheet
 

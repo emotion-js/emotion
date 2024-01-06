@@ -20,6 +20,7 @@ let warnedAboutCssPropForGlobal = false
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
+// TODO: rethnk this, React 19 doesn't support cleanup
 export let Global: React.AbstractComponent<GlobalProps> =
   /* #__PURE__ */ withEmotionCache((props: GlobalProps, cache) => {
     if (
