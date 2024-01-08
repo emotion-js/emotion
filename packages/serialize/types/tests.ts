@@ -37,13 +37,16 @@ serializeStyles(
   {}
 )
 // $ExpectType SerializedStyles
-serializeStyles<{ vars: { background: string; foreground: string } }>([
+serializeStyles<{
+  vars: { background: string; foreground: string; step: number }
+}>([
   {
     display: () => ['-webkit-flex', 'flex'],
     backgroundColor: ({ vars }) => vars.background,
     color: ({ vars }) => vars.foreground,
     lineHeight: ({ vars }) => 1.2,
-    '--css-var': ({ vars }) => vars.foreground,
+    '--spacing': () => 1,
+    '--step': ({ vars }) => `calc(${vars.step} * var(--spacing))`,
     '&:hover': {
       backgroundColor: ({ vars }) => vars.foreground,
       color: ({ vars }) => vars.background
@@ -57,6 +60,8 @@ serializeStyles([testTemplateStringsArray, 5, '4px'], {}, {})
 serializeStyles()
 // $ExpectError
 serializeStyles({})
+// $ExpectError
+serializeStyles([{ borderCollapse: () => 'unknown' }])
 // $ExpectError
 serializeStyles({}, {})
 

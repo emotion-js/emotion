@@ -10,10 +10,8 @@ export type CSSProperties = CSS.PropertiesFallback<number | string>
 export type CSSPropertiesWithMultiValues<Props = unknown> = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
-    | ReadonlyArray<Extract<CSSProperties[K], string>>
-    | ((
-        props: Props
-      ) => CSSProperties[K] | ReadonlyArray<Extract<CSSProperties[K], string>>)
+    | ReadonlyArray<CSSProperties[K]>
+    | ((props: Props) => CSSProperties[K] | ReadonlyArray<CSSProperties[K]>)
 }
 
 export type CSSPseudos<Props = unknown> = {
