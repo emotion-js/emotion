@@ -37,6 +37,17 @@ serializeStyles(
   {}
 )
 // $ExpectType SerializedStyles
+serializeStyles<{ vars: { background: string; foreground: string } }>([
+  {
+    backgroundColor: ({ vars }) => vars.background,
+    color: ({ vars }) => vars.foreground,
+    '&:hover': {
+      backgroundColor: ({ vars }) => vars.foreground,
+      color: ({ vars }) => vars.background
+    }
+  }
+])
+// $ExpectType SerializedStyles
 serializeStyles([testTemplateStringsArray, 5, '4px'], {}, {})
 
 // $ExpectError

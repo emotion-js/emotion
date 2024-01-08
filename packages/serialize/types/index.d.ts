@@ -7,18 +7,19 @@ import * as CSS from 'csstype'
 export { RegisteredCache, SerializedStyles }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>
-export type CSSPropertiesWithMultiValues = {
+export type CSSPropertiesWithMultiValues<Props> = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
     | ReadonlyArray<Extract<CSSProperties[K], string>>
+    | ((props: Props) => number | string)
 }
 
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
+export type CSSPseudos<Props> = { [K in CSS.Pseudos]?: CSSObject<Props> }
 
-export interface ArrayCSSInterpolation
-  extends ReadonlyArray<CSSInterpolation> {}
+export interface ArrayCSSInterpolation<Props>
+  extends ReadonlyArray<CSSInterpolation<Props>> {}
 
-export type InterpolationPrimitive =
+export type InterpolationPrimitive<Props> =
   | null
   | undefined
   | boolean
@@ -27,18 +28,22 @@ export type InterpolationPrimitive =
   | ComponentSelector
   | Keyframes
   | SerializedStyles
-  | CSSObject
+  | CSSObject<Props>
 
-export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation
+export type CSSInterpolation<Props> =
+  | InterpolationPrimitive<Props>
+  | ArrayCSSInterpolation<Props>
 
-export interface CSSOthersObject {
-  [propertiesName: string]: CSSInterpolation
+export interface CSSOthersObject<Props> {
+  [propertiesName: string]:
+    | CSSInterpolation<Props>
+    | ((props: Props) => string | number)
 }
 
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    CSSOthersObject {}
+export interface CSSObject<Props = unknown>
+  extends CSSPropertiesWithMultiValues<Props>,
+    CSSPseudos<Props>,
+    CSSOthersObject<Props> {}
 
 export interface ComponentSelector {
   __emotion_styles: any
@@ -59,7 +64,7 @@ export interface FunctionInterpolation<Props> {
 }
 
 export type Interpolation<Props> =
-  | InterpolationPrimitive
+  | InterpolationPrimitive<Props>
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>
 
