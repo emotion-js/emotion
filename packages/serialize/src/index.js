@@ -239,7 +239,7 @@ function createStringFromObject(
   } else {
     for (let key in obj) {
       let value = obj[key]
-      if (typeof value === 'function') {
+      if (typeof value === 'function' && mergedProps !== undefined) {
         value = value(mergedProps)
       }
       if (typeof value !== 'object') {
