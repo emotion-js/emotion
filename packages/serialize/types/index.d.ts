@@ -7,19 +7,21 @@ import * as CSS from 'csstype'
 export { RegisteredCache, SerializedStyles }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>
-export type CSSPropertiesWithMultiValues<Props> = {
+export type CSSPropertiesWithMultiValues<Props = unknown> = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
     | ReadonlyArray<Extract<CSSProperties[K], string>>
     | ((props: Props) => number | string)
 }
 
-export type CSSPseudos<Props> = { [K in CSS.Pseudos]?: CSSObject<Props> }
+export type CSSPseudos<Props = unknown> = {
+  [K in CSS.Pseudos]?: CSSObject<Props>
+}
 
-export interface ArrayCSSInterpolation<Props>
+export interface ArrayCSSInterpolation<Props = unknown>
   extends ReadonlyArray<CSSInterpolation<Props>> {}
 
-export type InterpolationPrimitive<Props> =
+export type InterpolationPrimitive<Props = unknown> =
   | null
   | undefined
   | boolean
@@ -30,11 +32,11 @@ export type InterpolationPrimitive<Props> =
   | SerializedStyles
   | CSSObject<Props>
 
-export type CSSInterpolation<Props> =
+export type CSSInterpolation<Props = unknown> =
   | InterpolationPrimitive<Props>
   | ArrayCSSInterpolation<Props>
 
-export interface CSSOthersObject<Props> {
+export interface CSSOthersObject<Props = unknown> {
   [propertiesName: string]:
     | CSSInterpolation<Props>
     | ((props: Props) => string | number)
