@@ -39,7 +39,7 @@ export type CSSInterpolation<Props = unknown> =
 export interface CSSOthersObject<Props = unknown> {
   [propertiesName: string]:
     | CSSInterpolation<Props>
-    | ((props: Props) => string | number)
+    | ((props: Props) => number | string)
 }
 
 export interface CSSObject<Props = unknown>

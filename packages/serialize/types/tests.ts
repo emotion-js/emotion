@@ -41,6 +41,7 @@ serializeStyles<{ vars: { background: string; foreground: string } }>([
   {
     backgroundColor: ({ vars }) => vars.background,
     color: ({ vars }) => vars.foreground,
+    lineHeight: ({ vars }) => 1.2,
     '&:hover': {
       backgroundColor: ({ vars }) => vars.foreground,
       color: ({ vars }) => vars.background
