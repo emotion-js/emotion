@@ -39,9 +39,11 @@ serializeStyles(
 // $ExpectType SerializedStyles
 serializeStyles<{ vars: { background: string; foreground: string } }>([
   {
+    display: () => ['-webkit-flex', 'flex'],
     backgroundColor: ({ vars }) => vars.background,
     color: ({ vars }) => vars.foreground,
     lineHeight: ({ vars }) => 1.2,
+    '--css-var': ({ vars }) => vars.foreground,
     '&:hover': {
       backgroundColor: ({ vars }) => vars.foreground,
       color: ({ vars }) => vars.background

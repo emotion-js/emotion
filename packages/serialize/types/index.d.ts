@@ -11,7 +11,9 @@ export type CSSPropertiesWithMultiValues<Props = unknown> = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
     | ReadonlyArray<Extract<CSSProperties[K], string>>
-    | ((props: Props) => number | string)
+    | ((
+        props: Props
+      ) => CSSProperties[K] | ReadonlyArray<Extract<CSSProperties[K], string>>)
 }
 
 export type CSSPseudos<Props = unknown> = {
@@ -39,7 +41,7 @@ export type CSSInterpolation<Props = unknown> =
 export interface CSSOthersObject<Props = unknown> {
   [propertiesName: string]:
     | CSSInterpolation<Props>
-    | ((props: Props) => number | string)
+    | ((props: Props) => CSSInterpolation<Props>)
 }
 
 export interface CSSObject<Props = unknown>
