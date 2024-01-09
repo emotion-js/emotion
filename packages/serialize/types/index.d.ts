@@ -20,8 +20,8 @@ export type CSSPseudos<Props = unknown> = {
   [K in CSS.Pseudos]?: CSSObject<Props>
 }
 
-export interface ArrayCSSInterpolation<Props = unknown>
-  extends ReadonlyArray<CSSInterpolation<Props>> {}
+export interface ArrayCSSInterpolation
+  extends ReadonlyArray<CSSInterpolation> {}
 
 export type InterpolationPrimitive<Props = unknown> =
   | null
@@ -34,14 +34,17 @@ export type InterpolationPrimitive<Props = unknown> =
   | SerializedStyles
   | CSSObject<Props>
 
-export type CSSInterpolation<Props = unknown> =
-  | InterpolationPrimitive<Props>
-  | ArrayCSSInterpolation<Props>
+export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation
 
 export interface CSSOthersObject<Props = unknown> {
   [propertiesName: string]:
-    | CSSInterpolation<Props>
-    | ((props: Props) => CSSInterpolation<Props>)
+    | InterpolationPrimitive<Props>
+    | ReadonlyArray<InterpolationPrimitive<Props>>
+    | ((
+        props: Props
+      ) =>
+        | InterpolationPrimitive<Props>
+        | ReadonlyArray<InterpolationPrimitive<Props>>)
 }
 
 export interface CSSObject<Props = unknown>
