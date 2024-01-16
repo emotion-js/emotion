@@ -11612,9 +11612,9 @@ __metadata:
     react18: "npm:react@18.2.0"
     react18-dom: "npm:react-dom@18.2.0"
     react18-test-renderer: "npm:react-test-renderer@18.2.0"
-    react19: "npm:react@18.3.0-canary-1d5667a12-20240102"
-    react19-dom: "npm:react-dom@18.3.0-canary-1d5667a12-20240102"
-    react19-test-renderer: "npm:react-test-renderer@18.3.0-canary-1d5667a12-20240102"
+    react19: "npm:react@0.0.0-experimental-1d5667a12-20240102"
+    react19-dom: "npm:react-dom@0.0.0-experimental-1d5667a12-20240102"
+    react19-test-renderer: "npm:react-test-renderer@0.0.0-experimental-1d5667a12-20240102"
     svg-tag-names: ^1.1.1
     through: ^2.3.8
     unified: ^6.1.6
@@ -25137,10 +25137,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:18.3.0-canary-1d5667a12-20240102":
-  version: 18.3.0-canary-1d5667a12-20240102
-  resolution: "react-is@npm:18.3.0-canary-1d5667a12-20240102"
-  checksum: ccf9fce388115fc17808c5041d2c8bfc5dd2215e1978de98f070408b5531828bb7f6df37481a79c772785e6e49395b7541dc9294224d79bef201a5f373edc2a6
+"react-is@npm:0.0.0-experimental-1d5667a12-20240102":
+  version: 0.0.0-experimental-1d5667a12-20240102
+  resolution: "react-is@npm:0.0.0-experimental-1d5667a12-20240102"
+  checksum: 183c5e808e5fc2c4f42193398ad7b3591b5262d5cc406fdc8fff7a3ca97abd2713299a56ba94f54a3d5caeced5b5c136661c044084386d82fe6acaa939de4a93
   languageName: node
   linkType: hard
 
@@ -25422,37 +25422,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react19-dom@npm:react-dom@18.3.0-canary-1d5667a12-20240102":
-  version: 18.3.0-canary-1d5667a12-20240102
-  resolution: "react-dom@npm:18.3.0-canary-1d5667a12-20240102"
+"react19-dom@npm:react-dom@0.0.0-experimental-1d5667a12-20240102":
+  version: 0.0.0-experimental-1d5667a12-20240102
+  resolution: "react-dom@npm:0.0.0-experimental-1d5667a12-20240102"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.24.0-canary-1d5667a12-20240102
+    scheduler: 0.0.0-experimental-1d5667a12-20240102
   peerDependencies:
-    react: 18.3.0-canary-1d5667a12-20240102
-  checksum: e834e3a4998aa3d84e806b6c0c24241bb04e12f745c574a6ddcabe642c52903f7d99086e42be3f15d56ba1255e8a7e6ea904203b35810164efdc7e613d86ec62
+    react: 0.0.0-experimental-1d5667a12-20240102
+  checksum: 078e275cf7291e2d67bd5c65b4cc6684e353adf89eaf4ec724b3247bd70978dfea291795fb3f67c4b6fd56e94418e5b02e22d9ccb58b2ef7acd13ded691702d1
   languageName: node
   linkType: hard
 
-"react19-test-renderer@npm:react-test-renderer@18.3.0-canary-1d5667a12-20240102":
-  version: 18.3.0-canary-1d5667a12-20240102
-  resolution: "react-test-renderer@npm:18.3.0-canary-1d5667a12-20240102"
+"react19-test-renderer@npm:react-test-renderer@0.0.0-experimental-1d5667a12-20240102":
+  version: 0.0.0-experimental-1d5667a12-20240102
+  resolution: "react-test-renderer@npm:0.0.0-experimental-1d5667a12-20240102"
   dependencies:
-    react-is: 18.3.0-canary-1d5667a12-20240102
+    react-is: 0.0.0-experimental-1d5667a12-20240102
     react-shallow-renderer: ^16.15.0
-    scheduler: 0.24.0-canary-1d5667a12-20240102
+    scheduler: 0.0.0-experimental-1d5667a12-20240102
   peerDependencies:
-    react: 18.3.0-canary-1d5667a12-20240102
-  checksum: 26e0a3d0498460a6c39fd4cdceaae5e754af96864ddf511c9687771119dea2774afe744b46874864aed86160b0429e57cdb68c9a1ac72b96408be8b963e24b68
+    react: 0.0.0-experimental-1d5667a12-20240102
+  checksum: f907bbcdad8f741d403be93359d58cfe35e75b3e917dde16ce82e419e58ae3b8d87a5d5987444c1a10cfd2c3fd216433a03567a1c5713a5125aef1a04505dc14
   languageName: node
   linkType: hard
 
-"react19@npm:react@18.3.0-canary-1d5667a12-20240102":
-  version: 18.3.0-canary-1d5667a12-20240102
-  resolution: "react@npm:18.3.0-canary-1d5667a12-20240102"
+"react19@npm:react@0.0.0-experimental-1d5667a12-20240102":
+  version: 0.0.0-experimental-1d5667a12-20240102
+  resolution: "react@npm:0.0.0-experimental-1d5667a12-20240102"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 7bd471037e8a1da48db9f6d00238c43e6b4d8d33aca80467e0dcf8c2cb308efc1da7f835a15628488afb7aa06116b20aee5caef9a0d5b62928fdb6aee6102aeb
+  checksum: 7b19c7a713acf5e64f9d1b54fc9279c7d0fc1358ccd8bd730e9305bf4a3798dfb8981a7a1e7a3a0de9d5e40cfaf79bd2865f93e9f2b0dc60f19cf06b7055e5dd
   languageName: node
   linkType: hard
 
@@ -26766,6 +26766,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"scheduler@npm:0.0.0-experimental-1d5667a12-20240102":
+  version: 0.0.0-experimental-1d5667a12-20240102
+  resolution: "scheduler@npm:0.0.0-experimental-1d5667a12-20240102"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 2d462031248808a9e38eacdcee6356e511c4a17d49b65c847ab6bb2f4d566510a3d79c8d69155ceb7a602e6a52415c7e28d8590f97342d7813912b7cac9c70e5
+  languageName: node
+  linkType: hard
+
 "scheduler@npm:0.19.1, scheduler@npm:^0.19.1":
   version: 0.19.1
   resolution: "scheduler@npm:0.19.1"
@@ -26773,15 +26782,6 @@ __metadata:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: 73e185a59e2ff5aa3609f5b9cb97ddd376f89e1610579d29939d952411ca6eb7a24907a4ea4556569dacb931467a1a4a56d94fe809ef713aa76748642cd96a6c
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:0.24.0-canary-1d5667a12-20240102":
-  version: 0.24.0-canary-1d5667a12-20240102
-  resolution: "scheduler@npm:0.24.0-canary-1d5667a12-20240102"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: 380ee68148066efdd0a384e93b5e01179e504c5f78ddde397cdc26ed3b009c912bf37ab4c767ca98e50dc1ecc3c3dfa5b3e41d3f8d7b60a1f0c78e5fef97cc0c
   languageName: node
   linkType: hard
 

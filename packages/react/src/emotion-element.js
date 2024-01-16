@@ -134,12 +134,16 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
         <style
           {...{
             [`data-emotion`]: `${cache.key} ${serializedNames}`,
-            href: serializedNames.map(n => `${cache.key}-${n}`),
-            dangerouslySetInnerHTML: { __html: rules },
+            href: serializedNames
+              .split(' ')
+              .map(n => `${cache.key}-${n}`)
+              .join(' '),
             nonce: cache.sheet.nonce,
             precedence: 'emotion' // TODO: should this be unique per cache key or something?
           }}
-        />
+        >
+          {rules}
+        </style>
       )
     }
 
