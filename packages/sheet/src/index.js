@@ -147,7 +147,7 @@ export class StyleSheet {
       } catch (e) {
         if (
           process.env.NODE_ENV !== 'production' &&
-          !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear|-ms-expand|-ms-reveal){/.test(
+          !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear|-ms-expand|-ms-reveal|-webkit-scrollbar-button:.*|-webkit-scrollbar-thumb:.*|-webkit-scrollbar-track:.*){/.test(
             rule
           )
         ) {
