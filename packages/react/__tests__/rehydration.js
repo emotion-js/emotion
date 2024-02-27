@@ -56,8 +56,8 @@ beforeEach(() => {
 test("cache created in render doesn't cause a hydration mismatch", () => {
   safeQuerySelector('body').innerHTML = [
     '<div id="root">',
-    '<style data-emotion="stl 1pdkrhd">.stl-1pdkrhd-App {color: hotpink;}</style>',
-    '<div class="stl-1pdkrhd-App">Hello world!</div>',
+    '<style data-emotion="stl 168r6j">.stl-1pdkrhd {color: hotpink;}</style>',
+    '<div class="stl-168r6j">Hello world!</div>',
     '</div>'
   ].join('')
 
@@ -144,7 +144,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-s=""
         >
           
-          .stl-1pdkrhd-App{color:hotpink;}
+          .stl-168r6j{color:hotpink;}
         </style>
       </div>
     </head>
@@ -192,7 +192,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-s=""
         >
           
-          .stl-1pdkrhd-App{color:hotpink;}
+          .stl-168r6j{color:hotpink;}
         </style>
       </div>
     </head>
