@@ -12,7 +12,7 @@ test('hasOwnProperty', async () => {
   //   .default
 
   // Current version:
-  const utils = (await import('../../dist/emotion-element-212cccd8.cjs.dev.js'))
+  const utils = (await import('../../dist/emotion-element-e909c831.cjs.dev'))
     .default
 
   expect(
