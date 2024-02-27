@@ -1,6 +1,7 @@
 // @flow
 import * as ReactJSXRuntimeDev from 'react/jsx-dev-runtime'
 import Emotion, { createEmotionProps } from './emotion-element'
+import { hasOwn } from './utils'
 
 export const Fragment = ReactJSXRuntimeDev.Fragment
 
@@ -12,7 +13,7 @@ export function jsxDEV(
   source: any,
   self: any
 ) {
-  if (!Object.hasOwn(props, 'css')) {
+  if (!hasOwn(props, 'css')) {
     return ReactJSXRuntimeDev.jsxDEV(
       type,
       props,
