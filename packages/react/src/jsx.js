@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import Emotion, { createEmotionProps } from './emotion-element'
-import { hasOwnProperty } from './utils'
 
 // $FlowFixMe
 export const jsx: typeof React.createElement = function (
@@ -10,7 +9,7 @@ export const jsx: typeof React.createElement = function (
 ) {
   let args = arguments
 
-  if (props == null || !hasOwnProperty.call(props, 'css')) {
+  if (props == null || !{}.hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
     return React.createElement.apply(undefined, args)
   }
