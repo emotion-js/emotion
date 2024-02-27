@@ -9,7 +9,7 @@ export const jsx: typeof React.createElement = function (
 ) {
   let args = arguments
 
-  if (props == null || !{}.hasOwnProperty.call(props, 'css')) {
+  if (props == null || !Object.hasOwn(props, 'css')) {
     // $FlowFixMe
     return React.createElement.apply(undefined, args)
   }
