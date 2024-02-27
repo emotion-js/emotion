@@ -31,7 +31,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   let newProps: any = {}
 
   for (let key in props) {
-    if (hasOwn(props, key)) {
+    if (hasOwn.call(props, key)) {
       newProps[key] = props[key]
     }
   }
@@ -133,7 +133,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
     const newProps = {}
     for (let key in props) {
       if (
-        hasOwn(props, key) &&
+        hasOwn.call(props, key) &&
         key !== 'css' &&
         key !== typePropName &&
         (process.env.NODE_ENV === 'production' || key !== labelPropName)

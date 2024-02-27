@@ -1,4 +1,4 @@
 // @flow
 export let isBrowser = typeof document !== 'undefined'
 
-export const hasOwn = {}.hasOwnProperty.call
+export const hasOwn = {}.hasOwnProperty

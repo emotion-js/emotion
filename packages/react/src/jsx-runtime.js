@@ -6,7 +6,7 @@ import { hasOwn } from './utils'
 export const Fragment = ReactJSXRuntime.Fragment
 
 export function jsx(type: any, props: any, key: any) {
-  if (!hasOwn(props, 'css')) {
+  if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntime.jsx(type, props, key)
   }
 
@@ -14,7 +14,7 @@ export function jsx(type: any, props: any, key: any) {
 }
 
 export function jsxs(type: any, props: any, key: any) {
-  if (!hasOwn(props, 'css')) {
+  if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntime.jsxs(type, props, key)
   }
 

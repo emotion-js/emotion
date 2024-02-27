@@ -13,7 +13,7 @@ export function jsxDEV(
   source: any,
   self: any
 ) {
-  if (!hasOwn(props, 'css')) {
+  if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntimeDev.jsxDEV(
       type,
       props,
