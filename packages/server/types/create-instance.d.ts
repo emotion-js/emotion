@@ -2,7 +2,7 @@
 // TypeScript Version: 2.8
 
 /// <reference types="node" />
-import { EmotionCache } from '@emotion/utils'
+import { EmotionCache } from '@emotion/cache'
 
 export interface EmotionCritical {
   html: string

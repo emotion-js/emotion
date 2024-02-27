@@ -29,6 +29,21 @@ css`
   top: ${'20px'};
 `
 
+// $ExpectType SerializedStyles
+css([{ display: null }])
+
+// $ExpectType SerializedStyles
+css({
+  ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
+})
+
+// $ExpectType SerializedStyles
+css({
+  ':hover': css`
+    color: hotpink;
+  `
+})
+
 // $ExpectError
 css(() => 'height: 300px;')
 

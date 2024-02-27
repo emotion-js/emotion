@@ -1,19 +1,26 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.8
-
-import { RegisteredCache, SerializedStyles } from '@emotion/utils'
+import type { RegisteredCache } from '@emotion/cache'
 import * as CSS from 'csstype'
 
-export { RegisteredCache, SerializedStyles }
+export interface SerializedStyles {
+  name: string
+  styles: string
+  map?: string
+  next?: SerializedStyles
+}
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]:
+    | null
+    | undefined
+    | false
     | CSSProperties[K]
     | ReadonlyArray<Extract<CSSProperties[K], string>>
 }
 
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSInterpolation }
 
 export interface ArrayCSSInterpolation
   extends ReadonlyArray<CSSInterpolation> {}

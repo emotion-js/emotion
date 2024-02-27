@@ -1,8 +1,32 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.2
-import { EmotionCache } from '@emotion/utils'
+import { SerializedStyles } from '@emotion/serialize'
+import { StyleSheet } from '@emotion/sheet'
 
-export { EmotionCache }
+export interface RegisteredCache {
+  [key: string]: string
+}
+
+export interface EmotionStyleSheet extends StyleSheet {
+  constructor: typeof StyleSheet
+}
+
+export interface EmotionCache {
+  inserted: {
+    [key: string]: string | true
+  }
+  registered: RegisteredCache
+  sheet: EmotionStyleSheet
+  key: string
+  compat?: true
+  nonce?: string
+  insert(
+    selector: string,
+    serialized: SerializedStyles,
+    sheet: StyleSheet,
+    shouldCache: boolean
+  ): string | void
+}
 
 export interface StylisElement {
   type: string
