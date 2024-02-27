@@ -239,6 +239,9 @@ function createStringFromObject(
   } else {
     for (let key in obj) {
       let value = obj[key]
+      if (typeof value === 'function' && mergedProps !== undefined) {
+        value = value(mergedProps)
+      }
       if (typeof value !== 'object') {
         if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
