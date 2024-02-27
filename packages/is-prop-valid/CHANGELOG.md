@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.2.2
+
+### Patch Changes
+
+- [#3156](https://github.com/emotion-js/emotion/pull/3156) [`0bfa9786`](https://github.com/emotion-js/emotion/commit/0bfa97860d768905c88edcafac6e2554565352f8) Thanks [@nnguyen01](https://github.com/nnguyen01)! - Adds `disableRemotePlayback` to the list of allowed props.
+
 ## 1.2.1
 
 ### Patch Changes

@@ -2435,7 +2435,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/is-prop-valid@^1.2.1, @emotion/is-prop-valid@workspace:packages/is-prop-valid":
+"@emotion/is-prop-valid@^1.2.1, @emotion/is-prop-valid@^1.2.2, @emotion/is-prop-valid@workspace:packages/is-prop-valid":
   version: 0.0.0-use.local
   resolution: "@emotion/is-prop-valid@workspace:packages/is-prop-valid"
   dependencies:
@@ -2462,7 +2462,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/css": 11.11.2
     "@emotion/css-prettifier": ^1.1.3
-    "@emotion/react": 11.11.3
+    "@emotion/react": 11.11.4
     "@types/jest": ^27.0.3
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2525,7 +2525,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.11.3
+    "@emotion/react": 11.11.4
     css-to-react-native: ^3.0.0
     react: 16.14.0
   peerDependencies:
@@ -2551,7 +2551,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.11.3, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@11.11.4, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
@@ -2632,8 +2632,8 @@ __metadata:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.11.0
-    "@emotion/is-prop-valid": ^1.2.1
-    "@emotion/react": 11.11.3
+    "@emotion/is-prop-valid": ^1.2.2
+    "@emotion/react": 11.11.4
     "@emotion/serialize": ^1.1.3
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
     "@emotion/utils": ^1.2.1
