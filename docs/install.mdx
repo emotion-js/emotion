@@ -2,7 +2,7 @@
 title: 'Install'
 ---
 
-There are lots of ways to use Emotion, if you're using React, the easiest way to get started is to use the [`@emotion/react` package](/packages/react). If you're not using React, you should use [the `@emotion/css` package](#vanilla).
+There are lots of ways to use Emotion. If you're using React, the easiest way to get started is to use the [`@emotion/react` package](/packages/react). If you're not using React, you should use [the `@emotion/css` package](#vanilla).
 
 ```bash
 yarn add @emotion/react
@@ -43,6 +43,34 @@ render(
     <AnotherComponent />
   </SomeComponent>
 )
+```
+
+## With Vite
+If you're using Vite, add `@emotion/react` as your `jsxImportSource` in the React plugin options in
+`vite.config.{js, ts}`:
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    react({
+      jsxImportSource: "@emotion/react",
+    })
+  ],
+})
+```
+
+## With TypeScript
+For TypeScript support, set `jsxImportSource` to `@emotion/react` under `compilerOptions` in 
+`tsconfig.json`:
+```ts
+{
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "@emotion/react",
+	}
+}
 ```
 
 ## With [`styled`](/docs/styled.mdx)
