@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.11.3",
+  "version": "11.11.4",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {

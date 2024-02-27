@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.11.4
+
+### Patch Changes
+
+- [#3159](https://github.com/emotion-js/emotion/pull/3159) [`5b82631d`](https://github.com/emotion-js/emotion/commit/5b82631d79a58e87e560024d724b849f3921b6e0) Thanks [@iegik](https://github.com/iegik)! - Remove hasOwnProperty from utils
+
 ## 11.11.3
 
 ### Patch Changes

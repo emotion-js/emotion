@@ -17,7 +17,7 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@emotion/react": "11.11.3",
+    "@emotion/react": "11.11.4",
     "react": "16.14.0"
   },
   "homepage": "https://emotion.sh",
