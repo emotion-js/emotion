@@ -7,7 +7,7 @@ import {
   insertStyles,
   registerStyles
 } from '@emotion/utils'
-import { hasOwnProperty, isBrowser } from './utils'
+import { hasOwn, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
@@ -31,7 +31,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   let newProps: any = {}
 
   for (let key in props) {
-    if (hasOwnProperty.call(props, key)) {
+    if (hasOwn.call(props, key)) {
       newProps[key] = props[key]
     }
   }
@@ -133,7 +133,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
     const newProps = {}
     for (let key in props) {
       if (
-        hasOwnProperty.call(props, key) &&
+        hasOwn.call(props, key) &&
         key !== 'css' &&
         key !== typePropName &&
         (process.env.NODE_ENV === 'production' || key !== labelPropName)
