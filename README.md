@@ -70,6 +70,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 ### Examples
 
 - [emotion website](site) [[Demo Here](https://emotion.sh)]
+- [Refo](https://github.com/kireerik/refo), a static site and resume example with styled components  [[Demo Here](https://kireerik.github.io/refo/)]
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
 - [circuit-ui](https://github.com/sumup-oss/circuit-ui), a react component library built at SumUp [[Storybook](https://circuit.sumup.com/?path=/story/introduction-welcome--page)]
