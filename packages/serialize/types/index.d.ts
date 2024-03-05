@@ -52,7 +52,7 @@ export type Keyframes = {
 } & string
 
 export interface ArrayInterpolation<Props>
-  extends Array<Interpolation<Props>> {}
+  extends ReadonlyArray<Interpolation<Props>> {}
 
 export interface FunctionInterpolation<Props> {
   (props: Props): Interpolation<Props>
