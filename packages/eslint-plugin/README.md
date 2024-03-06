@@ -28,10 +28,20 @@ Add `@emotion` to the plugins section of your `.eslintrc` configuration file. Yo
 }
 ```
 
-Then configure the rules you want to use under the rules section.
+You can enable the rules we recommend for `react` by listing the `@emotion/react` preset under `extends`:
 
 ```json
 {
+  "extends": ["@emotion/react"],
+  "plugins": ["@emotion"]
+}
+```
+
+Alternately, you configure specifically rules you want to use under the `rules` section.
+
+```json
+{
+  "plugins": ["@emotion"],
   "rules": {
     "@emotion/jsx-import": "error"
   }
@@ -71,8 +81,10 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
 
 ## Supported Rules
 
-- [jsx-import](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/jsx-import.md)
-- [styled-import](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/styled-import.md)
-- [import-from-emotion](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/import-from-emotion.md)
-- [no-vanilla](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/no-vanilla.md)
+Rules enabled by default in the `react` config are marked with ⚛️.
+
+- ⚛️ [import-from-emotion](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/import-from-emotion.md)
+- ⚛️ [jsx-import](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/jsx-import.md)
+- ⚛️ [no-vanilla](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/no-vanilla.md)
+- ⚛️ [styled-import](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/styled-import.md)
 - [syntax-preference](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/syntax-preference.md)
