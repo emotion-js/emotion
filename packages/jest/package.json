@@ -20,6 +20,10 @@
       "import": "./serializer/dist/emotion-jest-serializer.cjs.mjs",
       "default": "./serializer/dist/emotion-jest-serializer.cjs.js"
     },
+    "./extend-expect": {
+      "module": "./extend-expect/dist/emotion-jest-extend-expect.esm.js",
+      "default": "./extend-expect/dist/emotion-jest-extend-expect.cjs.js"
+    },
     "./enzyme-serializer": {
       "module": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.esm.js",
       "import": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.mjs",
@@ -34,7 +38,8 @@
     "types/*.d.ts",
     "serializer",
     "enzyme",
-    "enzyme-serializer"
+    "enzyme-serializer",
+    "extend-expect"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
@@ -90,7 +95,8 @@
       "./index.js",
       "./serializer.js",
       "./enzyme.js",
-      "./enzyme-serializer.js"
+      "./enzyme-serializer.js",
+      "./extend-expect.js"
     ]
   }
 }
