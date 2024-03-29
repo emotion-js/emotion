@@ -1,5 +1,14 @@
 # @emotion/styled
 
+## 11.11.5
+
+### Patch Changes
+
+- [#3164](https://github.com/emotion-js/emotion/pull/3164) [`c9b84dbe`](https://github.com/emotion-js/emotion/commit/c9b84dbe5bf5e054e6cd561d6da1e1548e1489d1) Thanks [@Cerber-Ursi](https://github.com/Cerber-Ursi)! - Reordered `styled` overloads to accommodate the recent change in `@emotion/serialize`'s types.
+
+- Updated dependencies [[`c9b84dbe`](https://github.com/emotion-js/emotion/commit/c9b84dbe5bf5e054e6cd561d6da1e1548e1489d1)]:
+  - @emotion/serialize@1.1.4
+
 ## 11.11.0
 
 ### Minor Changes

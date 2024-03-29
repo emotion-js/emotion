@@ -2561,9 +2561,9 @@ __metadata:
     "@emotion/cache": ^11.11.0
     "@emotion/css": 11.11.2
     "@emotion/css-prettifier": 1.1.3
-    "@emotion/serialize": ^1.1.3
+    "@emotion/serialize": ^1.1.4
     "@emotion/server": 11.11.0
-    "@emotion/styled": 11.11.0
+    "@emotion/styled": 11.11.5
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
     "@emotion/utils": ^1.2.1
     "@emotion/weak-memoize": ^0.3.1
@@ -2580,7 +2580,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/serialize@^1.1.2, @emotion/serialize@^1.1.3, @emotion/serialize@workspace:packages/serialize":
+"@emotion/serialize@^1.1.2, @emotion/serialize@^1.1.4, @emotion/serialize@workspace:packages/serialize":
   version: 0.0.0-use.local
   resolution: "@emotion/serialize@workspace:packages/serialize"
   dependencies:
@@ -2625,7 +2625,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/styled@11.11.0, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
+"@emotion/styled@11.11.5, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
@@ -2634,7 +2634,7 @@ __metadata:
     "@emotion/babel-plugin": ^11.11.0
     "@emotion/is-prop-valid": ^1.2.2
     "@emotion/react": 11.11.4
-    "@emotion/serialize": ^1.1.3
+    "@emotion/serialize": ^1.1.4
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
     "@emotion/utils": ^1.2.1
     react: 16.14.0
