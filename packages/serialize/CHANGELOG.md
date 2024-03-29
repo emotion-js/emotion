@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.1.4
+
+### Patch Changes
+
+- [#3164](https://github.com/emotion-js/emotion/pull/3164) [`c9b84dbe`](https://github.com/emotion-js/emotion/commit/c9b84dbe5bf5e054e6cd561d6da1e1548e1489d1) Thanks [@Cerber-Ursi](https://github.com/Cerber-Ursi)! - Make `ArrayInterpolation` to extend `ReadonlyArray` to match a similar recent change to `ArrayCSSInterpolation`. It fixes some compatibility issues when those 2 get mixed together.
+
 ## 1.1.3
 
 ### Patch Changes
