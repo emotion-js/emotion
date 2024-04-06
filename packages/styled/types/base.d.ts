@@ -63,6 +63,16 @@ export interface CreateStyledComponent<
   SpecificComponentProps extends {} = {},
   JSXProps extends {} = {}
 > {
+  // This signature is actually never taken (due to `marker: never`); it's here to guide type inference.
+  // See https://github.com/emotion-js/emotion/issues/3174 for context.
+  (
+    ...styles: Array<
+      Interpolation<
+        ComponentProps & SpecificComponentProps & { theme: Theme }
+      > & { marker: never }
+    >
+  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>
+
   (
     template: TemplateStringsArray,
     ...styles: Array<
