@@ -93,7 +93,7 @@ Advantages of sharing styles via component reuse include:
 
 The css prop or `styled` should be used for static styles, while the `style` prop (inline styles) should be used for truly dynamic styles. By dynamic styles, we mean styles that change frequently or are unique to a single element.
 
-Imagine you are displaying a list of user avatars in a forum application. Every avatar shares certain static CSS, like `width: 40px` and `border-radius: 50%`, but the avatar image is set via a `background-style` rule whose value is different for each avatar. If you pass all of this CSS through the CSS prop, you'll end up with a lot of nearly-duplicate CSS in the document. With 3 avatars, Emotion will create something like:
+Imagine you are displaying a list of user avatars in a forum application. Every avatar shares certain static CSS, like `width: 40px` and `border-radius: 50%`, but the avatar image is set via a `background-image` rule whose value is different for each avatar. If you pass all of this CSS through the CSS prop, you'll end up with a lot of nearly-duplicate CSS in the document. With 3 avatars, Emotion will create something like:
 
 ```html
 <style>
@@ -101,21 +101,21 @@ Imagine you are displaying a list of user avatars in a forum application. Every 
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-style: url(https://i.pravatar.cc/150?u=0);
+    background-image: url(https://i.pravatar.cc/150?u=0);
   }
 
   .css-1cpwmbr {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-style: url(https://i.pravatar.cc/150?u=1);
+    background-image: url(https://i.pravatar.cc/150?u=1);
   }
 
   .css-am987o {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-style: url(https://i.pravatar.cc/150?u=2);
+    background-image: url(https://i.pravatar.cc/150?u=2);
   }
 </style>
 ```
@@ -141,19 +141,19 @@ CSS variables can be used with the `style` prop to keep the CSS in a single plac
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-style: var(--background-style);
+  background-image: var(--background-image);
 }
 ```
 
-Then, for each avatar, you render an element which sets the value of the `--background-style` CSS variable:
+Then, for each avatar, you render an element which sets the value of the `--background-image` CSS variable:
 
 ```tsx
 function Avatar({ imageUrl }) {
-  return <div className="avatar" style={{ '--background-style': imageUrl }} />
+  return <div className="avatar" style={{ '--background-image': imageUrl }} />
 }
 ```
 
-If you're using TypeScript, you'll have to use a type assertion like `style={{ ['--background-style' as any]: imageUrl }}` as explained [here](https://stackoverflow.com/a/52013197/752601).
+If you're using TypeScript, you'll have to use a type assertion like `style={{ ['--background-image' as any]: imageUrl }}` as explained [here](https://stackoverflow.com/a/52013197/752601).
 
 ### If using React, prefer `@emotion/react` or `@emotion/styled` over `@emotion/css`
 
