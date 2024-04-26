@@ -7,7 +7,7 @@ import {
   insertStyles,
   registerStyles
 } from '@emotion/utils'
-import { hasOwn, isBrowser } from './utils'
+import { hasOwn } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
@@ -57,24 +57,31 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 const Insertion = ({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
 
-  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
+  useInsertionEffectAlwaysWithSyncFallback(() =>
     insertStyles(cache, serialized, isStringTag)
   )
 
-  if (!isBrowser && rules !== undefined) {
+  const isBrowser = React.useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  )
+
+  const rules = cache.inserted[serialized.name]
+
+  if (!isBrowser) {
     let serializedNames = serialized.name
     let next = serialized.next
     while (next !== undefined) {
-      serializedNames += ' ' + next.name
+      serializedNames += ',' + next.name
       next = next.next
     }
     return (
       <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
+        dangerouslySetInnerHTML={{ __html: rules }}
+        nonce={cache.sheet.nonce}
+        precedence="medium"
+        href={`${cache.key},${serializedNames}`}
       />
     )
   }

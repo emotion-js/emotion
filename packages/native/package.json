@@ -32,7 +32,7 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "@types/react-native": "^0.63.2",
-    "react": "16.14.0",
+    "react": "19.0.0-beta-94eed63c49-20240425",
     "react-native": "^0.63.2",
     "typescript": "^4.5.5"
   },

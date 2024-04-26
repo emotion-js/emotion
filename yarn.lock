@@ -2467,8 +2467,8 @@ __metadata:
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
     pretty-format: ^22.4.3
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
     specificity: ^0.4.1
     stylis: 4.2.0
     typescript: ^4.5.5
@@ -2513,7 +2513,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/primitives-core": ^11.11.0
     "@types/react-native": ^0.63.2
-    react: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
     react-native: ^0.63.2
     typescript: ^4.5.5
   peerDependencies:
@@ -2527,10 +2527,10 @@ __metadata:
   dependencies:
     "@emotion/react": 11.11.4
     css-to-react-native: ^3.0.0
-    react: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
   peerDependencies:
     "@emotion/react": ^11.0.0-rc.0
-    react: ">=16.8.0"
+    react: ">=19"
   languageName: unknown
   linkType: soft
 
@@ -2543,10 +2543,10 @@ __metadata:
     "@emotion/primitives-core": ^11.11.0
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.5
-    react: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
     react-primitives: ^0.8.1
   peerDependencies:
-    react: ">=16.8.0"
+    react: 19.0.0-beta-94eed63c49-20240425
     react-primitives: ^0.8.1
   languageName: unknown
   linkType: soft
@@ -2569,11 +2569,11 @@ __metadata:
     "@emotion/weak-memoize": ^0.3.1
     hoist-non-react-statics: ^3.3.1
     html-tag-names: ^1.1.2
-    react: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
     svg-tag-names: ^1.1.1
     typescript: ^4.5.5
   peerDependencies:
-    react: ">=16.8.0"
+    react: ">=19"
   peerDependenciesMeta:
     "@types/react":
       optional: true
@@ -2637,11 +2637,11 @@ __metadata:
     "@emotion/serialize": ^1.1.4
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
     "@emotion/utils": ^1.2.1
-    react: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
     typescript: ^4.5.5
   peerDependencies:
     "@emotion/react": ^11.0.0-rc.0
-    react: ">=16.8.0"
+    react: ">=19"
   peerDependenciesMeta:
     "@types/react":
       optional: true
@@ -2658,9 +2658,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/use-insertion-effect-with-fallbacks@workspace:packages/use-insertion-effect-with-fallbacks"
   dependencies:
-    react: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
   peerDependencies:
-    react: ">=16.8.0"
+    react: ">=19"
   languageName: unknown
   linkType: soft
 
@@ -8056,8 +8056,8 @@ __metadata:
     http-server: ^14.0.0
     parcel: ^2.0.1
     puppeteer: ^11.0.0
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
     react-native-web: 0.17.5
     stats-analysis: ^2.0.0
   languageName: unknown
@@ -9851,8 +9851,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "cra-playground@workspace:playgrounds/cra"
   dependencies:
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
     react-scripts: 4.0.3
     theme-ui: ^0.12.0
   languageName: unknown
@@ -11604,8 +11604,8 @@ __metadata:
     polished: ^1.2.1
     prettier: ^2.3.0
     raf: ^3.4.0
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
     react-native: ^0.63.2
     react-primitives: ^0.8.1
     react-test-renderer: 16.8.6
@@ -11642,8 +11642,8 @@ __metadata:
     next: ^12.2.0
     next-mdx-remote: ^4.0.3
     prism-react-renderer: ^1.3.5
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
     react-simple-code-editor: ^0.11.2
     rehype-autolink-headings: ^6.1.1
     rehype-slug: ^5.0.1
@@ -21292,8 +21292,8 @@ __metadata:
   resolution: "nextjs-playground@workspace:playgrounds/nextjs"
   dependencies:
     next: ^12.2.0
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
   languageName: unknown
   linkType: soft
 
@@ -25113,17 +25113,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:16.14.0":
-  version: 16.14.0
-  resolution: "react-dom@npm:16.14.0"
+"react-dom@npm:19.0.0-beta-94eed63c49-20240425":
+  version: 19.0.0-beta-94eed63c49-20240425
+  resolution: "react-dom@npm:19.0.0-beta-94eed63c49-20240425"
   dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-    prop-types: ^15.6.2
-    scheduler: ^0.19.1
+    scheduler: 0.25.0-beta-94eed63c49-20240425
   peerDependencies:
-    react: ^16.14.0
-  checksum: 5a5c49da0f106b2655a69f96c622c347febcd10532db391c262b26aec225b235357d9da1834103457683482ab1b229af7a50f6927a6b70e53150275e31785544
+    react: 19.0.0-beta-94eed63c49-20240425
+  checksum: ef0012e9dbe8dc5e1364d9bed737aaec0f03355d2fc5b079222f74c68eb6df4a451a175e01dc7511abd9cc63b0f00f724dfbeaeca2a14d2b73f3918da260766b
   languageName: node
   linkType: hard
 
@@ -25415,14 +25412,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:16.14.0":
-  version: 16.14.0
-  resolution: "react@npm:16.14.0"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-    prop-types: ^15.6.2
-  checksum: 8484f3ecb13414526f2a7412190575fc134da785c02695eb92bb6028c930bfe1c238d7be2a125088fec663cc7cda0a3623373c46807cf2c281f49c34b79881ac
+"react@npm:19.0.0-beta-94eed63c49-20240425":
+  version: 19.0.0-beta-94eed63c49-20240425
+  resolution: "react@npm:19.0.0-beta-94eed63c49-20240425"
+  checksum: 31ce02fe64641d43ef58e420209adc5d16b6b85cf7af9b4c7a546e2de20cb9cfd73b0418c26b0eeadada8a606b76aca7c333546dda1328bd31e756d38f8f7de9
   languageName: node
   linkType: hard
 
@@ -26725,7 +26718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.19.1, scheduler@npm:^0.19.1":
+"scheduler@npm:0.19.1":
   version: 0.19.1
   resolution: "scheduler@npm:0.19.1"
   dependencies:
@@ -26742,6 +26735,13 @@ __metadata:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: 24ff46a9cb6645fb0ea6506dc3e090c0befcd03707cf4d962a972a19cbdbe4eeb34cf06b127e2c58417c21e7939edb3baa6805b319f8f7779c4addf0fd15d3c2
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:0.25.0-beta-94eed63c49-20240425":
+  version: 0.25.0-beta-94eed63c49-20240425
+  resolution: "scheduler@npm:0.25.0-beta-94eed63c49-20240425"
+  checksum: c33552837704443c151a21773abb18bf7c8a44c0362732340c34207861105db195a667fff689d21a5e328e52a963ab90df3b95a0ab58184ac56f27836d0696cf
   languageName: node
   linkType: hard
 
@@ -27663,8 +27663,8 @@ __metadata:
   dependencies:
     benchmark: ^2.1.4
     d3-scale-chromatic: ^3.0.0
-    react: 16.14.0
-    react-dom: 16.14.0
+    react: 19.0.0-beta-94eed63c49-20240425
+    react-dom: 19.0.0-beta-94eed63c49-20240425
   languageName: unknown
   linkType: soft
 

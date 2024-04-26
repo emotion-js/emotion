@@ -15,8 +15,8 @@
     "http-server": "^14.0.0",
     "parcel": "^2.0.1",
     "puppeteer": "^11.0.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "19.0.0-beta-94eed63c49-20240425",
+    "react-dom": "19.0.0-beta-94eed63c49-20240425",
     "react-native-web": "0.17.5",
     "stats-analysis": "^2.0.0"
   },

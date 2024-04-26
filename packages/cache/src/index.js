@@ -216,7 +216,7 @@ let createCache = (options: Options): EmotionCache => {
         // since we don't need to and that would be wasting memory
         // we return them so that they are rendered in a style tag
         if (shouldCache) {
-          cache.inserted[name] = true
+          cache.inserted[name] = rules
         }
         if (
           // using === development instead of !== production

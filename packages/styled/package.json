@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0-rc.0",
-    "react": ">=16.8.0"
+    "react": ">=19"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "@emotion/react": "11.11.4",
-    "react": "16.14.0",
+    "react": "19.0.0-beta-94eed63c49-20240425",
     "typescript": "^4.5.5"
   },
   "publishConfig": {

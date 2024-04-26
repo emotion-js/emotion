@@ -17,10 +17,10 @@
     "dist"
   ],
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=19"
   },
   "devDependencies": {
-    "react": "16.14.0"
+    "react": "19.0.0-beta-94eed63c49-20240425"
   },
   "exports": {
     ".": {

@@ -10,7 +10,7 @@
   "dependencies": {
     "benchmark": "^2.1.4",
     "d3-scale-chromatic": "^3.0.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react": "19.0.0-beta-94eed63c49-20240425",
+    "react-dom": "19.0.0-beta-94eed63c49-20240425"
   }
 }
