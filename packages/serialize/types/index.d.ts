@@ -7,18 +7,23 @@ import * as CSS from 'csstype'
 export { RegisteredCache, SerializedStyles }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>
-export type CSSPropertiesWithMultiValues = {
+export type CSSPropertiesWithMultiValues<Props = unknown> = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
-    | ReadonlyArray<Extract<CSSProperties[K], string>>
+    | ReadonlyArray<CSSProperties[K] & string>
+    | ((
+        props: Props
+      ) => CSSProperties[K] | ReadonlyArray<CSSProperties[K] & string>)
 }
 
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
+export type CSSPseudos<Props = unknown> = {
+  [K in CSS.Pseudos]?: CSSObject<Props>
+}
 
 export interface ArrayCSSInterpolation
   extends ReadonlyArray<CSSInterpolation> {}
 
-export type InterpolationPrimitive =
+export type InterpolationPrimitive<Props = unknown> =
   | null
   | undefined
   | boolean
@@ -27,18 +32,25 @@ export type InterpolationPrimitive =
   | ComponentSelector
   | Keyframes
   | SerializedStyles
-  | CSSObject
+  | CSSObject<Props>
 
 export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation
 
-export interface CSSOthersObject {
-  [propertiesName: string]: CSSInterpolation
+export interface CSSOthersObject<Props = unknown> {
+  [propertiesName: string]:
+    | InterpolationPrimitive<Props>
+    | ReadonlyArray<InterpolationPrimitive<Props>>
+    | ((
+        props: Props
+      ) =>
+        | InterpolationPrimitive<Props>
+        | ReadonlyArray<InterpolationPrimitive<Props>>)
 }
 
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    CSSOthersObject {}
+export interface CSSObject<Props = unknown>
+  extends CSSPropertiesWithMultiValues<Props>,
+    CSSPseudos<Props>,
+    CSSOthersObject<Props> {}
 
 export interface ComponentSelector {
   __emotion_styles: any
@@ -59,7 +71,7 @@ export interface FunctionInterpolation<Props> {
 }
 
 export type Interpolation<Props> =
-  | InterpolationPrimitive
+  | InterpolationPrimitive<Props>
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>
 

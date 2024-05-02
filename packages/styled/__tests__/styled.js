@@ -437,6 +437,13 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('objects with dynamic value', () => {
+    const H1 = styled('h1')({ padding: props => props.padding || '1rem' })
+    const tree = renderer.create(<H1 padding="0.5rem">hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('composing components', () => {
     const Button = styled.button`
       color: green;
