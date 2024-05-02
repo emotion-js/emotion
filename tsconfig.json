@@ -7,14 +7,14 @@
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "noEmit": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "target": "es5",
+    "target": "es2019",
     "types": []
   },
-  "include": ["packages", "scripts", "site", "test", "playgrounds"],
+  "include": ["packages", "scripts", "test", "playgrounds"],
   "exclude": [
     "node_modules",
     "packages/*/types/test/*",
