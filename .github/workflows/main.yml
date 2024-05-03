@@ -19,6 +19,7 @@ jobs:
           - ubuntu-latest
           - windows-latest
     runs-on: ${{matrix.platform}}
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ci-setup
@@ -33,6 +34,7 @@ jobs:
   flow:
     name: Flow
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ci-setup
@@ -43,6 +45,7 @@ jobs:
   test_react18:
     name: Test React 18
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ci-setup
@@ -52,6 +55,7 @@ jobs:
 
   test_dist:
     name: Test Dist
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -62,6 +66,7 @@ jobs:
 
   linting:
     name: Linting
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -74,6 +79,7 @@ jobs:
 
   typescript:
     name: dtslint
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
