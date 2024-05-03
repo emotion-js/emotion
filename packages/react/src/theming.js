@@ -71,7 +71,7 @@ export function withTheme<Config: {}>(
     return <Component theme={theme} ref={ref} {...props} />
   }
   // $FlowFixMe
-  let WithTheme = React.forwardRef(render)
+  let WithTheme = React.forwardRef(Render)
 
   WithTheme.displayName = `WithTheme(${componentName})`
 

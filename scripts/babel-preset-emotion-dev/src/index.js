@@ -11,7 +11,8 @@ module.exports = (api, options = {}) => {
               development: options.development
             }
           : {}
-      ]
+      ],
+      require.resolve('@babel/preset-typescript')
     ],
     plugins: [
       require.resolve('@babel/plugin-transform-flow-strip-types'),
