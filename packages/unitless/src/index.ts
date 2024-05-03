@@ -1,4 +1,4 @@
-let unitlessKeys: { [key: string]: 1 } = {
+const unitlessKeys: { [key: string]: 1 } = {
   animationIterationCount: 1,
   aspectRatio: 1,
   borderImageOutset: 1,

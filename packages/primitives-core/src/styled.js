@@ -54,6 +54,7 @@ export function createStyled(
           for (let key in props) {
             mergedProps[key] = props[key]
           }
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           mergedProps.theme = React.useContext(ThemeContext)
         }
 

@@ -334,7 +334,6 @@ describe('css', () => {
     expect(sheet).toMatchSnapshot()
   })
   test('multiline declaration', () => {
-    /* eslint-disable prettier/prettier */
     const cls1 = css`
       display: grid;
       grid:
@@ -342,19 +341,16 @@ describe('css', () => {
         'Main' 1fr
         / 1fr;
     `
-    /* eslint-enable prettier/prettier */
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('multiline selector', () => {
-    /* eslint-disable prettier/prettier */
     const cls1 = css`
       .my-class:hover .its-child {
         background: pink;
       }
     `
-    /* eslint-enable prettier/prettier */
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()

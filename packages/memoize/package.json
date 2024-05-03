@@ -10,7 +10,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "typescript": "^4.5.5"
+    "typescript": "^5.4.5"
   },
   "files": [
     "src",

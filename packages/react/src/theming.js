@@ -65,7 +65,7 @@ export function withTheme<Config: {}>(
   Component: React.AbstractComponent<Config>
 ): React.AbstractComponent<$Diff<Config, { theme: Object }>> {
   const componentName = Component.displayName || Component.name || 'Component'
-  let render = (props, ref) => {
+  let Render = (props, ref) => {
     let theme = React.useContext(ThemeContext)
 
     return <Component theme={theme} ref={ref} {...props} />

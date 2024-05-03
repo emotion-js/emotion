@@ -69,6 +69,8 @@ jobs:
 
       - name: ESLint
         run: yarn lint:check
+      - name: Prettier
+        run: yarn prettier:check
 
   typescript:
     name: dtslint

@@ -20,6 +20,7 @@
     "benchmark": "cd scripts/benchmarks && yarn build && yarn run-benchmark",
     "flow": "flow",
     "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
+    "prettier:check": "prettier --check .",
     "preinstall": "node ./scripts/ensure-yarn.js",
     "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
@@ -44,36 +45,23 @@
     "css-in-js"
   ],
   "eslintConfig": {
-    "extends": [
-      "standard",
-      "standard-react",
-      "prettier"
-    ],
     "plugins": [
-      "prettier",
-      "flowtype",
-      "@emotion"
+      "@emotion",
+      "react",
+      "react-hooks",
+      "import"
     ],
-    "parser": "babel-eslint",
     "rules": {
       "camelcase": 0,
       "no-template-curly-in-string": 0,
       "prefer-const": 0,
       "no-unused-vars": 0,
-      "flowtype/define-flow-type": 2,
-      "import/no-duplicates": 0,
-      "prettier/prettier": [
-        "error",
-        {
-          "parser": "flow"
-        }
-      ],
       "react/jsx-curly-brace-presence": 0,
       "react/jsx-handler-names": 0,
       "react/no-unused-prop-types": 0,
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 0,
-      "standard/computed-property-even-spacing": 0,
+      "react-hooks/rules-of-hooks": 2,
       "@emotion/pkg-renaming": 2
     },
     "env": {
@@ -88,6 +76,24 @@
         "env": {
           "jest": true
         }
+      },
+      {
+        "files": [
+          "**/*.js"
+        ],
+        "parser": "@babel/eslint-parser"
+      },
+      {
+        "files": [
+          "**/*.{ts,tsx}"
+        ],
+        "plugins": [
+          "@typescript-eslint"
+        ],
+        "extends": [
+          "plugin:@typescript-eslint/eslint-recommended"
+        ],
+        "parser": "@typescript-eslint/parser"
       },
       {
         "files": [
@@ -107,6 +113,14 @@
         },
         "env": {
           "jest": false
+        }
+      },
+      {
+        "files": [
+          "packages/*/types/*.{ts,tsx}"
+        ],
+        "rules": {
+          "react-hooks/rules-of-hooks": 0
         }
       }
     ]
@@ -167,6 +181,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.24.5",
     "@babel/helper-module-imports": "^7.16.7",
     "@babel/plugin-proposal-class-properties": "^7.17.12",
     "@babel/plugin-syntax-jsx": "^7.17.12",
@@ -186,8 +201,9 @@
     "@types/jest": "^27.0.3",
     "@types/node": "^12.20.37",
     "@types/react": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "babel-check-duplicated-nodes": "^1.0.0",
-    "babel-eslint": "^10.1.0",
     "babel-flow-types": "^1.2.3",
     "babel-jest": "^27.4.5",
     "babel-plugin-codegen": "^4.1.5",
@@ -200,19 +216,13 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint": "^8.57",
     "eslint-config-react": "^1.1.7",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "eslint-plugin-standard": "^4.0.1",
     "flow-bin": "^0.128.0",
     "html-tag-names": "^1.1.2",
     "husky": "^3.0.9",
@@ -241,7 +251,7 @@
     "react18-test-renderer": "npm:react-test-renderer@18.0.0-rc.0-next-aa8f2bdbc-20211215",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
-    "typescript": "^4.5.5",
+    "typescript": "^5.4.5",
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },

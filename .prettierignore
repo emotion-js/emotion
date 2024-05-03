@@ -1,1 +1,4 @@
 package.json
+dist
+site/public
+.yarn
