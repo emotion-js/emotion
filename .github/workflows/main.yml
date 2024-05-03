@@ -30,6 +30,8 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         if: ${{ matrix.platform == 'ubuntu-latest' && always() }}
+        with:
+          directory: ./coverage
 
   flow:
     name: Flow
