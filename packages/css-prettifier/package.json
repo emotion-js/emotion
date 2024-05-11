@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css-prettifier",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "Simple Stylis-based CSS prettifier",
   "keywords": [
     "emotion"
@@ -11,6 +11,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-css-prettifier.esm.js",
+      "import": "./dist/emotion-css-prettifier.cjs.mjs",
       "default": "./dist/emotion-css-prettifier.cjs.js"
     },
     "./package.json": "./package.json"
@@ -19,8 +20,8 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/css-prettifier",
   "dependencies": {
-    "@emotion/memoize": "^0.8.0",
-    "stylis": "4.0.13"
+    "@emotion/memoize": "^0.8.1",
+    "stylis": "4.2.0"
   },
   "publishConfig": {
     "access": "public"

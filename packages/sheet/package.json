@@ -1,6 +1,6 @@
 {
   "name": "@emotion/sheet",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "emotion's stylesheet",
   "main": "dist/emotion-sheet.cjs.js",
   "module": "dist/emotion-sheet.esm.js",
@@ -14,6 +14,7 @@
         "browser": "./dist/emotion-sheet.browser.esm.js",
         "default": "./dist/emotion-sheet.esm.js"
       },
+      "import": "./dist/emotion-sheet.cjs.mjs",
       "default": "./dist/emotion-sheet.cjs.js"
     },
     "./package.json": "./package.json"

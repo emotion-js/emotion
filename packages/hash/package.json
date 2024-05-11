@@ -1,6 +1,6 @@
 {
   "name": "@emotion/hash",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A MurmurHash2 implementation",
   "main": "dist/emotion-hash.cjs.js",
   "module": "dist/emotion-hash.esm.js",
@@ -21,6 +21,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-hash.esm.js",
+      "import": "./dist/emotion-hash.cjs.mjs",
       "default": "./dist/emotion-hash.cjs.js"
     },
     "./package.json": "./package.json"

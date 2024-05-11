@@ -16,12 +16,13 @@ export type CSSProperties = CSS.PropertiesFallback<number | string>
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
-    | Array<Extract<CSSProperties[K], string>>
+    | ReadonlyArray<Extract<CSSProperties[K], string>>
 }
 
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
 
-export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+export interface ArrayCSSInterpolation
+  extends ReadonlyArray<CSSInterpolation> {}
 
 export type InterpolationPrimitive =
   | null
@@ -57,7 +58,7 @@ export type Keyframes = {
 } & string
 
 export interface ArrayInterpolation<Props = unknown>
-  extends Array<Interpolation<Props>> {}
+  extends ReadonlyArray<Interpolation<Props>> {}
 
 export interface FunctionInterpolation<Props = unknown> {
   (props: Props): Interpolation<Props>
@@ -122,7 +123,7 @@ let processStyleValue = (
 
 if (process.env.NODE_ENV !== 'production') {
   let contentValuePattern =
-    /(var|attr|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
+    /(var|attr|counters?|url|element|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
   let contentValues = ['normal', 'none', 'initial', 'inherit', 'unset']
 
   let oldProcessStyleValue = processStyleValue
@@ -311,7 +312,7 @@ function createStringFromObject(
     }
   } else {
     for (let key in obj) {
-      let value = obj[key]
+      let value: unknown = obj[key as never]
       if (typeof value !== 'object') {
         const asString = value as string
         if (registered != null && registered[asString] !== undefined) {

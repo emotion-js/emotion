@@ -1,5 +1,35 @@
 # @emotion/serialize
 
+## 1.1.4
+
+### Patch Changes
+
+- [#3164](https://github.com/emotion-js/emotion/pull/3164) [`c9b84dbe`](https://github.com/emotion-js/emotion/commit/c9b84dbe5bf5e054e6cd561d6da1e1548e1489d1) Thanks [@Cerber-Ursi](https://github.com/Cerber-Ursi)! - Make `ArrayInterpolation` to extend `ReadonlyArray` to match a similar recent change to `ArrayCSSInterpolation`. It fixes some compatibility issues when those 2 get mixed together.
+
+## 1.1.3
+
+### Patch Changes
+
+- [#3141](https://github.com/emotion-js/emotion/pull/3141) [`45c440fb`](https://github.com/emotion-js/emotion/commit/45c440fbc86b90750f275f497d11382f09ec1d2e) Thanks [@Cerber-Ursi](https://github.com/Cerber-Ursi)! - Replace arrays with readonly arrays in CSS type definitions, following changes in `csstype`
+
+## 1.1.2
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+- Updated dependencies [[`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247), [`e6e5b3d7`](https://github.com/emotion-js/emotion/commit/e6e5b3d71ade7b986ab364fc0cb770e7eda16049)]:
+  - @emotion/hash@0.9.1
+  - @emotion/memoize@0.8.1
+  - @emotion/unitless@0.8.1
+  - @emotion/utils@1.2.1
+
+## 1.1.1
+
+### Patch Changes
+
+- [#2896](https://github.com/emotion-js/emotion/pull/2896) [`c02b1214`](https://github.com/emotion-js/emotion/commit/c02b12145a94df011e0fd6ffd54197a4d9369783) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue that prevented using `content: "element(name)"`. This is a valid special value and doesn't need to be quoted.
+
 ## 1.1.0
 
 ### Minor Changes
@@ -202,7 +232,7 @@
 
 ### Patch Changes
 
-- [`3b7e2f2e`](https://github.com/emotion-js/emotion/commit/3b7e2f2e27499b7263341bb83cfc20c8fc51d237) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix flow errors
+- [`3b7e2f2e`](https://github.com/emotion-js/emotion/commit/3b7e2f2e27499b7263341bb83cfc20c8fc51d237) Thanks [@emmatown](https://github.com/emmatown)! - Fix flow errors
 
 ## 0.11.12
 
@@ -236,7 +266,7 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool
 
 ## 0.11.7
 

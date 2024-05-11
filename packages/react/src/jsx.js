@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Emotion, { createEmotionProps } from './emotion-element'
-import { hasOwnProperty } from './utils'
+import { hasOwn } from './utils'
 
 export const jsx /*: typeof React.createElement */ = function (
   type /*: React.ElementType */,
@@ -8,7 +8,7 @@ export const jsx /*: typeof React.createElement */ = function (
 ) {
   let args = arguments
 
-  if (props == null || !hasOwnProperty.call(props, 'css')) {
+  if (props == null || !hasOwn.call(props, 'css')) {
     return React.createElement.apply(undefined, args)
   }
 

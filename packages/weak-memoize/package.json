@@ -1,6 +1,6 @@
 {
   "name": "@emotion/weak-memoize",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A memoization function that uses a WeakMap",
   "main": "dist/emotion-weak-memoize.cjs.js",
   "module": "dist/emotion-weak-memoize.esm.js",
@@ -24,6 +24,7 @@
   "exports": {
     ".": {
       "module": "./dist/emotion-weak-memoize.esm.js",
+      "import": "./dist/emotion-weak-memoize.cjs.mjs",
       "default": "./dist/emotion-weak-memoize.cjs.js"
     },
     "./package.json": "./package.json"

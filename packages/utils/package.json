@@ -1,6 +1,6 @@
 {
   "name": "@emotion/utils",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "internal utils for emotion",
   "main": "dist/emotion-utils.cjs.js",
   "module": "dist/emotion-utils.esm.js",
@@ -15,6 +15,7 @@
         "browser": "./dist/emotion-utils.browser.esm.js",
         "default": "./dist/emotion-utils.esm.js"
       },
+      "import": "./dist/emotion-utils.cjs.mjs",
       "default": "./dist/emotion-utils.cjs.js"
     },
     "./package.json": "./package.json"

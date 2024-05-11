@@ -3,6 +3,7 @@ import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
+import { useInsertionEffectWithLayoutFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 import { serializeStyles } from '@emotion/serialize'
 
@@ -13,10 +14,6 @@ type GlobalProps = {
   +styles: Styles | (Object => Styles)
 }
 */
-
-const useInsertionEffect = React['useInsertion' + 'Effect']
-  ? React['useInsertion' + 'Effect']
-  : React.useLayoutEffect
 
 let warnedAboutCssPropForGlobal = false
 
@@ -89,8 +86,9 @@ export let Global /*: React.AbstractComponent<
 
   let sheetRef = React.useRef()
 
-  useInsertionEffect(() => {
+  useInsertionEffectWithLayoutFallback(() => {
     const key = `${cache.key}-global`
+
     // use case of https://github.com/emotion-js/emotion/issues/2675
     let sheet = new cache.sheet.constructor({
       key,
@@ -99,7 +97,6 @@ export let Global /*: React.AbstractComponent<
       speedy: cache.sheet.isSpeedy
     })
     let rehydrating = false
-
     let node /*: HTMLStyleElement | null*/ = document.querySelector(
       `style[data-emotion="${key} ${serialized.name}"]`
     )
@@ -118,7 +115,7 @@ export let Global /*: React.AbstractComponent<
     }
   }, [cache])
 
-  useInsertionEffect(() => {
+  useInsertionEffectWithLayoutFallback(() => {
     let sheetRefCurrent = sheetRef.current
     let [sheet, rehydrating] = sheetRefCurrent
     if (rehydrating) {

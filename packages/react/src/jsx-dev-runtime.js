@@ -1,11 +1,11 @@
 import * as ReactJSXRuntimeDev from 'react/jsx-dev-runtime'
 import Emotion, { createEmotionProps } from './emotion-element'
-import { hasOwnProperty } from './utils'
+import { hasOwn } from './utils'
 
 export const Fragment = ReactJSXRuntimeDev.Fragment
 
 export function jsxDEV(type, props, key, isStaticChildren, source, self) {
-  if (!hasOwnProperty.call(props, 'css')) {
+  if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntimeDev.jsxDEV(
       type,
       props,

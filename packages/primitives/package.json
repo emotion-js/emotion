@@ -1,30 +1,23 @@
 {
   "name": "@emotion/primitives",
-  "version": "11.10.0",
+  "version": "11.11.0",
   "main": "dist/emotion-primitives.cjs.js",
   "module": "dist/emotion-primitives.esm.js",
   "files": [
     "src",
     "dist",
-    "macro.js"
+    "macro.*"
   ],
   "dependencies": {
-    "@emotion/babel-plugin": "^11.10.0",
-    "@emotion/is-prop-valid": "^1.2.0",
-    "@emotion/primitives-core": "^11.10.0"
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/is-prop-valid": "^1.2.1",
+    "@emotion/primitives-core": "^11.11.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
     "react": ">=16.8.0",
     "react-primitives": "^0.8.1"
   },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    }
-  },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "react": "16.14.0",
@@ -56,6 +49,7 @@
         "browser": "./dist/emotion-primitives.browser.esm.js",
         "default": "./dist/emotion-primitives.esm.js"
       },
+      "import": "./dist/emotion-primitives.cjs.mjs",
       "default": "./dist/emotion-primitives.cjs.js"
     },
     "./package.json": "./package.json",

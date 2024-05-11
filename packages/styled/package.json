@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled",
-  "version": "11.10.0",
+  "version": "11.11.5",
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",
@@ -12,28 +12,24 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.3",
-    "@emotion/babel-plugin": "^11.10.0",
-    "@emotion/is-prop-valid": "^1.2.0",
-    "@emotion/serialize": "^1.1.0",
-    "@emotion/utils": "^1.2.0"
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/is-prop-valid": "^1.2.2",
+    "@emotion/serialize": "^1.1.4",
+    "@emotion/use-insertion-effect-with-fallbacks": "^1.0.1",
+    "@emotion/utils": "^1.2.1"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
     "@emotion/react": "^11.0.0-rc.0",
     "react": ">=16.8.0"
   },
   "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    },
     "@types/react": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/react": "11.10.0",
+    "@emotion/react": "11.11.4",
     "react": "16.14.0",
     "typescript": "^4.5.5"
   },
@@ -45,8 +41,7 @@
     "dist",
     "base",
     "types/*.d.ts",
-    "macro.d.ts",
-    "macro.js"
+    "macro.*"
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {
@@ -59,6 +54,7 @@
         "browser": "./base/dist/emotion-styled-base.browser.esm.js",
         "default": "./base/dist/emotion-styled-base.esm.js"
       },
+      "import": "./base/dist/emotion-styled-base.cjs.mjs",
       "default": "./base/dist/emotion-styled-base.cjs.js"
     },
     ".": {
@@ -67,10 +63,17 @@
         "browser": "./dist/emotion-styled.browser.esm.js",
         "default": "./dist/emotion-styled.esm.js"
       },
+      "import": "./dist/emotion-styled.cjs.mjs",
       "default": "./dist/emotion-styled.cjs.js"
     },
     "./package.json": "./package.json",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "preconstruct": {
     "umdName": "emotionStyled",
@@ -84,7 +87,13 @@
         "worker"
       ],
       "extra": {
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

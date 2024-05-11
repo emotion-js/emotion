@@ -22,7 +22,7 @@
     "preinstall": "node ./scripts/ensure-yarn.js",
     "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "version-packages": "changeset version && yarn --mode=\"update-lockfile\"",
     "release": "yarn build && changeset publish"
   },
   "author": "Kye Hohenberger",
@@ -129,9 +129,8 @@
       "react/jsx-runtime": "ReactJSX",
       "react/jsx-dev-runtime": "ReactJSXDev"
     },
-    "exports": true,
-    "___experimentalFlags_WILL_CHANGE_IN_PATCH": {
-      "exports": true
+    "exports": {
+      "importConditionDefaultExport": "default"
     }
   },
   "bugs": {
@@ -181,7 +180,7 @@
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
     "@manypkg/cli": "^0.19.1",
-    "@preconstruct/cli": "^2.2.1",
+    "@preconstruct/cli": "^2.6.2",
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^12.20.37",
@@ -240,7 +239,7 @@
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "resolutions": {
     "jest-snapshot@27.4.5": "patch:jest-snapshot@npm:27.4.5#.yarn/patches/jest-snapshot-npm-27.4.5-6ace6bf68e.patch"
   }

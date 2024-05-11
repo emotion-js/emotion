@@ -7,7 +7,7 @@ import {
 import { serializeStyles } from '@emotion/serialize'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
-import useInsertionEffectMaybe from './useInsertionEffectMaybe'
+import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import { isBrowser } from './utils'
 
 /*
@@ -87,7 +87,7 @@ function merge(
 }
 
 const Insertion = ({ cache, serializedArr }) => {
-  let rules = useInsertionEffectMaybe(() => {
+  let rules = useInsertionEffectAlwaysWithSyncFallback(() => {
     let rules = ''
     for (let i = 0; i < serializedArr.length; i++) {
       let res = insertStyles(cache, serializedArr[i], false)

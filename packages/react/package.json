@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.10.0",
+  "version": "11.11.4",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "browser": {
@@ -13,6 +13,7 @@
         "browser": "./dist/emotion-react.browser.esm.js",
         "default": "./dist/emotion-react.esm.js"
       },
+      "import": "./dist/emotion-react.cjs.mjs",
       "default": "./dist/emotion-react.cjs.js"
     },
     "./jsx-runtime": {
@@ -21,6 +22,7 @@
         "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
         "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
       },
+      "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
       "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
     },
     "./_isolated-hnrs": {
@@ -29,6 +31,7 @@
         "browser": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
         "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
       },
+      "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
       "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
     },
     "./jsx-dev-runtime": {
@@ -37,11 +40,18 @@
         "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
         "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
       },
+      "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
       "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
     },
     "./package.json": "./package.json",
     "./types/css-prop": "./types/css-prop.d.ts",
-    "./macro": "./macro.js"
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
   },
   "types": "types/index.d.ts",
   "files": [
@@ -51,9 +61,7 @@
     "jsx-dev-runtime",
     "_isolated-hnrs",
     "types/*.d.ts",
-    "macro.js",
-    "macro.d.ts",
-    "macro.js.flow"
+    "macro.*"
   ],
   "sideEffects": false,
   "author": "Emotion Contributors",
@@ -63,32 +71,28 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.3",
-    "@emotion/babel-plugin": "^11.10.0",
-    "@emotion/cache": "^11.10.0",
-    "@emotion/serialize": "^1.1.0",
-    "@emotion/utils": "^1.2.0",
-    "@emotion/weak-memoize": "^0.3.0",
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/serialize": "^1.1.4",
+    "@emotion/use-insertion-effect-with-fallbacks": "^1.0.1",
+    "@emotion/utils": "^1.2.1",
+    "@emotion/weak-memoize": "^0.3.1",
     "hoist-non-react-statics": "^3.3.1"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
     "react": ">=16.8.0"
   },
   "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    },
     "@types/react": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/css": "11.10.0",
-    "@emotion/css-prettifier": "1.1.0",
-    "@emotion/server": "11.10.0",
-    "@emotion/styled": "11.10.0",
+    "@emotion/css": "11.11.2",
+    "@emotion/css-prettifier": "1.1.3",
+    "@emotion/server": "11.11.0",
+    "@emotion/styled": "11.11.5",
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1",
@@ -114,7 +118,13 @@
       ],
       "extra": {
         "./types/css-prop": "./types/css-prop.d.ts",
-        "./macro": "./macro.js"
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
       }
     }
   }

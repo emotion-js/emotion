@@ -1,12 +1,13 @@
 {
   "name": "@emotion/babel-plugin-jsx-pragmatic",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Insert code to load a module corresponding to JSX pragma.",
   "main": "dist/emotion-babel-plugin-jsx-pragmatic.cjs.js",
   "module": "dist/emotion-babel-plugin-jsx-pragmatic.esm.js",
   "exports": {
     ".": {
       "module": "./dist/emotion-babel-plugin-jsx-pragmatic.esm.js",
+      "import": "./dist/emotion-babel-plugin-jsx-pragmatic.cjs.mjs",
       "default": "./dist/emotion-babel-plugin-jsx-pragmatic.cjs.js"
     },
     "./package.json": "./package.json"

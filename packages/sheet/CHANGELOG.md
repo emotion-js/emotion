@@ -1,5 +1,17 @@
 # @emotion/sheet
 
+## 1.2.2
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+## 1.2.1
+
+### Patch Changes
+
+- [#2920](https://github.com/emotion-js/emotion/pull/2920) [`61c66963`](https://github.com/emotion-js/emotion/commit/61c66963dd8426b59d1ec424b5d1b41a371f9d49) Thanks [@pvdstel](https://github.com/pvdstel)! - Do not log failed rule insertions in the speedy mode for even more vendor-prefixed pseudo-elements/classes like `:-ms-expand` and `:-ms-reveal`.
+
 ## 1.2.0
 
 ### Minor Changes
@@ -126,4 +138,4 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool

@@ -92,6 +92,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### In the Wild
 
+- [feathery.io](https://feathery.io)
 - [frontity.org](https://frontity.org)
 - [abacusfi.com](https://abacusfi.com)
 - [healthline.com](https://www.healthline.com)
@@ -109,6 +110,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [cyberhaven.com](https://cyberhaven.com)
 - [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
 - [codecademy.com](https://www.codecademy.com)
+- [Apache Superset](https://superset.apache.org/)
 
 ## Sponsors
 

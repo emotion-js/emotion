@@ -8,8 +8,14 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions: {}
 jobs:
   release:
+    permissions:
+      contents: write # to create release 
+      issues: write # to post issue comments
+      pull-requests: write # to create pull request 
+
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +26,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: yarn release
+          version: yarn version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

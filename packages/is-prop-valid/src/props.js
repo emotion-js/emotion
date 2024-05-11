@@ -67,6 +67,7 @@ const props = {
   dir: true,
   disabled: true,
   disablePictureInPicture: true,
+  disableRemotePlayback: true,
   download: true,
   draggable: true,
   encType: true,

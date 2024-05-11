@@ -1,5 +1,11 @@
 # @emotion/eslint-plugin
 
+## 11.11.0
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
 ## 11.10.0
 
 ### Minor Changes
@@ -28,11 +34,11 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `eslint-plugin-emotion` to `@emotion/eslint-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` and `emotion/` with `@emotion/` in your rules config in your ESLint config.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Rename `eslint-plugin-emotion` to `@emotion/eslint-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` and `emotion/` with `@emotion/` in your rules config in your ESLint config.
 
 ### Minor Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added `@emotion/pkg-renaming` rule for Emotion 11 migration.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Added `@emotion/pkg-renaming` rule for Emotion 11 migration.
 
 * [`8b59959f`](https://github.com/emotion-js/emotion/commit/8b59959f0929799f050089b05cafb39ca2c57d2d) [#1659](https://github.com/emotion-js/emotion/pull/1659) Thanks [@Andarist](https://github.com/Andarist)! - Respect `syntax-preference` rule when using css prop.
 
@@ -52,11 +58,11 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `eslint-plugin-emotion` to `@emotion/eslint-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` and `emotion/` with `@emotion/` in your rules config in your ESLint config.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Rename `eslint-plugin-emotion` to `@emotion/eslint-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` and `emotion/` with `@emotion/` in your rules config in your ESLint config.
 
 ### Minor Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Add @emotion/pkg-renaming rule for Emotion 11 migration
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Add @emotion/pkg-renaming rule for Emotion 11 migration
 
 ## 10.0.27
 
@@ -68,5 +74,5 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool
   - [4ae88942](https://github.com/emotion-js/emotion/commit/4ae88942) [#1402](https://github.com/emotion-js/emotion/pull/1402) Thanks [@ahutchings](https://github.com/ahutchings)! - jsx-import rule: Add jsx specifier to existing import from @emotion/core when auto-fixing
