@@ -2402,6 +2402,7 @@ __metadata:
     "@emotion/sheet": ^1.2.2
     "@emotion/utils": ^1.2.1
     "@emotion/weak-memoize": ^0.3.1
+    "@types/stylis": ^4.2.6
     stylis: 4.2.0
     typescript: ^4.5.5
   languageName: unknown
@@ -5969,6 +5970,13 @@ __metadata:
   dependencies:
     csstype: ^3.0.2
   checksum: 139019dbcaf9afa0fe4fdd4b1b121e18ebe605b3ca3706c87efabd734878748ad511c87edfe8fb2bd54f60909e8bfa02992aea39c25f8e151ed75f39cdf430f8
+  languageName: node
+  linkType: hard
+
+"@types/stylis@npm:^4.2.6":
+  version: 4.2.6
+  resolution: "@types/stylis@npm:4.2.6"
+  checksum: 3a1685f2b465eb943805252b5b2934fc8054fe8706f76e3e28544f69532296f42c042d0b402fadc486ef8e86cc3d8a2c66d2345241e0af8e07974dd36d85a79c
   languageName: node
   linkType: hard
 

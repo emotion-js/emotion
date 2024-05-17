@@ -1,14 +1,14 @@
-/*
 export type StylisElement = {
-  type: string
-  value: string
-  props: Array<string>
+  parent: StylisElement | null
+  children: StylisElement[] | string
   root: StylisElement | null
-  children: Array<StylisElement>
-  line: number
-  column: number
+  type: string
+  props: string[] | string
+  value: string
   length: number
   return: string
+  line: number
+  column: number
 }
 export type StylisPluginCallback = (
   element: StylisElement,
@@ -23,4 +23,3 @@ export type StylisPlugin = (
   children: Array<StylisElement>,
   callback: StylisPluginCallback
 ) => string | void
-*/
