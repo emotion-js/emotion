@@ -26,6 +26,8 @@ export type {
   Middleware as StylisPlugin
 } from 'stylis'
 
+export type { EmotionCache }
+
 let isBrowser = typeof document !== 'undefined'
 
 export interface Options {
