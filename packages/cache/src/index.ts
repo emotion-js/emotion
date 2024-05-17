@@ -5,7 +5,9 @@ import {
   middleware,
   rulesheet,
   stringify,
-  COMMENT
+  COMMENT,
+  Element as StylisElement,
+  Middleware as StylisPlugin
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import memoize from '@emotion/memoize'
@@ -17,9 +19,12 @@ import {
 } from './stylis-plugins'
 import { prefixer } from './prefixer'
 import { EmotionCache, SerializedStyles } from '@emotion/utils'
-import { StylisElement, StylisPlugin } from './types'
 
-export type { StylisElement, StylisPlugin, StylisPluginCallback } from './types'
+export type {
+  Element as StylisElement,
+  Middleware as StylisPluginCallback,
+  Middleware as StylisPlugin
+} from 'stylis'
 
 let isBrowser = typeof document !== 'undefined'
 

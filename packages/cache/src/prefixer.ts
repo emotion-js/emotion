@@ -15,9 +15,10 @@ import {
   RULESET,
   serialize,
   strlen,
-  WEBKIT
+  WEBKIT,
+  Element as StylisElement,
+  Middleware as StylisPluginCallback
 } from 'stylis'
-import { StylisElement, StylisPluginCallback } from './types'
 
 // the types for copy just seem totally wrong?
 const copy = _copy as unknown as (

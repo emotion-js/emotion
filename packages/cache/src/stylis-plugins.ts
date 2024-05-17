@@ -7,9 +7,10 @@ import {
   from,
   peek,
   position,
-  slice
+  slice,
+  Element as StylisElement,
+  Middleware as StylisPluginCallback
 } from 'stylis'
-import { StylisElement, StylisPluginCallback } from './types'
 
 // based on https://github.com/thysultan/stylis.js/blob/e6843c373ebcbbfade25ebcc23f540ed8508da0a/src/Tokenizer.js#L239-L244
 const identifierWithPointTracking = (
