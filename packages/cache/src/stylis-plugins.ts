@@ -142,7 +142,7 @@ export let compat: StylisPluginCallback = element => {
 
 export let removeLabel = (element: StylisElement) => {
   if (element.type === 'decl') {
-    var value = element.value
+    let value = element.value
     if (
       // charcode for l
       value.charCodeAt(0) === 108 &&
