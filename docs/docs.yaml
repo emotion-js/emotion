@@ -32,7 +32,6 @@
     - source-maps
     - testing
     - typescript
-    - flow
     - eslint-plugin-react
 
 # This loads the READMEs instead of files in docs/

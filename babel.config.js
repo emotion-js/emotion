@@ -10,7 +10,7 @@ let isTestFile = filename =>
 module.exports = api => {
   api.cache(true)
   return {
-    presets: ['babel-preset-emotion-dev'],
+    presets: ['babel-preset-emotion-dev', '@babel/preset-typescript'],
     overrides: [
       {
         test: filename =>

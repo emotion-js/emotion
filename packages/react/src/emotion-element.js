@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
@@ -16,7 +15,10 @@ let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
 let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 
-export const createEmotionProps = (type: React.ElementType, props: Object) => {
+export const createEmotionProps = (
+  type /*: React.ElementType */,
+  props /*: Object */
+) => {
   if (
     process.env.NODE_ENV !== 'production' &&
     typeof props.css === 'string' &&
@@ -28,7 +30,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
     )
   }
 
-  let newProps: any = {}
+  let newProps /*: any */ = {}
 
   for (let key in props) {
     if (hasOwn.call(props, key)) {
@@ -81,8 +83,8 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
   return null
 }
 
-let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
-  (props, cache, ref) => {
+let Emotion = /* #__PURE__ */ withEmotionCache(
+  /* <any, any> */ (props, cache, ref) => {
     let cssProp = props.css
 
     // so that using `css` from `emotion` and passing the result to the css prop works

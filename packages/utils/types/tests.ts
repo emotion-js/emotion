@@ -1,11 +1,8 @@
 import {
   EmotionCache,
   RegisteredCache,
-  SerializedStyles,
-  StyleSheet,
   getRegisteredStyles,
-  insertStyles,
-  isBrowser
+  insertStyles
 } from '@emotion/utils'
 
 declare const testCache: EmotionCache
@@ -39,7 +36,3 @@ insertStyles(testCache, {
   name: 'abc',
   styles: 'font-size: 18px;'
 })
-
-const test0: boolean = isBrowser
-// $ExpectError
-const test1: number = isBrowser

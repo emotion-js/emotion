@@ -1,11 +1,10 @@
-// @flow
 import * as ReactJSXRuntime from 'react/jsx-runtime'
 import Emotion, { createEmotionProps } from './emotion-element'
 import { hasOwn } from './utils'
 
 export const Fragment = ReactJSXRuntime.Fragment
 
-export function jsx(type: any, props: any, key: any) {
+export function jsx(type, props, key) {
   if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntime.jsx(type, props, key)
   }
@@ -13,7 +12,7 @@ export function jsx(type: any, props: any, key: any) {
   return ReactJSXRuntime.jsx(Emotion, createEmotionProps(type, props), key)
 }
 
-export function jsxs(type: any, props: any, key: any) {
+export function jsxs(type, props, key) {
   if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntime.jsxs(type, props, key)
   }

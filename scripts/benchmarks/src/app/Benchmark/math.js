@@ -1,11 +1,9 @@
-// @flow
 import stats from 'stats-analysis'
-type ValuesType = Array<number>
 
-export const getStdDev = (values: ValuesType): number => {
+export const getStdDev = values => {
   const avg = getMean(values)
 
-  const squareDiffs = values.map((value: number) => {
+  const squareDiffs = values.map(value => {
     const diff = value - avg
     return diff * diff
   })
@@ -13,7 +11,7 @@ export const getStdDev = (values: ValuesType): number => {
   return Math.sqrt(getMean(squareDiffs))
 }
 
-export const getMean = (values: ValuesType): number => {
+export const getMean = values => {
   let valuesWithoutOutliers = stats.filterMADoutliers(values)
   return stats.mean(valuesWithoutOutliers)
 }

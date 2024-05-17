@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/legacy-env'
 import { css, sheet, flush } from '@emotion/css'
 

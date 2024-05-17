@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'
@@ -8,9 +7,7 @@ import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'
 
-// $FlowFixMe
 console.error = jest.fn()
-// $FlowFixMe
 console.warn = jest.fn()
 
 afterEach(() => {
@@ -18,12 +15,11 @@ afterEach(() => {
   safeQuerySelector('body').innerHTML = ''
 })
 
-const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
+const SomeComponent = (props /*: { lol: true } */) => (props.lol ? 'yes' : 'no')
 
 // test to make sure flow prop errors work.
 // should probably try to make it so that components that require className props
 // and have the css prop passed to them don't have type errors
-// $FlowFixMe
 ;<SomeComponent /> // eslint-disable-line no-unused-expressions
 
 test('thing', () => {
@@ -223,7 +219,7 @@ test('autoLabel without babel (sanitized)', () => {
 })
 
 test('overwrite styles from parent', () => {
-  let SomeComponent = (props: Object) => (
+  let SomeComponent = (props /*: Object */) => (
     <div
       css={{
         color: 'green',
@@ -269,17 +265,14 @@ test('handles camelCased custom properties in object styles properly', () => {
 })
 
 test('applies class when css prop is set to nil on wrapper component', () => {
-  const Button = (props: any) => (
-    <button css={{ color: 'hotpink' }} {...props} />
-  )
+  const Button = props => <button css={{ color: 'hotpink' }} {...props} />
 
-  const WrappedButton: React.StatelessFunctionalComponent<any> = ({
-    children,
-    buttonStyles
-  }: {
+  const WrappedButton /*: React.StatelessFunctionalComponent<any> */ = (
+    { children, buttonStyles } /*: {
     children: React$Node,
     buttonStyles?: null
-  }) => <Button css={buttonStyles}>{children}</Button>
+  } */
+  ) => <Button css={buttonStyles}>{children}</Button>
 
   const tree = renderer.create(
     <React.Fragment>
@@ -341,6 +334,6 @@ it("doesn't try to insert invalid rules caused by object style's value being fal
     </CacheProvider>
   )
 
-  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`[]`)
-  expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`[]`)
+  expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
 })

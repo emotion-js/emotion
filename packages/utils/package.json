@@ -4,6 +4,7 @@
   "description": "internal utils for emotion",
   "main": "dist/emotion-utils.cjs.js",
   "module": "dist/emotion-utils.esm.js",
+  "types": "dist/emotion-utils.cjs.d.ts",
   "browser": {
     "./dist/emotion-utils.esm.js": "./dist/emotion-utils.browser.esm.js"
   },
@@ -19,7 +20,6 @@
     },
     "./package.json": "./package.json"
   },
-  "types": "types/index.d.ts",
   "license": "MIT",
   "scripts": {
     "test:typescript": "dtslint types"
@@ -30,8 +30,7 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",

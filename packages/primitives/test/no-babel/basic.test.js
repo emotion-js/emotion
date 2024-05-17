@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import styled, { css } from '@emotion/primitives'
 import renderer from 'react-test-renderer'
@@ -48,7 +47,6 @@ test('should render the primitive when styles applied using object style notatio
   `
   const tree = renderer
     .create(
-      // $FlowFixMe
       <Text style={{ fontSize: 40 }} back="red">
         Emotion Primitives
       </Text>

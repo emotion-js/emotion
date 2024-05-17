@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'

@@ -1,4 +1,3 @@
-// @flow
 import { safeQuerySelector } from 'test-utils'
 import { StyleSheet } from '@emotion/sheet'
 
@@ -10,7 +9,6 @@ let defaultOptions = {
   container: safeQuerySelector('head')
 }
 
-// $FlowFixMe
 console.error = jest.fn()
 
 afterEach(() => {
@@ -49,7 +47,6 @@ describe('StyleSheet', () => {
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     expect(
-      // $FlowFixMe
       document.querySelector('[data-emotion]').getAttribute('data-emotion')
     ).toBe(key)
     sheet.flush()
@@ -67,7 +64,6 @@ describe('StyleSheet', () => {
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     expect(sheet.tags).toHaveLength(1)
-    // $FlowFixMe
     expect(sheet.tags[0].sheet.cssRules).toMatchSnapshot()
     sheet.flush()
   })
@@ -76,7 +72,7 @@ describe('StyleSheet', () => {
     const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
     sheet.insert('.asdfasdf4###112121211{')
     expect(console.error).toHaveBeenCalledTimes(1)
-    expect((console.error: any).mock.calls[0][0]).toBe(
+    expect(console.error.mock.calls[0][0]).toBe(
       'There was a problem inserting the following rule: ".asdfasdf4###112121211{"'
     )
     sheet.flush()
@@ -94,7 +90,6 @@ describe('StyleSheet', () => {
 
   it("should use the container option instead of document.head to insert style elements into if it's passed", () => {
     const container = document.createElement('div')
-    // $FlowFixMe
     document.body.appendChild(container)
     const sheet = new StyleSheet({ ...defaultOptions, container })
     expect(sheet.container).toBe(container)

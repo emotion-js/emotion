@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - ts-migration
   pull_request:
 
 permissions:
@@ -30,15 +31,15 @@ jobs:
         uses: codecov/codecov-action@v1
         if: ${{ matrix.platform == 'ubuntu-latest' && always() }}
 
-  flow:
-    name: Flow
+  typescript:
+    name: TypeScript
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ci-setup
 
       - name: Check Types
-        run: yarn flow:check
+        run: yarn tsc:all
 
   test_react18:
     name: Test React 18
@@ -70,7 +71,7 @@ jobs:
       - name: ESLint
         run: yarn lint:check
 
-  typescript:
+  dtslint:
     name: dtslint
     runs-on: ubuntu-latest
     steps:

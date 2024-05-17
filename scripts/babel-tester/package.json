@@ -1,10 +1,14 @@
 {
   "name": "babel-tester",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "version": "0.4.5",
   "private": true,
   "dependencies": {
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "babel-check-duplicated-nodes": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jest-in-case": "^1.0.5"
   }
 }

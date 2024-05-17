@@ -27,7 +27,12 @@
   "peerDependencies": {
     "eslint": "6 || 7 || 8"
   },
+  "dependencies": {
+    "@typescript-eslint/utils": "^5.25.0"
+  },
   "devDependencies": {
-    "eslint": "^7.10.0"
+    "@types/eslint": "^7.0.0",
+    "eslint": "^7.10.0",
+    "resolve-from": "^5.0.0"
   }
 }

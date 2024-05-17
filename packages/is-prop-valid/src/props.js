@@ -1,4 +1,6 @@
-// @flow
+/**
+ * This module needs to remain pure JavaScript for codegen to work on it
+ */
 const props = {
   // react props
   // https://github.com/facebook/react/blob/5495a7f24aef85ba6937truetrue1ce962673ca9f5fde6/src/renderers/dom/shared/hooks/ReactDOMUnknownPropertyHook.js
@@ -490,7 +492,6 @@ const props = {
   class: true,
   autofocus: true
 }
-// eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
   '|'
 )})|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/`

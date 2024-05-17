@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
 import renderer from 'react-test-renderer'
@@ -590,7 +589,6 @@ describe('styled', () => {
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
-        // $FlowFixMe
         styled(undefined)`
           display: flex;
         `

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import {
   getRegisteredStyles,
@@ -11,6 +10,7 @@ import { ThemeContext } from './theming'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import { isBrowser } from './utils'
 
+/*
 type ClassNameArg =
   | string
   | boolean
@@ -18,8 +18,9 @@ type ClassNameArg =
   | Array<ClassNameArg>
   | null
   | void
+*/
 
-let classnames = (args: Array<ClassNameArg>): string => {
+let classnames = (args /*: Array<ClassNameArg> */) /*: string */ => {
   let len = args.length
   let i = 0
   let cls = ''
@@ -67,9 +68,9 @@ let classnames = (args: Array<ClassNameArg>): string => {
   return cls
 }
 function merge(
-  registered: Object,
-  css: (...args: Array<any>) => string,
-  className: string
+  registered /*: Object */,
+  css /*: (...args: Array<any>) => string */,
+  className /*: string */
 ) {
   const registeredStyles = []
 
@@ -83,14 +84,6 @@ function merge(
     return className
   }
   return rawClassName + css(registeredStyles)
-}
-
-type Props = {
-  children: ({
-    css: (...args: any) => string,
-    cx: (...args: Array<ClassNameArg>) => string,
-    theme: Object
-  }) => React.Node
 }
 
 const Insertion = ({ cache, serializedArr }) => {
@@ -123,12 +116,21 @@ const Insertion = ({ cache, serializedArr }) => {
   return null
 }
 
-export const ClassNames: React.AbstractComponent<Props> =
+/*
+type Props = {
+  children: ({
+    css: (...args: any) => string,
+    cx: (...args: Array<ClassNameArg>) => string,
+    theme: Object
+  }) => React.Node
+} */
+
+export const ClassNames /*: React.AbstractComponent<Props>*/ =
   /* #__PURE__ */ withEmotionCache((props, cache) => {
     let hasRendered = false
     let serializedArr = []
 
-    let css = (...args: Array<any>) => {
+    let css = (...args /*: Array<any> */) => {
       if (hasRendered && process.env.NODE_ENV !== 'production') {
         throw new Error('css can only be used during render')
       }
@@ -139,7 +141,7 @@ export const ClassNames: React.AbstractComponent<Props> =
       registerStyles(cache, serialized, false)
       return `${cache.key}-${serialized.name}`
     }
-    let cx = (...args: Array<ClassNameArg>) => {
+    let cx = (...args /*: Array<ClassNameArg>*/) => {
       if (hasRendered && process.env.NODE_ENV !== 'production') {
         throw new Error('cx can only be used during render')
       }
