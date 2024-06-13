@@ -15,11 +15,6 @@ let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
 let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 
-let runtimeAutoLabel =
-  process.env.NODE_ENV !== 'production' &&
-  typeof globalThis !== 'undefined' &&
-  !!globalThis.EMOTION_RUNTIME_AUTO_LABEL
-
 export const createEmotionProps = (
   type /*: React.ElementType */,
   props /*: Object */
@@ -52,7 +47,9 @@ export const createEmotionProps = (
   // Even if the flag is set, we still don't compute the label if it has already
   // been determined by the Babel plugin.
   if (
-    runtimeAutoLabel &&
+    process.env.NODE_ENV !== 'production' &&
+    typeof globalThis !== 'undefined' &&
+    !!globalThis.EMOTION_RUNTIME_AUTO_LABEL &&
     !!props.css &&
     (typeof props.css !== 'object' ||
       typeof props.css.name !== 'string' ||
