@@ -1,13 +1,11 @@
-// @flow
-
-const getLastPart = (functionName: string): string => {
+const getLastPart = (functionName /* : string */) /* : string */ => {
   // The match may be something like 'Object.createEmotionProps' or
   // 'Loader.prototype.render'
   const parts = functionName.split('.')
   return parts[parts.length - 1]
 }
 
-const getFunctionNameFromStackTraceLine = (line: string): ?string => {
+const getFunctionNameFromStackTraceLine = (line /*: string*/) /*: ?string*/ => {
   // V8
   let match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line)
   if (match) return getLastPart(match[1])
@@ -29,10 +27,9 @@ const internalReactFunctionNames = /* #__PURE__ */ new Set([
 // These identifiers come from error stacks, so they have to be valid JS
 // identifiers, thus we only need to replace what is a valid character for JS,
 // but not for CSS.
-const sanitizeIdentifier = (identifier: string) =>
-  identifier.replace(/\$/g, '-')
+const sanitizeIdentifier = identifier => identifier.replace(/\$/g, '-')
 
-export const getLabelFromStackTrace = (stackTrace: string): ?string => {
+export const getLabelFromStackTrace = stackTrace => {
   if (!stackTrace) return undefined
 
   const lines = stackTrace.split('\n')

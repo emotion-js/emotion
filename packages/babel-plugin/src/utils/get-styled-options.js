@@ -1,9 +1,8 @@
-// @flow
 import { getLabelFromPath } from './label'
 import { getTargetClassName } from './get-target-class-name'
 import createNodeEnvConditional from './create-node-env-conditional'
 
-const getKnownProperties = (t: *, node: *) =>
+const getKnownProperties = (t, node) =>
   new Set(
     node.properties
       .filter(n => t.isObjectProperty(n) && !n.computed)
@@ -13,7 +12,7 @@ const getKnownProperties = (t: *, node: *) =>
 const createObjectSpreadLike = (t, file, ...objs) =>
   t.callExpression(file.addHelper('extends'), [t.objectExpression([]), ...objs])
 
-export let getStyledOptions = (t: *, path: *, state: *) => {
+export let getStyledOptions = (t, path, state) => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
 
   let args = path.node.arguments

@@ -1,5 +1,27 @@
 # @emotion/babel-preset-css-prop
 
+## 11.11.0
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+- Updated dependencies [[`336f3d50`](https://github.com/emotion-js/emotion/commit/336f3d50fd684ccbb160fff0c63d5560936f1ee5), [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247)]:
+  - @emotion/babel-plugin@11.11.0
+  - @emotion/babel-plugin-jsx-pragmatic@0.2.1
+
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/babel-plugin@11.10.0
+  - @emotion/babel-plugin-jsx-pragmatic@0.2.0
+
 ## 11.2.0
 
 ### Patch Changes
@@ -15,7 +37,7 @@
 
 - [`9e3671c4`](https://github.com/emotion-js/emotion/commit/9e3671c466975fb31cd45431e25cb60ffb677a70) [#2076](https://github.com/emotion-js/emotion/pull/2076) Thanks [@Andarist](https://github.com/Andarist)! - Removed `runtime` option that was introduced to this preset and deprecated shortly after that. If you want to configure `runtime: "automatic"`, replace `@emotion/babel-preset-css-prop` with `@babel/preset-react` and `@emotion/babel-plugin`. You can find out how to configure things properly here: https://emotion.sh/docs/css-prop#babel-preset
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
 
 * [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe) [#1656](https://github.com/emotion-js/emotion/pull/1656) Thanks [@Andarist](https://github.com/Andarist)! - `autoLabel` option no longer is a simple boolean. Instead we accept now 3 values: `dev-only` (the default), `always` and `never`.
 
@@ -27,7 +49,7 @@
 
 ### Minor Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 - [`c672175b`](https://github.com/emotion-js/emotion/commit/c672175b52e86de43b3d4092a8fe34b2023ceae8) [#1130](https://github.com/emotion-js/emotion/pull/1130) Thanks [@jtmthf](https://github.com/jtmthf)! - Adjust how arrays passed to css prop are transformed so function elements can be resolved at runtime.
 
@@ -92,11 +114,11 @@
 
 ### Major Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
 
 ### Minor Changes
 
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@emmatown](https://github.com/emmatown)! - Added the `importMap` option which allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 ### Patch Changes
 
@@ -168,4 +190,4 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool

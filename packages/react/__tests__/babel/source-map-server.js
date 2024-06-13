@@ -1,7 +1,7 @@
 /** @jsx jsx
  * @jest-environment node
  */
-// @flow
+
 import 'test-utils/dev-mode'
 import { jsx } from '@emotion/react'
 import { renderToString } from 'react-dom/server'

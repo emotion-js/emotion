@@ -1,36 +1,37 @@
 {
   "name": "@emotion/babel-plugin",
-  "version": "11.9.2",
+  "version": "11.11.0",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-babel-plugin.cjs.js",
   "module": "dist/emotion-babel-plugin.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-babel-plugin.esm.js",
+      "import": "./dist/emotion-babel-plugin.cjs.mjs",
+      "default": "./dist/emotion-babel-plugin.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "src",
     "lib",
     "dist"
   ],
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "dependencies": {
-    "@babel/helper-module-imports": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.12.13",
-    "@babel/runtime": "^7.13.10",
-    "@emotion/hash": "^0.8.0",
-    "@emotion/memoize": "^0.7.5",
-    "@emotion/serialize": "^1.0.2",
-    "babel-plugin-macros": "^2.6.1",
+    "@babel/helper-module-imports": "^7.16.7",
+    "@babel/runtime": "^7.18.3",
+    "@emotion/hash": "^0.9.1",
+    "@emotion/memoize": "^0.8.1",
+    "@emotion/serialize": "^1.1.2",
+    "babel-plugin-macros": "^3.1.0",
     "convert-source-map": "^1.5.0",
     "escape-string-regexp": "^4.0.0",
     "find-root": "^1.1.0",
     "source-map": "^0.5.7",
-    "stylis": "4.0.13"
-  },
-  "peerDependencies": {
-    "@babel/core": "^7.0.0"
+    "stylis": "4.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/core": "^7.18.5",
     "babel-check-duplicated-nodes": "^1.0.0"
   },
   "author": "Kye Hohenberger",

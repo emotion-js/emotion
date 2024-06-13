@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/dev-mode'
 import { throwIfFalsy } from 'test-utils'

@@ -28,7 +28,7 @@ The [@emotion/css](https://www.npmjs.com/package/@emotion/css) package is framew
 
 ```jsx
 // @live
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/css'
 
 const color = 'white'
 
@@ -55,11 +55,12 @@ render(
 npm i @emotion/react
 ```
 
-The ["@emotion/react"](https://www.npmjs.com/package/@emotion/react) package requires React and is recommended for users of that framework if possible.
+The [@emotion/react](https://www.npmjs.com/package/@emotion/react) package requires React and is recommended for users of that framework if possible.
 
 - Best when using React with a build environment that can be configured.
 
 - `css` prop support
+
   - Similar to the `style` prop, but also has support for auto vendor-prefixing, nested selectors, and media queries.
 
   - Allows developers to skip the `styled` API abstraction and style components and elements directly.
@@ -78,9 +79,7 @@ The ["@emotion/react"](https://www.npmjs.com/package/@emotion/react) package req
 
 ```jsx
 // @live
-// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const color = 'white'
 
@@ -130,7 +129,7 @@ render(<Button>This my button component.</Button>)
 
 ### Browser requirements
 
-Emotion supports all popular browsers, including Internet Explorer 11.
+Emotion supports all popular browsers and Internet Explorer 11.
 
 ### Libraries that Inspired Us
 

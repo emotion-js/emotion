@@ -1,39 +1,28 @@
 {
   "name": "@emotion/css",
-  "version": "11.9.0",
+  "version": "11.11.2",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-css.cjs.js",
   "module": "dist/emotion-css.esm.js",
-  "types": "types/index.d.ts",
+  "types": "dist/emotion-css.cjs.d.ts",
   "files": [
     "src",
     "dist",
     "types",
-    "macro.js",
-    "macro.d.ts",
-    "macro.js.flow",
+    "macro.*",
     "create-instance"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/babel-plugin": "^11.7.1",
-    "@emotion/cache": "^11.7.1",
-    "@emotion/serialize": "^1.0.3",
-    "@emotion/sheet": "^1.0.3",
-    "@emotion/utils": "^1.0.0"
-  },
-  "peerDependencies": {
-    "@babel/core": "^7.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    }
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/serialize": "^1.1.2",
+    "@emotion/sheet": "^1.2.2",
+    "@emotion/utils": "^1.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
     "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
   },
@@ -52,11 +41,42 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "umd:main": "dist/emotion-css.umd.min.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-css.esm.js",
+      "import": "./dist/emotion-css.cjs.mjs",
+      "default": "./dist/emotion-css.cjs.js"
+    },
+    "./create-instance": {
+      "module": "./create-instance/dist/emotion-css-create-instance.esm.js",
+      "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
+      "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
+  },
   "preconstruct": {
     "umdName": "emotion",
     "entrypoints": [
-      "./index.js",
-      "./create-instance.js"
-    ]
+      "./index.ts",
+      "./create-instance.ts"
+    ],
+    "exports": {
+      "extra": {
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
+      }
+    }
   }
 }

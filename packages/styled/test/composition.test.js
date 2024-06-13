@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import 'test-utils/legacy-env'
 import * as renderer from 'react-test-renderer'

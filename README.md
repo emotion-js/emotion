@@ -16,7 +16,6 @@
 ![@emotion/styled size](https://img.shields.io/bundlephobia/min/@emotion/styled.svg?label=@emotion/styled%20size)
 ![@emotion/styled gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled.svg?label=@emotion/styled%20gzip%20size)
 [![slack](https://img.shields.io/badge/join-slack-green)](https://join.slack.com/t/emotion-slack/shared_invite/zt-rmtwsy74-2uvyFdz5uxa8OiMguJJeuQ)
-[![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
 
@@ -93,6 +92,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### In the Wild
 
+- [feathery.io](https://feathery.io)
 - [frontity.org](https://frontity.org)
 - [abacusfi.com](https://abacusfi.com)
 - [healthline.com](https://www.healthline.com)
@@ -110,6 +110,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [cyberhaven.com](https://cyberhaven.com)
 - [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
 - [codecademy.com](https://www.codecademy.com)
+- [Apache Superset](https://superset.apache.org/)
 
 ## Sponsors
 

@@ -63,10 +63,18 @@ export interface CreateStyledComponent<
   SpecificComponentProps extends {} = {},
   JSXProps extends {} = {}
 > {
+  (
+    template: TemplateStringsArray,
+    ...styles: Array<
+      Interpolation<ComponentProps & SpecificComponentProps & { theme: Theme }>
+    >
+  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>
+
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends {} = {}>(
+  <AdditionalProps extends {}>(
+    template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<
         ComponentProps &
@@ -80,18 +88,10 @@ export interface CreateStyledComponent<
     JSXProps
   >
 
-  (
-    template: TemplateStringsArray,
-    ...styles: Array<
-      Interpolation<ComponentProps & SpecificComponentProps & { theme: Theme }>
-    >
-  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>
-
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends {}>(
-    template: TemplateStringsArray,
+  <AdditionalProps extends {} = {}>(
     ...styles: Array<
       Interpolation<
         ComponentProps &

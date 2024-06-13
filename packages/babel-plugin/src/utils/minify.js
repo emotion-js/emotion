@@ -1,22 +1,13 @@
-// @flow
 import { compile } from 'stylis'
 
 const haveSameLocation = (element1, element2) => {
   return element1.line === element2.line && element1.column === element2.column
 }
 
-const isAutoInsertedRule = element => {
-  if (element.type !== 'rule' || !element.parent) {
-    return false
-  }
-
-  let parent = element
-  do {
-    parent = parent.parent
-  } while (parent && parent.type !== 'rule')
-
-  return !!parent && haveSameLocation(element, parent)
-}
+const isAutoInsertedRule = element =>
+  element.type === 'rule' &&
+  element.parent &&
+  haveSameLocation(element, element.parent)
 
 const toInputTree = (elements, tree) => {
   for (let i = 0; i < elements.length; i++) {
@@ -67,18 +58,17 @@ var stringifyTree = elements => {
     .join('')
 }
 
-const interleave = (strings: Array<*>, interpolations: Array<*>) =>
+const interleave = (strings /*: Array<*> */, interpolations /*: Array<*> */) =>
   interpolations.reduce(
     (array, interp, i) => array.concat([interp], strings[i + 1]),
     [strings[0]]
   )
 
-function getDynamicMatches(str: string) {
+function getDynamicMatches(str /*: string */) {
   const re = /xxx(\d+):xxx/gm
   let match
   const matches = []
   while ((match = re.exec(str)) !== null) {
-    // so that flow doesn't complain
     if (match !== null) {
       matches.push({
         value: match[0],
@@ -92,9 +82,9 @@ function getDynamicMatches(str: string) {
 }
 
 function replacePlaceholdersWithExpressions(
-  str: string,
-  expressions: Array<*>,
-  t: *
+  str /*: string */,
+  expressions /*: Array<*> */,
+  t
 ) {
   const matches = getDynamicMatches(str)
   if (matches.length === 0) {
@@ -124,15 +114,17 @@ function replacePlaceholdersWithExpressions(
   })
 
   return interleave(strings, finalExpressions).filter(
-    (node: { value: string }) => {
+    (node /*: { value: string } */) => {
       return node.value !== ''
     }
   )
 }
 
-function createRawStringFromTemplateLiteral(quasi: {
+function createRawStringFromTemplateLiteral(
+  quasi /*: {
   quasis: Array<{ value: { cooked: string } }>
-}) {
+} */
+) {
   let strs = quasi.quasis.map(x => x.value.cooked)
 
   const src = strs
@@ -148,7 +140,7 @@ function createRawStringFromTemplateLiteral(quasi: {
   return src
 }
 
-export default function minify(path: *, t: *): void {
+export default function minify(path, t) {
   const quasi = path.node.quasi
   const raw = createRawStringFromTemplateLiteral(quasi)
   const minified = stringifyTree(toInputTree(compile(raw), []))

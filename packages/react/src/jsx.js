@@ -1,17 +1,14 @@
-// @flow
 import * as React from 'react'
 import Emotion, { createEmotionProps } from './emotion-element'
-import { hasOwnProperty } from './utils'
+import { hasOwn } from './utils'
 
-// $FlowFixMe
-export const jsx: typeof React.createElement = function (
-  type: React.ElementType,
-  props: Object
+export const jsx /*: typeof React.createElement */ = function (
+  type /*: React.ElementType */,
+  props /*: Object */
 ) {
   let args = arguments
 
-  if (props == null || !hasOwnProperty.call(props, 'css')) {
-    // $FlowFixMe
+  if (props == null || !hasOwn.call(props, 'css')) {
     return React.createElement.apply(undefined, args)
   }
 
@@ -24,6 +21,5 @@ export const jsx: typeof React.createElement = function (
     createElementArgArray[i] = args[i]
   }
 
-  // $FlowFixMe
   return React.createElement.apply(null, createElementArgArray)
 }

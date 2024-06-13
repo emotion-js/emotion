@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
@@ -7,16 +6,19 @@ import {
   insertStyles,
   registerStyles
 } from '@emotion/utils'
-import { hasOwnProperty, isBrowser } from './utils'
+import { hasOwn, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
-import useInsertionEffectMaybe from './useInsertionEffectMaybe'
+import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
 let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 
-export const createEmotionProps = (type: React.ElementType, props: Object) => {
+export const createEmotionProps = (
+  type /*: React.ElementType */,
+  props /*: Object */
+) => {
   if (
     process.env.NODE_ENV !== 'production' &&
     typeof props.css === 'string' &&
@@ -28,10 +30,10 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
     )
   }
 
-  let newProps: any = {}
+  let newProps /*: any */ = {}
 
   for (let key in props) {
-    if (hasOwnProperty.call(props, key)) {
+    if (hasOwn.call(props, key)) {
       newProps[key] = props[key]
     }
   }
@@ -74,7 +76,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 const Insertion = ({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
 
-  const rules = useInsertionEffectMaybe(() =>
+  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
     insertStyles(cache, serialized, isStringTag)
   )
 
@@ -98,8 +100,8 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
   return null
 }
 
-let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
-  (props, cache, ref) => {
+let Emotion = /* #__PURE__ */ withEmotionCache(
+  /* <any, any> */ (props, cache, ref) => {
     let cssProp = props.css
 
     // so that using `css` from `emotion` and passing the result to the css prop works
@@ -150,7 +152,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
     const newProps = {}
     for (let key in props) {
       if (
-        hasOwnProperty.call(props, key) &&
+        hasOwn.call(props, key) &&
         key !== 'css' &&
         key !== typePropName &&
         (process.env.NODE_ENV === 'production' || key !== labelPropName)

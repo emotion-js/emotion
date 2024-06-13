@@ -45,6 +45,41 @@ const SomeComponent = /*#__PURE__*/_styled('div', process.env.NODE_ENV === "prod
 })(_templateObject());"
 `;
 
+exports[`@emotion/styled.macro auto-inserted-rule-in-at-rule-preceeded-by-interpolation 1`] = `
+"import styled from '@emotion/styled/macro'
+import { css } from '@emotion/react'
+
+const fullWidth = css\`
+  width: 100%;
+\`
+
+const StyledRoot = styled.div\`
+  \${fullWidth}
+
+  button {
+    @media (min-width: 768px) {
+      color: red;
+    }
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from "@emotion/styled/base";
+import { css } from '@emotion/react';
+const fullWidth = css\`
+  width: 100%;
+\`;
+
+const StyledRoot = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
+  target: "e10xv6gg0"
+} : {
+  target: "e10xv6gg0",
+  label: "StyledRoot"
+})(fullWidth, " button{@media (min-width: 768px){color:red;}}" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dG8taW5zZXJ0ZWQtcnVsZS1pbi1hdC1ydWxlLXByZWNlZWRlZC1ieS1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU82QiIsImZpbGUiOiJhdXRvLWluc2VydGVkLXJ1bGUtaW4tYXQtcnVsZS1wcmVjZWVkZWQtYnktaW50ZXJwb2xhdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkL21hY3JvJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmNvbnN0IGZ1bGxXaWR0aCA9IGNzc2BcbiAgd2lkdGg6IDEwMCU7XG5gXG5cbmNvbnN0IFN0eWxlZFJvb3QgPSBzdHlsZWQuZGl2YFxuICAke2Z1bGxXaWR0aH1cblxuICBidXR0b24ge1xuICAgIEBtZWRpYSAobWluLXdpZHRoOiA3NjhweCkge1xuICAgICAgY29sb3I6IHJlZDtcbiAgICB9XG4gIH1cbmBcbiJdfQ== */"));"
+`;
+
 exports[`@emotion/styled.macro basic 1`] = `
 "import styled from '@emotion/styled/macro'
 
@@ -59,7 +94,7 @@ import _styled from "@emotion/styled/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
-const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+const SomeComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "el9tp5g0"
 } : {
   target: "el9tp5g0",
@@ -125,6 +160,7 @@ import _styled from "@emotion/styled/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
+/*#__PURE__*/
 _styled("div", {
   target: "e1jqiiye0"
 })(process.env.NODE_ENV === "production" ? {
@@ -172,7 +208,7 @@ import _styled from "@emotion/styled/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
-const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+const SomeComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e1i93zq73"
 } : {
   target: "e1i93zq73",
@@ -187,7 +223,7 @@ const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-let SomeOtherComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+let SomeOtherComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e1i93zq72"
 } : {
   target: "e1i93zq72",
@@ -202,14 +238,14 @@ let SomeOtherComponent = _styled("div", process.env.NODE_ENV === "production" ? 
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-let AnotherComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+let AnotherComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e1i93zq71"
 } : {
   target: "e1i93zq71",
   label: "AnotherComponent"
 })(SomeComponent, "{color:green;}", SomeOtherComponent, "{color:green;}" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudC1zZWxlY3Rvci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFRaUMiLCJmaWxlIjoiY29tcG9uZW50LXNlbGVjdG9yLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICBjb2xvcjogaG90cGluaztcbmBcblxubGV0IFNvbWVPdGhlckNvbXBvbmVudCA9IHN0eWxlZC5kaXYoeyBjb2xvcjogJ2hvdHBpbmsnIH0pXG5cbmxldCBBbm90aGVyQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgJHtTb21lQ29tcG9uZW50fSB7XG4gICAgY29sb3I6IGdyZWVuO1xuICB9XG4gICR7U29tZU90aGVyQ29tcG9uZW50fSB7XG4gICAgY29sb3I6IGdyZWVuO1xuICB9XG5gXG5cbmxldCBPbmVMYXN0Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7XG4gIFtTb21lQ29tcG9uZW50XToge1xuICAgIGNvbG9yOiAnZ3JlZW4nXG4gIH0sXG4gIFtTb21lT3RoZXJDb21wb25lbnRdOiB7XG4gICAgY29sb3I6ICdncmVlbidcbiAgfVxufSlcbiJdfQ== */"));
 
-let OneLastComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+let OneLastComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e1i93zq70"
 } : {
   target: "e1i93zq70",
@@ -251,7 +287,7 @@ styled('button', cfg)({})
 
 import _styled from "@emotion/styled/base";
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
@@ -312,7 +348,7 @@ let Avatar = styled.img\`
 
 import _styled from "@emotion/styled/base";
 
-let Avatar = _styled("img", process.env.NODE_ENV === "production" ? {
+let Avatar = /*#__PURE__*/_styled("img", process.env.NODE_ENV === "production" ? {
   target: "e9o8e9e0"
 } : {
   target: "e9o8e9e0",
@@ -340,7 +376,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 /* eslint-disable react/jsx-pascal-case */
 import { jsx } from '@emotion/react';
 
-let SomeComp = _styled("div", process.env.NODE_ENV === "production" ? {
+let SomeComp = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e2dh5500"
 } : {
   target: "e2dh5500",
@@ -372,7 +408,7 @@ import _styled from "@emotion/styled/base";
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 let Comp;
-Comp = _styled("div", process.env.NODE_ENV === "production" ? {
+Comp = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e16lswdj0"
 } : {
   target: "e16lswdj0",
@@ -405,7 +441,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 import { jsx } from '@emotion/react';
 
 class Thing {
-  static SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+  static SomeComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
     target: "e1s9kmbj1"
   } : {
     target: "e1s9kmbj1",
@@ -419,7 +455,7 @@ class Thing {
     map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWNsYXNzLWZpZWxkcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLbUMiLCJmaWxlIjoibGFiZWwtY2xhc3MtZmllbGRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
-  BadIdeaComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+  BadIdeaComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
     target: "e1s9kmbj0"
   } : {
     target: "e1s9kmbj0",
@@ -453,20 +489,20 @@ import _styled from "@emotion/styled/base";
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 
-const Timeline = _styled("ul", process.env.NODE_ENV === "production" ? {
+const Timeline = /*#__PURE__*/_styled("ul", process.env.NODE_ENV === "production" ? {
   target: "e1djkynu2"
 } : {
   target: "e1djkynu2",
   label: "Timeline"
 })(process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW1lbWJlci1leHByZXNzaW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUkwQiIsImZpbGUiOiJsYWJlbC1tZW1iZXItZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG5UaW1lbGluZS5JdGVtLkFuY2hvciA9IHN0eWxlZC5hYGBcbiJdfQ== */");
 
-Timeline.Item = _styled("li", process.env.NODE_ENV === "production" ? {
+Timeline.Item = /*#__PURE__*/_styled("li", process.env.NODE_ENV === "production" ? {
   target: "e1djkynu1"
 } : {
   target: "e1djkynu1",
   label: "Timeline-Item"
 })(process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW1lbWJlci1leHByZXNzaW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUt5QiIsImZpbGUiOiJsYWJlbC1tZW1iZXItZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG5UaW1lbGluZS5JdGVtLkFuY2hvciA9IHN0eWxlZC5hYGBcbiJdfQ== */");
-Timeline.Item.Anchor = _styled("a", process.env.NODE_ENV === "production" ? {
+Timeline.Item.Anchor = /*#__PURE__*/_styled("a", process.env.NODE_ENV === "production" ? {
   target: "e1djkynu0"
 } : {
   target: "e1djkynu0",
@@ -497,7 +533,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 /* eslint-disable react/jsx-pascal-case */
 import { jsx } from '@emotion/react';
 
-const MiniCalWrap$ = _styled("div", process.env.NODE_ENV === "production" ? {
+const MiniCalWrap$ = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "elww2rn0"
 } : {
   target: "elww2rn0",
@@ -540,7 +576,7 @@ const H1 = styled.h1\`
 import _styled from "@emotion/styled/base";
 
 // yes, this was actually a bug at one point
-const H1 = _styled("h1", process.env.NODE_ENV === "production" ? {
+const H1 = /*#__PURE__*/_styled("h1", process.env.NODE_ENV === "production" ? {
   target: "e1nqrpma0"
 } : {
   target: "e1nqrpma0",
@@ -566,7 +602,7 @@ import _styled from "@emotion/styled/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
-const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+const SomeComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "eqhyoqt1"
 } : {
   target: "eqhyoqt1",
@@ -581,7 +617,7 @@ const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-const SomeOtherComponent = _styled("button", process.env.NODE_ENV === "production" ? {
+const SomeOtherComponent = /*#__PURE__*/_styled("button", process.env.NODE_ENV === "production" ? {
   target: "eqhyoqt0"
 } : {
   target: "eqhyoqt0",
@@ -652,7 +688,7 @@ import _styled from "@emotion/styled/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
-const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+const SomeComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "eyr3fbm0"
 } : {
   target: "eyr3fbm0",
@@ -706,7 +742,7 @@ const SomeComponent = styled.div(props => ({ color: props.color }))
 
 import _styled from "@emotion/styled/base";
 
-const SomeComponent = _styled("div", process.env.NODE_ENV === "production" ? {
+const SomeComponent = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e14okpby0"
 } : {
   target: "e14okpby0",
@@ -798,7 +834,7 @@ import _styled from "@emotion/styled/base";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
 
-export const Comp = _styled("div", process.env.NODE_ENV === "production" ? {
+export const Comp = /*#__PURE__*/_styled("div", process.env.NODE_ENV === "production" ? {
   target: "e1dl4grl0"
 } : {
   target: "e1dl4grl0",
@@ -827,7 +863,7 @@ const H1 = styled.h1({ fontSize })
 import _styled from "@emotion/styled/base";
 let fontSize = window.whatever;
 
-const H1 = _styled("h1", process.env.NODE_ENV === "production" ? {
+const H1 = /*#__PURE__*/_styled("h1", process.env.NODE_ENV === "production" ? {
   target: "e4pkhyn0"
 } : {
   target: "e4pkhyn0",
@@ -859,7 +895,7 @@ const H1 = styled.h1\`
 import _styled from "@emotion/styled/base";
 import { css } from '@emotion/react';
 
-const H1 = _styled("h1", process.env.NODE_ENV === "production" ? {
+const H1 = /*#__PURE__*/_styled("h1", process.env.NODE_ENV === "production" ? {
   target: "e45grep0"
 } : {
   target: "e45grep0",
@@ -881,7 +917,7 @@ const H1 = styled.h1({ ...window.whatever })
 
 import _styled from "@emotion/styled/base";
 
-const H1 = _styled("h1", process.env.NODE_ENV === "production" ? {
+const H1 = /*#__PURE__*/_styled("h1", process.env.NODE_ENV === "production" ? {
   target: "e49hde00"
 } : {
   target: "e49hde00",

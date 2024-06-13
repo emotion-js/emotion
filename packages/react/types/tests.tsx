@@ -9,6 +9,7 @@ import {
   withEmotionCache
 } from '@emotion/react'
 import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
+import { CSSInterpolation } from '@emotion/serialize'
 
 declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
@@ -22,6 +23,9 @@ declare module '@emotion/react' {
 
 ;<Global styles={[]} />
 ;<Global styles={theme => [theme.primaryColor]} />
+
+declare const getStyles: () => CSSInterpolation
+;<Global styles={getStyles()} />
 
 declare const getRandomColor: () => string
 
@@ -245,19 +249,3 @@ const anim1 = keyframes`
       ? true
       : false
 }
-
-// RMWC-like component test
-declare const OtherComponent: {
-  <Tag extends React.ElementType>(
-    props:
-      | React.AllHTMLAttributes<HTMLInputElement>
-      | React.ComponentPropsWithRef<Tag>,
-    ref: any
-  ): JSX.Element
-  displayName?: string
-}
-;<OtherComponent
-  onChange={ev => {
-    console.log(ev.currentTarget.value)
-  }}
-/>

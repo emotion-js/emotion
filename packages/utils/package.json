@@ -1,14 +1,25 @@
 {
   "name": "@emotion/utils",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "internal utils for emotion",
   "main": "dist/emotion-utils.cjs.js",
   "module": "dist/emotion-utils.esm.js",
+  "types": "dist/emotion-utils.cjs.d.ts",
   "browser": {
-    "./dist/emotion-utils.cjs.js": "./dist/emotion-utils.browser.cjs.js",
     "./dist/emotion-utils.esm.js": "./dist/emotion-utils.browser.esm.js"
   },
-  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "module": {
+        "worker": "./dist/emotion-utils.worker.esm.js",
+        "browser": "./dist/emotion-utils.browser.esm.js",
+        "default": "./dist/emotion-utils.esm.js"
+      },
+      "import": "./dist/emotion-utils.cjs.mjs",
+      "default": "./dist/emotion-utils.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "license": "MIT",
   "scripts": {
     "test:typescript": "dtslint types"
@@ -19,11 +30,18 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ],
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "typescript": "^4.5.5"
+  },
+  "preconstruct": {
+    "exports": {
+      "envConditions": [
+        "browser",
+        "worker"
+      ]
+    }
   }
 }

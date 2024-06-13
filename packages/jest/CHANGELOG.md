@@ -1,5 +1,53 @@
 # @emotion/jest
 
+## 11.11.0
+
+### Patch Changes
+
+- [#3031](https://github.com/emotion-js/emotion/pull/3031) [`336f3d50`](https://github.com/emotion-js/emotion/commit/336f3d50fd684ccbb160fff0c63d5560936f1ee5) Thanks [@Andarist](https://github.com/Andarist)! - Updated the underlying parser ([stylis](https://github.com/thysultan/stylis)) to 4.2.0
+
+* [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+* Updated dependencies [[`336f3d50`](https://github.com/emotion-js/emotion/commit/336f3d50fd684ccbb160fff0c63d5560936f1ee5), [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247)]:
+  - @emotion/css-prettifier@1.1.3
+
+## 11.10.8
+
+### Patch Changes
+
+- [#3025](https://github.com/emotion-js/emotion/pull/3025) [`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f) Thanks [@Andarist](https://github.com/Andarist)! - Updated the underlying parser ([stylis](https://github.com/thysultan/stylis)) to 4.1.4
+
+- Updated dependencies [[`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f)]:
+  - @emotion/css-prettifier@1.1.2
+
+## 11.10.5
+
+### Patch Changes
+
+- [#2884](https://github.com/emotion-js/emotion/pull/2884) [`da1e68e8`](https://github.com/emotion-js/emotion/commit/da1e68e829c53114dc1aab79b09e32a37d731fcf) Thanks [@billyjanitsch](https://github.com/billyjanitsch)! - Fix a dependency conflict when `@emotion/jest` was installed alongside `@types/jest@^29`.
+
+* [#2929](https://github.com/emotion-js/emotion/pull/2929) [`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02) Thanks [@Andarist](https://github.com/Andarist)! - Updated the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+* Updated dependencies [[`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02)]:
+  - @emotion/css-prettifier@1.1.1
+
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/css-prettifier@1.1.0
+
+## 11.9.4
+
+### Patch Changes
+
+- [#2771](https://github.com/emotion-js/emotion/pull/2771) [`9b4ce70d`](https://github.com/emotion-js/emotion/commit/9b4ce70d05a3f6acc9364a88eb1b77577fadaab6) Thanks [@srmagura](https://github.com/srmagura)! - Fix a dependency conflict when `@emotion/jest` was installed alongside `@types/jest@^28`.
+
 ## 11.9.3
 
 ### Patch Changes
@@ -79,7 +127,7 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest/serializer"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest/serializer"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
 
 * [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - `test` & `print` are no longer exported as named exports. If you want to access the default serializer just access the default export. This means that `@emotion/jest`(previously `jest-emotion`) can't be used directly in the `snapshotSerializers` option, you should use `@emotion/jest/serializer` instead for this.
 
@@ -93,7 +141,7 @@
 
 ### Minor Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Improve support for Enzyme's shallow rendering with the addition of the `@emotion/jest/enzyme-serializer` snapshot serializer.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Improve support for Enzyme's shallow rendering with the addition of the `@emotion/jest/enzyme-serializer` snapshot serializer.
 
 * [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Improved printing of nested at-rules.
 
@@ -186,11 +234,11 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
 
 ### Minor Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Improve support for Enzyme's shallow rendering with the addition of the @emotion/jest/enzyme snapshot serializer
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@emmatown](https://github.com/emmatown)! - Improve support for Enzyme's shallow rendering with the addition of the @emotion/jest/enzyme snapshot serializer
 
 ### Patch Changes
 
@@ -237,7 +285,7 @@
 
 ### Major Changes
 
-- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
+- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@emmatown](https://github.com/emmatown)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
 
 ### Patch Changes
 
@@ -284,7 +332,7 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool
 
 ## 10.0.11
 

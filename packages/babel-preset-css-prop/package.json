@@ -1,19 +1,24 @@
 {
   "name": "@emotion/babel-preset-css-prop",
-  "version": "11.2.0",
+  "version": "11.11.0",
   "description": "A babel preset to automatically enable emotion's css prop",
   "main": "dist/emotion-babel-preset-css-prop.cjs.js",
   "module": "dist/emotion-babel-preset-css-prop.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-babel-preset-css-prop.esm.js",
+      "import": "./dist/emotion-babel-preset-css-prop.cjs.mjs",
+      "default": "./dist/emotion-babel-preset-css-prop.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/babel-preset-css-prop",
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "dependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.12.17",
-    "@babel/runtime": "^7.13.10",
-    "@emotion/babel-plugin": "^11.2.0",
-    "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5"
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
+    "@babel/runtime": "^7.18.3",
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/babel-plugin-jsx-pragmatic": "^0.2.1"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
@@ -26,6 +31,6 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/core": "^7.13.10"
+    "@babel/core": "^7.18.5"
   }
 }

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "es5",
+    "types": []
+  },
+  "include": ["packages", "scripts", "test", "playgrounds"],
+  "exclude": [
+    "node_modules",
+    "packages/*/types/test/*",
+    "packages/*/types/test*",
+    "packages/native"
+  ]
+}

@@ -1,4 +1,3 @@
-// @flow
 import chalk from 'chalk'
 import * as stylis from 'stylis'
 import * as specificity from 'specificity'
@@ -40,10 +39,10 @@ function valueMatches(declaration, value) {
 }
 
 function toHaveStyleRule(
-  received: *,
-  property: *,
-  value: *,
-  options?: { target?: string | RegExp, media?: string } = {}
+  received,
+  property,
+  value,
+  options /* ?: { target?: string | RegExp, media?: string } */ = {}
 ) {
   if (Array.isArray(received)) {
     throw new Error(

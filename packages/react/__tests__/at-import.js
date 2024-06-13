@@ -1,4 +1,3 @@
-// @flow
 import 'test-utils/prod-mode'
 import * as React from 'react'
 /** @jsx jsx */
@@ -7,9 +6,7 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import { Global, css } from '@emotion/react'
 
 beforeEach(() => {
-  // $FlowFixMe
   document.head.innerHTML = ''
-  // $FlowFixMe
   document.body.innerHTML = `<div id="root"></div>`
 })
 
@@ -26,7 +23,7 @@ test('basic', () => {
           }
         `}
       />
-    </React.Fragment>, // $FlowFixMe
+    </React.Fragment>,
     document.getElementById('root')
   )
   expect(document.head).toMatchSnapshot()
@@ -34,7 +31,6 @@ test('basic', () => {
   let elements = document.querySelectorAll('style')
   let rules = []
   for (let element of elements) {
-    // $FlowFixMe
     for (let cssRule of element.sheet.cssRules) {
       rules.push(cssRule.cssText)
     }

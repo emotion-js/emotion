@@ -1,10 +1,10 @@
 import { addDefault, addNamed } from '@babel/helper-module-imports'
 
 export function addImport(
-  state: any,
-  importSource: string,
-  importedSpecifier: string,
-  nameHint?: string
+  state,
+  importSource /*: string */,
+  importedSpecifier /*: string */,
+  nameHint /* ?: string */
 ) {
   let cacheKey = ['import', importSource, importedSpecifier].join(':')
   if (state[cacheKey] === undefined) {

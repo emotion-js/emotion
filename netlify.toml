@@ -1,9 +1,22 @@
 [build]
-  command = "npm run build && npm run build:site"
-  publish = "site/public"
+  command = "yarn build && cd site && yarn build"
+  publish = "site/out"
 
 [build.environment]
-  NODE_VERSION = "10"
-  YARN_VERSION = "1.7.0"
-  YARN_FLAGS = "--frozen-lockfile"
+  NODE_VERSION = "16"
+  YARN_VERSION = "1.22.19"
+  YARN_FLAGS = "--immutable"
   NETLIFY = "true"
+
+# These take effect in production and should match the redirects in next.config.js
+[[redirects]]
+  from = "/"
+  to = "/docs/introduction"
+
+[[redirects]]
+  from = "/docs"
+  to = "/docs/introduction"
+
+[[redirects]]
+  from = "/community"
+  to = "/docs/community"

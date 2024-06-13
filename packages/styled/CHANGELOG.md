@@ -1,5 +1,86 @@
 # @emotion/styled
 
+## 11.11.5
+
+### Patch Changes
+
+- [#3164](https://github.com/emotion-js/emotion/pull/3164) [`c9b84dbe`](https://github.com/emotion-js/emotion/commit/c9b84dbe5bf5e054e6cd561d6da1e1548e1489d1) Thanks [@Cerber-Ursi](https://github.com/Cerber-Ursi)! - Reordered `styled` overloads to accommodate the recent change in `@emotion/serialize`'s types.
+
+- Updated dependencies [[`c9b84dbe`](https://github.com/emotion-js/emotion/commit/c9b84dbe5bf5e054e6cd561d6da1e1548e1489d1)]:
+  - @emotion/serialize@1.1.4
+
+## 11.11.0
+
+### Minor Changes
+
+- [#3031](https://github.com/emotion-js/emotion/pull/3031) [`336f3d50`](https://github.com/emotion-js/emotion/commit/336f3d50fd684ccbb160fff0c63d5560936f1ee5) Thanks [@Andarist](https://github.com/Andarist)! - Added support for cascade `@layer`s by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+- Updated dependencies [[`336f3d50`](https://github.com/emotion-js/emotion/commit/336f3d50fd684ccbb160fff0c63d5560936f1ee5), [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247)]:
+  - @emotion/babel-plugin@11.11.0
+  - @emotion/is-prop-valid@1.2.1
+  - @emotion/serialize@1.1.2
+  - @emotion/use-insertion-effect-with-fallbacks@1.0.1
+  - @emotion/utils@1.2.1
+
+## 11.10.8
+
+### Patch Changes
+
+- [#3025](https://github.com/emotion-js/emotion/pull/3025) [`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a parsing issue with `&` within nested functions in declaration values by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+- Updated dependencies [[`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f)]:
+  - @emotion/babel-plugin@11.10.8
+
+## 11.10.6
+
+### Patch Changes
+
+- [#2985](https://github.com/emotion-js/emotion/pull/2985) [`4e172c2a`](https://github.com/emotion-js/emotion/commit/4e172c2ae4e5237500ec84688d76ebf253ab1fdc) Thanks [@emmatown](https://github.com/emmatown)! - Remove peer dependency on `@babel/core`
+
+- Updated dependencies [[`4e172c2a`](https://github.com/emotion-js/emotion/commit/4e172c2ae4e5237500ec84688d76ebf253ab1fdc)]:
+  - @emotion/babel-plugin@11.10.6
+
+## 11.10.5
+
+### Patch Changes
+
+- [#2929](https://github.com/emotion-js/emotion/pull/2929) [`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02) Thanks [@Andarist](https://github.com/Andarist)! - The support for `@container` queries has been added by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)) .
+
+- Updated dependencies [[`13afe030`](https://github.com/emotion-js/emotion/commit/13afe0303e2e54b5869c326e6d9c9dc36a332c02), [`c02b1214`](https://github.com/emotion-js/emotion/commit/c02b12145a94df011e0fd6ffd54197a4d9369783)]:
+  - @emotion/babel-plugin@11.10.5
+  - @emotion/serialize@1.1.1
+
+## 11.10.4
+
+### Patch Changes
+
+- [#2867](https://github.com/emotion-js/emotion/pull/2867) [`89b6dbb3`](https://github.com/emotion-js/emotion/commit/89b6dbb3c13d49ef1fa3d88888672d810853f05a) Thanks [@Andarist](https://github.com/Andarist)! - Externalized code referencing `React.useInsertionEffect` to a separate `@emotion/use-insertion-effect-with-fallbacks` package. This package should be used in your defined externals if you bundle Emotion for whatever reason. It references `useInsertionEffect` in a very specific way that allows us to use it conditionally. However, if the code consuming Emotion is bundled as a library with Emotion in it then some bundlers might change the way in which we reference `useInsertionEffect` and that might create problems for bundlers used to consume the said library code. By externalizing this new package you can still bundle Emotion if you want to without running into this problem as you won't "destroy" the carefully crafted reference to `useInsertionEffect` in the process.
+
+  Note that we don't recommend bundling Emotion. You should have very specific reasons to do so.
+
+- Updated dependencies [[`89b6dbb3`](https://github.com/emotion-js/emotion/commit/89b6dbb3c13d49ef1fa3d88888672d810853f05a)]:
+  - @emotion/use-insertion-effect-with-fallbacks@1.0.0
+
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+* [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - Thanks to the added `exports` field, the package now includes a `worker` condition that can be utilized by properly configured bundlers when targeting worker-like environments. It fixes the issue with browser-specific files being prioritized by some bundlers when targeting workers.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228), [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/babel-plugin@11.10.0
+  - @emotion/is-prop-valid@1.2.0
+  - @emotion/serialize@1.1.0
+  - @emotion/utils@1.2.0
+
 ## 11.9.3
 
 ### Patch Changes
@@ -66,9 +147,9 @@
 
 ### Major Changes
 
-- [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
+- [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
 
-* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove support for deprecated `innerRef` prop
+* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@emmatown](https://github.com/emmatown)! - Remove support for deprecated `innerRef` prop
 
 * [`a72e6dc`](https://github.com/emotion-js/emotion/commit/a72e6dc0f326b7d3d6067698d433018ee8c4cbf1) [#1501](https://github.com/emotion-js/emotion/pull/1501) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - TypeScript types have been significantly restructured. These changes:
 
@@ -96,7 +177,7 @@
 
 - [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - `[data-emotion]` attribute on SSRed styled has changed. You should never rely on it though.
 
-* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@emmatown](https://github.com/emmatown)! - Use hooks internally for improved bundle size and a better tree in React DevTools
 
 - [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - The parser we use ([Stylis](https://github.com/thysultan/stylis.js)) got upgraded. It fixes some long-standing parsing edge cases while being smaller and faster 🚀
 
@@ -360,7 +441,7 @@
 
 ### Major Changes
 
-- [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
+- [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@emmatown](https://github.com/emmatown)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
 
 ### Patch Changes
 
@@ -374,9 +455,9 @@
 
 ### Major Changes
 
-- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove support for deprecated `innerRef` prop
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@emmatown](https://github.com/emmatown)! - Remove support for deprecated `innerRef` prop
 
-* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@emmatown](https://github.com/emmatown)! - Use hooks internally for improved bundle size and a better tree in React DevTools
 
 ### Patch Changes
 
@@ -432,7 +513,7 @@
 
 ### Major Changes
 
-- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
+- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@emmatown](https://github.com/emmatown)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
 
 ### Patch Changes
 
@@ -515,7 +596,7 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool
 
 ## 10.0.12
 

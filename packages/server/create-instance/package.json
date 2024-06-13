@@ -1,7 +1,8 @@
 {
   "main": "dist/emotion-server-create-instance.cjs.js",
+  "module": "dist/emotion-server-create-instance.esm.js",
   "browser": {
-    "./dist/emotion-server-create-instance.cjs.js": "./dist/emotion-server-create-instance.browser.cjs.js"
+    "./dist/emotion-server-create-instance.esm.js": "./dist/emotion-server-create-instance.browser.esm.js"
   },
   "types": "../types/create-instance"
 }

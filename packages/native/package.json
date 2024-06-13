@@ -1,9 +1,24 @@
 {
   "name": "@emotion/native",
-  "version": "11.9.3",
+  "version": "11.11.0",
   "description": "Style and render React Native components using emotion",
   "main": "dist/emotion-native.cjs.js",
   "module": "dist/emotion-native.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-native.esm.js",
+      "import": "./dist/emotion-native.cjs.mjs",
+      "default": "./dist/emotion-native.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
+  },
   "scripts": {
     "test:typescript": "dtslint types"
   },
@@ -11,11 +26,10 @@
     "src",
     "dist",
     "types/*.d.ts",
-    "macro.js"
+    "macro.*"
   ],
   "types": "types/index.d.ts",
   "devDependencies": {
-    "@babel/core": "^7.13.10",
     "@definitelytyped/dtslint": "0.0.112",
     "@types/react-native": "^0.63.2",
     "react": "16.14.0",
@@ -23,16 +37,10 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@emotion/primitives-core": "^11.0.0"
+    "@emotion/primitives-core": "^11.11.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
     "react-native": ">=0.14.0 <1"
-  },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    }
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
@@ -51,8 +59,17 @@
   "publishConfig": {
     "access": "public"
   },
-  "browser": {
-    "./dist/emotion-native.cjs.js": "./dist/emotion-native.browser.cjs.js",
-    "./dist/emotion-native.esm.js": "./dist/emotion-native.browser.esm.js"
+  "preconstruct": {
+    "exports": {
+      "extra": {
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
+      }
+    }
   }
 }

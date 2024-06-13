@@ -1,12 +1,11 @@
-// @flow
 /* eslint-env jest */
 import * as React from 'react'
 import prettify from '@emotion/css-prettifier'
-import type { Emotion } from '@emotion/css/create-instance'
-// $FlowFixMe
+/* import type { Emotion } from '@emotion/css/create-instance' */
 import { renderToNodeStream } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
 
+/*
 type EmotionServer = {
   renderStylesToNodeStream: () => *,
   extractCritical: string => {
@@ -16,12 +15,13 @@ type EmotionServer = {
   },
   renderStylesToString: string => string
 }
+*/
 
 expect.addSnapshotSerializer(HTMLSerializer)
 
 export const getComponents = (
-  emotion: Emotion,
-  { default: styled }: { default: Function }
+  emotion /*: Emotion */,
+  { default: styled } /*: { default: Function } */
 ) => {
   let Provider = require('@emotion/react').CacheProvider
   let { injectGlobal, keyframes, css } = emotion
@@ -131,8 +131,8 @@ export const getComponents = (
 
 const maxColors = Math.pow(16, 6)
 
-export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
-  const BigComponent = ({ count }: { count: number }) => {
+export const createBigComponent = ({ injectGlobal, css } /*: Emotion */) => {
+  const BigComponent = ({ count } /*: { count: number } */) => {
     if (count === 0) return null
     injectGlobal`
     .some-global-${count} {
@@ -158,15 +158,13 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
   return BigComponent
 }
 
-export const prettifyCritical = ({
-  html,
-  css,
-  ids
-}: {
+export const prettifyCritical = (
+  { html, css, ids } /*: {
   html: string,
   css: string,
   ids: Array<string>
-}) => {
+} */
+) => {
   return {
     css: prettify(css),
     ids,
@@ -174,17 +172,17 @@ export const prettifyCritical = ({
   }
 }
 
-export const prettifyCriticalChunks = ({
-  html,
-  styles
-}: {
+export const prettifyCriticalChunks = (
+  { html, styles } /*: {
   html: string,
   styles: Array<{ key: string, css: string, ids: Array<string> }>
-}) => {
+} */
+) => {
   return {
-    // $FlowFixMe
-    styles: styles.map<{ key: string, css: string, ids: Array<string> }>(
-      (item): { key: string, css: string, ids: Array<string> } => {
+    styles: styles.map(
+      /* <{ key: string, css: string, ids: Array<string> }> */ (
+        item
+      ) /*: { key: string, css: string, ids: Array<string> } */ => {
         return { css: prettify(item.css || ''), ids: item.ids, key: item.key }
       }
     ),
@@ -193,20 +191,16 @@ export const prettifyCriticalChunks = ({
 }
 
 const isSSRedStyle = node => {
-  const attrib = ((node.getAttribute(`data-emotion`): any): string).split(' ')
+  const attrib = node.getAttribute(`data-emotion`).split(' ')
   // SSRed styles have also serialized names set here
   return attrib.length > 1
 }
 
-export const getCssFromChunks = (emotion: Emotion) => {
+export const getCssFromChunks = (emotion /*: Emotion*/) => {
   const chunks = Array.from(
-    // $FlowFixMe
     emotion.sheet.tags[0].parentNode.querySelectorAll(`[data-emotion]`)
   ).filter(isSSRedStyle)
-  expect(
-    // $FlowFixMe
-    document.body.querySelector(`[data-emotion]`)
-  ).toBeNull()
+  expect(document.body.querySelector(`[data-emotion]`)).toBeNull()
   let css = chunks.map(chunk => chunk.textContent || '').join('')
   return prettify(css)
 }
@@ -220,9 +214,9 @@ export const getInjectedRules = () =>
   )
 
 export const renderToStringWithStream = (
-  element: React.Element<*>,
-  { renderStylesToNodeStream }: EmotionServer
-): Promise<string> =>
+  element /*: React.Element<*> */,
+  { renderStylesToNodeStream } /*: EmotionServer */
+) /*: Promise<string> */ =>
   new Promise((resolve, reject) => {
     const stream = renderToNodeStream(element).pipe(renderStylesToNodeStream())
     let html = ''

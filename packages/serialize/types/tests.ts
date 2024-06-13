@@ -48,8 +48,12 @@ serializeStyles({}, {})
 
 let cssObject: CSSObject = {
   fontWeight: 400,
+  background: ['red'],
+  otherProp: ['some-value'],
   ':hover': {
-    fontWeight: 700
+    fontWeight: 700,
+    background: ['red'] as const,
+    otherProp: ['some-value'] as const
   }
 }
 

@@ -3,7 +3,6 @@
   "module": "dist/emotion-react-_isolated-hnrs.esm.js",
   "umd:main": "dist/emotion-react-_isolated-hnrs.umd.min.js",
   "browser": {
-    "./dist/emotion-react-_isolated-hnrs.cjs.js": "./dist/emotion-react-_isolated-hnrs.browser.cjs.js",
     "./dist/emotion-react-_isolated-hnrs.esm.js": "./dist/emotion-react-_isolated-hnrs.browser.esm.js"
   },
   "sideEffects": false,

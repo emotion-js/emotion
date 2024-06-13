@@ -28,4 +28,4 @@ render(
 )
 ```
 
-More documentation is available at https://emotion.sh/docs/styled.
+More documentation is available at [https://emotion.sh/docs/styled](https://emotion.sh/docs/styled).

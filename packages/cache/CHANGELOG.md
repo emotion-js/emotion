@@ -1,5 +1,74 @@
 # @emotion/cache
 
+## 11.11.0
+
+### Minor Changes
+
+- [#3031](https://github.com/emotion-js/emotion/pull/3031) [`336f3d50`](https://github.com/emotion-js/emotion/commit/336f3d50fd684ccbb160fff0c63d5560936f1ee5) Thanks [@Andarist](https://github.com/Andarist)! - Added support for cascade `@layer`s by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+### Patch Changes
+
+- [#3029](https://github.com/emotion-js/emotion/pull/3029) [`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247) Thanks [@Andarist](https://github.com/Andarist)! - Fixed importing in Node ESM
+
+- Updated dependencies [[`eed5e6cf`](https://github.com/emotion-js/emotion/commit/eed5e6cf00f94f3011b93825ccce43cb2270c247)]:
+  - @emotion/memoize@0.8.1
+  - @emotion/sheet@1.2.2
+  - @emotion/utils@1.2.1
+  - @emotion/weak-memoize@0.3.1
+
+## 11.10.8
+
+### Patch Changes
+
+- [#3025](https://github.com/emotion-js/emotion/pull/3025) [`6bd13425`](https://github.com/emotion-js/emotion/commit/6bd13425a2b413150c81e63fad1105d7968b5e6f) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a parsing issue with `&` within nested functions in declaration values by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+## 11.10.7
+
+### Patch Changes
+
+- [#3019](https://github.com/emotion-js/emotion/pull/3019) [`b02be0ba`](https://github.com/emotion-js/emotion/commit/b02be0bae0048df4b3a8567436bc31059b00d213) Thanks [@Andarist](https://github.com/Andarist)! - Fixed `/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */` not disabling the warning for rules defined inside other rules.
+
+## 11.10.5
+
+### Patch Changes
+
+- [#2890](https://github.com/emotion-js/emotion/pull/2890) [`d8a13bca`](https://github.com/emotion-js/emotion/commit/d8a13bcae81812d3dff643bcf446709f965f0909) Thanks [@Andarist](https://github.com/Andarist)! - An edge case issue with some specific CSS variables being treated as prefixable declarations got fixed by updating the underlying parser ([stylis](https://github.com/thysultan/stylis)).
+
+- Updated dependencies [[`61c66963`](https://github.com/emotion-js/emotion/commit/61c66963dd8426b59d1ec424b5d1b41a371f9d49)]:
+  - @emotion/sheet@1.2.1
+
+## 11.10.3
+
+### Patch Changes
+
+- [#2864](https://github.com/emotion-js/emotion/pull/2864) [`b9b8b749`](https://github.com/emotion-js/emotion/commit/b9b8b7493d6aea7cb2543aa1925eb2cac9636be9) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a regression that could cause a crash when looking for an ignoring comment for unsafe pseudo-classes.
+
+## 11.10.2
+
+### Patch Changes
+
+- [#2751](https://github.com/emotion-js/emotion/pull/2751) [`0ffd6068`](https://github.com/emotion-js/emotion/commit/0ffd6068fe1c455788c0099b350ea771ce5657ee) Thanks [@Andarist](https://github.com/Andarist), [@kyoncy](https://github.com/kyoncy)! - Fix `/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */` not disabling the warning when there are multiple blocks of CSS.
+
+## 11.10.1
+
+### Patch Changes
+
+- [#2842](https://github.com/emotion-js/emotion/pull/2842) [`28e9b499`](https://github.com/emotion-js/emotion/commit/28e9b4996f45d209bfc821927f9c41e378ebc10b) Thanks [@Andarist](https://github.com/Andarist)! - Thanks to the recently added `exports` field, the package now includes a `worker` condition that can be utilized by properly configured bundlers when targeting worker-like environments. It fixes the issue with browser-specific files being prioritized by some bundlers when targeting workers.
+
+## 11.10.0
+
+### Minor Changes
+
+- [#2819](https://github.com/emotion-js/emotion/pull/2819) [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228) Thanks [@nicksrandall](https://github.com/nicksrandall)! - `exports` field has been added to the `package.json` manifest. It limits what files can be imported from a package but we've tried our best to allow importing all the files that were considered to be a part of the public API.
+
+### Patch Changes
+
+- Updated dependencies [[`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228), [`bbad8c79`](https://github.com/emotion-js/emotion/commit/bbad8c79937f8dfd5d93bf485c1e9ec44124d228)]:
+  - @emotion/memoize@0.8.0
+  - @emotion/sheet@1.2.0
+  - @emotion/utils@1.2.0
+  - @emotion/weak-memoize@0.3.0
+
 ## 11.9.3
 
 ### Patch Changes
@@ -66,7 +135,7 @@
 
 ### Patch Changes
 
-- [#2361](https://github.com/emotion-js/emotion/pull/2361) [`38f9d44f`](https://github.com/emotion-js/emotion/commit/38f9d44f919dccbf66c835ccde3f08ab927a4940) Thanks [@danieldelcore](https://github.com/danieldelcore), [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fixed moving of client-side inserted style tags from Emotion 10 when intending to hydrate Emotion 11 styles resulting in losing styles in production
+- [#2361](https://github.com/emotion-js/emotion/pull/2361) [`38f9d44f`](https://github.com/emotion-js/emotion/commit/38f9d44f919dccbf66c835ccde3f08ab927a4940) Thanks [@danieldelcore](https://github.com/danieldelcore), [@emmatown](https://github.com/emmatown)! - Fixed moving of client-side inserted style tags from Emotion 10 when intending to hydrate Emotion 11 styles resulting in losing styles in production
 
 ## 11.1.3
 
@@ -225,7 +294,7 @@
 
 ### Major Changes
 
-- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
+- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@emmatown](https://github.com/emmatown)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
 
 ## 10.0.29
 
@@ -256,7 +325,7 @@
 
 ### Patch Changes
 
-- [10514a86](https://github.com/emotion-js/emotion/commit/10514a8635dcaa55b85c7bff90e2a9e14d1ba61f) [#1482](https://github.com/emotion-js/emotion/pull/1482) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove react native bundles in favour of different isBrowser detection
+- [10514a86](https://github.com/emotion-js/emotion/commit/10514a8635dcaa55b85c7bff90e2a9e14d1ba61f) [#1482](https://github.com/emotion-js/emotion/pull/1482) Thanks [@emmatown](https://github.com/emmatown)! - Remove react native bundles in favour of different isBrowser detection
   - [16ff2330](https://github.com/emotion-js/emotion/commit/16ff233061e35fe71bfb1671da54ac12d6fc9eeb) [#1483](https://github.com/emotion-js/emotion/pull/1483) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - nth selector will no longer warn when using extract critical
 
 ## 10.0.15
@@ -269,4 +338,4 @@
 
 ### Patch Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
+- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pull/1419) Thanks [@emmatown](https://github.com/emmatown)! - Update build tool

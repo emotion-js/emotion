@@ -1,12 +1,13 @@
-// @flow
 import * as React from 'react'
 import {
   getDefaultShouldForwardProp,
-  composeShouldForwardProps,
+  composeShouldForwardProps
+  /*
   type StyledOptions,
   type CreateStyled,
   type PrivateStyledComponent,
   type StyledElementType
+  */
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
 import {
@@ -15,7 +16,7 @@ import {
   registerStyles
 } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
-import useInsertionEffectMaybe from './useInsertionEffectMaybe'
+import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
@@ -27,7 +28,7 @@ let isBrowser = typeof document !== 'undefined'
 const Insertion = ({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
 
-  const rules = useInsertionEffectMaybe(() =>
+  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
     insertStyles(cache, serialized, isStringTag)
   )
 
@@ -51,7 +52,10 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
   return null
 }
 
-let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
+let createStyled /*: CreateStyled */ = (
+  tag /*: any */,
+  options /* ?: StyledOptions */
+) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -74,7 +78,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return function <Props>(): PrivateStyledComponent<Props> {
+  /* return function<Props>(): PrivateStyledComponent<Props> { */
+  return function () {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -101,8 +106,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    // $FlowFixMe: we need to cast StatelessFunctionalComponent to our PrivateStyledComponent class
-    const Styled: PrivateStyledComponent<Props> = withEmotionCache(
+    const Styled /*: PrivateStyledComponent<Props> */ = withEmotionCache(
       (props, cache, ref) => {
         const FinalTag = (shouldUseAs && props.as) || baseTag
 
@@ -147,10 +151,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         for (let key in props) {
           if (shouldUseAs && key === 'as') continue
 
-          if (
-            // $FlowFixMe
-            finalShouldForwardProp(key)
-          ) {
+          if (finalShouldForwardProp(key)) {
             newProps[key] = props[key]
           }
         }
@@ -194,18 +195,16 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         ) {
           return 'NO_COMPONENT_SELECTOR'
         }
-        // $FlowFixMe: coerce undefined to string
         return `.${targetClassName}`
       }
     })
 
     Styled.withComponent = (
-      nextTag: StyledElementType<Props>,
-      nextOptions?: StyledOptions
+      nextTag /*: StyledElementType<Props> */,
+      nextOptions /* ?: StyledOptions */
     ) => {
       return createStyled(nextTag, {
         ...options,
-        // $FlowFixMe
         ...nextOptions,
         shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
       })(...styles)

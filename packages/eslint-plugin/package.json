@@ -1,10 +1,7 @@
 {
   "name": "@emotion/eslint-plugin",
-  "version": "11.7.0",
+  "version": "11.11.0",
   "description": "ESLint rules for emotion",
-  "scripts": {
-    "test:typescript": "exit 0"
-  },
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -13,6 +10,15 @@
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
   "main": "dist/emotion-eslint-plugin.cjs.js",
+  "module": "dist/emotion-eslint-plugin.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emotion-eslint-plugin.esm.js",
+      "import": "./dist/emotion-eslint-plugin.cjs.mjs",
+      "default": "./dist/emotion-eslint-plugin.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "engines": {
     "node": ">=6"
   },
@@ -21,7 +27,12 @@
   "peerDependencies": {
     "eslint": "6 || 7 || 8"
   },
+  "dependencies": {
+    "@typescript-eslint/utils": "^5.25.0"
+  },
   "devDependencies": {
-    "eslint": "^7.10.0"
+    "@types/eslint": "^7.0.0",
+    "eslint": "^7.10.0",
+    "resolve-from": "^5.0.0"
   }
 }
