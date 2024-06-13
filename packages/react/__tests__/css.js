@@ -1,5 +1,4 @@
 /** @jsx jsx */
-/* global globalThis */
 import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'
 import * as React from 'react'
@@ -12,7 +11,6 @@ console.error = jest.fn()
 console.warn = jest.fn()
 
 beforeEach(() => {
-  // $FlowFixMe
   delete globalThis.EMOTION_RUNTIME_AUTO_LABEL
 })
 
@@ -210,7 +208,6 @@ it('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', () => {
 })
 
 test('autoLabel without babel', () => {
-  // $FlowFixMe
   globalThis.EMOTION_RUNTIME_AUTO_LABEL = true
 
   let SomeComp = props => {
@@ -231,7 +228,6 @@ test('autoLabel without babel', () => {
 })
 
 test('autoLabel without babel (sanitized)', () => {
-  // $FlowFixMe
   globalThis.EMOTION_RUNTIME_AUTO_LABEL = true
 
   let SomeComp$ = props => {
