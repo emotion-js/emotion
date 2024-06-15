@@ -8,6 +8,7 @@ import {
 } from '@emotion/utils'
 import { hasOwn, isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
+import isDevelopment from '#is-development'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
@@ -20,7 +21,7 @@ export const createEmotionProps = (
   props /*: Object */
 ) => {
   if (
-    process.env.NODE_ENV !== 'production' &&
+    isDevelopment &&
     typeof props.css === 'string' &&
     // check if there is a css declaration
     props.css.indexOf(':') !== -1
@@ -47,7 +48,7 @@ export const createEmotionProps = (
   // Even if the flag is set, we still don't compute the label if it has already
   // been determined by the Babel plugin.
   if (
-    process.env.NODE_ENV !== 'production' &&
+    isDevelopment &&
     typeof globalThis !== 'undefined' &&
     !!globalThis.EMOTION_RUNTIME_AUTO_LABEL &&
     !!props.css &&
@@ -123,10 +124,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
       React.useContext(ThemeContext)
     )
 
-    if (
-      process.env.NODE_ENV !== 'production' &&
-      serialized.name.indexOf('-') === -1
-    ) {
+    if (isDevelopment && serialized.name.indexOf('-') === -1) {
       let labelFromStack = props[labelPropName]
       if (labelFromStack) {
         serialized = serializeStyles([
@@ -144,7 +142,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
         hasOwn.call(props, key) &&
         key !== 'css' &&
         key !== typePropName &&
-        (process.env.NODE_ENV === 'production' || key !== labelPropName)
+        (!isDevelopment || key !== labelPropName)
       ) {
         newProps[key] = props[key]
       }
@@ -165,7 +163,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
   }
 )
 
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   Emotion.displayName = 'EmotionCssPropInternal'
 }
 

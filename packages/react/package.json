@@ -8,38 +8,58 @@
   },
   "exports": {
     ".": {
-      "module": {
-        "worker": "./dist/emotion-react.worker.esm.js",
-        "browser": "./dist/emotion-react.browser.esm.js",
-        "default": "./dist/emotion-react.esm.js"
+      "types": {
+        "import": "./dist/emotion-react.cjs.mjs",
+        "default": "./dist/emotion-react.cjs.js"
       },
+      "development": {
+        "module": "./dist/emotion-react.development.esm.js",
+        "import": "./dist/emotion-react.development.cjs.mjs",
+        "default": "./dist/emotion-react.development.cjs.js"
+      },
+      "module": "./dist/emotion-react.esm.js",
       "import": "./dist/emotion-react.cjs.mjs",
       "default": "./dist/emotion-react.cjs.js"
     },
     "./jsx-runtime": {
-      "module": {
-        "worker": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.esm.js",
-        "browser": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
-        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
+      "types": {
+        "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
       },
+      "development": {
+        "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.esm.js",
+        "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.mjs",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.js"
+      },
+      "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js",
       "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
       "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
     },
     "./_isolated-hnrs": {
-      "module": {
-        "worker": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.esm.js",
-        "browser": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
+      "types": {
+        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
       },
+      "development": {
+        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js",
+        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.mjs",
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.js"
+      },
+      "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js",
       "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
       "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
     },
     "./jsx-dev-runtime": {
-      "module": {
-        "worker": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.esm.js",
-        "browser": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
-        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
+      "types": {
+        "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
       },
+      "development": {
+        "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.esm.js",
+        "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.mjs",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.js"
+      },
+      "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js",
       "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
       "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
     },
@@ -51,6 +71,12 @@
         "default": "./macro.d.ts"
       },
       "default": "./macro.js"
+    }
+  },
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
     }
   },
   "types": "types/index.d.ts",
@@ -112,10 +138,6 @@
     ],
     "umdName": "emotionReact",
     "exports": {
-      "envConditions": [
-        "browser",
-        "worker"
-      ],
       "extra": {
         "./types/css-prop": "./types/css-prop.d.ts",
         "./macro": {

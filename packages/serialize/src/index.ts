@@ -2,6 +2,7 @@ import type { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
+import isDevelopment from '#is-development'
 import * as CSS from 'csstype'
 
 export type { RegisteredCache, SerializedStyles }
@@ -121,7 +122,7 @@ let processStyleValue = (
   return value
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   let contentValuePattern =
     /(var|attr|counters?|url|element|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/
   let contentValues = ['normal', 'none', 'initial', 'inherit', 'unset']
@@ -184,7 +185,7 @@ function handleInterpolation(
   const componentSelector = interpolation as ComponentSelector
   if (componentSelector.__emotion_styles !== undefined) {
     if (
-      process.env.NODE_ENV !== 'production' &&
+      isDevelopment &&
       String(componentSelector) === 'NO_COMPONENT_SELECTOR'
     ) {
       throw new Error(noComponentSelectorMessage)
@@ -223,10 +224,7 @@ function handleInterpolation(
           }
         }
         let styles = `${serializedStyles.styles};`
-        if (
-          process.env.NODE_ENV !== 'production' &&
-          serializedStyles.map !== undefined
-        ) {
+        if (isDevelopment && serializedStyles.map !== undefined) {
           styles += serializedStyles.map
         }
 
@@ -246,7 +244,7 @@ function handleInterpolation(
         cursor = previousCursor
 
         return handleInterpolation(mergedProps, registered, result)
-      } else if (process.env.NODE_ENV !== 'production') {
+      } else if (isDevelopment) {
         console.error(
           'Functions that are interpolated in css calls will be stringified.\n' +
             'If you want to have a css call based on props, create a function that returns a css call like this\n' +
@@ -258,7 +256,7 @@ function handleInterpolation(
       break
     }
     case 'string':
-      if (process.env.NODE_ENV !== 'production') {
+      if (isDevelopment) {
         const matched: string[] = []
         const replaced = interpolation.replace(
           animationRegex,
@@ -324,10 +322,7 @@ function createStringFromObject(
           )};`
         }
       } else {
-        if (
-          key === 'NO_COMPONENT_SELECTOR' &&
-          process.env.NODE_ENV !== 'production'
-        ) {
+        if (key === 'NO_COMPONENT_SELECTOR' && isDevelopment) {
           throw new Error(noComponentSelectorMessage)
         }
         if (
@@ -356,10 +351,7 @@ function createStringFromObject(
               break
             }
             default: {
-              if (
-                process.env.NODE_ENV !== 'production' &&
-                key === 'undefined'
-              ) {
+              if (isDevelopment && key === 'undefined') {
                 console.error(UNDEFINED_AS_OBJECT_KEY_ERROR)
               }
               string += `${key}{${interpolated}}`
@@ -376,7 +368,7 @@ function createStringFromObject(
 let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
 let sourceMapPattern: RegExp | undefined
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   sourceMapPattern =
     /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
 }
@@ -417,10 +409,7 @@ export function serializeStyles(
     )
   } else {
     const asTemplateStringsArr = strings as TemplateStringsArray
-    if (
-      process.env.NODE_ENV !== 'production' &&
-      asTemplateStringsArr[0] === undefined
-    ) {
+    if (isDevelopment && asTemplateStringsArr[0] === undefined) {
       console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
     }
     styles += asTemplateStringsArr[0]
@@ -434,10 +423,7 @@ export function serializeStyles(
     )
     if (stringMode) {
       const templateStringsArr = strings as TemplateStringsArray
-      if (
-        process.env.NODE_ENV !== 'production' &&
-        templateStringsArr[i] === undefined
-      ) {
+      if (isDevelopment && templateStringsArr[i] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
       }
       styles += templateStringsArr[i]
@@ -445,7 +431,7 @@ export function serializeStyles(
   }
   let sourceMap
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     styles = styles.replace(sourceMapPattern!, match => {
       sourceMap = match
       return ''
@@ -464,7 +450,7 @@ export function serializeStyles(
 
   let name = hashString(styles) + identifierName
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     const devStyles = {
       name,
       styles,

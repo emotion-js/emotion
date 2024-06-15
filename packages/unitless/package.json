@@ -16,6 +16,10 @@
   ],
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-unitless.cjs.mjs",
+        "default": "./dist/emotion-unitless.cjs.js"
+      },
       "module": "./dist/emotion-unitless.esm.js",
       "import": "./dist/emotion-unitless.cjs.mjs",
       "default": "./dist/emotion-unitless.cjs.js"

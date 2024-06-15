@@ -10,6 +10,7 @@ import {
   */
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
+import isDevelopment from '#is-development'
 import {
   getRegisteredStyles,
   insertStyles,
@@ -56,7 +57,7 @@ let createStyled /*: CreateStyled */ = (
   tag /*: any */,
   options /* ?: StyledOptions */
 ) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     if (tag === undefined) {
       throw new Error(
         'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -92,14 +93,14 @@ let createStyled /*: CreateStyled */ = (
     if (args[0] == null || args[0].raw === undefined) {
       styles.push.apply(styles, args)
     } else {
-      if (process.env.NODE_ENV !== 'production' && args[0][0] === undefined) {
+      if (isDevelopment && args[0][0] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
       }
       styles.push(args[0][0])
       let len = args.length
       let i = 1
       for (; i < len; i++) {
-        if (process.env.NODE_ENV !== 'production' && args[0][i] === undefined) {
+        if (isDevelopment && args[0][i] === undefined) {
           console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
         }
         styles.push(args[i], args[0][i])
@@ -189,10 +190,7 @@ let createStyled /*: CreateStyled */ = (
 
     Object.defineProperty(Styled, 'toString', {
       value() {
-        if (
-          targetClassName === undefined &&
-          process.env.NODE_ENV !== 'production'
-        ) {
+        if (targetClassName === undefined && isDevelopment) {
           return 'NO_COMPONENT_SELECTOR'
         }
         return `.${targetClassName}`

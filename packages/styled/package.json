@@ -49,20 +49,30 @@
   },
   "exports": {
     "./base": {
-      "module": {
-        "worker": "./base/dist/emotion-styled-base.worker.esm.js",
-        "browser": "./base/dist/emotion-styled-base.browser.esm.js",
-        "default": "./base/dist/emotion-styled-base.esm.js"
+      "types": {
+        "import": "./base/dist/emotion-styled-base.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.cjs.js"
       },
+      "development": {
+        "module": "./base/dist/emotion-styled-base.development.esm.js",
+        "import": "./base/dist/emotion-styled-base.development.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.development.cjs.js"
+      },
+      "module": "./base/dist/emotion-styled-base.esm.js",
       "import": "./base/dist/emotion-styled-base.cjs.mjs",
       "default": "./base/dist/emotion-styled-base.cjs.js"
     },
     ".": {
-      "module": {
-        "worker": "./dist/emotion-styled.worker.esm.js",
-        "browser": "./dist/emotion-styled.browser.esm.js",
-        "default": "./dist/emotion-styled.esm.js"
+      "types": {
+        "import": "./dist/emotion-styled.cjs.mjs",
+        "default": "./dist/emotion-styled.cjs.js"
       },
+      "development": {
+        "module": "./dist/emotion-styled.development.esm.js",
+        "import": "./dist/emotion-styled.development.cjs.mjs",
+        "default": "./dist/emotion-styled.development.cjs.js"
+      },
+      "module": "./dist/emotion-styled.esm.js",
       "import": "./dist/emotion-styled.cjs.mjs",
       "default": "./dist/emotion-styled.cjs.js"
     },
@@ -75,6 +85,12 @@
       "default": "./macro.js"
     }
   },
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
+    }
+  },
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
@@ -82,10 +98,6 @@
       "./base.js"
     ],
     "exports": {
-      "envConditions": [
-        "browser",
-        "worker"
-      ],
       "extra": {
         "./macro": {
           "types": {

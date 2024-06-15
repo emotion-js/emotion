@@ -1,3 +1,4 @@
+import isDevelopment from '#is-development'
 /*
 
 Based off glamor's StyleSheet, thanks Sunil ❤️
@@ -75,9 +76,7 @@ export class StyleSheet {
 
   constructor(options: Options) {
     this.isSpeedy =
-      options.speedy === undefined
-        ? process.env.NODE_ENV === 'production'
-        : options.speedy
+      options.speedy === undefined ? !isDevelopment : options.speedy
     this.tags = []
     this.ctr = 0
     this.nonce = options.nonce
@@ -119,7 +118,7 @@ export class StyleSheet {
     }
     const tag = this.tags[this.tags.length - 1]
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (isDevelopment) {
       const isImportRule =
         rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
 
@@ -146,7 +145,7 @@ export class StyleSheet {
         sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
         if (
-          process.env.NODE_ENV !== 'production' &&
+          isDevelopment &&
           !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear|-ms-expand|-ms-reveal){/.test(
             rule
           )
@@ -167,7 +166,7 @@ export class StyleSheet {
     this.tags.forEach(tag => tag.parentNode?.removeChild(tag))
     this.tags = []
     this.ctr = 0
-    if (process.env.NODE_ENV !== 'production') {
+    if (isDevelopment) {
       this._alreadyInsertedOrderInsensitiveRule = false
     }
   }

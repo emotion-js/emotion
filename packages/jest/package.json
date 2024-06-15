@@ -6,21 +6,37 @@
   "module": "dist/emotion-jest.esm.js",
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-jest.cjs.mjs",
+        "default": "./dist/emotion-jest.cjs.js"
+      },
       "module": "./dist/emotion-jest.esm.js",
       "import": "./dist/emotion-jest.cjs.mjs",
       "default": "./dist/emotion-jest.cjs.js"
     },
     "./enzyme": {
+      "types": {
+        "import": "./enzyme/dist/emotion-jest-enzyme.cjs.mjs",
+        "default": "./enzyme/dist/emotion-jest-enzyme.cjs.js"
+      },
       "module": "./enzyme/dist/emotion-jest-enzyme.esm.js",
       "import": "./enzyme/dist/emotion-jest-enzyme.cjs.mjs",
       "default": "./enzyme/dist/emotion-jest-enzyme.cjs.js"
     },
     "./serializer": {
+      "types": {
+        "import": "./serializer/dist/emotion-jest-serializer.cjs.mjs",
+        "default": "./serializer/dist/emotion-jest-serializer.cjs.js"
+      },
       "module": "./serializer/dist/emotion-jest-serializer.esm.js",
       "import": "./serializer/dist/emotion-jest-serializer.cjs.mjs",
       "default": "./serializer/dist/emotion-jest-serializer.cjs.js"
     },
     "./enzyme-serializer": {
+      "types": {
+        "import": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.mjs",
+        "default": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.js"
+      },
       "module": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.esm.js",
       "import": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.mjs",
       "default": "./enzyme-serializer/dist/emotion-jest-enzyme-serializer.cjs.js"

@@ -24,22 +24,25 @@
   },
   "exports": {
     ".": {
-      "module": {
-        "worker": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.esm.js",
-        "browser": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js",
-        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js"
+      "types": {
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
       },
+      "development": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.development.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.development.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.development.cjs.js"
+      },
+      "module": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
       "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
       "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
     },
     "./package.json": "./package.json"
   },
-  "preconstruct": {
-    "exports": {
-      "envConditions": [
-        "browser",
-        "worker"
-      ]
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
     }
   }
 }
