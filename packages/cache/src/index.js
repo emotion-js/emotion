@@ -11,6 +11,7 @@ import {
 import weakMemoize from '@emotion/weak-memoize'
 import memoize from '@emotion/memoize'
 import isDevelopment from '#is-development'
+import isBrowser from '#is-browser'
 import {
   compat,
   removeLabel,
@@ -19,8 +20,6 @@ import {
 } from './stylis-plugins'
 import { prefixer } from './prefixer'
 /* import type { StylisPlugin } from './types' */
-
-let isBrowser = typeof document !== 'undefined'
 
 /*
 export type Options = {

@@ -9,7 +9,7 @@ import isDevelopment from '#is-development'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
-import { isBrowser } from './utils'
+import isBrowser from '#is-browser'
 
 /*
 type ClassNameArg =

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useContext, forwardRef } from 'react'
 import createCache from '@emotion/cache'
 import isDevelopment from '#is-development'
-import { isBrowser } from './utils'
+import isBrowser from '#is-browser'
 
 let EmotionCacheContext /*: React.Context<EmotionCache | null> */ =
   /* #__PURE__ */ React.createContext(

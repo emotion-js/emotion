@@ -54,9 +54,29 @@
         "default": "./base/dist/emotion-styled-base.cjs.js"
       },
       "development": {
+        "worker": {
+          "module": "./base/dist/emotion-styled-base.development.esm.js",
+          "import": "./base/dist/emotion-styled-base.development.cjs.mjs",
+          "default": "./base/dist/emotion-styled-base.development.cjs.js"
+        },
+        "browser": {
+          "module": "./base/dist/emotion-styled-base.browser.development.esm.js",
+          "import": "./base/dist/emotion-styled-base.browser.development.cjs.mjs",
+          "default": "./base/dist/emotion-styled-base.browser.development.cjs.js"
+        },
         "module": "./base/dist/emotion-styled-base.development.esm.js",
         "import": "./base/dist/emotion-styled-base.development.cjs.mjs",
         "default": "./base/dist/emotion-styled-base.development.cjs.js"
+      },
+      "worker": {
+        "module": "./base/dist/emotion-styled-base.esm.js",
+        "import": "./base/dist/emotion-styled-base.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.cjs.js"
+      },
+      "browser": {
+        "module": "./base/dist/emotion-styled-base.browser.esm.js",
+        "import": "./base/dist/emotion-styled-base.browser.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.browser.cjs.js"
       },
       "module": "./base/dist/emotion-styled-base.esm.js",
       "import": "./base/dist/emotion-styled-base.cjs.mjs",
@@ -68,9 +88,29 @@
         "default": "./dist/emotion-styled.cjs.js"
       },
       "development": {
+        "worker": {
+          "module": "./dist/emotion-styled.development.esm.js",
+          "import": "./dist/emotion-styled.development.cjs.mjs",
+          "default": "./dist/emotion-styled.development.cjs.js"
+        },
+        "browser": {
+          "module": "./dist/emotion-styled.browser.development.esm.js",
+          "import": "./dist/emotion-styled.browser.development.cjs.mjs",
+          "default": "./dist/emotion-styled.browser.development.cjs.js"
+        },
         "module": "./dist/emotion-styled.development.esm.js",
         "import": "./dist/emotion-styled.development.cjs.mjs",
         "default": "./dist/emotion-styled.development.cjs.js"
+      },
+      "worker": {
+        "module": "./dist/emotion-styled.esm.js",
+        "import": "./dist/emotion-styled.cjs.mjs",
+        "default": "./dist/emotion-styled.cjs.js"
+      },
+      "browser": {
+        "module": "./dist/emotion-styled.browser.esm.js",
+        "import": "./dist/emotion-styled.browser.cjs.mjs",
+        "default": "./dist/emotion-styled.browser.cjs.js"
       },
       "module": "./dist/emotion-styled.esm.js",
       "import": "./dist/emotion-styled.cjs.mjs",
@@ -88,6 +128,11 @@
   "imports": {
     "#is-development": {
       "development": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
+    },
+    "#is-browser": {
+      "worker": "./src/conditions/false.js",
+      "browser": "./src/conditions/true.js",
       "default": "./src/conditions/false.js"
     }
   },

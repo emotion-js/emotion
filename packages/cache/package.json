@@ -14,9 +14,29 @@
         "default": "./dist/emotion-cache.cjs.js"
       },
       "development": {
+        "worker": {
+          "module": "./dist/emotion-cache.development.esm.js",
+          "import": "./dist/emotion-cache.development.cjs.mjs",
+          "default": "./dist/emotion-cache.development.cjs.js"
+        },
+        "browser": {
+          "module": "./dist/emotion-cache.browser.development.esm.js",
+          "import": "./dist/emotion-cache.browser.development.cjs.mjs",
+          "default": "./dist/emotion-cache.browser.development.cjs.js"
+        },
         "module": "./dist/emotion-cache.development.esm.js",
         "import": "./dist/emotion-cache.development.cjs.mjs",
         "default": "./dist/emotion-cache.development.cjs.js"
+      },
+      "worker": {
+        "module": "./dist/emotion-cache.esm.js",
+        "import": "./dist/emotion-cache.cjs.mjs",
+        "default": "./dist/emotion-cache.cjs.js"
+      },
+      "browser": {
+        "module": "./dist/emotion-cache.browser.esm.js",
+        "import": "./dist/emotion-cache.browser.cjs.mjs",
+        "default": "./dist/emotion-cache.browser.cjs.js"
       },
       "module": "./dist/emotion-cache.esm.js",
       "import": "./dist/emotion-cache.cjs.mjs",
@@ -27,6 +47,11 @@
   "imports": {
     "#is-development": {
       "development": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
+    },
+    "#is-browser": {
+      "worker": "./src/conditions/false.js",
+      "browser": "./src/conditions/true.js",
       "default": "./src/conditions/false.js"
     }
   },

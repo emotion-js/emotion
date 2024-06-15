@@ -28,11 +28,27 @@
         "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
         "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
       },
+      "worker": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
+      },
+      "browser": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.cjs.js"
+      },
       "module": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
       "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
       "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
     },
     "./package.json": "./package.json"
   },
-  "imports": {}
+  "imports": {
+    "#is-browser": {
+      "worker": "./src/conditions/false.js",
+      "browser": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
+    }
+  }
 }

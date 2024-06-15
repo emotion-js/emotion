@@ -6,9 +6,10 @@ import {
   insertStyles,
   registerStyles
 } from '@emotion/utils'
-import { hasOwn, isBrowser } from './utils'
+import { hasOwn } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 import isDevelopment from '#is-development'
+import isBrowser from '#is-browser'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
