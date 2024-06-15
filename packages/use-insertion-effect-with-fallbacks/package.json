@@ -28,21 +28,11 @@
         "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
         "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
       },
-      "development": {
-        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.development.esm.js",
-        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.development.cjs.mjs",
-        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.development.cjs.js"
-      },
       "module": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
       "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
       "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
     },
     "./package.json": "./package.json"
   },
-  "imports": {
-    "#is-development": {
-      "development": "./src/conditions/true.js",
-      "default": "./src/conditions/false.js"
-    }
-  }
+  "imports": {}
 }
