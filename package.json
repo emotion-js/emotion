@@ -235,7 +235,7 @@
     "react18-test-renderer": "npm:react-test-renderer@18.0.0-rc.0-next-aa8f2bdbc-20211215",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
-    "typescript": "^4.5.5",
+    "typescript": "^5.4.5",
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },

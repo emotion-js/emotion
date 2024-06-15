@@ -2403,7 +2403,7 @@ __metadata:
     "@emotion/utils": ^1.2.1
     "@emotion/weak-memoize": ^0.3.1
     stylis: 4.2.0
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2426,7 +2426,7 @@ __metadata:
     "@emotion/serialize": ^1.1.2
     "@emotion/sheet": ^1.2.2
     "@emotion/utils": ^1.2.1
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2448,7 +2448,7 @@ __metadata:
   resolution: "@emotion/hash@workspace:packages/hash"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2458,7 +2458,7 @@ __metadata:
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/memoize": ^0.8.1
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2488,7 +2488,7 @@ __metadata:
     react-dom: 16.14.0
     specificity: ^0.4.1
     stylis: 4.2.0
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   peerDependencies:
     "@types/jest": ^26.0.14 || ^27.0.0 || ^28.0.0 || ^29.0.0
     enzyme-to-json: ^3.2.1
@@ -2505,7 +2505,7 @@ __metadata:
   resolution: "@emotion/memoize@workspace:packages/memoize"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2532,7 +2532,7 @@ __metadata:
     "@types/react-native": ^0.63.2
     react: 16.14.0
     react-native: ^0.63.2
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   peerDependencies:
     react-native: ">=0.14.0 <1"
   languageName: unknown
@@ -2589,7 +2589,7 @@ __metadata:
     html-tag-names: ^1.1.2
     react: 16.14.0
     svg-tag-names: ^1.1.1
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   peerDependencies:
     react: ">=16.8.0"
   peerDependenciesMeta:
@@ -2608,7 +2608,7 @@ __metadata:
     "@emotion/unitless": ^0.8.1
     "@emotion/utils": ^1.2.1
     csstype: ^3.0.2
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2625,7 +2625,7 @@ __metadata:
     html-tokenize: ^2.0.0
     multipipe: ^1.0.2
     through: ^2.3.8
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   peerDependencies:
     "@emotion/css": ^11.0.0-rc.0
   peerDependenciesMeta:
@@ -2639,7 +2639,7 @@ __metadata:
   resolution: "@emotion/sheet@workspace:packages/sheet"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2656,7 +2656,7 @@ __metadata:
     "@emotion/use-insertion-effect-with-fallbacks": ^1.0.1
     "@emotion/utils": ^1.2.1
     react: 16.14.0
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   peerDependencies:
     "@emotion/react": ^11.0.0-rc.0
     react: ">=16.8.0"
@@ -2687,7 +2687,7 @@ __metadata:
   resolution: "@emotion/utils@workspace:packages/utils"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -2696,7 +2696,7 @@ __metadata:
   resolution: "@emotion/weak-memoize@workspace:packages/weak-memoize"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    typescript: ^4.5.5
+    typescript: ^5.4.5
   languageName: unknown
   linkType: soft
 
@@ -11777,7 +11777,7 @@ __metadata:
     react18-test-renderer: "npm:react-test-renderer@18.0.0-rc.0-next-aa8f2bdbc-20211215"
     svg-tag-names: ^1.1.1
     through: ^2.3.8
-    typescript: ^4.5.5
+    typescript: ^5.4.5
     unified: ^6.1.6
     webpack-bundle-analyzer: 3.3.2
   languageName: unknown
@@ -29561,6 +29561,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:^5.4.5":
+  version: 5.4.5
+  resolution: "typescript@npm:5.4.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 53c879c6fa1e3bcb194b274d4501ba1985894b2c2692fa079db03c5a5a7140587a1e04e1ba03184605d35f439b40192d9e138eb3279ca8eee313c081c8bcd9b0
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>":
   version: 4.5.5
   resolution: "typescript@patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=a1c5e5"
@@ -29568,6 +29578,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 858c61fa63f7274ca4aaaffeced854d550bf416cff6e558c4884041b3311fb662f476f167cf5c9f8680c607239797e26a2ee0bcc6467fbc05bfcb218e1c6c671
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^5.4.5#~builtin<compat/typescript>":
+  version: 5.4.5
+  resolution: "typescript@patch:typescript@npm%3A5.4.5#~builtin<compat/typescript>::version=5.4.5&hash=a1c5e5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 2373c693f3b328f3b2387c3efafe6d257b057a142f9a79291854b14ff4d5367d3d730810aee981726b677ae0fd8329b23309da3b6aaab8263dbdccf1da07a3ba
   languageName: node
   linkType: hard
 
