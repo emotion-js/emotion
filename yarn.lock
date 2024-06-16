@@ -12151,7 +12151,7 @@ __metadata:
     npm-run-all: ^4.0.2
     opencollective: ^1.0.3
     polished: ^1.2.1
-    prettier: ^2.3.0
+    prettier: ^3.3.2
     raf: ^3.4.0
     react: 16.14.0
     react-dom: 16.14.0
@@ -25599,12 +25599,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "prettier@npm:2.3.0"
+"prettier@npm:^3.3.2":
+  version: 3.3.2
+  resolution: "prettier@npm:3.3.2"
   bin:
-    prettier: bin-prettier.js
-  checksum: e8851a45f60f2994775f96e07964646c299b8a8f9c64da4fbd8efafc20db3458bdcedac79aed34e1d5477540b3aa04f6499adc4979cb7937f8ebd058a767d8ff
+    prettier: bin/prettier.cjs
+  checksum: 5557d8caed0b182f68123c2e1e370ef105251d1dd75800fadaece3d061daf96b1389141634febf776050f9d732c7ae8fd444ff0b4a61b20535e7610552f32c69
   languageName: node
   linkType: hard
 

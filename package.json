@@ -223,7 +223,7 @@
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
     "polished": "^1.2.1",
-    "prettier": "^2.3.0",
+    "prettier": "^3.3.2",
     "raf": "^3.4.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
