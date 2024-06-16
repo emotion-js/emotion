@@ -16,6 +16,7 @@
       "check-type-operator",
       "check-preblock"
     ],
-    "no-unnecessary-generics": false
+    "no-unnecessary-generics": false,
+    "unnecessary-bind": false
   }
 }

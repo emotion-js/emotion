@@ -19,6 +19,7 @@
 
     "no-unnecessary-generics": false,
     "strict-export-declare-modifiers": false,
-    "no-default-import": false
+    "no-default-import": false,
+    "unnecessary-bind": false
   }
 }
