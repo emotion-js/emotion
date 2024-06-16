@@ -42,6 +42,6 @@
   ],
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
-    "typescript": "^4.5.5"
+    "typescript": "^5.4.5"
   }
 }

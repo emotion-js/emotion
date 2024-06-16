@@ -10,9 +10,8 @@ beforeEach(() => {
 test('it works', () => {
   let css = `color:hotpink;`
   let hash = hashString(css)
-  safeQuerySelector(
-    'body'
-  ).innerHTML = `<style data-emotion="css ${hash}">.css-${hash}{${css}}</style>`
+  safeQuerySelector('body').innerHTML =
+    `<style data-emotion="css ${hash}">.css-${hash}{${css}}</style>`
   let cache = createCache({ key: 'css' })
   expect(cache.inserted).toEqual({ [hash]: true })
   expect(document.documentElement).toMatchSnapshot()
@@ -21,9 +20,8 @@ test('it works', () => {
 test('rehydrated styles to head can be flushed', () => {
   let css = `color:hotpink;`
   let hash = hashString(css)
-  safeQuerySelector(
-    'head'
-  ).innerHTML = `<style data-emotion="emo ${hash}">.emo-${hash}{${css}}</style>`
+  safeQuerySelector('head').innerHTML =
+    `<style data-emotion="emo ${hash}">.emo-${hash}{${css}}</style>`
 
   // this moves emotion style tags at initialization time
   jest.resetModules()
@@ -86,9 +84,8 @@ test('should only hydrate style elements matching the cache key', () => {
   let css = `color:hotpink;`
   let hash = hashString(css)
 
-  safeQuerySelector(
-    'body'
-  ).innerHTML = `<style data-emotion="emo ${hash}">.emo-${hash}{${css}}</style>`
+  safeQuerySelector('body').innerHTML =
+    `<style data-emotion="emo ${hash}">.emo-${hash}{${css}}</style>`
 
   const cache = createCache({ key: 'custom-key' })
 
@@ -125,9 +122,8 @@ test('should only hydrate style elements matching the cache key', () => {
 
 test('Existing client-side inserted styles from Emotion 10 should not be moved', () => {
   // the nested nature isn't special, it's just meant to be a general "make sure they're not moved"
-  safeQuerySelector(
-    'body'
-  ).innerHTML = `<div><style data-emotion="css-global"></style><div><style data-emotion="css"></style></div></div>`
+  safeQuerySelector('body').innerHTML =
+    `<div><style data-emotion="css-global"></style><div><style data-emotion="css"></style></div></div>`
   expect(document.documentElement).toMatchInlineSnapshot(`
     <html>
       <head />

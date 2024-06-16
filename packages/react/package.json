@@ -204,7 +204,7 @@
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1",
-    "typescript": "^4.5.5"
+    "typescript": "^5.4.5"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/react",
   "publishConfig": {

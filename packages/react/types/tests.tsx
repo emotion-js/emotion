@@ -187,10 +187,10 @@ const anim1 = keyframes`
   // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/98fa4486aefd5a1916aa385402467a7157e3c73f/types/react/v17/index.d.ts#L540-L548
   type OldFC<P = {}> = OldFunctionComponent<P>
   interface OldFunctionComponent<P = {}> {
-    (props: React.PropsWithChildren<P>, context?: any): React.ReactElement<
-      any,
-      any
-    > | null
+    (
+      props: React.PropsWithChildren<P>,
+      context?: any
+    ): React.ReactElement<any, any> | null
     propTypes?: React.WeakValidationMap<P> | undefined
     contextTypes?: React.ValidationMap<any> | undefined
     defaultProps?: Partial<P> | undefined
