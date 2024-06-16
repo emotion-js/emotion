@@ -18,6 +18,7 @@
       "check-typecast",
       "check-type-operator",
       "check-preblock"
-    ]
+    ],
+    "unnecessary-bind": false
   }
 }

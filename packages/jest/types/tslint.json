@@ -4,6 +4,7 @@
     "array-type": [true, "generic"],
     "semicolon": false,
     "file-name-casing": false,
-    "strict-export-declare-modifiers": false
+    "strict-export-declare-modifiers": false,
+    "unnecessary-bind": false
   }
 }
