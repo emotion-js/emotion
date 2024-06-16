@@ -44,9 +44,6 @@
     "macro.*"
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
-  "browser": {
-    "./dist/emotion-styled.esm.js": "./dist/emotion-styled.browser.esm.js"
-  },
   "exports": {
     "./base": {
       "types": {

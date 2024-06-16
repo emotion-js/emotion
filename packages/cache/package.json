@@ -4,9 +4,6 @@
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
-  "browser": {
-    "./dist/emotion-cache.esm.js": "./dist/emotion-cache.browser.esm.js"
-  },
   "exports": {
     ".": {
       "types": {

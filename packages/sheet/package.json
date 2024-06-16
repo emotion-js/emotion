@@ -4,9 +4,6 @@
   "description": "emotion's stylesheet",
   "main": "dist/emotion-sheet.cjs.js",
   "module": "dist/emotion-sheet.esm.js",
-  "browser": {
-    "./dist/emotion-sheet.esm.js": "./dist/emotion-sheet.browser.esm.js"
-  },
   "types": "dist/emotion-sheet.cjs.d.ts",
   "exports": {
     ".": {

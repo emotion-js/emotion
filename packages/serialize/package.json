@@ -28,9 +28,6 @@
     "src",
     "dist"
   ],
-  "browser": {
-    "./dist/emotion-serialize.esm.js": "./dist/emotion-serialize.browser.esm.js"
-  },
   "exports": {
     ".": {
       "types": {
