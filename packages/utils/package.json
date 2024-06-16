@@ -15,9 +15,9 @@
         "default": "./dist/emotion-utils.cjs.js"
       },
       "worker": {
-        "module": "./dist/emotion-utils.esm.js",
-        "import": "./dist/emotion-utils.cjs.mjs",
-        "default": "./dist/emotion-utils.cjs.js"
+        "module": "./dist/emotion-utils.worker.esm.js",
+        "import": "./dist/emotion-utils.worker.cjs.mjs",
+        "default": "./dist/emotion-utils.worker.cjs.js"
       },
       "browser": {
         "module": "./dist/emotion-utils.browser.esm.js",
@@ -34,7 +34,7 @@
     "#is-browser": {
       "worker": "./src/conditions/false.ts",
       "browser": "./src/conditions/true.ts",
-      "default": "./src/conditions/false.ts"
+      "default": "./src/conditions/is-browser.ts"
     }
   },
   "license": "MIT",

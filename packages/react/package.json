@@ -14,9 +14,9 @@
       },
       "development": {
         "worker": {
-          "module": "./dist/emotion-react.development.esm.js",
-          "import": "./dist/emotion-react.development.cjs.mjs",
-          "default": "./dist/emotion-react.development.cjs.js"
+          "module": "./dist/emotion-react.development.worker.esm.js",
+          "import": "./dist/emotion-react.development.worker.cjs.mjs",
+          "default": "./dist/emotion-react.development.worker.cjs.js"
         },
         "browser": {
           "module": "./dist/emotion-react.browser.development.esm.js",
@@ -28,9 +28,9 @@
         "default": "./dist/emotion-react.development.cjs.js"
       },
       "worker": {
-        "module": "./dist/emotion-react.esm.js",
-        "import": "./dist/emotion-react.cjs.mjs",
-        "default": "./dist/emotion-react.cjs.js"
+        "module": "./dist/emotion-react.worker.esm.js",
+        "import": "./dist/emotion-react.worker.cjs.mjs",
+        "default": "./dist/emotion-react.worker.cjs.js"
       },
       "browser": {
         "module": "./dist/emotion-react.browser.esm.js",
@@ -48,9 +48,9 @@
       },
       "development": {
         "worker": {
-          "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.esm.js",
-          "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.mjs",
-          "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.js"
+          "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.worker.esm.js",
+          "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.worker.cjs.mjs",
+          "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.worker.cjs.js"
         },
         "browser": {
           "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js",
@@ -62,9 +62,9 @@
         "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.js"
       },
       "worker": {
-        "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js",
-        "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
-        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+        "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.esm.js",
+        "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.cjs.mjs",
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.cjs.js"
       },
       "browser": {
         "module": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
@@ -82,9 +82,9 @@
       },
       "development": {
         "worker": {
-          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js",
-          "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.mjs",
-          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.js"
+          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.worker.esm.js",
+          "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.worker.cjs.mjs",
+          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.worker.cjs.js"
         },
         "browser": {
           "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.esm.js",
@@ -96,9 +96,9 @@
         "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.js"
       },
       "worker": {
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js",
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.esm.js",
+        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.cjs.mjs",
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.cjs.js"
       },
       "browser": {
         "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
@@ -116,9 +116,9 @@
       },
       "development": {
         "worker": {
-          "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.esm.js",
-          "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.mjs",
-          "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.js"
+          "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.worker.esm.js",
+          "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.worker.cjs.mjs",
+          "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.worker.cjs.js"
         },
         "browser": {
           "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.esm.js",
@@ -130,9 +130,9 @@
         "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.js"
       },
       "worker": {
-        "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js",
-        "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
-        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+        "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.esm.js",
+        "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.cjs.mjs",
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.cjs.js"
       },
       "browser": {
         "module": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
@@ -161,7 +161,7 @@
     "#is-browser": {
       "worker": "./src/conditions/false.js",
       "browser": "./src/conditions/true.js",
-      "default": "./src/conditions/false.js"
+      "default": "./src/conditions/is-browser.js"
     }
   },
   "types": "types/index.d.ts",
