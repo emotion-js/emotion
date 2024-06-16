@@ -93,7 +93,7 @@ exports[`extractCritical returns static css 1`] = `
   justify-content: center;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main {
+.css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -101,7 +101,7 @@ exports[`extractCritical returns static css 1`] = `
   display: flex;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main:hover {
+.css-fgjrlg-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
@@ -116,7 +116,7 @@ exports[`extractCritical returns static css 1`] = `
   width: 50px;
   background-color: red;
 }",
-  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-fgjrlg-hoverStyles-Something_Main">
   <img size="30"
        class="css-1h1w8ez-Image"
   >
@@ -129,7 +129,7 @@ exports[`extractCritical returns static css 1`] = `
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
-    "14e1j2p-hoverStyles-Something_Main",
+    "fgjrlg-hoverStyles-Something_Main",
     "1h1w8ez-Image",
   ],
 }
@@ -228,7 +228,7 @@ exports[`extractCritical returns static css 2`] = `
   justify-content: center;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main {
+.css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -236,13 +236,13 @@ exports[`extractCritical returns static css 2`] = `
   display: flex;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main:hover {
+.css-fgjrlg-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
-  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-fgjrlg-hoverStyles-Something_Main">
   <div>
     Hello
   </div>
@@ -251,7 +251,7 @@ exports[`extractCritical returns static css 2`] = `
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
-    "14e1j2p-hoverStyles-Something_Main",
+    "fgjrlg-hoverStyles-Something_Main",
   ],
 }
 `;
@@ -349,7 +349,7 @@ exports[`hydration only rules that are not in the critical css are inserted 1`] 
   justify-content: center;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main {
+.css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -357,7 +357,7 @@ exports[`hydration only rules that are not in the critical css are inserted 1`] 
   display: flex;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main:hover {
+.css-fgjrlg-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
@@ -372,7 +372,7 @@ exports[`hydration only rules that are not in the critical css are inserted 1`] 
   width: 50px;
   background-color: red;
 }",
-  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-fgjrlg-hoverStyles-Something_Main">
   <img size="30"
        class="css-1h1w8ez-Image"
   >
@@ -385,18 +385,18 @@ exports[`hydration only rules that are not in the critical css are inserted 1`] 
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
-    "14e1j2p-hoverStyles-Something_Main",
+    "fgjrlg-hoverStyles-Something_Main",
     "1h1w8ez-Image",
   ],
 }
 `;
 
 exports[`hydration only rules that are not in the critical css are inserted 2`] = `
-".css-1icu1xs-hoverStyles {
+".css-v31heb-hoverStyles {
   color: hotpink;
 }
 
-.css-1icu1xs-hoverStyles:hover {
+.css-v31heb-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
