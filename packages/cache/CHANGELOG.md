@@ -1,5 +1,15 @@
 # @emotion/cache
 
+## 11.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`7f8db2d7`](https://github.com/emotion-js/emotion/commit/7f8db2d7a900bb34995db66084a99d512811e33d), [`b1d16b08`](https://github.com/emotion-js/emotion/commit/b1d16b087d057524f374e347fdfd6a03e505107a), [`16d8a8c2`](https://github.com/emotion-js/emotion/commit/16d8a8c2198461c4842c73048b406c346a70aa59), [`52aadc6e`](https://github.com/emotion-js/emotion/commit/52aadc6e77140867392f81545cc92e04fd84d453), [`52aadc6e`](https://github.com/emotion-js/emotion/commit/52aadc6e77140867392f81545cc92e04fd84d453)]:
+  - @emotion/memoize@0.9.0
+  - @emotion/weak-memoize@0.4.0
+  - @emotion/utils@1.3.0
+  - @emotion/sheet@1.3.0
+
 ## 11.11.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @emotion/weak-memoize
 
+## 0.4.0
+
+### Minor Changes
+
+- [#2429](https://github.com/emotion-js/emotion/pull/2429) [`b1d16b08`](https://github.com/emotion-js/emotion/commit/b1d16b087d057524f374e347fdfd6a03e505107a) Thanks [@sarayourfriend](https://github.com/sarayourfriend)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 0.3.1
 
 ### Patch Changes

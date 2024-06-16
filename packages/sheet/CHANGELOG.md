@@ -1,5 +1,15 @@
 # @emotion/sheet
 
+## 1.3.0
+
+### Minor Changes
+
+- [#2431](https://github.com/emotion-js/emotion/pull/2431) [`52aadc6e`](https://github.com/emotion-js/emotion/commit/52aadc6e77140867392f81545cc92e04fd84d453) Thanks [@sarayourfriend](https://github.com/sarayourfriend)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- [#2431](https://github.com/emotion-js/emotion/pull/2431) [`52aadc6e`](https://github.com/emotion-js/emotion/commit/52aadc6e77140867392f81545cc92e04fd84d453) Thanks [@sarayourfriend](https://github.com/sarayourfriend)! - Type declaration for `StyleSheet`'s constructor has been fixed. It incorrectly was specifying that `options` were optional when in reality they weren't.
+
 ## 1.2.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @emotion/babel-preset-css-prop
 
+## 11.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`ea84c409`](https://github.com/emotion-js/emotion/commit/ea84c4096d7bc28f03c4cdc1f453bb64d09dcd15)]:
+  - @emotion/babel-plugin-jsx-pragmatic@0.3.0
+  - @emotion/babel-plugin@11.12.0
+
 ## 11.11.0
 
 ### Patch Changes

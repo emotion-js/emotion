@@ -1,5 +1,20 @@
 # @emotion/react
 
+## 11.12.0
+
+### Minor Changes
+
+- [#2815](https://github.com/emotion-js/emotion/pull/2815) [`65a1eea1`](https://github.com/emotion-js/emotion/commit/65a1eea156a15603cd9ded42769a8ca226cf9450) Thanks [@srmagura](https://github.com/srmagura)! - Automatic labeling at runtime is now an opt-in feature. Define `globalThis.EMOTION_RUNTIME_AUTO_LABEL = true` before Emotion gets initialized to enable it.
+
+### Patch Changes
+
+- Updated dependencies [[`9ca22c6c`](https://github.com/emotion-js/emotion/commit/9ca22c6c23e9effa086d161a9b0ae1c645686680), [`b1d16b08`](https://github.com/emotion-js/emotion/commit/b1d16b087d057524f374e347fdfd6a03e505107a), [`16d8a8c2`](https://github.com/emotion-js/emotion/commit/16d8a8c2198461c4842c73048b406c346a70aa59)]:
+  - @emotion/serialize@1.2.0
+  - @emotion/weak-memoize@0.4.0
+  - @emotion/utils@1.3.0
+  - @emotion/babel-plugin@11.12.0
+  - @emotion/cache@11.12.0
+
 ## 11.11.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @emotion/unitless
 
+## 0.9.0
+
+### Minor Changes
+
+- [#2430](https://github.com/emotion-js/emotion/pull/2430) [`fc4d27c2`](https://github.com/emotion-js/emotion/commit/fc4d27c2dbce7fdb778212be86b07e31d8d82a98) Thanks [@sarayourfriend](https://github.com/sarayourfriend)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 0.8.1
 
 ### Patch Changes
