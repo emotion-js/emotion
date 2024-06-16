@@ -38,16 +38,14 @@ let cases = {
   },
   keyframes: {
     render: () => {
-      const animation = keyframes(
-        css`
-          from {
-            color: green;
-          }
-          to {
-            color: blue;
-          }
-        `
-      )
+      const animation = keyframes(css`
+        from {
+          color: green;
+        }
+        to {
+          color: blue;
+        }
+      `)
       return (
         <React.Fragment>
           <div css={{ animation: `1s ${animation}` }} />

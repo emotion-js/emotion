@@ -588,10 +588,9 @@ describe('styled', () => {
 
   test('throws if undefined is passed as the component', () => {
     expect(
-      () =>
-        styled(undefined)`
-          display: flex;
-        `
+      () => styled(undefined)`
+        display: flex;
+      `
     ).toThrowErrorMatchingSnapshot()
   })
   test('withComponent will replace tags but keep styling classes', () => {
@@ -701,14 +700,12 @@ describe('styled', () => {
     ).toMatchSnapshot()
   })
   test('keyframes with css call', () => {
-    let SomeComp = styled.div(
-      css`
-        animation: ${keyframes({
-          'from,to': { color: 'green' },
-          '50%': { color: 'hotpink' }
-        })};
-      `
-    )
+    let SomeComp = styled.div(css`
+      animation: ${keyframes({
+        'from,to': { color: 'green' },
+        '50%': { color: 'hotpink' }
+      })};
+    `)
     expect(renderer.create(<SomeComp />).toJSON()).toMatchSnapshot()
   })
 })

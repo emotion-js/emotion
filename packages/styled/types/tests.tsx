@@ -115,8 +115,8 @@ interface AdditionalTest {
 }
 const Input4 = styled.input<AdditionalTest>`
   & + ${Label}: ${props => ({
-  marginLeft: props.left
-})}
+    marginLeft: props.left
+  })}
 `
 const Input5 = styled.input`
   color: ${props => props.theme.primary};

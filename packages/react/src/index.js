@@ -25,8 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
       typeof globalThis !== 'undefined'
         ? globalThis // eslint-disable-line no-undef
         : isBrowser
-        ? window
-        : global
+          ? window
+          : global
     const globalKey = `__EMOTION_REACT_${pkg.version.split('.')[0]}__`
     if (globalContext[globalKey]) {
       console.warn(
