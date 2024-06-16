@@ -34,10 +34,10 @@ exports[`ssr global with keyframes 1`] = `
 `;
 
 exports[`ssr keyframes 1`] = `
-<style data-emotion="css xsstii animation-nd6tn">
-  .css-xsstii{-webkit-animation:1s animation-nd6tn;animation:1s animation-nd6tn;}@-webkit-keyframes animation-nd6tn{from{color:green;}to{color:blue;}}@keyframes animation-nd6tn{from{color:green;}to{color:blue;}}
+<style data-emotion="css cijyg1 animation-1ch4i0o">
+  .css-cijyg1{-webkit-animation:1s animation-1ch4i0o;animation:1s animation-1ch4i0o;}@-webkit-keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}@keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}
 </style>
-<div class="css-xsstii">
+<div class="css-cijyg1">
 </div>
 `;
 
@@ -119,13 +119,13 @@ exports[`ssr with old api global with keyframes 1`] = `
 `;
 
 exports[`ssr with old api keyframes 1`] = `
-<style data-emotion="css animation-nd6tn">
-  @-webkit-keyframes animation-nd6tn{from{color:green;}to{color:blue;}}@keyframes animation-nd6tn{from{color:green;}to{color:blue;}}
+<style data-emotion="css animation-1ch4i0o">
+  @-webkit-keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}@keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}
 </style>
-<style data-emotion="css xsstii">
-  .css-xsstii{-webkit-animation:1s animation-nd6tn;animation:1s animation-nd6tn;}
+<style data-emotion="css cijyg1">
+  .css-cijyg1{-webkit-animation:1s animation-1ch4i0o;animation:1s animation-1ch4i0o;}
 </style>
-<div class="css-xsstii">
+<div class="css-cijyg1">
 </div>
 `;
 

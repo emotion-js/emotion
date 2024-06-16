@@ -7,8 +7,8 @@ exports[`extractCriticalToChunks generates correct style tags using constructSty
 <style data-emotion="css-global 10q49a4">
   html{background:red;}
 </style>
-<style data-emotion="css 14e1j2p-hoverStyles-Something_Main">
-  .css-14e1j2p-hoverStyles-Something_Main{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-14e1j2p-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+<style data-emotion="css fgjrlg-hoverStyles-Something_Main">
+  .css-fgjrlg-hoverStyles-Something_Main{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-fgjrlg-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
 `;
 
@@ -19,14 +19,14 @@ exports[`extractCriticalToChunks generates correct style tags using constructSty
 <style data-emotion="css-global 10q49a4">
   html{background:red;}
 </style>
-<style data-emotion="css 14e1j2p-hoverStyles-Something_Main">
-  .css-14e1j2p-hoverStyles-Something_Main{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-14e1j2p-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+<style data-emotion="css fgjrlg-hoverStyles-Something_Main">
+  .css-fgjrlg-hoverStyles-Something_Main{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-fgjrlg-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
 `;
 
 exports[`extractCriticalToChunks returns static css 1`] = `
 {
-  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-fgjrlg-hoverStyles-Something_Main">
 </main>,
   "styles": [
     {
@@ -48,7 +48,7 @@ exports[`extractCriticalToChunks returns static css 1`] = `
       "key": "css-global",
     },
     {
-      "css": ".css-14e1j2p-hoverStyles-Something_Main {
+      "css": ".css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -56,14 +56,14 @@ exports[`extractCriticalToChunks returns static css 1`] = `
   display: flex;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main:hover {
+.css-fgjrlg-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
       "ids": [
-        "14e1j2p-hoverStyles-Something_Main",
+        "fgjrlg-hoverStyles-Something_Main",
       ],
       "key": "css",
     },
@@ -73,7 +73,7 @@ exports[`extractCriticalToChunks returns static css 1`] = `
 
 exports[`extractCriticalToChunks returns static css 2`] = `
 {
-  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-fgjrlg-hoverStyles-Something_Main">
 </main>,
   "styles": [
     {
@@ -95,7 +95,7 @@ exports[`extractCriticalToChunks returns static css 2`] = `
       "key": "css-global",
     },
     {
-      "css": ".css-14e1j2p-hoverStyles-Something_Main {
+      "css": ".css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -103,14 +103,14 @@ exports[`extractCriticalToChunks returns static css 2`] = `
   display: flex;
 }
 
-.css-14e1j2p-hoverStyles-Something_Main:hover {
+.css-fgjrlg-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
       "ids": [
-        "14e1j2p-hoverStyles-Something_Main",
+        "fgjrlg-hoverStyles-Something_Main",
       ],
       "key": "css",
     },
