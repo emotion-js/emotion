@@ -1,5 +1,11 @@
 # @emotion/hash
 
+## 0.9.2
+
+### Patch Changes
+
+- [#2454](https://github.com/emotion-js/emotion/pull/2454) [`ea2c397b`](https://github.com/emotion-js/emotion/commit/ea2c397bbf7d9838086ec88b3eb86db9230d32ae) Thanks [@Andarist](https://github.com/Andarist)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 0.9.1
 
 ### Patch Changes

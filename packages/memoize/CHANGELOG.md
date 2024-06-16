@@ -1,5 +1,11 @@
 # @emotion/memoize
 
+## 0.9.0
+
+### Minor Changes
+
+- [#2427](https://github.com/emotion-js/emotion/pull/2427) [`7f8db2d7`](https://github.com/emotion-js/emotion/commit/7f8db2d7a900bb34995db66084a99d512811e33d) Thanks [@sarayourfriend](https://github.com/sarayourfriend)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 0.8.1
 
 ### Patch Changes

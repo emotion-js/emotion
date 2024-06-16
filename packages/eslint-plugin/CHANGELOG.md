@@ -1,5 +1,17 @@
 # @emotion/eslint-plugin
 
+## 11.12.0
+
+### Minor Changes
+
+- [#2568](https://github.com/emotion-js/emotion/pull/2568) [`304f7e3d`](https://github.com/emotion-js/emotion/commit/304f7e3da4fb7a4c38eff0fa27cc6db417bfe10c) Thanks [@G-Rath](https://github.com/G-Rath)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- [#2568](https://github.com/emotion-js/emotion/pull/2568) [`304f7e3d`](https://github.com/emotion-js/emotion/commit/304f7e3da4fb7a4c38eff0fa27cc6db417bfe10c) Thanks [@G-Rath](https://github.com/G-Rath)! - An empty css prop (`<div css />`) will now raise an error in the `@emotion/syntax-preference` rule instead of crashing on this case.
+
+* [#2568](https://github.com/emotion-js/emotion/pull/2568) [`304f7e3d`](https://github.com/emotion-js/emotion/commit/304f7e3da4fb7a4c38eff0fa27cc6db417bfe10c) Thanks [@G-Rath](https://github.com/G-Rath)! - Fixed a crash on empty css prop (`<div css />`) in the `@emotion/jsx-import` rule.
+
 ## 11.11.0
 
 ### Patch Changes

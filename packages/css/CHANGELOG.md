@@ -1,5 +1,22 @@
 # emotion
 
+## 11.12.0
+
+### Minor Changes
+
+- [#2558](https://github.com/emotion-js/emotion/pull/2558) [`85772c33`](https://github.com/emotion-js/emotion/commit/85772c33ecb01c70bc8afafa627c9fb7140b593c) Thanks [@emmatown](https://github.com/emmatown)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- [#2558](https://github.com/emotion-js/emotion/pull/2558) [`85772c33`](https://github.com/emotion-js/emotion/commit/85772c33ecb01c70bc8afafa627c9fb7140b593c) Thanks [@emmatown](https://github.com/emmatown)! - Fixed `options` parameter to `createEmotion` from `@emotion/css/create-instance` incorrectly being marked as optional when it's required.
+
+- Updated dependencies [[`9ca22c6c`](https://github.com/emotion-js/emotion/commit/9ca22c6c23e9effa086d161a9b0ae1c645686680), [`16d8a8c2`](https://github.com/emotion-js/emotion/commit/16d8a8c2198461c4842c73048b406c346a70aa59), [`52aadc6e`](https://github.com/emotion-js/emotion/commit/52aadc6e77140867392f81545cc92e04fd84d453), [`52aadc6e`](https://github.com/emotion-js/emotion/commit/52aadc6e77140867392f81545cc92e04fd84d453)]:
+  - @emotion/serialize@1.2.0
+  - @emotion/utils@1.3.0
+  - @emotion/sheet@1.3.0
+  - @emotion/babel-plugin@11.12.0
+  - @emotion/cache@11.12.0
+
 ## 11.11.2
 
 ### Patch Changes

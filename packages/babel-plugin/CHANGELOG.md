@@ -1,5 +1,14 @@
 # @emotion/babel-plugin
 
+## 11.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`9ca22c6c`](https://github.com/emotion-js/emotion/commit/9ca22c6c23e9effa086d161a9b0ae1c645686680), [`7f8db2d7`](https://github.com/emotion-js/emotion/commit/7f8db2d7a900bb34995db66084a99d512811e33d), [`ea2c397b`](https://github.com/emotion-js/emotion/commit/ea2c397bbf7d9838086ec88b3eb86db9230d32ae)]:
+  - @emotion/serialize@1.2.0
+  - @emotion/memoize@0.9.0
+  - @emotion/hash@0.9.2
+
 ## 11.11.0
 
 ### Patch Changes

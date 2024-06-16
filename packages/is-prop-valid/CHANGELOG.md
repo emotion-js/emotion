@@ -1,5 +1,16 @@
 # @emotion/is-prop-valid
 
+## 1.3.0
+
+### Minor Changes
+
+- [#2432](https://github.com/emotion-js/emotion/pull/2432) [`a1e881b7`](https://github.com/emotion-js/emotion/commit/a1e881b7dffdfa69f5ff32a708a25213b711bd15) Thanks [@sarayourfriend](https://github.com/sarayourfriend)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- Updated dependencies [[`7f8db2d7`](https://github.com/emotion-js/emotion/commit/7f8db2d7a900bb34995db66084a99d512811e33d)]:
+  - @emotion/memoize@0.9.0
+
 ## 1.2.2
 
 ### Patch Changes

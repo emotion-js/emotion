@@ -1,5 +1,12 @@
 # @emotion/css-prettifier
 
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`7f8db2d7`](https://github.com/emotion-js/emotion/commit/7f8db2d7a900bb34995db66084a99d512811e33d)]:
+  - @emotion/memoize@0.9.0
+
 ## 1.1.3
 
 ### Patch Changes

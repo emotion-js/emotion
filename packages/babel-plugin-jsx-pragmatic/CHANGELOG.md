@@ -1,5 +1,11 @@
 # @emotion/babel-plugin-jsx-pragmatic
 
+## 0.3.0
+
+### Minor Changes
+
+- [#2570](https://github.com/emotion-js/emotion/pull/2570) [`ea84c409`](https://github.com/emotion-js/emotion/commit/ea84c4096d7bc28f03c4cdc1f453bb64d09dcd15) Thanks [@G-Rath](https://github.com/G-Rath)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 0.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @emotion/utils
 
+## 1.3.0
+
+### Minor Changes
+
+- [#2359](https://github.com/emotion-js/emotion/pull/2359) [`16d8a8c2`](https://github.com/emotion-js/emotion/commit/16d8a8c2198461c4842c73048b406c346a70aa59) Thanks [@rjdestigter](https://github.com/rjdestigter)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 1.2.1
 
 ### Patch Changes

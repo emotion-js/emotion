@@ -1,5 +1,19 @@
 # @emotion/serialize
 
+## 1.2.0
+
+### Minor Changes
+
+- [#2543](https://github.com/emotion-js/emotion/pull/2543) [`9ca22c6c`](https://github.com/emotion-js/emotion/commit/9ca22c6c23e9effa086d161a9b0ae1c645686680) Thanks [@danilofuchs](https://github.com/danilofuchs)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- Updated dependencies [[`fc4d27c2`](https://github.com/emotion-js/emotion/commit/fc4d27c2dbce7fdb778212be86b07e31d8d82a98), [`7f8db2d7`](https://github.com/emotion-js/emotion/commit/7f8db2d7a900bb34995db66084a99d512811e33d), [`16d8a8c2`](https://github.com/emotion-js/emotion/commit/16d8a8c2198461c4842c73048b406c346a70aa59), [`ea2c397b`](https://github.com/emotion-js/emotion/commit/ea2c397bbf7d9838086ec88b3eb86db9230d32ae)]:
+  - @emotion/unitless@0.9.0
+  - @emotion/memoize@0.9.0
+  - @emotion/utils@1.3.0
+  - @emotion/hash@0.9.2
+
 ## 1.1.4
 
 ### Patch Changes
