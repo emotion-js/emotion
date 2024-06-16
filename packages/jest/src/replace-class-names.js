@@ -17,17 +17,20 @@ export const replaceClassNames = (
   let index = 0
   let keyPattern = new RegExp(`^(${keys.join('|')})-`)
 
-  return classNames.reduce((acc, className) => {
-    if (
-      keyPattern.test(className) ||
-      componentSelectorClassNamePattern.test(className)
-    ) {
-      const escapedRegex = new RegExp(
-        className.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
-        'g'
-      )
-      return acc.replace(escapedRegex, classNameReplacer(className, index++))
-    }
-    return acc
-  }, `${styles}${styles ? '\n\n' : ''}${code}`)
+  return classNames.reduce(
+    (acc, className) => {
+      if (
+        keyPattern.test(className) ||
+        componentSelectorClassNamePattern.test(className)
+      ) {
+        const escapedRegex = new RegExp(
+          className.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
+          'g'
+        )
+        return acc.replace(escapedRegex, classNameReplacer(className, index++))
+      }
+      return acc
+    },
+    `${styles}${styles ? '\n\n' : ''}${code}`
+  )
 }

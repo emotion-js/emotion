@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^7.0.0",
-    "eslint": "^7.10.0",
+    "eslint": "^8.57.0",
     "resolve-from": "^5.0.0"
   }
 }

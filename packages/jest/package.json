@@ -67,7 +67,7 @@
     "pretty-format": "^22.4.3",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "typescript": "^4.5.5"
+    "typescript": "^5.4.5"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
