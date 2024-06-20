@@ -215,6 +215,10 @@ test('renders with correct link styles', () => {
 })
 ```
 
+### Include custom matchers globally
+
+You can add the custom matchers globally by adding a `import '@emotion/jest/extend-expect` to a setupFilesAfterEnv script.
+
 ## Thanks
 
 Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on. ❤️

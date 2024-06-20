@@ -1,0 +1,5 @@
+{
+  "main": "dist/emotion-jest-extend-expect.cjs.js",
+  "module": "dist/emotion-jest-extend-expect.esm.js",
+  "types": "../types/index.d.ts"
+}
