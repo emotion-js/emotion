@@ -11,6 +11,7 @@
     "typeRoots": ["../"],
     "types": [],
     "paths": {
+      "#is-browser": ["./src/conditions/true.ts"],
       "#is-development": ["./src/conditions/true.ts"]
     }
   },

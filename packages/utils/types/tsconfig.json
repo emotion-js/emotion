@@ -11,7 +11,8 @@
     "typeRoots": ["../"],
     "types": [],
     "paths": {
-      "#is-browser": ["./src/conditions/true.ts"]
+      "#is-browser": ["./types/resolved-condition.ts"],
+      "#is-development": ["./src/conditions/true.ts"]
     }
   },
   "include": ["./*.ts", "./*.tsx"]
