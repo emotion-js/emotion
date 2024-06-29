@@ -1,4 +1,5 @@
 import transform, { Style } from 'css-to-react-native'
+import isDevelopment from '#is-development'
 import { AbstractStyleSheet } from './types'
 import { interleave } from './utils'
 
@@ -26,7 +27,7 @@ function handleInterpolation(
 
   if (type === 'function') {
     if (this === undefined) {
-      if (process.env.NODE_ENV !== 'production') {
+      if (isDevelopment) {
         console.error(
           'Interpolating functions in css calls is not allowed.\n' +
             'If you want to have a css call based on props, create a function that returns a css call like this\n' +

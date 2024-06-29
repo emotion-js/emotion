@@ -20,6 +20,10 @@
   },
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-hash.cjs.mjs",
+        "default": "./dist/emotion-hash.cjs.js"
+      },
       "module": "./dist/emotion-hash.esm.js",
       "import": "./dist/emotion-hash.cjs.mjs",
       "default": "./dist/emotion-hash.cjs.js"

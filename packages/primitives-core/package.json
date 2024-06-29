@@ -44,20 +44,25 @@
   },
   "exports": {
     ".": {
-      "module": {
-        "browser": "./dist/emotion-primitives-core.browser.esm.js",
-        "default": "./dist/emotion-primitives-core.esm.js"
+      "types": {
+        "import": "./dist/emotion-primitives-core.cjs.mjs",
+        "default": "./dist/emotion-primitives-core.cjs.js"
       },
+      "development": {
+        "module": "./dist/emotion-primitives-core.development.esm.js",
+        "import": "./dist/emotion-primitives-core.development.cjs.mjs",
+        "default": "./dist/emotion-primitives-core.development.cjs.js"
+      },
+      "module": "./dist/emotion-primitives-core.esm.js",
       "import": "./dist/emotion-primitives-core.cjs.mjs",
       "default": "./dist/emotion-primitives-core.cjs.js"
     },
     "./package.json": "./package.json"
   },
-  "preconstruct": {
-    "exports": {
-      "envConditions": [
-        "browser"
-      ]
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     }
   }
 }

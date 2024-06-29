@@ -28,25 +28,27 @@
     "src",
     "dist"
   ],
-  "browser": {
-    "./dist/emotion-serialize.esm.js": "./dist/emotion-serialize.browser.esm.js"
-  },
   "exports": {
     ".": {
-      "module": {
-        "browser": "./dist/emotion-serialize.browser.esm.js",
-        "default": "./dist/emotion-serialize.esm.js"
+      "types": {
+        "import": "./dist/emotion-serialize.cjs.mjs",
+        "default": "./dist/emotion-serialize.cjs.js"
       },
+      "development": {
+        "module": "./dist/emotion-serialize.development.esm.js",
+        "import": "./dist/emotion-serialize.development.cjs.mjs",
+        "default": "./dist/emotion-serialize.development.cjs.js"
+      },
+      "module": "./dist/emotion-serialize.esm.js",
       "import": "./dist/emotion-serialize.cjs.mjs",
       "default": "./dist/emotion-serialize.cjs.js"
     },
     "./package.json": "./package.json"
   },
-  "preconstruct": {
-    "exports": {
-      "envConditions": [
-        "browser"
-      ]
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     }
   }
 }

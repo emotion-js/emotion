@@ -1,6 +1,5 @@
 import * as React from 'react'
-
-const isBrowser = typeof document !== 'undefined'
+import isBrowser from '#is-browser'
 
 const syncFallback = create => create()
 

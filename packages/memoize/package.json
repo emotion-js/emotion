@@ -23,6 +23,10 @@
   ],
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-memoize.cjs.mjs",
+        "default": "./dist/emotion-memoize.cjs.js"
+      },
       "module": "./dist/emotion-memoize.esm.js",
       "import": "./dist/emotion-memoize.cjs.mjs",
       "default": "./dist/emotion-memoize.cjs.js"

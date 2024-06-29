@@ -10,6 +10,8 @@ import {
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import memoize from '@emotion/memoize'
+import isDevelopment from '#is-development'
+import isBrowser from '#is-browser'
 import {
   compat,
   removeLabel,
@@ -18,8 +20,6 @@ import {
 } from './stylis-plugins'
 import { prefixer } from './prefixer'
 /* import type { StylisPlugin } from './types' */
-
-let isBrowser = typeof document !== 'undefined'
 
 /*
 export type Options = {
@@ -47,7 +47,7 @@ const defaultStylisPlugins = [prefixer]
 let createCache = (options /*: Options */) /*: EmotionCache */ => {
   let key = options.key
 
-  if (process.env.NODE_ENV !== 'production' && !key) {
+  if (isDevelopment && !key) {
     throw new Error(
       "You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\n" +
         `If multiple caches share the same key they might "fight" for each other's style elements.`
@@ -82,7 +82,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
 
   const stylisPlugins = options.stylisPlugins || defaultStylisPlugins
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     if (/[^a-z-]/.test(key)) {
       throw new Error(
         `Emotion key must only contain lower case alphabetical characters and - but "${key}" was passed`
@@ -117,7 +117,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
   ) => string | void */
   const omnipresentPlugins = [compat, removeLabel]
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     omnipresentPlugins.push(
       createUnsafeSelectorsAlarm({
         get compat() {
@@ -133,7 +133,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
 
     const finalizingPlugins = [
       stringify,
-      process.env.NODE_ENV !== 'production'
+      isDevelopment
         ? element => {
             if (!element.root) {
               if (element.return) {
@@ -162,10 +162,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
       shouldCache /*: boolean */
     ) /*: void */ => {
       currentSheet = sheet
-      if (
-        process.env.NODE_ENV !== 'production' &&
-        serialized.map !== undefined
-      ) {
+      if (isDevelopment && serialized.map !== undefined) {
         currentSheet = {
           insert: (rule /*: string */) => {
             sheet.insert(rule + serialized.map)
@@ -214,12 +211,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
         if (shouldCache) {
           cache.inserted[name] = true
         }
-        if (
-          // using === development instead of !== production
-          // because if people do ssr in tests, the source maps showing up would be annoying
-          process.env.NODE_ENV === 'development' &&
-          serialized.map !== undefined
-        ) {
+        if (isDevelopment && serialized.map !== undefined) {
           return rules + serialized.map
         }
         return rules

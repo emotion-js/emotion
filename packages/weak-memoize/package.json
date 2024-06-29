@@ -23,6 +23,10 @@
   ],
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-weak-memoize.cjs.mjs",
+        "default": "./dist/emotion-weak-memoize.cjs.js"
+      },
       "module": "./dist/emotion-weak-memoize.esm.js",
       "import": "./dist/emotion-weak-memoize.cjs.mjs",
       "default": "./dist/emotion-weak-memoize.cjs.js"

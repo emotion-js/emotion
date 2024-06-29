@@ -1,3 +1,4 @@
+import isDevelopment from '#is-development'
 import pkg from '../package.json'
 // export type { SerializedStyles } from '@emotion/utils'
 export {
@@ -13,7 +14,7 @@ export { ClassNames } from './class-names'
 export { ThemeContext, useTheme, ThemeProvider, withTheme } from './theming'
 export { default as css } from './css'
 
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   const isBrowser = typeof document !== 'undefined'
   // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
   const isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined'

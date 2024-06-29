@@ -9,7 +9,11 @@
     "strict": true,
     "target": "es5",
     "typeRoots": ["../"],
-    "types": []
+    "types": [],
+    "paths": {
+      "#is-browser": ["./types/resolved-condition.ts"],
+      "#is-development": ["./types/resolved-condition.ts"]
+    }
   },
   "include": ["./*.ts", "./*.tsx"],
   "exclude": ["./css-prop.d.ts"]

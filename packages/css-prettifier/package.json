@@ -10,6 +10,10 @@
   "module": "dist/emotion-css-prettifier.esm.js",
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-css-prettifier.cjs.mjs",
+        "default": "./dist/emotion-css-prettifier.cjs.js"
+      },
       "module": "./dist/emotion-css-prettifier.esm.js",
       "import": "./dist/emotion-css-prettifier.cjs.mjs",
       "default": "./dist/emotion-css-prettifier.cjs.js"

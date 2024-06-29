@@ -5,10 +5,11 @@ import {
   registerStyles
 } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+import isDevelopment from '#is-development'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
-import { isBrowser } from './utils'
+import isBrowser from '#is-browser'
 
 /*
 type ClassNameArg =
@@ -37,7 +38,7 @@ let classnames = (args /*: Array<ClassNameArg> */) /*: string */ => {
           toAdd = classnames(arg)
         } else {
           if (
-            process.env.NODE_ENV !== 'production' &&
+            isDevelopment &&
             arg.styles !== undefined &&
             arg.name !== undefined
           ) {
@@ -131,7 +132,7 @@ export const ClassNames /*: React.AbstractComponent<Props>*/ =
     let serializedArr = []
 
     let css = (...args /*: Array<any> */) => {
-      if (hasRendered && process.env.NODE_ENV !== 'production') {
+      if (hasRendered && isDevelopment) {
         throw new Error('css can only be used during render')
       }
 
@@ -142,7 +143,7 @@ export const ClassNames /*: React.AbstractComponent<Props>*/ =
       return `${cache.key}-${serialized.name}`
     }
     let cx = (...args /*: Array<ClassNameArg>*/) => {
-      if (hasRendered && process.env.NODE_ENV !== 'production') {
+      if (hasRendered && isDevelopment) {
         throw new Error('cx can only be used during render')
       }
       return merge(cache.registered, css, classnames(args))
@@ -163,6 +164,6 @@ export const ClassNames /*: React.AbstractComponent<Props>*/ =
     )
   })
 
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   ClassNames.displayName = 'EmotionClassNames'
 }

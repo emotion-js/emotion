@@ -4,20 +4,53 @@
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
-  "browser": {
-    "./dist/emotion-cache.esm.js": "./dist/emotion-cache.browser.esm.js"
-  },
   "exports": {
     ".": {
-      "module": {
-        "worker": "./dist/emotion-cache.worker.esm.js",
-        "browser": "./dist/emotion-cache.browser.esm.js",
-        "default": "./dist/emotion-cache.esm.js"
+      "types": {
+        "import": "./dist/emotion-cache.cjs.mjs",
+        "default": "./dist/emotion-cache.cjs.js"
       },
+      "development": {
+        "worker": {
+          "module": "./dist/emotion-cache.development.worker.esm.js",
+          "import": "./dist/emotion-cache.development.worker.cjs.mjs",
+          "default": "./dist/emotion-cache.development.worker.cjs.js"
+        },
+        "browser": {
+          "module": "./dist/emotion-cache.browser.development.esm.js",
+          "import": "./dist/emotion-cache.browser.development.cjs.mjs",
+          "default": "./dist/emotion-cache.browser.development.cjs.js"
+        },
+        "module": "./dist/emotion-cache.development.esm.js",
+        "import": "./dist/emotion-cache.development.cjs.mjs",
+        "default": "./dist/emotion-cache.development.cjs.js"
+      },
+      "worker": {
+        "module": "./dist/emotion-cache.worker.esm.js",
+        "import": "./dist/emotion-cache.worker.cjs.mjs",
+        "default": "./dist/emotion-cache.worker.cjs.js"
+      },
+      "browser": {
+        "module": "./dist/emotion-cache.browser.esm.js",
+        "import": "./dist/emotion-cache.browser.cjs.mjs",
+        "default": "./dist/emotion-cache.browser.cjs.js"
+      },
+      "module": "./dist/emotion-cache.esm.js",
       "import": "./dist/emotion-cache.cjs.mjs",
       "default": "./dist/emotion-cache.cjs.js"
     },
     "./package.json": "./package.json"
+  },
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.js",
+      "default": "./src/conditions/false.js"
+    },
+    "#is-browser": {
+      "worker": "./src/conditions/false.js",
+      "browser": "./src/conditions/true.js",
+      "default": "./src/conditions/is-browser.js"
+    }
   },
   "types": "types/index.d.ts",
   "license": "MIT",
@@ -41,13 +74,5 @@
     "src",
     "dist",
     "types/*.d.ts"
-  ],
-  "preconstruct": {
-    "exports": {
-      "envConditions": [
-        "browser",
-        "worker"
-      ]
-    }
-  }
+  ]
 }

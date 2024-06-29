@@ -1,9 +1,10 @@
 import * as React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
+import isDevelopment from '#is-development'
 import hoistNonReactStatics from './_isolated-hnrs'
 
 export const ThemeContext = /* #__PURE__ */ React.createContext({})
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   ThemeContext.displayName = 'EmotionThemeContext'
 }
 
@@ -16,7 +17,7 @@ const getTheme = (
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
-      process.env.NODE_ENV !== 'production' &&
+      isDevelopment &&
       (mergedTheme == null ||
         typeof mergedTheme !== 'object' ||
         Array.isArray(mergedTheme))
@@ -28,7 +29,7 @@ const getTheme = (
     return mergedTheme
   }
   if (
-    process.env.NODE_ENV !== 'production' &&
+    isDevelopment &&
     (theme == null || typeof theme !== 'object' || Array.isArray(theme))
   ) {
     throw new Error(

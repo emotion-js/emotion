@@ -4,9 +4,6 @@
   "description": "A wrapper package that uses `useInsertionEffect` or a fallback for it",
   "main": "dist/emotion-use-insertion-effect-with-fallbacks.cjs.js",
   "module": "dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
-  "browser": {
-    "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js"
-  },
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/use-insertion-effect-with-fallbacks",
   "publishConfig": {
@@ -24,22 +21,31 @@
   },
   "exports": {
     ".": {
-      "module": {
-        "worker": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.esm.js",
-        "browser": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js",
-        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js"
+      "types": {
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
       },
+      "worker": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.cjs.js"
+      },
+      "browser": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.cjs.js"
+      },
+      "module": "./dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
       "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
       "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
     },
     "./package.json": "./package.json"
   },
-  "preconstruct": {
-    "exports": {
-      "envConditions": [
-        "browser",
-        "worker"
-      ]
+  "imports": {
+    "#is-browser": {
+      "worker": "./src/conditions/false.js",
+      "browser": "./src/conditions/true.js",
+      "default": "./src/conditions/is-browser.js"
     }
   }
 }

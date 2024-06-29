@@ -1,8 +1,9 @@
 import * as React from 'react'
+import isDevelopment from '#is-development'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
-import { isBrowser } from './utils'
+import isBrowser from '#is-browser'
 import { useInsertionEffectWithLayoutFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 import { serializeStyles } from '@emotion/serialize'
@@ -25,7 +26,7 @@ export let Global /*: React.AbstractComponent<
   GlobalProps
 > */ = /* #__PURE__ */ withEmotionCache((props /*: GlobalProps */, cache) => {
   if (
-    process.env.NODE_ENV !== 'production' &&
+    isDevelopment &&
     !warnedAboutCssPropForGlobal && // check for className as well since the user is
     // probably using the custom createElement which
     // means it will be turned into a className prop
@@ -139,6 +140,6 @@ export let Global /*: React.AbstractComponent<
   return null
 })
 
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   Global.displayName = 'EmotionGlobal'
 }
