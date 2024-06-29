@@ -1,5 +1,8 @@
 module.exports = {
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: ['browser', 'development']
+  },
   transform: {
     '^.+\\.(tsx|ts|js)?$': 'babel-jest'
   },
