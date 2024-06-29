@@ -9,7 +9,10 @@
     "strict": true,
     "target": "es5",
     "typeRoots": ["../"],
-    "types": []
+    "types": [],
+    "paths": {
+      "#is-development": ["./src/conditions/true.ts"]
+    }
   },
   "include": ["./*.ts", "./*.tsx"]
 }
