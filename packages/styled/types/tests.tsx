@@ -63,7 +63,7 @@ const Container3 = styled.div(({ theme }) => ({
 const Box = styled('div', {
   shouldForwardProp: (
     propName
-  ): propName is Exclude<keyof JSX.IntrinsicElements['div'], 'color'> =>
+  ): propName is Exclude<keyof React.JSX.IntrinsicElements['div'], 'color'> =>
     propName !== 'color'
 })<{ color: Array<string> }>(props => ({
   color: props.color[0]

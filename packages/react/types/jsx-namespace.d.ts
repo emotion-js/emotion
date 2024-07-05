@@ -9,14 +9,15 @@ type WithConditionalCSSProp<P> = 'className' extends keyof P
   : {}
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace
-type ReactJSXElement = JSX.Element
-type ReactJSXElementClass = JSX.ElementClass
-type ReactJSXElementAttributesProperty = JSX.ElementAttributesProperty
-type ReactJSXElementChildrenAttribute = JSX.ElementChildrenAttribute
-type ReactJSXLibraryManagedAttributes<C, P> = JSX.LibraryManagedAttributes<C, P>
-type ReactJSXIntrinsicAttributes = JSX.IntrinsicAttributes
-type ReactJSXIntrinsicClassAttributes<T> = JSX.IntrinsicClassAttributes<T>
-type ReactJSXIntrinsicElements = JSX.IntrinsicElements
+type ReactJSXElement = React.JSX.Element
+type ReactJSXElementClass = React.JSX.ElementClass
+type ReactJSXElementAttributesProperty = React.JSX.ElementAttributesProperty
+type ReactJSXElementChildrenAttribute = React.JSX.ElementChildrenAttribute
+type ReactJSXLibraryManagedAttributes<C, P> =
+  React.JSX.LibraryManagedAttributes<C, P>
+type ReactJSXIntrinsicAttributes = React.JSX.IntrinsicAttributes
+type ReactJSXIntrinsicClassAttributes<T> = React.JSX.IntrinsicClassAttributes<T>
+type ReactJSXIntrinsicElements = React.JSX.IntrinsicElements
 
 // based on the code from @types/react@18.2.8
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/3197efc097d522c4bf02b94e1a0766d007d6cdeb/types/react/index.d.ts#LL3204C13-L3204C13

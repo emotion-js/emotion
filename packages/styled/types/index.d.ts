@@ -17,12 +17,12 @@ export {
 } from './base'
 
 export type StyledTags = {
-  [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
+  [Tag in keyof React.JSX.IntrinsicElements]: CreateStyledComponent<
     {
       theme?: Theme
       as?: React.ElementType
     },
-    JSX.IntrinsicElements[Tag]
+    React.JSX.IntrinsicElements[Tag]
   >
 }
 

@@ -49,9 +49,9 @@ export interface StyledComponent<
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
   ): StyledComponent<ComponentProps & PropsOf<C>>
-  withComponent<Tag extends keyof JSX.IntrinsicElements>(
+  withComponent<Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag
-  ): StyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>
+  ): StyledComponent<ComponentProps, React.JSX.IntrinsicElements[Tag]>
 }
 
 /**
@@ -169,23 +169,26 @@ export interface CreateStyled {
   >
 
   <
-    Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] &
-      string = keyof JSX.IntrinsicElements[Tag] & string
+    Tag extends keyof React.JSX.IntrinsicElements,
+    ForwardedProps extends keyof React.JSX.IntrinsicElements[Tag] &
+      string = keyof React.JSX.IntrinsicElements[Tag] & string
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
+    options: FilteringStyledOptions<
+      React.JSX.IntrinsicElements[Tag],
+      ForwardedProps
+    >
   ): CreateStyledComponent<
     { theme?: Theme; as?: React.ElementType },
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
+    Pick<React.JSX.IntrinsicElements[Tag], ForwardedProps>
   >
 
-  <Tag extends keyof JSX.IntrinsicElements>(
+  <Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions<JSX.IntrinsicElements[Tag]>
+    options?: StyledOptions<React.JSX.IntrinsicElements[Tag]>
   ): CreateStyledComponent<
     { theme?: Theme; as?: React.ElementType },
-    JSX.IntrinsicElements[Tag]
+    React.JSX.IntrinsicElements[Tag]
   >
 }
 
