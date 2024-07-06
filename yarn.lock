@@ -6129,7 +6129,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:>=16, @types/react@npm:^18.2.6":
+"@types/react@npm:18.2.6":
+  version: 18.2.6
+  resolution: "@types/react@npm:18.2.6"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: dea9d232d8df7ac357367a69dcb557711ab3d5501807ffa77cebeee73d49ee94d095f298e36853c63ed47cce097eee4c7eae2aaa8c02fac3f0171ec1b523a819
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:>=16":
   version: 18.3.3
   resolution: "@types/react@npm:18.3.3"
   dependencies:
@@ -6185,6 +6196,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 6ac4b35723429b11b117e813c7acc42c3af8b5554caaf1fc750404c1ae59f9b7376bc69b9e9e194a5a97357a597c2228b7173d317320f0360d617b6425212f58
+  languageName: node
+  linkType: hard
+
+"@types/scheduler@npm:*":
+  version: 0.23.0
+  resolution: "@types/scheduler@npm:0.23.0"
+  checksum: 874d753aa65c17760dfc460a91e6df24009bde37bfd427a031577b30262f7770c1b8f71a21366c7dbc76111967384cf4090a31d65315155180ef14bd7acccb32
   languageName: node
   linkType: hard
 
@@ -11662,7 +11680,7 @@ __metadata:
     "@testing-library/react": 13.0.0-alpha.5
     "@types/jest": ^29.5.12
     "@types/node": ^12.20.37
-    "@types/react": ^18.2.6
+    "@types/react": 18.2.6
     "@typescript-eslint/eslint-plugin": ^7.13.0
     "@typescript-eslint/parser": ^7.13.0
     babel-check-duplicated-nodes: ^1.0.0
@@ -11734,7 +11752,7 @@ __metadata:
     "@types/js-yaml": ^4.0.5
     "@types/node": ^12.20.37
     "@types/prismjs": ^1.26.0
-    "@types/react": ^18.2.6
+    "@types/react": 18.2.6
     "@types/remark-prism": ^1.3.3
     facepaint: ^1.2.1
     gray-matter: ^4.0.3
