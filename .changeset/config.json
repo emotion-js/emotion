@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@1.6.0/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
   "changelog": [
     "@changesets/changelog-github",
     { "repo": "emotion-js/emotion" }
@@ -23,6 +23,7 @@
     ]
   ],
   "access": "public",
+  "privatePackages": false,
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   }
