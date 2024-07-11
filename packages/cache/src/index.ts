@@ -1,12 +1,13 @@
 import { StyleSheet } from '@emotion/sheet'
-/* import { type EmotionCache, type SerializedStyles } from '@emotion/utils' */
 import {
   serialize,
   compile,
   middleware,
   rulesheet,
   stringify,
-  COMMENT
+  COMMENT,
+  Element as StylisElement,
+  Middleware as StylisPlugin
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import memoize from '@emotion/memoize'
@@ -17,34 +18,40 @@ import {
   incorrectImportAlarm
 } from './stylis-plugins'
 import { prefixer } from './prefixer'
-/* import type { StylisPlugin } from './types' */
+import { EmotionCache, SerializedStyles } from '@emotion/utils'
+
+export type {
+  Element as StylisElement,
+  Middleware as StylisPluginCallback,
+  Middleware as StylisPlugin
+} from 'stylis'
+
+export type { EmotionCache }
 
 let isBrowser = typeof document !== 'undefined'
 
-/*
-export type Options = {
-  nonce?: string,
-  stylisPlugins?: StylisPlugin[],
-  key: string,
-  container?: HTMLElement,
-  speedy?: boolean,
-  prepend?: boolean,
+export interface Options {
+  nonce?: string
+  stylisPlugins?: Array<StylisPlugin>
+  key: string
+  container?: Node
+  speedy?: boolean
+  /** @deprecate use `insertionPoint` instead */
+  prepend?: boolean
   insertionPoint?: HTMLElement
 }
-*/
 
 let getServerStylisCache = isBrowser
   ? undefined
   : weakMemoize(() =>
-      memoize(() => {
-        let cache = {}
-        return name => cache[name]
+      memoize((): Record<string, string> => {
+        return {}
       })
     )
 
 const defaultStylisPlugins = [prefixer]
 
-let createCache = (options /*: Options */) /*: EmotionCache */ => {
+let createCache = (options: Options): EmotionCache => {
   let key = options.key
 
   if (process.env.NODE_ENV !== 'production' && !key) {
@@ -89,17 +96,19 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
       )
     }
   }
-  let inserted = {}
-  let container /* : Node */
-  const nodesToHydrate = []
+  let inserted: Record<string, string | true | undefined> = {}
+  let container: Node | undefined
+  const nodesToHydrate: HTMLStyleElement[] = []
   if (isBrowser) {
     container = options.container || document.head
 
     Array.prototype.forEach.call(
       // this means we will ignore elements which don't have a space in them which
       // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
-      document.querySelectorAll(`style[data-emotion^="${key} "]`),
-      (node /*: HTMLStyleElement */) => {
+      document.querySelectorAll<HTMLStyleElement>(
+        `style[data-emotion^="${key} "]`
+      ),
+      node => {
         const attrib = node.getAttribute(`data-emotion`).split(' ')
         for (let i = 1; i < attrib.length; i++) {
           inserted[attrib[i]] = true
@@ -109,12 +118,12 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     )
   }
 
-  let insert /*: (
+  let insert: (
     selector: string,
     serialized: SerializedStyles,
     sheet: StyleSheet,
     shouldCache: boolean
-  ) => string | void */
+  ) => string | void
   const omnipresentPlugins = [compat, removeLabel]
 
   if (process.env.NODE_ENV !== 'production') {
@@ -129,12 +138,14 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
   }
 
   if (isBrowser) {
-    let currentSheet
+    let currentSheet: {
+      insert: (rule: string) => void
+    }
 
     const finalizingPlugins = [
       stringify,
       process.env.NODE_ENV !== 'production'
-        ? element => {
+        ? (element: StylisElement) => {
             if (!element.root) {
               if (element.return) {
                 currentSheet.insert(element.return)
@@ -153,21 +164,21 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     const serializer = middleware(
       omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
     )
-    const stylis = styles => serialize(compile(styles), serializer)
+    const stylis = (styles: string) => serialize(compile(styles), serializer)
 
     insert = (
-      selector /*: string */,
-      serialized /*: SerializedStyles */,
-      sheet /*: StyleSheet */,
-      shouldCache /*: boolean */
-    ) /*: void */ => {
+      selector: string,
+      serialized: SerializedStyles,
+      sheet: StyleSheet,
+      shouldCache: boolean
+    ): void => {
       currentSheet = sheet
       if (
         process.env.NODE_ENV !== 'production' &&
         serialized.map !== undefined
       ) {
         currentSheet = {
-          insert: (rule /*: string */) => {
+          insert: rule => {
             sheet.insert(rule + serialized.map)
           }
         }
@@ -184,13 +195,10 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     const serializer = middleware(
       omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
     )
-    const stylis = styles => serialize(compile(styles), serializer)
+    const stylis = (styles: string) => serialize(compile(styles), serializer)
 
-    let serverStylisCache = getServerStylisCache(stylisPlugins)(key)
-    let getRules = (
-      selector /*: string */,
-      serialized /*: SerializedStyles */
-    ) /*: string */ => {
+    let serverStylisCache = getServerStylisCache!(stylisPlugins)(key)
+    let getRules = (selector: string, serialized: SerializedStyles): string => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
         serverStylisCache[name] = stylis(
@@ -200,11 +208,11 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
       return serverStylisCache[name]
     }
     insert = (
-      selector /*: string */,
-      serialized /*: SerializedStyles */,
-      sheet /*: StyleSheet */,
-      shouldCache /*: boolean */
-    ) /*: string | void */ => {
+      selector: string,
+      serialized: SerializedStyles,
+      sheet: StyleSheet,
+      shouldCache: boolean
+    ): string | void => {
       let name = serialized.name
       let rules = getRules(selector, serialized)
       if (cache.compat === undefined) {
@@ -241,11 +249,11 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     }
   }
 
-  const cache /*: EmotionCache */ = {
+  const cache: EmotionCache = {
     key,
     sheet: new StyleSheet({
       key,
-      container,
+      container: container!,
       nonce: options.nonce,
       speedy: options.speedy,
       prepend: options.prepend,
