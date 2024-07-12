@@ -29,6 +29,7 @@ export type Options = {
   container?: HTMLElement,
   speedy?: boolean,
   prepend?: boolean,
+  explicitAmpersand?: boolean,
   insertionPoint?: HTMLElement
 }
 */
@@ -115,7 +116,7 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     sheet: StyleSheet,
     shouldCache: boolean
   ) => string | void */
-  const omnipresentPlugins = [compat, removeLabel]
+  const omnipresentPlugins = [compat(options), removeLabel]
 
   if (process.env.NODE_ENV !== 'production') {
     omnipresentPlugins.push(
