@@ -62,47 +62,8 @@ exports[`should not prefix pseudo-classes automatically when using explicitAmper
   color: red;
 }
 
-.emotion-0:before {
-  content: 'test';
-}
-
-<body>
-  <div
-    id="container"
-  >
-    <style
-      data-emotion="test-container"
-      data-s=""
-    >
-      
-      .emotion-0{}
-    </style>
-    <style
-      data-emotion="test-container"
-      data-s=""
-    >
-      
-      :where([dir='rtl']) .emotion-0{color:red;}
-    </style>
-    <style
-      data-emotion="test-container"
-      data-s=""
-    >
-      
-      .emotion-0:before{content:'test';}
-    </style>
-  </div>
-  <div>
-    <div
-      class="emotion-0"
-    />
-  </div>
-</body>
-`;
-
-exports[`should not prefix pseudo-classes automatically when using option 1`] = `
-:where([dir='rtl']) .emotion-0 {
-  color: red;
+.emotion-0 :is(p, ul)+:is(p, ul) {
+  margin-top: 1em;
 }
 
 .emotion-0:before {
@@ -126,6 +87,13 @@ exports[`should not prefix pseudo-classes automatically when using option 1`] = 
     >
       
       :where([dir='rtl']) .emotion-0{color:red;}
+    </style>
+    <style
+      data-emotion="test-container"
+      data-s=""
+    >
+      
+      .emotion-0 :is(p, ul)+:is(p, ul){margin-top:1em;}
     </style>
     <style
       data-emotion="test-container"
@@ -146,6 +114,10 @@ exports[`should not prefix pseudo-classes automatically when using option 1`] = 
 exports[`should prefix pseudo-classes automatically when not using explicitAmpersand option 1`] = `
 .emotion-0:where([dir='rtl']) .emotion-0 {
   color: red;
+}
+
+.emotion-0:is(p, ul)+:is(p, ul) {
+  margin-top: 1em;
 }
 
 .emotion-0:before {
@@ -169,6 +141,13 @@ exports[`should prefix pseudo-classes automatically when not using explicitAmper
     >
       
       .emotion-0:where([dir='rtl']) .emotion-0{color:red;}
+    </style>
+    <style
+      data-emotion="test-container"
+      data-s=""
+    >
+      
+      .emotion-0:is(p, ul)+:is(p, ul){margin-top:1em;}
     </style>
     <style
       data-emotion="test-container"

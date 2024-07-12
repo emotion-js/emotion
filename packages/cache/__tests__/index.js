@@ -73,6 +73,10 @@ it('should not prefix pseudo-classes automatically when using explicitAmpersand 
             color: red;
           }
 
+          :is(p, ul) + :is(p, ul) {
+            margin-top: 1em;
+          }
+
           &:before {
             content: 'test';
           }
@@ -99,6 +103,10 @@ it('should prefix pseudo-classes automatically when not using explicitAmpersand 
         css={css`
           :where([dir='rtl']) & {
             color: red;
+          }
+
+          :is(p, ul) + :is(p, ul) {
+            margin-top: 1em;
           }
 
           &:before {
