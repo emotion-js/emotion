@@ -3,4 +3,4 @@
 '@emotion/react': patch
 ---
 
-Replace global JSX type with React.JSX
+Improved compatibility with the upcoming `@types/react` for React 19 where the global `JSX` namespace doesn't exist anymore
