@@ -116,7 +116,9 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
     sheet: StyleSheet,
     shouldCache: boolean
   ) => string | void */
-  const omnipresentPlugins = [compat(options), removeLabel]
+  const omnipresentPlugins = options.explicitAmpersand
+    ? [removeLabel]
+    : [compat, removeLabel]
 
   if (process.env.NODE_ENV !== 'production') {
     omnipresentPlugins.push(

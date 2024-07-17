@@ -38,8 +38,7 @@ const identifierWithPointTracking = (begin, points, index) => {
   return slice(begin, position)
 }
 
-const toRules = (parsed, points, options) => {
-  const { explicitAmpersand = false } = options || {}
+const toRules = (parsed, points) => {
   // pretend we've started with a comma
   let index = -1
   let character = 44
@@ -66,7 +65,7 @@ const toRules = (parsed, points, options) => {
         break
       case 4:
         // comma
-        if (character === 44 && !explicitAmpersand) {
+        if (character === 44) {
           // colon
           parsed[++index] = peek() === 58 ? '&\f' : ''
           points[index] = parsed[index].length
@@ -81,13 +80,12 @@ const toRules = (parsed, points, options) => {
   return parsed
 }
 
-const getRules = (value, points, options) =>
-  dealloc(toRules(alloc(value), points, options))
+const getRules = (value, points) => dealloc(toRules(alloc(value), points))
 
 // WeakSet would be more appropriate, but only WeakMap is supported in IE11
 const fixedElements = /* #__PURE__ */ new WeakMap()
 
-export let compat = options => element => {
+export let compat = element => {
   if (
     element.type !== 'rule' ||
     !element.parent ||
@@ -125,7 +123,7 @@ export let compat = options => element => {
   fixedElements.set(element, true)
 
   const points = []
-  const rules = getRules(value, points, options)
+  const rules = getRules(value, points)
   const parentRules = parent.props
 
   for (let i = 0, k = 0; i < rules.length; i++) {
