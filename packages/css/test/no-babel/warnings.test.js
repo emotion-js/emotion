@@ -7,7 +7,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-it('warns about illegal escape sequences inside first quasi of template literal', () => {
+test('warns about illegal escape sequences inside first quasi of template literal', () => {
   css`
     :before {
       content: '\00d7';
@@ -24,7 +24,7 @@ it('warns about illegal escape sequences inside first quasi of template literal'
   `)
 })
 
-it('warns about illegal escape sequences inside non-first quasi of template literal', () => {
+test('warns about illegal escape sequences inside non-first quasi of template literal', () => {
   const color = `color: hotpink`
   css`
     background-color: black;

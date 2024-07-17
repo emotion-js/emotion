@@ -189,7 +189,7 @@ test('speedy option from a custom cache is inherited for <Global/> styles', () =
   expect(safeQuerySelector('body style').textContent).toEqual('')
 })
 
-it('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', () => {
+test('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', () => {
   let SomeComp = props => {
     return (
       <div

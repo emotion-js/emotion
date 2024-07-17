@@ -37,7 +37,7 @@ beforeEach(() => {
   jest.resetAllMocks()
 })
 
-it('does not warn when valid values are passed for the content property', () => {
+test('does not warn when valid values are passed for the content property', () => {
   const style = css(validValues.map(value => ({ content: value })))
   expect(console.error).not.toBeCalled()
   expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
@@ -45,7 +45,7 @@ it('does not warn when valid values are passed for the content property', () => 
 
 const invalidValues = ['this is not valid', '', 'element']
 
-it('does warn when invalid values are passed for the content property', () => {
+test('does warn when invalid values are passed for the content property', () => {
   invalidValues.forEach(value => {
     expect(() =>
       renderer.create(<div css={{ content: value }} />)

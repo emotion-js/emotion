@@ -6,7 +6,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-it('does warn when functions are passed to cx calls ', () => {
+test('does warn when functions are passed to cx calls ', () => {
   css(() => ({}))
   expect(console.error).toBeCalledWith(
     'Interpolating functions in css calls is not allowed.\n' +

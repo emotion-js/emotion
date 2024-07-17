@@ -1,6 +1,5 @@
 // @flow
 /** @jsx jsx */
-import 'test-utils/dev-mode'
 import { render } from '@testing-library/react'
 import { jsx, css, CacheProvider, ThemeProvider } from '@emotion/react'
 import createCache from '@emotion/cache'

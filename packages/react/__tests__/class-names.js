@@ -19,7 +19,7 @@ test('css', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-it('should get the theme', () => {
+test('should get the theme', () => {
   const tree = renderer.create(
     <ThemeProvider theme={{ color: 'green' }}>
       <ClassNames>

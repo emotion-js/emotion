@@ -1,4 +1,3 @@
-import 'test-utils/prod-mode'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { css, Global } from '@emotion/react'
@@ -35,60 +34,62 @@ const render = children =>
     }
   })
 
-test('it works', async () => {
-  await render(
-    <div>
-      <Comp>something</Comp>
+gate({ development: false }, ({ test }) => {
+  test('it works', async () => {
+    await render(
+      <div>
+        <Comp>something</Comp>
 
-      <Global
-        styles={{
-          html: {
-            backgroundColor: 'yellow'
-          }
-        }}
-      />
-      <Global
-        styles={css`
-          @import url('something.com/file.css');
-          body {
-            padding: 0;
-          }
-        `}
-      />
-    </div>
-  )
-  // order should be
-  // 1. html { background-color: yellow; }
-  // 1. @import
-  // 2. body { padding: 0; }
-  // 3. styled comp
+        <Global
+          styles={{
+            html: {
+              backgroundColor: 'yellow'
+            }
+          }}
+        />
+        <Global
+          styles={css`
+            @import url('something.com/file.css');
+            body {
+              padding: 0;
+            }
+          `}
+        />
+      </div>
+    )
+    // order should be
+    // 1. html { background-color: yellow; }
+    // 1. @import
+    // 2. body { padding: 0; }
+    // 3. styled comp
 
-  // querying for style instead of [data-emotion] to appease flow
-  let elements = Array.from(document.querySelectorAll('style')).filter(x =>
-    x.getAttribute('data-emotion')
-  )
+    // querying for style instead of [data-emotion] to appease flow
+    let elements = Array.from(document.querySelectorAll('style')).filter(x =>
+      x.getAttribute('data-emotion')
+    )
 
-  expect(elements.map(x => x.getAttribute('data-emotion'))).toEqual([
-    'css-global',
-    'css-global',
-    'css'
-  ])
+    expect(elements.map(x => x.getAttribute('data-emotion'))).toEqual([
+      'css-global',
+      'css-global',
+      'css'
+    ])
 
-  expect(elements[0].sheet).toMatchInlineSnapshot(`
+    expect(elements[0].sheet).toMatchInlineSnapshot(`
     html {
       background-color: yellow;
     }
   `)
-  expect(elements[1].sheet).toMatchInlineSnapshot(`
+    expect(elements[1].sheet).toMatchInlineSnapshot(`
 @import url(something.com/file.css);
 
 body {
   padding: 0;
 }
 `)
-  expect(elements[2].sheet).toMatchInlineSnapshot(`
+    expect(elements[2].sheet).toMatchInlineSnapshot(`
 .css-1lrxbo5 {
   color: hotpink;
 }
 `)
+  })
 })

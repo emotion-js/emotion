@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
-import 'test-utils/dev-mode'
 import { render, fireEvent } from '@testing-library/react'
 import { safeQuerySelector } from 'test-utils'
 import * as React from 'react'

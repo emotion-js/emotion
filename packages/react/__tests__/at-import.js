@@ -1,4 +1,3 @@
-import 'test-utils/prod-mode'
 import * as React from 'react'
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
@@ -10,39 +9,41 @@ beforeEach(() => {
   document.body.innerHTML = `<div id="root"></div>`
 })
 
-test('basic', () => {
-  render(
-    <React.Fragment>
-      <div css={{ color: 'hotpink' }} />
-      <Global
-        styles={css`
-          @import url('https://some-url');
+gate({ development: false }, ({ test }) => {
+  test('basic', () => {
+    render(
+      <React.Fragment>
+        <div css={{ color: 'hotpink' }} />
+        <Global
+          styles={css`
+            @import url('https://some-url');
 
-          h1 {
-            color: hotpink;
-          }
-        `}
-      />
-    </React.Fragment>,
-    document.getElementById('root')
-  )
-  expect(document.head).toMatchSnapshot()
-  expect(document.body).toMatchSnapshot()
-  let elements = document.querySelectorAll('style')
-  let rules = []
-  for (let element of elements) {
-    for (let cssRule of element.sheet.cssRules) {
-      rules.push(cssRule.cssText)
+            h1 {
+              color: hotpink;
+            }
+          `}
+        />
+      </React.Fragment>,
+      document.getElementById('root')
+    )
+    expect(document.head).toMatchSnapshot()
+    expect(document.body).toMatchSnapshot()
+    let elements = document.querySelectorAll('style')
+    let rules = []
+    for (let element of elements) {
+      for (let cssRule of element.sheet.cssRules) {
+        rules.push(cssRule.cssText)
+      }
     }
-  }
-  expect(rules).toMatchInlineSnapshot(`
+    expect(rules).toMatchInlineSnapshot(`
     [
       "@import url(https://some-url);",
       "h1 {color: hotpink;}",
       ".css-1lrxbo5 {color: hotpink;}",
     ]
   `)
-  unmountComponentAtNode(document.getElementById('root'))
-  expect(document.head).toMatchSnapshot()
-  expect(document.body).toMatchSnapshot()
+    unmountComponentAtNode(document.getElementById('root'))
+    expect(document.head).toMatchSnapshot()
+    expect(document.body).toMatchSnapshot()
+  })
 })

@@ -21,19 +21,19 @@ beforeEach(() => {
 })
 
 describe('StyleSheet', () => {
-  it('should be speedy by default in production', () => {
-    process.env.NODE_ENV = 'production'
-    const sheet = new StyleSheet(defaultOptions)
-    expect(sheet.isSpeedy).toBe(true)
-    process.env.NODE_ENV = 'test'
+  gate({ development: false }, ({ test }) => {
+    test('should be speedy by default in production', () => {
+      const sheet = new StyleSheet(defaultOptions)
+      expect(sheet.isSpeedy).toBe(true)
+    })
   })
 
-  it('should not be speedy in a non-production environment by default', () => {
+  test('should not be speedy in a non-production environment by default', () => {
     const sheet = new StyleSheet(defaultOptions)
     expect(sheet.isSpeedy).toBe(false)
   })
 
-  it('should remove its style elements from the document when flushed', () => {
+  test('should remove its style elements from the document when flushed', () => {
     const sheet = new StyleSheet(defaultOptions)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
@@ -41,7 +41,7 @@ describe('StyleSheet', () => {
     expect(document.documentElement).toMatchSnapshot()
   })
 
-  it('should set the data-emotion attribute to the key option', () => {
+  test('should set the data-emotion attribute to the key option', () => {
     const key = 'some-key'
     const sheet = new StyleSheet({ ...defaultOptions, key })
     sheet.insert(rule)
@@ -52,14 +52,14 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should insert a rule into the DOM when not in speedy', () => {
+  test('should insert a rule into the DOM when not in speedy', () => {
     const sheet = new StyleSheet(defaultOptions)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     sheet.flush()
   })
 
-  it('should insert a rule with insertRule when in speedy', () => {
+  test('should insert a rule with insertRule when in speedy', () => {
     const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
@@ -68,7 +68,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should throw when inserting a bad rule in speedy mode', () => {
+  test('should throw when inserting a bad rule in speedy mode', () => {
     const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
     sheet.insert('.asdfasdf4###112121211{')
     expect(console.error).toHaveBeenCalledTimes(1)
@@ -78,7 +78,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should set the nonce option as an attribute to style elements', () => {
+  test('should set the nonce option as an attribute to style elements', () => {
     let nonce = 'some-nonce'
     const sheet = new StyleSheet({ ...defaultOptions, nonce })
     sheet.insert(rule)
@@ -88,7 +88,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it("should use the container option instead of document.head to insert style elements into if it's passed", () => {
+  test("should use the container option instead of document.head to insert style elements into if it's passed", () => {
     const container = document.createElement('div')
     document.body.appendChild(container)
     const sheet = new StyleSheet({ ...defaultOptions, container })
@@ -100,7 +100,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should work with a ShadowRoot container', () => {
+  test('should work with a ShadowRoot container', () => {
     const div = document.createElement('div')
     // $FlowFixMe
     document.body.appendChild(div)
@@ -117,7 +117,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should accept prepend option', () => {
+  test('should accept prepend option', () => {
     const head = safeQuerySelector('head')
     const otherStyle = document.createElement('style')
     otherStyle.setAttribute('id', 'other')
@@ -131,7 +131,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should accept insertionPoint option', () => {
+  test('should accept insertionPoint option', () => {
     const head = safeQuerySelector('head')
 
     head.innerHTML = `
@@ -151,7 +151,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should work if insertionPoint is last element', () => {
+  test('should work if insertionPoint is last element', () => {
     const head = safeQuerySelector('head')
     const lastStyle = document.createElement('style')
     lastStyle.setAttribute('id', 'last')
@@ -169,7 +169,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should be able to hydrate styles', () => {
+  test('should be able to hydrate styles', () => {
     const fooStyle = document.createElement('style')
     fooStyle.textContent = '.foo { color: hotpink; }'
     const barStyle = document.createElement('style')
@@ -187,7 +187,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should flush hydrated styles', () => {
+  test('should flush hydrated styles', () => {
     const fooStyle = document.createElement('style')
     fooStyle.textContent = '.foo { color: hotpink; }'
     const barStyle = document.createElement('style')
@@ -208,7 +208,7 @@ describe('StyleSheet', () => {
     expect(document.documentElement).toMatchSnapshot()
   })
 
-  it('should correctly position hydrated styles when used with `prepend` option', () => {
+  test('should correctly position hydrated styles when used with `prepend` option', () => {
     const head = safeQuerySelector('head')
     const otherStyle = document.createElement('style')
     otherStyle.setAttribute('id', 'other')
@@ -233,7 +233,7 @@ describe('StyleSheet', () => {
     sheet.flush()
   })
 
-  it('should not crash when flushing when styles are already detached', () => {
+  test('should not crash when flushing when styles are already detached', () => {
     const head = safeQuerySelector('head')
 
     const sheet = new StyleSheet(defaultOptions)

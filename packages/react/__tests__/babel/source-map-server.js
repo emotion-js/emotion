@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 
-import 'test-utils/dev-mode'
 import { jsx } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 

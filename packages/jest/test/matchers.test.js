@@ -22,7 +22,7 @@ describe('toHaveStyleRule', () => {
     width: 100%;
   `
 
-  it('matches styles on the top-most node passed in', () => {
+  test('matches styles on the top-most node passed in', () => {
     const tree = renderer
       .create(
         <div css={divStyle}>
@@ -40,7 +40,7 @@ describe('toHaveStyleRule', () => {
     expect(svgNode).not.toHaveStyleRule('color', 'red')
   })
 
-  it('supports asymmetric matchers', () => {
+  test('supports asymmetric matchers', () => {
     const tree = renderer
       .create(
         <div css={divStyle}>
@@ -57,14 +57,14 @@ describe('toHaveStyleRule', () => {
     expect(svgNode).toHaveStyleRule('width', expect.stringMatching(/.*%$/))
   })
 
-  it('fails if no styles are found', () => {
+  test('fails if no styles are found', () => {
     const tree = renderer.create(<div />).toJSON()
     const result = toHaveStyleRule(tree, 'color', 'red')
     expect(result.pass).toBe(false)
     expect(result.message()).toBe('Property not found: color')
   })
 
-  it('supports regex values', () => {
+  test('supports regex values', () => {
     const tree = renderer.create(<div css={divStyle} />).toJSON()
     expect(tree).toHaveStyleRule('color', /red/)
   })
@@ -81,7 +81,7 @@ describe('toHaveStyleRule', () => {
     expect(resultPass.message()).toMatchSnapshot()
   })
 
-  it('matches styles on the focus, hover targets', () => {
+  test('matches styles on the focus, hover targets', () => {
     const localDivStyle = css`
       color: white;
       &:hover {
@@ -104,7 +104,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('color', 'white')
   })
 
-  it('matches styles on the nested component or html element', () => {
+  test('matches styles on the nested component or html element', () => {
     const Svg = styled('svg')`
       width: 100%;
       fill: blue;
@@ -134,7 +134,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
   })
 
-  it('matches target styles by regex', () => {
+  test('matches target styles by regex', () => {
     const localDivStyle = css`
       a {
         color: yellow;
@@ -154,7 +154,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
   })
 
-  it('matches proper style for css', () => {
+  test('matches proper style for css', () => {
     const tree = renderer
       .create(
         <div
@@ -169,7 +169,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('color', 'hotpink')
   })
 
-  it('matches style of the media', () => {
+  test('matches style of the media', () => {
     const Svg = styled('svg')`
       width: 100%;
     `
@@ -212,7 +212,7 @@ describe('toHaveStyleRule', () => {
     })
   })
 
-  it('matches styles with target and media options', () => {
+  test('matches styles with target and media options', () => {
     const localDivStyle = css`
       color: white;
       @media (min-width: 420px) {
@@ -240,7 +240,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('color', 'white')
   })
 
-  it('fails if option media invalid', () => {
+  test('fails if option media invalid', () => {
     const Div = styled('div')`
       font-size: 30px;
       @media (min-width: 420px) {
@@ -257,7 +257,7 @@ describe('toHaveStyleRule', () => {
     expect(result.message()).toBe('Property not found: font-size')
   })
 
-  it('matches styles for a component used as selector', () => {
+  test('matches styles for a component used as selector', () => {
     const Bar = styled.div``
 
     const Foo = styled.div`
@@ -278,7 +278,7 @@ describe('toHaveStyleRule', () => {
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
   })
 
-  it('takes specificity into account when matching styles (basic)', () => {
+  test('takes specificity into account when matching styles (basic)', () => {
     const Bar = styled.div`
       color: yellow;
     `
@@ -302,7 +302,7 @@ describe('toHaveStyleRule', () => {
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
   })
 
-  it('should throw a friendly error when it receives an array', () => {
+  test('should throw a friendly error when it receives an array', () => {
     const tree = renderer
       .create(
         <>
@@ -323,7 +323,7 @@ describe('toHaveStyleRule', () => {
     )
   })
   ;(isReact16 ? describe : describe.skip)('enzyme', () => {
-    it('supports enzyme `mount` method', () => {
+    test('supports enzyme `mount` method', () => {
       const Component = () => (
         <div css={divStyle}>
           <svg css={svgStyle} />
@@ -338,7 +338,7 @@ describe('toHaveStyleRule', () => {
       expect(svgNode).not.toHaveStyleRule('color', 'red')
     })
 
-    it('supports enzyme `render` method', () => {
+    test('supports enzyme `render` method', () => {
       const Component = () => (
         <div css={divStyle}>
           <svg css={svgStyle} />
@@ -353,7 +353,7 @@ describe('toHaveStyleRule', () => {
       expect(svgNode).not.toHaveStyleRule('color', 'red')
     })
 
-    it('supports enzyme `shallow` method', () => {
+    test('supports enzyme `shallow` method', () => {
       const Component = () => (
         <div css={divStyle}>
           <svg css={svgStyle} />
@@ -368,7 +368,7 @@ describe('toHaveStyleRule', () => {
       expect(svgNode).not.toHaveStyleRule('color', 'red')
     })
 
-    it('supports styled components', () => {
+    test('supports styled components', () => {
       const Div = styled('div')`
         color: red;
       `

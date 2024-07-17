@@ -51,6 +51,16 @@ jobs:
       - name: Run Tests with React 18
         run: yarn test:react18:ci
 
+  test_prod:
+    name: Test Prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
+
+      - name: Prod Tests
+        run: yarn test:prod
+
   test_dist:
     name: Test Dist
     runs-on: ubuntu-latest
@@ -59,7 +69,7 @@ jobs:
       - uses: ./.github/actions/ci-setup
 
       - name: Dist Tests
-        run: yarn test:prod
+        run: yarn test:dist
 
   linting:
     name: Linting
