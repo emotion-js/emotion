@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { StyledOptions, FilteringStyledOptions } from '@emotion/styled'
+import { ReactJSX } from './jsx-namespace'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
@@ -63,7 +64,7 @@ const Container3 = styled.div(({ theme }) => ({
 const Box = styled('div', {
   shouldForwardProp: (
     propName
-  ): propName is Exclude<keyof React.JSX.IntrinsicElements['div'], 'color'> =>
+  ): propName is Exclude<keyof ReactJSX.IntrinsicElements['div'], 'color'> =>
     propName !== 'color'
 })<{ color: Array<string> }>(props => ({
   color: props.color[0]

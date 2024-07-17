@@ -1,16 +1,11 @@
+// this is basically a slimmed down copy of https://github.com/emotion-js/emotion/blob/main/packages/react/types/jsx-namespace.d.ts
+// it helps to avoid issues when combining newer `@emotion/styled` and older `@emotion/react` versions
+// in such setup, ReactJSX namespace won't exist in `@emotion/react` and that would lead to errors
 import 'react'
-import { Interpolation } from '@emotion/serialize'
-import { Theme } from '@emotion/react'
 
 type IsPreReact19 = 2 extends Parameters<React.FunctionComponent<any>>['length']
   ? true
   : false
-
-type WithConditionalCSSProp<P> = 'className' extends keyof P
-  ? string extends P['className' & keyof P]
-    ? { css?: Interpolation<Theme> }
-    : {}
-  : {}
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace for the pre-React 19 case
 type ReactJSXElement = true extends IsPreReact19
@@ -76,26 +71,4 @@ export namespace ReactJSX {
     extends ReactJSXIntrinsicClassAttributes<T> {}
 
   type IntrinsicElements = ReactJSXIntrinsicElements
-}
-
-export namespace EmotionJSX {
-  type ElementType = ReactJSXElementType
-  interface Element extends ReactJSXElement {}
-  interface ElementClass extends ReactJSXElementClass {}
-  interface ElementAttributesProperty
-    extends ReactJSXElementAttributesProperty {}
-  interface ElementChildrenAttribute extends ReactJSXElementChildrenAttribute {}
-
-  type LibraryManagedAttributes<C, P> = WithConditionalCSSProp<P> &
-    ReactJSXLibraryManagedAttributes<C, P>
-
-  interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
-  interface IntrinsicClassAttributes<T>
-    extends ReactJSXIntrinsicClassAttributes<T> {}
-
-  type IntrinsicElements = {
-    [K in keyof ReactJSXIntrinsicElements]: ReactJSXIntrinsicElements[K] & {
-      css?: Interpolation<Theme>
-    }
-  }
 }

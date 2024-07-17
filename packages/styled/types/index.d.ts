@@ -3,6 +3,7 @@
 
 import { Theme } from '@emotion/react'
 import { CreateStyled as BaseCreateStyled, CreateStyledComponent } from './base'
+import { ReactJSX } from './jsx-namespace'
 
 export {
   ArrayInterpolation,
@@ -17,12 +18,12 @@ export {
 } from './base'
 
 export type StyledTags = {
-  [Tag in keyof React.JSX.IntrinsicElements]: CreateStyledComponent<
+  [Tag in keyof ReactJSX.IntrinsicElements]: CreateStyledComponent<
     {
       theme?: Theme
       as?: React.ElementType
     },
-    React.JSX.IntrinsicElements[Tag]
+    ReactJSX.IntrinsicElements[Tag]
   >
 }
 
