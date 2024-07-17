@@ -148,8 +148,10 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
         newProps[key] = props[key]
       }
     }
-    newProps.ref = ref
     newProps.className = className
+    if (ref) {
+      newProps.ref = ref
+    }
 
     return (
       <>
