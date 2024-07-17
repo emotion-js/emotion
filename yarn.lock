@@ -2546,6 +2546,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@definitelytyped/dtslint@patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch::locator=emotion-monorepo%40workspace%3A.":
+  version: 0.0.112
+  resolution: "@definitelytyped/dtslint@patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch::version=0.0.112&hash=753776&locator=emotion-monorepo%40workspace%3A."
+  dependencies:
+    "@definitelytyped/dts-critic": ^0.0.112
+    "@definitelytyped/header-parser": ^0.0.112
+    "@definitelytyped/typescript-versions": ^0.0.112
+    "@definitelytyped/utils": ^0.0.112
+    fs-extra: ^6.0.1
+    json-stable-stringify: ^1.0.1
+    strip-json-comments: ^2.0.1
+    tslint: 5.14.0
+    yargs: ^15.1.0
+  peerDependencies:
+    typescript: ">= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev"
+  bin:
+    dtslint: dist/index.js
+  checksum: 531e55134c34b4be44bd5aedb193b5dd99c098a374d1725e53bfc567a6bad8da6d314a7446f1480b2502afc6ed579555b4a8b31c40513f68dc7e679b51784c5f
+  languageName: node
+  linkType: hard
+
 "@definitelytyped/header-parser@npm:^0.0.112":
   version: 0.0.112
   resolution: "@definitelytyped/header-parser@npm:0.0.112"

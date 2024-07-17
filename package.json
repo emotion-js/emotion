@@ -239,5 +239,8 @@
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.2.3",
+  "resolutions": {
+    "@definitelytyped/dtslint@0.0.112": "patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch"
+  }
 }

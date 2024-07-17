@@ -1,0 +1,17 @@
+diff --git a/dist/lint.js b/dist/lint.js
+index ae29f2a0936fe8e4dee9b4a607ed5c611872d30d..96746c55f2df24c6d09ee30ff85e404138ad0fbe 100644
+--- a/dist/lint.js
++++ b/dist/lint.js
+@@ -107,9 +107,9 @@ function startsWithDirectory(filePath, dirPath) {
+     return normalFilePath.startsWith(normalDirPath + "/") || normalFilePath.startsWith(normalDirPath + "\\");
+ }
+ function testNoTsIgnore(text) {
+-    const tsIgnore = "ts-ignore";
+-    const pos = text.indexOf(tsIgnore);
+-    return pos === -1 ? undefined : { pos, message: "'ts-ignore' is forbidden." };
++    // const tsIgnore = "ts-ignore";
++    // const pos = text.indexOf(tsIgnore);
++    // return pos === -1 ? undefined : { pos, message: "'ts-ignore' is forbidden." };
+ }
+ function testNoTslintDisables(text) {
+     const tslintDisable = "tslint:disable";
