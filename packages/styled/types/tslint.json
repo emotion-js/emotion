@@ -18,6 +18,8 @@
     ],
     "no-unnecessary-generics": false,
     "unnecessary-bind": false,
-    "ban-ts-ignore": false
+    "ban-ts-ignore": false,
+    "no-empty-interface": false,
+    "strict-export-declare-modifiers": false
   }
 }
