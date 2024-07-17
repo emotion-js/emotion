@@ -20,6 +20,7 @@
     "no-null-undefined-union": false,
     "no-unnecessary-generics": false,
     "strict-export-declare-modifiers": false,
-    "unnecessary-bind": false
+    "unnecessary-bind": false,
+    "ban-ts-ignore": false
   }
 }

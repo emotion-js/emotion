@@ -17,6 +17,7 @@
       "check-preblock"
     ],
     "no-unnecessary-generics": false,
-    "unnecessary-bind": false
+    "unnecessary-bind": false,
+    "ban-ts-ignore": false
   }
 }
