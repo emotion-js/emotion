@@ -4,7 +4,7 @@
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import { PropsOf, Theme } from '@emotion/react'
-import { ReactJSX } from './jsx-namespace'
+import { ReactJSXIntrinsicElements } from './jsx-namespace'
 
 export {
   ArrayInterpolation,
@@ -50,9 +50,9 @@ export interface StyledComponent<
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
   ): StyledComponent<ComponentProps & PropsOf<C>>
-  withComponent<Tag extends keyof ReactJSX.IntrinsicElements>(
+  withComponent<Tag extends keyof ReactJSXIntrinsicElements>(
     tag: Tag
-  ): StyledComponent<ComponentProps, ReactJSX.IntrinsicElements[Tag]>
+  ): StyledComponent<ComponentProps, ReactJSXIntrinsicElements[Tag]>
 }
 
 /**
@@ -170,26 +170,26 @@ export interface CreateStyled {
   >
 
   <
-    Tag extends keyof ReactJSX.IntrinsicElements,
-    ForwardedProps extends keyof ReactJSX.IntrinsicElements[Tag] &
-      string = keyof ReactJSX.IntrinsicElements[Tag] & string
+    Tag extends keyof ReactJSXIntrinsicElements,
+    ForwardedProps extends keyof ReactJSXIntrinsicElements[Tag] &
+      string = keyof ReactJSXIntrinsicElements[Tag] & string
   >(
     tag: Tag,
     options: FilteringStyledOptions<
-      ReactJSX.IntrinsicElements[Tag],
+      ReactJSXIntrinsicElements[Tag],
       ForwardedProps
     >
   ): CreateStyledComponent<
     { theme?: Theme; as?: React.ElementType },
-    Pick<ReactJSX.IntrinsicElements[Tag], ForwardedProps>
+    Pick<ReactJSXIntrinsicElements[Tag], ForwardedProps>
   >
 
-  <Tag extends keyof ReactJSX.IntrinsicElements>(
+  <Tag extends keyof ReactJSXIntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions<ReactJSX.IntrinsicElements[Tag]>
+    options?: StyledOptions<ReactJSXIntrinsicElements[Tag]>
   ): CreateStyledComponent<
     { theme?: Theme; as?: React.ElementType },
-    ReactJSX.IntrinsicElements[Tag]
+    ReactJSXIntrinsicElements[Tag]
   >
 }
 
