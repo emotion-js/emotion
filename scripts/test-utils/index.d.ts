@@ -1,15 +1,14 @@
 /// <reference types="jest" />
 
 interface Flags {
-  production: boolean
+  development: boolean
 }
 
 declare global {
-  namespace jest {
-    interface It {
-      gate(flags: Flags): It
-    }
-  }
+  function gate(
+    flags: Flags,
+    exec: ({ test }: { test: typeof globalThis.test }) => void
+  ): void
 }
 
 export {}
