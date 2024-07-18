@@ -1,3 +1,22 @@
+const insertedRules = new WeakMap()
+
+if (typeof CSSStyleSheet !== 'undefined') {
+  const insertRule = CSSStyleSheet.prototype.insertRule
+  CSSStyleSheet.prototype.insertRule = function (...args) {
+    let sheetRules = insertedRules.get(this)
+
+    if (!sheetRules) {
+      sheetRules = []
+      insertedRules.set(this, sheetRules)
+    }
+
+    const rule = args[0]
+    sheetRules.push(rule)
+
+    return insertRule.apply(this, args)
+  }
+}
+
 const isBrowser = typeof document !== 'undefined'
 
 function last(arr) {
@@ -165,6 +184,10 @@ const getElementRules = (element /*: HTMLStyleElement */) /*: string[] */ => {
   }
   if (!element.sheet) {
     return []
+  }
+  const rules = insertedRules.get(element.sheet)
+  if (rules) {
+    return rules
   }
   return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
 }
