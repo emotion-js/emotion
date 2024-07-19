@@ -1,5 +1,19 @@
 # @emotion/styled
 
+## 11.12.0
+
+### Patch Changes
+
+- [#3206](https://github.com/emotion-js/emotion/pull/3206) [`d1994c4`](https://github.com/emotion-js/emotion/commit/d1994c460761ef37a3d12c587910c4e5b0e6f682) Thanks [@DiegoAndai](https://github.com/DiegoAndai)! - Improved compatibility with the upcoming `@types/react` for React 19 where the global `JSX` namespace doesn't exist anymore
+
+- [#3208](https://github.com/emotion-js/emotion/pull/3208) [`56109e7`](https://github.com/emotion-js/emotion/commit/56109e79adcf916144250b52ed579f13e4e6e0cf) Thanks [@Andarist](https://github.com/Andarist)! - Only forward defined `ref`s to improve compatibility with the upcoming React 19
+
+- Updated dependencies [[`9ca22c6`](https://github.com/emotion-js/emotion/commit/9ca22c6c23e9effa086d161a9b0ae1c645686680), [`a1e881b`](https://github.com/emotion-js/emotion/commit/a1e881b7dffdfa69f5ff32a708a25213b711bd15), [`16d8a8c`](https://github.com/emotion-js/emotion/commit/16d8a8c2198461c4842c73048b406c346a70aa59)]:
+  - @emotion/serialize@1.2.0
+  - @emotion/is-prop-valid@1.3.0
+  - @emotion/utils@1.3.0
+  - @emotion/babel-plugin@11.12.0
+
 ## 11.11.5
 
 ### Patch Changes
