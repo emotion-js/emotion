@@ -1,4 +1,3 @@
-import 'test-utils/dev-mode'
 import { render } from '@testing-library/react'
 import * as React from 'react'
 import { Global } from '@emotion/react'

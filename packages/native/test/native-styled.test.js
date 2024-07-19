@@ -37,7 +37,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with theming from @emotion/react', () => {
+  test('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `
@@ -73,7 +73,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with StyleSheet.create API', () => {
+  test('should work with StyleSheet.create API', () => {
     const styles = StyleSheet.create({ foo: { color: 'red' } })
     const Text = styled.Text`
       font-size: 10px;
@@ -93,7 +93,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should style any other component', () => {
+  test('should style any other component', () => {
     const Text = styled.Text`
       color: hotpink;
     `
@@ -106,7 +106,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should pass props in withComponent', () => {
+  test('should pass props in withComponent', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
@@ -118,7 +118,7 @@ describe('Emotion native styled', () => {
     expect(treeTwo).toMatchSnapshot()
   })
 
-  it('should render <Image />', () => {
+  test('should render <Image />', () => {
     const Image = styled.Image`
       border-radius: 2px;
     `
@@ -137,7 +137,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('Log error message if units are not specified when using shorthand properties', () => {
+  test('Log error message if units are not specified when using shorthand properties', () => {
     const Text = styled.Text`
       margin: 20px;
       padding: 20;
@@ -150,7 +150,7 @@ describe('Emotion native styled', () => {
     )
   })
 
-  it('should render styles correctly from all nested style factories', () => {
+  test('should render styles correctly from all nested style factories', () => {
     const bgColor = color => css`
       background-color: ${color};
     `

@@ -34,7 +34,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-it('does not warn when valid values are passed for the content property', () => {
+test('does not warn when valid values are passed for the content property', () => {
   const cls = css(validValues.map(value => ({ content: value })))
   expect(console.error).not.toBeCalled()
   expect(renderer.create(<div className={cls} />).toJSON()).toMatchSnapshot()
@@ -42,7 +42,7 @@ it('does not warn when valid values are passed for the content property', () => 
 
 const invalidValues = ['this is not valid', '']
 
-it('does warn when invalid values are passed for the content property', () => {
+test('does warn when invalid values are passed for the content property', () => {
   invalidValues.forEach(value => {
     expect(() =>
       renderer.create(<div className={css({ content: value })} />)
@@ -52,14 +52,14 @@ it('does warn when invalid values are passed for the content property', () => {
   })
 })
 
-it('does warn when functions are passed to css calls', () => {
+test('does warn when functions are passed to css calls', () => {
   css(() => 'color:hotpink;')
   expect(console.error).toBeCalledWith(
     "Functions that are interpolated in css calls will be stringified.\nIf you want to have a css call based on props, create a function that returns a css call like this\nlet dynamicStyle = (props) => css`color: ${props.color}`\nIt can be called directly with props or interpolated in a styled call like this\nlet SomeComponent = styled('div')`${dynamicStyle}`"
   )
 })
 
-it('does warn when @import rule is being inserted after order-insensitive rules', () => {
+test('does warn when @import rule is being inserted after order-insensitive rules', () => {
   const { injectGlobal } = createCss({ key: 'import-after-regular' })
 
   injectGlobal`.thing {display:flex;}`

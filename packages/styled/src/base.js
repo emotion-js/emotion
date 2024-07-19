@@ -10,6 +10,8 @@ import {
   */
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
+import isDevelopment from '#is-development'
+import isBrowser from '#is-browser'
 import {
   getRegisteredStyles,
   insertStyles,
@@ -22,8 +24,6 @@ const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your 
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
-
-let isBrowser = typeof document !== 'undefined'
 
 const Insertion = ({ cache, serialized, isStringTag }) => {
   registerStyles(cache, serialized, isStringTag)
@@ -56,7 +56,7 @@ let createStyled /*: CreateStyled */ = (
   tag /*: any */,
   options /* ?: StyledOptions */
 ) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     if (tag === undefined) {
       throw new Error(
         'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -92,14 +92,14 @@ let createStyled /*: CreateStyled */ = (
     if (args[0] == null || args[0].raw === undefined) {
       styles.push.apply(styles, args)
     } else {
-      if (process.env.NODE_ENV !== 'production' && args[0][0] === undefined) {
+      if (isDevelopment && args[0][0] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
       }
       styles.push(args[0][0])
       let len = args.length
       let i = 1
       for (; i < len; i++) {
-        if (process.env.NODE_ENV !== 'production' && args[0][i] === undefined) {
+        if (isDevelopment && args[0][i] === undefined) {
           console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
         }
         styles.push(args[i], args[0][i])
@@ -190,10 +190,7 @@ let createStyled /*: CreateStyled */ = (
 
     Object.defineProperty(Styled, 'toString', {
       value() {
-        if (
-          targetClassName === undefined &&
-          process.env.NODE_ENV !== 'production'
-        ) {
+        if (targetClassName === undefined && isDevelopment) {
           return 'NO_COMPONENT_SELECTOR'
         }
         return `.${targetClassName}`

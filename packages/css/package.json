@@ -43,11 +43,29 @@
   "umd:main": "dist/emotion-css.umd.min.js",
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-css.cjs.mjs",
+        "default": "./dist/emotion-css.cjs.js"
+      },
+      "development": {
+        "module": "./dist/emotion-css.development.esm.js",
+        "import": "./dist/emotion-css.development.cjs.mjs",
+        "default": "./dist/emotion-css.development.cjs.js"
+      },
       "module": "./dist/emotion-css.esm.js",
       "import": "./dist/emotion-css.cjs.mjs",
       "default": "./dist/emotion-css.cjs.js"
     },
     "./create-instance": {
+      "types": {
+        "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
+        "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
+      },
+      "development": {
+        "module": "./create-instance/dist/emotion-css-create-instance.development.esm.js",
+        "import": "./create-instance/dist/emotion-css-create-instance.development.cjs.mjs",
+        "default": "./create-instance/dist/emotion-css-create-instance.development.cjs.js"
+      },
       "module": "./create-instance/dist/emotion-css-create-instance.esm.js",
       "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
       "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
@@ -59,6 +77,12 @@
         "default": "./macro.d.ts"
       },
       "default": "./macro.js"
+    }
+  },
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     }
   },
   "preconstruct": {

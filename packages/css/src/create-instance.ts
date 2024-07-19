@@ -12,6 +12,7 @@ import {
 } from '@emotion/utils'
 import { EmotionCache, Options } from '@emotion/cache'
 import { StyleSheet } from '@emotion/sheet'
+import isDevelopment from '#is-development'
 
 export type {
   CSSInterpolation,
@@ -91,7 +92,7 @@ let createEmotion = (options: Options): Emotion => {
   let cache = createCache(options)
 
   ;(cache.sheet as CSSStyleSheet).speedy = function (value: boolean) {
-    if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
+    if (isDevelopment && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }
     this.isSpeedy = value

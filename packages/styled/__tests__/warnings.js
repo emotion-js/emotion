@@ -10,7 +10,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-it('warns about illegal escape sequences inside first quasi of template literal', () => {
+test('warns about illegal escape sequences inside first quasi of template literal', () => {
   styled.div`
     :before {
       content: '\00d7';
@@ -27,7 +27,7 @@ it('warns about illegal escape sequences inside first quasi of template literal'
   `)
 })
 
-it('warns about illegal escape sequences inside non-first quasi of template literal', () => {
+test('warns about illegal escape sequences inside non-first quasi of template literal', () => {
   const color = css`
     color: hotpink;
   `
@@ -49,7 +49,7 @@ it('warns about illegal escape sequences inside non-first quasi of template lite
   `)
 })
 
-it("warns about undefined being passed as object style's key", () => {
+test("warns about undefined being passed as object style's key", () => {
   let ListItem
   const List = styled.ul({ [ListItem]: { color: 'hotpink' } })
 

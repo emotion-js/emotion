@@ -35,7 +35,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with theming from @emotion/react', () => {
+  test('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `
@@ -51,7 +51,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should unmount with theming', () => {
+  test('should unmount with theming', () => {
     const StyledText = styled.Text`
       display: ${props => props.theme.display};
     `
@@ -88,7 +88,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with StyleSheet.create API', () => {
+  test('should work with StyleSheet.create API', () => {
     const styles = StyleSheet.create({ foo: { color: 'red' } })
     const Text = styled.Text`
       font-size: 10px;
@@ -109,7 +109,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should style any other component', () => {
+  test('should style any other component', () => {
     const Text = styled.Text`
       color: hotpink;
     `
@@ -122,7 +122,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('ref', () => {
+  test('ref', () => {
     const StyledText = styled.Text`
       color: hotpink;
     `
@@ -134,7 +134,7 @@ describe('Emotion primitives', () => {
     unmount()
   })
 
-  it('should pass props in withComponent', () => {
+  test('should pass props in withComponent', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
@@ -146,7 +146,7 @@ describe('Emotion primitives', () => {
     expect(treeTwo).toMatchSnapshot()
   })
 
-  it('should render <Image />', () => {
+  test('should render <Image />', () => {
     const Image = styled.Image`
       border: 2px solid hotpink;
     `

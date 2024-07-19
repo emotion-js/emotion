@@ -13,6 +13,10 @@
   "module": "dist/emotion-eslint-plugin.esm.js",
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/emotion-eslint-plugin.cjs.mjs",
+        "default": "./dist/emotion-eslint-plugin.cjs.js"
+      },
       "module": "./dist/emotion-eslint-plugin.esm.js",
       "import": "./dist/emotion-eslint-plugin.cjs.mjs",
       "default": "./dist/emotion-eslint-plugin.cjs.js"

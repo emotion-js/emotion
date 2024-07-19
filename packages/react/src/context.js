@@ -2,7 +2,8 @@
 import * as React from 'react'
 import { useContext, forwardRef } from 'react'
 import createCache from '@emotion/cache'
-import { isBrowser } from './utils'
+import isDevelopment from '#is-development'
+import isBrowser from '#is-browser'
 
 let EmotionCacheContext /*: React.Context<EmotionCache | null> */ =
   /* #__PURE__ */ React.createContext(
@@ -17,7 +18,7 @@ let EmotionCacheContext /*: React.Context<EmotionCache | null> */ =
       : null
   )
 
-if (process.env.NODE_ENV !== 'production') {
+if (isDevelopment) {
   EmotionCacheContext.displayName = 'EmotionCacheContext'
 }
 

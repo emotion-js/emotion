@@ -22,7 +22,7 @@ describe('jest-emotion with dom elements', () => {
     width: 100%;
   `
 
-  it('replaces class names and inserts styles into React test component snapshots', () => {
+  test('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer
       .create(
         <div css={divStyle}>
@@ -38,7 +38,7 @@ describe('jest-emotion with dom elements', () => {
     expect(output).toMatchSnapshot()
   })
 
-  it('replaces class names and inserts styles into DOM element snapshots', () => {
+  test('replaces class names and inserts styles into DOM element snapshots', () => {
     const divRef = React.createRef()
     render(
       <div css={divStyle} ref={divRef}>
@@ -65,7 +65,7 @@ describe('jest-emotion with DOM elements disabled', () => {
     width: 100%;
   `
 
-  it('replaces class names and inserts styles into React test component snapshots', () => {
+  test('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer
       .create(
         <div css={divStyle}>
@@ -81,7 +81,7 @@ describe('jest-emotion with DOM elements disabled', () => {
     expect(output).toMatchSnapshot()
   })
 
-  it('does not replace class names or insert styles into DOM element snapshots', () => {
+  test('does not replace class names or insert styles into DOM element snapshots', () => {
     const divRef = React.createRef()
     render(
       <div css={divStyle} ref={divRef}>
@@ -150,7 +150,7 @@ describe('jest-emotion with nested selectors', () => {
     }
   `
 
-  it('replaces class names and inserts styles into React test component snapshots', () => {
+  test('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer.create(<div css={divStyle} />).toJSON()
 
     const output = prettyFormat(tree, {

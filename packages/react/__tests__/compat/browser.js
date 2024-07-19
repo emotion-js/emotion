@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import 'test-utils/dev-mode'
 import { throwIfFalsy } from 'test-utils'
 import { jsx, CacheProvider } from '@emotion/react'
 import { render } from '@testing-library/react'

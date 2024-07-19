@@ -1,6 +1,5 @@
+import isBrowser from '#is-browser'
 import { RegisteredCache, EmotionCache, SerializedStyles } from './types'
-
-const isBrowser = typeof document !== 'undefined'
 
 export function getRegisteredStyles(
   registered: RegisteredCache,

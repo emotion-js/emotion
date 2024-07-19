@@ -80,7 +80,7 @@ describe('Emotion native css', () => {
     ).toEqual(['color', 'flex', 'backgroundColor', 'flexGrow', 'flexDirection'])
   })
 
-  it('allows function interpolations when this.mergedProps is defined', () => {
+  test('allows function interpolations when this.mergedProps is defined', () => {
     expect(
       StyleSheet.flatten(
         css.call({ thing: true }, props => ({
@@ -90,7 +90,7 @@ describe('Emotion native css', () => {
     ).toEqual({ color: 'hotpink' })
   })
 
-  it('works with nested functions', () => {
+  test('works with nested functions', () => {
     expect(
       StyleSheet.flatten(
         css.call({ thing: true }, props => () => ({
@@ -100,7 +100,7 @@ describe('Emotion native css', () => {
     ).toEqual({ color: 'hotpink' })
   })
 
-  it('works with functions in tagged template literals', () => {
+  test('works with functions in tagged template literals', () => {
     expect(
       StyleSheet.flatten(
         css.call(

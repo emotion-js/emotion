@@ -1,5 +1,8 @@
 module.exports = {
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: ['development']
+  },
   transform: {
     '^.+\\.(tsx|ts|js)?$': 'babel-jest'
   },
@@ -13,7 +16,7 @@ module.exports = {
     '/site/',
     '/types/'
   ],
-  setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
+  setupFilesAfterEnv: ['test-utils/testSetup.js'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/babel-plugin/test/util.js'
