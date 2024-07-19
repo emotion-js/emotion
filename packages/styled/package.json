@@ -51,10 +51,20 @@
         "default": "./base/dist/emotion-styled-base.cjs.js"
       },
       "development": {
+        "edge-light": {
+          "module": "./base/dist/emotion-styled-base.development.edge-light.esm.js",
+          "import": "./base/dist/emotion-styled-base.development.edge-light.cjs.mjs",
+          "default": "./base/dist/emotion-styled-base.development.edge-light.cjs.js"
+        },
         "worker": {
-          "module": "./base/dist/emotion-styled-base.development.worker.esm.js",
-          "import": "./base/dist/emotion-styled-base.development.worker.cjs.mjs",
-          "default": "./base/dist/emotion-styled-base.development.worker.cjs.js"
+          "module": "./base/dist/emotion-styled-base.development.edge-light.esm.js",
+          "import": "./base/dist/emotion-styled-base.development.edge-light.cjs.mjs",
+          "default": "./base/dist/emotion-styled-base.development.edge-light.cjs.js"
+        },
+        "workerd": {
+          "module": "./base/dist/emotion-styled-base.development.edge-light.esm.js",
+          "import": "./base/dist/emotion-styled-base.development.edge-light.cjs.mjs",
+          "default": "./base/dist/emotion-styled-base.development.edge-light.cjs.js"
         },
         "browser": {
           "module": "./base/dist/emotion-styled-base.browser.development.esm.js",
@@ -65,10 +75,20 @@
         "import": "./base/dist/emotion-styled-base.development.cjs.mjs",
         "default": "./base/dist/emotion-styled-base.development.cjs.js"
       },
+      "edge-light": {
+        "module": "./base/dist/emotion-styled-base.edge-light.esm.js",
+        "import": "./base/dist/emotion-styled-base.edge-light.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.edge-light.cjs.js"
+      },
       "worker": {
-        "module": "./base/dist/emotion-styled-base.worker.esm.js",
-        "import": "./base/dist/emotion-styled-base.worker.cjs.mjs",
-        "default": "./base/dist/emotion-styled-base.worker.cjs.js"
+        "module": "./base/dist/emotion-styled-base.edge-light.esm.js",
+        "import": "./base/dist/emotion-styled-base.edge-light.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.edge-light.cjs.js"
+      },
+      "workerd": {
+        "module": "./base/dist/emotion-styled-base.edge-light.esm.js",
+        "import": "./base/dist/emotion-styled-base.edge-light.cjs.mjs",
+        "default": "./base/dist/emotion-styled-base.edge-light.cjs.js"
       },
       "browser": {
         "module": "./base/dist/emotion-styled-base.browser.esm.js",
@@ -85,10 +105,20 @@
         "default": "./dist/emotion-styled.cjs.js"
       },
       "development": {
+        "edge-light": {
+          "module": "./dist/emotion-styled.development.edge-light.esm.js",
+          "import": "./dist/emotion-styled.development.edge-light.cjs.mjs",
+          "default": "./dist/emotion-styled.development.edge-light.cjs.js"
+        },
         "worker": {
-          "module": "./dist/emotion-styled.development.worker.esm.js",
-          "import": "./dist/emotion-styled.development.worker.cjs.mjs",
-          "default": "./dist/emotion-styled.development.worker.cjs.js"
+          "module": "./dist/emotion-styled.development.edge-light.esm.js",
+          "import": "./dist/emotion-styled.development.edge-light.cjs.mjs",
+          "default": "./dist/emotion-styled.development.edge-light.cjs.js"
+        },
+        "workerd": {
+          "module": "./dist/emotion-styled.development.edge-light.esm.js",
+          "import": "./dist/emotion-styled.development.edge-light.cjs.mjs",
+          "default": "./dist/emotion-styled.development.edge-light.cjs.js"
         },
         "browser": {
           "module": "./dist/emotion-styled.browser.development.esm.js",
@@ -99,10 +129,20 @@
         "import": "./dist/emotion-styled.development.cjs.mjs",
         "default": "./dist/emotion-styled.development.cjs.js"
       },
+      "edge-light": {
+        "module": "./dist/emotion-styled.edge-light.esm.js",
+        "import": "./dist/emotion-styled.edge-light.cjs.mjs",
+        "default": "./dist/emotion-styled.edge-light.cjs.js"
+      },
       "worker": {
-        "module": "./dist/emotion-styled.worker.esm.js",
-        "import": "./dist/emotion-styled.worker.cjs.mjs",
-        "default": "./dist/emotion-styled.worker.cjs.js"
+        "module": "./dist/emotion-styled.edge-light.esm.js",
+        "import": "./dist/emotion-styled.edge-light.cjs.mjs",
+        "default": "./dist/emotion-styled.edge-light.cjs.js"
+      },
+      "workerd": {
+        "module": "./dist/emotion-styled.edge-light.esm.js",
+        "import": "./dist/emotion-styled.edge-light.cjs.mjs",
+        "default": "./dist/emotion-styled.edge-light.cjs.js"
       },
       "browser": {
         "module": "./dist/emotion-styled.browser.esm.js",
@@ -128,6 +168,8 @@
       "default": "./src/conditions/false.js"
     },
     "#is-browser": {
+      "edge-light": "./src/conditions/false.js",
+      "workerd": "./src/conditions/false.js",
       "worker": "./src/conditions/false.js",
       "browser": "./src/conditions/true.js",
       "default": "./src/conditions/is-browser.js"

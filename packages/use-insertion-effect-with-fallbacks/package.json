@@ -25,10 +25,20 @@
         "import": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.mjs",
         "default": "./dist/emotion-use-insertion-effect-with-fallbacks.cjs.js"
       },
+      "edge-light": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.cjs.js"
+      },
       "worker": {
-        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.esm.js",
-        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.cjs.mjs",
-        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.worker.cjs.js"
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.cjs.js"
+      },
+      "workerd": {
+        "module": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.esm.js",
+        "import": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.cjs.mjs",
+        "default": "./dist/emotion-use-insertion-effect-with-fallbacks.edge-light.cjs.js"
       },
       "browser": {
         "module": "./dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js",
@@ -43,6 +53,8 @@
   },
   "imports": {
     "#is-browser": {
+      "edge-light": "./src/conditions/false.js",
+      "workerd": "./src/conditions/false.js",
       "worker": "./src/conditions/false.js",
       "browser": "./src/conditions/true.js",
       "default": "./src/conditions/is-browser.js"

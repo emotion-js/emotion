@@ -53,7 +53,6 @@
     "./package.json": "./package.json",
     "./macro": "./macro.js"
   },
-  "imports": {},
   "preconstruct": {
     "exports": {
       "extra": {
