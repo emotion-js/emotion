@@ -2580,6 +2580,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@definitelytyped/dtslint@patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch::locator=emotion-monorepo%40workspace%3A.":
+  version: 0.0.112
+  resolution: "@definitelytyped/dtslint@patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch::version=0.0.112&hash=753776&locator=emotion-monorepo%40workspace%3A."
+  dependencies:
+    "@definitelytyped/dts-critic": ^0.0.112
+    "@definitelytyped/header-parser": ^0.0.112
+    "@definitelytyped/typescript-versions": ^0.0.112
+    "@definitelytyped/utils": ^0.0.112
+    fs-extra: ^6.0.1
+    json-stable-stringify: ^1.0.1
+    strip-json-comments: ^2.0.1
+    tslint: 5.14.0
+    yargs: ^15.1.0
+  peerDependencies:
+    typescript: ">= 3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev || >= 3.8.0-dev || >= 3.9.0-dev || >= 4.0.0-dev"
+  bin:
+    dtslint: dist/index.js
+  checksum: 531e55134c34b4be44bd5aedb193b5dd99c098a374d1725e53bfc567a6bad8da6d314a7446f1480b2502afc6ed579555b4a8b31c40513f68dc7e679b51784c5f
+  languageName: node
+  linkType: hard
+
 "@definitelytyped/header-parser@npm:^0.0.112":
   version: 0.0.112
   resolution: "@definitelytyped/header-parser@npm:0.0.112"
@@ -6354,14 +6375,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.0.9":
-  version: 18.0.14
-  resolution: "@types/react@npm:18.0.14"
+"@types/react@npm:*, @types/react@npm:18.2.6, @types/react@npm:>=16":
+  version: 18.2.6
+  resolution: "@types/react@npm:18.2.6"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 608eb57a383eedc54c79949673e5e8314f6b0c61542bff58721c8c47a18c23e2832e77c656050c2c2c004b62cf25582136c7c56fe1b6263a285c065fae31dbcf
+  checksum: dea9d232d8df7ac357367a69dcb557711ab3d5501807ffa77cebeee73d49ee94d095f298e36853c63ed47cce097eee4c7eae2aaa8c02fac3f0171ec1b523a819
   languageName: node
   linkType: hard
 
@@ -12617,7 +12638,7 @@ __metadata:
     "@testing-library/react": 13.0.0-alpha.5
     "@types/jest": ^29.5.12
     "@types/node": ^12.20.37
-    "@types/react": ^18.0.9
+    "@types/react": 18.2.6
     "@typescript-eslint/eslint-plugin": ^7.13.0
     "@typescript-eslint/parser": ^7.13.0
     babel-check-duplicated-nodes: ^1.0.0
@@ -12689,7 +12710,7 @@ __metadata:
     "@types/js-yaml": ^4.0.5
     "@types/node": ^12.20.37
     "@types/prismjs": ^1.26.0
-    "@types/react": ^18.0.9
+    "@types/react": 18.2.6
     "@types/remark-prism": ^1.3.3
     facepaint: ^1.2.1
     gray-matter: ^4.0.3
