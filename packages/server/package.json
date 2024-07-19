@@ -73,7 +73,6 @@
     },
     "./package.json": "./package.json"
   },
-  "imports": {},
   "preconstruct": {
     "entrypoints": [
       "./index.js",
