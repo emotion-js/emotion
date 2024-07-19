@@ -155,9 +155,10 @@ let createStyled /*: CreateStyled */ = (
             newProps[key] = props[key]
           }
         }
-
         newProps.className = className
-        newProps.ref = ref
+        if (ref) {
+          newProps.ref = ref
+        }
 
         return (
           <>
