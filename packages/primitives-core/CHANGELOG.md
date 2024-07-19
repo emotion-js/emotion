@@ -1,5 +1,15 @@
 # @emotion/primitives-core
 
+## 11.12.0
+
+### Minor Changes
+
+- [#2818](https://github.com/emotion-js/emotion/pull/2818) [`8546dd0`](https://github.com/emotion-js/emotion/commit/8546dd0) Thanks [@srmagura](https://github.com/srmagura)! - Source code has been migrated to TypeScript so from now on type declarations will be available in the published package.
+
+### Patch Changes
+
+- [#3208](https://github.com/emotion-js/emotion/pull/3208) [`56109e7`](https://github.com/emotion-js/emotion/commit/56109e79adcf916144250b52ed579f13e4e6e0cf) Thanks [@Andarist](https://github.com/Andarist)! - Only forward defined `ref`s to improve compatibility with the upcoming React 19
+
 ## 11.11.0
 
 ### Patch Changes

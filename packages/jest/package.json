@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.3",
-    "@emotion/css-prettifier": "^1.1.3",
+    "@emotion/css-prettifier": "^1.1.4",
     "chalk": "^4.1.0",
     "specificity": "^0.4.1",
     "stylis": "4.2.0"
@@ -60,8 +60,8 @@
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/css": "11.11.2",
-    "@emotion/react": "11.11.4",
+    "@emotion/css": "11.12.0",
+    "@emotion/react": "11.12.0",
     "@types/jest": "^29.5.12",
     "enzyme-to-json": "^3.6.1",
     "pretty-format": "^22.4.3",
