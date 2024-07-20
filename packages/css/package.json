@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css",
-  "version": "11.12.0",
+  "version": "11.13.0",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-css.cjs.js",
   "module": "dist/emotion-css.esm.js",
@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.12.0",
-    "@emotion/cache": "^11.12.0",
-    "@emotion/serialize": "^1.2.0",
-    "@emotion/sheet": "^1.3.0",
-    "@emotion/utils": "^1.3.0"
+    "@emotion/cache": "^11.13.0",
+    "@emotion/serialize": "^1.3.0",
+    "@emotion/sheet": "^1.4.0",
+    "@emotion/utils": "^1.4.0"
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",

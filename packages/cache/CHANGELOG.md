@@ -1,5 +1,23 @@
 # @emotion/cache
 
+## 11.13.0
+
+### Minor Changes
+
+- [#3198](https://github.com/emotion-js/emotion/pull/3198) [`d8ff8a5`](https://github.com/emotion-js/emotion/commit/d8ff8a5990c691017b463b3fa23a9f46ab28147b) Thanks [@Andarist](https://github.com/Andarist)! - Migrated away from relying on `process.env.NODE_ENV` checks to differentiate between production and development builds.
+
+  Development builds (and other environment-specific builds) can be used by using proper conditions (see [here](https://nodejs.org/docs/v20.15.1/api/packages.html#resolving-user-conditions)). Most modern bundlers/frameworks already preconfigure those for the user so no action has to be taken.
+
+  Default files should continue to work in all environments.
+
+- [#3215](https://github.com/emotion-js/emotion/pull/3215) [`a9f6912`](https://github.com/emotion-js/emotion/commit/a9f691299844bf6837b7ad41ee17cd912496f3d5) Thanks [@Andarist](https://github.com/Andarist)! - Added `edge-light` and `workerd` conditions to `package.json` manifest to better serve users using Vercel Edge and Cloudflare Workers.
+
+### Patch Changes
+
+- Updated dependencies [[`d8ff8a5`](https://github.com/emotion-js/emotion/commit/d8ff8a5990c691017b463b3fa23a9f46ab28147b), [`a9f6912`](https://github.com/emotion-js/emotion/commit/a9f691299844bf6837b7ad41ee17cd912496f3d5)]:
+  - @emotion/sheet@1.4.0
+  - @emotion/utils@1.4.0
+
 ## 11.12.0
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @emotion/primitives
 
+## 11.13.0
+
+### Minor Changes
+
+- [#3215](https://github.com/emotion-js/emotion/pull/3215) [`a9f6912`](https://github.com/emotion-js/emotion/commit/a9f691299844bf6837b7ad41ee17cd912496f3d5) Thanks [@Andarist](https://github.com/Andarist)! - Added `edge-light` and `workerd` conditions to `package.json` manifest to better serve users using Vercel Edge and Cloudflare Workers.
+
+### Patch Changes
+
+- Updated dependencies [[`d8ff8a5`](https://github.com/emotion-js/emotion/commit/d8ff8a5990c691017b463b3fa23a9f46ab28147b)]:
+  - @emotion/primitives-core@11.13.0
+
 ## 11.11.0
 
 ### Patch Changes

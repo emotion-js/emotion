@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.13.0
+
+### Minor Changes
+
+- [#3198](https://github.com/emotion-js/emotion/pull/3198) [`d8ff8a5`](https://github.com/emotion-js/emotion/commit/d8ff8a5990c691017b463b3fa23a9f46ab28147b) Thanks [@Andarist](https://github.com/Andarist)! - Adjustments to how speedy rules are obtained by the plugin.
+
 ## 11.11.0
 
 ### Patch Changes
