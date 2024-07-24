@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.8
 
-/// <reference types="node" preverve="true" />
+/// <reference types="node" preserve="true" />
 import { EmotionCache } from '@emotion/utils'
 
 export interface EmotionCritical {
