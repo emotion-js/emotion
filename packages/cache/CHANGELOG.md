@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.13.1
+
+### Patch Changes
+
+- [#3219](https://github.com/emotion-js/emotion/pull/3219) [`c72d279`](https://github.com/emotion-js/emotion/commit/c72d2798fe5d9e245ebe91e1b612919fda4ee0cf) Thanks [@Andarist](https://github.com/Andarist)! - Removed incorrect tripleslash directive referencing node types
+
 ## 11.13.0
 
 ### Minor Changes
