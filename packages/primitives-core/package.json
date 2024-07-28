@@ -39,9 +39,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "browser": {
-    "./dist/emotion-primitives-core.esm.js": "./dist/emotion-primitives-core.browser.esm.js"
-  },
   "exports": {
     ".": {
       "types": {
