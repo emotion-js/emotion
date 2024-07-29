@@ -1,5 +1,11 @@
 # @emotion/primitives-core
 
+## 11.13.2
+
+### Patch Changes
+
+- [#3228](https://github.com/emotion-js/emotion/pull/3228) [`49f7435`](https://github.com/emotion-js/emotion/commit/49f7435783e2be88ad22012d5156085a25fbcd4e) Thanks [@daern91](https://github.com/daern91)! - Remove incorrect `browser` field from `package.json`
+
 ## 11.13.0
 
 ### Minor Changes
