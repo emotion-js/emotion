@@ -6,7 +6,9 @@ import {
   css,
   jsx,
   keyframes,
-  withEmotionCache
+  withEmotionCache,
+  Interpolation,
+  Theme
 } from '@emotion/react'
 import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
 import { CSSInterpolation } from '@emotion/serialize'
@@ -240,11 +242,17 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType { foo: number; className: string; css?: Interpolation<Theme> } | { foo: string }
-  type _HasCssPropAsIntended7 = EmotionJSX.LibraryManagedAttributes<
-    {},
-    { foo: number; className: string } | { foo: string }
-  >
+  /*
+     Additional brackets here prevent type reference('EmotionJSX.LibraryManagedAttributes<...>') from being resolved to type alias name('_HasCssPropAsIntended7').
+     Without them, dtslint will compare the expected type to the type name.
+  */
+  type _HasCssPropAsIntended7 = [
+    // $ExpectType { foo: boolean; } | ({ css?: Interpolation<Theme>; } & { foo: number; className: string; })
+    EmotionJSX.LibraryManagedAttributes<
+      {},
+      { foo: number; className: string } | { foo: boolean }
+    >
+  ]
 
   // $ExpectType false
   type _NoCssPropAsIntended1 =
