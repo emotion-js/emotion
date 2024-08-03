@@ -240,6 +240,12 @@ const anim1 = keyframes`
     }
   >['css']
 
+  // $ExpectType { foo: number; className: string; css?: Interpolation<Theme> } | { foo: string }
+  type _HasCssPropAsIntended7 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    { foo: number; className: string } | { foo: string }
+  >
+
   // $ExpectType false
   type _NoCssPropAsIntended1 =
     'css' extends keyof EmotionJSX.LibraryManagedAttributes<
