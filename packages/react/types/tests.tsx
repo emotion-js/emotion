@@ -6,9 +6,7 @@ import {
   css,
   jsx,
   keyframes,
-  withEmotionCache,
-  Interpolation,
-  Theme
+  withEmotionCache
 } from '@emotion/react'
 import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
 import { CSSInterpolation } from '@emotion/serialize'
