@@ -2791,7 +2791,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/css": 11.13.0
     "@emotion/css-prettifier": ^1.1.4
-    "@emotion/react": 11.13.0
+    "@emotion/react": 11.13.3
     "@types/jest": ^29.5.12
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2854,7 +2854,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.13.0
+    "@emotion/react": 11.13.3
     "@types/css-to-react-native": ^3.0.0
     css-to-react-native: ^3.0.0
     react: 16.14.0
@@ -2881,7 +2881,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.13.0, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@11.13.3, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
@@ -2963,7 +2963,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.12.0
     "@emotion/is-prop-valid": ^1.3.0
-    "@emotion/react": 11.13.0
+    "@emotion/react": 11.13.3
     "@emotion/serialize": ^1.3.0
     "@emotion/use-insertion-effect-with-fallbacks": ^1.1.0
     "@emotion/utils": ^1.4.0
