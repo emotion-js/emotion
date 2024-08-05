@@ -2,4 +2,4 @@
 '@emotion/react': patch
 ---
 
-Let 'css' prop attachment be distributed over union types.
+Distribute `css` prop attachment over props that are union types
