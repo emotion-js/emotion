@@ -183,6 +183,23 @@ const anim1 = keyframes`
 }
 
 {
+  const CompWithConditionalClassNameSupport = (
+    _props: { foo: true; className?: string } | { foo: false }
+  ) => {
+    return null
+  }
+  ;<CompWithConditionalClassNameSupport
+    foo={true}
+    css={{ backgroundColor: 'hotpink' }}
+  />
+  ;<CompWithConditionalClassNameSupport
+    foo={false}
+    // $ExpectError
+    css={{ backgroundColor: 'hotpink' }}
+  />
+}
+
+{
   // based on the code from @types/react@17.x
   // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/98fa4486aefd5a1916aa385402467a7157e3c73f/types/react/v17/index.d.ts#L540-L548
   type OldFC<P = {}> = OldFunctionComponent<P>
@@ -239,18 +256,6 @@ const anim1 = keyframes`
       className?: string | Array<string>
     }
   >['css']
-
-  /*
-     Additional brackets here prevent type reference('EmotionJSX.LibraryManagedAttributes<...>') from being resolved to type alias name('_HasCssPropAsIntended7').
-     Without them, dtslint will compare the expected type to the type name.
-  */
-  type _HasCssPropAsIntended7 = [
-    // $ExpectType { foo: boolean; } | ({ css?: Interpolation<Theme>; } & { foo: number; className: string; })
-    EmotionJSX.LibraryManagedAttributes<
-      {},
-      { foo: number; className: string } | { foo: boolean }
-    >
-  ]
 
   // $ExpectType false
   type _NoCssPropAsIntended1 =
