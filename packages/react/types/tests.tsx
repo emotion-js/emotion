@@ -183,6 +183,23 @@ const anim1 = keyframes`
 }
 
 {
+  const CompWithConditionalClassNameSupport = (
+    _props: { foo: true; className?: string } | { foo: false }
+  ) => {
+    return null
+  }
+  ;<CompWithConditionalClassNameSupport
+    foo={true}
+    css={{ backgroundColor: 'hotpink' }}
+  />
+  ;<CompWithConditionalClassNameSupport
+    foo={false}
+    // $ExpectError
+    css={{ backgroundColor: 'hotpink' }}
+  />
+}
+
+{
   // based on the code from @types/react@17.x
   // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/98fa4486aefd5a1916aa385402467a7157e3c73f/types/react/v17/index.d.ts#L540-L548
   type OldFC<P = {}> = OldFunctionComponent<P>
