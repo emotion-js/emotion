@@ -57,4 +57,9 @@ exports[`should accept insertionPoint option 1`] = `
 </head>
 `;
 
+exports[`throws an error when cache is created with an empty key 1`] = `
+"You have to configure \`key\` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.
+If multiple caches share the same key they might "fight" for each other's style elements."
+`;
+
 exports[`throws correct error with invalid key 1`] = `"Emotion key must only contain lower case alphabetical characters and - but "." was passed"`;
