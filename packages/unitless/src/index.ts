@@ -32,6 +32,7 @@ let unitlessKeys: Record<string, 1> = {
   opacity: 1,
   order: 1,
   orphans: 1,
+  scale: 1,
   tabSize: 1,
   widows: 1,
   zIndex: 1,
