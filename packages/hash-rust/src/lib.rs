@@ -1,18 +1,24 @@
 use wasm_bindgen::prelude::*;
+use xxhash_rust::xxh32::xxh32;
+use xxhash_rust::xxh3::xxh3_64;
+
+// xxh via xxhash_rust
 
 #[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(s: &str);
+pub fn xxh(bytes: *const u8, length: usize) -> u32 {
+  let data = unsafe { std::slice::from_raw_parts(
+    std::mem::transmute::<_, *const u8>(bytes),
+    length,
+  ) };
 
-    #[wasm_bindgen(js_namespace = console, js_name = log)]
-    fn log_u32(a: u32);
+  return xxh32(data, 0);
 }
 
 
+// murmur2 implementation based on emotion's implementation (differs from original)
+
 const M: u32 = 0x5bd1e995;
 const R: u32 = 24;
-
 
 #[wasm_bindgen]
 pub fn murmur2(bytes: *const u8, mut length: usize) -> u32 {
