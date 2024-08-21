@@ -18,7 +18,7 @@ module.exports.xxh = wrapStringToU32('xxh')
 module.exports.murmur2 = wrapStringToU32('murmur2')
 
 function wrapStringToU32(name) {
-  return (input) => {
+  return input => {
     const ptr0 = MEM_START
     const len0 = cachedTextEncoder.encodeInto(input, memory).written
     const ret = wasm[name](ptr0, len0)
