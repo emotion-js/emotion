@@ -25,33 +25,6 @@ Because you write your CSS inside a JavaScript string you actually have to do do
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
-const Insertion = ({ cache, serialized, isStringTag }) => {
-  registerStyles(cache, serialized, isStringTag)
-
-  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
-    insertStyles(cache, serialized, isStringTag)
-  )
-
-  if (!isBrowser && rules !== undefined) {
-    let serializedNames = serialized.name
-    let next = serialized.next
-    while (next !== undefined) {
-      serializedNames += ' ' + next.name
-      next = next.next
-    }
-    return (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
-      />
-    )
-  }
-  return null
-}
-
 let createStyled /*: CreateStyled */ = (
   tag /*: any */,
   options /* ?: StyledOptions */
@@ -160,15 +133,37 @@ let createStyled /*: CreateStyled */ = (
           newProps.ref = ref
         }
 
+        const isStringTag = typeof FinalTag === 'string'
+
+        registerStyles(cache, serialized, isStringTag)
+
+        const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
+          insertStyles(cache, serialized, isStringTag)
+        )
+
+        if (!isBrowser && rules !== undefined) {
+          let serializedNames = serialized.name
+          let next = serialized.next
+          while (next !== undefined) {
+            serializedNames += ' ' + next.name
+            next = next.next
+          }
+          return (
+            <>
+              <style
+                {...{
+                  [`data-emotion`]: `${cache.key} ${serializedNames}`,
+                  dangerouslySetInnerHTML: { __html: rules },
+                  nonce: cache.sheet.nonce
+                }}
+              />
+              <FinalTag {...newProps} />
+            </>
+          )
+        }
+
         return (
-          <>
-            <Insertion
-              cache={cache}
-              serialized={serialized}
-              isStringTag={typeof FinalTag === 'string'}
-            />
-            <FinalTag {...newProps} />
-          </>
+          <FinalTag {...newProps} />
         )
       }
     )
