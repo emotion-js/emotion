@@ -18,7 +18,7 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@emotion/react": "11.13.0",
+    "@emotion/react": "11.13.3",
     "@types/css-to-react-native": "^3.0.0",
     "react": "16.14.0"
   },
