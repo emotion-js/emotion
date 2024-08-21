@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.13.0",
+  "version": "11.13.3",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "exports": {
@@ -263,7 +263,7 @@
     "@babel/runtime": "^7.18.3",
     "@emotion/babel-plugin": "^11.12.0",
     "@emotion/cache": "^11.13.0",
-    "@emotion/serialize": "^1.3.0",
+    "@emotion/serialize": "^1.3.1",
     "@emotion/use-insertion-effect-with-fallbacks": "^1.1.0",
     "@emotion/utils": "^1.4.0",
     "@emotion/weak-memoize": "^0.4.0",

@@ -1,5 +1,11 @@
 # @emotion/unitless
 
+## 0.10.0
+
+### Minor Changes
+
+- [#3240](https://github.com/emotion-js/emotion/pull/3240) [`153cf88`](https://github.com/emotion-js/emotion/commit/153cf885521f642462823a25675aa1a5be431db7) Thanks [@justinfernald](https://github.com/justinfernald)! - Add `scale` property as unitless
+
 ## 0.9.0
 
 ### Minor Changes
