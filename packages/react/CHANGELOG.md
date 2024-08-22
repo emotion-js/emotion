@@ -1,5 +1,14 @@
 # @emotion/react
 
+## 11.13.3
+
+### Patch Changes
+
+- [#3232](https://github.com/emotion-js/emotion/pull/3232) [`0ce3ed0`](https://github.com/emotion-js/emotion/commit/0ce3ed0ff3f7d1ddf91db2859f863f230b063e13) Thanks [@ENvironmentSet](https://github.com/ENvironmentSet)! - Distribute `css` prop attachment over props that are union types
+
+- Updated dependencies []:
+  - @emotion/serialize@1.3.1
+
 ## 11.13.0
 
 ### Minor Changes
