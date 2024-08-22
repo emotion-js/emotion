@@ -1,6 +1,8 @@
 /* import type { Interpolation, SerializedStyles } from '@emotion/utils' */
 import { serializeStyles } from '@emotion/serialize'
 
-const css = serializeStyles;
+function css(...args /*: Array<Interpolation> */) /*: SerializedStyles */ {
+  return serializeStyles(args)
+}
 
 export default css
