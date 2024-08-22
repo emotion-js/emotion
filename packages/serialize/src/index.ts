@@ -365,7 +365,7 @@ function createStringFromObject(
   return string
 }
 
-let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
+let labelPattern = /label:\s*([^\s;{]+)\s*(;|$)/g
 
 let sourceMapPattern: RegExp | undefined
 if (isDevelopment) {

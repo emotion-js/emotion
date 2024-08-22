@@ -10,8 +10,8 @@ export function getRegisteredStyles(
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
-      registeredStyles.push(`${registered[className]};`)
-    } else {
+      registeredStyles.push(registered[className] as string)
+    } else if (className) {
       rawClassName += `${className} `
     }
   })
