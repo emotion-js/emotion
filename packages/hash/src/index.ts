@@ -2,26 +2,50 @@
 // Inspired by https://github.com/garycourt/murmurhash-js
 // Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
 
-const encoder = new TextEncoder()
+const hasTextEncoder = typeof TextEncoder !== 'undefined'
 
-// bufferLength must be a multiple of 4 to satisfy Int32Array constraints
-let bufferLength = 2 * 1024
-let buffer = new ArrayBuffer(bufferLength)
-let uint8View = new Uint8Array(buffer)
-let int32View = new Int32Array(buffer)
+const encoder = hasTextEncoder ? new TextEncoder() : undefined
 
-export default function murmur2(str: string): string {
-  if (str.length > bufferLength) {
+let bufferLength = -1
+let buffer: ArrayBuffer
+let uint8View: Uint8Array
+let int32View: Int32Array
+
+function encode(input: string): number {
+  // Legacy IE11 support
+  if (hasTextEncoder === false) {
+    const bytes = []
+    for (let i = 0; i < input.length; i++) {
+      const codePoint = input.charCodeAt(i)
+      if (codePoint > 0xff) {
+        bytes.push(codePoint >>> 8)
+        bytes.push(codePoint & 0xff)
+      } else {
+        bytes.push(codePoint)
+      }
+    }
+    uint8View = new Uint8Array(bytes)
+    int32View = new Int32Array(uint8View.buffer, 0, Math.floor(bytes.length / 4))
+
+    return bytes.length
+  }
+
+  if (input.length > bufferLength) {
+    // bufferLength must be a multiple of 4 to satisfy Int32Array constraints
+    bufferLength = input.length + (4 - input.length % 4)
+
     // buffer.resize() is only available in recent browsers, so we re-allocate
     // a new buffer and views
-    bufferLength = str.length + (4 - str.length % 4)
     buffer = new ArrayBuffer(bufferLength)
-
     uint8View = new Uint8Array(buffer)
     int32View = new Int32Array(buffer)
   }
 
-  const length = encoder.encodeInto(str, uint8View).written;
+  return encoder!.encodeInto(input, uint8View).written;
+}
+
+export default function murmur2(input: string): string {
+  const length = encode(input);
 
   // 'm' and 'r' are mixing constants generated offline.
   // They're not really 'magic', they just happen to work well.
