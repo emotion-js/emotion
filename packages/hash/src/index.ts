@@ -41,7 +41,7 @@ function encode(input: string): number {
     int32View = new Int32Array(buffer)
   }
 
-  return encoder!.encodeInto(input, uint8View).written;
+  return encoder!.encodeInto(input, uint8View).written as number;
 }
 
 export default function murmur2(input: string): string {
