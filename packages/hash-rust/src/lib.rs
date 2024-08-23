@@ -52,11 +52,11 @@ pub fn murmur2(bytes: *const u8, mut length: usize) -> u32 {
   }
   if length >= 1 {
     h ^= (unsafe { *bytes.add(i + 0) as u32 } & 0xff);
-    h = (h & 0xffff) * M + (((h >> 16) * 0xe995) << 16);
+    h *= M;
   }
 
   h ^= h >> 13;
-  h = (h & 0xffff) * M + (((h >> 16) * 0xe995) << 16);
+  h *= M;
   h = h ^ (h >> 15);
 
   return h;
