@@ -24,7 +24,7 @@ const R: u32 = 24;
 pub fn murmur2(bytes: *const u8, mut length: usize) -> u32 {
   let data = unsafe { std::slice::from_raw_parts(
     std::mem::transmute::<*const u8, *const u32>(bytes),
-    length / 4, // so wrong but doesnt matter
+    length / 4,
   ) };
 
   let mut h = 0; // Not initialized to match emotion's implementation
