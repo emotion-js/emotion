@@ -3,4 +3,4 @@
 '@emotion/utils': patch
 ---
 
-Minor performance lints (improved regex, avoid some string work)
+Minor performance improvement
