@@ -29,14 +29,15 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin",
   "peerDependencies": {
-    "eslint": "6 || 7 || 8"
+    "eslint": "^6 || ^7 || ^8 || ^9"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^5.25.0"
+    "@typescript-eslint/utils": "^8.3.0"
   },
   "devDependencies": {
-    "@types/eslint": "^7.0.0",
-    "eslint": "^8.57.0",
-    "resolve-from": "^5.0.0"
+    "@types/eslint": "^9.6.1",
+    "@typescript-eslint/rule-tester": "^8.3.0",
+    "eslint": "^9.9.1",
+    "espree": "^10.1.0"
   }
 }

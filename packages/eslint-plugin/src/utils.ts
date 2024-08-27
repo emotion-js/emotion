@@ -5,8 +5,14 @@ const { version } = require('../package.json')
 
 export const REPO_URL = 'https://github.com/emotion-js/emotion'
 
-export const createRule = ESLintUtils.RuleCreator(name => {
-  const ruleName = parsePath(name).name
+export interface EmotionESLintPluginDocs {
+  recommended: boolean
+}
 
-  return `${REPO_URL}/blob/@emotion/eslint-plugin@${version}/packages/eslint-plugin/docs/rules/${ruleName}.md`
-})
+export const createRule = ESLintUtils.RuleCreator<EmotionESLintPluginDocs>(
+  name => {
+    const ruleName = parsePath(name).name
+
+    return `${REPO_URL}/blob/@emotion/eslint-plugin@${version}/packages/eslint-plugin/docs/rules/${ruleName}.md`
+  }
+)

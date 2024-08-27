@@ -2,17 +2,17 @@
  * @jest-environment node
  */
 
-import { TSESLint } from '@typescript-eslint/utils'
+import { RuleTester } from '@typescript-eslint/rule-tester'
 import rule from '../../src/rules/styled-import'
 import { espreeParser } from '../test-utils'
 
-const ruleTester = new TSESLint.RuleTester({
-  parser: espreeParser,
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
+const ruleTester = new RuleTester({
+  languageOptions: {
+    parser: espreeParser,
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true
+      }
     }
   }
 })

@@ -8,17 +8,18 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-import { AST_NODE_TYPES, TSESLint } from '@typescript-eslint/utils'
+import { RuleTester } from '@typescript-eslint/rule-tester'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 import rule from '../../src/rules/syntax-preference'
 import { espreeParser } from '../test-utils'
 
-const ruleTester = new TSESLint.RuleTester({
-  parser: espreeParser,
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
+const ruleTester = new RuleTester({
+  languageOptions: {
+    parser: espreeParser,
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true
+      }
     }
   }
 })
