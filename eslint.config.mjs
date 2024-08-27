@@ -5,7 +5,6 @@ import react from 'eslint-plugin-react'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  tseslint.configs.eslintRecommended,
   {
     ignores: [
       '**/lib/',
@@ -15,7 +14,10 @@ export default tseslint.config(
       '**/stylis.min.js',
       'demo/dist',
       'site/out'
-    ],
+    ]
+  },
+  tseslint.configs.eslintRecommended,
+  {
     plugins: {
       '@emotion': emotion,
       react

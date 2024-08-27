@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react'
+import React from 'react'
+import { css } from '@emotion/react'
 
 const Dot = ({ size, x, y, children, color }) => (
   <div
