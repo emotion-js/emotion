@@ -1,11 +1,12 @@
 name: 'CI setup'
+description: 'Installs Node.js and package dependencies.'
 runs:
   using: 'composite'
   steps:
     - name: Setup Node.js 20.x
       uses: actions/setup-node@v4
       with:
-        node-version: 20.x
+        node-version: '>=20.9.0'
         cache: yarn
 
     - name: Install Dependencies
