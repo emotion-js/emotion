@@ -2746,7 +2746,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@emotion/eslint-plugin@workspace:packages/eslint-plugin"
   dependencies:
-    "@types/eslint": ^9.6.1
     "@typescript-eslint/rule-tester": ^8.3.0
     "@typescript-eslint/utils": ^8.3.0
     eslint: ^9.9.1
@@ -6317,16 +6316,6 @@ __metadata:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: d177f3eec22971baeef8f244693687ee4c0357125f4a8fb7e614b83e36b98318a0b1a13b31230199d2a91af54122b67883faa7b4d2c29f0c83e2650f6b0d4d9c
-  languageName: node
-  linkType: hard
-
-"@types/eslint@npm:^9.6.1":
-  version: 9.6.1
-  resolution: "@types/eslint@npm:9.6.1"
-  dependencies:
-    "@types/estree": "*"
-    "@types/json-schema": "*"
-  checksum: c286e79707ab604b577cf8ce51d9bbb9780e3d6a68b38a83febe13fa05b8012c92de17c28532fac2b03d3c460123f5055d603a579685325246ca1c86828223e0
   languageName: node
   linkType: hard
 
