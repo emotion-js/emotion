@@ -32,10 +32,10 @@
     "eslint": "^6 || ^7 || ^8 || ^9"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^8.3.0"
+    "@typescript-eslint/utils": "^8.5.0"
   },
   "devDependencies": {
-    "@typescript-eslint/rule-tester": "^8.3.0",
+    "@typescript-eslint/rule-tester": "^8.5.0",
     "eslint": "^9.9.1",
     "espree": "^10.1.0"
   }
