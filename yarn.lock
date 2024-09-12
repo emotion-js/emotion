@@ -2748,7 +2748,7 @@ __metadata:
   dependencies:
     "@typescript-eslint/rule-tester": ^8.5.0
     "@typescript-eslint/utils": ^8.5.0
-    eslint: ^9.9.1
+    eslint: ^9.10.0
     espree: ^10.1.0
   peerDependencies:
     eslint: ^6 || ^7 || ^8 || ^9
@@ -13815,7 +13815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.10.0, eslint@npm:^9.9.1":
+"eslint@npm:^9.10.0":
   version: 9.10.0
   resolution: "eslint@npm:9.10.0"
   dependencies:

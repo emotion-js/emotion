@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/rule-tester": "^8.5.0",
-    "eslint": "^9.9.1",
+    "eslint": "^9.10.0",
     "espree": "^10.1.0"
   }
 }
