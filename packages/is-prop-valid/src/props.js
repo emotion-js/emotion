@@ -72,6 +72,8 @@ const props = {
   draggable: true,
   encType: true,
   enterKeyHint: true,
+  fetchpriority: true,
+  fetchPriority: true,
   form: true,
   formAction: true,
   formEncType: true,
