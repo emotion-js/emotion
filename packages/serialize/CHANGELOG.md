@@ -1,5 +1,14 @@
 # @emotion/serialize
 
+## 1.3.2
+
+### Patch Changes
+
+- [#3244](https://github.com/emotion-js/emotion/pull/3244) [`ad630e3`](https://github.com/emotion-js/emotion/commit/ad630e33b57afbed0207e0b41724c27b4d79176c) Thanks [@romgrk](https://github.com/romgrk)! - Minor performance improvement
+
+- Updated dependencies [[`ad630e3`](https://github.com/emotion-js/emotion/commit/ad630e33b57afbed0207e0b41724c27b4d79176c)]:
+  - @emotion/utils@1.4.1
+
 ## 1.3.1
 
 ### Patch Changes
