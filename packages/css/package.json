@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css",
-  "version": "11.13.0",
+  "version": "11.13.4",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion-css.cjs.js",
   "module": "dist/emotion-css.esm.js",
