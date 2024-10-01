@@ -2728,7 +2728,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/css@11.13.0, @emotion/css@workspace:packages/css":
+"@emotion/css@11.13.4, @emotion/css@workspace:packages/css":
   version: 0.0.0-use.local
   resolution: "@emotion/css@workspace:packages/css"
   dependencies:
@@ -2789,7 +2789,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/css": 11.13.0
+    "@emotion/css": 11.13.4
     "@emotion/css-prettifier": ^1.1.4
     "@emotion/react": 11.13.3
     "@types/jest": ^29.5.12
@@ -2889,7 +2889,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.12.0
     "@emotion/cache": ^11.13.0
-    "@emotion/css": 11.13.0
+    "@emotion/css": 11.13.4
     "@emotion/css-prettifier": 1.1.4
     "@emotion/serialize": ^1.3.1
     "@emotion/server": 11.11.0
@@ -2930,7 +2930,7 @@ __metadata:
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": 11.12.0
-    "@emotion/css": 11.13.0
+    "@emotion/css": 11.13.4
     "@emotion/css-prettifier": 1.1.4
     "@emotion/utils": ^1.4.0
     "@types/node": ^12.20.37

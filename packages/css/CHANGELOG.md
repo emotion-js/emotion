@@ -1,5 +1,11 @@
 # emotion
 
+## 11.13.4
+
+### Patch Changes
+
+- [#3262](https://github.com/emotion-js/emotion/pull/3262) [`b10de75`](https://github.com/emotion-js/emotion/commit/b10de75cd400e9cd37b195afdc9a716736214708) Thanks [@emmatown](https://github.com/emmatown)! - Fix `Cannot find name 'EmotionCache'` type error
+
 ## 11.13.0
 
 ### Minor Changes
