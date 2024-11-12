@@ -19,8 +19,7 @@ const Foo = /*#__PURE__*/_styled("h1", {
   styles: "color:hotpink"
 } : {
   name: "3sn2xs",
-  styles: "color:hotpink",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVxQiIsImZpbGUiOiJzdHlsZWQtcmVxdWlyZXMtb3B0aW9ucy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5jb25zdCBGb28gPSBzdHlsZWQuaDFgY29sb3I6aG90cGluaztgXG4gICAgIl19 */",
+  styles: "color:hotpink/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVxQiIsImZpbGUiOiJzdHlsZWQtcmVxdWlyZXMtb3B0aW9ucy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5jb25zdCBGb28gPSBzdHlsZWQuaDFgY29sb3I6aG90cGluaztgXG4gICAgIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
