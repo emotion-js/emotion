@@ -44,6 +44,17 @@ let getServerStylisCache = isBrowser
 
 const defaultStylisPlugins = [prefixer]
 
+let getSourceMap
+if (isDevelopment) {
+  let sourceMapPattern =
+    /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
+  getSourceMap = (styles /*: string */) => {
+    let matches = styles.match(sourceMapPattern)
+    if (!matches) return
+    return matches[matches.length - 1]
+  }
+}
+
 let createCache = (options /*: Options */) /*: EmotionCache */ => {
   let key = options.key
 
@@ -162,10 +173,14 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
       shouldCache /*: boolean */
     ) /*: void */ => {
       currentSheet = sheet
-      if (isDevelopment && serialized.map !== undefined) {
-        currentSheet = {
-          insert: (rule /*: string */) => {
-            sheet.insert(rule + serialized.map)
+
+      if (isDevelopment) {
+        let sourceMap = getSourceMap(serialized.styles)
+        if (sourceMap) {
+          currentSheet = {
+            insert: (rule /*: string */) => {
+              sheet.insert(rule + sourceMap)
+            }
           }
         }
       }
@@ -211,8 +226,11 @@ let createCache = (options /*: Options */) /*: EmotionCache */ => {
         if (shouldCache) {
           cache.inserted[name] = true
         }
-        if (isDevelopment && serialized.map !== undefined) {
-          return rules + serialized.map
+        if (isDevelopment) {
+          let sourceMap = getSourceMap(serialized.styles)
+          if (sourceMap) {
+            return rules + sourceMap
+          }
         }
         return rules
       } else {

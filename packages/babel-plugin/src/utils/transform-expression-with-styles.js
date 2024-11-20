@@ -99,9 +99,10 @@ export let transformExpressionWithStyles = (
       let devNode = t.objectExpression(
         [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
-          t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
-          sourceMap &&
-            t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
+          t.objectProperty(
+            t.identifier('styles'),
+            t.stringLiteral(res.styles + sourceMap)
+          ),
           t.objectProperty(
             t.identifier('toString'),
             t.cloneNode(state.emotionStringifiedCssId)

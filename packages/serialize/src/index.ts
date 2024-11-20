@@ -224,10 +224,6 @@ function handleInterpolation(
           }
         }
         let styles = `${serializedStyles.styles};`
-        if (isDevelopment && serializedStyles.map !== undefined) {
-          styles += serializedStyles.map
-        }
-
         return styles
       }
 
@@ -367,12 +363,6 @@ function createStringFromObject(
 
 let labelPattern = /label:\s*([^\s;{]+)\s*(;|$)/g
 
-let sourceMapPattern: RegExp | undefined
-if (isDevelopment) {
-  sourceMapPattern =
-    /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
-}
-
 // this is the cursor for keyframes
 // keyframes are stored on the SerializedStyles object as a linked list
 let cursor: Cursor | undefined
@@ -429,14 +419,6 @@ export function serializeStyles(
       styles += templateStringsArr[i]
     }
   }
-  let sourceMap
-
-  if (isDevelopment) {
-    styles = styles.replace(sourceMapPattern!, match => {
-      sourceMap = match
-      return ''
-    })
-  }
 
   // using a global regex with .exec is stateful so lastIndex has to be reset each time
   labelPattern.lastIndex = 0
@@ -454,7 +436,6 @@ export function serializeStyles(
     const devStyles = {
       name,
       styles,
-      map: sourceMap,
       next: cursor,
       toString() {
         return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."

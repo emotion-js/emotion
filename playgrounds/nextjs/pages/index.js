@@ -1,7 +1,17 @@
+import { useState } from 'react'
 import Head from 'next/head'
-import { Global } from '@emotion/react'
+import { Global, css } from '@emotion/react'
+
+const something = css({
+  backgroundColor: 'green'
+})
+
+function Thing() {
+  return <div css={{ color: 'green' }}>Thing</div>
+}
 
 export default function Home() {
+  const [isThingVisible, setIsThingVisible] = useState(false)
   return (
     <div>
       <Head>
@@ -23,7 +33,11 @@ export default function Home() {
       />
 
       <h1>Next.js Playground</h1>
-      <div css={{ color: 'orchid' }}>Some colored text</div>
+      <div css={[{ color: 'orchid' }, something]}>Some colored text</div>
+      <button onClick={() => setIsThingVisible(!isThingVisible)}>
+        Toggle Thing
+      </button>
+      {isThingVisible && <Thing />}
     </div>
   )
 }
