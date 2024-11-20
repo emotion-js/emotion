@@ -1,6 +1,6 @@
 {
   "name": "@emotion/cache",
-  "version": "11.13.1",
+  "version": "11.13.5",
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
@@ -83,7 +83,7 @@
   "dependencies": {
     "@emotion/memoize": "^0.9.0",
     "@emotion/sheet": "^1.4.0",
-    "@emotion/utils": "^1.4.0",
+    "@emotion/utils": "^1.4.2",
     "@emotion/weak-memoize": "^0.4.0",
     "stylis": "4.2.0"
   },
