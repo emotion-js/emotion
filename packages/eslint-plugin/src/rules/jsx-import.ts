@@ -9,18 +9,21 @@ const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 // to
 // <div css={css`color:hotpink;`} /> + import { css }
 
-declare module '@typescript-eslint/utils/dist/ts-eslint/Rule' {
-  export interface SharedConfigurationSettings {
-    react?: { pragma?: string }
-  }
-}
-
 type JSXConfig = {
   runtime: string
   importSource?: string
 }
 
 type RuleOptions = [(JSXConfig | string)?]
+
+interface ReactConfigurationSettings {
+  pragma?: string
+}
+
+const isReactSettings = (
+  settings: unknown
+): settings is ReactConfigurationSettings =>
+  typeof settings === 'object' && settings !== null && 'pragma' in settings
 
 const messages = {
   cssProp: `The css prop can only be used if jsxImportSource is set to {{ importSource }}`,
@@ -62,6 +65,8 @@ export default createRule<RuleOptions, keyof typeof messages>({
   },
   defaultOptions: [],
   create(context) {
+    const filename = context.filename ?? context.getFilename()
+    const sourceCode = context.sourceCode ?? context.getSourceCode()
     const jsxRuntimeMode = context.options.find(
       (option): option is JSXConfig =>
         typeof option === 'object' && option.runtime === 'automatic'
@@ -77,7 +82,6 @@ export default createRule<RuleOptions, keyof typeof messages>({
           let jsxImportSourcePragmaComment: TSESTree.Comment | null = null
           let jsxImportSourceMatch
           let validJsxImportSource = false
-          let sourceCode = context.getSourceCode()
           let pragma = sourceCode.getAllComments().find(comment => {
             if (JSX_IMPORT_SOURCE_REGEX.test(comment.value)) {
               jsxImportSourcePragmaComment = comment
@@ -113,7 +117,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
                 /* istanbul ignore if */
                 if (jsxImportSourcePragmaComment === null) {
                   throw new Error(
-                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at ${REPO_URL}`
+                    `Unexpected null when attempting to fix ${filename} - please file a github issue at ${REPO_URL}`
                   )
                 }
 
@@ -136,7 +140,6 @@ export default createRule<RuleOptions, keyof typeof messages>({
         let hasJsxImport = false
         let emotionCoreNode = null as TSESTree.ImportDeclaration | null
         let local: string | null = null
-        let sourceCode = context.getSourceCode()
         sourceCode.ast.body.forEach(x => {
           if (
             x.type === AST_NODE_TYPES.ImportDeclaration &&
@@ -164,10 +167,9 @@ export default createRule<RuleOptions, keyof typeof messages>({
             }
           }
         })
-        let hasSetPragma = false
-        if (context.settings.react && context.settings.react.pragma === 'jsx') {
-          hasSetPragma = true
-        }
+        let hasSetPragma =
+          isReactSettings(context.settings.react) &&
+          context.settings.react.pragma === 'jsx'
         let pragma = sourceCode
           .getAllComments()
           .find(node => JSX_ANNOTATION_REGEX.test(node.value))
@@ -185,8 +187,12 @@ export default createRule<RuleOptions, keyof typeof messages>({
                 /* istanbul ignore if */
                 if (emotionCoreNode === null) {
                   throw new Error(
-                    `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at ${REPO_URL}`
+                    `Unexpected null when attempting to fix ${filename} - please file a github issue at ${REPO_URL}`
                   )
+                }
+
+                if (!hasSetPragma && pragma) {
+                  return fixer.replaceText(pragma, `/** @jsx ${local} */`)
                 }
 
                 return fixer.insertTextBefore(
@@ -227,7 +233,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
         /* istanbul ignore if */
         if (emotionCoreNode === null) {
           throw new Error(
-            `Unexpected null when attempting to fix ${context.getFilename()} - please file a github issue at ${REPO_URL}`
+            `Unexpected null when attempting to fix ${filename} - please file a github issue at ${REPO_URL}`
           )
         }
 
@@ -239,24 +245,38 @@ export default createRule<RuleOptions, keyof typeof messages>({
           value.type === AST_NODE_TYPES.JSXExpressionContainer &&
           value.expression.type === AST_NODE_TYPES.TemplateLiteral
         ) {
+          let namespaceSpecifier = specifiers.find(
+            x => x.type === AST_NODE_TYPES.ImportNamespaceSpecifier
+          )
           let cssSpecifier = specifiers.find(
             x =>
               x.type === AST_NODE_TYPES.ImportSpecifier &&
               x.imported.name === 'css'
           )
+
           context.report({
             node,
             messageId: 'templateLiterals',
             fix(fixer) {
+              if (namespaceSpecifier) {
+                return fixer.insertTextBefore(
+                  value.expression,
+                  namespaceSpecifier.local.name + '.css'
+                )
+              }
               if (cssSpecifier) {
                 return fixer.insertTextBefore(
                   value.expression,
                   cssSpecifier.local.name
                 )
               }
-              let lastSpecifier = specifiers[specifiers.length - 1]
 
-              if (context.getScope().variables.some(x => x.name === 'css')) {
+              const lastSpecifier = specifiers[specifiers.length - 1]
+              const scope = sourceCode.getScope
+                ? sourceCode.getScope(node)
+                : context.getScope()
+
+              if (scope.variables.some(x => x.name === 'css')) {
                 return [
                   fixer.insertTextAfter(lastSpecifier, `, css as _css`),
                   fixer.insertTextBefore(value.expression, '_css')
