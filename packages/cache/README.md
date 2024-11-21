@@ -55,8 +55,41 @@ The prefix before class names. It will also be set as the value of the `data-emo
 
 A DOM node that emotion will insert all of its style tags into. This is useful for inserting styles into iframes or windows.
 
+### `insertionPoint`
+
+`Node`
+
+This defines specific dom node after which the rules are inserted into the container. You can use a meta tag to specify the specific location:
+
+```jsx
+const head = document.querySelector('head')
+
+// <meta name="emotion-insertion-point" content="">
+const emotionInsertionPoint = document.createElement('meta')
+emotionInsertionPoint.setAttribute('name', 'emotion-insertion-point')
+emotionInsertionPoint.setAttribute('content', '')
+
+head.appendChild(emotionInsertionPoint)
+
+// the emotion sheets should be inserted right after the meta tag
+const cache = createCache({
+  key: 'my-app',
+  insertionPoint: emotionInsertionPoint
+})
+
+function App() {
+  return (
+    <CacheProvider value={cache}>
+      <Main />
+    </CacheProvider>
+  )
+}
+```
+
 ### `prepend`
 
 `boolean`
+
+**Deprecated:** Please use `insertionPoint` option instead.
 
 A boolean representing whether to prepend rather than append style tags into the specified container DOM node.
