@@ -2,7 +2,7 @@
 import 'test-utils/next-env'
 import { safeQuerySelector } from 'test-utils'
 import createCache from '@emotion/cache'
-import { jsx, CacheProvider } from '@emotion/react'
+import { jsx, CacheProvider, css } from '@emotion/react'
 import { render } from '@testing-library/react'
 
 test('throws correct error with invalid key', () => {
@@ -49,6 +49,71 @@ test('should accept container option', () => {
   render(
     <CacheProvider value={cache}>
       <div css={{ display: 'flex', color: 'blue' }} />
+    </CacheProvider>
+  )
+
+  expect(document.body).toMatchSnapshot()
+})
+
+it('should not prefix pseudo-classes automatically when using explicitAmpersand option', () => {
+  const body = safeQuerySelector('body')
+  body.innerHTML = `<div id="container" />`
+
+  const cache = createCache({
+    key: 'test-container',
+    container: safeQuerySelector('#container'),
+    explicitAmpersand: true
+  })
+
+  render(
+    <CacheProvider value={cache}>
+      <div
+        css={css`
+          :where([dir='rtl']) & {
+            color: red;
+          }
+
+          :is(p, ul) + :is(p, ul) {
+            margin-top: 1em;
+          }
+
+          &:before {
+            content: 'test';
+          }
+        `}
+      />
+    </CacheProvider>
+  )
+
+  expect(document.body).toMatchSnapshot()
+})
+
+it('should prefix pseudo-classes automatically when not using explicitAmpersand option', () => {
+  const body = safeQuerySelector('body')
+  body.innerHTML = `<div id="container" />`
+
+  const cache = createCache({
+    key: 'test-container',
+    container: safeQuerySelector('#container')
+  })
+
+  render(
+    <CacheProvider value={cache}>
+      <div
+        css={css`
+          :where([dir='rtl']) & {
+            color: red;
+          }
+
+          :is(p, ul) + :is(p, ul) {
+            margin-top: 1em;
+          }
+
+          &:before {
+            content: 'test';
+          }
+        `}
+      />
     </CacheProvider>
   )
 

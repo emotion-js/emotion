@@ -60,3 +60,37 @@ A DOM node that emotion will insert all of its style tags into. This is useful f
 `boolean`
 
 A boolean representing whether to prepend rather than append style tags into the specified container DOM node.
+
+### `explicitAmpersand`
+
+`boolean`
+
+Defaults to `false`. Opt-out of automatic pseudo class prefixing.
+
+Consider the following component:
+
+```jsx
+<article
+  css={css`
+    :where([data-theme='dark']) & {
+      /* ... */
+    }
+  `}
+/>
+```
+
+With `explicitAmpersand` set to `true`:
+
+```css
+:where([data-theme='dark']) .emotion-article {
+  /* ... */
+}
+```
+
+With `explicitAmpersand` set to `false`:
+
+```css
+.emotion-article:where([data-theme='dark']) .emotion-article {
+  /* ... */
+}
+```
