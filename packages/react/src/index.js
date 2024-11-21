@@ -17,7 +17,10 @@ export { default as css } from './css'
 if (isDevelopment) {
   const isBrowser = typeof document !== 'undefined'
   // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
-  const isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined'
+  // Both Jest as well as Vitest set `process.env.NODE_ENV` to `'test'`, according to their docs.
+  // https://jestjs.io/docs/environment-variables#node_env
+  // https://vitest.dev/guide/migration.html#envs
+  const isTestEnv = process.env.NODE_ENV === 'test'
 
   if (isBrowser && !isTestEnv) {
     // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
