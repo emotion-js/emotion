@@ -285,6 +285,22 @@ let ele2 = <div css={{}} />
       `.trim()
     },
     {
+      settings: { react: { pragma: 'jsx' } },
+      code: `
+import { css } from '@emotion/react'
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+import { css, jsx } from '@emotion/react'
+let ele = <div css={{}} />
+    `.trim()
+    },
+    {
       code: `
     /** @jsx jsx */
     import {jsx} from '@emotion/react'
