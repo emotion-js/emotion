@@ -1,21 +1,24 @@
+import { EmotionCache } from '@emotion/utils'
 import {
-  compile,
   alloc,
   dealloc,
-  next,
   delimit,
-  token,
-  char,
+  Element,
   from,
+  Middleware,
+  next,
   peek,
   position,
-  slice
+  slice,
+  token
 } from 'stylis'
 
-const last = arr => (arr.length ? arr[arr.length - 1] : null)
-
 // based on https://github.com/thysultan/stylis.js/blob/e6843c373ebcbbfade25ebcc23f540ed8508da0a/src/Tokenizer.js#L239-L244
-const identifierWithPointTracking = (begin, points, index) => {
+const identifierWithPointTracking = (
+  begin: number,
+  points: number[],
+  index: number
+) => {
   let previous = 0
   let character = 0
 
@@ -38,7 +41,7 @@ const identifierWithPointTracking = (begin, points, index) => {
   return slice(begin, position)
 }
 
-const toRules = (parsed, points) => {
+const toRules = (parsed: string[], points: number[]) => {
   // pretend we've started with a comma
   let index = -1
   let character = 44
@@ -80,12 +83,13 @@ const toRules = (parsed, points) => {
   return parsed
 }
 
-const getRules = (value, points) => dealloc(toRules(alloc(value), points))
+const getRules = (value: string, points: number[]) =>
+  dealloc(toRules(alloc(value) as string[], points))
 
 // WeakSet would be more appropriate, but only WeakMap is supported in IE11
 const fixedElements = /* #__PURE__ */ new WeakMap()
 
-export let compat = element => {
+export let compat: Middleware = element => {
   if (
     element.type !== 'rule' ||
     !element.parent ||
@@ -96,7 +100,8 @@ export let compat = element => {
     return
   }
 
-  let { value, parent } = element
+  let value = element.value
+  let parent: Element | null = element.parent
   let isImplicitRule =
     element.column === parent.column && element.line === parent.line
 
@@ -122,22 +127,22 @@ export let compat = element => {
 
   fixedElements.set(element, true)
 
-  const points = []
+  const points: number[] = []
   const rules = getRules(value, points)
   const parentRules = parent.props
 
   for (let i = 0, k = 0; i < rules.length; i++) {
     for (let j = 0; j < parentRules.length; j++, k++) {
-      element.props[k] = points[i]
+      ;(element.props as string[])[k] = points[i]
         ? rules[i].replace(/&\f/g, parentRules[j])
         : `${parentRules[j]} ${rules[i]}`
     }
   }
 }
 
-export let removeLabel = element => {
+export let removeLabel: Middleware = element => {
   if (element.type === 'decl') {
-    var value = element.value
+    const value = element.value
     if (
       // charcode for l
       value.charCodeAt(0) === 108 &&
@@ -154,83 +159,86 @@ export let removeLabel = element => {
 const ignoreFlag =
   'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason'
 
-const isIgnoringComment = element =>
-  element.type === 'comm' && element.children.indexOf(ignoreFlag) > -1
+const isIgnoringComment = (element: Element) =>
+  element.type === 'comm' &&
+  (element.children as string).indexOf(ignoreFlag) > -1
 
-export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
-  if (element.type !== 'rule' || cache.compat) return
+export let createUnsafeSelectorsAlarm =
+  (cache: Pick<EmotionCache, 'compat'>): Middleware =>
+  (element, index, children) => {
+    if (element.type !== 'rule' || cache.compat) return
 
-  const unsafePseudoClasses = element.value.match(
-    /(:first|:nth|:nth-last)-child/g
-  )
+    const unsafePseudoClasses = element.value.match(
+      /(:first|:nth|:nth-last)-child/g
+    )
 
-  if (unsafePseudoClasses) {
-    const isNested = !!element.parent
-    // in nested rules comments become children of the "auto-inserted" rule and that's always the `element.parent`
-    //
-    // considering this input:
-    // .a {
-    //   .b /* comm */ {}
-    //   color: hotpink;
-    // }
-    // we get output corresponding to this:
-    // .a {
-    //   & {
-    //     /* comm */
-    //     color: hotpink;
-    //   }
-    //   .b {}
-    // }
-    const commentContainer = isNested
-      ? element.parent.children
-      : // global rule at the root level
-        children
-
-    for (let i = commentContainer.length - 1; i >= 0; i--) {
-      const node = commentContainer[i]
-
-      if (node.line < element.line) {
-        break
-      }
-
-      // it is quite weird but comments are *usually* put at `column: element.column - 1`
-      // so we seek *from the end* for the node that is earlier than the rule's `element` and check that
-      // this will also match inputs like this:
+    if (unsafePseudoClasses) {
+      const isNested = !!element.parent
+      // in nested rules comments become children of the "auto-inserted" rule and that's always the `element.parent`
+      //
+      // considering this input:
       // .a {
-      //   /* comm */
+      //   .b /* comm */ {}
+      //   color: hotpink;
+      // }
+      // we get output corresponding to this:
+      // .a {
+      //   & {
+      //     /* comm */
+      //     color: hotpink;
+      //   }
       //   .b {}
       // }
-      //
-      // but that is fine
-      //
-      // it would be the easiest to change the placement of the comment to be the first child of the rule:
-      // .a {
-      //   .b { /* comm */ }
-      // }
-      // with such inputs we wouldn't have to search for the comment at all
-      // TODO: consider changing this comment placement in the next major version
-      if (node.column < element.column) {
-        if (isIgnoringComment(node)) {
-          return
+      const commentContainer = isNested
+        ? element.parent!.children
+        : // global rule at the root level
+          children
+
+      for (let i = commentContainer.length - 1; i >= 0; i--) {
+        const node = commentContainer[i] as Element
+
+        if (node.line < element.line) {
+          break
         }
-        break
+
+        // it is quite weird but comments are *usually* put at `column: element.column - 1`
+        // so we seek *from the end* for the node that is earlier than the rule's `element` and check that
+        // this will also match inputs like this:
+        // .a {
+        //   /* comm */
+        //   .b {}
+        // }
+        //
+        // but that is fine
+        //
+        // it would be the easiest to change the placement of the comment to be the first child of the rule:
+        // .a {
+        //   .b { /* comm */ }
+        // }
+        // with such inputs we wouldn't have to search for the comment at all
+        // TODO: consider changing this comment placement in the next major version
+        if (node.column < element.column) {
+          if (isIgnoringComment(node)) {
+            return
+          }
+          break
+        }
       }
+
+      unsafePseudoClasses.forEach(unsafePseudoClass => {
+        console.error(
+          `The pseudo class "${unsafePseudoClass}" is potentially unsafe when doing server-side rendering. Try changing it to "${
+            unsafePseudoClass.split('-child')[0]
+          }-of-type".`
+        )
+      })
     }
-
-    unsafePseudoClasses.forEach(unsafePseudoClass => {
-      console.error(
-        `The pseudo class "${unsafePseudoClass}" is potentially unsafe when doing server-side rendering. Try changing it to "${
-          unsafePseudoClass.split('-child')[0]
-        }-of-type".`
-      )
-    })
   }
-}
 
-let isImportRule = element =>
+let isImportRule = (element: Element) =>
   element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64
 
-const isPrependedWithRegularRules = (index, children) => {
+const isPrependedWithRegularRules = (index: number, children: Element[]) => {
   for (let i = index - 1; i >= 0; i--) {
     if (!isImportRule(children[i])) {
       return true
@@ -242,7 +250,7 @@ const isPrependedWithRegularRules = (index, children) => {
 // use this to remove incorrect elements from further processing
 // so they don't get handed to the `sheet` (or anything else)
 // as that could potentially lead to additional logs which in turn could be overhelming to the user
-const nullifyElement = element => {
+const nullifyElement = (element: Element) => {
   element.type = ''
   element.value = ''
   element.return = ''
@@ -250,7 +258,7 @@ const nullifyElement = element => {
   element.props = ''
 }
 
-export let incorrectImportAlarm = (element, index, children) => {
+export let incorrectImportAlarm: Middleware = (element, index, children) => {
   if (!isImportRule(element)) {
     return
   }

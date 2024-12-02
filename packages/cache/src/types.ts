@@ -1,10 +1,10 @@
-/*
-export type StylisElement = {
+export interface StylisElement {
   type: string
   value: string
-  props: Array<string>
+  props: Array<string> | string
   root: StylisElement | null
-  children: Array<StylisElement>
+  parent: StylisElement | null
+  children: Array<StylisElement> | string
   line: number
   column: number
   length: number
@@ -23,4 +23,3 @@ export type StylisPlugin = (
   children: Array<StylisElement>,
   callback: StylisPluginCallback
 ) => string | void
-*/
