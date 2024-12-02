@@ -3,6 +3,7 @@ import {
   alloc,
   dealloc,
   delimit,
+  Element,
   from,
   Middleware,
   next,
@@ -11,7 +12,6 @@ import {
   slice,
   token
 } from 'stylis'
-import type { Element } from 'stylis'
 
 // based on https://github.com/thysultan/stylis.js/blob/e6843c373ebcbbfade25ebcc23f540ed8508da0a/src/Tokenizer.js#L239-L244
 const identifierWithPointTracking = (

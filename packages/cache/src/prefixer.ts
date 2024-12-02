@@ -16,7 +16,7 @@ import {
   serialize,
   strlen,
   WEBKIT,
-  type Element,
+  Element,
   Middleware
 } from 'stylis'
 
