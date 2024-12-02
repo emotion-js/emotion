@@ -78,9 +78,11 @@ const checkExpressionPreferringObject = (
 ) => {
   switch (node.type) {
     case AST_NODE_TYPES.ArrayExpression:
-      node.elements.forEach(element =>
-        checkExpressionPreferringObject(context, element)
-      )
+      node.elements.forEach(element => {
+        if (element !== null) {
+          checkExpressionPreferringObject(context, element)
+        }
+      })
       return
     case AST_NODE_TYPES.TemplateLiteral:
       context.report({
@@ -154,9 +156,11 @@ const checkExpressionPreferringString = (
 ) => {
   switch (node.type) {
     case 'ArrayExpression':
-      node.elements.forEach(element =>
-        checkExpressionPreferringString(context, element)
-      )
+      node.elements.forEach(element => {
+        if (element !== null) {
+          checkExpressionPreferringString(context, element)
+        }
+      })
       return
     case 'ObjectExpression':
       context.report({
@@ -242,6 +246,7 @@ export default createRule<RuleOptions, MessageId>({
     },
     schema: [
       {
+        type: 'string',
         enum: ['string', 'object']
       }
     ],
