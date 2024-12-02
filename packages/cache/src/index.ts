@@ -255,5 +255,5 @@ let createCache = (options: Options): EmotionCache => {
 }
 
 export default createCache
-export { EmotionCache }
+export type { EmotionCache }
 export type { StylisElement, StylisPlugin, StylisPluginCallback } from './types'
