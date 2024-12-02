@@ -65,8 +65,10 @@ export default createRule<RuleOptions, keyof typeof messages>({
   },
   defaultOptions: [],
   create(context) {
-    const filename = context.filename ?? context.getFilename()
-    const sourceCode = context.sourceCode ?? context.getSourceCode()
+    const filename =
+      context.filename ?? /* istanbul ignore next */ context.getFilename()
+    const sourceCode =
+      context.sourceCode ?? /* istanbul ignore next */ context.getSourceCode()
     const jsxRuntimeMode = context.options.find(
       (option): option is JSXConfig =>
         typeof option === 'object' && option.runtime === 'automatic'
@@ -272,9 +274,10 @@ export default createRule<RuleOptions, keyof typeof messages>({
               }
 
               const lastSpecifier = specifiers[specifiers.length - 1]
-              const scope = sourceCode.getScope
-                ? sourceCode.getScope(node)
-                : context.getScope()
+              const scope =
+                typeof sourceCode.getScope === 'function'
+                  ? sourceCode.getScope(node)
+                  : /* istanbul ignore next  */ context.getScope()
 
               if (scope.variables.some(x => x.name === 'css')) {
                 return [
