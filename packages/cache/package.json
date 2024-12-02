@@ -4,6 +4,7 @@
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
+  "types": "dist/emotion-cache.cjs.d.ts",
   "exports": {
     ".": {
       "types": {
@@ -74,7 +75,6 @@
       "default": "./src/conditions/is-browser.js"
     }
   },
-  "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/cache",
   "scripts": {
@@ -95,7 +95,6 @@
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ]
 }
