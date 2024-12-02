@@ -90,6 +90,7 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "@emotion/hash": "*",
+    "@types/stylis": "^4.2.6",
     "typescript": "^5.4.5"
   },
   "files": [
