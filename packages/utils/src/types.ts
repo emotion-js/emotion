@@ -7,7 +7,6 @@ export type RegisteredCache = Record<string, string | undefined>
 export type SerializedStyles = {
   name: string
   styles: string
-  map?: string
   next?: SerializedStyles
 }
 

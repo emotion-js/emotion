@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.3.1
+
+### Patch Changes
+
+- [#3093](https://github.com/emotion-js/emotion/pull/3093) [`532ff57`](https://github.com/emotion-js/emotion/commit/532ff57cafd8ba04f3b624074556ea47ec76fc9a) Thanks [@codejet](https://github.com/codejet), [@DustinBrett](https://github.com/DustinBrett)! - Adds `fetchpriority` and `fetchPriority` to the list of allowed props.
+
 ## 1.3.0
 
 ### Minor Changes

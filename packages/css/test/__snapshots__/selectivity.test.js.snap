@@ -15,62 +15,62 @@ exports[`css complex nested media queries 1`] = `
 `;
 
 exports[`css complex nested styles 1`] = `
-".css-s7aswl {
+".css-52fshx {
   color: blue;
 }
 
-.css-s7aswl:hover {
+.css-52fshx:hover {
   color: green;
 }
 
-.css-s7aswl:hover .name {
+.css-52fshx:hover .name {
   color: amethyst;
 }
 
-.css-s7aswl:hover .name:focus {
+.css-52fshx:hover .name:focus {
   color: burlywood;
 }
 
 @media (min-width: 420px) {
-  .css-s7aswl:hover .name:focus {
+  .css-52fshx:hover .name:focus {
     color: rebeccapurple;
   }
 }"
 `;
 
 exports[`css handles media query merges 1`] = `
-".css-vs4yix {
+".css-19kb3dc {
   color: darkslateblue;
   color: red;
   color: purple;
 }
 
 @media (min-width: 420px) {
-  .css-vs4yix {
+  .css-19kb3dc {
     color: amethyst;
   }
 }
 
 @media (min-width: 640px) {
-  .css-vs4yix {
+  .css-19kb3dc {
     color: rebeccapurple;
   }
 }
 
 @media (min-width: 960px) {
-  .css-vs4yix {
+  .css-19kb3dc {
     color: burlywood;
   }
 }
 
 @media (min-width: 640px) {
-  .css-vs4yix {
+  .css-19kb3dc {
     color: blue;
   }
 }
 
 @media (min-width: 640px) {
-  .css-vs4yix {
+  .css-19kb3dc {
     color: aquamarine;
   }
 }"

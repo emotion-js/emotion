@@ -114,7 +114,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.7",
     "@manypkg/cli": "^0.19.1",
-    "@preconstruct/cli": "^2.8.4",
+    "@preconstruct/cli": "^2.8.8",
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^29.5.12",
     "@types/node": "^12.20.37",

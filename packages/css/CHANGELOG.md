@@ -1,5 +1,23 @@
 # emotion
 
+## 11.13.5
+
+### Patch Changes
+
+- [#3270](https://github.com/emotion-js/emotion/pull/3270) [`77d930d`](https://github.com/emotion-js/emotion/commit/77d930dc708015ff6fd34a1084bb343b02d732fa) Thanks [@emmatown](https://github.com/emmatown)! - Fix inconsistent hashes using development vs production bundles/`exports` conditions when using `@emotion/babel-plugin` with `sourceMap: true` (the default). This is particularly visible when using Emotion with the Next.js Pages router where the `development` condition is used when bundling code but not when importing external code with Node.js.
+
+- Updated dependencies [[`77d930d`](https://github.com/emotion-js/emotion/commit/77d930dc708015ff6fd34a1084bb343b02d732fa)]:
+  - @emotion/serialize@1.3.3
+  - @emotion/cache@11.13.5
+  - @emotion/utils@1.4.2
+  - @emotion/babel-plugin@11.13.5
+
+## 11.13.4
+
+### Patch Changes
+
+- [#3262](https://github.com/emotion-js/emotion/pull/3262) [`b10de75`](https://github.com/emotion-js/emotion/commit/b10de75cd400e9cd37b195afdc9a716736214708) Thanks [@emmatown](https://github.com/emmatown)! - Fix `Cannot find name 'EmotionCache'` type error
+
 ## 11.13.0
 
 ### Minor Changes
