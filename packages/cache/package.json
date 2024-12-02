@@ -64,15 +64,15 @@
   },
   "imports": {
     "#is-development": {
-      "development": "./src/conditions/true.tsx",
-      "default": "./src/conditions/false.tsx"
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     },
     "#is-browser": {
-      "edge-light": "./src/conditions/false.tsx",
-      "workerd": "./src/conditions/false.tsx",
-      "worker": "./src/conditions/false.tsx",
-      "browser": "./src/conditions/true.tsx",
-      "default": "./src/conditions/is-browser.tsx"
+      "edge-light": "./src/conditions/false.ts",
+      "workerd": "./src/conditions/false.ts",
+      "worker": "./src/conditions/false.ts",
+      "browser": "./src/conditions/true.ts",
+      "default": "./src/conditions/is-browser.ts"
     }
   },
   "license": "MIT",
