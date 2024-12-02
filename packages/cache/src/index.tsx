@@ -43,7 +43,7 @@ let getSourceMap: ((styles: string) => string | undefined) | undefined
 if (isDevelopment) {
   let sourceMapPattern =
     /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
-  getSourceMap = (styles /*: string */) => {
+  getSourceMap = styles => {
     let matches = styles.match(sourceMapPattern)
     if (!matches) return
     return matches[matches.length - 1]
@@ -69,14 +69,14 @@ let createCache = (options: Options): EmotionCache => {
     // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
     // note this very very intentionally targets all style elements regardless of the key to ensure
     // that creating a cache works inside of render of a React component
-    Array.prototype.forEach.call(ssrStyles, (node /*: HTMLStyleElement */) => {
+    Array.prototype.forEach.call(ssrStyles, (node: HTMLStyleElement) => {
       // we want to only move elements which have a space in the data-emotion attribute value
       // because that indicates that it is an Emotion 11 server-side rendered style elements
       // while we will already ignore Emotion 11 client-side inserted styles because of the :not([data-s]) part in the selector
       // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
       // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
       // will not result in the Emotion 10 styles being destroyed
-      const dataEmotionAttribute = node.getAttribute('data-emotion')
+      const dataEmotionAttribute = node.getAttribute('data-emotion')!
       if (dataEmotionAttribute.indexOf(' ') === -1) {
         return
       }
@@ -168,7 +168,7 @@ let createCache = (options: Options): EmotionCache => {
         let sourceMap = getSourceMap(serialized.styles)
         if (sourceMap) {
           currentSheet = {
-            insert: (rule /*: string */) => {
+            insert: rule => {
               sheet.insert(rule + sourceMap)
             }
           }
