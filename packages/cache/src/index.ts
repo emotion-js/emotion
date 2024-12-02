@@ -1,14 +1,14 @@
 import { StyleSheet } from '@emotion/sheet'
-import { type EmotionCache, type SerializedStyles } from '@emotion/utils'
+import type { EmotionCache, SerializedStyles } from '@emotion/utils'
 import {
   serialize,
   compile,
   middleware,
   rulesheet,
   stringify,
-  COMMENT,
-  type Element as StylisElement
+  COMMENT
 } from 'stylis'
+import type { Element as StylisElement } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import memoize from '@emotion/memoize'
 import isDevelopment from '#is-development'
