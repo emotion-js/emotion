@@ -4,6 +4,7 @@
   "description": "A wrapper package that uses `useInsertionEffect` or a fallback for it",
   "main": "dist/emotion-use-insertion-effect-with-fallbacks.cjs.js",
   "module": "dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
+  "types": "dist/emotion-use-insertion-effect-with-fallbacks.cjs.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/use-insertion-effect-with-fallbacks",
   "publishConfig": {
@@ -53,11 +54,11 @@
   },
   "imports": {
     "#is-browser": {
-      "edge-light": "./src/conditions/false.js",
-      "workerd": "./src/conditions/false.js",
-      "worker": "./src/conditions/false.js",
-      "browser": "./src/conditions/true.js",
-      "default": "./src/conditions/is-browser.js"
+      "edge-light": "./src/conditions/false.ts",
+      "workerd": "./src/conditions/false.ts",
+      "worker": "./src/conditions/false.ts",
+      "browser": "./src/conditions/true.ts",
+      "default": "./src/conditions/is-browser.ts"
     }
   }
 }
