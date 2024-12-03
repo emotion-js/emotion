@@ -32,6 +32,8 @@ export type { Theme, ThemeProviderProps, WithTheme } from './theming'
 export { default as css } from './css'
 export type { DistributiveOmit, PropsOf } from './types'
 
+declare const global: Record<string, unknown>
+declare const jest: unknown
 declare const vi: unknown
 
 if (isDevelopment) {
