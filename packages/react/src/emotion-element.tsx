@@ -1,26 +1,35 @@
 import * as React from 'react'
 import { withEmotionCache } from './context'
-import { ThemeContext } from './theming'
+import { Theme, ThemeContext } from './theming'
 import {
+  EmotionCache,
   getRegisteredStyles,
   insertStyles,
-  registerStyles
+  registerStyles,
+  SerializedStyles
 } from '@emotion/utils'
 import { hasOwn } from './utils'
-import { serializeStyles } from '@emotion/serialize'
+import { Interpolation, serializeStyles } from '@emotion/serialize'
 import isDevelopment from '#is-development'
 import isBrowser from '#is-browser'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
-let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
+const typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
-let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
+const labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
+
+interface EmotionProps {
+  css: Interpolation<Theme>
+  [typePropName]: React.ElementType
+  [labelPropName]?: string
+  [key: string]: unknown
+}
 
 export const createEmotionProps = (
-  type /*: React.ElementType */,
-  props /*: Object */
-) => {
+  type: React.ElementType,
+  props: { css: Interpolation<Theme> }
+): EmotionProps => {
   if (
     isDevelopment &&
     typeof props.css === 'string' &&
@@ -32,11 +41,11 @@ export const createEmotionProps = (
     )
   }
 
-  let newProps /*: any */ = {}
+  let newProps = {} as EmotionProps
 
   for (let key in props) {
     if (hasOwn.call(props, key)) {
-      newProps[key] = props[key]
+      newProps[key] = props[key as keyof typeof props]
     }
   }
 
@@ -51,9 +60,10 @@ export const createEmotionProps = (
   if (
     isDevelopment &&
     typeof globalThis !== 'undefined' &&
-    !!globalThis.EMOTION_RUNTIME_AUTO_LABEL &&
+    !!(globalThis as any).EMOTION_RUNTIME_AUTO_LABEL &&
     !!props.css &&
     (typeof props.css !== 'object' ||
+      !('name' in props.css) ||
       typeof props.css.name !== 'string' ||
       props.css.name.indexOf('-') === -1)
   ) {
@@ -64,7 +74,15 @@ export const createEmotionProps = (
   return newProps
 }
 
-const Insertion = ({ cache, serialized, isStringTag }) => {
+const Insertion = ({
+  cache,
+  serialized,
+  isStringTag
+}: {
+  cache: EmotionCache
+  serialized: SerializedStyles
+  isStringTag: boolean
+}) => {
   registerStyles(cache, serialized, isStringTag)
 
   const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
@@ -91,9 +109,9 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
   return null
 }
 
-let Emotion = /* #__PURE__ */ withEmotionCache(
-  /* <any, any> */ (props, cache, ref) => {
-    let cssProp = props.css
+let Emotion = /* #__PURE__ */ withEmotionCache<EmotionProps>(
+  (props, cache, ref) => {
+    let cssProp = props.css as EmotionProps['css']
 
     // so that using `css` from `emotion` and passing the result to the css prop works
     // not passing the registered cache to serializeStyles because it would
@@ -105,7 +123,9 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
       cssProp = cache.registered[cssProp]
     }
 
-    let WrappedComponent = props[typePropName]
+    let WrappedComponent = props[
+      typePropName
+    ] as EmotionProps[typeof typePropName]
     let registeredStyles = [cssProp]
     let className = ''
 
@@ -137,7 +157,7 @@ let Emotion = /* #__PURE__ */ withEmotionCache(
 
     className += `${cache.key}-${serialized.name}`
 
-    const newProps = {}
+    const newProps: Record<string, unknown> = {}
     for (let key in props) {
       if (
         hasOwn.call(props, key) &&

@@ -1,27 +1,29 @@
 import * as React from 'react'
 import {
+  EmotionCache,
   getRegisteredStyles,
   insertStyles,
-  registerStyles
+  registerStyles,
+  SerializedStyles
 } from '@emotion/utils'
-import { serializeStyles } from '@emotion/serialize'
+import { CSSInterpolation, serializeStyles } from '@emotion/serialize'
 import isDevelopment from '#is-development'
 import { withEmotionCache } from './context'
-import { ThemeContext } from './theming'
+import { Theme, ThemeContext } from './theming'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import isBrowser from '#is-browser'
 
-/*
-type ClassNameArg =
+export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
+
+export type ClassNamesArg =
+  | undefined
+  | null
   | string
   | boolean
-  | { [key: string]: boolean }
-  | Array<ClassNameArg>
-  | null
-  | void
-*/
+  | { [className: string]: boolean | null | undefined }
+  | ArrayClassNamesArg
 
-let classnames = (args /*: Array<ClassNameArg> */) /*: string */ => {
+let classnames = (args: ArrayClassNamesArg): string => {
   let len = args.length
   let i = 0
   let cls = ''
@@ -69,11 +71,11 @@ let classnames = (args /*: Array<ClassNameArg> */) /*: string */ => {
   return cls
 }
 function merge(
-  registered /*: Object */,
-  css /*: (...args: Array<any>) => string */,
-  className /*: string */
+  registered: EmotionCache['registered'],
+  css: ClassNamesContent['css'],
+  className: string
 ) {
-  const registeredStyles = []
+  const registeredStyles: string[] = []
 
   const rawClassName = getRegisteredStyles(
     registered,
@@ -87,7 +89,13 @@ function merge(
   return rawClassName + css(registeredStyles)
 }
 
-const Insertion = ({ cache, serializedArr }) => {
+const Insertion = ({
+  cache,
+  serializedArr
+}: {
+  cache: EmotionCache
+  serializedArr: SerializedStyles[]
+}) => {
   let rules = useInsertionEffectAlwaysWithSyncFallback(() => {
     let rules = ''
     for (let i = 0; i < serializedArr.length; i++) {
@@ -101,14 +109,14 @@ const Insertion = ({ cache, serializedArr }) => {
     }
   })
 
-  if (!isBrowser && rules.length !== 0) {
+  if (!isBrowser && rules!.length !== 0) {
     return (
       <style
         {...{
           [`data-emotion`]: `${cache.key} ${serializedArr
             .map(serialized => serialized.name)
             .join(' ')}`,
-          dangerouslySetInnerHTML: { __html: rules },
+          dangerouslySetInnerHTML: { __html: rules! },
           nonce: cache.sheet.nonce
         }}
       />
@@ -117,21 +125,23 @@ const Insertion = ({ cache, serializedArr }) => {
   return null
 }
 
-/*
-type Props = {
-  children: ({
-    css: (...args: any) => string,
-    cx: (...args: Array<ClassNameArg>) => string,
-    theme: Object
-  }) => React.Node
-} */
+export interface ClassNamesContent {
+  css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
+  css(...args: Array<CSSInterpolation>): string
+  cx(...args: Array<ClassNamesArg>): string
+  theme: Theme
+}
 
-export const ClassNames /*: React.AbstractComponent<Props>*/ =
-  /* #__PURE__ */ withEmotionCache((props, cache) => {
+export interface ClassNamesProps {
+  children(content: ClassNamesContent): React.ReactNode
+}
+
+export const ClassNames = /* #__PURE__ */ withEmotionCache<ClassNamesProps>(
+  (props, cache) => {
     let hasRendered = false
-    let serializedArr = []
+    let serializedArr: SerializedStyles[] = []
 
-    let css = (...args /*: Array<any> */) => {
+    let css: ClassNamesContent['css'] = (...args) => {
       if (hasRendered && isDevelopment) {
         throw new Error('css can only be used during render')
       }
@@ -142,7 +152,7 @@ export const ClassNames /*: React.AbstractComponent<Props>*/ =
       registerStyles(cache, serialized, false)
       return `${cache.key}-${serialized.name}`
     }
-    let cx = (...args /*: Array<ClassNameArg>*/) => {
+    let cx = (...args: Array<ClassNamesArg>) => {
       if (hasRendered && isDevelopment) {
         throw new Error('cx can only be used during render')
       }
@@ -162,7 +172,8 @@ export const ClassNames /*: React.AbstractComponent<Props>*/ =
         {ele}
       </>
     )
-  })
+  }
+)
 
 if (isDevelopment) {
   ClassNames.displayName = 'EmotionClassNames'

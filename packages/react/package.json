@@ -3,6 +3,7 @@
   "version": "11.13.5",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
+  "types": "dist/emotion-react.cjs.d.ts",
   "exports": {
     ".": {
       "types": {
@@ -232,18 +233,17 @@
   },
   "imports": {
     "#is-development": {
-      "development": "./src/conditions/true.js",
-      "default": "./src/conditions/false.js"
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     },
     "#is-browser": {
-      "edge-light": "./src/conditions/false.js",
-      "workerd": "./src/conditions/false.js",
-      "worker": "./src/conditions/false.js",
-      "browser": "./src/conditions/true.js",
-      "default": "./src/conditions/is-browser.js"
+      "edge-light": "./src/conditions/false.ts",
+      "workerd": "./src/conditions/false.ts",
+      "worker": "./src/conditions/false.ts",
+      "browser": "./src/conditions/true.ts",
+      "default": "./src/conditions/is-browser.ts"
     }
   },
-  "types": "types/index.d.ts",
   "files": [
     "src",
     "dist",
@@ -283,6 +283,7 @@
     "@emotion/css-prettifier": "1.1.4",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "11.13.5",
+    "@types/hoist-non-react-statics": "^3.3.5",
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1",
@@ -295,10 +296,10 @@
   "umd:main": "dist/emotion-react.umd.min.js",
   "preconstruct": {
     "entrypoints": [
-      "./index.js",
-      "./jsx-runtime.js",
-      "./jsx-dev-runtime.js",
-      "./_isolated-hnrs.js"
+      "./index.ts",
+      "./jsx-runtime.ts",
+      "./jsx-dev-runtime.ts",
+      "./_isolated-hnrs.ts"
     ],
     "umdName": "emotionReact",
     "exports": {

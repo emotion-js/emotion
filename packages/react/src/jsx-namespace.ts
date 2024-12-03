@@ -62,39 +62,44 @@ type ReactJSXElementType = true extends IsPreReact19
     React.JSX.ElementType
 
 export namespace ReactJSX {
-  type ElementType = ReactJSXElementType
-  interface Element extends ReactJSXElement {}
-  interface ElementClass extends ReactJSXElementClass {}
-  interface ElementAttributesProperty
+  export type ElementType = ReactJSXElementType
+  export interface Element extends ReactJSXElement {}
+  export interface ElementClass extends ReactJSXElementClass {}
+  export interface ElementAttributesProperty
     extends ReactJSXElementAttributesProperty {}
-  interface ElementChildrenAttribute extends ReactJSXElementChildrenAttribute {}
+  export interface ElementChildrenAttribute
+    extends ReactJSXElementChildrenAttribute {}
 
-  type LibraryManagedAttributes<C, P> = ReactJSXLibraryManagedAttributes<C, P>
+  export type LibraryManagedAttributes<C, P> = ReactJSXLibraryManagedAttributes<
+    C,
+    P
+  >
 
-  interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
-  interface IntrinsicClassAttributes<T>
+  export interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
+  export interface IntrinsicClassAttributes<T>
     extends ReactJSXIntrinsicClassAttributes<T> {}
 
-  type IntrinsicElements = ReactJSXIntrinsicElements
+  export type IntrinsicElements = ReactJSXIntrinsicElements
 }
 
 export namespace EmotionJSX {
-  type ElementType = ReactJSXElementType
-  interface Element extends ReactJSXElement {}
-  interface ElementClass extends ReactJSXElementClass {}
-  interface ElementAttributesProperty
+  export type ElementType = ReactJSXElementType
+  export interface Element extends ReactJSXElement {}
+  export interface ElementClass extends ReactJSXElementClass {}
+  export interface ElementAttributesProperty
     extends ReactJSXElementAttributesProperty {}
-  interface ElementChildrenAttribute extends ReactJSXElementChildrenAttribute {}
+  export interface ElementChildrenAttribute
+    extends ReactJSXElementChildrenAttribute {}
 
-  type LibraryManagedAttributes<C, P> = P extends unknown
+  export type LibraryManagedAttributes<C, P> = P extends unknown
     ? WithConditionalCSSProp<P> & ReactJSXLibraryManagedAttributes<C, P>
     : never
 
-  interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
-  interface IntrinsicClassAttributes<T>
+  export interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
+  export interface IntrinsicClassAttributes<T>
     extends ReactJSXIntrinsicClassAttributes<T> {}
 
-  type IntrinsicElements = {
+  export type IntrinsicElements = {
     [K in keyof ReactJSXIntrinsicElements]: ReactJSXIntrinsicElements[K] & {
       css?: Interpolation<Theme>
     }

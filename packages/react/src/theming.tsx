@@ -2,8 +2,25 @@ import * as React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
 import isDevelopment from '#is-development'
 import hoistNonReactStatics from './_isolated-hnrs'
+import { DistributiveOmit, PropsOf } from './types'
 
-export const ThemeContext = /* #__PURE__ */ React.createContext({})
+// tslint:disable-next-line: no-empty-interface
+export interface Theme {}
+
+export interface ThemeProviderProps {
+  theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
+  children: React.ReactNode
+}
+
+export interface ThemeProvider {
+  (props: ThemeProviderProps): React.ReactElement
+}
+
+export type WithTheme<P, T> = P extends { theme: infer Theme }
+  ? P & { theme: Exclude<Theme, undefined> }
+  : P & { theme: T }
+
+export const ThemeContext = /* #__PURE__ */ React.createContext<Theme>({})
 if (isDevelopment) {
   ThemeContext.displayName = 'EmotionThemeContext'
 }
@@ -11,9 +28,9 @@ if (isDevelopment) {
 export const useTheme = () => React.useContext(ThemeContext)
 
 const getTheme = (
-  outerTheme /*: Object */,
-  theme /*: Object | (Object => Object) */
-) => {
+  outerTheme: Theme,
+  theme: Partial<Theme> | ((theme: Theme) => Theme)
+): Theme => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
@@ -40,20 +57,18 @@ const getTheme = (
   return { ...outerTheme, ...theme }
 }
 
-let createCacheWithTheme = /* #__PURE__ */ weakMemoize(outerTheme => {
-  return weakMemoize(theme => {
+let createCacheWithTheme = /* #__PURE__ */ weakMemoize((outerTheme: Theme) => {
+  return weakMemoize((theme: Theme) => {
     return getTheme(outerTheme, theme)
   })
 })
 
-/*
-type ThemeProviderProps = {
-  theme: Object | (Object => Object),
-  children: React.Node
+export interface ThemeProviderProps {
+  theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
+  children: React.ReactNode
 }
-*/
 
-export const ThemeProvider = (props /*: ThemeProviderProps */) => {
+export const ThemeProvider = (props: ThemeProviderProps) => {
   let theme = React.useContext(ThemeContext)
 
   if (props.theme !== theme) {
@@ -66,16 +81,23 @@ export const ThemeProvider = (props /*: ThemeProviderProps */) => {
   )
 }
 
-export function withTheme /* <Config: {}> */(
-  Component /*: React.AbstractComponent<Config> */
-) /*: React.AbstractComponent<$Diff<Config, { theme: Object }>> */ {
+export function withTheme<
+  C extends React.ComponentType<React.ComponentProps<C>>
+>(
+  Component: C
+): React.ForwardRefExoticComponent<
+  DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }
+>
+export function withTheme(
+  Component: React.ComponentType<any>
+): React.ForwardRefExoticComponent<any> {
   const componentName = Component.displayName || Component.name || 'Component'
-  let render = (props, ref) => {
+
+  let WithTheme = React.forwardRef(function render(props, ref) {
     let theme = React.useContext(ThemeContext)
 
     return <Component theme={theme} ref={ref} {...props} />
-  }
-  let WithTheme = React.forwardRef(render)
+  })
 
   WithTheme.displayName = `WithTheme(${componentName})`
 
