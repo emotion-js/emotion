@@ -1,5 +1,11 @@
 # @emotion/use-insertion-effect-with-fallbacks
 
+## 1.2.0
+
+### Minor Changes
+
+- [#3279](https://github.com/emotion-js/emotion/pull/3279) [`e1bf17e`](https://github.com/emotion-js/emotion/commit/e1bf17ee87ec51da1412eb5291460ea95a39d27a) Thanks [@Andarist](https://github.com/Andarist)! - Source code has been migrated to TypeScript.
+
 ## 1.1.0
 
 ### Minor Changes
