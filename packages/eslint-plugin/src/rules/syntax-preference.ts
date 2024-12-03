@@ -92,6 +92,7 @@ const checkExpressionPreferringObject = (
       return
     case AST_NODE_TYPES.Literal:
       // validating other literal types seems out of scope of this plugin
+      /* istanbul ignore if */
       if (typeof node.value !== 'string') {
         return
       }
@@ -136,6 +137,7 @@ const createPreferredObjectVisitor = (
     switch (node.value.type) {
       case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
+        /* istanbul ignore if */
         if (typeof node.value.value !== 'string') {
           return
         }
@@ -170,6 +172,7 @@ const checkExpressionPreferringString = (
       return
     case 'Literal':
       // validating other literal types seems out of scope of this plugin
+      /* istanbul ignore if */
       if (typeof node.value !== 'string') {
         return
       }
@@ -207,6 +210,7 @@ const createPreferredStringVisitor = (
     switch (node.value.type) {
       case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
+        /* istanbul ignore if */
         if (typeof node.value.value !== 'string') {
           return
         }

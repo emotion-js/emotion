@@ -287,6 +287,21 @@ let ele2 = <div css={{}} />
     {
       settings: { react: { pragma: 'jsx' } },
       code: `
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+import { jsx } from '@emotion/react'
+let ele = <div css={{}} />
+    `.trim()
+    },
+    {
+      settings: { react: { pragma: 'jsx' } },
+      code: `
 import { css } from '@emotion/react'
 let ele = <div css={{}} />
       `.trim(),
@@ -297,6 +312,22 @@ let ele = <div css={{}} />
       ],
       output: `
 import { css, jsx } from '@emotion/react'
+let ele = <div css={{}} />
+    `.trim()
+    },
+    {
+      settings: { react: { pragma: 'jsx' } },
+      code: `
+import DefaultExport from '@emotion/react'
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+import DefaultExport, { jsx } from '@emotion/react'
 let ele = <div css={{}} />
     `.trim()
     },
