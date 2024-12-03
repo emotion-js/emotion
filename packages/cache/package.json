@@ -4,6 +4,7 @@
   "description": "emotion's cache",
   "main": "dist/emotion-cache.cjs.js",
   "module": "dist/emotion-cache.esm.js",
+  "types": "dist/emotion-cache.cjs.d.ts",
   "exports": {
     ".": {
       "types": {
@@ -63,18 +64,17 @@
   },
   "imports": {
     "#is-development": {
-      "development": "./src/conditions/true.js",
-      "default": "./src/conditions/false.js"
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     },
     "#is-browser": {
-      "edge-light": "./src/conditions/false.js",
-      "workerd": "./src/conditions/false.js",
-      "worker": "./src/conditions/false.js",
-      "browser": "./src/conditions/true.js",
-      "default": "./src/conditions/is-browser.js"
+      "edge-light": "./src/conditions/false.ts",
+      "workerd": "./src/conditions/false.ts",
+      "worker": "./src/conditions/false.ts",
+      "browser": "./src/conditions/true.ts",
+      "default": "./src/conditions/is-browser.ts"
     }
   },
-  "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/cache",
   "scripts": {
@@ -90,11 +90,11 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "@emotion/hash": "*",
+    "@types/stylis": "^4.2.7",
     "typescript": "^5.4.5"
   },
   "files": [
     "src",
-    "dist",
-    "types/*.d.ts"
+    "dist"
   ]
 }
