@@ -2725,6 +2725,7 @@ __metadata:
   resolution: "@emotion/css-prettifier@workspace:packages/css-prettifier"
   dependencies:
     "@emotion/memoize": ^0.9.0
+    "@types/stylis": ^4.2.6
     stylis: 4.2.0
   languageName: unknown
   linkType: soft
