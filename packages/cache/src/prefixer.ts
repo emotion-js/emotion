@@ -15,12 +15,14 @@ import {
   RULESET,
   serialize,
   strlen,
-  WEBKIT
+  WEBKIT,
+  Element,
+  Middleware
 } from 'stylis'
 
 // this is a copy of stylis@4.0.13 prefixer, the latter version introduced grid prefixing which we don't want
 
-function prefix(value, length) {
+function prefix(value: string, length: number): string {
   switch (hash(value, length)) {
     // color-adjust
     case 5103:
@@ -279,7 +281,12 @@ function prefix(value, length) {
   return value
 }
 
-export let prefixer = (element, index, children, callback) => {
+export let prefixer = (
+  element: Element,
+  index: number,
+  children: Element[],
+  callback: Middleware
+) => {
   if (element.length > -1)
     if (!element.return)
       switch (element.type) {
@@ -297,7 +304,7 @@ export let prefixer = (element, index, children, callback) => {
           )
         case RULESET:
           if (element.length)
-            return combine(element.props, function (value) {
+            return combine(element.props as string[], function (value) {
               switch (match(value, /(::plac\w+|:read-\w+)/)) {
                 // :read-(only|write)
                 case ':read-only':
