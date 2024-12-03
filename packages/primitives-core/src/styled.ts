@@ -51,7 +51,8 @@ export function createStyled(
 
       // do we really want to use the same infra as the web since it only really uses theming?
       let Styled = React.forwardRef<unknown, StyledProps>((props, ref) => {
-        const finalTag = (shouldUseAs && props.as) || component
+        const finalTag =
+          (shouldUseAs && (props.as as React.ElementType)) || component
 
         let mergedProps = props
         if (props.theme == null) {
