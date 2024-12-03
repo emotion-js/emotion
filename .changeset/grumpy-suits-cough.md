@@ -2,4 +2,4 @@
 '@emotion/use-insertion-effect-with-fallbacks': minor
 ---
 
-Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+Source code has been migrated to TypeScript.
