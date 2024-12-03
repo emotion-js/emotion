@@ -2714,7 +2714,7 @@ __metadata:
     "@emotion/sheet": ^1.4.0
     "@emotion/utils": ^1.4.2
     "@emotion/weak-memoize": ^0.4.0
-    "@types/stylis": ^4.2.6
+    "@types/stylis": ^4.2.7
     stylis: 4.2.0
     typescript: ^5.4.5
   languageName: unknown
@@ -2725,7 +2725,7 @@ __metadata:
   resolution: "@emotion/css-prettifier@workspace:packages/css-prettifier"
   dependencies:
     "@emotion/memoize": ^0.9.0
-    "@types/stylis": ^4.2.6
+    "@types/stylis": ^4.2.7
     stylis: 4.2.0
   languageName: unknown
   linkType: soft
@@ -6469,10 +6469,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/stylis@npm:^4.2.6":
-  version: 4.2.6
-  resolution: "@types/stylis@npm:4.2.6"
-  checksum: 3a1685f2b465eb943805252b5b2934fc8054fe8706f76e3e28544f69532296f42c042d0b402fadc486ef8e86cc3d8a2c66d2345241e0af8e07974dd36d85a79c
+"@types/stylis@npm:^4.2.7":
+  version: 4.2.7
+  resolution: "@types/stylis@npm:4.2.7"
+  checksum: 5f2c8c07d4d5c3c8624d44d026b726295c5a68164087e3cd86f2694660c592ab36264ae49dec38126cf5580f0901266aa24f1c476a622bb83210eabdf7a464e8
   languageName: node
   linkType: hard
 

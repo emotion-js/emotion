@@ -28,7 +28,7 @@
     "stylis": "4.2.0"
   },
   "devDependencies": {
-    "@types/stylis": "^4.2.6"
+    "@types/stylis": "^4.2.7"
   },
   "publishConfig": {
     "access": "public"

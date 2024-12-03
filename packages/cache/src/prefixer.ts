@@ -3,7 +3,7 @@
 import {
   charat,
   combine,
-  copy as _copy,
+  copy,
   DECLARATION,
   hash,
   indexof,
@@ -19,9 +19,6 @@ import {
   Element,
   Middleware
 } from 'stylis'
-
-// `@types/stylis` are inaccurate, so we temporarily cast to our own definitions until fix lands: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71310
-const copy: (root: Element, props: Partial<Element>) => Element = _copy as any
 
 // this is a copy of stylis@4.0.13 prefixer, the latter version introduced grid prefixing which we don't want
 
