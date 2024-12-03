@@ -250,7 +250,7 @@
     "jsx-runtime",
     "jsx-dev-runtime",
     "_isolated-hnrs",
-    "types/*.d.ts",
+    "types/css-prop.d.ts",
     "macro.*"
   ],
   "sideEffects": false,
