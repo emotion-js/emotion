@@ -1,7 +1,0 @@
-lib/
-dist/
-coverage/
-node_modules/
-stylis.min.js
-/demo/dist
-/site/out
