@@ -1,6 +1,6 @@
 {
   "name": "@emotion/use-insertion-effect-with-fallbacks",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A wrapper package that uses `useInsertionEffect` or a fallback for it",
   "main": "dist/emotion-use-insertion-effect-with-fallbacks.cjs.js",
   "module": "dist/emotion-use-insertion-effect-with-fallbacks.esm.js",
