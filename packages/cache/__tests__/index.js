@@ -11,6 +11,12 @@ test('throws correct error with invalid key', () => {
   }).toThrowErrorMatchingSnapshot()
 })
 
+test('throws an error when cache is created with an empty key', () => {
+  expect(() => {
+    createCache({ key: '' })
+  }).toThrowErrorMatchingSnapshot()
+})
+
 test('should accept insertionPoint option', () => {
   const head = safeQuerySelector('head')
 
