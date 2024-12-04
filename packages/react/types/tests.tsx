@@ -245,12 +245,13 @@ const anim1 = keyframes`
   ;<WithOptionalUnionClassName css={{ color: 'hotpink' }} />
 
   const WithNoClassName = (props: { foo: string }) => null
-  ;<WithNoClassName />
+  ;<WithNoClassName foo="bar" />
   // $ExpectError
-  ;<WithNoClassName css={{ color: 'hotpink' }} />
+  ;<WithNoClassName foo="bar" css={{ color: 'hotpink' }} />
 
-  const WithOptionalUndefinedClassName = (props: { foo: string }) => null
-  ;<WithOptionalUndefinedClassName foo="bar" />
+  const WithOptionalUndefinedClassName = (props: { className?: undefined }) =>
+    null
+  ;<WithOptionalUndefinedClassName />
   // $ExpectError
-  ;<WithOptionalUndefinedClassName foo="bar" css={{ color: 'hotpink' }} />
+  ;<WithOptionalUndefinedClassName css={{ color: 'hotpink' }} />
 }
