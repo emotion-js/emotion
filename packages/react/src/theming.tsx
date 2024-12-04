@@ -58,7 +58,7 @@ const getTheme = (
 }
 
 let createCacheWithTheme = /* #__PURE__ */ weakMemoize((outerTheme: Theme) => {
-  return weakMemoize((theme: Theme) => {
+  return weakMemoize((theme: Partial<Theme> | ((theme: Theme) => Theme)) => {
     return getTheme(outerTheme, theme)
   })
 })
