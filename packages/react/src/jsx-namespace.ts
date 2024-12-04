@@ -54,6 +54,7 @@ type ReactJSXIntrinsicElements = true extends IsPreReact19
   : /** @ts-ignore */
     React.JSX.IntrinsicElements
 
+/** @ts-ignore */
 type ReactJSXElementType = true extends IsPreReact19
   ? // based on the code from @types/react@18.2.8
     // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/3197efc097d522c4bf02b94e1a0766d007d6cdeb/types/react/index.d.ts#LL3204C13-L3204C13
