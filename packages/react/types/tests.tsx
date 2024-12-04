@@ -250,7 +250,7 @@ const anim1 = keyframes`
   ;<WithNoClassName css={{ color: 'hotpink' }} />
 
   const WithOptionalUndefinedClassName = (props: { foo: string }) => null
-  ;<WithOptionalUndefinedClassName />
+  ;<WithOptionalUndefinedClassName foo="bar" />
   // $ExpectError
-  ;<WithOptionalUndefinedClassName css={{ color: 'hotpink' }} />
+  ;<WithOptionalUndefinedClassName foo="bar" css={{ color: 'hotpink' }} />
 }
