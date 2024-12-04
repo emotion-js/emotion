@@ -6,7 +6,6 @@ import * as React from 'react'
 import { jsx, ThemeProvider } from '@emotion/react'
 
 beforeEach(() => {
-  // $FlowFixMe
   document.head.innerHTML = ''
 })
 

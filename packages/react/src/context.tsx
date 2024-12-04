@@ -34,7 +34,7 @@ let withEmotionCache = function withEmotionCache<Props, RefType = any>(
     ref?: React.ForwardedRef<RefType>
   ) => React.ReactNode
 ):
-  | React.FC<React.PropsWithoutRef<Props> & React.Ref<RefType>>
+  | React.FC<React.PropsWithoutRef<Props> & React.RefAttributes<RefType>>
   | React.ForwardRefExoticComponent<
       React.PropsWithoutRef<Props> & React.RefAttributes<RefType>
     > {

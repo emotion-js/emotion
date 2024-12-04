@@ -3,7 +3,6 @@ import { sheet } from '@emotion/css'
 const consoleError = console.error
 
 afterEach(() => {
-  // $FlowFixMe
   console.error = consoleError
 })
 
@@ -38,7 +37,6 @@ describe('sheet', () => {
   test('throws', () => {
     sheet.speedy(true)
     const spy = jest.fn()
-    // $FlowFixMe
     console.error = spy
     sheet.insert('.asdfasdf4###112121211{')
     expect(spy.mock.calls.length).toBe(1)

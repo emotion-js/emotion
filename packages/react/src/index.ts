@@ -44,7 +44,6 @@ if (isDevelopment) {
   if (isBrowser && !isTestEnv) {
     // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
     const globalContext: Record<string, unknown> =
-      // $FlowIgnore
       typeof globalThis !== 'undefined'
         ? globalThis // eslint-disable-line no-undef
         : isBrowser
