@@ -20,7 +20,7 @@ export type WithTheme<P, T> = P extends { theme: infer Theme }
   ? P & { theme: Exclude<Theme, undefined> }
   : P & { theme: T }
 
-export const ThemeContext = /* #__PURE__ */ React.createContext<Theme>({})
+export const ThemeContext = /* #__PURE__ */ React.createContext({} as Theme)
 if (isDevelopment) {
   ThemeContext.displayName = 'EmotionThemeContext'
 }
