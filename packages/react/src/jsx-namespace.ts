@@ -1,6 +1,6 @@
 import 'react'
 import { Interpolation } from '@emotion/serialize'
-import { Theme } from '@emotion/react'
+import { Theme } from './theming'
 
 type IsPreReact19 = 2 extends Parameters<React.FunctionComponent<any>>['length']
   ? true
