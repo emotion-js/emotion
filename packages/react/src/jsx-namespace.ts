@@ -1,6 +1,6 @@
 import 'react'
 import { Interpolation } from '@emotion/serialize'
-import { Theme } from '@emotion/react'
+import { Theme } from './theming'
 
 type IsPreReact19 = 2 extends Parameters<React.FunctionComponent<any>>['length']
   ? true
@@ -54,47 +54,53 @@ type ReactJSXIntrinsicElements = true extends IsPreReact19
   : /** @ts-ignore */
     React.JSX.IntrinsicElements
 
+// based on the code from @types/react@18.2.8
+// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/3197efc097d522c4bf02b94e1a0766d007d6cdeb/types/react/index.d.ts#LL3204C13-L3204C13
+/** @ts-ignore */
 type ReactJSXElementType = true extends IsPreReact19
-  ? // based on the code from @types/react@18.2.8
-    // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/3197efc097d522c4bf02b94e1a0766d007d6cdeb/types/react/index.d.ts#LL3204C13-L3204C13
-    string | React.JSXElementConstructor<any>
+  ? string | React.JSXElementConstructor<any>
   : /** @ts-ignore */
     React.JSX.ElementType
 
 export namespace ReactJSX {
-  type ElementType = ReactJSXElementType
-  interface Element extends ReactJSXElement {}
-  interface ElementClass extends ReactJSXElementClass {}
-  interface ElementAttributesProperty
+  export type ElementType = ReactJSXElementType
+  export interface Element extends ReactJSXElement {}
+  export interface ElementClass extends ReactJSXElementClass {}
+  export interface ElementAttributesProperty
     extends ReactJSXElementAttributesProperty {}
-  interface ElementChildrenAttribute extends ReactJSXElementChildrenAttribute {}
+  export interface ElementChildrenAttribute
+    extends ReactJSXElementChildrenAttribute {}
 
-  type LibraryManagedAttributes<C, P> = ReactJSXLibraryManagedAttributes<C, P>
+  export type LibraryManagedAttributes<C, P> = ReactJSXLibraryManagedAttributes<
+    C,
+    P
+  >
 
-  interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
-  interface IntrinsicClassAttributes<T>
+  export interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
+  export interface IntrinsicClassAttributes<T>
     extends ReactJSXIntrinsicClassAttributes<T> {}
 
-  type IntrinsicElements = ReactJSXIntrinsicElements
+  export type IntrinsicElements = ReactJSXIntrinsicElements
 }
 
 export namespace EmotionJSX {
-  type ElementType = ReactJSXElementType
-  interface Element extends ReactJSXElement {}
-  interface ElementClass extends ReactJSXElementClass {}
-  interface ElementAttributesProperty
+  export type ElementType = ReactJSXElementType
+  export interface Element extends ReactJSXElement {}
+  export interface ElementClass extends ReactJSXElementClass {}
+  export interface ElementAttributesProperty
     extends ReactJSXElementAttributesProperty {}
-  interface ElementChildrenAttribute extends ReactJSXElementChildrenAttribute {}
+  export interface ElementChildrenAttribute
+    extends ReactJSXElementChildrenAttribute {}
 
-  type LibraryManagedAttributes<C, P> = P extends unknown
+  export type LibraryManagedAttributes<C, P> = P extends unknown
     ? WithConditionalCSSProp<P> & ReactJSXLibraryManagedAttributes<C, P>
     : never
 
-  interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
-  interface IntrinsicClassAttributes<T>
+  export interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
+  export interface IntrinsicClassAttributes<T>
     extends ReactJSXIntrinsicClassAttributes<T> {}
 
-  type IntrinsicElements = {
+  export type IntrinsicElements = {
     [K in keyof ReactJSXIntrinsicElements]: ReactJSXIntrinsicElements[K] & {
       css?: Interpolation<Theme>
     }

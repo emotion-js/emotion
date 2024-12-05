@@ -23,7 +23,6 @@ expect.addSnapshotSerializer({
 const render = children =>
   new Promise(resolve => {
     const el = document.createElement('div')
-    // $FlowFixMe
     document.body.appendChild(el)
 
     if (ReactDOM.createRoot) {

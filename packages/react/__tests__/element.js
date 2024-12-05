@@ -1,14 +1,11 @@
-// @flow
 /** @jsx jsx */
 import { render } from '@testing-library/react'
 import { jsx, css, CacheProvider, ThemeProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
-// $FlowFixMe
 console.error = jest.fn()
 
 beforeEach(() => {
-  // $FlowFixMe
   document.head.innerHTML = ''
   jest.clearAllMocks()
 })
@@ -18,7 +15,6 @@ describe('EmotionElement', () => {
     const theme = { color: 'blue' }
     const cache = createCache({ key: 'context' })
 
-    // $FlowFixMe
     const Comp = ({ flag }) => (
       <ThemeProvider theme={theme}>
         <CacheProvider value={cache}>

@@ -1,6 +1,15 @@
 import isDevelopment from '#is-development'
 import pkg from '../package.json'
-// export type { SerializedStyles } from '@emotion/utils'
+export type { EmotionCache } from '@emotion/cache'
+export type {
+  ArrayInterpolation,
+  ComponentSelector,
+  CSSObject,
+  FunctionInterpolation,
+  Interpolation,
+  Keyframes,
+  SerializedStyles
+} from '@emotion/serialize'
 export {
   withEmotionCache,
   CacheProvider,
@@ -9,10 +18,23 @@ export {
 export { jsx } from './jsx'
 export { jsx as createElement } from './jsx'
 export { Global } from './global'
+export type { GlobalProps } from './global'
 export { keyframes } from './keyframes'
 export { ClassNames } from './class-names'
+export type {
+  ClassNamesArg,
+  ClassNamesContent,
+  ClassNamesProps,
+  ArrayClassNamesArg
+} from './class-names'
 export { ThemeContext, useTheme, ThemeProvider, withTheme } from './theming'
+export type { Theme, ThemeProviderProps, WithTheme } from './theming'
 export { default as css } from './css'
+export type { DistributiveOmit, PropsOf } from './types'
+
+declare const global: Record<string, unknown>
+declare const jest: unknown
+declare const vi: unknown
 
 if (isDevelopment) {
   const isBrowser = typeof document !== 'undefined'
@@ -21,8 +43,7 @@ if (isDevelopment) {
 
   if (isBrowser && !isTestEnv) {
     // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
-    const globalContext =
-      // $FlowIgnore
+    const globalContext: Record<string, unknown> =
       typeof globalThis !== 'undefined'
         ? globalThis // eslint-disable-line no-undef
         : isBrowser

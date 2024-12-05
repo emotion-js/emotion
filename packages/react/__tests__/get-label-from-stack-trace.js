@@ -1,4 +1,3 @@
-// @flow
 import { getLabelFromStackTrace } from '../src/get-label-from-stack-trace'
 
 /**

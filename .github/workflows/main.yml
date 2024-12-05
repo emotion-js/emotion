@@ -88,5 +88,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ci-setup
 
+      - name: build
+        run: yarn build
+
       - name: dtslint
         run: yarn test:typescript
