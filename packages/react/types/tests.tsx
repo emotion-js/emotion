@@ -8,7 +8,6 @@ import {
   keyframes,
   withEmotionCache
 } from '@emotion/react'
-import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
 import { CSSInterpolation } from '@emotion/serialize'
 
 declare module '@emotion/react' {
@@ -225,44 +224,34 @@ const anim1 = keyframes`
 
 // Tests for WithConditionalCSSProp
 {
-  // $ExpectType Interpolation<Theme>
-  type _HasCssPropAsIntended3 = EmotionJSX.LibraryManagedAttributes<
-    {},
-    {
-      className?: string
-    }
-  >['css']
+  const WithOptionalClassName = (props: { className?: string }) => null
+  ;<WithOptionalClassName />
+  ;<WithOptionalClassName css={{ color: 'hotpink' }} />
 
-  // $ExpectType Interpolation<Theme>
-  type _HasCssPropAsIntended4 = EmotionJSX.LibraryManagedAttributes<
-    {},
-    {
-      className: string
-    }
-  >['css']
+  const WithRequiredClassName = (props: { className: string }) => null
+  // $ExpectError
+  ;<WithRequiredClassName />
+  // $ExpectError
+  ;<WithRequiredClassName css={{ color: 'hotpink' }} />
 
-  // $ExpectType Interpolation<Theme>
-  type _HasCssPropAsIntended5 = EmotionJSX.LibraryManagedAttributes<
-    {},
-    {
-      className?: unknown
-    }
-  >['css']
+  const WithOptionalUnknownClassName = (props: { className?: unknown }) => null
+  ;<WithOptionalUnknownClassName />
+  ;<WithOptionalUnknownClassName css={{ color: 'hotpink' }} />
 
-  // $ExpectType Interpolation<Theme>
-  type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
-    {},
-    {
-      className?: string | Array<string>
-    }
-  >['css']
+  const WithOptionalUnionClassName = (props: {
+    className?: string | Array<string>
+  }) => null
+  ;<WithOptionalUnionClassName />
+  ;<WithOptionalUnionClassName css={{ color: 'hotpink' }} />
 
-  // $ExpectType false
-  type _NoCssPropAsIntended1 =
-    'css' extends keyof EmotionJSX.LibraryManagedAttributes<
-      {},
-      { className?: undefined }
-    >
-      ? true
-      : false
+  const WithNoClassName = (props: { foo: string }) => null
+  ;<WithNoClassName foo="bar" />
+  // $ExpectError
+  ;<WithNoClassName foo="bar" css={{ color: 'hotpink' }} />
+
+  const WithOptionalUndefinedClassName = (props: { className?: undefined }) =>
+    null
+  ;<WithOptionalUndefinedClassName />
+  // $ExpectError
+  ;<WithOptionalUndefinedClassName css={{ color: 'hotpink' }} />
 }

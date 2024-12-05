@@ -118,7 +118,7 @@
     "@testing-library/react": "13.0.0-alpha.5",
     "@types/jest": "^29.5.12",
     "@types/node": "^12.20.37",
-    "@types/react": "18.2.6",
+    "@types/react": "18.3.12",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.7.0",

@@ -2899,6 +2899,7 @@ __metadata:
     "@emotion/use-insertion-effect-with-fallbacks": ^1.1.0
     "@emotion/utils": ^1.4.2
     "@emotion/weak-memoize": ^0.4.0
+    "@types/hoist-non-react-statics": ^3.3.5
     hoist-non-react-statics: ^3.3.1
     html-tag-names: ^1.1.2
     react: 16.14.0
@@ -6411,6 +6412,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hoist-non-react-statics@npm:^3.3.5":
+  version: 3.3.5
+  resolution: "@types/hoist-non-react-statics@npm:3.3.5"
+  dependencies:
+    "@types/react": "*"
+    hoist-non-react-statics: ^3.3.0
+  checksum: b645b062a20cce6ab1245ada8274051d8e2e0b2ee5c6bd58215281d0ec6dae2f26631af4e2e7c8abe238cdcee73fcaededc429eef569e70908f82d0cc0ea31d7
+  languageName: node
+  linkType: hard
+
 "@types/html-minifier-terser@npm:^5.0.0":
   version: 5.1.2
   resolution: "@types/html-minifier-terser@npm:5.1.2"
@@ -6661,14 +6672,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.6, @types/react@npm:>=16":
-  version: 18.2.6
-  resolution: "@types/react@npm:18.2.6"
+"@types/react@npm:*, @types/react@npm:18.3.12, @types/react@npm:>=16":
+  version: 18.3.12
+  resolution: "@types/react@npm:18.3.12"
   dependencies:
     "@types/prop-types": "*"
-    "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: dea9d232d8df7ac357367a69dcb557711ab3d5501807ffa77cebeee73d49ee94d095f298e36853c63ed47cce097eee4c7eae2aaa8c02fac3f0171ec1b523a819
+  checksum: 4ab1577a8c2105a5e316536f724117c90eee5f4bd5c137fc82a2253d8c1fd299dedaa07e8dfc95d6e2f04a4be3cb8b0e1b06098c6233ebd55c508d88099395b7
   languageName: node
   linkType: hard
 
@@ -6706,13 +6716,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e99fc7cc6265407987b30deda54c1c24bb1478803faf6037557a774b2f034c5b097ffd65847daa87e82a61a250d919f35c3588654b0fdaa816906650f596d1b0
-  languageName: node
-  linkType: hard
-
-"@types/scheduler@npm:*":
-  version: 0.16.2
-  resolution: "@types/scheduler@npm:0.16.2"
-  checksum: b6b4dcfeae6deba2e06a70941860fb1435730576d3689225a421280b7742318d1548b3d22c1f66ab68e414f346a9542f29240bc955b6332c5b11e561077583bc
   languageName: node
   linkType: hard
 
@@ -12690,7 +12693,7 @@ __metadata:
     "@testing-library/react": 13.0.0-alpha.5
     "@types/jest": ^29.5.12
     "@types/node": ^12.20.37
-    "@types/react": 18.2.6
+    "@types/react": 18.3.12
     babel-check-duplicated-nodes: ^1.0.0
     babel-eslint: ^10.1.0
     babel-jest: ^29.7.0
@@ -12761,7 +12764,7 @@ __metadata:
     "@types/js-yaml": ^4.0.5
     "@types/node": ^12.20.37
     "@types/prismjs": ^1.26.0
-    "@types/react": 18.2.6
+    "@types/react": 18.3.12
     "@types/remark-prism": ^1.3.3
     facepaint: ^1.2.1
     gray-matter: ^4.0.3
@@ -16112,6 +16115,15 @@ __metadata:
   version: 2.16.3
   resolution: "hoek@npm:2.16.3"
   checksum: b38036f28f63fa44796a9ff2d495c04c609c1e4aa535a7017f870c8eba8e68db13b9be93f89ae14f22a6688a0f42cb048bf8971f3126350e1fbd980938aa8c9e
+  languageName: node
+  linkType: hard
+
+"hoist-non-react-statics@npm:^3.3.0":
+  version: 3.3.2
+  resolution: "hoist-non-react-statics@npm:3.3.2"
+  dependencies:
+    react-is: ^16.7.0
+  checksum: b1538270429b13901ee586aa44f4cc3ecd8831c061d06cb8322e50ea17b3f5ce4d0e2e66394761e6c8e152cd8c34fb3b4b690116c6ce2bd45b18c746516cb9e8
   languageName: node
   linkType: hard
 

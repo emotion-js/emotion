@@ -6,6 +6,8 @@
     "jsx": "react",
     "lib": ["es6", "dom"],
     "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
     "target": "es5",

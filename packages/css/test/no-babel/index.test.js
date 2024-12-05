@@ -7,7 +7,6 @@ import styled from '@emotion/styled'
 let consoleError = console.error
 
 afterEach(() => {
-  // $FlowFixMe
   console.error = consoleError
 })
 
@@ -146,7 +145,6 @@ describe('css', () => {
     })
 
     const spy = jest.fn()
-    // $FlowFixMe
     console.error = spy
 
     expect(() =>

@@ -3,7 +3,7 @@ import { RegisteredCache, EmotionCache, SerializedStyles } from './types'
 
 export function getRegisteredStyles(
   registered: RegisteredCache,
-  registeredStyles: string[],
+  registeredStyles: unknown[],
   classNames: string
 ): string {
   let rawClassName = ''

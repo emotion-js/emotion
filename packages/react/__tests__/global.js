@@ -9,7 +9,6 @@ import {
 } from '@emotion/react'
 import createCache from '@emotion/cache'
 
-// $FlowFixMe
 console.error = jest.fn()
 
 beforeEach(() => {

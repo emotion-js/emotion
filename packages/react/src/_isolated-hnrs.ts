@@ -6,5 +6,10 @@ import hoistNonReactStatics from 'hoist-non-react-statics'
 // have to wrap it in a proxy function because Rollup is too damn smart
 // and if this module doesn't actually contain any logic of its own
 // then Rollup just use 'hoist-non-react-statics' directly in other chunks
-export default (targetComponent, sourceComponent) =>
-  hoistNonReactStatics(targetComponent, sourceComponent)
+export default <
+  T extends React.ComponentType<any>,
+  S extends React.ComponentType<any>
+>(
+  targetComponent: T,
+  sourceComponent: S
+) => hoistNonReactStatics(targetComponent, sourceComponent)

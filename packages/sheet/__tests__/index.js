@@ -102,7 +102,6 @@ describe('StyleSheet', () => {
 
   test('should work with a ShadowRoot container', () => {
     const div = document.createElement('div')
-    // $FlowFixMe
     document.body.appendChild(div)
     const container = div.attachShadow({ mode: 'open' })
     const sheet = new StyleSheet({ ...defaultOptions, container })
