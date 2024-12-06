@@ -8,17 +8,18 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-import { AST_NODE_TYPES, TSESLint } from '@typescript-eslint/utils'
+import { RuleTester } from '@typescript-eslint/rule-tester'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 import rule from '../../src/rules/syntax-preference'
 import { espreeParser } from '../test-utils'
 
-const ruleTester = new TSESLint.RuleTester({
-  parser: espreeParser,
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
+const ruleTester = new RuleTester({
+  languageOptions: {
+    parser: espreeParser,
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true
+      }
     }
   }
 })
@@ -43,11 +44,15 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string']
     },
     {
+      code: `const Foo = () => <div css={css\`\`} style={{ color: hotpink }} />`,
+      options: ['string']
+    },
+    {
       code: `const Foo = () => <div css={css\`color: hotpink;\`} />`,
       options: ['string']
     },
     {
-      code: `const Foo = () => <div css={[styles, otherStyles]} />`,
+      code: `const Foo = () => <div css={[styles, , otherStyles]} />`,
       options: ['string']
     },
     {
@@ -164,11 +169,19 @@ ruleTester.run('syntax-preference (object)', rule, {
       options: ['object']
     },
     {
+      code: `const Foo = () => <div css={{}} style={{ color: 'hotpink' }} />`,
+      options: ['object']
+    },
+    {
       code: `const Foo = () => <div css={{ color: 'hotpink' }} />`,
       options: ['object']
     },
     {
       code: `const Foo = () => <div css={css({ color: 'hotpink' })} />`,
+      options: ['object']
+    },
+    {
+      code: `const Foo = () => <div css={[{ color: 'hotpink' }, , { backgroundColor: 'green' }]} />`,
       options: ['object']
     }
   ],
@@ -211,6 +224,16 @@ ruleTester.run('syntax-preference (object)', rule, {
         {
           messageId: 'preferObjectStyle',
           type: AST_NODE_TYPES.Literal
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={\`color: hotpink;\`} />`,
+      options: ['object'],
+      errors: [
+        {
+          messageId: 'preferObjectStyle',
+          type: AST_NODE_TYPES.TemplateLiteral
         }
       ]
     },
