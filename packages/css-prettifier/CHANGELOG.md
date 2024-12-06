@@ -1,5 +1,11 @@
 # @emotion/css-prettifier
 
+## 1.2.0
+
+### Minor Changes
+
+- [#3278](https://github.com/emotion-js/emotion/pull/3278) [`282b61d`](https://github.com/emotion-js/emotion/commit/282b61d2ad4e39ea65af88351a894a903c2d42c4) Thanks [@Andarist](https://github.com/Andarist)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 1.1.4
 
 ### Patch Changes

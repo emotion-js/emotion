@@ -1,5 +1,17 @@
 # @emotion/react
 
+## 11.14.0
+
+### Minor Changes
+
+- [#3281](https://github.com/emotion-js/emotion/pull/3281) [`fc4d7bd`](https://github.com/emotion-js/emotion/commit/fc4d7bd744c205f55513dcd4e4e5134198c219de) Thanks [@Andarist](https://github.com/Andarist)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- Updated dependencies [[`8dc1a6d`](https://github.com/emotion-js/emotion/commit/8dc1a6dd19d2dc9ce435ef0aff85ccf5647f5d2e), [`e1bf17e`](https://github.com/emotion-js/emotion/commit/e1bf17ee87ec51da1412eb5291460ea95a39d27a)]:
+  - @emotion/cache@11.14.0
+  - @emotion/use-insertion-effect-with-fallbacks@1.2.0
+
 ## 11.13.5
 
 ### Patch Changes
