@@ -178,7 +178,7 @@
     "umdName": "emotionStyled",
     "entrypoints": [
       "./index.ts",
-      "./base.ts"
+      "./base.tsx"
     ],
     "exports": {
       "extra": {
