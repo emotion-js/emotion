@@ -135,4 +135,4 @@ export const tags = [
   'svg',
   'text',
   'tspan'
-]
+] as const
