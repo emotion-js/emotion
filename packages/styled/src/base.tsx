@@ -11,16 +11,11 @@ import {
   SerializedStyles
 } from '@emotion/utils'
 import * as React from 'react'
-import {
-  CreateStyled,
-  ElementType,
-  StyledComponent,
-  StyledOptions
-} from './types'
+import { CreateStyled, ElementType, StyledOptions } from './types'
 import { composeShouldForwardProps, getDefaultShouldForwardProp } from './utils'
 export type {
-  ComponentSelector,
   ArrayInterpolation,
+  ComponentSelector,
   CSSObject,
   FunctionInterpolation,
   Interpolation
