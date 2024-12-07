@@ -7,8 +7,6 @@ type IsPreReact19 = 2 extends Parameters<React.FunctionComponent<any>>['length']
   ? true
   : false
 
-export type ReactJSXIntrinsicElements = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.IntrinsicElements
-  : /** @ts-ignore */
-    React.JSX.IntrinsicElements
+// prettier-ignore
+/** @ts-ignore */
+export type ReactJSXIntrinsicElements = true extends IsPreReact19 ? JSX.IntrinsicElements : React.JSX.IntrinsicElements

@@ -398,11 +398,11 @@ export function serializeStyles(
       strings as Interpolation
     )
   } else {
-    const asTemplateStringsArr = strings as TemplateStringsArray
-    if (isDevelopment && asTemplateStringsArr[0] === undefined) {
+    const templateStringsArr = strings as TemplateStringsArray
+    if (isDevelopment && templateStringsArr[0] === undefined) {
       console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
     }
-    styles += asTemplateStringsArr[0]
+    styles += templateStringsArr[0]
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {

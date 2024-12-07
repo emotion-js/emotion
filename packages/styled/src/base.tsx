@@ -1,31 +1,40 @@
-import * as React from 'react'
-import {
-  getDefaultShouldForwardProp,
-  composeShouldForwardProps
-  /*
-  type StyledOptions,
-  type CreateStyled,
-  type PrivateStyledComponent,
-  type StyledElementType
-  */
-} from './utils'
-import { withEmotionCache, ThemeContext } from '@emotion/react'
-import isDevelopment from '#is-development'
 import isBrowser from '#is-browser'
+import isDevelopment from '#is-development'
+import { Theme, ThemeContext, withEmotionCache } from '@emotion/react'
+import { Interpolation, serializeStyles } from '@emotion/serialize'
+import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import {
+  EmotionCache,
   getRegisteredStyles,
   insertStyles,
-  registerStyles
+  registerStyles,
+  SerializedStyles
 } from '@emotion/utils'
-import { serializeStyles } from '@emotion/serialize'
-import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
+import * as React from 'react'
+import { CreateStyled, ElementType, StyledOptions } from './types'
+import { composeShouldForwardProps, getDefaultShouldForwardProp } from './utils'
+export type {
+  ArrayInterpolation,
+  ComponentSelector,
+  CSSObject,
+  FunctionInterpolation,
+  Interpolation
+} from '@emotion/serialize'
 
 const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
-const Insertion = ({ cache, serialized, isStringTag }) => {
+const Insertion = ({
+  cache,
+  serialized,
+  isStringTag
+}: {
+  cache: EmotionCache
+  serialized: SerializedStyles
+  isStringTag: boolean
+}) => {
   registerStyles(cache, serialized, isStringTag)
 
   const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
@@ -52,10 +61,7 @@ const Insertion = ({ cache, serialized, isStringTag }) => {
   return null
 }
 
-let createStyled /*: CreateStyled */ = (
-  tag /*: any */,
-  options /* ?: StyledOptions */
-) => {
+const createStyled = (tag: ElementType, options?: StyledOptions) => {
   if (isDevelopment) {
     if (tag === undefined) {
       throw new Error(
@@ -66,8 +72,8 @@ let createStyled /*: CreateStyled */ = (
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
 
-  let identifierName
-  let targetClassName
+  let identifierName: string | undefined
+  let targetClassName: string | undefined
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
@@ -78,9 +84,11 @@ let createStyled /*: CreateStyled */ = (
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  /* return function<Props>(): PrivateStyledComponent<Props> { */
   return function () {
-    let args = arguments
+    // eslint-disable-next-line prefer-rest-params
+    let args = arguments as any as Array<
+      TemplateStringsArray | Interpolation<Theme>
+    >
     let styles =
       isReal && tag.__emotion_styles !== undefined
         ? tag.__emotion_styles.slice(0)
@@ -89,29 +97,35 @@ let createStyled /*: CreateStyled */ = (
     if (identifierName !== undefined) {
       styles.push(`label:${identifierName};`)
     }
-    if (args[0] == null || args[0].raw === undefined) {
+    if (
+      args[0] == null ||
+      (args[0] as TemplateStringsArray).raw === undefined
+    ) {
+      // eslint-disable-next-line prefer-spread
       styles.push.apply(styles, args)
     } else {
-      if (isDevelopment && args[0][0] === undefined) {
+      const templateStringsArr = args[0] as TemplateStringsArray
+      if (isDevelopment && templateStringsArr[0] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
       }
-      styles.push(args[0][0])
+      styles.push(templateStringsArr[0])
       let len = args.length
       let i = 1
       for (; i < len; i++) {
-        if (isDevelopment && args[0][i] === undefined) {
+        if (isDevelopment && templateStringsArr[i] === undefined) {
           console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
         }
-        styles.push(args[i], args[0][i])
+        styles.push(args[i], templateStringsArr[i])
       }
     }
 
-    const Styled /*: PrivateStyledComponent<Props> */ = withEmotionCache(
-      (props, cache, ref) => {
-        const FinalTag = (shouldUseAs && props.as) || baseTag
+    const Styled: ElementType = withEmotionCache(
+      (props: Record<string, unknown>, cache, ref) => {
+        const FinalTag =
+          (shouldUseAs && (props.as as React.ElementType)) || baseTag
 
         let className = ''
-        let classInterpolations = []
+        let classInterpolations: Interpolation<Theme>[] = []
         let mergedProps = props
         if (props.theme == null) {
           mergedProps = {}
@@ -146,7 +160,7 @@ let createStyled /*: CreateStyled */ = (
             ? getDefaultShouldForwardProp(FinalTag)
             : defaultShouldForwardProp
 
-        let newProps = {}
+        let newProps: Record<string, unknown> = {}
 
         for (let key in props) {
           if (shouldUseAs && key === 'as') continue
@@ -196,20 +210,20 @@ let createStyled /*: CreateStyled */ = (
         return `.${targetClassName}`
       }
     })
-
-    Styled.withComponent = (
-      nextTag /*: StyledElementType<Props> */,
-      nextOptions /* ?: StyledOptions */
+    ;(Styled as any).withComponent = (
+      nextTag: ElementType,
+      nextOptions: StyledOptions
     ) => {
-      return createStyled(nextTag, {
+      const newStyled = createStyled(nextTag, {
         ...options,
         ...nextOptions,
         shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
-      })(...styles)
+      })
+      return (newStyled as any)(...styles)
     }
 
     return Styled
   }
 }
 
-export default createStyled
+export default createStyled as CreateStyled
