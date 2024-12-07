@@ -190,7 +190,7 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
           </>
         )
       }
-    ) as StyledComponent<any, any, any>
+    )
 
     Styled.displayName =
       identifierName !== undefined
