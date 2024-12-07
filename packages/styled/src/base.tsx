@@ -126,8 +126,8 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
 
     const Styled: ElementType = withEmotionCache(
       (props: Record<string, unknown>, cache, ref) => {
-        const FinalTag = ((shouldUseAs && props.as) ||
-          baseTag) as React.ElementType
+        const FinalTag =
+          (shouldUseAs && (props.as as React.ElementType)) || baseTag
 
         let className = ''
         let classInterpolations: Interpolation<Theme>[] = []
