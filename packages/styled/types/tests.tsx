@@ -301,3 +301,32 @@ const Input5 = styled.input`
   // $ExpectError
   styled('div', { shouldForwardProp: (prop: 'foo') => true })({})
 }
+
+{
+  // Different ways to provide props to styled components
+
+  styled.div`
+    textAlign: ${'center'},
+    position: ${'relative'},
+  `
+
+  styled.div({
+    textAlign: `center`,
+    position: `relative`
+  })
+
+  styled.div(() => ({
+    textAlign: `center`,
+    position: `relative`
+  }))
+
+  styled('div')({
+    textAlign: `center`,
+    position: `relative`
+  })
+
+  styled('div')(() => ({
+    textAlign: `center`,
+    position: `relative`
+  }))
+}
