@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.14.0
+
+### Minor Changes
+
+- [#3277](https://github.com/emotion-js/emotion/pull/3277) [`8dc1a6d`](https://github.com/emotion-js/emotion/commit/8dc1a6dd19d2dc9ce435ef0aff85ccf5647f5d2e) Thanks [@Andarist](https://github.com/Andarist)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
 ## 11.13.5
 
 ### Patch Changes

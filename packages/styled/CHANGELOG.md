@@ -1,5 +1,16 @@
 # @emotion/styled
 
+## 11.14.0
+
+### Minor Changes
+
+- [#3284](https://github.com/emotion-js/emotion/pull/3284) [`a19d019`](https://github.com/emotion-js/emotion/commit/a19d019bd418ebc3b9cba0e58f58b36ac2862a42) Thanks [@Andarist](https://github.com/Andarist)! - Source code has been migrated to TypeScript. From now on type declarations will be emitted based on that, instead of being hand-written.
+
+### Patch Changes
+
+- Updated dependencies [[`e1bf17e`](https://github.com/emotion-js/emotion/commit/e1bf17ee87ec51da1412eb5291460ea95a39d27a)]:
+  - @emotion/use-insertion-effect-with-fallbacks@1.2.0
+
 ## 11.13.5
 
 ### Patch Changes
