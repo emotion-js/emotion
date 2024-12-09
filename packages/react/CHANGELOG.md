@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 12.0.0-next.0
+
+### Major Changes
+
+- [#3286](https://github.com/emotion-js/emotion/pull/3286) [`55ef071`](https://github.com/emotion-js/emotion/commit/55ef0717d2dcb9886a9e6dd9d1c50c32a651a42d) Thanks [@Andarist](https://github.com/Andarist)! - Removed `.defaultProps` support
+
 ## 11.14.0
 
 ### Minor Changes
