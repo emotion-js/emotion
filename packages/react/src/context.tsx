@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useContext, forwardRef } from 'react'
+import { useContext } from 'react'
 import createCache, { EmotionCache } from '@emotion/cache'
 import isDevelopment from '#is-development'
 import isBrowser from '#is-browser'
@@ -27,23 +27,14 @@ export let __unsafe_useEmotionCache = function useEmotionCache() {
   return useContext(EmotionCacheContext)
 }
 
-let withEmotionCache = function withEmotionCache<Props, RefType = any>(
-  func: (
-    props: React.PropsWithoutRef<Props>,
-    context: EmotionCache,
-    ref?: React.ForwardedRef<RefType>
-  ) => React.ReactNode
-):
-  | React.FC<React.PropsWithoutRef<Props> & React.RefAttributes<RefType>>
-  | React.ForwardRefExoticComponent<
-      React.PropsWithoutRef<Props> & React.RefAttributes<RefType>
-    > {
-  return forwardRef<RefType, Props>((props, ref) => {
+let withEmotionCache = function withEmotionCache<Props>(
+  func: (props: Props, context: EmotionCache) => React.ReactNode
+): React.FC<Props> {
+  return props => {
     // the cache will never be null in the browser
     let cache = useContext(EmotionCacheContext)!
-
-    return func(props, cache, ref)
-  })
+    return func(props, cache)
+  }
 }
 
 if (!isBrowser) {
