@@ -85,19 +85,16 @@ export function withTheme<
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   Component: C
-): React.ForwardRefExoticComponent<
+): React.FC<
   DistributiveOmit<React.ComponentProps<C>, 'theme'> & { theme?: Theme }
->
-export function withTheme(
-  Component: React.ComponentType<any>
-): React.ForwardRefExoticComponent<any> {
+> {
   const componentName = Component.displayName || Component.name || 'Component'
 
-  let WithTheme = React.forwardRef(function render(props, ref) {
+  let WithTheme: React.FC<any> = function render(props) {
     let theme = React.useContext(ThemeContext)
 
-    return <Component theme={theme} ref={ref} {...props} />
-  })
+    return <Component theme={theme} {...props} />
+  }
 
   WithTheme.displayName = `WithTheme(${componentName})`
 
