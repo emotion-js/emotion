@@ -120,7 +120,7 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
     }
 
     const Styled: ElementType = withEmotionCache(
-      (props: Record<string, unknown>, cache, ref) => {
+      (props: Record<string, unknown>, cache) => {
         const FinalTag =
           (shouldUseAs && (props.as as React.ElementType)) || baseTag
 
@@ -170,9 +170,6 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
           }
         }
         newProps.className = className
-        if (ref) {
-          newProps.ref = ref
-        }
 
         return (
           <>
