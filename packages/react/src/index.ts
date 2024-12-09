@@ -30,7 +30,7 @@ export type {
 export { ThemeContext, useTheme, ThemeProvider, withTheme } from './theming'
 export type { Theme, ThemeProviderProps, WithTheme } from './theming'
 export { default as css } from './css'
-export type { DistributiveOmit, PropsOf } from './types'
+export type { DistributiveOmit } from './types'
 
 declare const global: Record<string, unknown>
 declare const jest: unknown

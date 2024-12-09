@@ -3,13 +3,32 @@ import 'test-utils/enzyme-env'
 
 import jestInCase from 'jest-in-case'
 import * as enzyme from 'enzyme'
-import { css, jsx, ThemeProvider } from '@emotion/react'
+import {
+  __unsafe_useEmotionCache,
+  css,
+  jsx,
+  ThemeProvider,
+  EmotionCache
+} from '@emotion/react'
 import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
 import { matchers } from '@emotion/jest'
 import * as serializer from '@emotion/jest/enzyme-serializer'
+
+afterEach(() => {
+  let cache
+  function GetCache() {
+    cache = __unsafe_useEmotionCache()
+    return null
+  }
+  enzyme.shallow(<GetCache />)
+
+  cache.registered = {}
+  cache.inserted = {}
+  cache.sheet.flush()
+})
 
 const isReact16 = React.version.split('.')[0] === '16'
 

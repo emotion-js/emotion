@@ -200,7 +200,7 @@ exports[`styled nested 1`] = `
 <div
   className="emotion-0 emotion-1"
 >
-  hello
+  hello 
   <h1
     className="emotion-2 emotion-3"
   >
@@ -360,7 +360,7 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
     My Title
   </h1>
   <h2
-    className="emotion-2 emotion-3"
+    className="emotion-2 emotion-19"
   >
     My Subtitle
   </h2>
