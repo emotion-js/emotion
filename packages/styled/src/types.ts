@@ -1,6 +1,6 @@
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import { ReactJSXIntrinsicElements } from './jsx-namespace'
-import { PropsOf, Theme } from '@emotion/react'
+import { Theme } from '@emotion/react'
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
