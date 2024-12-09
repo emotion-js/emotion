@@ -38,26 +38,9 @@ const ThemedComp = withTheme(CompC)
 ;<ThemedComp prop />
 ;<ThemedComp prop theme={theme} />
 
-const CompFCWithDefault = ({ prop }: Props) => (prop ? <span /> : <div />)
-CompFCWithDefault.defaultProps = { prop: false }
-class CompCWithDefault extends React.Component<Props> {
-  static defaultProps = { prop: false }
-  render() {
-    return this.props.prop ? <span /> : <div />
-  }
-}
-
 {
   const theme: Theme = useTheme()
 }
-
-const ThemedFCWithDefault = withTheme(CompFCWithDefault)
-;<ThemedFCWithDefault />
-;<ThemedFCWithDefault theme={theme} />
-
-const ThemedCompWithDefault = withTheme(CompCWithDefault)
-;<ThemedCompWithDefault />
-;<ThemedCompWithDefault theme={theme} />
 
 {
   interface Book {

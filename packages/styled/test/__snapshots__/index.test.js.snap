@@ -313,30 +313,6 @@ exports[`styled ref 1`] = `
 </h1>
 `;
 
-exports[`styled should forward .defaultProps when reusing __emotion_base 1`] = `
-.emotion-0 {
-  text-align: center;
-  color: red;
-}
-
-.emotion-2 {
-  text-align: center;
-  color: red;
-  font-style: italic;
-}
-
-<div>
-  <h1
-    className="emotion-0 emotion-1"
-    color="red"
-  />
-  <h1
-    className="emotion-2 emotion-3"
-    color="red"
-  />
-</div>
-`;
-
 exports[`styled throws if undefined is passed as the component 1`] = `
 "You are trying to create a styled element with an undefined component.
 You may have forgotten to import it."
@@ -384,7 +360,7 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
     My Title
   </h1>
   <h2
-    className="emotion-2 emotion-3"
+    className="emotion-2 emotion-19"
   >
     My Subtitle
   </h2>

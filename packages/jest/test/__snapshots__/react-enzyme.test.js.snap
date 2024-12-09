@@ -250,14 +250,13 @@ exports[`enzyme mount theming 1`] = `
   border: 2px solid red;
 }
 
+.emotion-2 {
+  color: blue;
+  border: 2px solid blue;
+}
+
 <div>
-  <Button
-    theme={
-      {
-        "main": "red",
-      }
-    }
-  >
+  <Button>
     <button
       className="emotion-0 emotion-1"
     >
@@ -271,15 +270,9 @@ exports[`enzyme mount theming 1`] = `
       }
     }
   >
-    <Button
-      theme={
-        {
-          "main": "red",
-        }
-      }
-    >
+    <Button>
       <button
-        className="emotion-0 emotion-1"
+        className="emotion-2 emotion-1"
       >
         Themed
       </button>
@@ -664,13 +657,7 @@ exports[`enzyme shallow styled with css prop 1`] = `
 
 exports[`enzyme shallow theming 1`] = `
 <div>
-  <Button
-    theme={
-      {
-        "main": "red",
-      }
-    }
-  >
+  <Button>
     Normal
   </Button>
   <ThemeProvider
@@ -680,13 +667,7 @@ exports[`enzyme shallow theming 1`] = `
       }
     }
   >
-    <Button
-      theme={
-        {
-          "main": "red",
-        }
-      }
-    >
+    <Button>
       Themed
     </Button>
   </ThemeProvider>
