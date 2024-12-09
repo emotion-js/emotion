@@ -326,32 +326,6 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('should forward .defaultProps when reusing __emotion_base', () => {
-    const Title = styled('h1')`
-      text-align: center;
-      ${props => ({
-        color: props.color
-      })};
-    `
-
-    Title.defaultProps = {
-      color: 'red'
-    }
-
-    const Title2 = styled(Title)`
-      font-style: italic;
-    `
-
-    const tree = renderer
-      .create(
-        <div>
-          <Title />
-          <Title2 />
-        </div>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
-  })
   test('withComponent will replace tags but keep styling classes', () => {
     const Title = styled('h1')`
       color: green;

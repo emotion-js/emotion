@@ -328,30 +328,6 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
   ;<StyledReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }
 
-interface Props {
-  prop: boolean
-}
-class ClassWithDefaultProps extends React.Component<Props> {
-  static defaultProps = { prop: false }
-  render() {
-    return this.props.prop ? <Button0 /> : <Button1 />
-  }
-}
-const StyledClassWithDefaultProps = styled(ClassWithDefaultProps)`
-  background-color: red;
-`
-const classInstance = <StyledClassWithDefaultProps />
-
-const FCWithDefaultProps = ({ prop }: Props) =>
-  prop ? <Button0 /> : <Button1 />
-FCWithDefaultProps.defaultProps = {
-  prop: false
-}
-const StyledFCWithDefaultProps = styled(FCWithDefaultProps)`
-  background-color: red;
-`
-const fcInstance = <StyledFCWithDefaultProps />
-
 interface PropsA {
   title: string
 }

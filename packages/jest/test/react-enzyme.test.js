@@ -241,15 +241,9 @@ const cases = {
   theming: {
     render() {
       const Button = styled.button`
-        color: ${props => props.theme.main};
-        border: 2px solid ${props => props.theme.main};
+        color: ${props => props.theme.main ?? 'red'};
+        border: 2px solid ${props => props.theme.main ?? 'red'};
       `
-
-      Button.defaultProps = {
-        theme: {
-          main: 'red'
-        }
-      }
 
       const theme = {
         main: 'blue'

@@ -2,7 +2,7 @@ import * as React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
 import isDevelopment from '#is-development'
 import hoistNonReactStatics from './_isolated-hnrs'
-import { DistributiveOmit, PropsOf } from './types'
+import { DistributiveOmit } from './types'
 
 // tslint:disable-next-line: no-empty-interface
 export interface Theme {}
@@ -86,7 +86,7 @@ export function withTheme<
 >(
   Component: C
 ): React.ForwardRefExoticComponent<
-  DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }
+  DistributiveOmit<React.ComponentProps<C>, 'theme'> & { theme?: Theme }
 >
 export function withTheme(
   Component: React.ComponentType<any>

@@ -31,13 +31,13 @@ export interface StyledComponent<
   withComponent<C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C
   ): StyledComponent<
-    ComponentProps & PropsOf<C>,
+    ComponentProps & React.ComponentProps<C>,
     {},
     { ref?: React.Ref<InstanceType<C>> }
   >
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
-  ): StyledComponent<ComponentProps & PropsOf<C>>
+  ): StyledComponent<ComponentProps & React.ComponentProps<C>>
   withComponent<Tag extends keyof ReactJSXIntrinsicElements>(
     tag: Tag
   ): StyledComponent<ComponentProps, ReactJSXIntrinsicElements[Tag]>
@@ -113,7 +113,7 @@ export interface CreateStyled {
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & {
+    Pick<React.ComponentProps<C>, ForwardedProps> & {
       theme?: Theme
     },
     {},
@@ -126,7 +126,7 @@ export interface CreateStyled {
     component: C,
     options?: StyledOptions<React.ComponentProps<C>>
   ): CreateStyledComponent<
-    PropsOf<C> & {
+    React.ComponentProps<C> & {
       theme?: Theme
     },
     {},
@@ -143,7 +143,7 @@ export interface CreateStyled {
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & {
+    Pick<React.ComponentProps<C>, ForwardedProps> & {
       theme?: Theme
     }
   >
@@ -152,7 +152,7 @@ export interface CreateStyled {
     component: C,
     options?: StyledOptions<React.ComponentProps<C>>
   ): CreateStyledComponent<
-    PropsOf<C> & {
+    React.ComponentProps<C> & {
       theme?: Theme
     }
   >
@@ -182,7 +182,6 @@ export interface CreateStyled {
 }
 
 export type ElementType = React.ElementType & {
-  defaultProps?: Partial<any>
   __emotion_real?: ElementType
   __emotion_base?: ElementType
   __emotion_styles?: Interpolation<Theme>[]
