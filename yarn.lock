@@ -2612,10 +2612,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@definitelytyped/typescript-versions@npm:^0.0.112":
+"@definitelytyped/typescript-versions@npm:0.0.112":
   version: 0.0.112
   resolution: "@definitelytyped/typescript-versions@npm:0.0.112"
   checksum: eb3407eeb7af220206870024edafe9eb5fc9cc0835910cbf8b368fe3bf6e41f832d0be7ddbfbe5efe22c29e431f106183de844087edf49ecb2e4614b024a9ab4
+  languageName: node
+  linkType: hard
+
+"@definitelytyped/typescript-versions@patch:@definitelytyped/typescript-versions@npm%3A0.0.112#./.yarn/patches/@definitelytyped-typescript-versions-npm-0.0.112-f668f50e03.patch::locator=emotion-monorepo%40workspace%3A.":
+  version: 0.0.112
+  resolution: "@definitelytyped/typescript-versions@patch:@definitelytyped/typescript-versions@npm%3A0.0.112#./.yarn/patches/@definitelytyped-typescript-versions-npm-0.0.112-f668f50e03.patch::version=0.0.112&hash=1df6e3&locator=emotion-monorepo%40workspace%3A."
+  checksum: 962aa73c633040d247dfeeda0d9548b6a48342c6be1fac1586c75dc5c5cfbb1c0e6d11a187d6e7100eddef311f21c8cccf399d5ec271b9500e930064e050cc45
   languageName: node
   linkType: hard
 
