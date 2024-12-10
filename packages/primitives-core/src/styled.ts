@@ -50,7 +50,7 @@ export function createStyled(
       }
 
       // do we really want to use the same infra as the web since it only really uses theming?
-      let Styled = React.forwardRef<unknown, StyledProps>((props, ref) => {
+      let Styled: React.FC<StyledProps> = props => {
         const finalTag =
           (shouldUseAs && (props.as as React.ElementType)) || component
 
@@ -78,12 +78,9 @@ export function createStyled(
           }
         }
         newProps.style = [css.apply(mergedProps, styles), props.style]
-        if (ref) {
-          newProps.ref = ref
-        }
 
         return React.createElement(finalTag, newProps)
-      })
+      }
 
       Styled.displayName = `emotion(${getDisplayName(component)})`
 

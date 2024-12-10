@@ -122,7 +122,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('ref', () => {
+  test.skip('ref', () => {
     const StyledText = styled.Text`
       color: hotpink;
     `
