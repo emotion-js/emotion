@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import 'test-utils/legacy-env'
+import 'test-utils/next-env'
 import * as renderer from 'react-test-renderer'
 import { jsx, css } from '@emotion/react'
 import styled from '@emotion/styled'

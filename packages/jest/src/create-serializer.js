@@ -1,11 +1,9 @@
 import prettify from '@emotion/css-prettifier'
 import { replaceClassNames } from './replace-class-names'
-import * as enzymeTickler from './enzyme-tickler'
 import {
   getClassNamesFromNodes,
   isReactElement,
   isEmotionCssPropElementType,
-  isEmotionCssPropEnzymeElement,
   isDOMElement,
   getStylesFromClassNames,
   getStyleElements,
@@ -102,48 +100,10 @@ function getLabelsFromClassName(keys, className) {
   }).filter(Boolean)
 }
 
-function isShallowEnzymeElement(
-  element /*: any */,
-  keys /*: string[] */,
-  labels /*: string[] */
-) {
-  const childClassNames = (element.children || [])
-    .map(({ props = {} }) => props.className || '')
-    .filter(Boolean)
-
-  return !childClassNames.some(className => {
-    const childLabels = getLabelsFromClassName(keys, className)
-    return childLabels.every(childLabel => labels.includes(childLabel))
-  })
-}
-
 const createConvertEmotionElements =
   (keys /*: string[]*/) => (node /*: any*/) => {
     if (isPrimitive(node)) {
       return node
-    }
-    if (isEmotionCssPropEnzymeElement(node)) {
-      const className = enzymeTickler.getTickledClassName(node.props.css)
-      const labels = getLabelsFromClassName(keys, className || '')
-
-      if (isShallowEnzymeElement(node, keys, labels)) {
-        const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-        // emotionType will be a string for DOM elements
-        const type =
-          typeof emotionType === 'string'
-            ? emotionType
-            : emotionType.displayName || emotionType.name || 'Component'
-        return {
-          ...node,
-          props: filterEmotionProps({
-            ...node.props,
-            className
-          }),
-          type
-        }
-      } else {
-        return node.children[node.children.length - 1]
-      }
     }
     if (isEmotionCssPropElementType(node)) {
       return {

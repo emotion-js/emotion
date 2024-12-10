@@ -94,16 +94,6 @@ export function unwrapFromPotentialFragment(node) {
   return node
 }
 
-function getClassNamesFromEnzyme(selectors, nodeWithPotentialFragment) {
-  const node = unwrapFromPotentialFragment(nodeWithPotentialFragment)
-  // We need to dive in to get the className if we have a styled element from a shallow render
-  const isShallow = shouldDive(node)
-  const nodeWithClassName = findNodeWithClassName(
-    isShallow ? node.dive() : node
-  )
-  return getClassNames(selectors, getClassNameProp(nodeWithClassName))
-}
-
 function getClassNamesFromCheerio(selectors, node) {
   const classes = node.attr('class')
   return getClassNames(selectors, classes)
@@ -135,12 +125,6 @@ export function isStyledElementType(val /* : any */) /* : boolean */ {
   return type.__emotion_real === type
 }
 
-export function isEmotionCssPropEnzymeElement(val /* : any */) /*: boolean */ {
-  return (
-    val.$$typeof === Symbol.for('react.test.json') &&
-    val.type === 'EmotionCssPropInternal'
-  )
-}
 const domElementPattern = /^((HTML|SVG)\w*)?Element$/
 
 export function isDOMElement(val) /*: boolean */ {
@@ -152,19 +136,13 @@ export function isDOMElement(val) /*: boolean */ {
   )
 }
 
-function isEnzymeElement(val) /*: boolean */ {
-  return typeof val.findWhere === 'function'
-}
-
 function isCheerioElement(val) /*: boolean */ {
   return val.cheerio === '[cheerio object]'
 }
 
 export function getClassNamesFromNodes(nodes /*: Array<any> */) {
   return nodes.reduce((selectors, node) => {
-    if (isEnzymeElement(node)) {
-      return getClassNamesFromEnzyme(selectors, node)
-    } else if (isCheerioElement(node)) {
+    if (isCheerioElement(node)) {
       return getClassNamesFromCheerio(selectors, node)
     } else if (isReactElement(node)) {
       return getClassNamesFromTestRenderer(selectors, node)

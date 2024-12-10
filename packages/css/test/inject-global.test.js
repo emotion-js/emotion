@@ -1,4 +1,4 @@
-import 'test-utils/legacy-env'
+import 'test-utils/next-env'
 import { injectGlobal, sheet, flush, css } from '@emotion/css'
 
 describe('injectGlobal', () => {
