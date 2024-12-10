@@ -37,7 +37,7 @@ const ComponentWithCache = withEmotionCache((_props: {}, cache) => {
     />
   )
 })
-;<ComponentWithCache ref={() => {}} />
+;<ComponentWithCache />
 ;<div css={{}}>
   <h1
     css={css`
