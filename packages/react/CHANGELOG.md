@@ -1,5 +1,13 @@
 # @emotion/react
 
+## 12.0.0-next.0
+
+### Major Changes
+
+- [#3286](https://github.com/emotion-js/emotion/pull/3286) [`55ef071`](https://github.com/emotion-js/emotion/commit/55ef0717d2dcb9886a9e6dd9d1c50c32a651a42d) Thanks [@Andarist](https://github.com/Andarist)! - Removed `.defaultProps` support
+
+- [#3287](https://github.com/emotion-js/emotion/pull/3287) [`61fcc80`](https://github.com/emotion-js/emotion/commit/61fcc80de43b29aeab60088bd3f6994366a9a0c4) Thanks [@Andarist](https://github.com/Andarist)! - Refs are no longer internally forwarded using `React.forwardRef`.
+
 ## 11.14.0
 
 ### Minor Changes
