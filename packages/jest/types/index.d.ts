@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 4.3
+// TypeScript Version: 5.0
 
 /// <reference types="jest" />
 

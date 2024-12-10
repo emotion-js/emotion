@@ -20,7 +20,7 @@ test('withTheme works', () => {
   ).toMatchSnapshot()
 })
 
-test.skip('should forward the ref', () => {
+test('should forward the ref', () => {
   function SomeComponent(props) {
     return <div ref={props.ref}>{props.theme.color}</div>
   }

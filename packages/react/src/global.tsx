@@ -84,7 +84,7 @@ export let Global = /* #__PURE__ */ withEmotionCache<GlobalProps>(
 
     let sheetRef = React.useRef<
       [sheet: StyleSheet, isRehydrating: boolean] | undefined
-    >()
+    >(undefined)
 
     useInsertionEffectWithLayoutFallback(() => {
       const key = `${cache.key}-global`

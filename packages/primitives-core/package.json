@@ -15,12 +15,12 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0-rc.0",
-    "react": ">=16.8.0"
+    "react": "^19.0.0"
   },
   "devDependencies": {
     "@emotion/react": "11.14.0",
     "@types/css-to-react-native": "^3.0.0",
-    "react": "16.14.0"
+    "react": "19.0.0"
   },
   "homepage": "https://emotion.sh",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/primitives-core",
