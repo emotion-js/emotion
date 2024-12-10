@@ -6363,13 +6363,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*":
-  version: 15.7.1
-  resolution: "@types/prop-types@npm:15.7.1"
-  checksum: f8b33d7d15a70d0b709bcf5f281c7647ca8aaeaf377431725b4fda4949f2845476652d355eec0cde2a62ba3f7a5fb3194788aebaecc2048eb28db201121c2310
-  languageName: node
-  linkType: hard
-
 "@types/q@npm:^1.5.1":
   version: 1.5.2
   resolution: "@types/q@npm:1.5.2"
@@ -6386,17 +6379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16":
-  version: 18.3.12
-  resolution: "@types/react@npm:18.3.12"
-  dependencies:
-    "@types/prop-types": "*"
-    csstype: ^3.0.2
-  checksum: 4ab1577a8c2105a5e316536f724117c90eee5f4bd5c137fc82a2253d8c1fd299dedaa07e8dfc95d6e2f04a4be3cb8b0e1b06098c6233ebd55c508d88099395b7
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:19.0.1":
+"@types/react@npm:*, @types/react@npm:19.0.1, @types/react@npm:>=16":
   version: 19.0.1
   resolution: "@types/react@npm:19.0.1"
   dependencies:
