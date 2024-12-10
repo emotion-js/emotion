@@ -63,8 +63,8 @@
     "@types/jest": "^29.5.12",
     "enzyme-to-json": "^3.6.1",
     "pretty-format": "^22.4.3",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "typescript": "^5.4.5"
   },
   "author": "Kye Hohenberger",

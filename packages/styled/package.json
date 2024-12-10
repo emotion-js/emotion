@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0-rc.0",
-    "react": ">=16.8.0"
+    "react": "^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -32,7 +32,7 @@
     "@emotion/react": "11.14.0",
     "@types/hoist-non-react-statics": "^3.3.5",
     "hoist-non-react-statics": "^3.3.1",
-    "react": "16.14.0",
+    "react": "19.0.0",
     "typescript": "^5.4.5"
   },
   "publishConfig": {

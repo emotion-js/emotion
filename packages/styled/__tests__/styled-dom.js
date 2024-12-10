@@ -4,7 +4,7 @@ import { render, cleanup } from '@testing-library/react'
 
 afterEach(cleanup)
 
-test.skip('ref', () => {
+test('ref', () => {
   const H1 = styled.h1`
     font-size: 12px;
   `

@@ -14,11 +14,11 @@
     "@emotion/primitives-core": "^11.13.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
+    "react": "^19.0.0",
     "react-primitives": "^0.8.1"
   },
   "devDependencies": {
-    "react": "16.14.0",
+    "react": "19.0.0",
     "react-primitives": "^0.8.1"
   },
   "homepage": "https://emotion.sh",

@@ -38,7 +38,7 @@ describe('jest-emotion with dom elements', () => {
     expect(output).toMatchSnapshot()
   })
 
-  test.skip('replaces class names and inserts styles into DOM element snapshots', () => {
+  test('replaces class names and inserts styles into DOM element snapshots', () => {
     const divRef = React.createRef()
     render(
       <div css={divStyle} ref={divRef}>
@@ -81,7 +81,7 @@ describe('jest-emotion with DOM elements disabled', () => {
     expect(output).toMatchSnapshot()
   })
 
-  test.skip('does not replace class names or insert styles into DOM element snapshots', () => {
+  test('does not replace class names or insert styles into DOM element snapshots', () => {
     const divRef = React.createRef()
     render(
       <div css={divStyle} ref={divRef}>
@@ -97,7 +97,7 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 })
 
-test.skip('allows to opt-out from styles printing', () => {
+test('allows to opt-out from styles printing', () => {
   const emotionPlugin = createSerializer({ includeStyles: false })
 
   const divStyle = css`
