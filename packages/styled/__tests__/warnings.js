@@ -1,4 +1,4 @@
-import 'test-utils/legacy-env'
+import 'test-utils/next-env'
 import * as React from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'

@@ -22,17 +22,7 @@ module.exports = {
 }
 ```
 
-To assist with shallow rendering, there's a custom enzyme snapshot serializer, that includes the `enzyme-to-json` serializer, which is available by importing `@emotion/jest/enzyme-serializer`. If you already have the `enzyme-to-json` serializer added to `snapshotSerializers`, it will need to be removed to allow this to work.
-
-```js
-// jest.config.js
-module.exports = {
-  // ... other config
-  snapshotSerializers: ['@emotion/jest/enzyme-serializer']
-}
-```
-
-Or you can add the serializer via the `expect.addSnapshotSerializer` method like so: (the example below is with react-test-renderer but @emotion/jest also works with enzyme and react-testing-library)
+Or you can add the serializer via the `expect.addSnapshotSerializer` method like so:
 
 ```jsx
 import React from 'react'

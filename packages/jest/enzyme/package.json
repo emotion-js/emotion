@@ -1,4 +1,0 @@
-{
-  "main": "dist/emotion-jest-enzyme.cjs.js",
-  "module": "dist/emotion-jest-enzyme.esm.js"
-}

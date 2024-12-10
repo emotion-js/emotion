@@ -32,26 +32,9 @@ import { createSerializer } from '@emotion/jest'
 expect.addSnapshotSerializer(createSerializer())
 ```
 
-When using Enzyme, you can add `"@emotion/jest/enzyme-serializer"` instead.
-
-```json
-{
-  "snapshotSerializers": ["@emotion/jest/enzyme-serializer"]
-}
-```
-
-Or use `expect.addSnapshotSerializer` to add it like this:
-
-```javascript
-// also adds the enzyme-to-json serializer
-import { createEnzymeSerializer } from '@emotion/jest/enzyme-serializer'
-
-expect.addSnapshotSerializer(createEnzymeSerializer())
-```
-
 ### Writing a test
 
-Writing a test with `@emotion/jest` involves creating a snapshot from the `react-test-renderer` or `enzyme-to-json`'s resulting JSON.
+Writing a test with `@emotion/jest` involves creating a snapshot from the `react-test-renderer`'s resulting JSON.
 
 ```jsx
 import React from 'react'
