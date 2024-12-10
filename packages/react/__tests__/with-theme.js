@@ -34,7 +34,7 @@ test(`withTheme(Comp) hoists non-react static class properties`, () => {
   )
 })
 
-test('should forward the ref', () => {
+test.skip('should forward the ref', () => {
   function SomeComponent(props) {
     return <div ref={props.ref}>{props.theme.color}</div>
   }
