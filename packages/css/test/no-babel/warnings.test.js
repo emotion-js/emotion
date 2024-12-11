@@ -1,4 +1,4 @@
-import 'test-utils/legacy-env'
+import 'test-utils/setup-env'
 import { css } from '@emotion/css'
 
 console.error = jest.fn()

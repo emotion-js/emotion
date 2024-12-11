@@ -1,5 +1,0 @@
-{
-  "main": "dist/emotion-jest-enzyme-serializer.cjs.js",
-  "module": "dist/emotion-jest-enzyme-serializer.esm.js",
-  "types": "../types/enzyme-serializer"
-}

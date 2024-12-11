@@ -15,62 +15,62 @@ exports[`css complex nested media queries 1`] = `
 `;
 
 exports[`css complex nested styles 1`] = `
-".css-52fshx {
+".css-1fh6au3 {
   color: blue;
 }
 
-.css-52fshx:hover {
+.css-1fh6au3:hover {
   color: green;
 }
 
-.css-52fshx:hover .name {
+.css-1fh6au3:hover .name {
   color: amethyst;
 }
 
-.css-52fshx:hover .name:focus {
+.css-1fh6au3:hover .name:focus {
   color: burlywood;
 }
 
 @media (min-width: 420px) {
-  .css-52fshx:hover .name:focus {
+  .css-1fh6au3:hover .name:focus {
     color: rebeccapurple;
   }
 }"
 `;
 
 exports[`css handles media query merges 1`] = `
-".css-19kb3dc {
+".css-uzr6q5 {
   color: darkslateblue;
   color: red;
   color: purple;
 }
 
 @media (min-width: 420px) {
-  .css-19kb3dc {
+  .css-uzr6q5 {
     color: amethyst;
   }
 }
 
 @media (min-width: 640px) {
-  .css-19kb3dc {
+  .css-uzr6q5 {
     color: rebeccapurple;
   }
 }
 
 @media (min-width: 960px) {
-  .css-19kb3dc {
+  .css-uzr6q5 {
     color: burlywood;
   }
 }
 
 @media (min-width: 640px) {
-  .css-19kb3dc {
+  .css-uzr6q5 {
     color: blue;
   }
 }
 
 @media (min-width: 640px) {
-  .css-19kb3dc {
+  .css-uzr6q5 {
     color: aquamarine;
   }
 }"

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import { safeQuerySelector } from 'test-utils'
 import * as React from 'react'
 import { jsx, css, Global, CacheProvider, ThemeProvider } from '@emotion/react'

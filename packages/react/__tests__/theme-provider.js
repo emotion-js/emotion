@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import { ignoreConsoleErrors } from 'test-utils'
 import { jsx, ThemeProvider } from '@emotion/react'
 import renderer from 'react-test-renderer'

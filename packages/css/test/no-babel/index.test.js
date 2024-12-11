@@ -1,4 +1,4 @@
-import 'test-utils/legacy-env'
+import 'test-utils/setup-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { css } from '@emotion/css'

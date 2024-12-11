@@ -1,4 +1,4 @@
-import 'test-utils/legacy-env'
+import 'test-utils/setup-env'
 import { css, sheet, flush } from '@emotion/css'
 
 describe('css', () => {

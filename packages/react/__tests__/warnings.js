@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import { jsx, css, Global, keyframes, ClassNames } from '@emotion/react'
 import styled from '@emotion/styled'
 import renderer from 'react-test-renderer'

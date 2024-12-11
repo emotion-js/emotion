@@ -4,7 +4,7 @@ import { CacheProvider, Global, jsx } from '@emotion/react'
 import { StyleSheet } from '@emotion/sheet'
 import renderer from 'react-test-renderer'
 import { safeQuerySelector } from 'test-utils'
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 
 function stylisPlugin(element) {
   if (element.type === 'decl' && element.value.startsWith('color:')) {
