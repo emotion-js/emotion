@@ -183,6 +183,7 @@
     "@changesets/cli": "^2.27.7",
     "@manypkg/cli": "^0.19.1",
     "@preconstruct/cli": "^2.8.8",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.1.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^12.20.37",
