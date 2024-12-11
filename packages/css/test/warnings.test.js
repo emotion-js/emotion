@@ -1,4 +1,4 @@
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import { css } from '@emotion/css'
 import createCss from '@emotion/css/create-instance'
 import * as React from 'react'

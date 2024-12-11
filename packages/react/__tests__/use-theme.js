@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import * as renderer from 'react-test-renderer'
 import { jsx, useTheme, ThemeProvider } from '@emotion/react'
 

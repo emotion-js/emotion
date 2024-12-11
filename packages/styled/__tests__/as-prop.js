@@ -1,4 +1,4 @@
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 import styled from '@emotion/styled'

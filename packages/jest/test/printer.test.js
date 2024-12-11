@@ -1,5 +1,5 @@
 import React from 'react'
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
 /** @jsx jsx */

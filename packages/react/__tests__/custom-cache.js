@@ -4,7 +4,7 @@ import { CacheProvider, Global, jsx } from '@emotion/react'
 import { StyleSheet } from '@emotion/sheet'
 import renderer from 'react-test-renderer'
 import { safeQuerySelector } from 'test-utils'
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 
 function stylisPlugin(element) {
   if (element.type === 'decl' && element.value.startsWith('color:')) {
@@ -74,14 +74,14 @@ test('Global should "inherit" sheet class from the cache', () => {
         data-emotion="test-global"
         data-s=""
       >
-        
+
         /** test-global */body{width:0;}
       </style>
       <style
         data-emotion="test"
         data-s=""
       >
-        
+
         /** test */.test-1lrxbo5{color:hotpink;}
       </style>
     </head>

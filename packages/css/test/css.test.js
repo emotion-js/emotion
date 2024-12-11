@@ -1,4 +1,4 @@
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { css, flush, sheet } from '@emotion/css'

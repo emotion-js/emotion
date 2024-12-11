@@ -1,4 +1,4 @@
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import renderer from 'react-test-renderer'
 /** @jsx jsx */
 import * as React from 'react'

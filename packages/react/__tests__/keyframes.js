@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import { jsx, css, keyframes } from '@emotion/react'
 import { safeQuerySelector, throwIfFalsy } from 'test-utils'
 import cases from 'jest-in-case'

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import 'test-utils/next-env'
+import 'test-utils/setup-env'
 import { ClassNames, ThemeProvider } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
