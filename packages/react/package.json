@@ -113,60 +113,6 @@
       "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
       "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
     },
-    "./_isolated-hnrs": {
-      "types": {
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
-      },
-      "development": {
-        "edge-light": {
-          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
-          "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
-          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
-        },
-        "worker": {
-          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
-          "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
-          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
-        },
-        "workerd": {
-          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
-          "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
-          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
-        },
-        "browser": {
-          "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.esm.js",
-          "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.cjs.mjs",
-          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.cjs.js"
-        },
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js",
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.js"
-      },
-      "edge-light": {
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
-      },
-      "worker": {
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
-      },
-      "workerd": {
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
-      },
-      "browser": {
-        "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
-        "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.mjs",
-        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.js"
-      },
-      "module": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js",
-      "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
-      "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
-    },
     "./jsx-dev-runtime": {
       "types": {
         "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
@@ -266,8 +212,7 @@
     "@emotion/serialize": "^1.3.3",
     "@emotion/use-insertion-effect-with-fallbacks": "^1.2.0",
     "@emotion/utils": "^1.4.2",
-    "@emotion/weak-memoize": "^0.4.0",
-    "hoist-non-react-statics": "^3.3.1"
+    "@emotion/weak-memoize": "^0.4.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
@@ -283,7 +228,6 @@
     "@emotion/css-prettifier": "1.2.0",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "11.14.0",
-    "@types/hoist-non-react-statics": "^3.3.5",
     "html-tag-names": "^1.1.2",
     "react": "16.14.0",
     "svg-tag-names": "^1.1.1",
@@ -298,8 +242,7 @@
     "entrypoints": [
       "./index.ts",
       "./jsx-runtime.ts",
-      "./jsx-dev-runtime.ts",
-      "./_isolated-hnrs.ts"
+      "./jsx-dev-runtime.ts"
     ],
     "umdName": "emotionReact",
     "exports": {

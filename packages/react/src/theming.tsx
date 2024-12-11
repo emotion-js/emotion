@@ -1,7 +1,6 @@
 import * as React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
 import isDevelopment from '#is-development'
-import hoistNonReactStatics from './_isolated-hnrs'
 import { DistributiveOmit } from './types'
 
 // tslint:disable-next-line: no-empty-interface
@@ -98,5 +97,5 @@ export function withTheme<
 
   WithTheme.displayName = `WithTheme(${componentName})`
 
-  return hoistNonReactStatics(WithTheme, Component)
+  return WithTheme
 }
