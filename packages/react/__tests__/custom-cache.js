@@ -74,14 +74,14 @@ test('Global should "inherit" sheet class from the cache', () => {
         data-emotion="test-global"
         data-s=""
       >
-
+        
         /** test-global */body{width:0;}
       </style>
       <style
         data-emotion="test"
         data-s=""
       >
-
+        
         /** test */.test-1lrxbo5{color:hotpink;}
       </style>
     </head>
