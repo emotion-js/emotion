@@ -137,12 +137,12 @@ describe('Emotion primitives', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
-    const treeOne = renderer.create(<ViewOne color="green" />)
+    const { container: container1 } = render(<ViewOne color="green" />)
     const ViewTwo = ViewOne.withComponent(Text)
-    const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
+    const { container: container2 } = render(<ViewTwo color="hotpink" />)
 
-    expect(treeOne).toMatchSnapshot()
-    expect(treeTwo).toMatchSnapshot()
+    expect(container1.firstChild).toMatchSnapshot()
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
   test('should render <Image />', () => {
