@@ -262,7 +262,7 @@ describe('css', () => {
     const cls1 = differentCss({ justifyContent: 'center' })
     const cls2 = differentCss([cls1])
     const { container: container1 } = render(<div className={cls1} />)
-    expect(container.firstChild).toMatchSnapshot()
+    expect(container1.firstChild).toMatchSnapshot()
     const { container: container2 } = render(<div className={cls2} />)
     expect(container2.firstChild).toMatchSnapshot()
   })
