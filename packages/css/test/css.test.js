@@ -1,22 +1,19 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import { act } from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { css, flush, sheet } from '@emotion/css'
 
 describe('css', () => {
-  test('float property', async () => {
+  test('float property', () => {
     const cls1 = css`
       float: left;
     `
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('handles more than 10 dynamic properties', async () => {
+  test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
       text-decoration: ${'underline'};
       border-right: solid blue 54px;
@@ -31,46 +28,36 @@ describe('css', () => {
       text-align: ${'center'};
     `
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('falsy value in nested selector on object', async () => {
+  test('falsy value in nested selector on object', () => {
     const cls1 = css({ ':hover': { display: null, color: 'hotpink' } })
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('boolean as value', async () => {
+  test('boolean as value', () => {
     const cls1 = css({ display: 'flex', color: false, backgroundColor: true })
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('auto px', async () => {
+  test('auto px', () => {
     const cls1 = css({ display: 'flex', flex: 1, fontSize: 10, '--custom': 5 })
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('random interpolation with undefined values', async () => {
+  test('random interpolation with undefined values', () => {
     const cls2 = css`
       ${undefined};
       justify-content: center;
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls2} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('random expression', async () => {
+  test('random expression', () => {
     const cls2 = css`
       font-size: 20px;
       @media (min-width: 420px) {
@@ -83,13 +70,11 @@ describe('css', () => {
       }
       background: green;
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls2} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('simple composition', async () => {
+  test('simple composition', () => {
     const cls1 = css`
       display: flex;
       &:hover {
@@ -100,13 +85,11 @@ describe('css', () => {
       ${cls1};
       justify-content: center;
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls2} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('handles objects', async () => {
+  test('handles objects', () => {
     const cls1 = css({
       float: 'left',
       display: 'flex',
@@ -115,29 +98,23 @@ describe('css', () => {
       height: 50,
       width: 20
     })
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('handles array of objects', async () => {
+  test('handles array of objects', () => {
     const cls1 = css([{ height: 50, width: 20 }, null])
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('computed key is only dynamic', async () => {
+  test('computed key is only dynamic', () => {
     const cls1 = css({ fontSize: 10, [`w${'idth'}`]: 20 })
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('composition with objects', async () => {
+  test('composition with objects', () => {
     const cls1 = css({
       display: 'flex',
       width: 30,
@@ -156,23 +133,19 @@ describe('css', () => {
       justify-content: center;
     `
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls2} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('@supports', async () => {
+  test('@supports', () => {
     const cls1 = css`
       @supports (display: grid) {
         display: grid;
       }
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test.skip('nested at rules', async () => {
+  test.skip('nested at rules', () => {
     const cls1 = css`
       @supports (display: grid) {
         display: grid;
@@ -187,12 +160,10 @@ describe('css', () => {
         }
       }
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('nested array', async () => {
+  test('nested array', () => {
     const cls1 = css([
       [{ display: 'inline' }],
       [{ display: 'inline-block' }],
@@ -213,37 +184,29 @@ describe('css', () => {
         ]
       ]
     ])
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('explicit false', async () => {
+  test('explicit false', () => {
     const cls1 = css(false)
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('array with explicit false', async () => {
+  test('array with explicit false', () => {
     const cls1 = css([[{ display: 'flex' }], false])
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('array with explicit true', async () => {
+  test('array with explicit true', () => {
     const cls1 = css([[{ display: 'flex' }], true])
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('nested', async () => {
+  test('nested', () => {
     const cls1 = css`
       color: yellow;
       & .some-class {
@@ -256,104 +219,80 @@ describe('css', () => {
         }
       }
     `
-    const tree = (
-      await act(() =>
-        renderer.create(
-          <div className={cls1}>
-            <div className="some-class">
-              <div className="some-other-class" />
-            </div>
-          </div>
-        )
-      )
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <div className={cls1}>
+        <div className="some-class">
+          <div className="some-other-class" />
+        </div>
+      </div>
+    )
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('explicit &', async () => {
+  test('explicit &', () => {
     flush()
     const cls1 = css`
       &.another-class {
         display: flex;
       }
     `
-    const tree = (
-      await act(() =>
-        renderer.create(<div className={`${cls1} another-class`} />)
-      )
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={`${cls1} another-class`} />)
+    expect(container.firstChild).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
     flush()
   })
-  test('falsy property value in object', async () => {
+  test('falsy property value in object', () => {
     const cls = css({ display: 'flex', backgroundColor: undefined })
-    const tree = (
-      await act(() => renderer.create(<div className={cls} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('registered styles as nested selector value in object', async () => {
+  test('registered styles as nested selector value in object', () => {
     const cls = css({ display: 'flex', backgroundColor: 'hotpink' })
     const cls1 = css({ ':hover': cls })
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('composition stuff', async () => {
+  test('composition stuff', () => {
     const cls1 = css({ justifyContent: 'center' })
     const cls2 = css([cls1])
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    const tree2 = (
-      await act(() => renderer.create(<div className={cls2} />))
-    ).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls2} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
-  test('null rule', async () => {
+  test('null rule', () => {
     const cls1 = css()
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('css variables', async () => {
+  test('css variables', () => {
     const cls1 = css`
       --some-var: 1px;
       width: var(--some-var);
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('null value', async () => {
+  test('null value', () => {
     const cls1 = css(null)
 
     expect(
-      (await act(() => renderer.create(<div className={cls1} />))).toJSON()
+      render(<div className={cls1} />).container.firstChild
     ).toMatchSnapshot()
   })
 
-  test('flushes correctly', async () => {
+  test('flushes correctly', () => {
     const cls1 = css`
       display: flex;
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
     flush()
-    const tree2 = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls1} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
-  test('media query specificity', async () => {
+  test('media query specificity', () => {
     flush()
     const cls = css`
       width: 32px;
@@ -366,40 +305,32 @@ describe('css', () => {
       }
     `
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls} />))
-    ).toJSON()
+    const { container } = render(<div className={cls} />)
     expect(sheet).toMatchSnapshot()
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
     flush()
   })
-  test('weakmap', async () => {
+  test('weakmap', () => {
     const styles = { display: 'flex' }
     const cls1 = css(styles)
     const cls2 = css(styles)
-    const tree1 = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree1).toMatchSnapshot()
-    const tree2 = (
-      await act(() => renderer.create(<div className={cls2} />))
-    ).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls2} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
-  test('manually use label property', async () => {
+  test('manually use label property', () => {
     flush()
     const cls1 = css`
       color: hotpink;
       label: wow;
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
-  test('multiline declaration', async () => {
+  test('multiline declaration', () => {
     /* eslint-disable prettier/prettier */
     const cls1 = css`
       display: grid;
@@ -410,12 +341,10 @@ describe('css', () => {
     `
     /* eslint-enable prettier/prettier */
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('multiline selector', async () => {
+  test('multiline selector', () => {
     /* eslint-disable prettier/prettier */
     const cls1 = css`
       .my-class:hover .its-child {
@@ -424,12 +353,10 @@ describe('css', () => {
     `
     /* eslint-enable prettier/prettier */
 
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('rule after media query', async () => {
+  test('rule after media query', () => {
     const cls1 = css`
       @media (min-width: 600px) {
         color: green;
@@ -438,12 +365,10 @@ describe('css', () => {
         color: hotpink;
       }
     `
-    const tree = (
-      await act(() => renderer.create(<div className={cls1} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('nested at rule', async () => {
+  test('nested at rule', () => {
     const cls = css({
       '@media (min-width: 980px)': {
         backgroundColor: 'blue',
@@ -453,18 +378,14 @@ describe('css', () => {
       }
     })
     // this works correctly but `css` doesn't print it correctly so the snapshot doesn't look correct
-    const tree = (
-      await act(() => renderer.create(<div className={cls} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test('array fallback', async () => {
+  test('array fallback', () => {
     const cls = css({
       color: ['yellow', 'hotpink']
     })
-    const tree = (
-      await act(() => renderer.create(<div className={cls} />))
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 })

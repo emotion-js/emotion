@@ -34,11 +34,11 @@ expect.addSnapshotSerializer(createSerializer())
 
 ### Writing a test
 
-Writing a test with `@emotion/jest` involves creating a snapshot from the `react-test-renderer`'s resulting JSON.
+Writing a test with `@emotion/jest` involves creating a snapshot from the `@testing-library/react`'s result.
 
 ```jsx
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 const Button = props => (
   <button
@@ -51,7 +51,7 @@ const Button = props => (
 
 test('Button renders correctly', () => {
   expect(
-    renderer.create(<Button>This is hotpink.</Button>).toJSON()
+    render(<Button>This is hotpink.</Button>).container
   ).toMatchSnapshot()
 })
 ```
@@ -67,7 +67,7 @@ exports[`Button renders correctly 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   This is hotpink.
 </div>

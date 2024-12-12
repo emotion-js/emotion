@@ -8,7 +8,7 @@ exports[`css @supports 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -19,7 +19,7 @@ exports[`css array fallback 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -32,7 +32,7 @@ exports[`css array with explicit false 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -45,7 +45,7 @@ exports[`css array with explicit true 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -63,7 +63,7 @@ exports[`css auto px 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -76,7 +76,7 @@ exports[`css boolean as value 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -89,7 +89,7 @@ exports[`css composition stuff 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -102,7 +102,7 @@ exports[`css composition stuff 2`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -136,7 +136,7 @@ exports[`css composition with objects 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -147,7 +147,7 @@ exports[`css computed key is only dynamic 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -158,7 +158,7 @@ exports[`css css variables 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -171,7 +171,7 @@ exports[`css explicit & 1`] = `
 }
 
 <div
-  className="emotion-0 another-class"
+  class="emotion-0 another-class"
 />
 `;
 
@@ -186,7 +186,7 @@ exports[`css explicit & 2`] = `
 
 exports[`css explicit false 1`] = `
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -199,7 +199,7 @@ exports[`css falsy property value in object 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -209,7 +209,7 @@ exports[`css falsy value in nested selector on object 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -219,7 +219,7 @@ exports[`css float property 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -232,13 +232,13 @@ exports[`css flushes correctly 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-15gpprc-cls1"
+  class="css-15gpprc-cls1"
 />
 `;
 
@@ -249,7 +249,7 @@ exports[`css handles array of objects 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -270,7 +270,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -288,7 +288,7 @@ exports[`css handles objects 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -298,7 +298,7 @@ exports[`css manually use label property 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -338,7 +338,7 @@ exports[`css media query specificity 2`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -349,7 +349,7 @@ exports[`css multiline declaration 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -359,7 +359,7 @@ exports[`css multiline selector 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -386,13 +386,13 @@ exports[`css nested 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   <div
-    className="some-class"
+    class="some-class"
   >
     <div
-      className="some-other-class"
+      class="some-other-class"
     />
   </div>
 </div>
@@ -417,7 +417,7 @@ exports[`css nested array 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -435,19 +435,19 @@ exports[`css nested at rule 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
 exports[`css null rule 1`] = `
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
 exports[`css null value 1`] = `
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -467,7 +467,7 @@ exports[`css random expression 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -480,7 +480,7 @@ exports[`css random interpolation with undefined values 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -494,7 +494,7 @@ exports[`css registered styles as nested selector value in object 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -510,7 +510,7 @@ exports[`css rule after media query 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -531,7 +531,7 @@ exports[`css simple composition 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -544,7 +544,7 @@ exports[`css weakmap 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -557,6 +557,6 @@ exports[`css weakmap 2`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;

@@ -158,7 +158,7 @@ test('basic SVG attributes survive prop filtering', () => {
 }
 
 <circle
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
   cx="65.011902"
   cy="49.047619"
   r="9.8273811"
