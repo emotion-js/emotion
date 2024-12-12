@@ -261,10 +261,10 @@ describe('css', () => {
   test('composition stuff', async () => {
     const cls1 = differentCss({ justifyContent: 'center' })
     const cls2 = differentCss([cls1])
-    const { container } = render(<div className={cls1} />)
+    const { container: container1 } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
-    const tree2 = renderer.create(<div className={cls2} />)
-    expect(tree2).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls2} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
   test('null rule', async () => {
     const cls1 = differentCss()
@@ -286,19 +286,23 @@ describe('css', () => {
     const cls2 = differentCss`
       ${null};
     `
-    expect(renderer.create(<div className={cls1} />)).toMatchSnapshot()
-    expect(renderer.create(<div className={cls2} />)).toMatchSnapshot()
+    expect(
+      render(<div className={cls1} />).container.firstChild
+    ).toMatchSnapshot()
+    expect(
+      render(<div className={cls2} />).container.firstChild
+    ).toMatchSnapshot()
   })
 
   test('flushes correctly', async () => {
     const cls1 = differentCss`
       display: flex;
     `
-    const { container } = render(<div className={cls1} />)
-    expect(container.firstChild).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
     flush()
-    const tree2 = renderer.create(<div className={cls1} />)
-    expect(tree2).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls1} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
   test('media query specificity', async () => {
     flush()
