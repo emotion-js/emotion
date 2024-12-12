@@ -2,8 +2,7 @@ import 'test-utils/setup-env'
 import { css } from '@emotion/css'
 import createCss from '@emotion/css/create-instance'
 import React from 'react'
-import { act } from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 console.error = jest.fn()
 
@@ -35,12 +34,10 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-test('does not warn when valid values are passed for the content property', async () => {
+test('does not warn when valid values are passed for the content property', () => {
   const cls = css(validValues.map(value => ({ content: value })))
   expect(console.error).not.toBeCalled()
-  expect(
-    (await act(() => renderer.create(<div className={cls} />))).toJSON()
-  ).toMatchSnapshot()
+  expect(render(<div className={cls} />).container.firstChild).toMatchSnapshot()
 })
 
 const invalidValues = ['this is not valid', '']
@@ -48,7 +45,7 @@ const invalidValues = ['this is not valid', '']
 test('does warn when invalid values are passed for the content property', () => {
   invalidValues.forEach(value => {
     expect(() =>
-      act(() => renderer.create(<div className={css({ content: value })} />))
+      render(<div className={css({ content: value })} />)
     ).toThrowError(
       `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
     )

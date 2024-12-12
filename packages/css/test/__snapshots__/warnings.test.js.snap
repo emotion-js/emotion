@@ -26,6 +26,6 @@ exports[`does not warn when valid values are passed for the content property 1`]
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;

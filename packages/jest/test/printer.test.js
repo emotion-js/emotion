@@ -1,7 +1,5 @@
 import React from 'react'
-import { act } from 'react'
 import 'test-utils/setup-env'
-import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
 /** @jsx jsx */
 import { css, jsx, CacheProvider } from '@emotion/react'
