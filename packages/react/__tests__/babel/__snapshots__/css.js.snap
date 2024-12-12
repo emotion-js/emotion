@@ -9,7 +9,7 @@ exports[`composition of dynamic array css prop with cssprop-generated className 
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   I'm hotpink on the green background.
 </div>
@@ -23,7 +23,7 @@ exports[`tagged template args forwarded 1`] = `
 }
 
 <h2
-  className="emotion-0"
+  class="emotion-0"
 >
   something
 </h2>

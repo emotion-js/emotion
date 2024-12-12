@@ -300,7 +300,7 @@ describe('unsafe pseudo classes', () => {
               color: 'hotpink'
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
