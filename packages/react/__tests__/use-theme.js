@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import 'test-utils/setup-env'
-import { act } from 'react'
-import * as renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { jsx, useTheme, ThemeProvider } from '@emotion/react'
 
 test('useTheme works', () => {
@@ -17,17 +16,15 @@ test('useTheme works', () => {
   }
 
   expect(
-    renderer
-      .create(
-        <ThemeProvider theme={{ lightGreen: 'green', darkGreen: 'darkgreen' }}>
-          <TestComponent />
-        </ThemeProvider>
-      )
-      .toJSON()
+    render(
+      <ThemeProvider theme={{ lightGreen: 'green', darkGreen: 'darkgreen' }}>
+        <TestComponent />
+      </ThemeProvider>
+    ).container.firstChild
   ).toMatchSnapshot()
 })
 
-test.only('Nested useTheme works', async () => {
+test('Nested useTheme works', async () => {
   function TestComponent1(props) {
     const theme = useTheme()
     return (
@@ -65,16 +62,10 @@ test.only('Nested useTheme works', async () => {
   }
 
   expect(
-    (
-      await act(() =>
-        renderer.create(
-          <ThemeProvider
-            theme={{ lightGreen: 'green', darkGreen: 'darkgreen' }}
-          >
-            <TestComponent2 />
-          </ThemeProvider>
-        )
-      )
-    ).toJSON()
+    render(
+      <ThemeProvider theme={{ lightGreen: 'green', darkGreen: 'darkgreen' }}>
+        <TestComponent2 />
+      </ThemeProvider>
+    ).container.firstChild
   ).toMatchSnapshot()
 })
