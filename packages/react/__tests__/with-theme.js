@@ -1,9 +1,8 @@
 import React from 'react'
-import { act } from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { withTheme, ThemeProvider } from '@emotion/react'
 
-test('withTheme works', async () => {
+test('withTheme works', () => {
   class SomeComponent extends React.Component /* <{ theme: Object }> */ {
     render() {
       return this.props.theme.color
@@ -11,30 +10,25 @@ test('withTheme works', async () => {
   }
   let SomeComponentWithTheme = withTheme(SomeComponent)
   expect(
-    (
-      await (() =>
-        renderer.create(
-          <ThemeProvider theme={{ color: 'green' }}>
-            <SomeComponentWithTheme />
-          </ThemeProvider>
-        ))
-    ).toJSON()
+    render(
+      <ThemeProvider theme={{ color: 'green' }}>
+        <SomeComponentWithTheme />
+      </ThemeProvider>
+    ).container.firstChild
   ).toMatchSnapshot()
 })
 
-test('should forward the ref', async () => {
+test('should forward the ref', () => {
   function SomeComponent(props) {
     return <div ref={props.ref}>{props.theme.color}</div>
   }
 
   const ComponentWithTheme = withTheme(SomeComponent)
   let ref = React.createRef()
-  await act(() =>
-    renderer.create(
-      <ThemeProvider theme={{ color: 'green' }}>
-        <ComponentWithTheme ref={ref} />
-      </ThemeProvider>
-    )
+  render(
+    <ThemeProvider theme={{ color: 'green' }}>
+      <ComponentWithTheme ref={ref} />
+    </ThemeProvider>
   )
   expect(ref.current).toBeInstanceOf(HTMLDivElement)
 })

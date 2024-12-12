@@ -196,7 +196,7 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const { container } = render(<Input>hello world</Input>)
+    const { container } = render(<Input value="hello world" />)
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -208,7 +208,7 @@ describe('styled', () => {
       }
     })
 
-    const { container } = render(<Input>hello world</Input>)
+    const { container } = render(<Input value="hello world" />)
 
     expect(container.firstChild).toMatchSnapshot()
   })

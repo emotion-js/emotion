@@ -2,7 +2,7 @@
 import * as React from 'react'
 import prettify from '@emotion/css-prettifier'
 /* import type { Emotion } from '@emotion/css/create-instance' */
-import { renderToNodeStream } from 'react-dom/server'
+import { renderToPipeableStream } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
 
 /*
@@ -220,7 +220,9 @@ export const renderToStringWithStream = (
   { renderStylesToNodeStream } /*: EmotionServer */
 ) /*: Promise<string> */ =>
   new Promise((resolve, reject) => {
-    const stream = renderToNodeStream(element).pipe(renderStylesToNodeStream())
+    const stream = renderToPipeableStream(element).pipe(
+      renderStylesToNodeStream()
+    )
     let html = ''
     stream.on('data', data => {
       html += data.toString()
