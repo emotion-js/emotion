@@ -376,10 +376,17 @@ exports[`styled no prop filtering on non string tags 1`] = `
 }
 
 <a
+  a="true"
   aria-label="some label"
+  b="true"
   class="emotion-0"
+  cool="true"
   data-wow="value"
+  filtering="true"
   href="link"
+  is="true"
+  prop="true"
+  wow="true"
 >
   hello world
 </a>
@@ -391,10 +398,17 @@ exports[`styled no prop filtering on string tags started with upper case 1`] = `
 }
 
 <somecustomlink
+  a="true"
   aria-label="some label"
+  b="true"
   class="emotion-0"
+  cool="true"
   data-wow="value"
+  filtering="true"
   href="link"
+  is="true"
+  prop="true"
+  wow="true"
 >
   hello world
 </somecustomlink>
@@ -489,6 +503,7 @@ exports[`styled prop filtering 1`] = `
   class="emotion-0"
   data-wow="value"
   href="link"
+  is="true"
 >
   hello world
 </a>
@@ -505,6 +520,7 @@ exports[`styled prop filtering on composed styled components that are string tag
   class="emotion-0"
   data-wow="value"
   href="link"
+  is="true"
 >
   hello world
 </a>

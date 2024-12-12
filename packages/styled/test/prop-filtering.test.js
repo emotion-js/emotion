@@ -73,13 +73,13 @@ test('prop filtering', () => {
 
   const { container } = render(
     <Link
-      a
-      b
-      wow
-      prop
-      filtering
-      is
-      cool
+      a="true"
+      b="true"
+      wow="true"
+      prop="true"
+      filtering="true"
+      is="true"
+      cool="true"
       aria-label="some label"
       data-wow="value"
       href="link"
@@ -98,13 +98,13 @@ test('no prop filtering on non string tags', () => {
 
   const { container } = render(
     <Link
-      a
-      b
-      wow
-      prop
-      filtering
-      is
-      cool
+      a="true"
+      b="true"
+      wow="true"
+      prop="true"
+      filtering="true"
+      is="true"
+      cool="true"
       aria-label="some label"
       data-wow="value"
       href="link"
@@ -123,13 +123,13 @@ test('no prop filtering on string tags started with upper case', () => {
 
   const { container } = render(
     <Link
-      a
-      b
-      wow
-      prop
-      filtering
-      is
-      cool
+      a="true"
+      b="true"
+      wow="true"
+      prop="true"
+      filtering="true"
+      is="true"
+      cool="true"
       aria-label="some label"
       data-wow="value"
       href="link"

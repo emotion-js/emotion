@@ -33,10 +33,17 @@ exports[`no prop filtering on non string tags 1`] = `
 }
 
 <a
+  a="true"
   aria-label="some label"
+  b="true"
   class="emotion-0 emotion-1"
+  cool="true"
   data-wow="value"
+  filtering="true"
   href="link"
+  is="true"
+  prop="true"
+  wow="true"
 >
   hello world
 </a>
@@ -48,10 +55,17 @@ exports[`no prop filtering on string tags started with upper case 1`] = `
 }
 
 <somecustomlink
+  a="true"
   aria-label="some label"
+  b="true"
   class="emotion-0 emotion-1"
+  cool="true"
   data-wow="value"
+  filtering="true"
   href="link"
+  is="true"
+  prop="true"
+  wow="true"
 >
   hello world
 </somecustomlink>
@@ -67,6 +81,7 @@ exports[`prop filtering 1`] = `
   class="emotion-0 emotion-1"
   data-wow="value"
   href="link"
+  is="true"
 >
   hello world
 </a>

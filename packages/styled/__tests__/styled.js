@@ -466,13 +466,13 @@ describe('styled', () => {
 
     const { container } = render(
       <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
+        a="true"
+        b="true"
+        wow="true"
+        prop="true"
+        filtering="true"
+        is="true"
+        cool="true"
         aria-label="some label"
         data-wow="value"
         href="link"
@@ -491,13 +491,13 @@ describe('styled', () => {
 
     const { container } = render(
       <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
+        a="true"
+        b="true"
+        wow="true"
+        prop="true"
+        filtering="true"
+        is="true"
+        cool="true"
         aria-label="some label"
         data-wow="value"
         href="link"
@@ -516,13 +516,13 @@ describe('styled', () => {
 
     const { container } = render(
       <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
+        a="true"
+        b="true"
+        wow="true"
+        prop="true"
+        filtering="true"
+        is="true"
+        cool="true"
         aria-label="some label"
         data-wow="value"
         href="link"
@@ -544,13 +544,13 @@ describe('styled', () => {
 
     const { container } = render(
       <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
+        a="true"
+        b="true"
+        wow="true"
+        prop="true"
+        filtering="true"
+        is="true"
+        cool="true"
         aria-label="some label"
         data-wow="value"
         href="link"
