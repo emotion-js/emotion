@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import 'test-utils/setup-env'
 import React from 'react'
+import { act } from 'react'
 import { render } from '@testing-library/react'
+import * as testRenderer from 'react-test-renderer'
 import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import { matchers } from '@emotion/jest'
@@ -292,11 +294,26 @@ describe('toHaveStyleRule', () => {
     expect(container.firstChild.firstChild).toHaveStyleRule('color', 'hotpink')
   })
 
-  test('should throw a friendly error when it receives non-element', () => {
+  test('should throw a friendly error when it receives an array', async () => {
+    const tree = (
+      await act(() =>
+        testRenderer.create(
+          <>
+            <div
+              css={css`
+                color: hotpink;
+              `}
+            />
+            {'Some text'}
+          </>
+        )
+      )
+    ).toJSON()
+
     expect(() =>
-      expect([]).toHaveStyleRule('color', 'hotpink')
+      expect(tree).toHaveStyleRule('color', 'hotpink')
     ).toThrowErrorMatchingInlineSnapshot(
-      `"\`toHaveStyleRule\` expects to receive an element."`
+      `"\`toHaveStyleRule\` expects to receive a single element but it received an array."`
     )
   })
 })

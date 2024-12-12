@@ -1,11 +1,13 @@
-import React from 'react'
-import 'test-utils/setup-env'
-import prettyFormat from 'pretty-format'
 /** @jsx jsx */
+import 'test-utils/setup-env'
+import React from 'react'
+import { act } from 'react'
+import prettyFormat from 'pretty-format'
 import { css, jsx, CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { createSerializer } from '@emotion/jest'
 import { render } from '@testing-library/react'
+import * as testRenderer from 'react-test-renderer'
 import { ignoreConsoleErrors } from 'test-utils'
 
 let emotionPlugin = createSerializer()
@@ -21,14 +23,18 @@ describe('jest-emotion with dom elements', () => {
     width: 100%;
   `
 
-  test('replaces class names and inserts styles into React test component snapshots', () => {
-    const { container } = render(
-      <div css={divStyle}>
-        <svg css={svgStyle} />
-      </div>
-    )
+  test('replaces class names and inserts styles into React test component snapshots', async () => {
+    const tree = (
+      await act(() =>
+        testRenderer.create(
+          <div css={divStyle}>
+            <svg css={svgStyle} />
+          </div>
+        )
+      )
+    ).toJSON()
 
-    const output = prettyFormat(container.firstChild, {
+    const output = prettyFormat(tree, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -62,21 +68,23 @@ describe('jest-emotion with DOM elements disabled', () => {
     width: 100%;
   `
 
-  test('replaces class names and inserts styles into React test component snapshots', () => {
-    const { container } = render(
-      <div css={divStyle}>
-        <svg css={svgStyle} />
-      </div>
+  test('replaces class names and inserts styles into React test component snapshots', async () => {
+    const tree = await act(() =>
+      testRenderer.create(
+        <div css={divStyle}>
+          <svg css={svgStyle} />
+        </div>
+      )
     )
 
-    const output = prettyFormat(container.firstChild, {
+    const output = prettyFormat(tree.toJSON(), {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
     expect(output).toMatchSnapshot()
   })
 
-  test('does not replace class names or insert styles into DOM element snapshots', () => {
+  test('does not replace class names or insert styles into DOM element snapshots', async () => {
     const divRef = React.createRef()
     render(
       <div css={divStyle} ref={divRef}>
@@ -143,7 +151,29 @@ describe('jest-emotion with nested selectors', () => {
     }
   `
 
-  test('replaces class names and inserts styles into React test component snapshots', () => {
+  test('replaces class names and inserts styles into React test component snapshots', async () => {
+    const tree = (
+      await act(() => testRenderer.create(<div css={divStyle} />))
+    ).toJSON()
+
+    const output = prettyFormat(tree, {
+      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+    })
+
+    expect(output).toBe(`.emotion-0 {
+  color: blue;
+}
+
+header .emotion-0 {
+  color: red;
+}
+
+<div
+  className="emotion-0"
+/>`)
+  })
+
+  test('replaces class names and inserts styles into DOM element snapshots', () => {
     const { container } = render(<div css={divStyle} />)
 
     const output = prettyFormat(container.firstChild, {

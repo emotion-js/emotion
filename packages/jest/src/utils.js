@@ -100,9 +100,6 @@ function getClassNamesFromCheerio(selectors, node) {
 }
 
 function getClassNamesFromDOMElement(selectors, node) {
-  if (!isDOMElement(node)) {
-    throw new Error('`toHaveStyleRule` expects to receive an element.')
-  }
   return getClassNames(selectors, node.getAttribute('class'))
 }
 
