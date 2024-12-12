@@ -137,7 +137,7 @@ describe('unsafe pseudo classes', () => {
               }
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -161,7 +161,7 @@ describe('unsafe pseudo classes', () => {
               }
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -183,7 +183,7 @@ describe('unsafe pseudo classes', () => {
               }
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -205,7 +205,7 @@ describe('unsafe pseudo classes', () => {
               color: 'hotpink'
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -217,17 +217,15 @@ describe('unsafe pseudo classes', () => {
     })
 
     test('does warn when not using the flag on a global rule', () => {
-      expect(
-        render(
-          <Global
-            styles={{
-              [`body > *:first-child`]: {
-                marginLeft: 0
-              }
-            }}
-          />
-        ).container
-      ).toMatchSnapshot()
+      render(
+        <Global
+          styles={{
+            [`body > *:first-child`]: {
+              marginLeft: 0
+            }
+          }}
+        />
+      )
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
           [
@@ -250,7 +248,7 @@ describe('unsafe pseudo classes', () => {
               }
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
@@ -268,7 +266,7 @@ describe('unsafe pseudo classes', () => {
               }
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
@@ -284,7 +282,7 @@ describe('unsafe pseudo classes', () => {
               }
             }}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
@@ -306,17 +304,15 @@ describe('unsafe pseudo classes', () => {
     })
 
     test('does not warn when using the flag on a global rule', () => {
-      expect(
-        render(
-          <Global
-            styles={{
-              [`body > *:first-child${ignoreSsrFlag}`]: {
-                marginLeft: 0
-              }
-            }}
-          />
-        ).container
-      ).toMatchSnapshot()
+      render(
+        <Global
+          styles={{
+            [`body > *:first-child${ignoreSsrFlag}`]: {
+              marginLeft: 0
+            }
+          }}
+        />
+      )
       expect(console.error).not.toBeCalled()
     })
 
@@ -355,7 +351,7 @@ describe('unsafe pseudo classes', () => {
               }
             `}
           />
-        ).container
+        ).container.firstChild
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
@@ -363,7 +359,7 @@ describe('unsafe pseudo classes', () => {
 })
 
 test('global with css prop', () => {
-  let { container } = render(
+  render(
     <Global
       css={{
         html: {
@@ -375,8 +371,6 @@ test('global with css prop', () => {
       }}
     />
   )
-  expect(container).toMatchSnapshot()
-
   expect(console.error).toBeCalledWith(
     "It looks like you're using the css prop on Global, did you mean to use the styles prop instead?"
   )
