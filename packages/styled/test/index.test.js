@@ -154,7 +154,7 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const { container } = render(<Input>hello world</Input>)
+    const { container } = render(<Input value="hello world" />)
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -166,7 +166,7 @@ describe('styled', () => {
       }
     })
 
-    const { container } = render(<Input>hello world</Input>)
+    const { container } = render(<Input value="hello world" />)
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -241,12 +241,12 @@ describe('styled', () => {
       ${props => (props.a ? cssA : cssB)};
     `
 
-    const { container } = render(<H1 a>hello world</H1>)
+    const { container: container1 } = render(<H1 a>hello world</H1>)
 
-    expect(container.firstChild).toMatchSnapshot()
-    const tree2 = renderer.create(<H1>hello world</H1>)
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<H1>hello world</H1>)
 
-    expect(tree2).toMatchSnapshot()
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
   test('objects', () => {

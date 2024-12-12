@@ -75,7 +75,7 @@ exports[`styled function in expression 1`] = `
 
 <h1
   class="legacy__class emotion-0 emotion-1"
-  scale={2}
+  scale="2"
 >
   hello world
 </h1>
@@ -148,9 +148,8 @@ exports[`styled input placeholder 1`] = `
 
 <input
   class="emotion-0 emotion-1"
->
-  hello world
-</input>
+  value="hello world"
+/>
 `;
 
 exports[`styled input placeholder object 1`] = `
@@ -172,9 +171,8 @@ exports[`styled input placeholder object 1`] = `
 
 <input
   class="emotion-0 emotion-1"
->
-  hello world
-</input>
+  value="hello world"
+/>
 `;
 
 exports[`styled nested 1`] = `
@@ -236,7 +234,7 @@ exports[`styled object as style 1`] = `
 
 <h1
   class="emotion-0 emotion-1"
-  fontSize={20}
+  font-size="20"
 >
   hello world
 </h1>
@@ -360,7 +358,7 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
     My Title
   </h1>
   <h2
-    class="emotion-2 emotion-3"
+    class="emotion-2 emotion-19"
   >
     My Subtitle
   </h2>
