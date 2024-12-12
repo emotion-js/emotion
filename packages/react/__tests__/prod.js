@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 gate({ development: false }, ({ test }) => {
   test('css works', () => {
@@ -16,7 +16,7 @@ gate({ development: false }, ({ test }) => {
   })
 
   test('props work', () => {
-    let tree = renderer.create(<div css={{ color: 'hotpink' }} hidden />)
-    expect(tree.toJSON().props.hidden).toBe(true)
+    let { container } = render(<div css={{ color: 'hotpink' }} hidden />)
+    expect(container).toMatchSnapshot()
   })
 })

@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import { act } from 'react'
 import createCache from '@emotion/cache'
 import { CacheProvider, Global, jsx } from '@emotion/react'
 import { StyleSheet } from '@emotion/sheet'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { safeQuerySelector } from 'test-utils'
 import 'test-utils/setup-env'
 
@@ -13,27 +12,23 @@ function stylisPlugin(element) {
   }
 }
 
-async function render(ele) {
-  return (await act(() => renderer.create(ele))).toJSON()
-}
-
 beforeEach(() => {
   safeQuerySelector('head').innerHTML = ''
   safeQuerySelector('body').innerHTML = ''
 })
 
-test('with custom plugins', async () => {
+test('with custom plugins', () => {
   let cache = createCache({
     key: 'custom-plugins',
     stylisPlugins: [stylisPlugin]
   })
 
   expect(
-    await render(
+    render(
       <CacheProvider value={cache}>
         <div css={{ display: 'flex', color: 'blue' }} />
       </CacheProvider>
-    )
+    ).container.firstChild
   ).toMatchInlineSnapshot(`
     .emotion-0 {
       display: flex;
@@ -41,12 +36,12 @@ test('with custom plugins', async () => {
     }
 
     <div
-      className="emotion-0"
+      class="emotion-0"
     />
   `)
 })
 
-test('Global should "inherit" sheet class from the cache', async () => {
+test('Global should "inherit" sheet class from the cache', () => {
   // https://github.com/emotion-js/emotion/issues/2675
   let cache = createCache({
     key: 'test',
@@ -62,7 +57,7 @@ test('Global should "inherit" sheet class from the cache', async () => {
     container: safeQuerySelector('head')
   })
 
-  await render(
+  render(
     <CacheProvider value={cache}>
       <div css={{ color: 'hotpink' }} />
       <Global styles={{ body: { width: '0' } }} />

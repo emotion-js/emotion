@@ -7,7 +7,7 @@ exports[`theme prop exists without ThemeProvider 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 />
 `;
 
@@ -18,7 +18,7 @@ exports[`theme prop exists without ThemeProvider with a theme prop on the compon
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 />
 `;
 
@@ -28,7 +28,7 @@ exports[`theme with react-test-renderer 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   this will be pink
 </div>
@@ -45,7 +45,7 @@ exports[`themes 1`] = `
 }
 
 <span
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </span>
