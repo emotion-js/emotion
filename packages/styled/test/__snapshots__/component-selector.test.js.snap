@@ -17,11 +17,11 @@ exports[`component as selector (object syntax) 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-2 emotion-3"
+    class="emotion-2 emotion-3"
   >
     This will be green
   </h1>
@@ -46,11 +46,11 @@ exports[`component as selector 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-2 emotion-3"
+    class="emotion-2 emotion-3"
   >
     This will be green
   </h1>
@@ -75,13 +75,13 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
-  fontSize={10}
+  class="emotion-0 emotion-1"
+  font-size="10"
 >
   hello 
   <h1
-    className="emotion-2 emotion-3"
-    fontSize={20}
+    class="emotion-2 emotion-3"
+    font-size="20"
   >
     This will be green
   </h1>
@@ -106,13 +106,13 @@ exports[`component as selector function interpolation 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
-  fontSize={10}
+  class="emotion-0 emotion-1"
+  font-size="10"
 >
   hello 
   <h1
-    className="emotion-2 emotion-3"
-    fontSize={20}
+    class="emotion-2 emotion-3"
+    font-size="20"
   >
     This will be green
   </h1>

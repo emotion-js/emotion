@@ -23,18 +23,14 @@ describe('jest-emotion with dom elements', () => {
     width: 100%;
   `
 
-  test('replaces class names and inserts styles into React test component snapshots', async () => {
-    const tree = (
-      await act(() =>
-        renderer.create(
-          <div css={divStyle}>
-            <svg css={svgStyle} />
-          </div>
-        )
-      )
-    ).toJSON()
+  test('replaces class names and inserts styles into React test component snapshots', () => {
+    const { container } = render(
+      <div css={divStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
 
-    const output = prettyFormat(tree, {
+    const output = prettyFormat(container.firstChild, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -68,18 +64,14 @@ describe('jest-emotion with DOM elements disabled', () => {
     width: 100%;
   `
 
-  test('replaces class names and inserts styles into React test component snapshots', async () => {
-    const tree = (
-      await act(() =>
-        renderer.create(
-          <div css={divStyle}>
-            <svg css={svgStyle} />
-          </div>
-        )
-      )
-    ).toJSON()
+  test('replaces class names and inserts styles into React test component snapshots', () => {
+    const { container } = render(
+      <div css={divStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
 
-    const output = prettyFormat(tree, {
+    const output = prettyFormat(container.firstChild, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -127,21 +119,17 @@ test('allows to opt-out from styles printing', () => {
   expect(output).toMatchSnapshot()
 })
 
-test('does not replace class names that are not from emotion', async () => {
-  let tree = (
-    await act(() =>
-      renderer.create(
-        <div
-          className="net-42 net"
-          css={css`
-            color: darkorchid;
-          `}
-        />
-      )
-    )
-  ).toJSON()
+test('does not replace class names that are not from emotion', () => {
+  let { container } = render(
+    <div
+      className="net-42 net"
+      css={css`
+        color: darkorchid;
+      `}
+    />
+  )
 
-  const output = prettyFormat(tree, {
+  const output = prettyFormat(container.firstChild, {
     plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
   })
 
@@ -157,12 +145,10 @@ describe('jest-emotion with nested selectors', () => {
     }
   `
 
-  test('replaces class names and inserts styles into React test component snapshots', async () => {
-    const tree = (
-      await act(() => renderer.create(<div css={divStyle} />))
-    ).toJSON()
+  test('replaces class names and inserts styles into React test component snapshots', () => {
+    const { container } = render(<div css={divStyle} />)
 
-    const output = prettyFormat(tree, {
+    const output = prettyFormat(container.firstChild, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -175,32 +161,28 @@ header .emotion-0 {
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />`)
   })
 })
 
-test('prints speedy styles', async () => {
+test('prints speedy styles', () => {
   const speedyCache = createCache({
     key: 'speedy-key',
     speedy: true
   })
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <CacheProvider value={speedyCache}>
-          <div
-            css={css`
-              color: hotpink;
-            `}
-          />
-        </CacheProvider>
-      )
-    )
-  ).toJSON()
+  const { container } = render(
+    <CacheProvider value={speedyCache}>
+      <div
+        css={css`
+          color: hotpink;
+        `}
+      />
+    </CacheProvider>
+  )
 
   expect(
-    prettyFormat(tree, {
+    prettyFormat(container.firstChild, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
   ).toMatchSnapshot()
