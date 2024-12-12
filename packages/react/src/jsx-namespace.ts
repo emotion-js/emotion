@@ -6,11 +6,15 @@ type IsPreReact19 = 2 extends Parameters<React.FunctionComponent<any>>['length']
   ? true
   : false
 
-type WithConditionalCSSProp<P> = 'className' extends keyof P
-  ? string extends P['className' & keyof P]
-    ? { css?: Interpolation<Theme> }
-    : {}
-  : {}
+type WithConditionalCSSProp<P> =
+  | (P extends unknown
+      ? 'className' extends keyof P
+        ? string extends P['className' & keyof P]
+          ? { css?: Interpolation<Theme> }
+          : {}
+        : {}
+      : {})
+  | {}
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace for the pre-React 19 case
 
@@ -91,9 +95,8 @@ export namespace EmotionJSX {
   export interface ElementChildrenAttribute
     extends ReactJSXElementChildrenAttribute {}
 
-  export type LibraryManagedAttributes<C, P> = P extends unknown
-    ? WithConditionalCSSProp<P> & ReactJSXLibraryManagedAttributes<C, P>
-    : never
+  export type LibraryManagedAttributes<C, P> = WithConditionalCSSProp<P> &
+    ReactJSXLibraryManagedAttributes<C, P>
 
   export interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
   export interface IntrinsicClassAttributes<T>

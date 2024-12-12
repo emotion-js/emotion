@@ -255,3 +255,63 @@ const anim1 = keyframes`
   // $ExpectError
   ;<WithOptionalUndefinedClassName css={{ color: 'hotpink' }} />
 }
+
+{
+  const withSomething = <Props extends object>(
+    SomeComponent: (props: Props & { something: string }) => React.ReactNode
+  ) => {
+    return (props: Props) => {
+      return <SomeComponent something="something" {...props} />
+    }
+  }
+  const RendersSomething = withSomething(props => <div>{props.something}</div>)
+  ;<RendersSomething />
+
+  const WithSomeStyle = <Props extends { className?: string }>(
+    SomeComponent: (props: Props) => React.ReactNode
+  ) => {
+    return (props: Props) => {
+      return (
+        <SomeComponent
+          {...props}
+          // this expect type is important over this just not erroring because an excess property in this case is allowed
+          // but this lets us roughly test that `css` is in autocomplete/etc.
+          // $ExpectType Interpolation<Theme>
+          css={{ direction: 'rtl' }}
+        />
+      )
+    }
+  }
+  const Something = WithSomeStyle((props: { className?: string }) => null)
+  ;<Something css={{ color: 'green' }} />
+  ;<Props extends { className?: string }>(
+    SomeComponent: (props: Props) => React.ReactNode
+  ) => {
+    return (props: Props) => {
+      return (
+        <SomeComponent
+          {...props}
+          css={{
+            // ideally this would error but it also doesn't matter much
+            // (this particular css={{ direction: 'does not exist' }} does error when used normally)
+            direction: 'does not exist'
+          }}
+        />
+      )
+    }
+  }
+  ;<Props extends object>(SomeComponent: (props: Props) => React.ReactNode) => {
+    return (props: Props) => {
+      return (
+        <SomeComponent
+          {...props}
+          // this isn't an error because excess properties is a best effort thing in ts etc.
+          // (and in this case with a generic, not erroring here makes a lot of sense)
+          // but expecting this type is a way to test that `css` isn't in autocomplete/etc.
+          // $ExpectType {}
+          css={{}}
+        />
+      )
+    }
+  }
+}
