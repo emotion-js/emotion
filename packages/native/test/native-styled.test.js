@@ -28,11 +28,13 @@ describe('Emotion native styled', () => {
       font-size: 20px;
       background-color: ${props => props.back};
     `
-    const tree = await act(() =>
-      renderer.create(
-        <Text style={{ fontSize: 40 }} back="red">
-          Emotion Primitives
-        </Text>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <Text style={{ fontSize: 40 }} back="red">
+            Emotion Primitives
+          </Text>
+        )
       )
     ).toJSON()
     expect(tree).toMatchSnapshot()
