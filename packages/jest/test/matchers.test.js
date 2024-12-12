@@ -67,7 +67,7 @@ describe('toHaveStyleRule', () => {
     expect(container.firstChild).toHaveStyleRule('color', /red/)
   })
 
-  it.skip('returns a message explaining the failure', () => {
+  it('returns a message explaining the failure', () => {
     const { container } = render(<div css={divStyle} />)
 
     // When expect(container.firstChild).toHaveStyleRule('color', 'blue') fails
