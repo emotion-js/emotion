@@ -150,7 +150,7 @@ describe('css', () => {
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test.skip('nested at rules', () => {
+  test('nested at rules', () => {
     const cls1 = differentCss`
       @supports (display: grid) {
         display: grid;

@@ -340,6 +340,36 @@ exports[`css nested array 1`] = `
 />
 `;
 
+exports[`css nested at rules 1`] = `
+@supports (display: grid) {
+  .emotion-0 {
+    display: grid;
+  }
+
+  @supports (display: flex) {
+    .emotion-0 {
+      display: flex;
+    }
+  }
+}
+
+@media (min-width: 420px) {
+  .emotion-0 {
+    color: hotpink;
+  }
+
+  @media (max-width: 500px) {
+    .emotion-0 {
+      color: hotpink;
+    }
+  }
+}
+
+<div
+  class="emotion-0"
+/>
+`;
+
 exports[`css null rule 1`] = `
 <div
   class="emotion-0"
