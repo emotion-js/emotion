@@ -13,7 +13,7 @@ test('composes shouldForwardProp on composed styled components', () => {
     shouldForwardProp: prop => prop !== 'bar'
   })()
 
-  const { container } = render(<ComposedDiv foo bar xyz />)
+  const { container } = render(<ComposedDiv foo bar xyz="true" />)
 
   expect(container.firstChild).toMatchSnapshot()
 })
@@ -426,28 +426,28 @@ test('prop filtering on composed styled components that are string tags', () => 
 
   const { container } = render(
     <Link
-      wow
-      prop
-      filtering
-      looks
-      cool
-      but
-      is
-      kind
-      of
-      a
-      bad
-      idea
-      since
-      the
-      react
-      warnings
-      will
-      not
-      work
-      and
+      wow="true"
+      prop="true"
+      filtering="true"
+      looks="true"
+      cool="true"
+      but="true"
+      is="true"
+      kind="true"
+      of="true"
+      a="true"
+      bad="true"
+      idea="true"
+      since="true"
+      the="true"
+      react="true"
+      warnings="true"
+      will="true"
+      not="true"
+      work="true"
+      and="true"
       it="is"
-      problematic
+      problematic="true"
       for="other reasons"
       aria-label="some label"
       data-wow="value"
@@ -467,7 +467,7 @@ test('withComponent inherits explicit shouldForwardProp', () => {
     color: hotpink;
   `
   const AnotherComponent = SomeComponent.withComponent('span')
-  const { container } = render(<AnotherComponent foo bar />)
+  const { container } = render(<AnotherComponent foo="true" bar="true" />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -481,7 +481,7 @@ test('withComponent inherits explicit shouldForwardProp from flattened component
     background-color: blue;
   `
   const YetAnotherComponent = AnotherComponent.withComponent('span')
-  const { container } = render(<YetAnotherComponent foo bar />)
+  const { container } = render(<YetAnotherComponent foo="true" bar="true" />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -492,7 +492,7 @@ test('withComponent should accept shouldForwardProp', () => {
   const AnotherComponent = SomeComponent.withComponent('span', {
     shouldForwardProp: prop => prop === 'xyz'
   })
-  const { container } = render(<AnotherComponent qwe xyz />)
+  const { container } = render(<AnotherComponent qwe="true" xyz="true" />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -505,7 +505,9 @@ test('withComponent should compose shouldForwardProp', () => {
   const AnotherComponent = SomeComponent.withComponent('span', {
     shouldForwardProp: prop => prop !== 'bar'
   })
-  const { container } = render(<AnotherComponent foo bar qwe xyz />)
+  const { container } = render(
+    <AnotherComponent foo="true" bar="true" qwe="true" xyz="true" />
+  )
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -521,6 +523,8 @@ test('withComponent should compose shouldForwardProp with a flattened component'
   const YetAnotherComponent = SomeComponent.withComponent('span', {
     shouldForwardProp: prop => prop !== 'bar'
   })
-  const { container } = render(<YetAnotherComponent foo bar qwe xyz />)
+  const { container } = render(
+    <YetAnotherComponent foo="true" bar="true" qwe="true" xyz="true" />
+  )
   expect(container.firstChild).toMatchSnapshot()
 })

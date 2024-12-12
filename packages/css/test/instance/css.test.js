@@ -5,7 +5,7 @@ import { render } from '@testing-library/react'
 import { css as differentCss, flush, sheet } from './emotion-instance'
 
 describe('css', () => {
-  test('float property', async () => {
+  test('float property', () => {
     const cls1 = differentCss`
       float: left;
     `
@@ -14,7 +14,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('handles more than 10 dynamic properties', async () => {
+  test('handles more than 10 dynamic properties', () => {
     const cls1 = differentCss`
       text-decoration: ${'underline'};
       border-right: solid blue 54px;
@@ -33,12 +33,12 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('falsy value in nested selector on object', async () => {
+  test('falsy value in nested selector on object', () => {
     const cls1 = differentCss({ ':hover': { display: null, color: 'hotpink' } })
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('boolean as value', async () => {
+  test('boolean as value', () => {
     const cls1 = differentCss({
       display: 'flex',
       color: false,
@@ -47,13 +47,13 @@ describe('css', () => {
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('auto px', async () => {
+  test('auto px', () => {
     const cls1 = differentCss({ display: 'flex', flex: 1, fontSize: 10 })
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('random interpolation with undefined values', async () => {
+  test('random interpolation with undefined values', () => {
     const cls2 = differentCss`
       ${undefined};
       justify-content: center;
@@ -62,7 +62,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('random expression', async () => {
+  test('random expression', () => {
     const cls2 = differentCss`
       font-size: 20px;
       @media (min-width: 420px) {
@@ -79,7 +79,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('simple composition', async () => {
+  test('simple composition', () => {
     const cls1 = differentCss`
       display: flex;
       &:hover {
@@ -94,7 +94,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('handles objects', async () => {
+  test('handles objects', () => {
     const cls1 = differentCss({
       float: 'left',
       display: 'flex',
@@ -107,19 +107,19 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('handles array of objects', async () => {
+  test('handles array of objects', () => {
     const cls1 = differentCss([{ height: 50, width: 20 }, null])
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('computed key is only dynamic', async () => {
+  test('computed key is only dynamic', () => {
     const cls1 = differentCss({ fontSize: 10, [`w${'idth'}`]: 20 })
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('composition with objects', async () => {
+  test('composition with objects', () => {
     const cls1 = differentCss({
       display: 'flex',
       width: 30,
@@ -141,7 +141,7 @@ describe('css', () => {
     const { container } = render(<div className={cls2} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('@supports', async () => {
+  test('@supports', () => {
     const cls1 = differentCss`
       @supports (display: grid) {
         display: grid;
@@ -150,7 +150,7 @@ describe('css', () => {
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test.skip('nested at rules', async () => {
+  test.skip('nested at rules', () => {
     const cls1 = differentCss`
       @supports (display: grid) {
         display: grid;
@@ -168,7 +168,7 @@ describe('css', () => {
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('nested array', async () => {
+  test('nested array', () => {
     const cls1 = differentCss([
       [{ display: 'inline' }],
       [{ display: 'inline-block' }],
@@ -193,25 +193,25 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('explicit false', async () => {
+  test('explicit false', () => {
     const cls1 = differentCss(false)
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('array with explicit false', async () => {
+  test('array with explicit false', () => {
     const cls1 = differentCss([[{ display: 'flex' }], false])
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('array with explicit true', async () => {
+  test('array with explicit true', () => {
     const cls1 = differentCss([[{ display: 'flex' }], true])
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('nested', async () => {
+  test('nested', () => {
     const cls1 = differentCss`
       color: yellow;
       & .some-class {
@@ -234,7 +234,7 @@ describe('css', () => {
 
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('explicit &', async () => {
+  test('explicit &', () => {
     flush()
     const cls1 = differentCss`
       &.another-class {
@@ -247,18 +247,18 @@ describe('css', () => {
     expect(sheet).toMatchSnapshot()
     flush()
   })
-  test('falsy property value in object', async () => {
+  test('falsy property value in object', () => {
     const cls = differentCss({ display: 'flex', backgroundColor: undefined })
     const { container } = render(<div className={cls} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('registered styles as nested selector value in object', async () => {
+  test('registered styles as nested selector value in object', () => {
     const cls = differentCss({ display: 'flex', backgroundColor: 'hotpink' })
     const cls1 = differentCss({ ':hover': cls })
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('composition stuff', async () => {
+  test('composition stuff', () => {
     const cls1 = differentCss({ justifyContent: 'center' })
     const cls2 = differentCss([cls1])
     const { container: container1 } = render(<div className={cls1} />)
@@ -266,13 +266,13 @@ describe('css', () => {
     const { container: container2 } = render(<div className={cls2} />)
     expect(container2.firstChild).toMatchSnapshot()
   })
-  test('null rule', async () => {
+  test('null rule', () => {
     const cls1 = differentCss()
 
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  test('css variables', async () => {
+  test('css variables', () => {
     const cls1 = differentCss`
       --some-var: 1px;
       width: var(--some-var);
@@ -281,7 +281,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('null value', async () => {
+  test('null value', () => {
     const cls1 = differentCss(null)
     const cls2 = differentCss`
       ${null};
@@ -294,7 +294,7 @@ describe('css', () => {
     ).toMatchSnapshot()
   })
 
-  test('flushes correctly', async () => {
+  test('flushes correctly', () => {
     const cls1 = differentCss`
       display: flex;
     `
@@ -304,7 +304,7 @@ describe('css', () => {
     const { container: container2 } = render(<div className={cls1} />)
     expect(container2.firstChild).toMatchSnapshot()
   })
-  test('media query specificity', async () => {
+  test('media query specificity', () => {
     flush()
     const cls = differentCss`
       width: 32px;
@@ -322,7 +322,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
     flush()
   })
-  test('weakmap', async () => {
+  test('weakmap', () => {
     const styles = { display: 'flex' }
     const cls1 = differentCss(styles)
     const cls2 = differentCss(styles)
@@ -332,7 +332,7 @@ describe('css', () => {
     expect(container2.firstChild).toMatchSnapshot()
   })
 
-  test('manually use label property', async () => {
+  test('manually use label property', () => {
     flush()
     const cls1 = differentCss`
       color: hotpink;
@@ -342,7 +342,7 @@ describe('css', () => {
     expect(container.firstChild).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
-  test('sets correct nonce value', async () => {
+  test('sets correct nonce value', () => {
     flush()
     differentCss`
       color: hotpink;

@@ -4,7 +4,7 @@ import { act } from 'react'
 import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
 
-test("config merging works even if it's referenced by variable", async () => {
+test("config merging works even if it's referenced by variable", () => {
   const Button = ({ isRed, ...rest }) => (
     <button {...rest}>{isRed ? 'forwarded' : 'not forwarded'}</button>
   )

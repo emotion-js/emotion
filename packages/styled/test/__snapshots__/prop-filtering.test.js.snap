@@ -3,6 +3,7 @@
 exports[`composes shouldForwardProp on composed styled components 1`] = `
 <div
   class="emotion-0 emotion-1"
+  xyz="true"
 />
 `;
 
@@ -99,6 +100,8 @@ exports[`prop filtering on composed styled components that are string tags 1`] =
   data-wow="value"
   for="other reasons"
   href="link"
+  is="true"
+  kind="true"
 >
   hello world
 </a>
@@ -122,6 +125,7 @@ exports[`withComponent inherits explicit shouldForwardProp 1`] = `
 
 <span
   class="emotion-0 emotion-1"
+  foo="true"
 />
 `;
 
@@ -133,6 +137,7 @@ exports[`withComponent inherits explicit shouldForwardProp from flattened compon
 
 <span
   class="emotion-0 emotion-1"
+  foo="true"
 />
 `;
 
@@ -143,6 +148,7 @@ exports[`withComponent should accept shouldForwardProp 1`] = `
 
 <span
   class="emotion-0 emotion-1"
+  xyz="true"
 />
 `;
 
@@ -153,6 +159,8 @@ exports[`withComponent should compose shouldForwardProp 1`] = `
 
 <span
   class="emotion-0 emotion-1"
+  qwe="true"
+  xyz="true"
 />
 `;
 
@@ -163,5 +171,7 @@ exports[`withComponent should compose shouldForwardProp with a flattened compone
 
 <span
   class="emotion-0 emotion-1"
+  qwe="true"
+  xyz="true"
 />
 `;
