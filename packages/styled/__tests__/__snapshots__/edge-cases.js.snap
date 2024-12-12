@@ -9,7 +9,7 @@ exports[`nested function using css 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -30,6 +30,6 @@ exports[`nested function using css and keyframes 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
