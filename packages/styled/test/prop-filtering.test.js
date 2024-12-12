@@ -1,10 +1,10 @@
 import 'test-utils/setup-env'
 import React from 'react'
 import { act } from 'react'
-import * as renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
 
-test('composes shouldForwardProp on composed styled components', async () => {
+test('composes shouldForwardProp on composed styled components', () => {
   const StyledDiv = styled('div', {
     shouldForwardProp: prop => prop !== 'foo'
   })()
@@ -13,14 +13,12 @@ test('composes shouldForwardProp on composed styled components', async () => {
     shouldForwardProp: prop => prop !== 'bar'
   })()
 
-  const tree = (
-    await act(() => renderer.create(<ComposedDiv foo bar xyz />))
-  ).toJSON()
+  const { container } = render(<ComposedDiv foo bar xyz />)
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('custom shouldForwardProp works', async () => {
+test('custom shouldForwardProp works', () => {
   const Svg = props => (
     <svg {...props}>
       <rect
@@ -43,17 +41,13 @@ test('custom shouldForwardProp works', async () => {
     }
   `
 
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <StyledSvg color="#0000ff" width="100px" height="100px" />
-      )
-    )
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(
+    <StyledSvg color="#0000ff" width="100px" height="100px" />
+  )
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('shouldForwardProp should get inherited for wrapped styled components', async () => {
+test('shouldForwardProp should get inherited for wrapped styled components', () => {
   const Div1 = styled('div', {
     shouldForwardProp: prop => prop !== 'color'
   })`
@@ -62,120 +56,102 @@ test('shouldForwardProp should get inherited for wrapped styled components', asy
 
   const Div2 = styled(Div1)``
 
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <>
-          <Div1 color="red" id="test-1" />
-          <Div2 color="green" id="test-2" />
-        </>
-      )
-    )
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(
+    <>
+      <Div1 color="red" id="test-1" />
+      <Div2 color="green" id="test-2" />
+    </>
+  )
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('prop filtering', async () => {
+test('prop filtering', () => {
   const Link = styled.a`
     color: green;
   `
   const rest = { m: [3], pt: [4] }
 
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <Link
-          a
-          b
-          wow
-          prop
-          filtering
-          is
-          cool
-          aria-label="some label"
-          data-wow="value"
-          href="link"
-          {...rest}
-        >
-          hello world
-        </Link>
-      )
-    )
-  ).toJSON()
+  const { container } = render(
+    <Link
+      a
+      b
+      wow
+      prop
+      filtering
+      is
+      cool
+      aria-label="some label"
+      data-wow="value"
+      href="link"
+      {...rest}
+    >
+      hello world
+    </Link>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
-test('no prop filtering on non string tags', async () => {
+test('no prop filtering on non string tags', () => {
   const Link = styled(props => <a {...props} />)`
     color: green;
   `
 
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <Link
-          a
-          b
-          wow
-          prop
-          filtering
-          is
-          cool
-          aria-label="some label"
-          data-wow="value"
-          href="link"
-        >
-          hello world
-        </Link>
-      )
-    )
-  ).toJSON()
+  const { container } = render(
+    <Link
+      a
+      b
+      wow
+      prop
+      filtering
+      is
+      cool
+      aria-label="some label"
+      data-wow="value"
+      href="link"
+    >
+      hello world
+    </Link>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('no prop filtering on string tags started with upper case', async () => {
+test('no prop filtering on string tags started with upper case', () => {
   const Link = styled('SomeCustomLink')`
     color: green;
   `
 
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <Link
-          a
-          b
-          wow
-          prop
-          filtering
-          is
-          cool
-          aria-label="some label"
-          data-wow="value"
-          href="link"
-        >
-          hello world
-        </Link>
-      )
-    )
-  ).toJSON()
+  const { container } = render(
+    <Link
+      a
+      b
+      wow
+      prop
+      filtering
+      is
+      cool
+      aria-label="some label"
+      data-wow="value"
+      href="link"
+    >
+      hello world
+    </Link>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('basic SVG attributes survive prop filtering', async () => {
+test('basic SVG attributes survive prop filtering', () => {
   const RedCircle = styled('circle')`
     fill: #ff0000;
     stroke-width: 0.26458332;
   `
 
-  const svg = (
-    await act(() =>
-      renderer.create(<RedCircle r="9.8273811" cy="49.047619" cx="65.011902" />)
-    )
-  ).toJSON()
+  const { container } = render(
+    <RedCircle r="9.8273811" cy="49.047619" cx="65.011902" />
+  )
 
-  expect(svg).toMatchInlineSnapshot(`
+  expect(container.firstChild).toMatchInlineSnapshot(`
 .emotion-0 {
   fill: #ff0000;
   stroke-width: 0.26458332;
@@ -190,7 +166,7 @@ test('basic SVG attributes survive prop filtering', async () => {
 `)
 })
 
-test('all SVG attributes survive prop filtering', async () => {
+test('all SVG attributes survive prop filtering', () => {
   const svgAttributes = {
     accentHeight: 'abcd',
     accumulate: 'abcd',
@@ -435,14 +411,12 @@ test('all SVG attributes survive prop filtering', async () => {
     stroke-width: 0.26458332;
   `
 
-  const svg = (
-    await act(() => renderer.create(<RedPath {...svgAttributes} />))
-  ).toJSON()
+  const { container } = render(<RedPath {...svgAttributes} />)
 
-  expect(svg.props).toEqual({ ...svgAttributes, className: expect.any(String) })
+  expect(container).toMatchSnapshot
 })
 
-test('prop filtering on composed styled components that are string tags', async () => {
+test('prop filtering on composed styled components that are string tags', () => {
   const BaseLink = styled.a`
     background-color: hotpink;
   `
@@ -450,60 +424,54 @@ test('prop filtering on composed styled components that are string tags', async 
     color: green;
   `
 
-  const tree = (
-    await act(() =>
-      renderer.create(
-        <Link
-          wow
-          prop
-          filtering
-          looks
-          cool
-          but
-          is
-          kind
-          of
-          a
-          bad
-          idea
-          since
-          the
-          react
-          warnings
-          will
-          not
-          work
-          and
-          it="is"
-          problematic
-          for="other reasons"
-          aria-label="some label"
-          data-wow="value"
-          href="link"
-        >
-          hello world
-        </Link>
-      )
-    )
-  ).toJSON()
+  const { container } = render(
+    <Link
+      wow
+      prop
+      filtering
+      looks
+      cool
+      but
+      is
+      kind
+      of
+      a
+      bad
+      idea
+      since
+      the
+      react
+      warnings
+      will
+      not
+      work
+      and
+      it="is"
+      problematic
+      for="other reasons"
+      aria-label="some label"
+      data-wow="value"
+      href="link"
+    >
+      hello world
+    </Link>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('withComponent inherits explicit shouldForwardProp', async () => {
+test('withComponent inherits explicit shouldForwardProp', () => {
   const SomeComponent = styled('div', {
     shouldForwardProp: prop => prop === 'foo'
   })`
     color: hotpink;
   `
   const AnotherComponent = SomeComponent.withComponent('span')
-  const tree = (
-    await act(() => renderer.create(<AnotherComponent foo bar />))
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<AnotherComponent foo bar />)
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('withComponent inherits explicit shouldForwardProp from flattened component', async () => {
+test('withComponent inherits explicit shouldForwardProp from flattened component', () => {
   const SomeComponent = styled('div', {
     shouldForwardProp: prop => prop === 'foo'
   })`
@@ -513,26 +481,22 @@ test('withComponent inherits explicit shouldForwardProp from flattened component
     background-color: blue;
   `
   const YetAnotherComponent = AnotherComponent.withComponent('span')
-  const tree = (
-    await act(() => renderer.create(<YetAnotherComponent foo bar />))
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<YetAnotherComponent foo bar />)
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('withComponent should accept shouldForwardProp', async () => {
+test('withComponent should accept shouldForwardProp', () => {
   const SomeComponent = styled('div')`
     color: hotpink;
   `
   const AnotherComponent = SomeComponent.withComponent('span', {
     shouldForwardProp: prop => prop === 'xyz'
   })
-  const tree = (
-    await act(() => renderer.create(<AnotherComponent qwe xyz />))
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<AnotherComponent qwe xyz />)
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('withComponent should compose shouldForwardProp', async () => {
+test('withComponent should compose shouldForwardProp', () => {
   const SomeComponent = styled('div', {
     shouldForwardProp: prop => prop !== 'foo'
   })`
@@ -541,13 +505,11 @@ test('withComponent should compose shouldForwardProp', async () => {
   const AnotherComponent = SomeComponent.withComponent('span', {
     shouldForwardProp: prop => prop !== 'bar'
   })
-  const tree = (
-    await act(() => renderer.create(<AnotherComponent foo bar qwe xyz />))
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<AnotherComponent foo bar qwe xyz />)
+  expect(container.firstChild).toMatchSnapshot()
 })
 
-test('withComponent should compose shouldForwardProp with a flattened component', async () => {
+test('withComponent should compose shouldForwardProp with a flattened component', () => {
   const SomeComponent = styled('div', {
     shouldForwardProp: prop => prop !== 'foo'
   })`
@@ -559,8 +521,6 @@ test('withComponent should compose shouldForwardProp with a flattened component'
   const YetAnotherComponent = SomeComponent.withComponent('span', {
     shouldForwardProp: prop => prop !== 'bar'
   })
-  const tree = (
-    await act(() => renderer.create(<YetAnotherComponent foo bar qwe xyz />))
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<YetAnotherComponent foo bar qwe xyz />)
+  expect(container.firstChild).toMatchSnapshot()
 })

@@ -10,10 +10,10 @@ exports[`component selector should be converted to use the emotion target classN
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   <div
-    className="emotion-1 emotion-2"
+    class="emotion-1 emotion-2"
   />
 </div>
 `;

@@ -2,11 +2,11 @@ import 'test-utils/setup-env'
 import React from 'react'
 import { act } from 'react'
 import styled from '@emotion/styled'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { css } from '@emotion/css'
 
 describe('component selector', () => {
-  test('should be converted to use the emotion target className', async () => {
+  test('should be converted to use the emotion target className', () => {
     const FakeComponent = styled.div`
       color: blue;
     `
@@ -16,15 +16,11 @@ describe('component selector', () => {
         color: red;
       }
     `
-    const tree = (
-      await act(() =>
-        renderer.create(
-          <div className={cls2}>
-            <FakeComponent />
-          </div>
-        )
-      )
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <div className={cls2}>
+        <FakeComponent />
+      </div>
+    )
+    expect(container.firstChild).toMatchSnapshot()
   })
 })
