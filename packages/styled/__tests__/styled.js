@@ -364,7 +364,7 @@ describe('styled', () => {
     expect(container1.firstChild).toMatchSnapshot()
     const { container: container2 } = render(<H1>hello world</H1>)
 
-    expect(container2).toMatchSnapshot()
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
   test('composition of nested pseudo selectors', async () => {

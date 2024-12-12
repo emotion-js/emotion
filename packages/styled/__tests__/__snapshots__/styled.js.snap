@@ -110,7 +110,7 @@ exports[`styled composition 2`] = `
 
 <h1
   class="legacy__class emotion-0"
-  scale={2}
+  scale="2"
 >
   hello world
 </h1>
@@ -181,7 +181,7 @@ exports[`styled function in expression 1`] = `
 
 <h1
   class="legacy__class emotion-0"
-  scale={2}
+  scale="2"
 >
   hello world
 </h1>
@@ -201,7 +201,7 @@ exports[`styled glamorous style api & composition 1`] = `
 
 <h1
   class="emotion-0"
-  fontSize={20}
+  font-size="20"
 >
   hello world
 </h1>
@@ -277,9 +277,8 @@ exports[`styled input placeholder 1`] = `
 
 <input
   class="emotion-0"
->
-  hello world
-</input>
+  value="hello world"
+/>
 `;
 
 exports[`styled input placeholder object 1`] = `
@@ -301,9 +300,8 @@ exports[`styled input placeholder object 1`] = `
 
 <input
   class="emotion-0"
->
-  hello world
-</input>
+  value="hello world"
+/>
 `;
 
 exports[`styled keyframes with css call 1`] = `
@@ -378,17 +376,10 @@ exports[`styled no prop filtering on non string tags 1`] = `
 }
 
 <a
-  a={true}
   aria-label="some label"
-  b={true}
   class="emotion-0"
-  cool={true}
   data-wow="value"
-  filtering={true}
   href="link"
-  is={true}
-  prop={true}
-  wow={true}
 >
   hello world
 </a>
@@ -399,27 +390,14 @@ exports[`styled no prop filtering on string tags started with upper case 1`] = `
   color: green;
 }
 
-<SomeCustomLink
-  a={true}
+<somecustomlink
   aria-label="some label"
-  b={true}
   class="emotion-0"
-  cool={true}
   data-wow="value"
-  filtering={true}
   href="link"
-  is={true}
-  prop={true}
-  wow={true}
 >
   hello world
-</SomeCustomLink>
-`;
-
-exports[`styled object as class 1`] = `
-<div
-  class="myclass emotion-0"
-/>
+</somecustomlink>
 `;
 
 exports[`styled object as className 1`] = `
@@ -442,7 +420,7 @@ exports[`styled object as style 1`] = `
 
 <h1
   class="emotion-0"
-  fontSize={20}
+  font-size="20"
 >
   hello world
 </h1>
@@ -511,7 +489,6 @@ exports[`styled prop filtering 1`] = `
   class="emotion-0"
   data-wow="value"
   href="link"
-  is={true}
 >
   hello world
 </a>
@@ -528,7 +505,6 @@ exports[`styled prop filtering on composed styled components that are string tag
   class="emotion-0"
   data-wow="value"
   href="link"
-  is={true}
 >
   hello world
 </a>
