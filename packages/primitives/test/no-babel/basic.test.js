@@ -51,14 +51,14 @@ test('should render the primitive when styles applied using object style notatio
     </Text>
   )
 
-  expect(container).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 // this needs to be here since the babel plugin will remove the whitespace
 test('empty string', () => {
   // prettier-ignore
-  let style = css`    
-      
+  let style = css`
+
   `
   expect(StyleSheet.flatten(style)).toEqual({})
 })
