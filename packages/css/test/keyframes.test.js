@@ -1,5 +1,6 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { act } from 'react'
 import renderer from 'react-test-renderer'
 import { keyframes, flush, css } from '@emotion/css'
 
@@ -7,7 +8,7 @@ describe('keyframes', () => {
   afterEach(() => {
     flush()
   })
-  test('renders', () => {
+  test('renders', async () => {
     const bounce = keyframes`
       from, 20%, 53%, 80%, to {
         animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -29,42 +30,46 @@ describe('keyframes', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <h1
-          className={css`
-            animation: ${bounce} 2s linear infinite;
-          `}
-        >
-          hello world
-        </h1>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <h1
+            className={css`
+              animation: ${bounce} 2s linear infinite;
+            `}
+          >
+            hello world
+          </h1>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
-  test('keyframes with interpolation', () => {
+  test('keyframes with interpolation', async () => {
     const endingRotation = '360deg'
 
-    const tree = renderer
-      .create(
-        <h1
-          className={css`
-            animation: ${keyframes`
-    from {
-      transform: rotate(0deg);
-    }
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <h1
+            className={css`
+              animation: ${keyframes`
+                from {
+                  transform: rotate(0deg);
+                }
 
-    to {
-      transform: rotate(${endingRotation});
-    }
-  `} 2s linear infinite;
-          `}
-        >
-          hello world
-        </h1>
+                to {
+                  transform: rotate(${endingRotation});
+                }
+              `} 2s linear infinite;
+            `}
+          >
+            hello world
+          </h1>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })

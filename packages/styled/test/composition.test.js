@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import 'test-utils/setup-env'
-import * as renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { jsx, css } from '@emotion/react'
 import styled from '@emotion/styled'
 
@@ -28,15 +28,13 @@ test('composition', () => {
     font-size: 32px;
   `
 
-  const tree = renderer
-    .create(
-      <FinalH2 scale={2} className={'legacy__class'}>
-        hello world
-      </FinalH2>
-    )
-    .toJSON()
+  const { container } = render(
+    <FinalH2 scale={2} className={'legacy__class'}>
+      hello world
+    </FinalH2>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('composition with objects', () => {
@@ -60,15 +58,13 @@ test('composition with objects', () => {
     font-size: 32px;
   `
 
-  const tree = renderer
-    .create(
-      <H2 scale={2} className={'legacy__class'}>
-        hello world
-      </H2>
-    )
-    .toJSON()
+  const { container } = render(
+    <H2 scale={2} className={'legacy__class'}>
+      hello world
+    </H2>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 test('object composition', () => {
   const imageStyles = css({ width: 96, height: 96 })
@@ -96,9 +92,9 @@ test('object composition', () => {
     ${blue};
   `
 
-  const tree = renderer.create(<Avatar />).toJSON()
+  const { container } = render(<Avatar />)
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('composition', () => {
@@ -111,10 +107,8 @@ test('composition', () => {
     font-size: ${(fontSize * 2) / 3 + 'px'};
   `
 
-  const tree = renderer
-    .create(<H2 className={'legacy__class'}>hello world</H2>)
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<H2 className={'legacy__class'}>hello world</H2>)
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('composing components', () => {
@@ -129,11 +123,9 @@ test('composing components', () => {
     display: flex;
     justify-content: center;
   `
-  const tree = renderer
-    .create(<AnotherButton>hello world</AnotherButton>)
-    .toJSON()
+  const { container } = render(<AnotherButton>hello world</AnotherButton>)
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('composition of nested pseudo selectors', () => {
@@ -154,39 +146,35 @@ test('composition of nested pseudo selectors', () => {
 
   const Button = styled('button')(buttonStyles)
 
-  const tree = renderer
-    .create(
-      <Button
-        css={css({
-          '&:hover': {
-            color: 'pink',
-            '&:active': {
-              color: 'purple'
-            },
-            '&.some-class': {
-              color: 'yellow'
-            }
+  const { container } = render(
+    <Button
+      css={css({
+        '&:hover': {
+          color: 'pink',
+          '&:active': {
+            color: 'purple'
+          },
+          '&.some-class': {
+            color: 'yellow'
           }
-        })}
-      >
-        Should be purple
-      </Button>
-    )
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+        }
+      })}
+    >
+      Should be purple
+    </Button>
+  )
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('glamorous style api & composition', () => {
   const H1 = styled.h1(props => ({ fontSize: props.fontSize }))
   const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
 
-  const tree = renderer
-    .create(
-      <H2 fontSize={20} flex={1}>
-        hello world
-      </H2>
-    )
-    .toJSON()
+  const { container } = render(
+    <H2 fontSize={20} flex={1}>
+      hello world
+    </H2>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })

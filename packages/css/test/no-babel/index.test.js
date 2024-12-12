@@ -1,5 +1,6 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { act } from 'react'
 import renderer from 'react-test-renderer'
 import { css } from '@emotion/css'
 import styled from '@emotion/styled'
@@ -11,7 +12,7 @@ afterEach(() => {
 })
 
 describe('css', () => {
-  test('random expression', () => {
+  test('random expression', async () => {
     const cls2 = css`
       font-size: 20px;
       @media (min-width: 420px) {
@@ -24,11 +25,13 @@ describe('css', () => {
       }
       background: green;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls2} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  test('composition', () => {
+  test('composition', async () => {
     const cls1 = css`
       display: flex;
       &:hover {
@@ -39,11 +42,13 @@ describe('css', () => {
       ${cls1};
       justify-content: center;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls2} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  test('handles objects', () => {
+  test('handles objects', async () => {
     const cls1 = css({
       float: 'left',
       display: 'flex',
@@ -52,11 +57,13 @@ describe('css', () => {
       height: 50,
       width: 20
     })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls1} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  test('composition with objects', () => {
+  test('composition with objects', async () => {
     const cls1 = css({
       display: 'flex',
       width: 30,
@@ -75,47 +82,61 @@ describe('css', () => {
       justify-content: center;
     `
 
-    const tree = renderer.create(<div className={cls2} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls2} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('@supports', () => {
+  test('@supports', async () => {
     const cls1 = css`
       @supports (display: grid) {
         display: grid;
       }
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls1} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('nested array', () => {
+  test('nested array', async () => {
     const cls1 = css([[{ display: 'flex' }]])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls1} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('composition stuff', () => {
+  test('composition stuff', async () => {
     const cls1 = css({ justifyContent: 'center' })
     const cls2 = css([cls1])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls1} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
-    const tree2 = renderer.create(<div className={cls2} />).toJSON()
+    const tree2 = (
+      await act(() => renderer.create(<div className={cls2} />))
+    ).toJSON()
     expect(tree2).toMatchSnapshot()
   })
-  test('null rule', () => {
+  test('null rule', async () => {
     const cls1 = css()
 
-    const tree = renderer.create(<div className={cls1} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cls1} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('no dynamic', () => {
+  test('no dynamic', async () => {
     const H1 = styled('h1')`
       float: left;
     `
 
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const tree = (
+      await act(() => renderer.create(<H1>hello world</H1>))
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
-  test('object as style', () => {
+  test('object as style', async () => {
     const H1 = styled('h1')(
       props => ({
         fontSize: props.fontSize
@@ -124,17 +145,19 @@ describe('css', () => {
       { display: 'flex' }
     )
 
-    const tree = renderer
-      .create(
-        <H1 fontSize={20} flex={1}>
-          hello world
-        </H1>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <H1 fontSize={20} flex={1}>
+            hello world
+          </H1>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
-  test('component as selectors (object syntax)', () => {
+  test('component as selectors (object syntax)', async () => {
     const fontSize = '20px'
     const H1 = styled('h1')({ fontSize })
     const Thing = styled('div')({
@@ -147,18 +170,20 @@ describe('css', () => {
     const spy = jest.fn()
     console.error = spy
 
-    expect(() =>
-      renderer.create(
-        <Thing>
-          hello <H1>This will be green</H1> world
-        </Thing>
+    expect(
+      act(() =>
+        renderer.create(
+          <Thing>
+            hello <H1>This will be green</H1> world
+          </Thing>
+        )
       )
-    ).toThrowErrorMatchingSnapshot()
+    ).rejects.toThrowErrorMatchingSnapshot()
 
     expect(spy.mock.calls.length).toBe(1)
     expect(spy.mock.calls[0][0].split('\n')[0]).toMatchSnapshot()
   })
-  test('component selectors without target', () => {
+  test('component selectors without target', async () => {
     const SomeComponent = styled('div')`
       color: blue;
     `
@@ -171,23 +196,25 @@ describe('css', () => {
       `
     }).toThrowErrorMatchingSnapshot()
   })
-  test('glamorous style api & composition', () => {
+  test('glamorous style api & composition', async () => {
     const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), {
       display: 'flex'
     })
 
-    const tree = renderer
-      .create(
-        <H2 fontSize={20} flex={1}>
-          hello world
-        </H2>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <H2 fontSize={20} flex={1}>
+            hello world
+          </H2>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
-  test('random expressions undefined return', () => {
+  test('random expressions undefined return', async () => {
     const H1 = styled('h1')`
       ${props =>
         props.prop &&
@@ -197,14 +224,16 @@ describe('css', () => {
       color: green;
     `
 
-    const tree = renderer
-      .create(<H1 className={'legacy__class'}>hello world</H1>)
-      .toJSON()
+    const tree = (
+      await act(() =>
+        renderer.create(<H1 className={'legacy__class'}>hello world</H1>)
+      )
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
-  test('function in expression', () => {
+  test('function in expression', async () => {
     const fontSize = 20
     const H1 = styled('h1')`
       font-size: ${fontSize + 'px'};
@@ -214,17 +243,19 @@ describe('css', () => {
       font-size: ${({ scale }) => fontSize * scale + 'px'};
     `
 
-    const tree = renderer
-      .create(
-        <H2 scale={2} className={'legacy__class'}>
-          hello world
-        </H2>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <H2 scale={2} className={'legacy__class'}>
+            hello world
+          </H2>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
-  test('name with class component', () => {
+  test('name with class component', async () => {
     class SomeComponent extends React.Component /* <{ className: string }> */ {
       render() {
         return <div className={this.props.className} />
@@ -235,12 +266,12 @@ describe('css', () => {
     `
     expect(StyledComponent.displayName).toBe(`Styled(SomeComponent)`)
   })
-  test('styled does not throw on toString without target', () => {
+  test('styled does not throw on toString without target', async () => {
     expect(() => {
       styled('div')().toString()
     }).not.toThrow()
   })
-  test('styled does not throw an error when certain properties are accessed', () => {
+  test('styled does not throw an error when certain properties are accessed', async () => {
     expect(() => {
       /* eslint-disable no-unused-expressions */
       // eslint-disable-next-line no-proto

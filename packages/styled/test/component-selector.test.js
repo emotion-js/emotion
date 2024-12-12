@@ -1,9 +1,10 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { act } from 'react'
 import styled from '@emotion/styled'
 import * as renderer from 'react-test-renderer'
 
-test('component as selector', () => {
+test('component as selector', async () => {
   const fontSize = '20px'
   const H1 = styled.h1`
     font-size: ${fontSize};
@@ -16,18 +17,20 @@ test('component as selector', () => {
     }
   `
 
-  const tree = renderer
-    .create(
-      <Thing>
-        hello <H1>This will be green</H1> world
-      </Thing>
+  const tree = (
+    await act(() =>
+      renderer.create(
+        <Thing>
+          hello <H1>This will be green</H1> world
+        </Thing>
+      )
     )
-    .toJSON()
+  ).toJSON()
 
   expect(tree).toMatchSnapshot()
 })
 
-test('component as selector function interpolation', () => {
+test('component as selector function interpolation', async () => {
   const H1 = styled.h1`
     font-size: ${props => props.fontSize}px;
   `
@@ -39,18 +42,20 @@ test('component as selector function interpolation', () => {
     }
   `
 
-  const tree = renderer
-    .create(
-      <Thing fontSize={10}>
-        hello <H1 fontSize={20}>This will be green</H1> world
-      </Thing>
+  const tree = (
+    await act(() =>
+      renderer.create(
+        <Thing fontSize={10}>
+          hello <H1 fontSize={20}>This will be green</H1> world
+        </Thing>
+      )
     )
-    .toJSON()
+  ).toJSON()
 
   expect(tree).toMatchSnapshot()
 })
 
-test('component as selector (object syntax)', () => {
+test('component as selector (object syntax)', async () => {
   const fontSize = '20px'
   const H1 = styled('h1')({ fontSize })
 
@@ -61,18 +66,20 @@ test('component as selector (object syntax)', () => {
     }
   })
 
-  const tree = renderer
-    .create(
-      <Thing>
-        hello <H1>This will be green</H1> world
-      </Thing>
+  const tree = (
+    await act(() =>
+      renderer.create(
+        <Thing>
+          hello <H1>This will be green</H1> world
+        </Thing>
+      )
     )
-    .toJSON()
+  ).toJSON()
 
   expect(tree).toMatchSnapshot()
 })
 
-test('component as selector function interpolation (object syntax)', () => {
+test('component as selector function interpolation (object syntax)', async () => {
   const H1 = styled('h1')(props => ({
     fontSize: `${props.fontSize}px`
   }))
@@ -84,13 +91,15 @@ test('component as selector function interpolation (object syntax)', () => {
     }
   })
 
-  const tree = renderer
-    .create(
-      <Thing fontSize={10}>
-        hello <H1 fontSize={20}>This will be green</H1> world
-      </Thing>
+  const tree = (
+    await act(() =>
+      renderer.create(
+        <Thing fontSize={10}>
+          hello <H1 fontSize={20}>This will be green</H1> world
+        </Thing>
+      )
     )
-    .toJSON()
+  ).toJSON()
 
   expect(tree).toMatchSnapshot()
 })

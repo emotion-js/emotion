@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import 'test-utils/setup-env'
 import { safeQuerySelector } from 'test-utils'
-import * as React from 'react'
+import React from 'react'
+import { act } from 'react'
 import { jsx, css, Global, CacheProvider, ThemeProvider } from '@emotion/react'
 import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
@@ -26,72 +27,84 @@ const SomeComponent = (props /*: { lol: true } */) => (props.lol ? 'yes' : 'no')
 // and have the css prop passed to them don't have type errors
 ;<SomeComponent /> // eslint-disable-line no-unused-expressions
 
-test('thing', () => {
-  const tree = renderer.create(
-    <div>
-      <div css={{ display: 'flex' }}>something</div>
-    </div>
+test('thing', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div>
+        <div css={{ display: 'flex' }}>something</div>
+      </div>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('css call composition', () => {
+test('css call composition', async () => {
   let first = css`
     color: hotpink;
   `
-  let tree = renderer.create(<div css={css({ ':hover': first })} />)
-
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('theming with the css prop', () => {
-  const tree = renderer.create(
-    <ThemeProvider theme={{ primary: 'hotpink' }}>
-      <div css={theme => ({ color: theme.primary })} />
-    </ThemeProvider>
-  )
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('theming with the array css prop', () => {
-  const tree = renderer.create(
-    <ThemeProvider theme={{ primary: 'hotpink' }}>
-      <div css={[theme => ({ color: theme.primary }), { display: 'flex' }]} />
-    </ThemeProvider>
+  let tree = await act(() =>
+    renderer.create(<div css={css({ ':hover': first })} />)
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('object with false', () => {
-  const tree = renderer.create(
-    <div>
-      <div css={{ color: 'hotpink', display: false }}>something</div>
-    </div>
+test('theming with the css prop', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <ThemeProvider theme={{ primary: 'hotpink' }}>
+        <div css={theme => ({ color: theme.primary })} />
+      </ThemeProvider>
+    )
+  )
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('theming with the array css prop', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <ThemeProvider theme={{ primary: 'hotpink' }}>
+        <div css={[theme => ({ color: theme.primary }), { display: 'flex' }]} />
+      </ThemeProvider>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('label in css call', () => {
-  const tree = renderer.create(
-    <div>
-      <div
-        css={css`
-          color: hotpink;
-          label: this-is-hotpink;
-        `}
-      >
-        something
+test('object with false', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div>
+        <div css={{ color: 'hotpink', display: false }}>something</div>
       </div>
-    </div>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('string as css prop throws', () => {
+test('label in css call', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div>
+        <div
+          css={css`
+            color: hotpink;
+            label: this-is-hotpink;
+          `}
+        >
+          something
+        </div>
+      </div>
+    )
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('string as css prop throws', async () => {
   expect(() => {
     renderer.create(
       <div>
@@ -107,89 +120,99 @@ test('string as css prop throws', () => {
   }).toThrowErrorMatchingSnapshot()
 })
 
-test('array fallback', () => {
-  const tree = renderer.create(
-    <div>
-      <div
-        css={{
-          color: ['green', 'hotpink']
-        }}
-      >
-        something
+test('array fallback', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div>
+        <div
+          css={{
+            color: ['green', 'hotpink']
+          }}
+        >
+          something
+        </div>
       </div>
-    </div>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('array fallback (using camelCased property)', () => {
-  const tree = renderer.create(
-    <div>
-      <div
-        css={{
-          backgroundColor: ['green', 'hotpink']
-        }}
-      >
-        something
+test('array fallback (using camelCased property)', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div>
+        <div
+          css={{
+            backgroundColor: ['green', 'hotpink']
+          }}
+        >
+          something
+        </div>
       </div>
-    </div>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('nested at rule', () => {
-  const tree = renderer.create(
-    <div
-      css={{
-        '@media (min-width: 980px)': {
-          backgroundColor: 'blue',
-          '@supports (width: 100vw)': {
-            backgroundColor: 'red'
+test('nested at rule', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div
+        css={{
+          '@media (min-width: 980px)': {
+            backgroundColor: 'blue',
+            '@supports (width: 100vw)': {
+              backgroundColor: 'red'
+            }
           }
-        }
-      }}
-    >
-      something
-    </div>
+        }}
+      >
+        something
+      </div>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('can set speedy via custom cache', () => {
+test('can set speedy via custom cache', async () => {
   let cache = createCache({ key: 'speedy-test', speedy: true })
-  renderer.create(
-    <CacheProvider value={cache}>
-      <div
-        css={{
-          color: 'hotpink'
-        }}
-      >
-        <span css={{ color: 'yellow' }}>wow</span>
-        something
-      </div>
-    </CacheProvider>
+  await act(() =>
+    renderer.create(
+      <CacheProvider value={cache}>
+        <div
+          css={{
+            color: 'hotpink'
+          }}
+        >
+          <span css={{ color: 'yellow' }}>wow</span>
+          something
+        </div>
+      </CacheProvider>
+    )
   )
   expect(cache.sheet.tags).toHaveLength(1)
 })
 
-test('speedy option from a custom cache is inherited for <Global/> styles', () => {
+test('speedy option from a custom cache is inherited for <Global/> styles', async () => {
   let cache = createCache({
     key: 'global-inherit-speedy',
     container: safeQuerySelector('body'),
     speedy: true
   })
-  renderer.create(
-    <CacheProvider value={cache}>
-      <Global styles={{ html: { fontSize: 16 } }} />
-    </CacheProvider>
+  await act(() =>
+    renderer.create(
+      <CacheProvider value={cache}>
+        <Global styles={{ html: { fontSize: 16 } }} />
+      </CacheProvider>
+    )
   )
   expect(safeQuerySelector('body style').textContent).toEqual('')
 })
 
-test('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', () => {
+test('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', async () => {
   let SomeComp = props => {
     return (
       <div
@@ -202,12 +225,12 @@ test('does not autoLabel without babel or EMOTION_RUNTIME_AUTO_LABEL', () => {
       </div>
     )
   }
-  const tree = renderer.create(<SomeComp />)
+  const tree = await act(() => renderer.create(<SomeComp />))
 
   expect(tree.toJSON().props.className).toMatch(/css-[^-]+/)
 })
 
-test('autoLabel without babel', () => {
+test('autoLabel without babel', async () => {
   globalThis.EMOTION_RUNTIME_AUTO_LABEL = true
 
   let SomeComp = props => {
@@ -222,12 +245,12 @@ test('autoLabel without babel', () => {
       </div>
     )
   }
-  const tree = renderer.create(<SomeComp />)
+  const tree = await act(() => renderer.create(<SomeComp />))
 
   expect(tree.toJSON().props.className.endsWith('-SomeComp')).toBe(true)
 })
 
-test('autoLabel without babel (sanitized)', () => {
+test('autoLabel without babel (sanitized)', async () => {
   globalThis.EMOTION_RUNTIME_AUTO_LABEL = true
 
   let SomeComp$ = props => {
@@ -239,12 +262,12 @@ test('autoLabel without babel (sanitized)', () => {
   }
 
   // eslint-disable-next-line react/jsx-pascal-case
-  const tree = renderer.create(<SomeComp$ />)
+  const tree = await act(() => renderer.create(<SomeComp$ />))
 
   expect(tree.toJSON().props.className.endsWith('-SomeComp-')).toBe(true)
 })
 
-test('overwrite styles from parent', () => {
+test('overwrite styles from parent', async () => {
   let SomeComponent = (props /*: Object */) => (
     <div
       css={{
@@ -254,43 +277,49 @@ test('overwrite styles from parent', () => {
       {...props}
     />
   )
-  const tree = renderer.create(
-    <SomeComponent
-      css={{
-        color: 'hotpink'
-      }}
-    />
+  const tree = await act(() =>
+    renderer.create(
+      <SomeComponent
+        css={{
+          color: 'hotpink'
+        }}
+      />
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('child selector array', () => {
-  const tree = renderer.create(
-    <div
-      css={{
-        ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
-      }}
-    />
+test('child selector array', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div
+        css={{
+          ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
+        }}
+      />
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('handles camelCased custom properties in object styles properly', () => {
-  const tree = renderer.create(
-    <div
-      css={{
-        '--textColor': 'green',
-        color: 'var(--textColor)'
-      }}
-    />
+test('handles camelCased custom properties in object styles properly', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div
+        css={{
+          '--textColor': 'green',
+          color: 'var(--textColor)'
+        }}
+      />
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('applies class when css prop is set to nil on wrapper component', () => {
+test('applies class when css prop is set to nil on wrapper component', async () => {
   const Button = props => <button css={{ color: 'hotpink' }} {...props} />
 
   const WrappedButton /*: React.StatelessFunctionalComponent<any> */ = (
@@ -300,37 +329,41 @@ test('applies class when css prop is set to nil on wrapper component', () => {
   } */
   ) => <Button css={buttonStyles}>{children}</Button>
 
-  const tree = renderer.create(
-    <React.Fragment>
-      <WrappedButton>{"I'm hotpink!"}</WrappedButton>
-      <WrappedButton buttonStyles={null}>{"I'm hotpink too!"}</WrappedButton>
-    </React.Fragment>
+  const tree = await act(() =>
+    renderer.create(
+      <React.Fragment>
+        <WrappedButton>{"I'm hotpink!"}</WrappedButton>
+        <WrappedButton buttonStyles={null}>{"I'm hotpink too!"}</WrappedButton>
+      </React.Fragment>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('handles composition of styles without a final semi in a declaration block', () => {
-  const tree = renderer.create(
-    <div
-      css={[
-        // prettier-ignore
-        css`
+test('handles composition of styles without a final semi in a declaration block', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <div
+        css={[
+          // prettier-ignore
+          css`
           color: hotpink
         `,
-        css`
-          background-color: green;
-        `
-      ]}
-    >
-      {"I'm hotpink on the green background."}
-    </div>
+          css`
+            background-color: green;
+          `
+        ]}
+      >
+        {"I'm hotpink on the green background."}
+      </div>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('handles composition of an array css prop containing no final semi with cssprop-generated className (runtime variant of #1730)', () => {
+test('handles composition of an array css prop containing no final semi with cssprop-generated className (runtime variant of #1730)', async () => {
   const Child = ({ bgColor, ...props }) => (
     <div
       css={[{ width: 100, height: 100 }, `background-color: ${bgColor}`]}
@@ -342,8 +375,8 @@ test('handles composition of an array css prop containing no final semi with css
       {children}
     </Child>
   )
-  const tree = renderer.create(
-    <Parent>{"I'm hotpink on the green background."}</Parent>
+  const tree = await act(() =>
+    renderer.create(<Parent>{"I'm hotpink on the green background."}</Parent>)
   )
 
   expect(tree.toJSON()).toMatchSnapshot()

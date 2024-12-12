@@ -4,18 +4,23 @@ import { jsx, css, keyframes } from '@emotion/react'
 import { safeQuerySelector, throwIfFalsy } from 'test-utils'
 import cases from 'jest-in-case'
 import * as renderer from 'react-test-renderer'
+import { act } from 'react'
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 
 cases(
   'keyframes',
-  opts => {
+  async opts => {
     safeQuerySelector('head').innerHTML = ''
     let cache = createCache({ key: 'css' })
     expect(
-      renderer
-        .create(<CacheProvider value={cache}>{opts.render()}</CacheProvider>)
-        .toJSON()
+      (
+        await act(() =>
+          renderer.create(
+            <CacheProvider value={cache}>{opts.render()}</CacheProvider>
+          )
+        )
+      ).toJSON()
     ).toMatchSnapshot()
     expect(
       throwIfFalsy(cache.sheet.tags).map(tag => tag.textContent || '')

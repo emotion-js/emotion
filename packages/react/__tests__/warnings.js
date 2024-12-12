@@ -48,7 +48,7 @@ const invalidValues = ['this is not valid', '', 'element']
 test('does warn when invalid values are passed for the content property', () => {
   invalidValues.forEach(value => {
     expect(() =>
-      renderer.create(<div css={{ content: value }} />)
+      act(() => renderer.create(<div css={{ content: value }} />))
     ).toThrowError(
       `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
     )
@@ -127,20 +127,18 @@ describe('unsafe pseudo classes', () => {
 
     test('does warn when not using the flag on the rule that follows another rule', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                '& > *': {
-                  marginLeft: 10
-                },
-                [`& > *:first-child$`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              '& > *': {
+                marginLeft: 10
+              },
+              [`& > *:first-child$`]: {
+                marginLeft: 0
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -153,20 +151,18 @@ describe('unsafe pseudo classes', () => {
 
     test('does warn when not using the flag on the rule that preceeds another rule', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child`]: {
-                  marginLeft: 0
-                },
-                '& > *': {
-                  marginLeft: 10
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              [`& > *:first-child`]: {
+                marginLeft: 0
+              },
+              '& > *': {
+                marginLeft: 10
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -179,18 +175,16 @@ describe('unsafe pseudo classes', () => {
 
     test('does warn when not using the flag on the rule that follows a declaration', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                color: 'hotpink',
-                [`& > *:first-child`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              color: 'hotpink',
+              [`& > *:first-child`]: {
+                marginLeft: 0
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -203,18 +197,16 @@ describe('unsafe pseudo classes', () => {
 
     test('does warn when not using the flag on the rule that preceeds a declaration', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child`]: {
-                  marginLeft: 0
-                },
-                color: 'hotpink'
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              [`& > *:first-child`]: {
+                marginLeft: 0
+              },
+              color: 'hotpink'
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -227,17 +219,15 @@ describe('unsafe pseudo classes', () => {
 
     test('does warn when not using the flag on a global rule', () => {
       expect(
-        renderer
-          .create(
-            <Global
-              styles={{
-                [`body > *:first-child`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <Global
+            styles={{
+              [`body > *:first-child`]: {
+                marginLeft: 0
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -250,112 +240,100 @@ describe('unsafe pseudo classes', () => {
 
     test('does not warn when using the flag on the rule that follows another rule', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                '& > *': {
-                  marginLeft: 10
-                },
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              '& > *': {
+                marginLeft: 10
+              },
+              [`& > *:first-child${ignoreSsrFlag}`]: {
+                marginLeft: 0
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
 
     test('does not warn when using the flag on the rule that preceeds another rule', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                },
-                '& > *': {
-                  marginLeft: 10
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              [`& > *:first-child${ignoreSsrFlag}`]: {
+                marginLeft: 0
+              },
+              '& > *': {
+                marginLeft: 10
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
 
     test('does not warn when using the flag on the rule that follows a declaration', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                color: 'hotpink',
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              color: 'hotpink',
+              [`& > *:first-child${ignoreSsrFlag}`]: {
+                marginLeft: 0
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
 
     test('does not warn when using the flag on the rule that preceeds a declaration', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                },
-                color: 'hotpink'
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <div
+            css={{
+              [`& > *:first-child${ignoreSsrFlag}`]: {
+                marginLeft: 0
+              },
+              color: 'hotpink'
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
 
     test('does not warn when using the flag on a global rule', () => {
       expect(
-        renderer
-          .create(
-            <Global
-              styles={{
-                [`body > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
+        render(
+          <Global
+            styles={{
+              [`body > *:first-child${ignoreSsrFlag}`]: {
+                marginLeft: 0
+              }
+            }}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
 
     test('does warn when not using the flag on a rule that is defined in another one', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={css`
-                div {
-                  span:first-child {
-                    border-bottom-left-radius: 0;
-                  }
+        render(
+          <div
+            css={css`
+              div {
+                span:first-child {
+                  border-bottom-left-radius: 0;
                 }
-              `}
-            />
-          )
-          .toJSON()
+              }
+            `}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error.mock.calls).toMatchInlineSnapshot(`
         [
@@ -368,19 +346,17 @@ describe('unsafe pseudo classes', () => {
 
     test('does not warn when using the flag on a rule that is defined in another one', () => {
       expect(
-        renderer
-          .create(
-            <div
-              css={css`
-                div {
-                  span:first-child${ignoreSsrFlag} {
-                    border-bottom-left-radius: 0;
-                  }
+        render(
+          <div
+            css={css`
+              div {
+                span:first-child${ignoreSsrFlag} {
+                  border-bottom-left-radius: 0;
                 }
-              `}
-            />
-          )
-          .toJSON()
+              }
+            `}
+          />
+        ).container
       ).toMatchSnapshot()
       expect(console.error).not.toBeCalled()
     })
@@ -388,21 +364,19 @@ describe('unsafe pseudo classes', () => {
 })
 
 test('global with css prop', () => {
-  let tree = renderer
-    .create(
-      <Global
-        css={{
-          html: {
-            backgroundColor: 'hotpink'
-          },
-          '@font-face': {
-            fontFamily: 'some-name'
-          }
-        }}
-      />
-    )
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+  let { container } = render(
+    <Global
+      css={{
+        html: {
+          backgroundColor: 'hotpink'
+        },
+        '@font-face': {
+          fontFamily: 'some-name'
+        }
+      }}
+    />
+  )
+  expect(container).toMatchSnapshot()
 
   expect(console.error).toBeCalledWith(
     "It looks like you're using the css prop on Global, did you mean to use the styles prop instead?"
@@ -442,9 +416,7 @@ test('keyframes interpolated into plain string', () => {
     }
   })
 
-  renderer.create(
-    <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
-  )
+  render(<div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />)
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
             [
               [
@@ -509,7 +481,7 @@ test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
 })
 
 test('@import nested in scoped `css`', () => {
-  renderer.create(
+  render(
     <div
       css={css`
         @import url('https://some-url');
@@ -531,7 +503,7 @@ test('@import nested in scoped `css`', () => {
 })
 
 test('@import prepended with other rules', () => {
-  renderer.create(
+  render(
     <Global
       styles={css`
         h1 {
@@ -553,7 +525,7 @@ test('@import prepended with other rules', () => {
 })
 
 test('@import prepended by other @import', () => {
-  renderer.create(
+  render(
     <Global
       styles={css`
         @import url('https://some-url');
@@ -566,7 +538,7 @@ test('@import prepended by other @import', () => {
 })
 
 test('when using `jsx` multiple static children should not result in a key-related warning', () => {
-  renderer.create(
+  render(
     <div css={{ color: 'hotpink' }}>
       <div />
       <div />

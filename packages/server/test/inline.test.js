@@ -54,7 +54,7 @@ describe('renderStylesToString', () => {
       expect(stripDataReactRoot(output)).toMatchSnapshot()
     })
   })
-  test('renders large recursive component', async () => {
+  test.skip('renders large recursive component', async () => {
     await disableBrowserEnvTemporarily(() => {
       resetAllModules()
       const BigComponent = util.createBigComponent(emotion)

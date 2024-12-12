@@ -1,77 +1,86 @@
-import * as React from 'react'
+import React from 'react'
+import { act } from 'react'
 import 'test-utils/setup-env'
 import { ClassNames, ThemeProvider } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
-test('css', () => {
-  const tree = renderer.create(
-    <ClassNames>
-      {({ css }) => (
-        <div
-          className={css`
-            color: hotpink;
-          `}
-        />
-      )}
-    </ClassNames>
-  )
-
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('should get the theme', () => {
-  const tree = renderer.create(
-    <ThemeProvider theme={{ color: 'green' }}>
+test('css', async () => {
+  const tree = await act(() =>
+    renderer.create(
       <ClassNames>
-        {({ css, theme }) => (
+        {({ css }) => (
           <div
             className={css`
-              color: ${theme.color};
+              color: hotpink;
             `}
           />
         )}
       </ClassNames>
-    </ThemeProvider>
-  )
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('cx', () => {
-  const tree = renderer.create(
-    <ClassNames>
-      {({ css, cx }) => {
-        let secondClassButItsInsertedFirst = css`
-          color: green;
-        `
-        let firstClassButItsInsertedSecond = css`
-          color: hotpink;
-        `
-
-        return (
-          <div
-            className={cx(
-              firstClassButItsInsertedSecond,
-              'some-other-class',
-              secondClassButItsInsertedFirst
-            )}
-          />
-        )
-      }}
-    </ClassNames>
+    )
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('css and cx throws when used after render', () => {
+test('should get the theme', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <ThemeProvider theme={{ color: 'green' }}>
+        <ClassNames>
+          {({ css, theme }) => (
+            <div
+              className={css`
+                color: ${theme.color};
+              `}
+            />
+          )}
+        </ClassNames>
+      </ThemeProvider>
+    )
+  )
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('cx', async () => {
+  const tree = await act(() =>
+    renderer.create(
+      <ClassNames>
+        {({ css, cx }) => {
+          let secondClassButItsInsertedFirst = css`
+            color: green;
+          `
+          let firstClassButItsInsertedSecond = css`
+            color: hotpink;
+          `
+
+          return (
+            <div
+              className={cx(
+                firstClassButItsInsertedSecond,
+                'some-other-class',
+                secondClassButItsInsertedFirst
+              )}
+            />
+          )
+        }}
+      </ClassNames>
+    )
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('css and cx throws when used after render', async () => {
   let cx, css
-  renderer.create(
-    <ClassNames>
-      {arg => {
-        ;({ cx, css } = arg)
-        return null
-      }}
-    </ClassNames>
+  await act(() =>
+    renderer.create(
+      <ClassNames>
+        {arg => {
+          ;({ cx, css } = arg)
+          return null
+        }}
+      </ClassNames>
+    )
   )
 
   expect(cx).toThrowErrorMatchingInlineSnapshot(

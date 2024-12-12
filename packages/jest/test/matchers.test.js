@@ -1,7 +1,8 @@
 import 'test-utils/setup-env'
 import renderer from 'react-test-renderer'
 /** @jsx jsx */
-import * as React from 'react'
+import React from 'react'
+import { act } from 'react'
 import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import { matchers } from '@emotion/jest'
@@ -21,14 +22,16 @@ describe('toHaveStyleRule', () => {
     width: 100%;
   `
 
-  test('matches styles on the top-most node passed in', () => {
-    const tree = renderer
-      .create(
-        <div css={divStyle}>
-          <svg css={svgStyle} />
-        </div>
+  test('matches styles on the top-most node passed in', async () => {
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div css={divStyle}>
+            <svg css={svgStyle} />
+          </div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('color', 'red')
     expect(tree).not.toHaveStyleRule('width', '100%')
@@ -39,14 +42,16 @@ describe('toHaveStyleRule', () => {
     expect(svgNode).not.toHaveStyleRule('color', 'red')
   })
 
-  test('supports asymmetric matchers', () => {
-    const tree = renderer
-      .create(
-        <div css={divStyle}>
-          <svg css={svgStyle} />
-        </div>
+  test('supports asymmetric matchers', async () => {
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div css={divStyle}>
+            <svg css={svgStyle} />
+          </div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('color', expect.anything())
     expect(tree).not.toHaveStyleRule('padding', expect.anything())
@@ -56,20 +61,24 @@ describe('toHaveStyleRule', () => {
     expect(svgNode).toHaveStyleRule('width', expect.stringMatching(/.*%$/))
   })
 
-  test('fails if no styles are found', () => {
-    const tree = renderer.create(<div />).toJSON()
+  test('fails if no styles are found', async () => {
+    const tree = (await act(() => renderer.create(<div />))).toJSON()
     const result = toHaveStyleRule(tree, 'color', 'red')
     expect(result.pass).toBe(false)
     expect(result.message()).toBe('Property not found: color')
   })
 
-  test('supports regex values', () => {
-    const tree = renderer.create(<div css={divStyle} />).toJSON()
+  test('supports regex values', async () => {
+    const tree = (
+      await act(() => renderer.create(<div css={divStyle} />))
+    ).toJSON()
     expect(tree).toHaveStyleRule('color', /red/)
   })
 
-  it.skip('returns a message explaining the failure', () => {
-    const tree = renderer.create(<div css={divStyle} />).toJSON()
+  it.skip('returns a message explaining the failure', async () => {
+    const tree = (
+      await act(() => renderer.create(<div css={divStyle} />))
+    ).toJSON()
 
     // When expect(tree).toHaveStyleRule('color', 'blue') fails
     const resultFail = toHaveStyleRule(tree, 'color', 'blue')
@@ -80,7 +89,7 @@ describe('toHaveStyleRule', () => {
     expect(resultPass.message()).toMatchSnapshot()
   })
 
-  test('matches styles on the focus, hover targets', () => {
+  test('matches styles on the focus, hover targets', async () => {
     const localDivStyle = css`
       color: white;
       &:hover {
@@ -90,20 +99,22 @@ describe('toHaveStyleRule', () => {
         color: black;
       }
     `
-    const tree = renderer
-      .create(
-        <div css={localDivStyle}>
-          <svg css={svgStyle} />
-        </div>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div css={localDivStyle}>
+            <svg css={svgStyle} />
+          </div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('color', 'yellow', { target: ':hover' })
     expect(tree).toHaveStyleRule('color', 'black', { target: ':focus' })
     expect(tree).toHaveStyleRule('color', 'white')
   })
 
-  test('matches styles on the nested component or html element', () => {
+  test('matches styles on the nested component or html element', async () => {
     const Svg = styled('svg')`
       width: 100%;
       fill: blue;
@@ -118,14 +129,16 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Div>
-          <Svg />
-          <span>Test</span>
-        </Div>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <Div>
+            <Svg />
+            <span>Test</span>
+          </Div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
     expect(tree).toHaveStyleRule('color', 'red')
@@ -133,7 +146,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
   })
 
-  test('matches target styles by regex', () => {
+  test('matches target styles by regex', async () => {
     const localDivStyle = css`
       a {
         color: yellow;
@@ -142,33 +155,37 @@ describe('toHaveStyleRule', () => {
         color: black;
       }
     `
-    const tree = renderer
-      .create(
-        <div css={localDivStyle}>
-          <svg css={svgStyle} />
-        </div>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div css={localDivStyle}>
+            <svg css={svgStyle} />
+          </div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
   })
 
-  test('matches proper style for css', () => {
-    const tree = renderer
-      .create(
-        <div
-          css={css`
-            color: green;
-            color: hotpink;
-          `}
-        />
+  test('matches proper style for css', async () => {
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div
+            css={css`
+              color: green;
+              color: hotpink;
+            `}
+          />
+        )
       )
-      .toJSON()
+    ).toJSON()
     expect(tree).not.toHaveStyleRule('color', 'green')
     expect(tree).toHaveStyleRule('color', 'hotpink')
   })
 
-  test('matches style of the media', () => {
+  test('matches style of the media', async () => {
     const Svg = styled('svg')`
       width: 100%;
     `
@@ -188,13 +205,15 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Div>
-          <Svg />
-        </Div>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <Div>
+            <Svg />
+          </Div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('font-size', '30px')
     expect(tree).toHaveStyleRule('font-size', '50px', {
@@ -211,7 +230,7 @@ describe('toHaveStyleRule', () => {
     })
   })
 
-  test('matches styles with target and media options', () => {
+  test('matches styles with target and media options', async () => {
     const localDivStyle = css`
       color: white;
       @media (min-width: 420px) {
@@ -221,13 +240,15 @@ describe('toHaveStyleRule', () => {
         }
       }
     `
-    const tree = renderer
-      .create(
-        <div css={localDivStyle}>
-          <span>Test</span>
-        </div>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div css={localDivStyle}>
+            <span>Test</span>
+          </div>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree).toHaveStyleRule('color', 'yellow', {
       target: ':hover',
@@ -239,7 +260,7 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('color', 'white')
   })
 
-  test('fails if option media invalid', () => {
+  test('fails if option media invalid', async () => {
     const Div = styled('div')`
       font-size: 30px;
       @media (min-width: 420px) {
@@ -247,7 +268,7 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer.create(<Div />).toJSON()
+    const tree = (await act(() => renderer.create(<Div />))).toJSON()
 
     const result = toHaveStyleRule(tree, 'font-size', '50px', {
       media: '(min-width-'
@@ -256,7 +277,7 @@ describe('toHaveStyleRule', () => {
     expect(result.message()).toBe('Property not found: font-size')
   })
 
-  test('matches styles for a component used as selector', () => {
+  test('matches styles for a component used as selector', async () => {
     const Bar = styled.div``
 
     const Foo = styled.div`
@@ -266,18 +287,20 @@ describe('toHaveStyleRule', () => {
         color: hotpink;
       }
     `
-    const tree = renderer
-      .create(
-        <Foo>
-          <Bar />
-        </Foo>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <Foo>
+            <Bar />
+          </Foo>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
   })
 
-  test('takes specificity into account when matching styles (basic)', () => {
+  test('takes specificity into account when matching styles (basic)', async () => {
     const Bar = styled.div`
       color: yellow;
     `
@@ -290,30 +313,34 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Foo>
-          <Bar />
-        </Foo>
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <Foo>
+            <Bar />
+          </Foo>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
   })
 
-  test('should throw a friendly error when it receives an array', () => {
-    const tree = renderer
-      .create(
-        <>
-          <div
-            css={css`
-              color: hotpink;
-            `}
-          />
-          {'Some text'}
-        </>
+  test('should throw a friendly error when it receives an array', async () => {
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <>
+            <div
+              css={css`
+                color: hotpink;
+              `}
+            />
+            {'Some text'}
+          </>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(() =>
       expect(tree).toHaveStyleRule('color', 'hotpink')

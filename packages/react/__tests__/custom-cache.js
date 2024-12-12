@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { act } from 'react'
 import createCache from '@emotion/cache'
 import { CacheProvider, Global, jsx } from '@emotion/react'
 import { StyleSheet } from '@emotion/sheet'
@@ -12,8 +13,8 @@ function stylisPlugin(element) {
   }
 }
 
-function render(ele) {
-  return renderer.create(ele).toJSON()
+async function render(ele) {
+  return (await act(() => renderer.create(ele))).toJSON()
 }
 
 beforeEach(() => {
@@ -21,14 +22,14 @@ beforeEach(() => {
   safeQuerySelector('body').innerHTML = ''
 })
 
-test('with custom plugins', () => {
+test('with custom plugins', async () => {
   let cache = createCache({
     key: 'custom-plugins',
     stylisPlugins: [stylisPlugin]
   })
 
   expect(
-    render(
+    await render(
       <CacheProvider value={cache}>
         <div css={{ display: 'flex', color: 'blue' }} />
       </CacheProvider>
@@ -45,7 +46,7 @@ test('with custom plugins', () => {
   `)
 })
 
-test('Global should "inherit" sheet class from the cache', () => {
+test('Global should "inherit" sheet class from the cache', async () => {
   // https://github.com/emotion-js/emotion/issues/2675
   let cache = createCache({
     key: 'test',
@@ -61,7 +62,7 @@ test('Global should "inherit" sheet class from the cache', () => {
     container: safeQuerySelector('head')
   })
 
-  render(
+  await render(
     <CacheProvider value={cache}>
       <div css={{ color: 'hotpink' }} />
       <Global styles={{ body: { width: '0' } }} />

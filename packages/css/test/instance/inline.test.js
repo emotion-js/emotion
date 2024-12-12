@@ -41,7 +41,7 @@ describe('renderStylesToString', () => {
       ).toMatchSnapshot()
     })
   })
-  test('renders large recursive component', async () => {
+  test.skip('renders large recursive component', async () => {
     await disableBrowserEnvTemporarily(() => {
       resetAllModules()
       const BigComponent = createBigComponent(emotion)

@@ -13,7 +13,7 @@ exports[`styled basic render 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -25,7 +25,7 @@ exports[`styled basic render with object as style 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -37,7 +37,7 @@ exports[`styled call expression 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </div>
@@ -57,10 +57,10 @@ exports[`styled component selectors 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   <div
-    className="emotion-1 emotion-2"
+    class="emotion-1 emotion-2"
   />
 </div>
 `;
@@ -80,7 +80,7 @@ exports[`styled composing components 1`] = `
 }
 
 <button
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </button>
@@ -93,7 +93,7 @@ exports[`styled composition 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
 >
   hello world
 </h1>
@@ -109,7 +109,7 @@ exports[`styled composition 2`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
   scale={2}
 >
   hello world
@@ -122,7 +122,7 @@ exports[`styled composition based on props 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -134,7 +134,7 @@ exports[`styled composition based on props 2`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -167,7 +167,7 @@ exports[`styled composition of nested pseudo selectors 1`] = `
 }
 
 <button
-  className="emotion-0"
+  class="emotion-0"
 >
   Should be purple
 </button>
@@ -180,7 +180,7 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
   scale={2}
 >
   hello world
@@ -200,7 +200,7 @@ exports[`styled glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
   fontSize={20}
 >
   hello world
@@ -225,7 +225,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
 >
   hello world
 </h1>
@@ -242,7 +242,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -252,7 +252,7 @@ exports[`styled inline function return value is a function 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -276,7 +276,7 @@ exports[`styled input placeholder 1`] = `
 }
 
 <input
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </input>
@@ -300,7 +300,7 @@ exports[`styled input placeholder object 1`] = `
 }
 
 <input
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </input>
@@ -323,7 +323,7 @@ exports[`styled keyframes with css call 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -348,11 +348,11 @@ exports[`styled nested 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   hello 
   <h1
-    className="emotion-1"
+    class="emotion-1"
   >
     This will be green
   </h1>
@@ -366,7 +366,7 @@ exports[`styled no dynamic 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -381,7 +381,7 @@ exports[`styled no prop filtering on non string tags 1`] = `
   a={true}
   aria-label="some label"
   b={true}
-  className="emotion-0"
+  class="emotion-0"
   cool={true}
   data-wow="value"
   filtering={true}
@@ -403,7 +403,7 @@ exports[`styled no prop filtering on string tags started with upper case 1`] = `
   a={true}
   aria-label="some label"
   b={true}
-  className="emotion-0"
+  class="emotion-0"
   cool={true}
   data-wow="value"
   filtering={true}
@@ -416,9 +416,15 @@ exports[`styled no prop filtering on string tags started with upper case 1`] = `
 </SomeCustomLink>
 `;
 
+exports[`styled object as class 1`] = `
+<div
+  class="myclass emotion-0"
+/>
+`;
+
 exports[`styled object as className 1`] = `
 <div
-  className="myclass emotion-0"
+  class="myclass emotion-0"
 />
 `;
 
@@ -435,7 +441,7 @@ exports[`styled object as style 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
   fontSize={20}
 >
   hello world
@@ -462,7 +468,7 @@ exports[`styled object composition 1`] = `
 }
 
 <img
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -476,7 +482,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
   display="flex"
 >
   hello world
@@ -489,7 +495,7 @@ exports[`styled objects with spread properties 1`] = `
 }
 
 <figure
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </figure>
@@ -502,7 +508,7 @@ exports[`styled prop filtering 1`] = `
 
 <a
   aria-label="some label"
-  className="emotion-0"
+  class="emotion-0"
   data-wow="value"
   href="link"
   is={true}
@@ -519,7 +525,7 @@ exports[`styled prop filtering on composed styled components that are string tag
 
 <a
   aria-label="some label"
-  className="emotion-0"
+  class="emotion-0"
   data-wow="value"
   href="link"
   is={true}
@@ -534,7 +540,7 @@ exports[`styled random expressions undefined return 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
 >
   hello world
 </h1>
@@ -552,7 +558,7 @@ exports[`styled random object expression 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
 >
   hello world
 </h1>
@@ -564,7 +570,7 @@ exports[`styled same component rendered multiple times 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -574,13 +580,13 @@ exports[`styled same component rendered multiple times 2`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   <div
-    className="emotion-0"
+    class="emotion-0"
   />
   <div
-    className="emotion-0"
+    class="emotion-0"
   />
 </div>
 `;
@@ -591,7 +597,7 @@ exports[`styled theming 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   this should be hotpink
 </div>
@@ -613,7 +619,7 @@ exports[`styled with higher order component that hoists statics 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -624,7 +630,7 @@ exports[`styled withComponent does carry styles from flattened component 1`] = `
 }
 
 <p
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -635,12 +641,12 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 
 <article>
   <h1
-    className="emotion-0"
+    class="emotion-0"
   >
     My Title
   </h1>
   <h2
-    className="emotion-0"
+    class="emotion-0"
   >
     My Subtitle
   </h2>
@@ -654,12 +660,12 @@ exports[`styled withComponent with function interpolation 1`] = `
 
 <article>
   <h1
-    className="emotion-0"
+    class="emotion-0"
   >
     My Title
   </h1>
   <h2
-    className="emotion-0"
+    class="emotion-0"
   >
     My Subtitle
   </h2>

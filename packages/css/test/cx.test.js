@@ -1,36 +1,23 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { act } from 'react'
 import renderer from 'react-test-renderer'
 import { css, cx } from '@emotion/css'
 
 describe('cx', () => {
-  test('merge 2', () => {
+  test('merge 2', async () => {
     const cls1 = css`
       font-size: 20px;
       background: green;
     `
 
-    const tree = renderer.create(<div className={cx(cls1, 'modal')} />).toJSON()
+    const tree = (
+      await act(() => renderer.create(<div className={cx(cls1, 'modal')} />))
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  test('merge 3', () => {
-    const cls1 = css`
-      font-size: 20px;
-      background: green;
-    `
-    const cls2 = css`
-      font-size: 20px;
-      background: blue;
-    `
-
-    const tree = renderer
-      .create(<div className={cx(cls1, cls2, 'modal')} />)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
-  test('merge 4', () => {
+  test('merge 3', async () => {
     const cls1 = css`
       font-size: 20px;
       background: green;
@@ -40,13 +27,33 @@ describe('cx', () => {
       background: blue;
     `
 
-    const tree = renderer
-      .create(<div className={cx(cls1, cls2, 'modal', 'profile')} />)
-      .toJSON()
+    const tree = (
+      await act(() =>
+        renderer.create(<div className={cx(cls1, cls2, 'modal')} />)
+      )
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  test('all types', () => {
+  test('merge 4', async () => {
+    const cls1 = css`
+      font-size: 20px;
+      background: green;
+    `
+    const cls2 = css`
+      font-size: 20px;
+      background: blue;
+    `
+
+    const tree = (
+      await act(() =>
+        renderer.create(<div className={cx(cls1, cls2, 'modal', 'profile')} />)
+      )
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('all types', async () => {
     const cls1 = css`
       font-size: 20px;
       background: green;
@@ -69,19 +76,25 @@ describe('cx', () => {
     const foo = true
     const bar = false
 
-    const tree = renderer
-      .create(
-        <div
-          className={cx({ [cls1]: foo }, 'modal', { [cls2]: bar }, 'profile', [
-            [cls3, [cls4]]
-          ])}
-        />
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div
+            className={cx(
+              { [cls1]: foo },
+              'modal',
+              { [cls2]: bar },
+              'profile',
+              [[cls3, [cls4]]]
+            )}
+          />
+        )
       )
-      .toJSON()
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  test('fun fun functions', () => {
+  test('fun fun functions', async () => {
     const cls1 = css`
       font-size: 20px;
       background: green;
@@ -101,19 +114,21 @@ describe('cx', () => {
       background: darkgreen;
     `
 
-    const tree = renderer
-      .create(
-        <div
-          className={cx([
-            [cls1, false && cls2, 'modal'],
-            [cls3, { [cls4]: true }, 'profile']
-          ])}
-        />
+    const tree = (
+      await act(() =>
+        renderer.create(
+          <div
+            className={cx([
+              [cls1, false && cls2, 'modal'],
+              [cls3, { [cls4]: true }, 'profile']
+            ])}
+          />
+        )
       )
-      .toJSON()
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('no extra whitespace', () => {
+  test('no extra whitespace', async () => {
     expect(cx('blockquote', '', 'news')).toMatchSnapshot()
     expect(cx('', 'group', '', 'news', '')).toMatchSnapshot()
     expect(cx('author', '')).toMatchSnapshot()

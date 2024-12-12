@@ -12,7 +12,7 @@ export function ignoreConsoleErrors(cb /*: () => mixed */) {
   console.error = jest.fn()
 
   try {
-    cb()
+    return cb()
   } finally {
     console.error = oldConsoleError
   }

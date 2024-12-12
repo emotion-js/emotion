@@ -1,25 +1,28 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { act } from 'react'
 import * as renderer from 'react-test-renderer'
 import styled from '@emotion/styled'
 import { css, ThemeProvider } from '@emotion/react'
 
-test('theme with react-test-renderer', () => {
+test('theme with react-test-renderer', async () => {
   const Div = styled.div`
     color: ${props => props.theme.primary};
   `
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={{ primary: 'pink' }}>
-        <Div>this will be pink</Div>
-      </ThemeProvider>
+  const tree = (
+    await act(() =>
+      renderer.create(
+        <ThemeProvider theme={{ primary: 'pink' }}>
+          <Div>this will be pink</Div>
+        </ThemeProvider>
+      )
     )
-    .toJSON()
+  ).toJSON()
 
   expect(tree).toMatchSnapshot()
 })
 
-test('themes', () => {
+test('themes', async () => {
   const theme = { white: '#f8f9fa', purple: '#8c81d8', gold: '#ffd43b' }
 
   const fontSize = '20px'
@@ -47,31 +50,35 @@ test('themes', () => {
     font-size: 32px;
   `
 
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={theme}>
-        <H2>hello world</H2>
-      </ThemeProvider>
+  const tree = (
+    await act(() =>
+      renderer.create(
+        <ThemeProvider theme={theme}>
+          <H2>hello world</H2>
+        </ThemeProvider>
+      )
     )
-    .toJSON()
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('theme prop exists without ThemeProvider', () => {
+test('theme prop exists without ThemeProvider', async () => {
   const SomeComponent = styled.div`
     color: ${props => props.theme.color || 'green'};
     background-color: yellow;
   `
-  const tree = renderer.create(<SomeComponent />).toJSON()
+  const tree = (await act(() => renderer.create(<SomeComponent />))).toJSON()
   expect(tree).toMatchSnapshot()
 })
-test('theme prop exists without ThemeProvider with a theme prop on the component', () => {
+test('theme prop exists without ThemeProvider with a theme prop on the component', async () => {
   const SomeComponent = styled.div`
     color: ${props => props.theme.color || 'green'};
     background-color: yellow;
   `
-  const tree = renderer
-    .create(<SomeComponent theme={{ color: 'hotpink' }} />)
-    .toJSON()
+  const tree = (
+    await act(() =>
+      renderer.create(<SomeComponent theme={{ color: 'hotpink' }} />)
+    )
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })
