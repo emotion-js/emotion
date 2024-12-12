@@ -1,6 +1,6 @@
 import React from 'react'
 import { act } from 'react'
-import renderer from 'react-test-renderer'
+import testRenderer from 'react-test-renderer'
 import { ThemeProvider } from '@emotion/react'
 import styled, { css } from '@emotion/native'
 import reactNative from 'react-native'
@@ -30,7 +30,7 @@ describe('Emotion native styled', () => {
     `
     const tree = (
       await act(() =>
-        renderer.create(
+        testRenderer.create(
           <Text style={{ fontSize: 40 }} back="red">
             Emotion Primitives
           </Text>
@@ -47,7 +47,7 @@ describe('Emotion native styled', () => {
 
     const tree = (
       await act(() =>
-        renderer.create(
+        testRenderer.create(
           <ThemeProvider theme={theme}>
             <Text>Hello World</Text>
           </ThemeProvider>
@@ -64,7 +64,7 @@ describe('Emotion native styled', () => {
     }))
     const tree = (
       await act(() =>
-        renderer.create(<Text decor="hotpink">Emotion Primitives</Text>)
+        testRenderer.create(<Text decor="hotpink">Emotion Primitives</Text>)
       )
     ).toJSON()
     expect(tree).toMatchSnapshot()
@@ -76,7 +76,7 @@ describe('Emotion native styled', () => {
     `
     const tree = (
       await act(() =>
-        renderer.create(
+        testRenderer.create(
           <Title style={{ padding: 10 }}>Emotion primitives</Title>
         )
       )
@@ -91,7 +91,7 @@ describe('Emotion native styled', () => {
     `
     const tree = (
       await act(() =>
-        renderer.create(<Text style={styles.foo}>Emotion primitives</Text>)
+        testRenderer.create(<Text style={styles.foo}>Emotion primitives</Text>)
       )
     ).toJSON()
     expect(tree).toMatchSnapshot()
@@ -103,7 +103,7 @@ describe('Emotion native styled', () => {
     `
     const Name = Text.withComponent(reactNative.Text)
     const tree = (
-      await act(() => renderer.create(<Name decor="hotpink">Mike</Name>))
+      await act(() => testRenderer.create(<Name decor="hotpink">Mike</Name>))
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -118,7 +118,7 @@ describe('Emotion native styled', () => {
       font-style: ${props => props.sty};
     `
     const tree = (
-      await act(() => renderer.create(<StyledTitle sty="italic" />))
+      await act(() => testRenderer.create(<StyledTitle sty="italic" />))
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -127,10 +127,12 @@ describe('Emotion native styled', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
-    const treeOne = await act(() => renderer.create(<ViewOne color="green" />))
+    const treeOne = await act(() =>
+      testRenderer.create(<ViewOne color="green" />)
+    )
     const ViewTwo = ViewOne.withComponent(reactNative.Text)
     const treeTwo = await act(() =>
-      renderer.create(<ViewTwo color="hotpink" />)
+      testRenderer.create(<ViewTwo color="hotpink" />)
     )
 
     expect(treeOne).toMatchSnapshot()
@@ -143,7 +145,7 @@ describe('Emotion native styled', () => {
     `
     const tree = (
       await act(() =>
-        renderer.create(
+        testRenderer.create(
           <Image
             source={{
               uri: 'https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67',
@@ -164,7 +166,7 @@ describe('Emotion native styled', () => {
       padding: 20;
     `
 
-    await act(() => renderer.create(<Text>Hello World</Text>))
+    await act(() => testRenderer.create(<Text>Hello World</Text>))
 
     expect(console.error).toBeCalledWith(
       "'padding' shorthand property requires units for example - padding: 20px or padding: 10px 20px 40px 50px"
@@ -183,7 +185,7 @@ describe('Emotion native styled', () => {
 
     const tree = (
       await act(() =>
-        renderer.create(<Text backgroundColor="blue">Hello World</Text>)
+        testRenderer.create(<Text backgroundColor="blue">Hello World</Text>)
       )
     ).toJSON()
 

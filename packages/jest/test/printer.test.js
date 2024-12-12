@@ -7,7 +7,7 @@ import { css, jsx, CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { createSerializer } from '@emotion/jest'
 import { render } from '@testing-library/react'
-import * as testRenderer from 'react-test-renderer'
+import testRenderer from 'react-test-renderer'
 import { ignoreConsoleErrors } from 'test-utils'
 
 let emotionPlugin = createSerializer()
