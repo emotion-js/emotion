@@ -8,7 +8,7 @@ exports[`label pattern input + label styled 1`] = `
 
 <div>
   <input
-    className="emotion-0 emotion-1"
+    class="emotion-0 emotion-1"
   />
   <label>
     Label

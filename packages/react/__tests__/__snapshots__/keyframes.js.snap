@@ -17,7 +17,7 @@ exports[`keyframes basic 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -58,7 +58,7 @@ exports[`keyframes keyframes used in css call 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -101,7 +101,7 @@ exports[`keyframes multiple keyframes object 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -134,7 +134,7 @@ exports[`keyframes object 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-o4c3es
 </div>
@@ -167,7 +167,7 @@ exports[`keyframes object with animation and opaque keyframes as value 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -200,7 +200,7 @@ exports[`keyframes object with animationName and opaque keyframes as value 1`] =
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -233,7 +233,7 @@ exports[`keyframes object with animationName and string keyframes as value 1`] =
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -264,7 +264,7 @@ exports[`keyframes object with string keyframes 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -295,7 +295,7 @@ exports[`keyframes without css call 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   animation-1bi8wtt
 </div>

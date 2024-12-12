@@ -1,14 +1,13 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import { act } from 'react'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
-import renderer from 'react-test-renderer'
 import { flush } from '@emotion/css'
 
 describe('label pattern', () => {
   afterEach(() => flush())
 
-  test('input + label styled', async () => {
+  test('input + label styled', () => {
     const Input = styled.input`
       & + label::after {
         color: pink;
@@ -16,17 +15,13 @@ describe('label pattern', () => {
       }
     `
 
-    const tree = (
-      await act(() =>
-        renderer.create(
-          <div>
-            <Input />
-            <label>Label</label>
-          </div>
-        )
-      )
-    ).toJSON()
+    const { container } = render(
+      <div>
+        <Input />
+        <label>Label</label>
+      </div>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 })
