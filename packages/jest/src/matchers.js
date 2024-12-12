@@ -7,8 +7,7 @@ import {
   getStyleElements,
   hasClassNames,
   getMediaRules,
-  findLast,
-  isDOMElement
+  findLast
 } from './utils'
 
 /*
@@ -45,9 +44,6 @@ function toHaveStyleRule(
   value,
   options /* ?: { target?: string | RegExp, media?: string } */ = {}
 ) {
-  if (!isDOMElement(received)) {
-    throw new Error('`toHaveStyleRule` expects to receive an element.')
-  }
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
