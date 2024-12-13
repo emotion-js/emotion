@@ -34,7 +34,9 @@ describe('renderStylesToNodeStream', () => {
       ).toMatchSnapshot()
     })
   })
-  test('renders large recursive component', async () => {
+
+  // blocked on https://github.com/facebook/react/issues/31754
+  test.skip('renders large recursive component', async () => {
     await disableBrowserEnvTemporarily(async () => {
       resetAllModules()
       const BigComponent = util.createBigComponent(emotion)

@@ -50,6 +50,8 @@ describe('renderStylesToString', () => {
       expect(output).toMatchSnapshot()
     })
   })
+
+  // blocked on https://github.com/facebook/react/issues/31754
   test.skip('renders large recursive component', async () => {
     await disableBrowserEnvTemporarily(() => {
       resetAllModules()
