@@ -1,17 +1,17 @@
-import * as React from 'react'
 /** @jsx jsx */
+import React from 'react'
 import { jsx } from '@emotion/react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { render } from '@testing-library/react'
 import { Global, css } from '@emotion/react'
 
 beforeEach(() => {
   document.head.innerHTML = ''
-  document.body.innerHTML = `<div id="root"></div>`
+  document.body.innerHTML = ``
 })
 
 gate({ development: false }, ({ test }) => {
   test('basic', () => {
-    render(
+    const { unmount } = render(
       <React.Fragment>
         <div css={{ color: 'hotpink' }} />
         <Global
@@ -23,8 +23,7 @@ gate({ development: false }, ({ test }) => {
             }
           `}
         />
-      </React.Fragment>,
-      document.getElementById('root')
+      </React.Fragment>
     )
     expect(document.head).toMatchSnapshot()
     expect(document.body).toMatchSnapshot()
@@ -42,7 +41,7 @@ gate({ development: false }, ({ test }) => {
       ".css-1lrxbo5 {color: hotpink;}",
     ]
   `)
-    unmountComponentAtNode(document.getElementById('root'))
+    unmount()
     expect(document.head).toMatchSnapshot()
     expect(document.body).toMatchSnapshot()
   })

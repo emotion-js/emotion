@@ -19,9 +19,7 @@ exports[`basic 1`] = `
 
 exports[`basic 2`] = `
 <body>
-  <div
-    id="root"
-  >
+  <div>
     <div
       class="css-1lrxbo5"
     />
@@ -42,8 +40,6 @@ exports[`basic 4`] = `
 
 exports[`basic 5`] = `
 <body>
-  <div
-    id="root"
-  />
+  <div />
 </body>
 `;
