@@ -1,11 +1,7 @@
 /**
  * @jest-environment node
  */
-import {
-  stripDataReactRoot,
-  disableBrowserEnvTemporarily,
-  safeQuerySelector
-} from 'test-utils'
+import { disableBrowserEnvTemporarily, safeQuerySelector } from 'test-utils'
 
 let React
 let renderToString
@@ -44,11 +40,9 @@ describe('renderStylesToNodeStream', () => {
       resetAllModules()
       const BigComponent = util.createBigComponent(emotion)
       expect(
-        stripDataReactRoot(
-          await util.renderToStringWithStream(
-            <BigComponent count={200} />,
-            emotionServer
-          )
+        await util.renderToStringWithStream(
+          <BigComponent count={200} />,
+          emotionServer
         )
       ).toMatchSnapshot()
     })

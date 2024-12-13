@@ -150,6 +150,7 @@ export const createBigComponent = ({ injectGlobal, css } /*: Emotion */) => {
               .toString(16)
               .padStart(6, '0')
         })}
+        data-count={count}
       >
         woah there
         <span>hello world</span>

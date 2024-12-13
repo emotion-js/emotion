@@ -1,8 +1,4 @@
-import {
-  stripDataReactRoot,
-  disableBrowserEnvTemporarily,
-  safeQuerySelector
-} from 'test-utils'
+import { disableBrowserEnvTemporarily, safeQuerySelector } from 'test-utils'
 
 let React
 let renderToString
@@ -51,7 +47,7 @@ describe('renderStylesToString', () => {
       )
 
       expect(output).toEqual(expect.not.stringContaining('undefined'))
-      expect(stripDataReactRoot(output)).toMatchSnapshot()
+      expect(output).toMatchSnapshot()
     })
   })
   test.skip('renders large recursive component', async () => {
@@ -59,10 +55,8 @@ describe('renderStylesToString', () => {
       resetAllModules()
       const BigComponent = util.createBigComponent(emotion)
       expect(
-        stripDataReactRoot(
-          emotionServer.renderStylesToString(
-            renderToString(<BigComponent count={200} />)
-          )
+        emotionServer.renderStylesToString(
+          renderToString(<BigComponent count={200} />)
         )
       ).toMatchSnapshot()
     })
