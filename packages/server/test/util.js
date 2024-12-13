@@ -4,6 +4,8 @@ import prettify from '@emotion/css-prettifier'
 /* import type { Emotion } from '@emotion/css/create-instance' */
 import { renderToPipeableStream } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
+import { Buffer } from 'buffer'
+import { Transform } from 'stream'
 
 /*
 type EmotionServer = {
@@ -150,7 +152,6 @@ export const createBigComponent = ({ injectGlobal, css } /*: Emotion */) => {
               .toString(16)
               .padStart(6, '0')
         })}
-        data-count={count}
       >
         woah there
         <span>hello world</span>
@@ -216,14 +217,24 @@ export const getInjectedRules = () =>
       .join('')
   )
 
+class TransformToBuffer extends Transform {
+  constructor() {
+    super({ readableObjectMode: false, writableObjectMode: false })
+  }
+  _transform(chunk, encoding, callback) {
+    this.push(!Buffer.isBuffer(chunk) ? Buffer.from(chunk) : chunk)
+    callback()
+  }
+}
+
 export const renderToStringWithStream = (
   element /*: React.Element<*> */,
   { renderStylesToNodeStream } /*: EmotionServer */
 ) /*: Promise<string> */ =>
   new Promise((resolve, reject) => {
-    const stream = renderToPipeableStream(element).pipe(
-      renderStylesToNodeStream()
-    )
+    const stream = renderStylesToNodeStream()
+    const { pipe } = renderToPipeableStream(element)
+    pipe(new TransformToBuffer()).pipe(stream)
     let html = ''
     stream.on('data', data => {
       html += data.toString()

@@ -1,7 +1,6 @@
-/**
- * @jest-environment node
- */
 import { disableBrowserEnvTemporarily, safeQuerySelector } from 'test-utils'
+
+globalThis.setImmediate ??= cb => setTimeout(cb, 0)
 
 let React
 let renderToString
