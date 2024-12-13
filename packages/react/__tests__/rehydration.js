@@ -140,7 +140,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-168r6j{color:hotpink;}
         </style>
       </div>
@@ -188,7 +188,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-168r6j{color:hotpink;}
         </style>
       </div>
@@ -405,7 +405,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
         data-emotion="muii-global"
         data-s=""
       >
-        
+
       </style>
       <style
         data-emotion="muii 1lrxbo5"
@@ -604,7 +604,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     </head>
   `)
 })
-;(React.useId ? describe : describe.skip)('useId', () => {
+
+describe('useId', () => {
   test('no hydration mismatch for styled when using useId', async () => {
     const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()
