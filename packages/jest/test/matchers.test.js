@@ -7,6 +7,7 @@ import testRenderer from 'react-test-renderer'
 import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import { matchers } from '@emotion/jest'
+import stripAnsi from 'strip-ansi'
 
 const { toHaveStyleRule } = matchers
 
@@ -72,11 +73,11 @@ describe('toHaveStyleRule', () => {
 
     // When expect(container.firstChild).toHaveStyleRule('color', 'blue') fails
     const resultFail = toHaveStyleRule(container.firstChild, 'color', 'blue')
-    expect(resultFail.message()).toMatchSnapshot()
+    expect(stripAnsi(resultFail.message())).toMatchSnapshot()
 
     // When expect(container.firstChild).not.toHaveStyleRule('color', 'red')
     const resultPass = toHaveStyleRule(container.firstChild, 'color', 'red')
-    expect(resultPass.message()).toMatchSnapshot()
+    expect(stripAnsi(resultPass.message())).toMatchSnapshot()
   })
 
   test('matches styles on the focus, hover targets', () => {

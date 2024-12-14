@@ -2808,6 +2808,7 @@ __metadata:
     react: 19.0.0
     react-dom: 19.0.0
     specificity: ^0.4.1
+    strip-ansi: ^6.0.1
     stylis: 4.2.0
     typescript: ^5.4.5
   peerDependencies:

@@ -2,14 +2,14 @@
 
 exports[`toHaveStyleRule returns a message explaining the failure 1`] = `
 "Expected color to match:
-  [32mblue[39m
+  blue
 Received:
-  [31mred[39m"
+  red"
 `;
 
 exports[`toHaveStyleRule returns a message explaining the failure 2`] = `
 "Expected color not to match:
-  [32mred[39m
+  red
 Received:
-  [31mred[39m"
+  red"
 `;
