@@ -140,7 +140,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-        
+          
           .stl-168r6j{color:hotpink;}
         </style>
       </div>
@@ -188,7 +188,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-
+          
           .stl-168r6j{color:hotpink;}
         </style>
       </div>
