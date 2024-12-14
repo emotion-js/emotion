@@ -63,7 +63,7 @@ describe('css', () => {
       width: 30,
       height: 'calc(40vw - 50px)',
       '&:hover': { color: 'blue' },
-      ':after': {
+      '&:after': {
         content: '" "',
         color: 'red'
       },

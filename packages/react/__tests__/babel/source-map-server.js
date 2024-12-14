@@ -10,7 +10,7 @@ test('basic', () => {
     <div
       css={{
         color: 'hotpink',
-        ':hover': {
+        '&:hover': {
           color: 'green'
         }
       }}

@@ -58,11 +58,11 @@ describe('unsafe pseudo classes', () => {
 
   describe(`warns when using without flag: ${ignoreSsrFlag}`, () => {
     const unsafePseudoClasses = [
-      ':first-child',
-      ':not(:first-child)',
-      ':nth-child(3)',
-      ':not(:nth-child(3))',
-      ':nth-last-child(7)'
+      '&:first-child',
+      '&:not(:first-child)',
+      '&:nth-child(3)',
+      '&:not(:nth-child(3))',
+      '&:nth-last-child(7)'
     ]
 
     unsafePseudoClasses.forEach(pseudoClass => {
@@ -104,16 +104,16 @@ describe('unsafe pseudo classes', () => {
       }
     ])(`with $type styles`, ({ getStyle }) => {
       test.each([
-        { pseudoClass: `:first-child` },
-        { pseudoClass: `:not(:first-child)` },
-        { pseudoClass: `:nth-child(3)` },
-        { pseudoClass: `:not(:nth-child(3))` },
-        { pseudoClass: `:nth-last-child(7)` },
-        { pseudoClass: `:first-child span` },
-        { pseudoClass: `:first-child, span` },
-        { pseudoClass: `:first-child :nth-child(3)` },
-        { pseudoClass: `:first-child, :nth-child(3)` },
-        { pseudoClass: `:first-child:nth-child(3)` }
+        { pseudoClass: `&:first-child` },
+        { pseudoClass: `&:not(:first-child)` },
+        { pseudoClass: `&:nth-child(3)` },
+        { pseudoClass: `&:not(:nth-child(3))` },
+        { pseudoClass: `&:nth-last-child(7)` },
+        { pseudoClass: `&:first-child span` },
+        { pseudoClass: `&:first-child, span` },
+        { pseudoClass: `&:first-child :nth-child(3)` },
+        { pseudoClass: `&:first-child, :nth-child(3)` },
+        { pseudoClass: `&:first-child:nth-child(3)` }
       ])('$pseudoClass', ({ pseudoClass }) => {
         const match = pseudoClass.match(/(:first|:nth|:nth-last)-child/)
         expect(match).not.toBeNull()
@@ -382,7 +382,7 @@ test('kebab-case', () => {
   css({ '-ms-filter': 'inherit' })
   css({ '@media (min-width 800px)': undefined })
   css({ '--primary-color': 'hotpink' })
-  css({ ':last-of-type': null })
+  css({ '&:last-of-type': null })
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
                     [
                       [

@@ -150,7 +150,7 @@ describe('styled', () => {
 
   test('input placeholder', () => {
     const Input = styled.input`
-      ::placeholder {
+      &::placeholder {
         background-color: green;
       }
     `
@@ -163,7 +163,7 @@ describe('styled', () => {
 
   test('input placeholder object', () => {
     const Input = styled('input')({
-      '::placeholder': {
+      '&::placeholder': {
         backgroundColor: 'green'
       }
     })

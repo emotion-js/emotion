@@ -79,7 +79,7 @@ test('object composition', () => {
     {
       borderRadius: '50%',
       transition: 'transform 400ms ease-in-out',
-      ':hover': {
+      '&:hover': {
         transform: 'scale(1.2)'
       }
     },
