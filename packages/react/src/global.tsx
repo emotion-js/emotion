@@ -1,11 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import isDevelopment from '#is-development'
 import { withEmotionCache } from './context'
 import { Theme, ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
 import { Options as SheetOptions, StyleSheet } from '@emotion/sheet'
 import isBrowser from '#is-browser'
-import { useInsertionEffectWithLayoutFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 
 import { Interpolation, serializeStyles } from '@emotion/serialize'
 
@@ -86,7 +85,7 @@ export let Global = /* #__PURE__ */ withEmotionCache<GlobalProps>(
       [sheet: StyleSheet, isRehydrating: boolean] | undefined
     >(undefined)
 
-    useInsertionEffectWithLayoutFallback(() => {
+    React.useInsertionEffect(() => {
       const key = `${cache.key}-global`
 
       // use case of https://github.com/emotion-js/emotion/issues/2675
@@ -117,7 +116,7 @@ export let Global = /* #__PURE__ */ withEmotionCache<GlobalProps>(
       }
     }, [cache])
 
-    useInsertionEffectWithLayoutFallback(() => {
+    React.useInsertionEffect(() => {
       let sheetRefCurrent = sheetRef.current!
       let [sheet, rehydrating] = sheetRefCurrent
       if (rehydrating) {
