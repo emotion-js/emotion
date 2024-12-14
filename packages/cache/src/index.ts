@@ -14,7 +14,6 @@ import memoize from '@emotion/memoize'
 import isDevelopment from '#is-development'
 import isBrowser from '#is-browser'
 import {
-  compat,
   removeLabel,
   createUnsafeSelectorsAlarm,
   incorrectImportAlarm
@@ -121,7 +120,7 @@ let createCache = (options: Options): EmotionCache => {
     sheet: StyleSheet,
     shouldCache: boolean
   ) => string | void
-  const omnipresentPlugins = [compat, removeLabel]
+  const omnipresentPlugins = [removeLabel]
 
   if (isDevelopment) {
     omnipresentPlugins.push(

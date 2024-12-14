@@ -192,7 +192,7 @@ describe('styled', () => {
 
   test('input placeholder', async () => {
     const Input = styled.input`
-      ::placeholder {
+      &::placeholder {
         background-color: green;
       }
     `
@@ -205,7 +205,7 @@ describe('styled', () => {
 
   test('input placeholder object', async () => {
     const Input = styled('input')({
-      '::placeholder': {
+      '&::placeholder': {
         backgroundColor: 'green'
       }
     })
@@ -230,7 +230,7 @@ describe('styled', () => {
       {
         borderRadius: '50%',
         transition: 'transform 400ms ease-in-out',
-        ':hover': {
+        '&:hover': {
           transform: 'scale(1.2)'
         }
       },

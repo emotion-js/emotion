@@ -39,7 +39,7 @@ test('css call composition', () => {
   let first = css`
     color: hotpink;
   `
-  let { container } = render(<div css={css({ ':hover': first })} />)
+  let { container } = render(<div css={css({ '&:hover': first })} />)
 
   expect(container.firstChild).toMatchSnapshot()
 })
@@ -272,7 +272,7 @@ test('child selector array', () => {
   const { container } = render(
     <div
       css={{
-        ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
+        '&:hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
       }}
     />
   )

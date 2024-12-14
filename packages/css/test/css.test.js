@@ -33,7 +33,7 @@ describe('css', () => {
   })
 
   test('falsy value in nested selector on object', () => {
-    const cls1 = css({ ':hover': { display: null, color: 'hotpink' } })
+    const cls1 = css({ '&:hover': { display: null, color: 'hotpink' } })
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -120,7 +120,7 @@ describe('css', () => {
       width: 30,
       height: 'calc(40vw - 50px)',
       '&:hover': { color: 'blue' },
-      ':after': {
+      '&:after': {
         content: '" "',
         color: 'red'
       },
@@ -247,7 +247,7 @@ describe('css', () => {
   })
   test('registered styles as nested selector value in object', () => {
     const cls = css({ display: 'flex', backgroundColor: 'hotpink' })
-    const cls1 = css({ ':hover': cls })
+    const cls1 = css({ '&:hover': cls })
     const { container } = render(<div className={cls1} />)
     expect(container.firstChild).toMatchSnapshot()
   })
