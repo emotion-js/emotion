@@ -405,7 +405,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
         data-emotion="muii-global"
         data-s=""
       >
-
+        
       </style>
       <style
         data-emotion="muii 1lrxbo5"
