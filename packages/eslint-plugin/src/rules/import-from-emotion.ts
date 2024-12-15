@@ -42,14 +42,20 @@ export default createRule<never[], keyof typeof messages>({
                 node.specifiers[0].type ===
                 AST_NODE_TYPES.ImportDefaultSpecifier
               ) {
+                type ImportSpecifierWithIdentifier =
+                  TSESTree.ImportSpecifier & {
+                    imported: TSESTree.Identifier
+                  }
+
                 return fixer.replaceText(
                   node,
                   `import ${
                     node.specifiers[0].local.name
                   } from '@emotion/styled';\nimport { ${node.specifiers
                     .filter(
-                      (x): x is TSESTree.ImportSpecifier =>
-                        x.type === AST_NODE_TYPES.ImportSpecifier
+                      (x): x is ImportSpecifierWithIdentifier =>
+                        x.type === AST_NODE_TYPES.ImportSpecifier &&
+                        x.imported.type === AST_NODE_TYPES.Identifier
                     )
                     .map(x =>
                       x.local.name === x.imported.name

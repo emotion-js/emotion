@@ -160,6 +160,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
               let jsxSpecifier = x.specifiers.find(
                 x =>
                   x.type === AST_NODE_TYPES.ImportSpecifier &&
+                  x.imported.type === AST_NODE_TYPES.Identifier &&
                   x.imported.name === 'jsx'
               )
               if (jsxSpecifier) {
@@ -253,6 +254,7 @@ export default createRule<RuleOptions, keyof typeof messages>({
           let cssSpecifier = specifiers.find(
             x =>
               x.type === AST_NODE_TYPES.ImportSpecifier &&
+              x.imported.type === AST_NODE_TYPES.Identifier &&
               x.imported.name === 'css'
           )
 
