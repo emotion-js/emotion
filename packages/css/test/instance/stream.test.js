@@ -1,8 +1,6 @@
-import {
-  stripDataReactRoot,
-  disableBrowserEnvTemporarily,
-  safeQuerySelector
-} from 'test-utils'
+import { disableBrowserEnvTemporarily, safeQuerySelector } from 'test-utils'
+
+globalThis.setImmediate ??= cb => setTimeout(cb, 0)
 
 let React
 let renderToString
@@ -36,16 +34,16 @@ describe('renderStylesToNodeStream', () => {
       ).toMatchSnapshot()
     })
   })
-  test('renders large recursive component', async () => {
+
+  // blocked on https://github.com/facebook/react/issues/31754
+  test.skip('renders large recursive component', async () => {
     await disableBrowserEnvTemporarily(async () => {
       resetAllModules()
       const BigComponent = util.createBigComponent(emotion)
       expect(
-        stripDataReactRoot(
-          await util.renderToStringWithStream(
-            <BigComponent count={200} />,
-            emotionServer
-          )
+        await util.renderToStringWithStream(
+          <BigComponent count={200} />,
+          emotionServer
         )
       ).toMatchSnapshot()
     })

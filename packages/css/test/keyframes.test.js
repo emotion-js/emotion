@@ -1,6 +1,6 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { keyframes, flush, css } from '@emotion/css'
 
 describe('keyframes', () => {
@@ -29,43 +29,39 @@ describe('keyframes', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <h1
-          className={css`
-            animation: ${bounce} 2s linear infinite;
-          `}
-        >
-          hello world
-        </h1>
-      )
-      .toJSON()
+    const { container } = render(
+      <h1
+        className={css`
+          animation: ${bounce} 2s linear infinite;
+        `}
+      >
+        hello world
+      </h1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('keyframes with interpolation', () => {
     const endingRotation = '360deg'
 
-    const tree = renderer
-      .create(
-        <h1
-          className={css`
-            animation: ${keyframes`
-    from {
-      transform: rotate(0deg);
-    }
+    const { container } = render(
+      <h1
+        className={css`
+          animation: ${keyframes`
+            from {
+              transform: rotate(0deg);
+            }
 
-    to {
-      transform: rotate(${endingRotation});
-    }
-  `} 2s linear infinite;
-          `}
-        >
-          hello world
-        </h1>
-      )
-      .toJSON()
+            to {
+              transform: rotate(${endingRotation});
+            }
+          `} 2s linear infinite;
+        `}
+      >
+        hello world
+      </h1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 })

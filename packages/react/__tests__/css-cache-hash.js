@@ -2,7 +2,7 @@
 import 'test-utils/setup-env'
 import { jsx, css } from '@emotion/react'
 import { serializeStyles } from '@emotion/serialize'
-import * as renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 const utils = require('@emotion/utils')
 
 const spy = jest.spyOn(utils, 'insertStyles')
@@ -11,7 +11,7 @@ test('does not rehash if value is css call return value', () => {
   const val = css`
     color: hotpink;
   `
-  const tree = renderer.create(
+  const { container } = render(
     <div>
       <div css={val} />
     </div>
@@ -19,5 +19,5 @@ test('does not rehash if value is css call return value', () => {
   expect(serializeStyles([val])).toBe(val)
 
   expect(spy.mock.calls[0][1]).toBe(val)
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })

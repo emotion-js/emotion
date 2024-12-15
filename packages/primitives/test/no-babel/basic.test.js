@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from '@emotion/primitives'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { StyleSheet } from 'react-native'
 
 jest.mock('react-primitives')
@@ -45,21 +45,20 @@ test('should render the primitive when styles applied using object style notatio
     font-size: 20px;
     background-color: ${props => props.back};
   `
-  const tree = renderer
-    .create(
-      <Text style={{ fontSize: 40 }} back="red">
-        Emotion Primitives
-      </Text>
-    )
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(
+    <Text style={{ fontSize: 40 }} back="red">
+      Emotion Primitives
+    </Text>
+  )
+
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 // this needs to be here since the babel plugin will remove the whitespace
 test('empty string', () => {
   // prettier-ignore
-  let style = css`    
-      
+  let style = css`
+
   `
   expect(StyleSheet.flatten(style)).toEqual({})
 })

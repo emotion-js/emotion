@@ -1,6 +1,7 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import * as renderer from 'react-test-renderer'
+import { act } from 'react'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
 
 test("config merging works even if it's referenced by variable", () => {
@@ -10,6 +11,6 @@ test("config merging works even if it's referenced by variable", () => {
 
   const cfg = { shouldForwardProp: p => p !== 'isRed' }
   const StyledButton = styled(Button, cfg)({})
-  const tree = renderer.create(<StyledButton isRed />).toJSON()
-  expect(tree.children).toEqual(['not forwarded'])
+  const { container } = render(<StyledButton isRed />)
+  expect(container).toMatchSnapshot()
 })

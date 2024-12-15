@@ -1,6 +1,7 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { act } from 'react'
+import { render } from '@testing-library/react'
 import { css as differentCss, flush, sheet } from './emotion-instance'
 
 describe('css', () => {
@@ -9,8 +10,8 @@ describe('css', () => {
       float: left;
     `
 
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('handles more than 10 dynamic properties', () => {
@@ -28,14 +29,14 @@ describe('css', () => {
       text-align: ${'center'};
     `
 
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('falsy value in nested selector on object', () => {
     const cls1 = differentCss({ ':hover': { display: null, color: 'hotpink' } })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('boolean as value', () => {
     const cls1 = differentCss({
@@ -43,13 +44,13 @@ describe('css', () => {
       color: false,
       backgroundColor: true
     })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('auto px', () => {
     const cls1 = differentCss({ display: 'flex', flex: 1, fontSize: 10 })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('random interpolation with undefined values', () => {
@@ -57,8 +58,8 @@ describe('css', () => {
       ${undefined};
       justify-content: center;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('random expression', () => {
@@ -74,8 +75,8 @@ describe('css', () => {
       }
       background: green;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('simple composition', () => {
@@ -89,8 +90,8 @@ describe('css', () => {
       ${cls1};
       justify-content: center;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('handles objects', () => {
@@ -102,20 +103,20 @@ describe('css', () => {
       height: 50,
       width: 20
     })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('handles array of objects', () => {
     const cls1 = differentCss([{ height: 50, width: 20 }, null])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('computed key is only dynamic', () => {
     const cls1 = differentCss({ fontSize: 10, [`w${'idth'}`]: 20 })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('composition with objects', () => {
@@ -137,8 +138,8 @@ describe('css', () => {
       justify-content: center;
     `
 
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('@supports', () => {
     const cls1 = differentCss`
@@ -146,10 +147,10 @@ describe('css', () => {
         display: grid;
       }
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
-  test.skip('nested at rules', () => {
+  test('nested at rules', () => {
     const cls1 = differentCss`
       @supports (display: grid) {
         display: grid;
@@ -164,8 +165,8 @@ describe('css', () => {
         }
       }
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('nested array', () => {
     const cls1 = differentCss([
@@ -188,26 +189,26 @@ describe('css', () => {
         ]
       ]
     ])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('explicit false', () => {
     const cls1 = differentCss(false)
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('array with explicit false', () => {
     const cls1 = differentCss([[{ display: 'flex' }], false])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('array with explicit true', () => {
     const cls1 = differentCss([[{ display: 'flex' }], true])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('nested', () => {
@@ -223,16 +224,15 @@ describe('css', () => {
         }
       }
     `
-    const tree = renderer
-      .create(
-        <div className={cls1}>
-          <div className="some-class">
-            <div className="some-other-class" />
-          </div>
+    const { container } = render(
+      <div className={cls1}>
+        <div className="some-class">
+          <div className="some-other-class" />
         </div>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+      </div>
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('explicit &', () => {
     flush()
@@ -241,45 +241,44 @@ describe('css', () => {
         display: flex;
       }
     `
-    const tree = renderer
-      .create(<div className={`${cls1} another-class`} />)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={`${cls1} another-class`} />)
+
+    expect(container.firstChild).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
     flush()
   })
   test('falsy property value in object', () => {
     const cls = differentCss({ display: 'flex', backgroundColor: undefined })
-    const tree = renderer.create(<div className={cls} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('registered styles as nested selector value in object', () => {
     const cls = differentCss({ display: 'flex', backgroundColor: 'hotpink' })
     const cls1 = differentCss({ ':hover': cls })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('composition stuff', () => {
     const cls1 = differentCss({ justifyContent: 'center' })
     const cls2 = differentCss([cls1])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
-    const tree2 = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls2} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
   test('null rule', () => {
     const cls1 = differentCss()
 
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('css variables', () => {
     const cls1 = differentCss`
       --some-var: 1px;
       width: var(--some-var);
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('null value', () => {
@@ -287,19 +286,23 @@ describe('css', () => {
     const cls2 = differentCss`
       ${null};
     `
-    expect(renderer.create(<div className={cls1} />).toJSON()).toMatchSnapshot()
-    expect(renderer.create(<div className={cls2} />).toJSON()).toMatchSnapshot()
+    expect(
+      render(<div className={cls1} />).container.firstChild
+    ).toMatchSnapshot()
+    expect(
+      render(<div className={cls2} />).container.firstChild
+    ).toMatchSnapshot()
   })
 
   test('flushes correctly', () => {
     const cls1 = differentCss`
       display: flex;
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
     flush()
-    const tree2 = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls1} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
   test('media query specificity', () => {
     flush()
@@ -314,19 +317,19 @@ describe('css', () => {
       }
     `
 
-    const tree = renderer.create(<div className={cls} />).toJSON()
+    const { container } = render(<div className={cls} />)
     expect(sheet).toMatchSnapshot()
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
     flush()
   })
   test('weakmap', () => {
     const styles = { display: 'flex' }
     const cls1 = differentCss(styles)
     const cls2 = differentCss(styles)
-    const tree1 = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree1).toMatchSnapshot()
-    const tree2 = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls2} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
   test('manually use label property', () => {
@@ -335,8 +338,8 @@ describe('css', () => {
       color: hotpink;
       label: wow;
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
   test('sets correct nonce value', () => {

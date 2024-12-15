@@ -1,6 +1,6 @@
 import 'test-utils/setup-env'
-import * as React from 'react'
-import renderer from 'react-test-renderer'
+import React from 'react'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
 import { css, keyframes } from '@emotion/react'
 
@@ -13,9 +13,9 @@ test('nested function using css', () => {
     `};
     padding: 30px;
   `
-  const tree = renderer.create(<Comp />)
+  const { container } = render(<Comp />)
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('nested function using css and keyframes', () => {
@@ -29,7 +29,7 @@ test('nested function using css and keyframes', () => {
       })};
     `};
   `
-  const tree = renderer.create(<Comp />)
+  const { container } = render(<Comp />)
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })

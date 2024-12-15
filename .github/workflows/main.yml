@@ -41,16 +41,6 @@ jobs:
       - name: Check Types
         run: yarn tsc:all
 
-  test_react18:
-    name: Test React 18
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
-
-      - name: Run Tests with React 18
-        run: yarn test:react18:ci
-
   test_prod:
     name: Test Prod
     runs-on: ubuntu-latest

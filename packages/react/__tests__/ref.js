@@ -5,7 +5,7 @@ import { render, cleanup } from '@testing-library/react'
 
 afterEach(cleanup)
 
-test.skip('ref works', () => {
+test('ref works', () => {
   let ref = React.createRef()
   let { getByTestId } = render(
     <div data-testid="test" css={{ color: 'hotpink' }} ref={ref} />

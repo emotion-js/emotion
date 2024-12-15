@@ -1,2 +1,2 @@
-// TypeScript Version: 4.1
+// TypeScript Version: 5.1
 export * from '../base'

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import renderer from 'react-test-renderer'
 import { Text, StyleSheet } from 'react-primitives'
 import { ThemeProvider } from '@emotion/react'
 import { render } from '@testing-library/react'
@@ -25,14 +24,13 @@ describe('Emotion primitives', () => {
       font-size: 20px;
       background-color: ${props => props.back};
     `
-    const tree = renderer
-      .create(
-        <Text style={{ fontSize: 40 }} back="red">
-          Emotion Primitives
-        </Text>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <Text style={{ fontSize: 40 }} back="red">
+        Emotion Primitives
+      </Text>
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('should work with theming from @emotion/react', () => {
@@ -40,15 +38,13 @@ describe('Emotion primitives', () => {
       color: ${props => props.theme.backgroundColor};
     `
 
-    const tree = renderer
-      .create(
-        <ThemeProvider theme={theme}>
-          <Text>Hello World</Text>
-        </ThemeProvider>
-      )
-      .toJSON()
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Text>Hello World</Text>
+      </ThemeProvider>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('should unmount with theming', () => {
@@ -72,20 +68,22 @@ describe('Emotion primitives', () => {
     const Text = styled.Text({ padding: '20px' }, props => ({
       color: props.decor
     }))
-    const tree = renderer
-      .create(<Text decor="hotpink">Emotion Primitives</Text>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <Text decor="hotpink">Emotion Primitives</Text>
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('should render primitive with style prop', () => {
     const Title = styled.Text`
       color: hotpink;
     `
-    const tree = renderer
-      .create(<Title style={{ padding: 10 }}>Emotion primitives</Title>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <Title style={{ padding: 10 }}>Emotion primitives</Title>
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('should work with StyleSheet.create API', () => {
@@ -94,10 +92,11 @@ describe('Emotion primitives', () => {
       font-size: 10px;
     `
 
-    const tree = renderer
-      .create(<Text style={styles.foo}>Emotion Primitives</Text>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <Text style={styles.foo}>Emotion Primitives</Text>
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('primitive should work with `withComponent`', () => {
@@ -105,8 +104,8 @@ describe('Emotion primitives', () => {
       color: ${props => props.decor};
     `
     const Name = StyledText.withComponent(Text)
-    const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<Name decor="hotpink">Mike</Name>)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('should style any other component', () => {
@@ -118,11 +117,11 @@ describe('Emotion primitives', () => {
       font-size: 20px;
       font-style: ${props => props.sty};
     `
-    const tree = renderer.create(<StyledTitle sty="italic" />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<StyledTitle sty="italic" />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('ref', () => {
+  test('ref', () => {
     const StyledText = styled.Text`
       color: hotpink;
     `
@@ -138,31 +137,29 @@ describe('Emotion primitives', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
-    const treeOne = renderer.create(<ViewOne color="green" />)
+    const { container: container1 } = render(<ViewOne color="green" />)
     const ViewTwo = ViewOne.withComponent(Text)
-    const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
+    const { container: container2 } = render(<ViewTwo color="hotpink" />)
 
-    expect(treeOne).toMatchSnapshot()
-    expect(treeTwo).toMatchSnapshot()
+    expect(container1.firstChild).toMatchSnapshot()
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
   test('should render <Image />', () => {
     const Image = styled.Image`
       border: 2px solid hotpink;
     `
-    const tree = renderer
-      .create(
-        <Image
-          source={{
-            uri: 'https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67',
-            height: 150,
-            width: 150
-          }}
-        />
-      )
-      .toJSON()
+    const { container } = render(
+      <Image
+        source={{
+          uri: 'https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67',
+          height: 150,
+          width: 150
+        }}
+      />
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('custom shouldForwardProp works', () => {
@@ -174,9 +171,10 @@ describe('Emotion primitives', () => {
       color: ${props => props.color};
     `
 
-    const tree = renderer
-      .create(<StyledTitle color="hotpink">{'Emotion'}</StyledTitle>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <StyledTitle color="hotpink">{'Emotion'}</StyledTitle>
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 })

@@ -1,5 +1,6 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { render } from '@testing-library/react'
 import { css, Global } from '@emotion/react'
 import styled from '@emotion/styled'
 import prettify from '@emotion/css-prettifier'
@@ -19,23 +20,9 @@ expect.addSnapshotSerializer({
   }
 })
 
-// can't use RTL as production React 18 throws when it's trying to use `act`
-const render = children =>
-  new Promise(resolve => {
-    const el = document.createElement('div')
-    document.body.appendChild(el)
-
-    if (ReactDOM.createRoot) {
-      const root = ReactDOM.createRoot(el)
-      root.render(<div ref={resolve}>{children}</div>)
-    } else {
-      ReactDOM.render(children, el, resolve)
-    }
-  })
-
 gate({ development: false }, ({ test }) => {
-  test('it works', async () => {
-    await render(
+  test('it works', () => {
+    render(
       <div>
         <Comp>something</Comp>
 

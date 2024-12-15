@@ -1,5 +1,5 @@
-import * as React from 'react'
-import * as renderer from 'react-test-renderer'
+import React from 'react'
+import { render } from '@testing-library/react'
 import { withTheme, ThemeProvider } from '@emotion/react'
 
 test('withTheme works', () => {
@@ -10,24 +10,22 @@ test('withTheme works', () => {
   }
   let SomeComponentWithTheme = withTheme(SomeComponent)
   expect(
-    renderer
-      .create(
-        <ThemeProvider theme={{ color: 'green' }}>
-          <SomeComponentWithTheme />
-        </ThemeProvider>
-      )
-      .toJSON()
+    render(
+      <ThemeProvider theme={{ color: 'green' }}>
+        <SomeComponentWithTheme />
+      </ThemeProvider>
+    ).container.firstChild
   ).toMatchSnapshot()
 })
 
-test.skip('should forward the ref', () => {
+test('should forward the ref', () => {
   function SomeComponent(props) {
     return <div ref={props.ref}>{props.theme.color}</div>
   }
 
   const ComponentWithTheme = withTheme(SomeComponent)
   let ref = React.createRef()
-  renderer.create(
+  render(
     <ThemeProvider theme={{ color: 'green' }}>
       <ComponentWithTheme ref={ref} />
     </ThemeProvider>

@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.8
+// TypeScript Version: 5.0
 
 /// <reference types="node" preserve="true" />
 import { EmotionCache } from '@emotion/utils'

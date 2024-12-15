@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`props work 1`] = `
+<div>
+  <div
+    class="css-1lrxbo5"
+    hidden=""
+  />
+</div>
+`;

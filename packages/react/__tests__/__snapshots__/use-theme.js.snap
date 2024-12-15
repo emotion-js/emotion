@@ -18,11 +18,11 @@ exports[`Nested useTheme works 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   Should be green
   <div
-    className="emotion-1"
+    class="emotion-1"
   >
     Should be lawngreen
   </div>
@@ -39,7 +39,7 @@ exports[`useTheme works 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   Should be green
 </div>

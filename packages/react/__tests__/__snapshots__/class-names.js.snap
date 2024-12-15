@@ -6,7 +6,7 @@ exports[`css 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -17,7 +17,7 @@ exports[`cx 1`] = `
 }
 
 <div
-  className="some-other-class emotion-0"
+  class="some-other-class emotion-0"
 />
 `;
 
@@ -27,6 +27,6 @@ exports[`should get the theme 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;

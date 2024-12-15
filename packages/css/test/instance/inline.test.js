@@ -1,8 +1,4 @@
-import {
-  stripDataReactRoot,
-  disableBrowserEnvTemporarily,
-  safeQuerySelector
-} from 'test-utils'
+import { disableBrowserEnvTemporarily, safeQuerySelector } from 'test-utils'
 import {
   getComponents,
   getInjectedRules,
@@ -41,15 +37,14 @@ describe('renderStylesToString', () => {
       ).toMatchSnapshot()
     })
   })
-  test('renders large recursive component', async () => {
+  // blocked on https://github.com/facebook/react/issues/31754
+  test.skip('renders large recursive component', async () => {
     await disableBrowserEnvTemporarily(() => {
       resetAllModules()
       const BigComponent = createBigComponent(emotion)
       expect(
-        stripDataReactRoot(
-          emotionServer.renderStylesToString(
-            renderToString(<BigComponent count={200} />)
-          )
+        emotionServer.renderStylesToString(
+          renderToString(<BigComponent count={200} />)
         )
       ).toMatchSnapshot()
     })

@@ -2,13 +2,9 @@
 
 exports[`should render the primitive when styles applied using object style notation 1`] = `
 <div
-  className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
+  class="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
   dir="auto"
-  style={
-    {
-      "fontSize": "40px",
-    }
-  }
+  style="font-size: 40px;"
 >
   Emotion Primitives
 </div>

@@ -8,13 +8,11 @@ exports[`css @supports 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
 exports[`css component as selectors (object syntax) 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware compiler transform."`;
-
-exports[`css component as selectors (object syntax) 2`] = `"The above error occurred in the <Styled(div)> component:"`;
 
 exports[`css component selectors without target 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware compiler transform."`;
 
@@ -35,7 +33,7 @@ exports[`css composition 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -48,7 +46,7 @@ exports[`css composition stuff 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -61,7 +59,7 @@ exports[`css composition stuff 2`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -95,7 +93,7 @@ exports[`css composition with objects 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -106,8 +104,8 @@ exports[`css function in expression 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
-  scale={2}
+  class="legacy__class emotion-0"
+  scale="2"
 >
   hello world
 </h1>
@@ -126,8 +124,8 @@ exports[`css glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="emotion-0"
-  fontSize={20}
+  class="emotion-0"
+  font-size="20"
 >
   hello world
 </h1>
@@ -147,7 +145,7 @@ exports[`css handles objects 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -160,7 +158,7 @@ exports[`css nested array 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -170,7 +168,7 @@ exports[`css no dynamic 1`] = `
 }
 
 <h1
-  className="emotion-0"
+  class="emotion-0"
 >
   hello world
 </h1>
@@ -178,7 +176,7 @@ exports[`css no dynamic 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -195,8 +193,8 @@ exports[`css object as style 1`] = `
 }
 
 <h1
-  className="emotion-0"
-  fontSize={20}
+  class="emotion-0"
+  font-size="20"
 >
   hello world
 </h1>
@@ -218,7 +216,7 @@ exports[`css random expression 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -228,7 +226,7 @@ exports[`css random expressions undefined return 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0"
+  class="legacy__class emotion-0"
 >
   hello world
 </h1>

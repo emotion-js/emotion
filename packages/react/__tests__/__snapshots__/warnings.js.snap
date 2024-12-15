@@ -27,13 +27,9 @@ exports[`does not warn when valid values are passed for the content property 1`]
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
-
-exports[`global with css prop 1`] = `null`;
-
-exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on a global rule 1`] = `null`;
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does not warn when using the flag on a rule that is defined in another one 1`] = `
 .emotion-0 div span:first-child {
@@ -41,7 +37,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -55,7 +51,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -69,7 +65,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -83,7 +79,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -97,11 +93,9 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
-
-exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does warn when not using the flag on a global rule 1`] = `null`;
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ does warn when not using the flag on a rule that is defined in another one 1`] = `
 .emotion-0 div span:first-child {
@@ -109,7 +103,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -123,7 +117,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -137,7 +131,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -151,7 +145,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -165,7 +159,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -175,7 +169,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -185,7 +179,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -195,7 +189,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -206,7 +200,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -217,7 +211,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -227,7 +221,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -237,7 +231,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -247,7 +241,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -257,7 +251,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -267,7 +261,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -277,7 +271,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -287,7 +281,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -297,7 +291,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -308,7 +302,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -319,7 +313,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -329,7 +323,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -339,7 +333,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -349,7 +343,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -359,7 +353,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -369,7 +363,7 @@ exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-di
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -379,7 +373,7 @@ exports[`unsafe pseudo classes warns when using without flag: /* emotion-disable
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -389,7 +383,7 @@ exports[`unsafe pseudo classes warns when using without flag: /* emotion-disable
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -399,7 +393,7 @@ exports[`unsafe pseudo classes warns when using without flag: /* emotion-disable
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -409,7 +403,7 @@ exports[`unsafe pseudo classes warns when using without flag: /* emotion-disable
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -419,6 +413,6 @@ exports[`unsafe pseudo classes warns when using without flag: /* emotion-disable
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;

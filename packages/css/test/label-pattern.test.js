@@ -1,7 +1,7 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
-import renderer from 'react-test-renderer'
 import { flush } from '@emotion/css'
 
 describe('label pattern', () => {
@@ -15,15 +15,13 @@ describe('label pattern', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <div>
-          <Input />
-          <label>Label</label>
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div>
+        <Input />
+        <label>Label</label>
+      </div>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 })

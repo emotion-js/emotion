@@ -2,7 +2,7 @@
 import createCache from '@emotion/cache'
 import { CacheProvider, Global, jsx } from '@emotion/react'
 import { StyleSheet } from '@emotion/sheet'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { safeQuerySelector } from 'test-utils'
 import 'test-utils/setup-env'
 
@@ -10,10 +10,6 @@ function stylisPlugin(element) {
   if (element.type === 'decl' && element.value.startsWith('color:')) {
     element.value = `color:hotpink;`
   }
-}
-
-function render(ele) {
-  return renderer.create(ele).toJSON()
 }
 
 beforeEach(() => {
@@ -32,7 +28,7 @@ test('with custom plugins', () => {
       <CacheProvider value={cache}>
         <div css={{ display: 'flex', color: 'blue' }} />
       </CacheProvider>
-    )
+    ).container.firstChild
   ).toMatchInlineSnapshot(`
     .emotion-0 {
       display: flex;
@@ -40,7 +36,7 @@ test('with custom plugins', () => {
     }
 
     <div
-      className="emotion-0"
+      class="emotion-0"
     />
   `)
 })

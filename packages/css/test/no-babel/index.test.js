@@ -1,6 +1,7 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { act } from 'react'
+import { render } from '@testing-library/react'
 import { css } from '@emotion/css'
 import styled from '@emotion/styled'
 
@@ -24,8 +25,8 @@ describe('css', () => {
       }
       background: green;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('composition', () => {
@@ -39,8 +40,8 @@ describe('css', () => {
       ${cls1};
       justify-content: center;
     `
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('handles objects', () => {
@@ -52,8 +53,8 @@ describe('css', () => {
       height: 50,
       width: 20
     })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('composition with objects', () => {
@@ -75,8 +76,8 @@ describe('css', () => {
       justify-content: center;
     `
 
-    const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls2} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('@supports', () => {
     const cls1 = css`
@@ -84,36 +85,36 @@ describe('css', () => {
         display: grid;
       }
     `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('nested array', () => {
     const cls1 = css([[{ display: 'flex' }]])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('composition stuff', () => {
     const cls1 = css({ justifyContent: 'center' })
     const cls2 = css([cls1])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
-    const tree2 = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree2).toMatchSnapshot()
+    const { container: container1 } = render(<div className={cls1} />)
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<div className={cls2} />)
+    expect(container2.firstChild).toMatchSnapshot()
   })
   test('null rule', () => {
     const cls1 = css()
 
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cls1} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('no dynamic', () => {
     const H1 = styled('h1')`
       float: left;
     `
 
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const { container } = render(<H1>hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('object as style', () => {
     const H1 = styled('h1')(
@@ -124,15 +125,13 @@ describe('css', () => {
       { display: 'flex' }
     )
 
-    const tree = renderer
-      .create(
-        <H1 fontSize={20} flex={1}>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const { container } = render(
+      <H1 fontSize={20} flex={1}>
+        hello world
+      </H1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('component as selectors (object syntax)', () => {
     const fontSize = '20px'
@@ -144,19 +143,13 @@ describe('css', () => {
       }
     })
 
-    const spy = jest.fn()
-    console.error = spy
-
     expect(() =>
-      renderer.create(
+      render(
         <Thing>
           hello <H1>This will be green</H1> world
         </Thing>
       )
     ).toThrowErrorMatchingSnapshot()
-
-    expect(spy.mock.calls.length).toBe(1)
-    expect(spy.mock.calls[0][0].split('\n')[0]).toMatchSnapshot()
   })
   test('component selectors without target', () => {
     const SomeComponent = styled('div')`
@@ -177,15 +170,13 @@ describe('css', () => {
       display: 'flex'
     })
 
-    const tree = renderer
-      .create(
-        <H2 fontSize={20} flex={1}>
-          hello world
-        </H2>
-      )
-      .toJSON()
+    const { container } = render(
+      <H2 fontSize={20} flex={1}>
+        hello world
+      </H2>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
@@ -197,11 +188,11 @@ describe('css', () => {
       color: green;
     `
 
-    const tree = renderer
-      .create(<H1 className={'legacy__class'}>hello world</H1>)
-      .toJSON()
+    const { container } = render(
+      <H1 className={'legacy__class'}>hello world</H1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('function in expression', () => {
@@ -214,15 +205,13 @@ describe('css', () => {
       font-size: ${({ scale }) => fontSize * scale + 'px'};
     `
 
-    const tree = renderer
-      .create(
-        <H2 scale={2} className={'legacy__class'}>
-          hello world
-        </H2>
-      )
-      .toJSON()
+    const { container } = render(
+      <H2 scale={2} className={'legacy__class'}>
+        hello world
+      </H2>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('name with class component', () => {
     class SomeComponent extends React.Component /* <{ className: string }> */ {

@@ -15,7 +15,7 @@ exports[`composing components 1`] = `
 }
 
 <button
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </button>
@@ -31,8 +31,8 @@ exports[`composition 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
-  scale={2}
+  class="legacy__class emotion-0 emotion-1"
+  scale="2"
 >
   hello world
 </h1>
@@ -45,7 +45,7 @@ exports[`composition 2`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
+  class="legacy__class emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -78,7 +78,7 @@ exports[`composition of nested pseudo selectors 1`] = `
 }
 
 <button
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   Should be purple
 </button>
@@ -100,8 +100,8 @@ exports[`composition with objects 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
-  scale={2}
+  class="legacy__class emotion-0 emotion-1"
+  scale="2"
 >
   hello world
 </h1>
@@ -120,8 +120,8 @@ exports[`glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
-  fontSize={20}
+  class="emotion-0 emotion-1"
+  font-size="20"
 >
   hello world
 </h1>
@@ -147,6 +147,6 @@ exports[`object composition 1`] = `
 }
 
 <img
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 />
 `;

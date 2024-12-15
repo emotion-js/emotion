@@ -2,8 +2,8 @@
 
 exports[`composes shouldForwardProp on composed styled components 1`] = `
 <div
-  className="emotion-0 emotion-1"
-  xyz={true}
+  class="emotion-0 emotion-1"
+  xyz="true"
 />
 `;
 
@@ -14,17 +14,13 @@ exports[`custom shouldForwardProp works 1`] = `
 }
 
 <svg
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
   height="100px"
   width="100px"
 >
   <rect
     height="100"
-    style={
-      {
-        "stroke": "#ff0000",
-      }
-    }
+    style="stroke: #ff0000;"
     width="100"
     x="10"
     y="10"
@@ -38,17 +34,17 @@ exports[`no prop filtering on non string tags 1`] = `
 }
 
 <a
-  a={true}
+  a="true"
   aria-label="some label"
-  b={true}
-  className="emotion-0 emotion-1"
-  cool={true}
+  b="true"
+  class="emotion-0 emotion-1"
+  cool="true"
   data-wow="value"
-  filtering={true}
+  filtering="true"
   href="link"
-  is={true}
-  prop={true}
-  wow={true}
+  is="true"
+  prop="true"
+  wow="true"
 >
   hello world
 </a>
@@ -59,21 +55,21 @@ exports[`no prop filtering on string tags started with upper case 1`] = `
   color: green;
 }
 
-<SomeCustomLink
-  a={true}
+<somecustomlink
+  a="true"
   aria-label="some label"
-  b={true}
-  className="emotion-0 emotion-1"
-  cool={true}
+  b="true"
+  class="emotion-0 emotion-1"
+  cool="true"
   data-wow="value"
-  filtering={true}
+  filtering="true"
   href="link"
-  is={true}
-  prop={true}
-  wow={true}
+  is="true"
+  prop="true"
+  wow="true"
 >
   hello world
-</SomeCustomLink>
+</somecustomlink>
 `;
 
 exports[`prop filtering 1`] = `
@@ -83,10 +79,10 @@ exports[`prop filtering 1`] = `
 
 <a
   aria-label="some label"
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
   data-wow="value"
   href="link"
-  is={true}
+  is="true"
 >
   hello world
 </a>
@@ -100,36 +96,26 @@ exports[`prop filtering on composed styled components that are string tags 1`] =
 
 <a
   aria-label="some label"
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
   data-wow="value"
   for="other reasons"
   href="link"
-  is={true}
-  kind={true}
+  is="true"
+  kind="true"
 >
   hello world
 </a>
 `;
 
 exports[`shouldForwardProp should get inherited for wrapped styled components 1`] = `
-[
-  .emotion-0 {
+.emotion-0 {
   background-color: red;
 }
 
 <div
-    className="emotion-0 emotion-1"
-    id="test-1"
-  />,
-  .emotion-0 {
-  background-color: green;
-}
-
-<div
-    className="emotion-0 emotion-1"
-    id="test-2"
-  />,
-]
+  class="emotion-0 emotion-1"
+  id="test-1"
+/>
 `;
 
 exports[`withComponent inherits explicit shouldForwardProp 1`] = `
@@ -138,8 +124,8 @@ exports[`withComponent inherits explicit shouldForwardProp 1`] = `
 }
 
 <span
-  className="emotion-0 emotion-1"
-  foo={true}
+  class="emotion-0 emotion-1"
+  foo="true"
 />
 `;
 
@@ -150,8 +136,8 @@ exports[`withComponent inherits explicit shouldForwardProp from flattened compon
 }
 
 <span
-  className="emotion-0 emotion-1"
-  foo={true}
+  class="emotion-0 emotion-1"
+  foo="true"
 />
 `;
 
@@ -161,8 +147,8 @@ exports[`withComponent should accept shouldForwardProp 1`] = `
 }
 
 <span
-  className="emotion-0 emotion-1"
-  xyz={true}
+  class="emotion-0 emotion-1"
+  xyz="true"
 />
 `;
 
@@ -172,9 +158,9 @@ exports[`withComponent should compose shouldForwardProp 1`] = `
 }
 
 <span
-  className="emotion-0 emotion-1"
-  qwe={true}
-  xyz={true}
+  class="emotion-0 emotion-1"
+  qwe="true"
+  xyz="true"
 />
 `;
 
@@ -184,8 +170,8 @@ exports[`withComponent should compose shouldForwardProp with a flattened compone
 }
 
 <span
-  className="emotion-0 emotion-1"
-  qwe={true}
-  xyz={true}
+  class="emotion-0 emotion-1"
+  qwe="true"
+  xyz="true"
 />
 `;

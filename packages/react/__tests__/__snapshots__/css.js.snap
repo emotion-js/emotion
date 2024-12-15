@@ -1,26 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`applies class when css prop is set to nil on wrapper component 1`] = `
-[
-  .emotion-0 {
+.emotion-0 {
   color: hotpink;
 }
 
-<button
-    className="emotion-0"
+<div>
+  <button
+    class="emotion-0"
   >
     I'm hotpink!
-  </button>,
-  .emotion-0 {
-  color: hotpink;
-}
-
-<button
-    className="emotion-0"
+  </button>
+  <button
+    class="emotion-0"
   >
     I'm hotpink too!
-  </button>,
-]
+  </button>
+</div>
 `;
 
 exports[`array fallback (using camelCased property) 1`] = `
@@ -31,7 +27,7 @@ exports[`array fallback (using camelCased property) 1`] = `
 
 <div>
   <div
-    className="emotion-0"
+    class="emotion-0"
   >
     something
   </div>
@@ -46,7 +42,7 @@ exports[`array fallback 1`] = `
 
 <div>
   <div
-    className="emotion-0"
+    class="emotion-0"
   >
     something
   </div>
@@ -60,7 +56,7 @@ exports[`child selector array 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -70,7 +66,7 @@ exports[`css call composition 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -81,7 +77,7 @@ exports[`handles camelCased custom properties in object styles properly 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -94,7 +90,7 @@ exports[`handles composition of an array css prop containing no final semi with 
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   I'm hotpink on the green background.
 </div>
@@ -107,7 +103,7 @@ exports[`handles composition of styles without a final semi in a declaration blo
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   I'm hotpink on the green background.
 </div>
@@ -120,7 +116,7 @@ exports[`label in css call 1`] = `
 
 <div>
   <div
-    className="emotion-0"
+    class="emotion-0"
   >
     something
   </div>
@@ -141,7 +137,7 @@ exports[`nested at rule 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   something
 </div>
@@ -154,7 +150,7 @@ exports[`object with false 1`] = `
 
 <div>
   <div
-    className="emotion-0"
+    class="emotion-0"
   >
     something
   </div>
@@ -169,7 +165,7 @@ exports[`overwrite styles from parent 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -189,7 +185,7 @@ exports[`theming with the array css prop 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -199,7 +195,7 @@ exports[`theming with the css prop 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />
 `;
 
@@ -213,7 +209,7 @@ exports[`thing 1`] = `
 
 <div>
   <div
-    className="emotion-0"
+    class="emotion-0"
   >
     something
   </div>

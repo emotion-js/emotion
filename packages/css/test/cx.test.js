@@ -1,6 +1,6 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { css, cx } from '@emotion/css'
 
 describe('cx', () => {
@@ -10,8 +10,8 @@ describe('cx', () => {
       background: green;
     `
 
-    const tree = renderer.create(<div className={cx(cls1, 'modal')} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cx(cls1, 'modal')} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('merge 3', () => {
@@ -24,10 +24,8 @@ describe('cx', () => {
       background: blue;
     `
 
-    const tree = renderer
-      .create(<div className={cx(cls1, cls2, 'modal')} />)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<div className={cx(cls1, cls2, 'modal')} />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('merge 4', () => {
@@ -40,10 +38,11 @@ describe('cx', () => {
       background: blue;
     `
 
-    const tree = renderer
-      .create(<div className={cx(cls1, cls2, 'modal', 'profile')} />)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <div className={cx(cls1, cls2, 'modal', 'profile')} />
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('all types', () => {
@@ -69,16 +68,14 @@ describe('cx', () => {
     const foo = true
     const bar = false
 
-    const tree = renderer
-      .create(
-        <div
-          className={cx({ [cls1]: foo }, 'modal', { [cls2]: bar }, 'profile', [
-            [cls3, [cls4]]
-          ])}
-        />
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <div
+        className={cx({ [cls1]: foo }, 'modal', { [cls2]: bar }, 'profile', [
+          [cls3, [cls4]]
+        ])}
+      />
+    )
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('fun fun functions', () => {
@@ -101,17 +98,15 @@ describe('cx', () => {
       background: darkgreen;
     `
 
-    const tree = renderer
-      .create(
-        <div
-          className={cx([
-            [cls1, false && cls2, 'modal'],
-            [cls3, { [cls4]: true }, 'profile']
-          ])}
-        />
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(
+      <div
+        className={cx([
+          [cls1, false && cls2, 'modal'],
+          [cls3, { [cls4]: true }, 'profile']
+        ])}
+      />
+    )
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('no extra whitespace', () => {
     expect(cx('blockquote', '', 'news')).toMatchSnapshot()

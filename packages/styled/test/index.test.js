@@ -1,6 +1,6 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import * as renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import hoistNonReactStatics from 'hoist-non-react-statics'
@@ -11,9 +11,9 @@ describe('styled', () => {
       float: left;
     `
 
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const { container } = render(<H1>hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('basic render', () => {
@@ -26,18 +26,18 @@ describe('styled', () => {
       }
     `
 
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const { container } = render(<H1>hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('basic render with object as style', () => {
     const fontSize = 20
     const H1 = styled.h1({ fontSize })
 
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const { container } = render(<H1>hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('object as style', () => {
@@ -49,15 +49,13 @@ describe('styled', () => {
       { display: 'flex' }
     )
 
-    const tree = renderer
-      .create(
-        <H1 fontSize={20} flex={1}>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const { container } = render(
+      <H1 fontSize={20} flex={1}>
+        hello world
+      </H1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('inline function return value is a function', () => {
@@ -66,9 +64,9 @@ describe('styled', () => {
       font-size: ${() => fontSize}px;
     `
 
-    const tree = renderer.create(<Blue>hello world</Blue>).toJSON()
+    const { container } = render(<Blue>hello world</Blue>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('call expression', () => {
@@ -77,9 +75,9 @@ describe('styled', () => {
       font-size: ${fontSize}px;
     `
 
-    const tree = renderer.create(<Div>hello world</Div>).toJSON()
+    const { container } = render(<Div>hello world</Div>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('nested', () => {
@@ -99,15 +97,13 @@ describe('styled', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Thing>
-          hello <H1>This will be green</H1> world
-        </Thing>
-      )
-      .toJSON()
+    const { container } = render(
+      <Thing>
+        hello <H1>This will be green</H1> world
+      </Thing>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('random expressions undefined return', () => {
@@ -120,11 +116,11 @@ describe('styled', () => {
       color: green;
     `
 
-    const tree = renderer
-      .create(<H1 className={'legacy__class'}>hello world</H1>)
-      .toJSON()
+    const { container } = render(
+      <H1 className={'legacy__class'}>hello world</H1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('random object expression', () => {
@@ -143,15 +139,13 @@ describe('styled', () => {
       color: green;
     `
 
-    const tree = renderer
-      .create(
-        <H1 className={'legacy__class'} prop>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const { container } = render(
+      <H1 className={'legacy__class'} prop>
+        hello world
+      </H1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('input placeholder', () => {
@@ -160,9 +154,11 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const tree = renderer.create(<Input>hello world</Input>).toJSON()
+    const { container } = render(
+      <Input value="hello world" onChange={() => {}} />
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('input placeholder object', () => {
@@ -172,9 +168,11 @@ describe('styled', () => {
       }
     })
 
-    const tree = renderer.create(<Input>hello world</Input>).toJSON()
+    const { container } = render(
+      <Input value="hello world" onChange={() => {}} />
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('handles more than 10 dynamic properties', () => {
@@ -193,15 +191,13 @@ describe('styled', () => {
       border-left: ${p => p.theme.blue};
     `
 
-    const tree = renderer
-      .create(
-        <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const { container } = render(
+      <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
+        hello world
+      </H1>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('function in expression', () => {
@@ -214,29 +210,25 @@ describe('styled', () => {
       font-size: ${({ scale }) => fontSize * scale + 'px'};
     `
 
-    const tree = renderer
-      .create(
-        <H2 scale={2} className={'legacy__class'}>
-          hello world
-        </H2>
-      )
-      .toJSON()
+    const { container } = render(
+      <H2 scale={2} className={'legacy__class'}>
+        hello world
+      </H2>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('ref', () => {
+  test('ref', () => {
     const H1 = styled.h1`
       font-size: 12px;
     `
 
     const refFunction = jest.fn()
 
-    const tree = renderer
-      .create(<H1 ref={refFunction}>hello world</H1>)
-      .toJSON()
+    const { container } = render(<H1 ref={refFunction}>hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
     expect(refFunction).toBeCalled()
   })
 
@@ -253,29 +245,29 @@ describe('styled', () => {
       ${props => (props.a ? cssA : cssB)};
     `
 
-    const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
+    const { container: container1 } = render(<H1 a>hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
-    const tree2 = renderer.create(<H1>hello world</H1>).toJSON()
+    expect(container1.firstChild).toMatchSnapshot()
+    const { container: container2 } = render(<H1>hello world</H1>)
 
-    expect(tree2).toMatchSnapshot()
+    expect(container2.firstChild).toMatchSnapshot()
   })
 
   test('objects', () => {
     const H1 = styled('h1')({ padding: 10 }, props => ({
       display: props.display
     }))
-    const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
+    const { container } = render(<H1 display="flex">hello world</H1>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('objects with spread properties', () => {
     const defaultText = { fontSize: 20 }
     const Figure = styled.figure({ ...defaultText })
-    const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
+    const { container } = render(<Figure>hello world</Figure>)
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('with higher order component that hoists statics', () => {
@@ -293,8 +285,8 @@ describe('styled', () => {
     const FinalComponent = styled(SomeComponent)`
       padding: 8px;
     `
-    const tree = renderer.create(<FinalComponent />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<FinalComponent />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('throws if undefined is passed as the component', () => {
@@ -310,8 +302,8 @@ describe('styled', () => {
       color: ${() => props => props.color};
       background-color: yellow;
     `
-    const tree = renderer.create(<SomeComponent color="hotpink" />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<SomeComponent color="hotpink" />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('withComponent carries styles from flattened components', () => {
@@ -322,8 +314,8 @@ describe('styled', () => {
       color: hotpink;
     `
     const OneMoreComponent = AnotherComponent.withComponent('p')
-    const tree = renderer.create(<OneMoreComponent />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const { container } = render(<OneMoreComponent />)
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('withComponent will replace tags but keep styling classes', () => {
@@ -332,16 +324,14 @@ describe('styled', () => {
     `
     const Subtitle = Title.withComponent('h2')
 
-    const tree = renderer
-      .create(
-        <article>
-          <Title>My Title</Title>
-          <Subtitle>My Subtitle</Subtitle>
-        </article>
-      )
-      .toJSON()
+    const { container } = render(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle>My Subtitle</Subtitle>
+      </article>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
   test('withComponent with function interpolation', () => {
     const Title = styled('h1')`
@@ -349,16 +339,14 @@ describe('styled', () => {
     `
     const Subtitle = Title.withComponent('h2')
 
-    const tree = renderer
-      .create(
-        <article>
-          <Title>My Title</Title>
-          <Subtitle color="hotpink">My Subtitle</Subtitle>
-        </article>
-      )
-      .toJSON()
+    const { container } = render(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle color="hotpink">My Subtitle</Subtitle>
+      </article>
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('name with class component', () => {

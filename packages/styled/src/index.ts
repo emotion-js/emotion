@@ -1,6 +1,6 @@
+import React from 'react'
 import { Theme } from '@emotion/react'
 import styled from './base'
-import { ReactJSXIntrinsicElements } from './jsx-namespace'
 import { tags } from './tags'
 import {
   CreateStyledComponent,
@@ -21,12 +21,12 @@ export type {
 } from './types'
 
 export type StyledTags = {
-  [Tag in keyof ReactJSXIntrinsicElements]: CreateStyledComponent<
+  [Tag in keyof React.JSX.IntrinsicElements]: CreateStyledComponent<
     {
       theme?: Theme
       as?: React.ElementType
     },
-    ReactJSXIntrinsicElements[Tag]
+    React.JSX.IntrinsicElements[Tag]
   >
 }
 

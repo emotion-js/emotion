@@ -13,7 +13,7 @@ exports[`styled basic render 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -25,7 +25,7 @@ exports[`styled basic render with object as style 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -37,7 +37,7 @@ exports[`styled call expression 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </div>
@@ -49,7 +49,7 @@ exports[`styled composition based on props 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -61,7 +61,7 @@ exports[`styled composition based on props 2`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -74,8 +74,8 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
-  scale={2}
+  class="legacy__class emotion-0 emotion-1"
+  scale="2"
 >
   hello world
 </h1>
@@ -88,7 +88,7 @@ exports[`styled function that function returns gets called with props 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
   color="hotpink"
 />
 `;
@@ -111,7 +111,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
+  class="legacy__class emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -123,7 +123,7 @@ exports[`styled inline function return value is a function 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -147,10 +147,9 @@ exports[`styled input placeholder 1`] = `
 }
 
 <input
-  className="emotion-0 emotion-1"
->
-  hello world
-</input>
+  class="emotion-0 emotion-1"
+  value="hello world"
+/>
 `;
 
 exports[`styled input placeholder object 1`] = `
@@ -171,10 +170,9 @@ exports[`styled input placeholder object 1`] = `
 }
 
 <input
-  className="emotion-0 emotion-1"
->
-  hello world
-</input>
+  class="emotion-0 emotion-1"
+  value="hello world"
+/>
 `;
 
 exports[`styled nested 1`] = `
@@ -198,11 +196,11 @@ exports[`styled nested 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-2 emotion-3"
+    class="emotion-2 emotion-3"
   >
     This will be green
   </h1>
@@ -216,7 +214,7 @@ exports[`styled no dynamic 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -235,8 +233,8 @@ exports[`styled object as style 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
-  fontSize={20}
+  class="emotion-0 emotion-1"
+  font-size="20"
 >
   hello world
 </h1>
@@ -252,7 +250,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
   display="flex"
 >
   hello world
@@ -265,7 +263,7 @@ exports[`styled objects with spread properties 1`] = `
 }
 
 <figure
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </figure>
@@ -277,7 +275,7 @@ exports[`styled random expressions undefined return 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
+  class="legacy__class emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -295,7 +293,7 @@ exports[`styled random object expression 1`] = `
 }
 
 <h1
-  className="legacy__class emotion-0 emotion-1"
+  class="legacy__class emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -307,7 +305,7 @@ exports[`styled ref 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 >
   hello world
 </h1>
@@ -329,7 +327,7 @@ exports[`styled with higher order component that hoists statics 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1 emotion-2"
+  class="emotion-0 emotion-1 emotion-2"
 />
 `;
 
@@ -340,7 +338,7 @@ exports[`styled withComponent carries styles from flattened components 1`] = `
 }
 
 <p
-  className="emotion-0 emotion-1"
+  class="emotion-0 emotion-1"
 />
 `;
 
@@ -355,12 +353,12 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 
 <article>
   <h1
-    className="emotion-0 emotion-1"
+    class="emotion-0 emotion-1"
   >
     My Title
   </h1>
   <h2
-    className="emotion-2 emotion-19"
+    class="emotion-2 emotion-19"
   >
     My Subtitle
   </h2>
@@ -378,12 +376,12 @@ exports[`styled withComponent with function interpolation 1`] = `
 
 <article>
   <h1
-    className="emotion-0 emotion-1"
+    class="emotion-0 emotion-1"
   >
     My Title
   </h1>
   <h2
-    className="emotion-2 emotion-3"
+    class="emotion-2 emotion-3"
     color="hotpink"
   >
     My Subtitle

@@ -26,7 +26,7 @@ Or you can add the serializer via the `expect.addSnapshotSerializer` method like
 
 ```jsx
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { createSerializer } from '@emotion/jest'
 import styled from '@emotion/styled'
 
@@ -37,9 +37,9 @@ test('renders with correct styles', () => {
     float: left;
   `
 
-  const tree = renderer.create(<H1>hello world</H1>).toJSON()
+  const { container } = render(<H1>hello world</H1>)
 
-  expect(tree).toMatchSnapshot()
+  expect(container).toMatchSnapshot()
 })
 ```
 
@@ -99,7 +99,7 @@ To make more explicit assertions when testing your styled components you can use
 
 ```jsx
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { matchers } from '@emotion/jest'
 import styled from '@emotion/styled'
 
@@ -128,17 +128,15 @@ test('renders with correct styles', () => {
     }
   `
 
-  const tree = renderer
-    .create(
-      <Div>
-        <Svg />
-        <span>Test</span>
-      </Div>
-    )
-    .toJSON()
+  const { container } = render(
+    <Div>
+      <Svg />
+      <span>Test</span>
+    </Div>
+  )
 
-  expect(tree).toHaveStyleRule('float', 'left')
-  expect(tree).not.toHaveStyleRule('height', '100%')
+  expect(container.firstChild).toHaveStyleRule('float', 'left')
+  expect(container.firstChild).not.toHaveStyleRule('height', '100%')
 })
 ```
 
@@ -147,22 +145,22 @@ You can provide additional options for `toHaveStyleRule` matcher.
 where style rule should be found.
 
 ```js
-expect(tree).toHaveStyleRule('width', '50px', { target: ':hover' })
+expect(element).toHaveStyleRule('width', '50px', { target: ':hover' })
 ```
 
 ```js
-expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
+expect(element).toHaveStyleRule('color', 'yellow', { target: 'span' })
 ```
 
 ```js
-expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+expect(element).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
 ```
 
 `media` - specifies the media rule where the matcher
 should look for the style property.
 
 ```js
-expect(tree).toHaveStyleRule('font-size', '14px', {
+expect(element).toHaveStyleRule('font-size', '14px', {
   media: 'screen and (max-width: 1200px)'
 })
 ```
@@ -171,7 +169,7 @@ Use `media` and `target` options to assert on rules within media queries and to 
 
 ```jsx
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import { matchers } from '@emotion/jest'
 import styled from '@emotion/styled'
 
@@ -195,11 +193,15 @@ test('renders with correct link styles', () => {
     }
   `
 
-  const tree = renderer.create(<Container>hello world</Container>).toJSON()
+  const { container } = render(<Container>hello world</Container>)
 
-  expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
-  expect(tree).toHaveStyleRule('color', 'black', { target: 'a:hover' })
-  expect(tree).toHaveStyleRule('font-size', '16px', {
+  expect(container.firstChild).toHaveStyleRule('color', 'yellow', {
+    target: /a$/
+  })
+  expect(container.firstChild).toHaveStyleRule('color', 'black', {
+    target: 'a:hover'
+  })
+  expect(container.firstChild).toHaveStyleRule('font-size', '16px', {
     media: '(min-width: 768px)'
   })
 })

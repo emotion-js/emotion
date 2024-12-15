@@ -1,0 +1,16 @@
+diff --git a/dist/index.js b/dist/index.js
+index 0a9abde5fbe918397794db0c0962129cf6bec3fa..26fe2b048b7fa898282d2d9d0dbd1719384b1f60 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -8,9 +8,9 @@ const assert_1 = __importDefault(require("assert"));
+ var TypeScriptVersion;
+ (function (TypeScriptVersion) {
+     /** Add to this list when a version actually ships.  */
+-    TypeScriptVersion.shipped = ["3.9", "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"];
++    TypeScriptVersion.shipped = ["3.9", "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"];
+     /** Add to this list when a version is available as typescript@next */
+-    TypeScriptVersion.supported = [...TypeScriptVersion.shipped, "4.7"];
++    TypeScriptVersion.supported = [...TypeScriptVersion.shipped, "5.8"];
+     /** Add to this list when it will no longer be supported on Definitely Typed */
+     TypeScriptVersion.unsupported = [
+         "2.0",

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`config merging works even if it's referenced by variable 1`] = `
+<div>
+  <button
+    class="emotion-0 emotion-1"
+  >
+    not forwarded
+  </button>
+</div>
+`;

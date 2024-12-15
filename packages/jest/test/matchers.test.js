@@ -1,12 +1,13 @@
-import 'test-utils/setup-env'
-import renderer from 'react-test-renderer'
 /** @jsx jsx */
-import * as React from 'react'
+import 'test-utils/setup-env'
+import React from 'react'
+import { act } from 'react'
+import { render } from '@testing-library/react'
+import testRenderer from 'react-test-renderer'
 import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 import { matchers } from '@emotion/jest'
-
-const isReact16 = React.version.split('.')[0] === '16'
+import stripAnsi from 'strip-ansi'
 
 const { toHaveStyleRule } = matchers
 
@@ -22,62 +23,61 @@ describe('toHaveStyleRule', () => {
   `
 
   test('matches styles on the top-most node passed in', () => {
-    const tree = renderer
-      .create(
-        <div css={divStyle}>
-          <svg css={svgStyle} />
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={divStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
 
-    expect(tree).toHaveStyleRule('color', 'red')
-    expect(tree).not.toHaveStyleRule('width', '100%')
+    expect(container.firstChild).toHaveStyleRule('color', 'red')
+    expect(container.firstChild).not.toHaveStyleRule('width', '100%')
 
-    const svgNode = tree.children[0]
+    const svgNode = container.firstChild?.firstChild
 
     expect(svgNode).toHaveStyleRule('width', '100%')
     expect(svgNode).not.toHaveStyleRule('color', 'red')
   })
 
   test('supports asymmetric matchers', () => {
-    const tree = renderer
-      .create(
-        <div css={divStyle}>
-          <svg css={svgStyle} />
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={divStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
 
-    expect(tree).toHaveStyleRule('color', expect.anything())
-    expect(tree).not.toHaveStyleRule('padding', expect.anything())
+    expect(container.firstChild).toHaveStyleRule('color', expect.anything())
+    expect(container.firstChild).not.toHaveStyleRule(
+      'padding',
+      expect.anything()
+    )
 
-    const svgNode = tree.children[0]
+    const svgNode = container.firstChild?.firstChild
 
     expect(svgNode).toHaveStyleRule('width', expect.stringMatching(/.*%$/))
   })
 
   test('fails if no styles are found', () => {
-    const tree = renderer.create(<div />).toJSON()
-    const result = toHaveStyleRule(tree, 'color', 'red')
+    const { container } = render(<div />)
+    const result = toHaveStyleRule(container.firstChild, 'color', 'red')
     expect(result.pass).toBe(false)
     expect(result.message()).toBe('Property not found: color')
   })
 
   test('supports regex values', () => {
-    const tree = renderer.create(<div css={divStyle} />).toJSON()
-    expect(tree).toHaveStyleRule('color', /red/)
+    const { container } = render(<div css={divStyle} />)
+    expect(container.firstChild).toHaveStyleRule('color', /red/)
   })
 
-  it.skip('returns a message explaining the failure', () => {
-    const tree = renderer.create(<div css={divStyle} />).toJSON()
+  it('returns a message explaining the failure', () => {
+    const { container } = render(<div css={divStyle} />)
 
-    // When expect(tree).toHaveStyleRule('color', 'blue') fails
-    const resultFail = toHaveStyleRule(tree, 'color', 'blue')
-    expect(resultFail.message()).toMatchSnapshot()
+    // When expect(container.firstChild).toHaveStyleRule('color', 'blue') fails
+    const resultFail = toHaveStyleRule(container.firstChild, 'color', 'blue')
+    expect(stripAnsi(resultFail.message())).toMatchSnapshot()
 
-    // When expect(tree).not.toHaveStyleRule('color', 'red')
-    const resultPass = toHaveStyleRule(tree, 'color', 'red')
-    expect(resultPass.message()).toMatchSnapshot()
+    // When expect(container.firstChild).not.toHaveStyleRule('color', 'red')
+    const resultPass = toHaveStyleRule(container.firstChild, 'color', 'red')
+    expect(stripAnsi(resultPass.message())).toMatchSnapshot()
   })
 
   test('matches styles on the focus, hover targets', () => {
@@ -90,17 +90,19 @@ describe('toHaveStyleRule', () => {
         color: black;
       }
     `
-    const tree = renderer
-      .create(
-        <div css={localDivStyle}>
-          <svg css={svgStyle} />
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={localDivStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
 
-    expect(tree).toHaveStyleRule('color', 'yellow', { target: ':hover' })
-    expect(tree).toHaveStyleRule('color', 'black', { target: ':focus' })
-    expect(tree).toHaveStyleRule('color', 'white')
+    expect(container.firstChild).toHaveStyleRule('color', 'yellow', {
+      target: ':hover'
+    })
+    expect(container.firstChild).toHaveStyleRule('color', 'black', {
+      target: ':focus'
+    })
+    expect(container.firstChild).toHaveStyleRule('color', 'white')
   })
 
   test('matches styles on the nested component or html element', () => {
@@ -118,19 +120,21 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Div>
-          <Svg />
-          <span>Test</span>
-        </Div>
-      )
-      .toJSON()
+    const { container } = render(
+      <Div>
+        <Svg />
+        <span>Test</span>
+      </Div>
+    )
 
-    expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
-    expect(tree).toHaveStyleRule('color', 'red')
+    expect(container.firstChild).toHaveStyleRule('color', 'yellow', {
+      target: 'span'
+    })
+    expect(container.firstChild).toHaveStyleRule('color', 'red')
 
-    expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+    expect(container.firstChild).toHaveStyleRule('fill', 'green', {
+      target: `${Svg}`
+    })
   })
 
   test('matches target styles by regex', () => {
@@ -142,30 +146,28 @@ describe('toHaveStyleRule', () => {
         color: black;
       }
     `
-    const tree = renderer
-      .create(
-        <div css={localDivStyle}>
-          <svg css={svgStyle} />
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={localDivStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
 
-    expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
+    expect(container.firstChild).toHaveStyleRule('color', 'yellow', {
+      target: /a$/
+    })
   })
 
   test('matches proper style for css', () => {
-    const tree = renderer
-      .create(
-        <div
-          css={css`
-            color: green;
-            color: hotpink;
-          `}
-        />
-      )
-      .toJSON()
-    expect(tree).not.toHaveStyleRule('color', 'green')
-    expect(tree).toHaveStyleRule('color', 'hotpink')
+    const { container } = render(
+      <div
+        css={css`
+          color: green;
+          color: hotpink;
+        `}
+      />
+    )
+    expect(container.firstChild).not.toHaveStyleRule('color', 'green')
+    expect(container.firstChild).toHaveStyleRule('color', 'hotpink')
   })
 
   test('matches style of the media', () => {
@@ -188,25 +190,23 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Div>
-          <Svg />
-        </Div>
-      )
-      .toJSON()
+    const { container } = render(
+      <Div>
+        <Svg />
+      </Div>
+    )
 
-    expect(tree).toHaveStyleRule('font-size', '30px')
-    expect(tree).toHaveStyleRule('font-size', '50px', {
+    expect(container.firstChild).toHaveStyleRule('font-size', '30px')
+    expect(container.firstChild).toHaveStyleRule('font-size', '50px', {
       media: '(min-width: 420px)'
     })
-    expect(tree).toHaveStyleRule('font-size', '70px', {
+    expect(container.firstChild).toHaveStyleRule('font-size', '70px', {
       media: '(min-width: 920px) and (max-width: 1200px)'
     })
-    expect(tree).toHaveStyleRule('font-size', '80px', {
+    expect(container.firstChild).toHaveStyleRule('font-size', '80px', {
       media: 'screen and (max-width: 1200px)'
     })
-    expect(tree).toHaveStyleRule('font-size', '90px', {
+    expect(container.firstChild).toHaveStyleRule('font-size', '90px', {
       media: 'not all and (monochrome)'
     })
   })
@@ -221,22 +221,20 @@ describe('toHaveStyleRule', () => {
         }
       }
     `
-    const tree = renderer
-      .create(
-        <div css={localDivStyle}>
-          <span>Test</span>
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={localDivStyle}>
+        <span>Test</span>
+      </div>
+    )
 
-    expect(tree).toHaveStyleRule('color', 'yellow', {
+    expect(container.firstChild).toHaveStyleRule('color', 'yellow', {
       target: ':hover',
       media: '(min-width: 420px)'
     })
-    expect(tree).toHaveStyleRule('color', 'green', {
+    expect(container.firstChild).toHaveStyleRule('color', 'green', {
       media: '(min-width: 420px)'
     })
-    expect(tree).toHaveStyleRule('color', 'white')
+    expect(container.firstChild).toHaveStyleRule('color', 'white')
   })
 
   test('fails if option media invalid', () => {
@@ -247,9 +245,9 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer.create(<Div />).toJSON()
+    const { container } = render(<Div />)
 
-    const result = toHaveStyleRule(tree, 'font-size', '50px', {
+    const result = toHaveStyleRule(container.firstChild, 'font-size', '50px', {
       media: '(min-width-'
     })
     expect(result.pass).toBe(false)
@@ -266,15 +264,13 @@ describe('toHaveStyleRule', () => {
         color: hotpink;
       }
     `
-    const tree = renderer
-      .create(
-        <Foo>
-          <Bar />
-        </Foo>
-      )
-      .toJSON()
+    const { container } = render(
+      <Foo>
+        <Bar />
+      </Foo>
+    )
 
-    expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
+    expect(container.firstChild?.firstChild).toHaveStyleRule('color', 'hotpink')
   })
 
   test('takes specificity into account when matching styles (basic)', () => {
@@ -290,30 +286,30 @@ describe('toHaveStyleRule', () => {
       }
     `
 
-    const tree = renderer
-      .create(
-        <Foo>
-          <Bar />
-        </Foo>
-      )
-      .toJSON()
+    const { container } = render(
+      <Foo>
+        <Bar />
+      </Foo>
+    )
 
-    expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
+    expect(container.firstChild.firstChild).toHaveStyleRule('color', 'hotpink')
   })
 
-  test('should throw a friendly error when it receives an array', () => {
-    const tree = renderer
-      .create(
-        <>
-          <div
-            css={css`
-              color: hotpink;
-            `}
-          />
-          {'Some text'}
-        </>
+  test('should throw a friendly error when it receives an array', async () => {
+    const tree = (
+      await act(() =>
+        testRenderer.create(
+          <>
+            <div
+              css={css`
+                color: hotpink;
+              `}
+            />
+            {'Some text'}
+          </>
+        )
       )
-      .toJSON()
+    ).toJSON()
 
     expect(() =>
       expect(tree).toHaveStyleRule('color', 'hotpink')

@@ -604,7 +604,8 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
     </head>
   `)
 })
-;(React.useId ? describe : describe.skip)('useId', () => {
+
+describe('useId', () => {
   test('no hydration mismatch for styled when using useId', async () => {
     const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()

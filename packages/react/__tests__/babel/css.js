@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import 'test-utils/setup-env'
 import { jsx, css } from '@emotion/react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
+import { act } from 'react'
 
 test('tagged template args forwarded', () => {
   function media(...args) {
@@ -12,7 +13,7 @@ test('tagged template args forwarded', () => {
     `
   }
 
-  const tree = renderer.create(
+  const { container } = render(
     <h2
       css={css`
         ${media`color: red;`};
@@ -22,7 +23,7 @@ test('tagged template args forwarded', () => {
     </h2>
   )
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('composition of dynamic array css prop with cssprop-generated className (#1730)', () => {
@@ -37,9 +38,9 @@ test('composition of dynamic array css prop with cssprop-generated className (#1
       {children}
     </Child>
   )
-  const tree = renderer.create(
+  const { container } = render(
     <Parent>{"I'm hotpink on the green background."}</Parent>
   )
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })

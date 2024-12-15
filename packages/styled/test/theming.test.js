@@ -1,6 +1,6 @@
 import 'test-utils/setup-env'
 import React from 'react'
-import * as renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
 import { css, ThemeProvider } from '@emotion/react'
 
@@ -8,15 +8,13 @@ test('theme with react-test-renderer', () => {
   const Div = styled.div`
     color: ${props => props.theme.primary};
   `
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={{ primary: 'pink' }}>
-        <Div>this will be pink</Div>
-      </ThemeProvider>
-    )
-    .toJSON()
+  const { container } = render(
+    <ThemeProvider theme={{ primary: 'pink' }}>
+      <Div>this will be pink</Div>
+    </ThemeProvider>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('themes', () => {
@@ -47,14 +45,13 @@ test('themes', () => {
     font-size: 32px;
   `
 
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={theme}>
-        <H2>hello world</H2>
-      </ThemeProvider>
-    )
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(
+    <ThemeProvider theme={theme}>
+      <H2>hello world</H2>
+    </ThemeProvider>
+  )
+
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('theme prop exists without ThemeProvider', () => {
@@ -62,16 +59,14 @@ test('theme prop exists without ThemeProvider', () => {
     color: ${props => props.theme.color || 'green'};
     background-color: yellow;
   `
-  const tree = renderer.create(<SomeComponent />).toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<SomeComponent />)
+  expect(container.firstChild).toMatchSnapshot()
 })
 test('theme prop exists without ThemeProvider with a theme prop on the component', () => {
   const SomeComponent = styled.div`
     color: ${props => props.theme.color || 'green'};
     background-color: yellow;
   `
-  const tree = renderer
-    .create(<SomeComponent theme={{ color: 'hotpink' }} />)
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+  const { container } = render(<SomeComponent theme={{ color: 'hotpink' }} />)
+  expect(container.firstChild).toMatchSnapshot()
 })

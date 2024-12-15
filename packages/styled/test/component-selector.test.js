@@ -1,7 +1,7 @@
 import 'test-utils/setup-env'
 import React from 'react'
+import { render } from '@testing-library/react'
 import styled from '@emotion/styled'
-import * as renderer from 'react-test-renderer'
 
 test('component as selector', () => {
   const fontSize = '20px'
@@ -16,15 +16,13 @@ test('component as selector', () => {
     }
   `
 
-  const tree = renderer
-    .create(
-      <Thing>
-        hello <H1>This will be green</H1> world
-      </Thing>
-    )
-    .toJSON()
+  const { container } = render(
+    <Thing>
+      hello <H1>This will be green</H1> world
+    </Thing>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('component as selector function interpolation', () => {
@@ -39,15 +37,13 @@ test('component as selector function interpolation', () => {
     }
   `
 
-  const tree = renderer
-    .create(
-      <Thing fontSize={10}>
-        hello <H1 fontSize={20}>This will be green</H1> world
-      </Thing>
-    )
-    .toJSON()
+  const { container } = render(
+    <Thing fontSize={10}>
+      hello <H1 fontSize={20}>This will be green</H1> world
+    </Thing>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('component as selector (object syntax)', () => {
@@ -61,15 +57,13 @@ test('component as selector (object syntax)', () => {
     }
   })
 
-  const tree = renderer
-    .create(
-      <Thing>
-        hello <H1>This will be green</H1> world
-      </Thing>
-    )
-    .toJSON()
+  const { container } = render(
+    <Thing>
+      hello <H1>This will be green</H1> world
+    </Thing>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('component as selector function interpolation (object syntax)', () => {
@@ -84,13 +78,11 @@ test('component as selector function interpolation (object syntax)', () => {
     }
   })
 
-  const tree = renderer
-    .create(
-      <Thing fontSize={10}>
-        hello <H1 fontSize={20}>This will be green</H1> world
-      </Thing>
-    )
-    .toJSON()
+  const { container } = render(
+    <Thing fontSize={10}>
+      hello <H1 fontSize={20}>This will be green</H1> world
+    </Thing>
+  )
 
-  expect(tree).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })

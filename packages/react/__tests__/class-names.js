@@ -1,10 +1,10 @@
-import * as React from 'react'
 import 'test-utils/setup-env'
+import React from 'react'
 import { ClassNames, ThemeProvider } from '@emotion/react'
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 test('css', () => {
-  const tree = renderer.create(
+  const { container } = render(
     <ClassNames>
       {({ css }) => (
         <div
@@ -16,11 +16,11 @@ test('css', () => {
     </ClassNames>
   )
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('should get the theme', () => {
-  const tree = renderer.create(
+  const { container } = render(
     <ThemeProvider theme={{ color: 'green' }}>
       <ClassNames>
         {({ css, theme }) => (
@@ -33,11 +33,11 @@ test('should get the theme', () => {
       </ClassNames>
     </ThemeProvider>
   )
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('cx', () => {
-  const tree = renderer.create(
+  const { container } = render(
     <ClassNames>
       {({ css, cx }) => {
         let secondClassButItsInsertedFirst = css`
@@ -60,12 +60,12 @@ test('cx', () => {
     </ClassNames>
   )
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot()
 })
 
 test('css and cx throws when used after render', () => {
   let cx, css
-  renderer.create(
+  render(
     <ClassNames>
       {arg => {
         ;({ cx, css } = arg)

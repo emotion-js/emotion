@@ -215,7 +215,7 @@
     "@emotion/weak-memoize": "^0.4.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": "^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -229,7 +229,7 @@
     "@emotion/server": "11.11.0",
     "@emotion/styled": "11.14.0",
     "html-tag-names": "^1.1.2",
-    "react": "16.14.0",
+    "react": "19.0.0",
     "svg-tag-names": "^1.1.1",
     "typescript": "^5.4.5"
   },

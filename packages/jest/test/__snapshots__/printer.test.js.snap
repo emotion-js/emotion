@@ -16,7 +16,7 @@ exports[`does not replace class names that are not from emotion 1`] = `
 }
 
 <div
-  className="net-42 net emotion-0"
+  class="net-42 net emotion-0"
 />"
 `;
 
@@ -90,6 +90,6 @@ exports[`prints speedy styles 1`] = `
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 />"
 `;

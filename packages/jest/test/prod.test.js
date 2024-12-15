@@ -1,6 +1,6 @@
-import 'test-utils/setup-env'
-import renderer from 'react-test-renderer'
 /** @jsx jsx */
+import 'test-utils/setup-env'
+import { render } from '@testing-library/react'
 import * as React from 'react'
 import { css, jsx } from '@emotion/react'
 import { matchers } from '@emotion/jest'
@@ -9,15 +9,13 @@ expect.extend(matchers)
 
 gate({ development: false }, ({ test }) => {
   test('it prints fallback values', () => {
-    const tree = renderer
-      .create(
-        <div css={[{ backgroundColor: '#000' }, { backgroundColor: '#fff' }]}>
-          <span css={{ color: 'hotpink' }}>{'emotion'}</span>
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={[{ backgroundColor: '#000' }, { backgroundColor: '#fff' }]}>
+        <span css={{ color: 'hotpink' }}>{'emotion'}</span>
+      </div>
+    )
 
-    expect(tree).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
 .emotion-0 {
   background-color: #000;
   background-color: #fff;
@@ -28,10 +26,10 @@ gate({ development: false }, ({ test }) => {
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   <span
-    className="emotion-1"
+    class="emotion-1"
   >
     emotion
   </span>
@@ -40,15 +38,13 @@ gate({ development: false }, ({ test }) => {
   })
 
   test('it prints invalid declarations', () => {
-    const tree = renderer
-      .create(
-        <div css={{ bazinga: 'joke' }}>
-          <span css={{ color: 'hotpink' }}>{'emotion'}</span>
-        </div>
-      )
-      .toJSON()
+    const { container } = render(
+      <div css={{ bazinga: 'joke' }}>
+        <span css={{ color: 'hotpink' }}>{'emotion'}</span>
+      </div>
+    )
 
-    expect(tree).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
 .emotion-0 {
   bazinga: joke;
 }
@@ -58,10 +54,10 @@ gate({ development: false }, ({ test }) => {
 }
 
 <div
-  className="emotion-0"
+  class="emotion-0"
 >
   <span
-    className="emotion-1"
+    class="emotion-1"
   >
     emotion
   </span>
