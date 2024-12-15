@@ -19,7 +19,6 @@ import {
   createUnsafeSelectorsAlarm,
   incorrectImportAlarm
 } from './stylis-plugins'
-import { prefixer } from './prefixer'
 import { StylisPlugin } from './types'
 
 export interface Options {
@@ -37,7 +36,8 @@ let getServerStylisCache = isBrowser
   ? undefined
   : weakMemoize(() => memoize<Record<string, string>>(() => ({})))
 
-const defaultStylisPlugins = [prefixer]
+// keep it in a variable as it's used as cache key by `getServerStylisCache`
+const defaultStylisPlugins: StylisPlugin[] = []
 
 let getSourceMap: ((styles: string) => string | undefined) | undefined
 if (isDevelopment) {

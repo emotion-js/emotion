@@ -18,13 +18,7 @@ exports[`css component selectors without target 1`] = `"Component selectors can 
 
 exports[`css composition 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -39,9 +33,6 @@ exports[`css composition 1`] = `
 
 exports[`css composition stuff 1`] = `
 .emotion-0 {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -52,9 +43,6 @@ exports[`css composition stuff 1`] = `
 
 exports[`css composition stuff 2`] = `
 .emotion-0 {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -65,15 +53,9 @@ exports[`css composition stuff 2`] = `
 
 exports[`css composition with objects 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   width: 30px;
   height: calc(40vw - 50px);
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -114,12 +96,7 @@ exports[`css function in expression 1`] = `
 exports[`css glamorous style api & composition 1`] = `
 .emotion-0 {
   font-size: 20px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -134,9 +111,6 @@ exports[`css glamorous style api & composition 1`] = `
 exports[`css handles objects 1`] = `
 .emotion-0 {
   float: left;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   color: blue;
   font-size: 20px;
@@ -151,9 +125,6 @@ exports[`css handles objects 1`] = `
 
 exports[`css nested array 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -183,12 +154,7 @@ exports[`css null rule 1`] = `
 exports[`css object as style 1`] = `
 .emotion-0 {
   font-size: 20px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
