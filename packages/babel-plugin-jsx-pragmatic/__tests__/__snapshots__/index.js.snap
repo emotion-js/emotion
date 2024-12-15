@@ -6,10 +6,10 @@ import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/stable'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+createRoot(document.getElementById('root')).render(<App />)
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -18,10 +18,10 @@ ReactDOM.render(<App />, document.getElementById('root'))
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import { jsx as ___EmotionJSX } from "@emotion/react";
-ReactDOM.render(<App />, document.getElementById('root'));"
+createRoot(document.getElementById('root')).render(<App />);"
 `;
 
 exports[`@emotion/babel-plugin-jsx-pragmatic fragment-only 1`] = `
