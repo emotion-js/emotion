@@ -2999,7 +2999,7 @@ __metadata:
   dependencies:
     react: 19.0.0
   peerDependencies:
-    react: ^19.0.0
+    react: ">=16.8.0"
   languageName: unknown
   linkType: soft
 
