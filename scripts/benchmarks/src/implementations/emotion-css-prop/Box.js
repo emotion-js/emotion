@@ -1,6 +1,6 @@
-import React from 'react'
+/** @jsx jsx */
 import { viewStyle } from './View'
-import { css } from '@emotion/react'
+import { css, jsx } from '@emotion/react'
 
 const Box = ({
   color,
