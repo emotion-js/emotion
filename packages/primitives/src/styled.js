@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-primitives'
 import { createStyled } from '@emotion/primitives-core'
 import {

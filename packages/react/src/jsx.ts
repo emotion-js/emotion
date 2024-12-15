@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import Emotion, { createEmotionProps } from './emotion-element'
 import { EmotionJSX } from './jsx-namespace'
 import { hasOwn } from './utils'

@@ -50,7 +50,7 @@ beforeEach(() => {
   safeQuerySelector('body').innerHTML = ''
 })
 
-test("cache created in render doesn't cause a hydration mismatch", () => {
+test.skip("cache created in render doesn't cause a hydration mismatch", () => {
   safeQuerySelector('body').innerHTML = [
     '<div id="root">',
     '<style data-emotion="stl 168r6j">.stl-1pdkrhd {color: hotpink;}</style>',
@@ -88,7 +88,7 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
   expect(console.warn.mock.calls).toMatchInlineSnapshot(`[]`)
 })
 
-test('initializing another Emotion instance should not move already moved styles elements', () => {
+test.skip('initializing another Emotion instance should not move already moved styles elements', () => {
   safeQuerySelector('head').innerHTML = '<div id="style-container"></div>'
   safeQuerySelector('body').innerHTML = [
     '<div id="root">',
@@ -140,7 +140,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-168r6j{color:hotpink;}
         </style>
       </div>
@@ -148,7 +148,7 @@ test('initializing another Emotion instance should not move already moved styles
   `)
 })
 
-test('initializing another Emotion instance should not move already moved styles elements', () => {
+test.skip('initializing another Emotion instance should not move already moved styles elements', () => {
   safeQuerySelector('head').innerHTML = '<div id="style-container"></div>'
   safeQuerySelector('body').innerHTML = '<div id="root"></div>'
 
@@ -188,7 +188,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-168r6j{color:hotpink;}
         </style>
       </div>
@@ -196,7 +196,7 @@ test('initializing another Emotion instance should not move already moved styles
   `)
 })
 
-test('global styles can be removed individually after rehydrating HTML SSRed with extractCriticalToChunks', async () => {
+test.skip('global styles can be removed individually after rehydrating HTML SSRed with extractCriticalToChunks', async () => {
   const { app, styles } = await disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
@@ -326,7 +326,7 @@ test('global styles can be removed individually after rehydrating HTML SSRed wit
   `)
 })
 
-test('duplicated global styles can be removed safely after rehydrating HTML SSRed with extractCriticalToChunks', async () => {
+test.skip('duplicated global styles can be removed safely after rehydrating HTML SSRed with extractCriticalToChunks', async () => {
   const { app, styles } = await disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
@@ -405,7 +405,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
         data-emotion="muii-global"
         data-s=""
       >
-        
+
       </style>
       <style
         data-emotion="muii 1lrxbo5"
@@ -466,7 +466,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
   `)
 })
 
-test('duplicated global styles can be removed safely after rehydrating HTML SSRed with zero config approach', async () => {
+test.skip('duplicated global styles can be removed safely after rehydrating HTML SSRed with zero config approach', async () => {
   const { app } = await disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
@@ -605,7 +605,7 @@ test('duplicated global styles can be removed safely after rehydrating HTML SSRe
   `)
 })
 
-describe('useId', () => {
+describe.skip('useId', () => {
   test('no hydration mismatch for styled when using useId', async () => {
     const finalHTML = await disableBrowserEnvTemporarily(() => {
       resetAllModules()

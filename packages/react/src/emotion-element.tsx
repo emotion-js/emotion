@@ -1,19 +1,12 @@
-import * as React from 'react'
-import { withEmotionCache } from './context'
-import { Theme, ThemeContext } from './theming'
-import {
-  EmotionCache,
-  getRegisteredStyles,
-  insertStyles,
-  registerStyles,
-  SerializedStyles
-} from '@emotion/utils'
-import { hasOwn } from './utils'
-import { Interpolation, serializeStyles } from '@emotion/serialize'
 import isDevelopment from '#is-development'
-import isBrowser from '#is-browser'
+import { Interpolation, serializeStyles } from '@emotion/serialize'
+import { getRegisteredStyles } from '@emotion/utils'
+import React from 'react'
+import { withEmotionCache } from './context'
 import { getLabelFromStackTrace } from './get-label-from-stack-trace'
-import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
+import { renderWithStyles } from './render-with-styles'
+import { Theme, ThemeContext } from './theming'
+import { hasOwn } from './utils'
 
 const typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -74,41 +67,6 @@ export const createEmotionProps = (
   return newProps
 }
 
-const Insertion = ({
-  cache,
-  serialized,
-  isStringTag
-}: {
-  cache: EmotionCache
-  serialized: SerializedStyles
-  isStringTag: boolean
-}) => {
-  registerStyles(cache, serialized, isStringTag)
-
-  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
-    insertStyles(cache, serialized, isStringTag)
-  )
-
-  if (!isBrowser && rules !== undefined) {
-    let serializedNames = serialized.name
-    let next = serialized.next
-    while (next !== undefined) {
-      serializedNames += ' ' + next.name
-      next = next.next
-    }
-    return (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
-      />
-    )
-  }
-  return null
-}
-
 let Emotion = /* #__PURE__ */ withEmotionCache<EmotionProps>((props, cache) => {
   let cssProp = props.css as EmotionProps['css']
 
@@ -166,15 +124,11 @@ let Emotion = /* #__PURE__ */ withEmotionCache<EmotionProps>((props, cache) => {
   }
   newProps.className = className
 
-  return (
-    <>
-      <Insertion
-        cache={cache}
-        serialized={serialized}
-        isStringTag={typeof WrappedComponent === 'string'}
-      />
-      <WrappedComponent {...newProps} />
-    </>
+  return renderWithStyles(
+    <WrappedComponent {...newProps} />,
+    cache,
+    [serialized],
+    typeof WrappedComponent === 'string'
   )
 })
 

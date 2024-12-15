@@ -4,6 +4,10 @@ exports[`composition works from old emotion css calls 1`] = `
 <html>
   <head>
     <style
+      data-href="ulmpz9"
+      data-precedence="emotion-css"
+    />
+    <style
       data-emotion="css"
       data-s=""
     >

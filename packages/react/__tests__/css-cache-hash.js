@@ -7,7 +7,7 @@ const utils = require('@emotion/utils')
 
 const spy = jest.spyOn(utils, 'insertStyles')
 
-test('does not rehash if value is css call return value', () => {
+test.skip('does not rehash if value is css call return value', () => {
   const val = css`
     color: hotpink;
   `

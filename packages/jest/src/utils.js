@@ -269,15 +269,28 @@ export function getStyleElements() /*: Array<HTMLStyleElement> */ {
       'jest-emotion requires jsdom. See https://jestjs.io/docs/en/configuration#testenvironment-string for more information.'
     )
   }
-  const elements = Array.from(document.querySelectorAll('style[data-emotion]'))
-  return elements
+  const elements1 = Array.from(document.querySelectorAll('style[data-emotion]'))
+  const elements2 = Array.from(
+    document.querySelectorAll('style[data-precedence^=emotion-]')
+  )
+  return elements1.concat(elements2)
 }
 
 const unique = arr => Array.from(new Set(arr))
 
 export function getKeys(elements /*: Array<HTMLStyleElement> */) {
   const keys = unique(
-    elements.map(element => element.getAttribute('data-emotion'))
+    elements.map(element => {
+      const dataEmotion = element.getAttribute('data-emotion')
+      if (dataEmotion) {
+        return dataEmotion.split(' ')[0]
+      }
+      const dataPrecedence = element.getAttribute('data-precedence')
+      if (dataPrecedence?.startsWith('emotion-')) {
+        return dataPrecedence.replace('emotion-', '')
+      }
+      return null
+    })
   ).filter(Boolean)
   return keys
 }

@@ -1,16 +1,13 @@
-import isBrowser from '#is-browser'
 import isDevelopment from '#is-development'
-import { Theme, ThemeContext, withEmotionCache } from '@emotion/react'
-import { Interpolation, serializeStyles } from '@emotion/serialize'
-import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import {
-  EmotionCache,
-  getRegisteredStyles,
-  insertStyles,
-  registerStyles,
-  SerializedStyles
-} from '@emotion/utils'
-import * as React from 'react'
+  renderWithStyles,
+  Theme,
+  ThemeContext,
+  withEmotionCache
+} from '@emotion/react'
+import { Interpolation, serializeStyles } from '@emotion/serialize'
+import { getRegisteredStyles } from '@emotion/utils'
+import React from 'react'
 import { CreateStyled, ElementType, StyledOptions } from './types'
 import { composeShouldForwardProps, getDefaultShouldForwardProp } from './utils'
 export type {
@@ -25,41 +22,6 @@ const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your 
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
-
-const Insertion = ({
-  cache,
-  serialized,
-  isStringTag
-}: {
-  cache: EmotionCache
-  serialized: SerializedStyles
-  isStringTag: boolean
-}) => {
-  registerStyles(cache, serialized, isStringTag)
-
-  const rules = useInsertionEffectAlwaysWithSyncFallback(() =>
-    insertStyles(cache, serialized, isStringTag)
-  )
-
-  if (!isBrowser && rules !== undefined) {
-    let serializedNames = serialized.name
-    let next = serialized.next
-    while (next !== undefined) {
-      serializedNames += ' ' + next.name
-      next = next.next
-    }
-    return (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce
-        }}
-      />
-    )
-  }
-  return null
-}
 
 const createStyled = (tag: ElementType, options?: StyledOptions) => {
   if (isDevelopment) {
@@ -171,15 +133,11 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
         }
         newProps.className = className
 
-        return (
-          <>
-            <Insertion
-              cache={cache}
-              serialized={serialized}
-              isStringTag={typeof FinalTag === 'string'}
-            />
-            <FinalTag {...newProps} />
-          </>
+        return renderWithStyles(
+          <FinalTag {...newProps} />,
+          cache,
+          [serialized],
+          typeof FinalTag === 'string'
         )
       }
     )

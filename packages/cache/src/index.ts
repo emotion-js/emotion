@@ -118,9 +118,9 @@ let createCache = (options: Options): EmotionCache => {
   let insert: (
     selector: string,
     serialized: SerializedStyles,
-    sheet: StyleSheet,
+    sheet: Pick<StyleSheet, 'insert'>,
     shouldCache: boolean
-  ) => string | void
+  ) => string | undefined
   const omnipresentPlugins = [compat, removeLabel]
 
   if (isDevelopment) {
@@ -180,6 +180,8 @@ let createCache = (options: Options): EmotionCache => {
       if (shouldCache) {
         cache.inserted[serialized.name] = true
       }
+
+      return undefined
     }
   } else {
     const finalizingPlugins = [stringify]

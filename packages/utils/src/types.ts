@@ -20,7 +20,7 @@ export type EmotionCache = {
   insert: (
     selector: string,
     serialized: SerializedStyles,
-    sheet: StyleSheet,
+    sheet: Pick<StyleSheet, 'insert'>,
     shouldCache: boolean
-  ) => string | void
+  ) => string | undefined
 }

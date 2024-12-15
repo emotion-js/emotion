@@ -14,7 +14,12 @@ exports[`nested function using css 1`] = `
 `;
 
 exports[`nested function using css and keyframes 1`] = `
-@keyframes animation-0 {
+.emotion-0 {
+  -webkit-animation: animation-ocj8pk;
+  animation: animation-ocj8pk;
+}
+
+@-webkit-keyframes animation-ocj8pk {
   from, to {
     color: green;
   }
@@ -24,9 +29,14 @@ exports[`nested function using css and keyframes 1`] = `
   }
 }
 
-.emotion-0 {
-  -webkit-animation: animation-0;
-  animation: animation-0;
+@keyframes animation-ocj8pk {
+  from, to {
+    color: green;
+  }
+
+  50% {
+    color: hotpink;
+  }
 }
 
 <div

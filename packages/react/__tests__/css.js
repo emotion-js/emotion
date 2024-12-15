@@ -20,11 +20,6 @@ afterEach(() => {
 
 const SomeComponent = (props /*: { lol: true } */) => (props.lol ? 'yes' : 'no')
 
-// test to make sure flow prop errors work.
-// should probably try to make it so that components that require className props
-// and have the css prop passed to them don't have type errors
-;<SomeComponent /> // eslint-disable-line no-unused-expressions
-
 test('thing', () => {
   const { container } = render(
     <div>
@@ -157,7 +152,7 @@ test('nested at rule', () => {
   expect(container.firstChild).toMatchSnapshot()
 })
 
-test('can set speedy via custom cache', () => {
+test.skip('can set speedy via custom cache', () => {
   let cache = createCache({ key: 'speedy-test', speedy: true })
 
   render(

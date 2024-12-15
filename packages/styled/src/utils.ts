@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import isPropValid from '@emotion/is-prop-valid'
 import { StyledOptions, ElementType } from './types'
 

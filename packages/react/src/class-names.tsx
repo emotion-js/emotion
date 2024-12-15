@@ -1,17 +1,15 @@
-import * as React from 'react'
+import isDevelopment from '#is-development'
+import { CSSInterpolation, serializeStyles } from '@emotion/serialize'
 import {
   EmotionCache,
   getRegisteredStyles,
-  insertStyles,
   registerStyles,
   SerializedStyles
 } from '@emotion/utils'
-import { CSSInterpolation, serializeStyles } from '@emotion/serialize'
-import isDevelopment from '#is-development'
+import React from 'react'
 import { withEmotionCache } from './context'
+import { renderWithStyles } from './render-with-styles'
 import { Theme, ThemeContext } from './theming'
-import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
-import isBrowser from '#is-browser'
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 
@@ -89,42 +87,6 @@ function merge(
   return rawClassName + css(registeredStyles)
 }
 
-const Insertion = ({
-  cache,
-  serializedArr
-}: {
-  cache: EmotionCache
-  serializedArr: SerializedStyles[]
-}) => {
-  let rules = useInsertionEffectAlwaysWithSyncFallback(() => {
-    let rules = ''
-    for (let i = 0; i < serializedArr.length; i++) {
-      let res = insertStyles(cache, serializedArr[i], false)
-      if (!isBrowser && res !== undefined) {
-        rules += res
-      }
-    }
-    if (!isBrowser) {
-      return rules
-    }
-  })
-
-  if (!isBrowser && rules!.length !== 0) {
-    return (
-      <style
-        {...{
-          [`data-emotion`]: `${cache.key} ${serializedArr
-            .map(serialized => serialized.name)
-            .join(' ')}`,
-          dangerouslySetInnerHTML: { __html: rules! },
-          nonce: cache.sheet.nonce
-        }}
-      />
-    )
-  }
-  return null
-}
-
 export interface ClassNamesContent {
   css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
   css(...args: Array<CSSInterpolation>): string
@@ -166,12 +128,7 @@ export const ClassNames = /* #__PURE__ */ withEmotionCache<ClassNamesProps>(
     let ele = props.children(content)
     hasRendered = true
 
-    return (
-      <>
-        <Insertion cache={cache} serializedArr={serializedArr} />
-        {ele}
-      </>
-    )
+    return renderWithStyles(ele, cache, serializedArr, false)
   }
 )
 
