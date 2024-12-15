@@ -15,7 +15,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "react": "19.0.0"
