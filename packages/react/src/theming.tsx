@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import weakMemoize from '@emotion/weak-memoize'
 import isDevelopment from '#is-development'
 import { DistributiveOmit } from './types'

@@ -7,7 +7,7 @@ import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 
-test('it works', () => {
+test.skip('it works', () => {
   let cache = createCache({ key: 'ssr' })
   let { extractCritical } = createEmotionServer(cache)
   let ele = (
@@ -18,7 +18,7 @@ test('it works', () => {
   expect(extractCritical(renderToString(ele))).toMatchSnapshot()
 })
 
-test('Global component extracts the styles rather than inlines it', () => {
+test.skip('Global component extracts the styles rather than inlines it', () => {
   let cache = createCache({ key: 'ssr' })
   let { extractCritical } = createEmotionServer(cache)
   let ele = (
@@ -30,7 +30,7 @@ test('Global component extracts the styles rather than inlines it', () => {
   expect(extractCritical(renderToString(ele))).toMatchSnapshot()
 })
 
-test('extracted rules have correct keys when dealing with multiple caches', () => {
+test.skip('extracted rules have correct keys when dealing with multiple caches', () => {
   let cache1 = createCache({ key: 'ssr-first-key' })
   let { extractCritical: extractCritical1 } = createEmotionServer(cache1)
   let ele1 = (

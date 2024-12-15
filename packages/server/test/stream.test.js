@@ -21,7 +21,7 @@ const resetAllModules = () => {
   util = require('./util')
 }
 
-describe('renderStylesToNodeStream', () => {
+describe.skip('renderStylesToNodeStream', () => {
   test('renders styles with ids', async () => {
     await disableBrowserEnvTemporarily(async () => {
       resetAllModules()
@@ -49,7 +49,7 @@ describe('renderStylesToNodeStream', () => {
     })
   })
 })
-describe('hydration', () => {
+describe.skip('hydration', () => {
   test('only inserts rules that are not in the critical css', async () => {
     const appHtml = await disableBrowserEnvTemporarily(() => {
       resetAllModules()

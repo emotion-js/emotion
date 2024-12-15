@@ -4,18 +4,17 @@ exports[`specificity with globals 1`] = `
 <html>
   <head>
     <style
+      data-href="1ndtvd6"
+      data-precedence="emotion-css"
+    >
+      .css-1ndtvd6{color:hotpink;}
+    </style>
+    <style
       data-emotion="css-global"
       data-s=""
     >
       
       .some-class{color:green;}
-    </style>
-    <style
-      data-emotion="css"
-      data-s=""
-    >
-      
-      .css-1ndtvd6{color:hotpink;}
     </style>
   </head>
   <body>
@@ -39,18 +38,17 @@ exports[`specificity with globals 2`] = `
 <html>
   <head>
     <style
+      data-href="1ndtvd6"
+      data-precedence="emotion-css"
+    >
+      .css-1ndtvd6{color:hotpink;}
+    </style>
+    <style
       data-emotion="css-global"
       data-s=""
     >
       
       .some-class{color:yellow;}
-    </style>
-    <style
-      data-emotion="css"
-      data-s=""
-    >
-      
-      .css-1ndtvd6{color:hotpink;}
     </style>
   </head>
   <body>

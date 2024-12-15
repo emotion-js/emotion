@@ -29,6 +29,7 @@ export type {
 } from './class-names'
 export { ThemeContext, useTheme, ThemeProvider, withTheme } from './theming'
 export type { Theme, ThemeProviderProps, WithTheme } from './theming'
+export { renderWithStyles } from './render-with-styles'
 export { default as css } from './css'
 export type { DistributiveOmit } from './types'
 

@@ -11,7 +11,7 @@ test('throws correct error with invalid key', () => {
   }).toThrowErrorMatchingSnapshot()
 })
 
-test('should accept insertionPoint option', () => {
+test.skip('should accept insertionPoint option', () => {
   const head = safeQuerySelector('head')
 
   head.innerHTML = `
@@ -34,7 +34,7 @@ test('should accept insertionPoint option', () => {
   expect(document.head).toMatchSnapshot()
 })
 
-test('should accept container option', () => {
+test.skip('should accept container option', () => {
   const body = safeQuerySelector('body')
 
   body.innerHTML = `

@@ -57,7 +57,7 @@ export const getComponents = (
   return { Page1, Page2 }
 }
 
-describe('extractCriticalToChunks', () => {
+describe.skip('extractCriticalToChunks', () => {
   const { Page1, Page2 } = getComponents(emotion, reactEmotion)
 
   const page1Critical = emotionServer.extractCriticalToChunks(

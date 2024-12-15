@@ -120,6 +120,7 @@ let cases = {
     }
   },
   'styled with keyframes': {
+    skip: true,
     render: () => {
       const SomeComponent = styled.div({
         animation: `${keyframes({

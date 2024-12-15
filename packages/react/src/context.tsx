@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { useContext } from 'react'
 import createCache, { EmotionCache } from '@emotion/cache'
 import isDevelopment from '#is-development'
