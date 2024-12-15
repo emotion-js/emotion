@@ -13,54 +13,53 @@ type WithConditionalCSSProp<P> = 'className' extends keyof P
   : {}
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace for the pre-React 19 case
-type ReactJSXElement = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.Element
-  : /** @ts-ignore */
-    React.JSX.Element
-type ReactJSXElementClass = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.ElementClass
-  : /** @ts-ignore */
-    React.JSX.ElementClass
-type ReactJSXElementAttributesProperty = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.ElementAttributesProperty
-  : /** @ts-ignore */
-    React.JSX.ElementAttributesProperty
-type ReactJSXElementChildrenAttribute = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.ElementChildrenAttribute
-  : /** @ts-ignore */
-    React.JSX.ElementChildrenAttribute
-type ReactJSXLibraryManagedAttributes<C, P> = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.LibraryManagedAttributes<C, P>
-  : /** @ts-ignore */
-    React.JSX.LibraryManagedAttributes<C, P>
-type ReactJSXIntrinsicAttributes = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.IntrinsicAttributes
-  : /** @ts-ignore */
-    React.JSX.IntrinsicAttributes
-type ReactJSXIntrinsicClassAttributes<T> = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.IntrinsicClassAttributes<T>
-  : /** @ts-ignore */
-    React.JSX.IntrinsicClassAttributes<T>
-type ReactJSXIntrinsicElements = true extends IsPreReact19
-  ? /** @ts-ignore */
-    JSX.IntrinsicElements
-  : /** @ts-ignore */
-    React.JSX.IntrinsicElements
+
+// the IsPreReact19 and @ts-ignore comments are to allow @emotion/react to support three different cases of types
+// - pre-React 18.something which didn't have `React.JSX`
+// - React 18.something with `React.JSX`
+// - React 19 with `React.JSX` and no global `JSX`
+// we support both pre-React 19 cases by using the global `JSX` and with the React 19 types, we use `React.JSX`
+// to make this work, we need @ts-ignore comments to ignore references that are invalid
+// though note that the error types resulting from ignoring the errors will never be used
+// since the pre vs post React 19 conditional will pick the one that won't error
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXElement = true extends IsPreReact19 ? JSX.Element : React.JSX.Element
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXElementClass = true extends IsPreReact19 ? JSX.ElementClass : React.JSX.ElementClass
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXElementAttributesProperty = true extends IsPreReact19 ? JSX.ElementAttributesProperty : React.JSX.ElementAttributesProperty
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXElementChildrenAttribute = true extends IsPreReact19 ? JSX.ElementChildrenAttribute : React.JSX.ElementChildrenAttribute
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXLibraryManagedAttributes<C, P> = true extends IsPreReact19 ? JSX.LibraryManagedAttributes<C, P> : React.JSX.LibraryManagedAttributes<C, P>
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXIntrinsicAttributes = true extends IsPreReact19 ? JSX.IntrinsicAttributes : React.JSX.IntrinsicAttributes
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXIntrinsicClassAttributes<T> = true extends IsPreReact19 ? JSX.IntrinsicClassAttributes<T> : React.JSX.IntrinsicClassAttributes<T>
+
+// prettier-ignore
+/** @ts-ignore */
+type ReactJSXIntrinsicElements = true extends IsPreReact19 ? JSX.IntrinsicElements : React.JSX.IntrinsicElements
 
 // based on the code from @types/react@18.2.8
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/3197efc097d522c4bf02b94e1a0766d007d6cdeb/types/react/index.d.ts#LL3204C13-L3204C13
+// prettier-ignore
 /** @ts-ignore */
-type ReactJSXElementType = true extends IsPreReact19
-  ? string | React.JSXElementConstructor<any>
-  : /** @ts-ignore */
-    React.JSX.ElementType
+type ReactJSXElementType = true extends IsPreReact19 ? string | React.JSXElementConstructor<any> : React.JSX.ElementType
 
 export namespace ReactJSX {
   export type ElementType = ReactJSXElementType

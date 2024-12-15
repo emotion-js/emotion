@@ -1,10 +1,10 @@
 {
   "name": "@emotion/styled",
-  "version": "11.13.5",
+  "version": "11.14.0",
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",
-  "types": "types/index.d.ts",
+  "types": "dist/emotion-styled.cjs.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/styled",
   "scripts": {
@@ -15,7 +15,7 @@
     "@emotion/babel-plugin": "^11.13.5",
     "@emotion/is-prop-valid": "^1.3.0",
     "@emotion/serialize": "^1.3.3",
-    "@emotion/use-insertion-effect-with-fallbacks": "^1.1.0",
+    "@emotion/use-insertion-effect-with-fallbacks": "^1.2.0",
     "@emotion/utils": "^1.4.2"
   },
   "peerDependencies": {
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/react": "11.13.5",
+    "@emotion/react": "11.14.0",
     "react": "16.14.0",
     "typescript": "^5.4.5"
   },
@@ -40,7 +40,6 @@
     "src",
     "dist",
     "base",
-    "types/*.d.ts",
     "macro.*"
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
@@ -164,22 +163,22 @@
   },
   "imports": {
     "#is-development": {
-      "development": "./src/conditions/true.js",
-      "default": "./src/conditions/false.js"
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
     },
     "#is-browser": {
-      "edge-light": "./src/conditions/false.js",
-      "workerd": "./src/conditions/false.js",
-      "worker": "./src/conditions/false.js",
-      "browser": "./src/conditions/true.js",
-      "default": "./src/conditions/is-browser.js"
+      "edge-light": "./src/conditions/false.ts",
+      "workerd": "./src/conditions/false.ts",
+      "worker": "./src/conditions/false.ts",
+      "browser": "./src/conditions/true.ts",
+      "default": "./src/conditions/is-browser.ts"
     }
   },
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
-      "./index.js",
-      "./base.js"
+      "./index.ts",
+      "./base.tsx"
     ],
     "exports": {
       "extra": {
