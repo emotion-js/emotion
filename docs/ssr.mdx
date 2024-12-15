@@ -265,16 +265,16 @@ index.js
 ```jsx
 // This has to be run before emotion inserts any styles so it's imported before the App component
 import './disable-speedy'
-import ReactDOM from 'react-dom'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App'
 
 const root = document.getElementById('root')
 
 // Check if the root node has any children to detect if the app has been prerendered
 if (root.hasChildNodes()) {
-  ReactDOM.hydrate(<App />, root)
+  hydrateRoot(root, <App />)
 } else {
-  ReactDOM.render(<App />, root)
+  createRoot(root).render(<App />)
 }
 ```
 

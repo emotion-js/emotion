@@ -4,7 +4,7 @@ import Tree from './cases/Tree'
 import SierpinskiTriangle from './cases/SierpinskiTriangle'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 const packageNames = Object.keys(implementations)
 
@@ -76,4 +76,4 @@ if (!root) {
   throw new Error('could not find root')
 }
 
-ReactDOM.render(<App tests={tests} />, root)
+createRoot(root).render(<App tests={tests} />)

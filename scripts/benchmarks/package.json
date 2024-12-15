@@ -22,5 +22,8 @@
   },
   "alias": {
     "react-native": "react-native-web"
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
   }
 }
