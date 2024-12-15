@@ -2,9 +2,6 @@
 
 exports[`component as selector (object syntax) 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -31,9 +28,6 @@ exports[`component as selector (object syntax) 1`] = `
 
 exports[`component as selector 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -60,9 +54,6 @@ exports[`component as selector 1`] = `
 
 exports[`component as selector function interpolation (object syntax) 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -91,9 +82,6 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
 
 exports[`component as selector function interpolation 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 

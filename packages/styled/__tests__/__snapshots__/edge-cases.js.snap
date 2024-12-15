@@ -25,7 +25,6 @@ exports[`nested function using css and keyframes 1`] = `
 }
 
 .emotion-0 {
-  -webkit-animation: animation-0;
   animation: animation-0;
 }
 
