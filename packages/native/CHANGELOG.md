@@ -1,5 +1,12 @@
 # @emotion/native
 
+## 12.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [[`61fcc80`](https://github.com/emotion-js/emotion/commit/61fcc80de43b29aeab60088bd3f6994366a9a0c4)]:
+  - @emotion/primitives-core@12.0.0-next.0
+
 ## 11.11.0
 
 ### Patch Changes
