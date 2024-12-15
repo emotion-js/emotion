@@ -11,7 +11,6 @@ export const renderWithStyles = (
   const output: React.ReactNode[] = []
 
   for (let i = 0; i < serializedArray.length; i++) {
-    debugger
     const serialized = serializedArray[i]
     registerStyles(cache, serialized, isStringTag)
 
