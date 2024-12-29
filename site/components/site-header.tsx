@@ -4,6 +4,8 @@ import { colors, mediaQueries, styleConstants } from '../util'
 import { css } from '@emotion/react'
 import { useRouter } from 'next/router'
 import { Container } from './container'
+import {useState, useEffect} from'react'
+import { Moon, Sun } from 'lucide-react'
 
 export const animatedUnderline = css({
   '&::after': {
@@ -70,9 +72,8 @@ function UkraineBanner() {
           css={{
             fontWeight: 'bold',
             color: '#fff',
-            fontSize: 20,
-
-            [mediaQueries.mdUp]: {
+           fontSize: 20,
+           [mediaQueries.mdUp]: {
               fontSize: 28
             }
           }}
@@ -83,13 +84,26 @@ function UkraineBanner() {
     </a>
   )
 }
-
 export function SiteHeader() {
   const router = useRouter()
 
   const path = router.asPath
   const onCommunityPage = path === '/docs/community'
+  const [darkMode, setDarkMode] = useState(false);
+    useEffect(() => {
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
 
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', String(newDarkMode));
+    document.documentElement.classList.toggle('dark');
+  };
   return (
     <>
       <UkraineBanner />
@@ -100,7 +114,6 @@ export function SiteHeader() {
           boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
           paddingTop: '0.25rem',
           marginBottom: '1.5rem',
-
           [mediaQueries.mdUp]: {
             marginBottom: '2.5rem'
           }
@@ -153,7 +166,6 @@ export function SiteHeader() {
             css={{
               marginLeft: 'auto',
               overflowX: 'auto',
-
               // For proper scrollbar placement on mobile. Note, mobile scrollbars
               // are pretty different between Safari and Chrome
               padding: '0.25rem 0'
@@ -170,6 +182,20 @@ export function SiteHeader() {
                 listStyle: 'none'
               }}
             >
+
+               <li>
+                <button
+                  onClick={toggleDarkMode}
+                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  aria-label="Toggle dark mode"
+                >
+                  {darkMode ? (
+                    <Sun className="h-5 w-5 text-gray-700 dark:text-gray-200" />
+                  ) : (
+                    <Moon className="h-5 w-5 text-gray-700 dark:text-gray-200" />
+                  )}
+                </button>
+              </li>
               <li>
                 <HeaderLink
                   href="/docs"
