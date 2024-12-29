@@ -72,8 +72,9 @@ function UkraineBanner() {
           css={{
             fontWeight: 'bold',
             color: '#fff',
-           fontSize: 20,
-           [mediaQueries.mdUp]: {
+            fontSize: 20,
+
+            [mediaQueries.mdUp]: {
               fontSize: 28
             }
           }}
@@ -84,6 +85,7 @@ function UkraineBanner() {
     </a>
   )
 }
+
 export function SiteHeader() {
   const router = useRouter()
 
@@ -114,6 +116,7 @@ export function SiteHeader() {
           boxShadow: '0 .125rem .25rem rgba(0, 0, 0, .075)',
           paddingTop: '0.25rem',
           marginBottom: '1.5rem',
+
           [mediaQueries.mdUp]: {
             marginBottom: '2.5rem'
           }
@@ -166,6 +169,7 @@ export function SiteHeader() {
             css={{
               marginLeft: 'auto',
               overflowX: 'auto',
+
               // For proper scrollbar placement on mobile. Note, mobile scrollbars
               // are pretty different between Safari and Chrome
               padding: '0.25rem 0'
