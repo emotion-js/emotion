@@ -8,7 +8,7 @@ exports[`extractCriticalToChunks generates correct style tags using constructSty
   html{background:red;}
 </style>
 <style data-emotion="css fgjrlg-hoverStyles-Something_Main">
-  .css-fgjrlg-hoverStyles-Something_Main{color:hotpink;display:flex;}.css-fgjrlg-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+  .css-fgjrlg-hoverStyles-Something_Main{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-fgjrlg-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
 `;
 
@@ -20,7 +20,7 @@ exports[`extractCriticalToChunks generates correct style tags using constructSty
   html{background:red;}
 </style>
 <style data-emotion="css fgjrlg-hoverStyles-Something_Main">
-  .css-fgjrlg-hoverStyles-Something_Main{color:hotpink;display:flex;}.css-fgjrlg-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+  .css-fgjrlg-hoverStyles-Something_Main{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-fgjrlg-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
 `;
 
@@ -50,6 +50,9 @@ exports[`extractCriticalToChunks returns static css 1`] = `
     {
       "css": ".css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -94,6 +97,9 @@ exports[`extractCriticalToChunks returns static css 2`] = `
     {
       "css": ".css-fgjrlg-hoverStyles-Something_Main {
   color: hotpink;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 

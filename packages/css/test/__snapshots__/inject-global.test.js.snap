@@ -21,6 +21,9 @@ exports[`injectGlobal interpolated value 1`] = `
 exports[`injectGlobal nested interpolated media query 1`] = `
 "@media (max-width: 600px) {
   body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
   }
 }"
@@ -36,10 +39,16 @@ exports[`injectGlobal pseudo in @media 1`] = `
 
 exports[`injectGlobal random interpolation 1`] = `
 ".css-1002tid-cls {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
 body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }"
 `;

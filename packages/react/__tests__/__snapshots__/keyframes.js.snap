@@ -12,6 +12,7 @@ exports[`keyframes basic 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0;
   animation: animation-0;
 }
 
@@ -24,7 +25,8 @@ exports[`keyframes basic 1`] = `
 
 exports[`keyframes basic 2`] = `
 [
-  ".css-1mzou9w{animation:animation-1bi8wtt;}",
+  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -51,6 +53,7 @@ exports[`keyframes keyframes used in css call 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0 1s animation-1;
   animation: animation-0 1s animation-1;
 }
 
@@ -63,8 +66,10 @@ exports[`keyframes keyframes used in css call 1`] = `
 
 exports[`keyframes keyframes used in css call 2`] = `
 [
-  ".css-9yzsha{animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+  ".css-9yzsha{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
   "@keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
 ]
 `;
@@ -91,6 +96,7 @@ exports[`keyframes multiple keyframes object 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0 1s animation-1;
   animation: animation-0 1s animation-1;
 }
 
@@ -103,8 +109,10 @@ exports[`keyframes multiple keyframes object 1`] = `
 
 exports[`keyframes multiple keyframes object 2`] = `
 [
-  ".css-1jqzi3u{animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+  ".css-1jqzi3u{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+  "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
   "@keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -121,6 +129,7 @@ exports[`keyframes object 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0 1s;
   animation: animation-0 1s;
 }
 
@@ -133,7 +142,8 @@ exports[`keyframes object 1`] = `
 
 exports[`keyframes object 2`] = `
 [
-  ".css-d88cqt{animation:animation-o4c3es 1s;}",
+  ".css-d88cqt{-webkit-animation:animation-o4c3es 1s;animation:animation-o4c3es 1s;}",
+  "@-webkit-keyframes animation-o4c3es{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-o4c3es{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -150,7 +160,9 @@ exports[`keyframes object with animation and opaque keyframes as value 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0;
   animation: animation-0;
+  -webkit-animation-duration: 1s;
   animation-duration: 1s;
 }
 
@@ -163,7 +175,8 @@ exports[`keyframes object with animation and opaque keyframes as value 1`] = `
 
 exports[`keyframes object with animation and opaque keyframes as value 2`] = `
 [
-  ".css-g32qbw{animation:animation-1bi8wtt;animation-duration:1s;}",
+  ".css-g32qbw{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;-webkit-animation-duration:1s;animation-duration:1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -180,7 +193,9 @@ exports[`keyframes object with animationName and opaque keyframes as value 1`] =
 }
 
 .emotion-0 {
+  -webkit-animation-name: animation-0;
   animation-name: animation-0;
+  -webkit-animation-duration: 1s;
   animation-duration: 1s;
 }
 
@@ -193,7 +208,8 @@ exports[`keyframes object with animationName and opaque keyframes as value 1`] =
 
 exports[`keyframes object with animationName and opaque keyframes as value 2`] = `
 [
-  ".css-wo7teo{animation-name:animation-1bi8wtt;animation-duration:1s;}",
+  ".css-wo7teo{-webkit-animation-name:animation-1bi8wtt;animation-name:animation-1bi8wtt;-webkit-animation-duration:1s;animation-duration:1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -210,7 +226,9 @@ exports[`keyframes object with animationName and string keyframes as value 1`] =
 }
 
 .emotion-0 {
+  -webkit-animation-name: animation-0;
   animation-name: animation-0;
+  -webkit-animation-duration: 1s;
   animation-duration: 1s;
 }
 
@@ -223,7 +241,8 @@ exports[`keyframes object with animationName and string keyframes as value 1`] =
 
 exports[`keyframes object with animationName and string keyframes as value 2`] = `
 [
-  ".css-wo7teo{animation-name:animation-1bi8wtt;animation-duration:1s;}",
+  ".css-wo7teo{-webkit-animation-name:animation-1bi8wtt;animation-name:animation-1bi8wtt;-webkit-animation-duration:1s;animation-duration:1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -240,6 +259,7 @@ exports[`keyframes object with string keyframes 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0 1s;
   animation: animation-0 1s;
 }
 
@@ -252,7 +272,8 @@ exports[`keyframes object with string keyframes 1`] = `
 
 exports[`keyframes object with string keyframes 2`] = `
 [
-  ".css-1wh2ide{animation:animation-1bi8wtt 1s;}",
+  ".css-1wh2ide{-webkit-animation:animation-1bi8wtt 1s;animation:animation-1bi8wtt 1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
@@ -269,6 +290,7 @@ exports[`keyframes without css call 1`] = `
 }
 
 .emotion-0 {
+  -webkit-animation: animation-0;
   animation: animation-0;
 }
 
@@ -281,7 +303,8 @@ exports[`keyframes without css call 1`] = `
 
 exports[`keyframes without css call 2`] = `
 [
-  ".css-1mzou9w{animation:animation-1bi8wtt;}",
+  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;

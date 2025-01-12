@@ -14,6 +14,13 @@ exports[`basic 1`] = `
     data-s=""
   >
     
+    @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
     @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
   </style>
   <style
@@ -35,7 +42,7 @@ exports[`basic 1`] = `
     data-s=""
   >
     
-    h1{animation:animation-ocj8pk 1s;}
+    h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
   </style>
   <style
     data-emotion="css-global"
@@ -61,6 +68,13 @@ exports[`basic 3`] = `
   >
     
     .css-animation-ocj8pk{}
+  </style>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
   </style>
   <style
     data-emotion="css"

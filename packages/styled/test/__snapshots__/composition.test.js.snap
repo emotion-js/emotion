@@ -4,7 +4,13 @@ exports[`composing components 1`] = `
 .emotion-0 {
   color: green;
   display: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -104,7 +110,12 @@ exports[`composition with objects 1`] = `
 exports[`glamorous style api & composition 1`] = `
 .emotion-0 {
   font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -119,6 +130,7 @@ exports[`glamorous style api & composition 1`] = `
 exports[`object composition 1`] = `
 .emotion-0 {
   border-radius: 50%;
+  -webkit-transition: -webkit-transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
   border: 3px solid currentColor;
   width: 96px;
@@ -128,6 +140,9 @@ exports[`object composition 1`] = `
 }
 
 .emotion-0:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 

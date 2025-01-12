@@ -29,13 +29,13 @@ exports[`ssr global 1`] = `
 
 exports[`ssr global with keyframes 1`] = `
 <style data-emotion="css-global eti4v9 animation-ocj8pk">
-  h1{animation:animation-ocj8pk 1s;}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}@-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
 </style>
 `;
 
 exports[`ssr keyframes 1`] = `
 <style data-emotion="css cijyg1 animation-1ch4i0o">
-  .css-cijyg1{animation:1s animation-1ch4i0o;}@keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}
+  .css-cijyg1{-webkit-animation:1s animation-1ch4i0o;animation:1s animation-1ch4i0o;}@-webkit-keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}@keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}
 </style>
 <div class="css-cijyg1">
 </div>
@@ -73,7 +73,7 @@ exports[`ssr only render a style once with the css prop 1`] = `
 
 exports[`ssr styled with keyframes 1`] = `
 <style data-emotion="css 1y9glrp animation-ocj8pk">
-  .css-1y9glrp{animation:animation-ocj8pk 1s;}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  .css-1y9glrp{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}@-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
 </style>
 <div class="css-1y9glrp">
 </div>
@@ -114,16 +114,16 @@ exports[`ssr with old api global 1`] = `
 
 exports[`ssr with old api global with keyframes 1`] = `
 <style data-emotion="css eti4v9 animation-ocj8pk">
-  h1{animation:animation-ocj8pk 1s;}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}@-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
 </style>
 `;
 
 exports[`ssr with old api keyframes 1`] = `
 <style data-emotion="css animation-1ch4i0o">
-  @keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}
+  @-webkit-keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}@keyframes animation-1ch4i0o{from{color:green;}to{color:blue;}}
 </style>
 <style data-emotion="css cijyg1">
-  .css-cijyg1{animation:1s animation-1ch4i0o;}
+  .css-cijyg1{-webkit-animation:1s animation-1ch4i0o;animation:1s animation-1ch4i0o;}
 </style>
 <div class="css-cijyg1">
 </div>
@@ -161,10 +161,10 @@ exports[`ssr with old api only render a style once with the css prop 1`] = `
 
 exports[`ssr with old api styled with keyframes 1`] = `
 <style data-emotion="css animation-ocj8pk">
-  @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
 </style>
 <style data-emotion="css 1y9glrp">
-  .css-1y9glrp{animation:animation-ocj8pk 1s;}
+  .css-1y9glrp{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
 </style>
 <div class="css-1y9glrp">
 </div>

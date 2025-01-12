@@ -25,6 +25,9 @@ exports[`css array fallback 1`] = `
 
 exports[`css array with explicit false 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -35,6 +38,9 @@ exports[`css array with explicit false 1`] = `
 
 exports[`css array with explicit true 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -45,7 +51,12 @@ exports[`css array with explicit true 1`] = `
 
 exports[`css auto px 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   font-size: 10px;
   --custom: 5;
@@ -58,6 +69,9 @@ exports[`css auto px 1`] = `
 
 exports[`css boolean as value 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -68,6 +82,9 @@ exports[`css boolean as value 1`] = `
 
 exports[`css composition stuff 1`] = `
 .emotion-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -78,6 +95,9 @@ exports[`css composition stuff 1`] = `
 
 exports[`css composition stuff 2`] = `
 .emotion-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -88,9 +108,15 @@ exports[`css composition stuff 2`] = `
 
 exports[`css composition with objects 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   width: 30px;
   height: calc(40vw - 50px);
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -138,6 +164,9 @@ exports[`css css variables 1`] = `
 
 exports[`css explicit & 1`] = `
 .emotion-0.another-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -148,6 +177,9 @@ exports[`css explicit & 1`] = `
 
 exports[`css explicit & 2`] = `
 ".css-5v9d41-cls1.another-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }"
 `;
@@ -160,6 +192,9 @@ exports[`css explicit false 1`] = `
 
 exports[`css falsy property value in object 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -190,6 +225,9 @@ exports[`css float property 1`] = `
 
 exports[`css flushes correctly 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -217,6 +255,7 @@ exports[`css handles array of objects 1`] = `
 
 exports[`css handles more than 10 dynamic properties 1`] = `
 .emotion-0 {
+  -webkit-text-decoration: underline;
   text-decoration: underline;
   border-right: solid blue 54px;
   background: white;
@@ -238,6 +277,9 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 exports[`css handles objects 1`] = `
 .emotion-0 {
   float: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   color: blue;
   font-size: 20px;
@@ -327,6 +369,9 @@ exports[`css nested 1`] = `
 }
 
 .emotion-0 .some-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -358,6 +403,9 @@ exports[`css nested array 1`] = `
   display: inline;
   display: inline-block;
   display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   display: table;
   color: darkorchid;
@@ -399,6 +447,9 @@ exports[`css nested at rules 1`] = `
 
   @supports (display: flex) {
     .emotion-0 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
     }
   }
@@ -455,6 +506,9 @@ exports[`css random expression 1`] = `
 
 exports[`css random interpolation with undefined values 1`] = `
 .emotion-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -465,6 +519,9 @@ exports[`css random interpolation with undefined values 1`] = `
 
 exports[`css registered styles as nested selector value in object 1`] = `
 .emotion-0:hover {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   background-color: hotpink;
 }
@@ -492,7 +549,13 @@ exports[`css rule after media query 1`] = `
 
 exports[`css simple composition 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -507,6 +570,9 @@ exports[`css simple composition 1`] = `
 
 exports[`css weakmap 1`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -517,6 +583,9 @@ exports[`css weakmap 1`] = `
 
 exports[`css weakmap 2`] = `
 .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
