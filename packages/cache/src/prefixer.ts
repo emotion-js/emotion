@@ -1,6 +1,6 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable eqeqeq */
-import { DECLARATION, Element, hash, replace, WEBKIT } from 'stylis'
+import { DECLARATION, Element, hash, WEBKIT } from 'stylis'
 
 // this is a slice of stylis@4.0.13 prefixer, the latter version introduced grid prefixing which we don't want
 // this version only includes css properties that are not widely available according to https://web-platform-dx.github.io/web-features/
@@ -24,11 +24,6 @@ function prefix(value: string, length: number): string {
     case 6968:
     case 2756:
       return WEBKIT + value + value
-    // cursor
-    case 6187:
-      return (
-        replace(replace(value, /(image-set)/, WEBKIT + '$1'), value, '') + value
-      )
   }
 
   return value
