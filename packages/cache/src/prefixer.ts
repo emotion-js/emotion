@@ -27,15 +27,7 @@ function prefix(value: string, length: number): string {
     // cursor
     case 6187:
       return (
-        replace(
-          replace(
-            replace(value, /(zoom-|grab)/, WEBKIT + '$1'),
-            /(image-set)/,
-            WEBKIT + '$1'
-          ),
-          value,
-          ''
-        ) + value
+        replace(replace(value, /(image-set)/, WEBKIT + '$1'), value, '') + value
       )
   }
 
