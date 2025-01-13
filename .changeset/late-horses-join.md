@@ -5,4 +5,4 @@
 '@emotion/css': major
 ---
 
-Removed auto-prefixing from the defaults. It can still be used by creating a custom cache with a `prefixer` plugin from `stylis`.
+Removed auto-prefixing for widely available features.
