@@ -1,6 +1,6 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable eqeqeq */
-import { DECLARATION, Element, hash, MOZ, MS, replace, WEBKIT } from 'stylis'
+import { DECLARATION, Element, hash, replace, WEBKIT } from 'stylis'
 
 // this is a slice of stylis@4.0.13 prefixer, the latter version introduced grid prefixing which we don't want
 // this version only includes css properties that are not widely available according to https://web-platform-dx.github.io/web-features/
