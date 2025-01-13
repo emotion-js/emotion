@@ -1,5 +1,24 @@
 # @emotion/react
 
+## 12.0.0-next.0
+
+### Major Changes
+
+- [#3291](https://github.com/emotion-js/emotion/pull/3291) [`319b3f5`](https://github.com/emotion-js/emotion/commit/319b3f5e5902c71e21dd1a1b3c9b7a7d2d8d09c9) Thanks [@Andarist](https://github.com/Andarist)! - Dropped support for older React versions. React 19 becomes the only compatible version with this package.
+
+- [#3286](https://github.com/emotion-js/emotion/pull/3286) [`55ef071`](https://github.com/emotion-js/emotion/commit/55ef0717d2dcb9886a9e6dd9d1c50c32a651a42d) Thanks [@Andarist](https://github.com/Andarist)! - Removed `.defaultProps` support
+
+- [#3296](https://github.com/emotion-js/emotion/pull/3296) [`49108c8`](https://github.com/emotion-js/emotion/commit/49108c893d50fe95dca1f4b13390dd1ede80c57e) Thanks [@Andarist](https://github.com/Andarist)! - Removed auto-prefixing for widely available features.
+
+- [#3290](https://github.com/emotion-js/emotion/pull/3290) [`6158389`](https://github.com/emotion-js/emotion/commit/6158389b3853198f5465a3df0dd4ff00a384f606) Thanks [@Andarist](https://github.com/Andarist)! - `withTheme` will no longer automatically hoist non-React statics onto the created component
+
+- [#3287](https://github.com/emotion-js/emotion/pull/3287) [`61fcc80`](https://github.com/emotion-js/emotion/commit/61fcc80de43b29aeab60088bd3f6994366a9a0c4) Thanks [@Andarist](https://github.com/Andarist)! - Refs are no longer internally forwarded using `React.forwardRef`.
+
+### Patch Changes
+
+- Updated dependencies [[`49108c8`](https://github.com/emotion-js/emotion/commit/49108c893d50fe95dca1f4b13390dd1ede80c57e)]:
+  - @emotion/cache@12.0.0-next.0
+
 ## 11.14.0
 
 ### Minor Changes

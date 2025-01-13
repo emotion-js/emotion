@@ -34,5 +34,12 @@
     "test-utils": "0.3.2",
     "emotion-site": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "amaranth-owls-dream",
+    "early-badgers-teach",
+    "late-horses-join",
+    "polite-items-cheat",
+    "tame-pets-flash",
+    "twelve-gifts-do"
+  ]
 }

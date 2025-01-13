@@ -1,5 +1,16 @@
 # @emotion/primitives-core
 
+## 12.0.0-next.0
+
+### Major Changes
+
+- [#3287](https://github.com/emotion-js/emotion/pull/3287) [`61fcc80`](https://github.com/emotion-js/emotion/commit/61fcc80de43b29aeab60088bd3f6994366a9a0c4) Thanks [@Andarist](https://github.com/Andarist)! - Refs are no longer internally forwarded using `React.forwardRef`.
+
+### Patch Changes
+
+- Updated dependencies [[`319b3f5`](https://github.com/emotion-js/emotion/commit/319b3f5e5902c71e21dd1a1b3c9b7a7d2d8d09c9), [`55ef071`](https://github.com/emotion-js/emotion/commit/55ef0717d2dcb9886a9e6dd9d1c50c32a651a42d), [`49108c8`](https://github.com/emotion-js/emotion/commit/49108c893d50fe95dca1f4b13390dd1ede80c57e), [`6158389`](https://github.com/emotion-js/emotion/commit/6158389b3853198f5465a3df0dd4ff00a384f606), [`61fcc80`](https://github.com/emotion-js/emotion/commit/61fcc80de43b29aeab60088bd3f6994366a9a0c4)]:
+  - @emotion/react@12.0.0-next.0
+
 ## 11.13.2
 
 ### Patch Changes

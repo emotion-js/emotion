@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 12.0.0-next.0
+
+### Major Changes
+
+- [#3292](https://github.com/emotion-js/emotion/pull/3292) [`e5d43fc`](https://github.com/emotion-js/emotion/commit/e5d43fc98bc2b4e4a3a9c7dc98ccc31626d4d90c) Thanks [@Andarist](https://github.com/Andarist)! - Drop support for Enzyme
+
 ## 11.13.0
 
 ### Minor Changes

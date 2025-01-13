@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.14.0",
+  "version": "12.0.0-next.0",
   "main": "dist/emotion-react.cjs.js",
   "module": "dist/emotion-react.esm.js",
   "types": "dist/emotion-react.cjs.d.ts",
@@ -208,7 +208,7 @@
   "dependencies": {
     "@babel/runtime": "^7.18.3",
     "@emotion/babel-plugin": "^11.13.5",
-    "@emotion/cache": "^11.14.0",
+    "@emotion/cache": "^12.0.0-next.0",
     "@emotion/serialize": "^1.3.3",
     "@emotion/use-insertion-effect-with-fallbacks": "^1.2.0",
     "@emotion/utils": "^1.4.2",
@@ -224,10 +224,10 @@
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
-    "@emotion/css": "11.13.5",
+    "@emotion/css": "12.0.0-next.0",
     "@emotion/css-prettifier": "1.2.0",
-    "@emotion/server": "11.11.0",
-    "@emotion/styled": "11.14.0",
+    "@emotion/server": "12.0.0-next.0",
+    "@emotion/styled": "12.0.0-next.0",
     "html-tag-names": "^1.1.2",
     "react": "19.0.0",
     "svg-tag-names": "^1.1.1",
