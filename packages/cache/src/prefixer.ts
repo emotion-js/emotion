@@ -19,12 +19,11 @@ function prefix(value: string, length: number): string {
     case 6135:
     case 4599:
     case 4855:
-      return WEBKIT + value + value
     // user-select, hyphens, text-size-adjust
     case 4246:
     case 6968:
     case 2756:
-      return WEBKIT + value + MOZ + value + MS + value + value
+      return WEBKIT + value + value
     // cursor
     case 6187:
       return (
