@@ -2,9 +2,6 @@
 
 exports[`should accept container option 1`] = `
 .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   color: blue;
 }
@@ -22,7 +19,7 @@ exports[`should accept container option 1`] = `
       data-s=""
     >
       
-      .emotion-0{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;color:blue;}
+      .emotion-0{display:flex;color:blue;}
     </style>
   </div>
   <div>
@@ -45,7 +42,7 @@ exports[`should accept insertionPoint option 1`] = `
     data-s=""
   >
     
-    .test-insertion-point-83n355{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;color:blue;}
+    .test-insertion-point-83n355{display:flex;color:blue;}
   </style>
   
     
