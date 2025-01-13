@@ -1,5 +1,16 @@
 # emotion
 
+## 12.0.0-next.0
+
+### Major Changes
+
+- [#3296](https://github.com/emotion-js/emotion/pull/3296) [`49108c8`](https://github.com/emotion-js/emotion/commit/49108c893d50fe95dca1f4b13390dd1ede80c57e) Thanks [@Andarist](https://github.com/Andarist)! - Removed auto-prefixing for widely available features.
+
+### Patch Changes
+
+- Updated dependencies [[`49108c8`](https://github.com/emotion-js/emotion/commit/49108c893d50fe95dca1f4b13390dd1ede80c57e)]:
+  - @emotion/cache@12.0.0-next.0
+
 ## 11.13.5
 
 ### Patch Changes

@@ -2711,7 +2711,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/cache@^11.13.5, @emotion/cache@^11.14.0, @emotion/cache@workspace:packages/cache":
+"@emotion/cache@^12.0.0-next.0, @emotion/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@emotion/cache@workspace:packages/cache"
   dependencies:
@@ -2727,6 +2727,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@emotion/cache@npm:^11.14.0":
+  version: 11.14.0
+  resolution: "@emotion/cache@npm:11.14.0"
+  dependencies:
+    "@emotion/memoize": ^0.9.0
+    "@emotion/sheet": ^1.4.0
+    "@emotion/utils": ^1.4.2
+    "@emotion/weak-memoize": ^0.4.0
+    stylis: 4.2.0
+  checksum: 0a81591541ea43bc7851742e6444b7800d72e98006f94e775ae6ea0806662d14e0a86ff940f5f19d33b4bb2c427c882aa65d417e7322a6e0d5f20fe65ed920c9
+  languageName: node
+  linkType: hard
+
 "@emotion/css-prettifier@1.2.0, @emotion/css-prettifier@^1.2.0, @emotion/css-prettifier@workspace:packages/css-prettifier":
   version: 0.0.0-use.local
   resolution: "@emotion/css-prettifier@workspace:packages/css-prettifier"
@@ -2737,13 +2750,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/css@11.13.5, @emotion/css@workspace:packages/css":
+"@emotion/css@12.0.0-next.0, @emotion/css@workspace:packages/css":
   version: 0.0.0-use.local
   resolution: "@emotion/css@workspace:packages/css"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.13.5
-    "@emotion/cache": ^11.13.5
+    "@emotion/cache": ^12.0.0-next.0
     "@emotion/serialize": ^1.3.3
     "@emotion/sheet": ^1.4.0
     "@emotion/utils": ^1.4.2
@@ -2798,9 +2811,9 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/css": 11.13.5
+    "@emotion/css": 12.0.0-next.0
     "@emotion/css-prettifier": ^1.2.0
-    "@emotion/react": 11.14.0
+    "@emotion/react": 12.0.0-next.0
     "@types/jest": ^29.5.12
     chalk: ^4.1.0
     enzyme-to-json: ^3.6.1
@@ -2850,7 +2863,7 @@ __metadata:
   resolution: "@emotion/native@workspace:packages/native"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
-    "@emotion/primitives-core": ^11.11.0
+    "@emotion/primitives-core": ^12.0.0-next.0
     "@types/react-native": ^0.63.2
     react: 19.0.0
     react-native: ^0.63.2
@@ -2860,16 +2873,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/primitives-core@^11.11.0, @emotion/primitives-core@^11.13.0, @emotion/primitives-core@workspace:packages/primitives-core":
+"@emotion/primitives-core@^12.0.0-next.0, @emotion/primitives-core@workspace:packages/primitives-core":
   version: 0.0.0-use.local
   resolution: "@emotion/primitives-core@workspace:packages/primitives-core"
   dependencies:
-    "@emotion/react": 11.14.0
+    "@emotion/react": 12.0.0-next.0
     "@types/css-to-react-native": ^3.0.0
     css-to-react-native: ^3.0.0
     react: 19.0.0
   peerDependencies:
-    "@emotion/react": ^11.0.0-rc.0
+    "@emotion/react": ^12.0.0-next.0
     react: ^19.0.0
   languageName: unknown
   linkType: soft
@@ -2880,7 +2893,7 @@ __metadata:
   dependencies:
     "@emotion/babel-plugin": ^11.11.0
     "@emotion/is-prop-valid": ^1.2.1
-    "@emotion/primitives-core": ^11.13.0
+    "@emotion/primitives-core": ^12.0.0-next.0
     react: 19.0.0
     react-primitives: ^0.8.1
   peerDependencies:
@@ -2889,19 +2902,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/react@11.14.0, @emotion/react@^11.4.1, @emotion/react@workspace:packages/react":
+"@emotion/react@12.0.0-next.0, @emotion/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@emotion/react@workspace:packages/react"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.13.5
-    "@emotion/cache": ^11.14.0
-    "@emotion/css": 11.13.5
+    "@emotion/cache": ^12.0.0-next.0
+    "@emotion/css": 12.0.0-next.0
     "@emotion/css-prettifier": 1.2.0
     "@emotion/serialize": ^1.3.3
-    "@emotion/server": 11.11.0
-    "@emotion/styled": 11.14.0
+    "@emotion/server": 12.0.0-next.0
+    "@emotion/styled": 12.0.0-next.0
     "@emotion/use-insertion-effect-with-fallbacks": ^1.2.0
     "@emotion/utils": ^1.4.2
     "@emotion/weak-memoize": ^0.4.0
@@ -2917,6 +2930,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@emotion/react@npm:^11.4.1":
+  version: 11.14.0
+  resolution: "@emotion/react@npm:11.14.0"
+  dependencies:
+    "@babel/runtime": ^7.18.3
+    "@emotion/babel-plugin": ^11.13.5
+    "@emotion/cache": ^11.14.0
+    "@emotion/serialize": ^1.3.3
+    "@emotion/use-insertion-effect-with-fallbacks": ^1.2.0
+    "@emotion/utils": ^1.4.2
+    "@emotion/weak-memoize": ^0.4.0
+    hoist-non-react-statics: ^3.3.1
+  peerDependencies:
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 3cf023b11d132b56168713764d6fced8e5a1f0687dfe0caa2782dfd428c8f9e30f9826a919965a311d87b523cd196722aaf75919cd0f6bd0fd57f8a6a0281500
+  languageName: node
+  linkType: hard
+
 "@emotion/serialize@^1.3.3, @emotion/serialize@workspace:packages/serialize":
   version: 0.0.0-use.local
   resolution: "@emotion/serialize@workspace:packages/serialize"
@@ -2931,13 +2965,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/server@11.11.0, @emotion/server@workspace:packages/server":
+"@emotion/server@12.0.0-next.0, @emotion/server@workspace:packages/server":
   version: 0.0.0-use.local
   resolution: "@emotion/server@workspace:packages/server"
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": 11.13.5
-    "@emotion/css": 11.13.5
+    "@emotion/css": 12.0.0-next.0
     "@emotion/css-prettifier": 1.2.0
     "@emotion/utils": ^1.4.2
     "@types/node": ^12.20.37
@@ -2946,7 +2980,7 @@ __metadata:
     through: ^2.3.8
     typescript: ^5.4.5
   peerDependencies:
-    "@emotion/css": ^11.0.0-rc.0
+    "@emotion/css": ^12.0.0-next.0
   peerDependenciesMeta:
     "@emotion/css":
       optional: true
@@ -2962,7 +2996,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/styled@11.14.0, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
+"@emotion/styled@12.0.0-next.0, @emotion/styled@workspace:packages/styled":
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
@@ -2970,7 +3004,7 @@ __metadata:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/babel-plugin": ^11.13.5
     "@emotion/is-prop-valid": ^1.3.0
-    "@emotion/react": 11.14.0
+    "@emotion/react": 12.0.0-next.0
     "@emotion/serialize": ^1.3.3
     "@emotion/use-insertion-effect-with-fallbacks": ^1.2.0
     "@emotion/utils": ^1.4.2
@@ -2979,13 +3013,33 @@ __metadata:
     react: 19.0.0
     typescript: ^5.4.5
   peerDependencies:
-    "@emotion/react": ^11.0.0-rc.0
+    "@emotion/react": ^12.0.0-next.0
     react: ^19.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
   languageName: unknown
   linkType: soft
+
+"@emotion/styled@npm:^11.0.0":
+  version: 11.14.0
+  resolution: "@emotion/styled@npm:11.14.0"
+  dependencies:
+    "@babel/runtime": ^7.18.3
+    "@emotion/babel-plugin": ^11.13.5
+    "@emotion/is-prop-valid": ^1.3.0
+    "@emotion/serialize": ^1.3.3
+    "@emotion/use-insertion-effect-with-fallbacks": ^1.2.0
+    "@emotion/utils": ^1.4.2
+  peerDependencies:
+    "@emotion/react": ^11.0.0-rc.0
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 9c1b842e942e69fb6037d1ab161046d2bcfeff95fd2ccfdab30acaaf6b89dc07b14bb00f8cc8ec14df11e6746c8e4e1d781bc54d10bd739aab44966ded64d4fb
+  languageName: node
+  linkType: hard
 
 "@emotion/unitless@^0.10.0, @emotion/unitless@workspace:packages/unitless":
   version: 0.0.0-use.local
