@@ -39,4 +39,5 @@ tags.forEach(tagName => {
   ;(newStyled as any)[tagName] = newStyled(tagName as keyof typeof newStyled)
 })
 
+export { newStyled as styled }
 export default newStyled
