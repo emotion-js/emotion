@@ -1,0 +1,9 @@
+{
+  "main": "dist/emotion-styled-tags.cjs.js",
+  "module": "dist/emotion-styled-tags.esm.js",
+  "umd:main": "dist/emotion-styled-tags.umd.min.js",
+  "types": "dist/emotion-styled-tags.cjs.d.ts",
+  "preconstruct": {
+    "umdName": "emotionStyledTags"
+  }
+}
