@@ -46,8 +46,8 @@
   "exports": {
     "./tags": {
       "types": {
-        "import": "./base/dist/emotion-styled-tags.cjs.mjs",
-        "default": "./base/dist/emotion-styled-tags.cjs.js"
+        "import": "./dist/emotion-styled-tags.cjs.mjs",
+        "default": "./dist/emotion-styled-tags.cjs.js"
       },
       "development": {
         "module": "./dist/emotion-styled-tags.development.esm.js",
