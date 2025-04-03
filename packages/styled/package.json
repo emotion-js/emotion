@@ -44,6 +44,20 @@
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "exports": {
+    "./tags": {
+      "types": {
+        "import": "./base/dist/emotion-styled-tags.cjs.mjs",
+        "default": "./base/dist/emotion-styled-tags.cjs.js"
+      },
+      "development": {
+        "module": "./dist/emotion-styled-tags.development.esm.js",
+        "import": "./dist/emotion-styled-tags.development.cjs.mjs",
+        "default": "./dist/emotion-styled-tags.development.cjs.js"
+      },
+      "module": "./dist/emotion-styled-tags.esm.js",
+      "import": "./dist/emotion-styled-tags.cjs.mjs",
+      "default": "./dist/emotion-styled-tags.cjs.js"
+    },
     "./base": {
       "types": {
         "import": "./base/dist/emotion-styled-base.cjs.mjs",
@@ -177,6 +191,7 @@
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
+      "./tags.ts",
       "./index.ts",
       "./base.tsx"
     ],

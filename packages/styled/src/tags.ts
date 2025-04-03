@@ -1,4 +1,4 @@
-export const tags = [
+export default [
   'a',
   'abbr',
   'address',

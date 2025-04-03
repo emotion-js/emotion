@@ -1,7 +1,7 @@
 import { Theme } from '@emotion/react'
 import styled from './base'
 import { ReactJSXIntrinsicElements } from './jsx-namespace'
-import { tags } from './tags'
+import tags from './tags'
 import {
   CreateStyledComponent,
   CreateStyled as BaseCreateStyled
