@@ -46,57 +46,57 @@
   "exports": {
     "./tags": {
       "types": {
-        "import": "./dist/emotion-styled-tags.cjs.mjs",
-        "default": "./dist/emotion-styled-tags.cjs.js"
+        "import": "./tags/dist/emotion-styled-tags.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.cjs.js"
       },
       "development": {
         "edge-light": {
-          "module": "./dist/emotion-styled-tags.development.edge-light.esm.js",
-          "import": "./dist/emotion-styled-tags.development.edge-light.cjs.mjs",
-          "default": "./dist/emotion-styled-tags.development.edge-light.cjs.js"
+          "module": "./tags/dist/emotion-styled-tags.development.edge-light.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.js"
         },
         "worker": {
-          "module": "./dist/emotion-styled-tags.development.edge-light.esm.js",
-          "import": "./dist/emotion-styled-tags.development.edge-light.cjs.mjs",
-          "default": "./dist/emotion-styled-tags.development.edge-light.cjs.js"
+          "module": "./tags/dist/emotion-styled-tags.development.edge-light.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.js"
         },
         "workerd": {
-          "module": "./dist/emotion-styled-tags.development.edge-light.esm.js",
-          "import": "./dist/emotion-styled-tags.development.edge-light.cjs.mjs",
-          "default": "./dist/emotion-styled-tags.development.edge-light.cjs.js"
+          "module": "./tags/dist/emotion-styled-tags.development.edge-light.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.js"
         },
         "browser": {
-          "module": "./dist/emotion-styled-tags.browser.development.esm.js",
-          "import": "./dist/emotion-styled-tags.browser.development.cjs.mjs",
-          "default": "./dist/emotion-styled-tags.browser.development.cjs.js"
+          "module": "./tags/dist/emotion-styled-tags.browser.development.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.browser.development.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.browser.development.cjs.js"
         },
-        "module": "./dist/emotion-styled-tags.development.esm.js",
-        "import": "./dist/emotion-styled-tags.development.cjs.mjs",
-        "default": "./dist/emotion-styled-tags.development.cjs.js"
+        "module": "./tags/dist/emotion-styled-tags.development.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.development.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.development.cjs.js"
       },
       "edge-light": {
-        "module": "./dist/emotion-styled-tags.edge-light.esm.js",
-        "import": "./dist/emotion-styled-tags.edge-light.cjs.mjs",
-        "default": "./dist/emotion-styled-tags.edge-light.cjs.js"
+        "module": "./tags/dist/emotion-styled-tags.edge-light.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.edge-light.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.edge-light.cjs.js"
       },
       "worker": {
-        "module": "./dist/emotion-styled-tags.edge-light.esm.js",
-        "import": "./dist/emotion-styled-tags.edge-light.cjs.mjs",
-        "default": "./dist/emotion-styled-tags.edge-light.cjs.js"
+        "module": "./tags/dist/emotion-styled-tags.edge-light.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.edge-light.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.edge-light.cjs.js"
       },
       "workerd": {
-        "module": "./dist/emotion-styled-tags.edge-light.esm.js",
-        "import": "./dist/emotion-styled-tags.edge-light.cjs.mjs",
-        "default": "./dist/emotion-styled-tags.edge-light.cjs.js"
+        "module": "./tags/dist/emotion-styled-tags.edge-light.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.edge-light.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.edge-light.cjs.js"
       },
       "browser": {
-        "module": "./dist/emotion-styled-tags.browser.esm.js",
-        "import": "./dist/emotion-styled-tags.browser.cjs.mjs",
-        "default": "./dist/emotion-styled-tags.browser.cjs.js"
+        "module": "./tags/dist/emotion-styled-tags.browser.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.browser.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.browser.cjs.js"
       },
-      "module": "./dist/emotion-styled-tags.esm.js",
-      "import": "./dist/emotion-styled-tags.cjs.mjs",
-      "default": "./dist/emotion-styled-tags.cjs.js"
+      "module": "./tags/dist/emotion-styled-tags.esm.js",
+      "import": "./tags/dist/emotion-styled-tags.cjs.mjs",
+      "default": "./tags/dist/emotion-styled-tags.cjs.js"
     },
     "./base": {
       "types": {
