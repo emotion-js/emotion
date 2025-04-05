@@ -39,6 +39,7 @@
   "files": [
     "src",
     "dist",
+    "tags",
     "base",
     "macro.*"
   ],
