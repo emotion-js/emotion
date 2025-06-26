@@ -220,6 +220,26 @@ const StyledOriginal = styled(Original, {
 ;<StyledOriginal prop1="1" prop2={2} />
 ```
 
+Alternatively, you can destructure and split custom props from intrinsic props:
+
+```ts
+import { ComponentProps } from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
+type InputWrapperProps = ComponentProps<'div'> & { disabled?: boolean };
+
+const InputWrapper = styled(
+  ({ disabled, ...rest }: InputWrapperProps) => <div role="group" {...rest} />
+)`
+  ${({ disabled }) => css`
+    input {
+      background: ${disabled ? 'red' : 'white'};
+    }
+  `}
+`;
+```
+
 ### Passing props when styling a React component
 
 ```tsx
