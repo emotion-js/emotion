@@ -1,5 +1,5 @@
 import { Theme } from '@emotion/react'
-import oldStyled from './base'
+import baseStyled from './base'
 import { ReactJSXIntrinsicElements } from './jsx-namespace'
 import { tags } from './tags'
 import {
@@ -33,7 +33,7 @@ export type StyledTags = {
 export interface CreateStyled extends BaseCreateStyled, StyledTags {}
 
 // bind it to avoid mutating the original function
-const styled = oldStyled.bind(null) as CreateStyled
+const styled = baseStyled.bind(null) as CreateStyled
 
 tags.forEach(tagName => {
   ;(styled as any)[tagName] = styled(tagName as keyof typeof styled)
