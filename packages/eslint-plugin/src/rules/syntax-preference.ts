@@ -78,9 +78,11 @@ const checkExpressionPreferringObject = (
 ) => {
   switch (node.type) {
     case AST_NODE_TYPES.ArrayExpression:
-      node.elements.forEach(element =>
-        checkExpressionPreferringObject(context, element)
-      )
+      node.elements.forEach(element => {
+        if (element !== null) {
+          checkExpressionPreferringObject(context, element)
+        }
+      })
       return
     case AST_NODE_TYPES.TemplateLiteral:
       context.report({
@@ -90,6 +92,7 @@ const checkExpressionPreferringObject = (
       return
     case AST_NODE_TYPES.Literal:
       // validating other literal types seems out of scope of this plugin
+      /* istanbul ignore if */
       if (typeof node.value !== 'string') {
         return
       }
@@ -134,6 +137,7 @@ const createPreferredObjectVisitor = (
     switch (node.value.type) {
       case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
+        /* istanbul ignore if */
         if (typeof node.value.value !== 'string') {
           return
         }
@@ -154,9 +158,11 @@ const checkExpressionPreferringString = (
 ) => {
   switch (node.type) {
     case 'ArrayExpression':
-      node.elements.forEach(element =>
-        checkExpressionPreferringString(context, element)
-      )
+      node.elements.forEach(element => {
+        if (element !== null) {
+          checkExpressionPreferringString(context, element)
+        }
+      })
       return
     case 'ObjectExpression':
       context.report({
@@ -166,6 +172,7 @@ const checkExpressionPreferringString = (
       return
     case 'Literal':
       // validating other literal types seems out of scope of this plugin
+      /* istanbul ignore if */
       if (typeof node.value !== 'string') {
         return
       }
@@ -203,6 +210,7 @@ const createPreferredStringVisitor = (
     switch (node.value.type) {
       case AST_NODE_TYPES.Literal:
         // validating other literal types seems out of scope of this plugin
+        /* istanbul ignore if */
         if (typeof node.value.value !== 'string') {
           return
         }
@@ -242,6 +250,7 @@ export default createRule<RuleOptions, MessageId>({
     },
     schema: [
       {
+        type: 'string',
         enum: ['string', 'object']
       }
     ],
