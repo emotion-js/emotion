@@ -1,5 +1,11 @@
 # @emotion/styled
 
+## 11.14.1
+
+### Patch Changes
+
+- [#3334](https://github.com/emotion-js/emotion/pull/3334) [`0facbe4`](https://github.com/emotion-js/emotion/commit/0facbe47bd9099ae4ed22dc201822d910ac3dec5) Thanks [@ZachRiegel](https://github.com/ZachRiegel)! - Renamed default-exported variable in `@emotion/styled` to aid inferred import names in auto-import completions in IDEs
+
 ## 11.14.0
 
 ### Minor Changes
