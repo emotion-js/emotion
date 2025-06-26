@@ -2,4 +2,4 @@
 '@emotion/styled': patch
 ---
 
-Renamed default export variable for `@emotion/styled` to aid inferred names in auto-import completions in IDEs
+Renamed default-exported variable in `@emotion/styled` to aid inferred import names in auto-import completions in IDEs
