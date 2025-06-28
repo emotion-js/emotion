@@ -136,12 +136,28 @@ if (isDevelopment) {
 
   processStyleValue = (key: string, value: string | number) => {
     if (key === 'content') {
+      let isProperlyQuoted = false
+      if (typeof value === 'string') {
+        const first = value.charAt(0)
+        if ((first === '"' || first === "'") && value.length > 1) {
+          const closingIndex = value.lastIndexOf(first)
+          if (closingIndex > 0) {
+            const remainder = value.slice(closingIndex + 1).trim()
+            if (
+              closingIndex === value.length - 1 ||
+              remainder === '' ||
+              remainder === '!important'
+            ) {
+              isProperlyQuoted = true
+            }
+          }
+        }
+      }
       if (
         typeof value !== 'string' ||
         (contentValues.indexOf(value) === -1 &&
           !contentValuePattern.test(value) &&
-          (value.charAt(0) !== value.charAt(value.length - 1) ||
-            (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
+          !isProperlyQuoted)
       ) {
         throw new Error(
           `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
