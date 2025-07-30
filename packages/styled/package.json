@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled",
-  "version": "11.14.0",
+  "version": "11.14.1",
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",

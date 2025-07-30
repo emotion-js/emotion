@@ -2895,7 +2895,7 @@ __metadata:
     "@emotion/css-prettifier": 1.2.0
     "@emotion/serialize": ^1.3.3
     "@emotion/server": 11.11.0
-    "@emotion/styled": 11.14.0
+    "@emotion/styled": 11.14.1
     "@emotion/use-insertion-effect-with-fallbacks": ^1.2.0
     "@emotion/utils": ^1.4.2
     "@emotion/weak-memoize": ^0.4.0
@@ -2958,7 +2958,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@emotion/styled@11.14.0, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
+"@emotion/styled@11.14.1, @emotion/styled@^11.0.0, @emotion/styled@workspace:packages/styled":
   version: 0.0.0-use.local
   resolution: "@emotion/styled@workspace:packages/styled"
   dependencies:
