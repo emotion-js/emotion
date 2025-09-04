@@ -124,7 +124,6 @@ const props = {
   pattern: true,
   placeholder: true,
   playsInline: true,
-  // Popover API - Baseline 2024
   popover: true,
   popoverTarget: true,
   popoverTargetAction: true,

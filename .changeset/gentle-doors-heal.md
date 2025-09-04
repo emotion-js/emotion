@@ -2,4 +2,4 @@
 '@emotion/is-prop-valid': minor
 ---
 
-Add support for Popover API
+Adds `popover`, `popoverTarget` and `popoverTargetAction` to the list of allowed props.
