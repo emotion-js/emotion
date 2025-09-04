@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.4.0
+
+### Minor Changes
+
+- [#3306](https://github.com/emotion-js/emotion/pull/3306) [`dfae1cb`](https://github.com/emotion-js/emotion/commit/dfae1cbd98d3ebe449ce322b38cbf4a7fbfbfe96) Thanks [@EnzoAlbornoz](https://github.com/EnzoAlbornoz)! - Adds `popover`, `popoverTarget` and `popoverTargetAction` to the list of allowed props.
+
 ## 1.3.1
 
 ### Patch Changes
