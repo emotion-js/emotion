@@ -1,0 +1,30 @@
+[package]
+name = "murmur"
+version = "0.1.0"
+authors = ["Rom Grk <romgrk.cc@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cityhasher = "0.1.0"
+wasm-bindgen = "0.2.84"
+
+[dependencies.xxhash-rust]
+version = "0.8.12"
+features = ["xxh32", "xxh3"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.34"
+
+[package.metadata.wasm-pack.profile.dev]
+wasm-opt = ['--enable-simd']
+[package.metadata.wasm-pack.profile.profiling]
+wasm-opt = ['--enable-simd']
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ['--enable-simd']
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
