@@ -174,7 +174,10 @@ function clean(node, classNames /*: string[] */) {
     const { className } = node.props
     if (!className) {
       // if it's empty, remove it
-      delete node.props.className
+      const descriptor = Object.getOwnPropertyDescriptor(node, 'props')
+      if (descriptor && descriptor.writable) {
+        delete node.props.className
+      }
     } else {
       const hasKnownClass = hasIntersection(className.split(' '), classNames)
       if (hasKnownClass) {
