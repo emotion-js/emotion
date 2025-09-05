@@ -217,7 +217,7 @@ export let createUnsafeSelectorsAlarm =
         // }
         // with such inputs we wouldn't have to search for the comment at all
         // TODO: consider changing this comment placement in the next major version
-        if (node.column < element.column) {
+        if (node.line === element.line && node.column < element.column) {
           if (isIgnoringComment(node)) {
             return
           }
