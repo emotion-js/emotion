@@ -2,17 +2,17 @@
  * @jest-environment node
  */
 
-import { TSESLint } from '@typescript-eslint/utils'
+import { RuleTester } from '@typescript-eslint/rule-tester'
 import rule from '../../src/rules/jsx-import'
 import { espreeParser } from '../test-utils'
 
-const ruleTester = new TSESLint.RuleTester({
-  parser: espreeParser,
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
+const ruleTester = new RuleTester({
+  languageOptions: {
+    parser: espreeParser,
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true
+      }
     }
   }
 })
@@ -233,7 +233,7 @@ let ele = <div css={{}} />
       code: `
 /** @jsx jsx */
 import * as emotion from '@emotion/react'
-let ele = <div css={\`color:hotpink;\`} />
+let ele = <div css={{}} />
       `.trim(),
       errors: [
         {
@@ -241,10 +241,9 @@ let ele = <div css={\`color:hotpink;\`} />
         }
       ],
       output: `
-/** @jsx jsx */
 /** @jsx emotion.jsx */
 import * as emotion from '@emotion/react'
-let ele = <div css={\`color:hotpink;\`} />
+let ele = <div css={{}} />
       `.trim()
     },
     {
@@ -284,6 +283,53 @@ let ele = <div css={{}} />
 let ele2 = <div css={{}} />
 
       `.trim()
+    },
+    {
+      settings: { react: { pragma: 'jsx' } },
+      code: `
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+import { jsx } from '@emotion/react'
+let ele = <div css={{}} />
+    `.trim()
+    },
+    {
+      settings: { react: { pragma: 'jsx' } },
+      code: `
+import { css } from '@emotion/react'
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+import { css, jsx } from '@emotion/react'
+let ele = <div css={{}} />
+    `.trim()
+    },
+    {
+      settings: { react: { pragma: 'jsx' } },
+      code: `
+import DefaultExport from '@emotion/react'
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'cssPropWithPragma'
+        }
+      ],
+      output: `
+import DefaultExport, { jsx } from '@emotion/react'
+let ele = <div css={{}} />
+    `.trim()
     },
     {
       code: `
@@ -337,6 +383,23 @@ let ele2 = <div css={{}} />
     import {jsx, css} from '@emotion/react'
     let ele = <div css={css\`color:hotpink;\`} />
           `.trim()
+    },
+    {
+      code: `
+    /** @jsx emotion.jsx */
+    import * as emotion from '@emotion/react'
+    let ele = <div css={\`color:hotpink;\`} />
+      `.trim(),
+      errors: [
+        {
+          messageId: 'templateLiterals'
+        }
+      ],
+      output: `
+    /** @jsx emotion.jsx */
+    import * as emotion from '@emotion/react'
+    let ele = <div css={emotion.css\`color:hotpink;\`} />
+      `.trim()
     }
   ]
 })
