@@ -19,7 +19,7 @@ export const myCache = createCache({
 
 - Using emotion in embedded contexts such as an `<iframe/>`
 
-- Setting a [nonce](#nonce-string) on any `<style/>` tag emotion creates for security purposes
+- Setting a [nonce](#nonce) on any `<style/>` tag emotion creates for security purposes
 
 - Using emotion with a developer defined `<style/>` tag
 
