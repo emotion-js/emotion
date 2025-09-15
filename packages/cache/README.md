@@ -55,8 +55,24 @@ The prefix before class names. It will also be set as the value of the `data-emo
 
 A DOM node that emotion will insert all of its style tags into. This is useful for inserting styles into iframes or windows.
 
+### `insertionPoint`
+
+`HTMLElement`
+
+A DOM node after which style tags will be inserted. Use this to control the specific order of style tag insertion in the DOM.
+
 ### `prepend`
 
 `boolean`
 
 A boolean representing whether to prepend rather than append style tags into the specified container DOM node.
+
+### `speedy`
+
+`boolean`
+
+Enables optimized "speedy mode" for injecting CSS. When enabled, styles are batched into a single `<style/>` tag, improving performance. 
+
+> Note:
+>
+> Disabling this option will reduce performance but can simplify debugging. This is why speedy mode is disabled by default in development.
