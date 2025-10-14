@@ -4,6 +4,8 @@ title: 'Server Side Rendering'
 
 Server side rendering in Emotion 10 has two approaches, each with their own trade-offs. The default approach works with streaming and requires no additional configuration, but does not work with nth child or similar selectors. It's strongly recommended that you use the default approach unless you need nth child or similar selectors.
 
+Regardless of approach, Emotion does not currently support React 18's streaming APIs.
+
 ## Default Approach
 
 Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/react` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
@@ -31,7 +33,7 @@ const MyDiv = styled('div')({ fontSize: 12 })
 
 > Note: If you're not using nth child or similar selectors, you don't need to do this. Use the default approach.
 
-You can also use the advanced integration, it requires more work but does not have limitations on nth child and similar selectors. This approach does not work with the streaming APIs.
+You can also use the advanced integration, it requires more work but does not have limitations on nth child and similar selectors.
 
 ### On server
 
