@@ -6,7 +6,7 @@
 
 > **Emotion 11 has been released 🚀 [See the blog post](https://emotion.sh/docs/emotion-11)**
 
-[![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
+[![Backers on Open Collective](https://img.shields.io/opencollective/backers/emotion)](#backers) [![Sponsors on Open Collective](https://img.shields.io/opencollective/sponsors/emotion)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/main.svg)](https://circleci.com/gh/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/main/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
 ![@emotion/css size](https://img.shields.io/bundlephobia/min/@emotion/css.svg?label=@emotion/css%20size)
