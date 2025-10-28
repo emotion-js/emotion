@@ -144,10 +144,26 @@ export class StyleSheet {
         // the big drawback is that the css won't be editable in devtools
         sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
+        /*
+          Unrecognized vendor-specific pseudo-selectors like -moz-*
+          or -webkit-* will throw a SyntaxError when parsed during
+          the insertRule() call. Since the failing selector(s) target
+          a different browser, these errors are safe to ignore.
+
+          All browsers seem to have slightly different error messages around
+          this case, making the detection just a little bit more difficult.
+          SyntaxError errors aren't surfacing frequently.
+          As long as the rule includes a left curly bracket marking
+          the beginning of a declaration block AND a vendor-specific
+          pseudo-selector, we can be almost certain that it is the reason
+          for the thrown SyntaxError.
+         */
         if (
           isDevelopment &&
-          !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear|-ms-expand|-ms-reveal){/.test(
-            rule
+          !(
+            e instanceof SyntaxError &&
+            /:-(webkit|moz|ms|o)-/.test(rule) &&
+            rule.indexOf('{') !== -1
           )
         ) {
           console.error(
