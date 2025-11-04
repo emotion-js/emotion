@@ -119,8 +119,12 @@ res
 ### On client
 
 ```jsx
-// Hydration of the ids in `data-emotion-css` will automatically occur when the cache is created
-const cache = createCache()
+// Hydration of the ids in `data-emotion` will automatically occur when the cache is created
+const cache = createCache({ 
+  // The key must match your corresponding cache name set earlier
+  key: 'custom'
+})
+
 ReactDOM.hydrate(
   <CacheProvider value={cache}>
     <App />
