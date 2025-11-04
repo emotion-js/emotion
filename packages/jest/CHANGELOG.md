@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.14.2
+
+### Patch Changes
+
+- [#3344](https://github.com/emotion-js/emotion/pull/3344) [`bac2865`](https://github.com/emotion-js/emotion/commit/bac28659a2ddc0c5e4c202b80ca5d562a9a89a28) Thanks [@ernestostifano](https://github.com/ernestostifano)! - Allow `@types/jest@30.x` as an optional peer dependency
+
 ## 11.13.0
 
 ### Minor Changes
