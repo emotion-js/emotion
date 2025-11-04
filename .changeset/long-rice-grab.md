@@ -2,4 +2,4 @@
 '@emotion/jest': patch
 ---
 
-Added @types/jest 30 to @emotion/jest peer dependencies
+Allow `@types/jest@30.x` as an optional peer dependency
