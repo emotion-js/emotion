@@ -39,11 +39,66 @@
   "files": [
     "src",
     "dist",
+    "tags",
     "base",
     "macro.*"
   ],
   "umd:main": "dist/emotion-styled.umd.min.js",
   "exports": {
+    "./tags": {
+      "types": {
+        "import": "./tags/dist/emotion-styled-tags.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.cjs.js"
+      },
+      "development": {
+        "edge-light": {
+          "module": "./tags/dist/emotion-styled-tags.development.edge-light.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.js"
+        },
+        "worker": {
+          "module": "./tags/dist/emotion-styled-tags.development.edge-light.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.js"
+        },
+        "workerd": {
+          "module": "./tags/dist/emotion-styled-tags.development.edge-light.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.development.edge-light.cjs.js"
+        },
+        "browser": {
+          "module": "./tags/dist/emotion-styled-tags.browser.development.esm.js",
+          "import": "./tags/dist/emotion-styled-tags.browser.development.cjs.mjs",
+          "default": "./tags/dist/emotion-styled-tags.browser.development.cjs.js"
+        },
+        "module": "./tags/dist/emotion-styled-tags.development.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.development.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.development.cjs.js"
+      },
+      "edge-light": {
+        "module": "./tags/dist/emotion-styled-tags.edge-light.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.edge-light.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.edge-light.cjs.js"
+      },
+      "worker": {
+        "module": "./tags/dist/emotion-styled-tags.edge-light.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.edge-light.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.edge-light.cjs.js"
+      },
+      "workerd": {
+        "module": "./tags/dist/emotion-styled-tags.edge-light.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.edge-light.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.edge-light.cjs.js"
+      },
+      "browser": {
+        "module": "./tags/dist/emotion-styled-tags.browser.esm.js",
+        "import": "./tags/dist/emotion-styled-tags.browser.cjs.mjs",
+        "default": "./tags/dist/emotion-styled-tags.browser.cjs.js"
+      },
+      "module": "./tags/dist/emotion-styled-tags.esm.js",
+      "import": "./tags/dist/emotion-styled-tags.cjs.mjs",
+      "default": "./tags/dist/emotion-styled-tags.cjs.js"
+    },
     "./base": {
       "types": {
         "import": "./base/dist/emotion-styled-base.cjs.mjs",
@@ -177,6 +232,7 @@
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
+      "./tags.ts",
       "./index.ts",
       "./base.tsx"
     ],
