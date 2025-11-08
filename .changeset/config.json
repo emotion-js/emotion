@@ -19,7 +19,8 @@
       "@emotion/native",
       "@emotion/primitives",
       "@emotion/primitives-core",
-      "@emotion/eslint-plugin"
+      "@emotion/eslint-plugin",
+      "@emotion/utils"
     ]
   ],
   "access": "public",
