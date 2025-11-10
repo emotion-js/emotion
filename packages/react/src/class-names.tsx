@@ -126,9 +126,9 @@ const Insertion = ({
 }
 
 export interface ClassNamesContent {
-  css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
-  css(...args: Array<CSSInterpolation>): string
-  cx(...args: Array<ClassNamesArg>): string
+  css(this: void, template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
+  css(this: void, ...args: Array<CSSInterpolation>): string
+  cx(this: void, ...args: Array<ClassNamesArg>): string
   theme: Theme
 }
 
