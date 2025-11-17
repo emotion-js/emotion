@@ -47,7 +47,10 @@ let unitlessKeys: Record<string, 1> = {
   strokeDashoffset: 1,
   strokeMiterlimit: 1,
   strokeOpacity: 1,
-  strokeWidth: 1
+  strokeWidth: 1,
+
+  // css properties that are unitless in some contexts  
+  shapeImageThreshold: 1 
 }
 
 export default unitlessKeys
