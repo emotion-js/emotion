@@ -4,6 +4,8 @@ import { colors, mediaQueries, styleConstants } from '../util'
 import { css } from '@emotion/react'
 import { useRouter } from 'next/router'
 import { Container } from './container'
+import {useState, useEffect} from'react'
+import { Moon, Sun } from 'lucide-react'
 
 export const animatedUnderline = css({
   '&::after': {
@@ -89,7 +91,21 @@ export function SiteHeader() {
 
   const path = router.asPath
   const onCommunityPage = path === '/docs/community'
+  const [darkMode, setDarkMode] = useState(false);
+    useEffect(() => {
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
 
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', String(newDarkMode));
+    document.documentElement.classList.toggle('dark');
+  };
   return (
     <>
       <UkraineBanner />
@@ -170,6 +186,20 @@ export function SiteHeader() {
                 listStyle: 'none'
               }}
             >
+
+               <li>
+                <button
+                  onClick={toggleDarkMode}
+                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  aria-label="Toggle dark mode"
+                >
+                  {darkMode ? (
+                    <Sun className="h-5 w-5 text-gray-700 dark:text-gray-200" />
+                  ) : (
+                    <Moon className="h-5 w-5 text-gray-700 dark:text-gray-200" />
+                  )}
+                </button>
+              </li>
               <li>
                 <HeaderLink
                   href="/docs"

@@ -24,6 +24,7 @@
     "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
     "version-packages": "changeset version && yarn --mode=\"update-lockfile\"",
+    "lucide-react": "^0.469.0",
     "release": "yarn build && changeset publish"
   },
   "author": "Kye Hohenberger",
