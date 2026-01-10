@@ -14,6 +14,7 @@
     "@emotion/primitives-core": "^11.13.0"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.0.0-rc.0",
     "react": ">=16.8.0",
     "react-primitives": "^0.8.1"
   },

@@ -44,6 +44,8 @@
     "@emotion/primitives-core": "^11.11.0"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.0.0-rc.0",
+    "react": ">=16.8.0",
     "react-native": ">=0.14.0 <1"
   },
   "homepage": "https://emotion.sh",
