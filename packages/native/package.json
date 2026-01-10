@@ -35,6 +35,7 @@
   "types": "types/index.d.ts",
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
+    "@emotion/react": "11.14.0",
     "@types/react-native": "^0.63.2",
     "react": "16.14.0",
     "react-native": "^0.63.2",
@@ -44,6 +45,8 @@
     "@emotion/primitives-core": "^11.11.0"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.0.0-rc.0",
+    "react": ">=16.8.0",
     "react-native": ">=0.14.0 <1"
   },
   "homepage": "https://emotion.sh",
