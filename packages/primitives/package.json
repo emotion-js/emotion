@@ -19,6 +19,7 @@
     "react-primitives": "^0.8.1"
   },
   "devDependencies": {
+    "@emotion/react": "11.14.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "react": "16.14.0",

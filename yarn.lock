@@ -2843,6 +2843,7 @@ __metadata:
   dependencies:
     "@definitelytyped/dtslint": 0.0.112
     "@emotion/primitives-core": ^11.11.0
+    "@emotion/react": 11.14.0
     "@types/react-native": ^0.63.2
     react: 16.14.0
     react-native: ^0.63.2
@@ -2875,6 +2876,7 @@ __metadata:
     "@emotion/babel-plugin": ^11.11.0
     "@emotion/is-prop-valid": ^1.2.1
     "@emotion/primitives-core": ^11.13.0
+    "@emotion/react": 11.14.0
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.5
     react: 16.14.0
