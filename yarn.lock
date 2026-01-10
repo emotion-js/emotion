@@ -2848,6 +2848,8 @@ __metadata:
     react-native: ^0.63.2
     typescript: ^5.4.5
   peerDependencies:
+    "@emotion/react": ^11.0.0-rc.0
+    react: ">=16.8.0"
     react-native: ">=0.14.0 <1"
   languageName: unknown
   linkType: soft
@@ -2878,6 +2880,7 @@ __metadata:
     react: 16.14.0
     react-primitives: ^0.8.1
   peerDependencies:
+    "@emotion/react": ^11.0.0-rc.0
     react: ">=16.8.0"
     react-primitives: ^0.8.1
   languageName: unknown
