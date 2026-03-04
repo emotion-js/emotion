@@ -89,13 +89,17 @@ export class StyleSheet {
   }
 
   private _insertTag = (tag: HTMLStyleElement): void => {
-    let before
+    let before = null
     if (this.tags.length === 0) {
       if (this.insertionPoint) {
         before = this.insertionPoint.nextSibling
       } else if (this.prepend) {
         before = this.container.firstChild
-      } else {
+      } else if (this.before && this.before.parentNode === this.container) {
+        // We check whether the designated `before` node still exists
+        // and is a child of the container to avoid NotFoundError being thrown.
+        // If either is false, we let it be null and insert the `tag` node
+        // as the last child instead.
         before = this.before
       }
     } else {
