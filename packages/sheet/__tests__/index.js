@@ -243,4 +243,19 @@ describe('StyleSheet', () => {
 
     expect(() => sheet.flush()).not.toThrowError()
   })
+
+  test('should not throw when `before` is stale', () => {
+    const head = safeQuerySelector('head')
+    const beforeStyle = document.createElement('style')
+    beforeStyle.setAttribute('id', 'beforeStyle')
+    head.appendChild(beforeStyle)
+
+    const sheet = new StyleSheet({ ...defaultOptions })
+    sheet.before = beforeStyle
+
+    // Simulate a stale `before` node
+    head.removeChild(sheet.before)
+
+    expect(() => sheet.insert(rule)).not.toThrow()
+  })
 })
