@@ -52,6 +52,9 @@ const props = {
   className: true,
   cols: true,
   colSpan: true,
+  // https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
+  command: true,
+  commandForElement: true,
   content: true,
   contentEditable: true,
   contextMenu: true,
