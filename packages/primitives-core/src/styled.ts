@@ -77,9 +77,11 @@ export function createStyled(
             newProps[key] = props[key]
           }
         }
-        newProps.style = [css.apply(mergedProps, styles), props.style]
-        if (ref) {
-          newProps.ref = ref
+        if (finalTag !== React.Fragment) {
+          newProps.style = [css.apply(mergedProps, styles), props.style]
+          if (ref) {
+            newProps.ref = ref
+          }
         }
 
         return React.createElement(finalTag, newProps)

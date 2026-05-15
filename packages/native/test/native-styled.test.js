@@ -166,4 +166,36 @@ describe('Emotion native styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  test('should not pass style prop to React.Fragment when used as styled component', () => {
+    const StyledFragment = styled(React.Fragment)`
+      color: red;
+    `
+    expect(() =>
+      renderer.create(
+        <StyledFragment>
+          <reactNative.Text>Hello World</reactNative.Text>
+        </StyledFragment>
+      )
+    ).not.toThrow()
+    expect(console.error).not.toBeCalledWith(
+      expect.stringContaining('React.Fragment')
+    )
+  })
+
+  test('should not pass style prop to React.Fragment when used via as prop', () => {
+    const StyledText = styled.Text`
+      color: hotpink;
+    `
+    expect(() =>
+      renderer.create(
+        <StyledText as={React.Fragment}>
+          <reactNative.Text>Hello World</reactNative.Text>
+        </StyledText>
+      )
+    ).not.toThrow()
+    expect(console.error).not.toBeCalledWith(
+      expect.stringContaining('React.Fragment')
+    )
+  })
 })
