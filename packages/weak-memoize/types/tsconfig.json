@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "../",
     "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "noEmit": true,
