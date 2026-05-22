@@ -297,6 +297,9 @@ export function getStyleElements() /*: Array<HTMLStyleElement> */ {
 
 const unique = arr => Array.from(new Set(arr))
 
+const normalizeCombinatorSpacing = selector =>
+  selector.replace(/\s*([>+~])\s*/g, '$1')
+
 export function getKeys(elements /*: Array<HTMLStyleElement> */) {
   const keys = unique(
     elements.map(element => element.getAttribute('data-emotion'))
@@ -324,7 +327,10 @@ export function hasClassNames(
     // check if selector (className) of specific css rule match target
     return target instanceof RegExp
       ? target.test(selector)
-      : selector.includes(target)
+      : selector.includes(target) ||
+          normalizeCombinatorSpacing(selector).includes(
+            normalizeCombinatorSpacing(target)
+          )
   })
 }
 
