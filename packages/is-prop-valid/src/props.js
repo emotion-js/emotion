@@ -74,6 +74,7 @@ const props = {
   enterKeyHint: true,
   fetchpriority: true,
   fetchPriority: true,
+  focusgroup: true,
   form: true,
   formAction: true,
   formEncType: true,
