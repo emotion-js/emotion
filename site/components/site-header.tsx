@@ -196,7 +196,7 @@ export function SiteHeader() {
                 </HeaderLink>
               </li>
               <li>
-                <HeaderLink href="https://5faaafd0bd0f3f0008469537--emotion.netlify.app">
+                <HeaderLink href="https://v10--emotion.netlify.app">
                   v10 Docs
                 </HeaderLink>
               </li>
