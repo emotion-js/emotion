@@ -2619,7 +2619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@definitelytyped/utils@npm:^0.0.112":
+"@definitelytyped/utils@npm:0.0.112":
   version: 0.0.112
   resolution: "@definitelytyped/utils@npm:0.0.112"
   dependencies:
@@ -2632,6 +2632,22 @@ __metadata:
     tar: ^2.2.2
     tar-stream: ^2.1.4
   checksum: ff3542f40753421ea2c07373c6ed0bce17cd02d77fa2dd6ca00ee36e1aedfdf3990328c536a95f709a34d92591adb0af2cb8e99c91fe7763127de750f6a72b59
+  languageName: node
+  linkType: hard
+
+"@definitelytyped/utils@patch:@definitelytyped/utils@npm%3A0.0.112#./.yarn/patches/@definitelytyped-utils-npm-0.0.112-5e73d8f58c.patch::locator=emotion-monorepo%40workspace%3A.":
+  version: 0.0.112
+  resolution: "@definitelytyped/utils@patch:@definitelytyped/utils@npm%3A0.0.112#./.yarn/patches/@definitelytyped-utils-npm-0.0.112-5e73d8f58c.patch::version=0.0.112&hash=ca299c&locator=emotion-monorepo%40workspace%3A."
+  dependencies:
+    "@definitelytyped/typescript-versions": ^0.0.112
+    "@qiwi/npm-registry-client": ^8.9.1
+    "@types/node": ^14.14.35
+    charm: ^1.0.2
+    fs-extra: ^8.1.0
+    fstream: ^1.0.12
+    tar: ^2.2.2
+    tar-stream: ^2.1.4
+  checksum: a9b3f739a050fad2f0baead3e94a8bbc49abc50fc92bc03bed88df3e0f9beea195ae20f28804a9333bedc0c31530a89e5be7f368cd6236a6512c42c5e0c3e100
   languageName: node
   linkType: hard
 

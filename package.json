@@ -245,6 +245,7 @@
   },
   "packageManager": "yarn@3.2.3",
   "resolutions": {
-    "@definitelytyped/dtslint@0.0.112": "patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch"
+    "@definitelytyped/dtslint@0.0.112": "patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch",
+    "@definitelytyped/utils@^0.0.112": "patch:@definitelytyped/utils@npm%3A0.0.112#./.yarn/patches/@definitelytyped-utils-npm-0.0.112-5e73d8f58c.patch"
   }
 }

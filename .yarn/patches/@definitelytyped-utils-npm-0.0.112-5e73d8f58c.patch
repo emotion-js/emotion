@@ -1,0 +1,15 @@
+diff --git a/dist/typescript-installer.js b/dist/typescript-installer.js
+index 53875d93f80d796e6237996a47dc5d9e4d374f1d..577c523c376526ade92fcdb46f4eb26557688f6b 100644
+--- a/dist/typescript-installer.js
++++ b/dist/typescript-installer.js
+@@ -35,7 +35,9 @@ async function installAllTypeScriptVersions() {
+ }
+ exports.installAllTypeScriptVersions = installAllTypeScriptVersions;
+ async function installTypeScriptNext() {
+-    await install("next");
++    // the `next` dist-tag no longer points to a 4.7-dev build, so install
++    // the stable release of the latest supported version instead
++    await install(typescript_versions_1.TypeScriptVersion.latest);
+ }
+ exports.installTypeScriptNext = installTypeScriptNext;
+ async function install(version) {
