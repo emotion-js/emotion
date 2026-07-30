@@ -14,7 +14,9 @@ module.exports = {
     '/node_modules/',
     '/__fixtures__/',
     '/site/',
-    '/types/'
+    '/types/',
+    // runs on node:test through `yarn test:babel8` because Babel 8 is ESM-only
+    '\\.mjs$'
   ],
   setupFilesAfterEnv: ['test-utils/testSetup.js'],
   coveragePathIgnorePatterns: [

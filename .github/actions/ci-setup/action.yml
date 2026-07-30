@@ -1,11 +1,16 @@
 name: 'CI setup'
+inputs:
+  node-version:
+    description: 'Node.js version passed to setup-node'
+    required: false
+    default: 16.x
 runs:
   using: 'composite'
   steps:
-    - name: Setup Node.js 16.x
+    - name: Setup Node.js ${{ inputs.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: 16.x
+        node-version: ${{ inputs.node-version }}
         cache: yarn
 
     - name: Install Dependencies

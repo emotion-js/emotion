@@ -14,6 +14,7 @@
 - `yarn test` will run the tests once.
 - `yarn coverage` will run the tests and produce a coverage report in `coverage/`.
 - `yarn test:watch` will run the tests on every change.
+- `yarn test:babel8` will run the Babel 8 tests for `@emotion/babel-plugin` (requires Node.js `^22.18.0 || >=24.11.0`).
 
 ## Building
 

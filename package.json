@@ -14,6 +14,7 @@
     "test:ci": "jest --coverage --no-cache --ci --runInBand",
     "test:react18:ci": "yarn test:react18 --coverage --no-cache --ci --runInBand",
     "test:dist": "yarn build && jest -c jest.dist.js --no-cache --ci --runInBand",
+    "test:babel8": "node packages/babel-plugin/__tests__/babel8.mjs",
     "test:prod": "jest -c jest.prod.js --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch",
@@ -155,7 +156,7 @@
     }
   ],
   "lint-staged": {
-    "*.{js,ts,tsx,md}": [
+    "*.{js,mjs,ts,tsx,md}": [
       "prettier --write",
       "git add"
     ]
@@ -196,6 +197,7 @@
     "babel-jest": "^29.7.0",
     "babel-plugin-codegen": "^4.1.5",
     "babel-plugin-jsx-pragmatic": "^1.0.2",
+    "babel8": "npm:@babel/core@^8.0.0",
     "benchmark": "^2.1.4",
     "bolt-check": "^0.3.0",
     "bundlesize": "^0.13.2",

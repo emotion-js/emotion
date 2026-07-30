@@ -9,4 +9,5 @@ export {
   joinStringLiterals
 } from './strings'
 export { addImport } from './add-import'
+export { hoistPath } from './path-hoister'
 export { createTransformerMacro } from './transformer-macro'

@@ -71,6 +71,19 @@ jobs:
       - name: Dist Tests
         run: yarn test:dist
 
+  test_babel8:
+    name: Test Babel 8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ci-setup
+        with:
+          # Babel 8 requires Node.js ^22.18.0 || >=24.11.0
+          node-version: 24.x
+
+      - name: Babel 8 Tests
+        run: yarn test:babel8
+
   linting:
     name: Linting
     runs-on: ubuntu-latest

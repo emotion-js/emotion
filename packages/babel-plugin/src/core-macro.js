@@ -2,7 +2,8 @@ import {
   transformExpressionWithStyles,
   createTransformerMacro,
   getSourceMap,
-  addImport
+  addImport,
+  hoistPath
 } from './utils'
 
 export const transformCssCallExpression = (
@@ -23,7 +24,8 @@ export const transformCssCallExpression = (
   })
   if (node) {
     path.replaceWith(node)
-    path.hoist()
+    // `path.hoist` has been removed in Babel 8
+    hoistPath(path, babel.types)
   } else if (annotateAsPure && path.isCallExpression()) {
     path.addComment('leading', '#__PURE__')
   }
