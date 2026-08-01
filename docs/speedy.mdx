@@ -1,0 +1,50 @@
+---
+title: 'Speedy'
+---
+
+`speedy` is an option accepted by [`createCache`](/packages/cache#options) (and, at runtime, by `@emotion/css`'s `sheet`) that controls **how** emotion inserts rules into the stylesheet it manages.
+
+- When `speedy` is `false`, emotion inserts a rule by appending a text node containing the CSS to a `<style>` element. This is what you see when you inspect styles in devtools, and it's how the rules end up editable there.
+- When `speedy` is `true`, emotion instead inserts rules directly into the CSSOM using [`CSSStyleSheet.insertRule`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule). This is much faster, but the inserted rules don't show up as editable text in the `<style>` tag, so they can't be tweaked live in devtools.
+
+By default, `speedy` is **enabled in production and disabled in development**, so you get fast style insertion in production while still being able to inspect and live-edit styles while developing.
+
+## Configuring it
+
+Most apps never need to touch this option, but you can override it in two ways:
+
+**At cache creation time**, via [`createCache`](/packages/cache#options):
+
+```jsx
+import createCache from '@emotion/cache'
+
+const cache = createCache({
+  key: 'my-cache',
+  speedy: false
+})
+```
+
+**At runtime**, if you're using `@emotion/css`, via `sheet.speedy(...)`:
+
+```js
+import { sheet } from '@emotion/css'
+
+sheet.speedy(false)
+```
+
+> Note:
+>
+> `sheet.speedy(...)` must be called before any styles have been inserted — it throws in development if you call it after the first `insert`. This means it needs to run in its own module that's imported before anything else that might insert styles. See the [Puppeteer section of the SSR docs](/docs/ssr#puppeteer) for a worked example.
+
+## Known caveats
+
+`speedy`'s reliance on the CSSOM instead of plain text nodes has a few consequences worth knowing about before you rely on it (or before you disable it to work around one of them):
+
+- **Rules aren't editable in devtools.** Since the CSS text isn't present as a text node, you can't tweak declarations live in the Elements/Inspector panel the way you normally would. This is expected, not a bug.
+- **Prerendering tools that read the DOM as text won't see the rules.** Tools like Puppeteer serialize the DOM's HTML, which doesn't include rules inserted via `insertRule`. Disable `speedy` while prerendering — see the [Puppeteer section of the SSR docs](/docs/ssr#puppeteer).
+- **Styles can fail to apply reliably in Shadow DOM on Safari/WebKit-based webviews**, particularly when elements are inserted or re-rendered after the stylesheet has already been created. This shows up as styles that "stick" on first paint but don't apply to elements added later. See [#2508](https://github.com/emotion-js/emotion/issues/2508) for a reproduction and discussion. If you hit this, disabling `speedy` for the affected cache is currently the most reliable workaround.
+- **It can trigger forced synchronous reflows in some scenarios**, which can be noticeable with very large numbers of DOM nodes. See [#3109](https://github.com/emotion-js/emotion/issues/3109).
+- **It can interact unexpectedly with the `nonce` option**, especially when combined with `prepend`/`insertionPoint`. See [#2708](https://github.com/emotion-js/emotion/issues/2708) if you're using a CSP nonce and see violations.
+- **Unsupported vendor-prefixed selectors are silently dropped in production**, and log a console error in development (most visible in Firefox for engine-specific pseudo-classes/elements like `::-moz-placeholder`). See [#3111](https://github.com/emotion-js/emotion/issues/3111).
+
+If you run into one of these issues and disabling `speedy` isn't practical for your whole app, note that `speedy` is set per-cache, so you can create a separate cache with `speedy: false` for just the part of the tree that needs it.
