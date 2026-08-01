@@ -55,8 +55,42 @@ The prefix before class names. It will also be set as the value of the `data-emo
 
 A DOM node that emotion will insert all of its style tags into. This is useful for inserting styles into iframes or windows.
 
+### `speedy`
+
+`boolean`
+
+A boolean representing whether to use [`insertRule`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule) (`true`) or text nodes (`false`) to insert styles into the stylesheet. `insertRule` is much faster but the inserted styles can't be edited in browser devtools. By default, `speedy` is enabled in production and disabled in development.
+
+> Note:
+>
+> `speedy` has a few known caveats, e.g. around Shadow DOM in Safari and prerendering tools that read the DOM as text. See the [Speedy docs](https://emotion.sh/docs/speedy) for the full explanation and workarounds.
+
+### `insertionPoint`
+
+`HTMLElement`
+
+A DOM node after which emotion will insert all of its style tags into the `container`. This is useful for controlling the order in which your styles are inserted relative to other stylesheets, e.g. to ensure a certain precedence when overriding styles.
+
+```jsx
+const head = document.querySelector('head')
+
+// <meta name="emotion-insertion-point" content="">
+const emotionInsertionPoint = document.createElement('meta')
+emotionInsertionPoint.setAttribute('name', 'emotion-insertion-point')
+emotionInsertionPoint.setAttribute('content', '')
+
+head.appendChild(emotionInsertionPoint)
+
+const cache = createCache({
+  key: 'my-app',
+  insertionPoint: emotionInsertionPoint
+})
+```
+
 ### `prepend`
 
 `boolean`
+
+**Deprecated:** Please use [`insertionPoint`](#insertionpoint) instead.
 
 A boolean representing whether to prepend rather than append style tags into the specified container DOM node.

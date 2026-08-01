@@ -258,7 +258,15 @@ export const wrapRootElement = ({ element }) => (
 
 ## Puppeteer
 
-If you are using Puppeteer to prerender your application, emotion's `speedy` option has to be disabled so that the CSS is rendered into the DOM.
+If you are using Puppeteer to prerender your application, emotion's [`speedy`](/docs/speedy) option has to be disabled so that the CSS is rendered into the DOM as text instead of being inserted directly into the CSSOM.
+
+If you're creating your own cache with [`createCache`](/packages/cache#options), you can just pass `speedy: false` to it instead of using the runtime toggle below:
+
+```js
+createCache({ key: 'my-cache', speedy: false })
+```
+
+If you're using `@emotion/css`'s default cache, use the runtime `sheet.speedy(...)` toggle instead, since there's no `createCache` call to pass an option to:
 
 index.js
 
