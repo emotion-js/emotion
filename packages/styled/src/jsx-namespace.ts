@@ -2,6 +2,7 @@
 // it helps to avoid issues when combining newer `@emotion/styled` and older `@emotion/react` versions
 // in such setup, ReactJSX namespace won't exist in `@emotion/react` and that would lead to errors
 import 'react'
+import * as React from 'react'
 
 type IsPreReact19 = 2 extends Parameters<React.FunctionComponent<any>>['length']
   ? true
