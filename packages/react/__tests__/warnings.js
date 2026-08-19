@@ -55,335 +55,71 @@ test('does warn when invalid values are passed for the content property', () => 
   })
 })
 
-describe('unsafe pseudo classes', () => {
+describe('unsafe pseudo classes in a browser environment', () => {
   const ignoreSsrFlag =
     '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */'
 
-  describe(`warns when using without flag: ${ignoreSsrFlag}`, () => {
-    const unsafePseudoClasses = [
-      ':first-child',
-      ':not(:first-child)',
-      ':nth-child(3)',
-      ':not(:nth-child(3))',
-      ':nth-last-child(7)'
-    ]
-
-    unsafePseudoClasses.forEach(pseudoClass => {
-      it(`"${pseudoClass}"`, () => {
-        const style = css`
-          ${pseudoClass} {
-            color: hotpink;
-          }
-        `
-        const match = pseudoClass.match(/(:first|:nth|:nth-last)-child/)
-        expect(match).not.toBeNull()
-        expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
-        expect(console.error).toBeCalledWith(
-          `The pseudo class "${match[0]}" is potentially unsafe when doing server-side rendering. Try changing it to "${match[1]}-of-type".`
-        )
+  // In a browser (client-side rendering) environment the SSR-safety alarm must
+  // NOT fire: there is no hydration mismatch risk without SSR. See
+  // https://github.com/emotion-js/emotion/issues/3384. The warning-firing
+  // assertions live in `warnings.server.js` (node environment).
+  describe.each([
+    {
+      type: 'string',
+      getStyle: pseudoClass => css`
+        ${pseudoClass} {
+          color: hotpink;
+        }
+      `
+    },
+    {
+      type: 'object',
+      getStyle: pseudoClass => ({
+        [pseudoClass]: {
+          color: 'hotpink'
+        }
       })
+    }
+  ])(`with $type styles`, ({ getStyle }) => {
+    test.each([
+      { pseudoClass: `:first-child` },
+      { pseudoClass: `:not(:first-child)` },
+      { pseudoClass: `:nth-child(3)` },
+      { pseudoClass: `:not(:nth-child(3))` },
+      { pseudoClass: `:nth-last-child(7)` },
+      { pseudoClass: `:first-child span` },
+      { pseudoClass: `:first-child, span` },
+      { pseudoClass: `:first-child :nth-child(3)` },
+      { pseudoClass: `:first-child, :nth-child(3)` },
+      { pseudoClass: `:first-child:nth-child(3)` }
+    ])('does not warn for "$pseudoClass"', ({ pseudoClass }) => {
+      const match = pseudoClass.match(/(:first|:nth|:nth-last)-child/)
+      expect(match).not.toBeNull()
+      expect(
+        renderer.create(<div css={getStyle(pseudoClass)} />).toJSON()
+      ).toMatchSnapshot()
+      expect(console.error).not.toBeCalled()
     })
   })
 
-  describe(`does not warn when using with flag: ${ignoreSsrFlag}`, () => {
-    describe.each([
-      {
-        type: 'string',
-        getStyle: pseudoClass => css`
-          ${pseudoClass} ${ignoreSsrFlag} {
-            color: rebeccapurple;
-          }
-        `
-      },
-      {
-        type: 'object',
-        getStyle: pseudoClass => ({
-          [`${pseudoClass} ${ignoreSsrFlag}`]: {
-            color: 'rebeccapurple'
-          }
-        })
-      }
-    ])(`with $type styles`, ({ getStyle }) => {
-      test.each([
-        { pseudoClass: `:first-child` },
-        { pseudoClass: `:not(:first-child)` },
-        { pseudoClass: `:nth-child(3)` },
-        { pseudoClass: `:not(:nth-child(3))` },
-        { pseudoClass: `:nth-last-child(7)` },
-        { pseudoClass: `:first-child span` },
-        { pseudoClass: `:first-child, span` },
-        { pseudoClass: `:first-child :nth-child(3)` },
-        { pseudoClass: `:first-child, :nth-child(3)` },
-        { pseudoClass: `:first-child:nth-child(3)` }
-      ])('$pseudoClass', ({ pseudoClass }) => {
-        const match = pseudoClass.match(/(:first|:nth|:nth-last)-child/)
-        expect(match).not.toBeNull()
-        expect(
-          renderer.create(<div css={getStyle(pseudoClass)} />).toJSON()
-        ).toMatchSnapshot()
-        expect(console.error).not.toBeCalled()
-      })
-    })
-
-    test('does warn when not using the flag on the rule that follows another rule', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                '& > *': {
-                  marginLeft: 10
-                },
-                [`& > *:first-child$`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
-          ],
-        ]
-      `)
-    })
-
-    test('does warn when not using the flag on the rule that preceeds another rule', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child`]: {
-                  marginLeft: 0
-                },
-                '& > *': {
-                  marginLeft: 10
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
-          ],
-        ]
-      `)
-    })
-
-    test('does warn when not using the flag on the rule that follows a declaration', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                color: 'hotpink',
-                [`& > *:first-child`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
-          ],
-        ]
-      `)
-    })
-
-    test('does warn when not using the flag on the rule that preceeds a declaration', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child`]: {
-                  marginLeft: 0
-                },
-                color: 'hotpink'
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
-          ],
-        ]
-      `)
-    })
-
-    test('does warn when not using the flag on a global rule', () => {
-      expect(
-        renderer
-          .create(
-            <Global
-              styles={{
-                [`body > *:first-child`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
-          ],
-        ]
-      `)
-    })
-
-    test('does not warn when using the flag on the rule that follows another rule', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                '& > *': {
-                  marginLeft: 10
-                },
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error).not.toBeCalled()
-    })
-
-    test('does not warn when using the flag on the rule that preceeds another rule', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                },
-                '& > *': {
-                  marginLeft: 10
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error).not.toBeCalled()
-    })
-
-    test('does not warn when using the flag on the rule that follows a declaration', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                color: 'hotpink',
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error).not.toBeCalled()
-    })
-
-    test('does not warn when using the flag on the rule that preceeds a declaration', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={{
-                [`& > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                },
-                color: 'hotpink'
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error).not.toBeCalled()
-    })
-
-    test('does not warn when using the flag on a global rule', () => {
-      expect(
-        renderer
-          .create(
-            <Global
-              styles={{
-                [`body > *:first-child${ignoreSsrFlag}`]: {
-                  marginLeft: 0
-                }
-              }}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error).not.toBeCalled()
-    })
-
-    test('does warn when not using the flag on a rule that is defined in another one', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={css`
-                div {
-                  span:first-child {
-                    border-bottom-left-radius: 0;
-                  }
-                }
-              `}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".",
-          ],
-        ]
-      `)
-    })
-
-    test('does not warn when using the flag on a rule that is defined in another one', () => {
-      expect(
-        renderer
-          .create(
-            <div
-              css={css`
-                div {
-                  span:first-child${ignoreSsrFlag} {
-                    border-bottom-left-radius: 0;
-                  }
-                }
-              `}
-            />
-          )
-          .toJSON()
-      ).toMatchSnapshot()
-      expect(console.error).not.toBeCalled()
-    })
+  test('still does not warn when the opt-out flag is present', () => {
+    expect(
+      renderer
+        .create(
+          <div
+            css={{
+              [`& > *:first-child${ignoreSsrFlag}`]: {
+                marginLeft: 0
+              },
+              '& > *': {
+                marginLeft: 10
+              }
+            }}
+          />
+        )
+        .toJSON()
+    ).toMatchSnapshot()
+    expect(console.error).not.toBeCalled()
   })
 })
 

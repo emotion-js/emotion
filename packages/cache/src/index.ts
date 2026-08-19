@@ -124,14 +124,16 @@ let createCache = (options: Options): EmotionCache => {
   const omnipresentPlugins = [compat, removeLabel]
 
   if (isDevelopment) {
-    omnipresentPlugins.push(
-      createUnsafeSelectorsAlarm({
-        get compat() {
-          return cache.compat
-        }
-      }),
-      incorrectImportAlarm
-    )
+    omnipresentPlugins.push(incorrectImportAlarm)
+    if (!isBrowser) {
+      omnipresentPlugins.push(
+        createUnsafeSelectorsAlarm({
+          get compat() {
+            return cache.compat
+          }
+        })
+      )
+    }
   }
 
   if (!getServerStylisCache) {
