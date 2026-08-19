@@ -1,4 +1,5 @@
 import { ReactJSX } from './jsx-namespace'
+import * as React from 'react'
 
 /**
  * @desc Utility type for getting props type of React component.

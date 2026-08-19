@@ -1,4 +1,5 @@
 import 'react'
+import * as React from 'react'
 import { Interpolation } from '@emotion/serialize'
 import { Theme } from './theming'
 
