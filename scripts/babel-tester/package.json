@@ -6,7 +6,8 @@
   "dependencies": {
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
-    "babel-check-duplicated-nodes": "^1.0.0"
+    "babel-check-duplicated-nodes": "^1.0.0",
+    "babel-plugin-macros": "^3.1.0"
   },
   "devDependencies": {
     "@types/jest-in-case": "^1.0.5"

@@ -41,7 +41,9 @@ const tester = (allOpts: TesterOptions) => async (opts: TestCase) => {
   }
   const { code, ast } = babel.transformSync(rawCode!, {
     plugins: [
-      'macros',
+      // resolved explicitly so the interop suites run against this package's
+      // babel-plugin-macros version, not whichever copy got hoisted to the root
+      require.resolve('babel-plugin-macros'),
       '@babel/plugin-syntax-jsx',
       '@babel/plugin-syntax-class-properties',
       '@babel/plugin-syntax-object-rest-spread',
