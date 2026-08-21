@@ -1,4 +1,4 @@
-import { createMacro } from 'babel-plugin-macros'
+import { createMacro } from './create-macro'
 
 /*
 type Transformer = Function
