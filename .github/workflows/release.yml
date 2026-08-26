@@ -25,6 +25,8 @@ jobs:
       contents: read
     steps:
       - uses: $/.github/actions/ci-setup
+        with:
+          skip-cache: true # avoid cache poisoning attacks
 
       - name: Select mode
         id: select-mode
@@ -41,6 +43,8 @@ jobs:
       pull-requests: write
     steps:
       - uses: $/.github/actions/ci-setup
+        with:
+          skip-cache: true # avoid cache poisoning attacks
 
       - name: Create or update release pull request
         uses: changesets/action/version@22ccf9aa43179fe9e27dc62e575971d28cce197c # v2.0.0
@@ -59,6 +63,8 @@ jobs:
       contents: read
     steps:
       - uses: $/.github/actions/ci-setup
+        with:
+          skip-cache: true # avoid cache poisoning attacks
 
       - name: Build
         run: pnpm build
@@ -80,6 +86,8 @@ jobs:
       id-token: write
     steps:
       - uses: $/.github/actions/ci-setup
+        with:
+          skip-cache: true # avoid cache poisoning attacks
 
       - name: Publish to npm
         uses: changesets/action/publish@22ccf9aa43179fe9e27dc62e575971d28cce197c # v2.0.0
