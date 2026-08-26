@@ -2,6 +2,7 @@
 /demo/dist
 dist/
 node_modules/
+.pnpm-store/
 *.log
 .idea
 package-lock.json
@@ -12,13 +13,7 @@ package-lock.json
 .parcel-cache/
 *.orig
 *.tsbuildinfo
-
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.yarn/
 
 # Website
 /site/out

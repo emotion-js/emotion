@@ -8,4 +8,4 @@ These benchmarks are a modified version of react-native-web's benchmarks.
 
 ## Running Locally
 
-The benchmarks can also be run locally, in this folder run `yarn build` and then `open ./dist/index.html` or use `yarn run-benchmark` to run them automatically.
+The benchmarks can also be run locally, in this folder run `pnpm build` and then `open ./dist/index.html` or use `pnpm run-benchmark` to run them automatically.

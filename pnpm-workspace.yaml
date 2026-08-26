@@ -1,0 +1,29 @@
+packages:
+  - packages/*
+  - site
+  - scripts/*
+  - playgrounds/*
+
+linkWorkspacePackages: true
+minimumReleaseAge: 10080
+shamefullyHoist: true
+
+overrides:
+  cheerio: 1.0.0-rc.3
+  prettier: 3.3.2
+
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  core-js: true
+  ejs: true
+  es5-ext: true
+  fsevents: true
+  husky: true
+  lmdb: true
+  msgpackr-extract: true
+  puppeteer: true
+  sharp: true
+
+patchedDependencies:
+  '@definitelytyped/dtslint@0.0.112': patches/@definitelytyped__dtslint@0.0.112.patch

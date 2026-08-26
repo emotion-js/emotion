@@ -6,7 +6,6 @@
   ],
   "baseBranch": "main",
   "commit": false,
-  "format": false,
   "linked": [
     [
       "@emotion/react",

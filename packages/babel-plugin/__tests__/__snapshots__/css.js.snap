@@ -16,10 +16,8 @@ const SomeComponent = () => (
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -28,7 +26,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:SomeComponent;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjdHVhbC1leHBlY3RlZC11c2FnZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJhY3R1YWwtZXhwZWN0ZWQtdXNhZ2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSAoKSA9PiAoXG4gIDxkaXZcbiAgICBjc3M9e2Nzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGB9XG4gIC8+XG4pXG4iXX0= */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 const SomeComponent = () => <div css={_ref} />;"
 `;
 
@@ -56,18 +53,15 @@ const fooStyles = css(_templateObject())
 /* eslint-disable */
 import css from '@emotion/css';
 import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose';
-
 function _templateObject() {
   var data = _taggedTemplateLiteralLoose(['\\n    color: hotpink;\\n  ']);
-
   _templateObject = function _templateObject() {
     return data;
   };
-
   return data;
-} // no label & source maps should be appended
+}
 
-
+// no label & source maps should be appended
 const fooStyles = css(_templateObject());"
 `;
 
@@ -84,9 +78,7 @@ function doThing() {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "zjik7",
   styles: "display:flex"
@@ -95,7 +87,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "display:flex;label:doThing;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdZIiwiZmlsZSI6ImJhc2ljLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmZ1bmN0aW9uIGRvVGhpbmcoKSB7XG4gIHJldHVybiBjc3NgXG4gICAgZGlzcGxheTogZmxleDtcbiAgYFxufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 function doThing() {
   return _ref;
 }"
@@ -112,9 +103,7 @@ function doThing() {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -123,7 +112,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:doThing;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtZXhwcmVzc2lvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHUyIsImZpbGUiOiJjYWxsLWV4cHJlc3Npb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZnVuY3Rpb24gZG9UaGluZygpIHtcbiAgcmV0dXJuIGNzcyh7IGNvbG9yOiAnaG90cGluaycgfSlcbn1cbiJdfQ== */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 function doThing() {
   return _ref;
 }"
@@ -145,7 +133,6 @@ const thing = css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const thing = /*#__PURE__*/css("display:flex;&:hover{", process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -184,7 +171,6 @@ css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -219,9 +205,7 @@ function doThing() {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { css } from '@emotion/react';
-
 function thing() {}
-
 function doThing() {
   return /*#__PURE__*/css("display:", thing(), ";" + (process.env.NODE_ENV === "production" ? "" : ";label:doThing;"), process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltcHVyZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJpbXB1cmUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZnVuY3Rpb24gdGhpbmcoKSB7fVxuXG5mdW5jdGlvbiBkb1RoaW5nKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGRpc3BsYXk6ICR7dGhpbmcoKX07XG4gIGBcbn1cbiJdfQ== */");
 }"
@@ -240,9 +224,7 @@ export default () => {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -251,10 +233,9 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1hbm9ueW1vdXMtYXJyb3ctZnVuY3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0siLCJmaWxlIjoiaW5zaWRlLWFub255bW91cy1hcnJvdy1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiB7XG4gIGNzc2BcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
-export default (() => {
+export default () => {
   _ref;
-});"
+};"
 `;
 
 exports[`emotion-babel-plugin css inside-anonymous-function 1`] = `
@@ -270,9 +251,7 @@ export default () => {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -281,10 +260,9 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1hbm9ueW1vdXMtZnVuY3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0siLCJmaWxlIjoiaW5zaWRlLWFub255bW91cy1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiB7XG4gIGNzc2BcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
-export default (() => {
+export default () => {
   _ref;
-});"
+};"
 `;
 
 exports[`emotion-babel-plugin css inside-class 1`] = `
@@ -308,11 +286,9 @@ class SomeComponent extends Component {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 /** @jsx jsx */
 import { Component } from 'react';
 import { jsx, css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -321,12 +297,10 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:SomeComponent;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1jbGFzcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFRZ0IiLCJmaWxlIjoiaW5zaWRlLWNsYXNzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBDb21wb25lbnQgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmNsYXNzIFNvbWVDb21wb25lbnQgZXh0ZW5kcyBDb21wb25lbnQge1xuICByZW5kZXIoKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXZcbiAgICAgICAgY3NzPXtjc3NgXG4gICAgICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgICAgIGB9XG4gICAgICAvPlxuICAgIClcbiAgfVxufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 class SomeComponent extends Component {
   render() {
     return <div css={_ref} />;
   }
-
 }"
 `;
 
@@ -341,7 +315,6 @@ const thing = css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const thing = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -366,9 +339,7 @@ export const styles = {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -377,7 +348,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:colorFn1;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWFycm93LWFzLW9iai1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHcUIiLCJmaWxlIjoibGFiZWwtYXJyb3ctYXMtb2JqLXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmV4cG9ydCBjb25zdCBzdHlsZXMgPSB7XG4gIGNvbG9yRm4xOiAoKSA9PiBjc3NgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbn1cbiJdfQ== */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 export const styles = {
   colorFn1: () => _ref
 };"
@@ -394,9 +364,7 @@ const thing = () => css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -405,7 +373,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:thing;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWFycm93LWZ1bmN0aW9uLWV4cHJlc3Npb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRXVCIiwiZmlsZSI6ImxhYmVsLWFycm93LWZ1bmN0aW9uLWV4cHJlc3Npb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgdGhpbmcgPSAoKSA9PiBjc3NgXG4gIGNvbG9yOiBob3RwaW5rO1xuYFxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 const thing = () => _ref;"
 `;
 
@@ -422,9 +389,7 @@ const thing = function () {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -433,7 +398,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:thing;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWZ1bmN0aW9uLWV4cHJlc3Npb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR1kiLCJmaWxlIjoibGFiZWwtZnVuY3Rpb24tZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCB0aGluZyA9IGZ1bmN0aW9uICgpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 const thing = function () {
   return _ref;
 };"
@@ -454,9 +418,7 @@ export const styles = {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -465,7 +427,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:colorFn1;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWZ1bmN0aW9uLWV4cHJlc3Npb24tYXMtb2JqLXByb3BlcnR5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUljIiwiZmlsZSI6ImxhYmVsLWZ1bmN0aW9uLWV4cHJlc3Npb24tYXMtb2JqLXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmV4cG9ydCBjb25zdCBzdHlsZXMgPSB7XG4gIGNvbG9yRm4xOiBmdW5jdGlvbiAoKSB7XG4gICAgcmV0dXJuIGNzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGBcbiAgfVxufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 export const styles = {
   colorFn1: function () {
     return _ref;
@@ -486,9 +447,7 @@ const thing = function someName() {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -497,7 +456,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink;label:someName;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWZ1bmN0aW9uLWV4cHJlc3Npb24tbmFtZWQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR1kiLCJmaWxlIjoibGFiZWwtZnVuY3Rpb24tZXhwcmVzc2lvbi1uYW1lZC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCB0aGluZyA9IGZ1bmN0aW9uIHNvbWVOYW1lKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 const thing = function someName() {
   return _ref;
 };"
@@ -515,9 +473,9 @@ const thing = css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
+import { css } from '@emotion/react';
 
-import { css } from '@emotion/react'; // prettier-ignore
-
+// prettier-ignore
 const thing = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -547,9 +505,7 @@ const obj = {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "utcpyu",
   styles: "background-color:hotpink"
@@ -558,12 +514,10 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "background-color:hotpink;label:FooBar;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW9iai1tZXRob2QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBTWdCIiwiZmlsZSI6ImxhYmVsLW9iai1tZXRob2QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3Qgb2JqID0ge1xuICBGb29CYXIoKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXZcbiAgICAgICAgY3NzPXtjc3NgXG4gICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogaG90cGluaztcbiAgICAgICAgYH1cbiAgICAgIC8+XG4gICAgKVxuICB9XG59XG4iXX0= */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 const obj = {
   FooBar() {
     return <div css={_ref} />;
   }
-
 };"
 `;
 
@@ -584,7 +538,6 @@ const obj = {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const obj = {
   'red component': <div css={process.env.NODE_ENV === "production" ? {
@@ -615,7 +568,6 @@ const thing = {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const thing = {
   thisShouldBeTheLabel: process.env.NODE_ENV === "production" ? {
@@ -702,7 +654,6 @@ const otherThing = css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const thing = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -746,7 +697,6 @@ export default weirdo
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const [weirdo] = [process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -776,7 +726,6 @@ export default weirdo
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 const computed = 'weirdo';
 const {
@@ -807,9 +756,7 @@ function doThing() {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
-
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
   styles: "color:hotpink"
@@ -818,7 +765,6 @@ var _ref = process.env.NODE_ENV === "production" ? {
   styles: "color:hotpink/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1keW5hbWljLXByb3BlcnR5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlLIiwiZmlsZSI6Im9iamVjdC1keW5hbWljLXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmZ1bmN0aW9uIGRvVGhpbmcoKSB7XG4gIHJldHVybiB7XG4gICAgW2Nzcyh7IGNvbG9yOiAnaG90cGluaycgfSldOiAnY29sZGJsdWUnXG4gIH1cbn1cbiJdfQ== */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
-
 function doThing() {
   return {
     [_ref]: 'coldblue'
@@ -846,7 +792,6 @@ const { css: styles } = extractCritical(
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 import { extractCritical } from '@emotion/server';
 import React from 'react';
@@ -889,7 +834,6 @@ ddjfwjkng
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -913,7 +857,6 @@ css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 import { css } from '@emotion/react';
 process.env.NODE_ENV === "production" ? {
   name: "3sn2xs",
@@ -944,10 +887,8 @@ const test = css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { css } from '@emotion/react';
-
 function media(...args) {
   return /*#__PURE__*/css("@media (min-width: 100px){", /*#__PURE__*/css(...args), ";}" + (process.env.NODE_ENV === "production" ? "" : ";label:media;"), process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHWSIsImZpbGUiOiJ0YWdnZWQtdGVtcGxhdGUtYXJncy1mb3J3YXJkZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */");
 }
-
 const test = /*#__PURE__*/css(media\`color: red;\`, ";" + (process.env.NODE_ENV === "production" ? "" : ";label:test;"), process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVZ0IiLCJmaWxlIjoidGFnZ2VkLXRlbXBsYXRlLWFyZ3MtZm9yd2FyZGVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmZ1bmN0aW9uIG1lZGlhKC4uLmFyZ3MpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBAbWVkaWEgKG1pbi13aWR0aDogMTAwcHgpIHtcbiAgICAgICR7Y3NzKC4uLmFyZ3MpfTtcbiAgICB9XG4gIGBcbn1cblxuY29uc3QgdGVzdCA9IGNzc2BcbiAgJHttZWRpYWBjb2xvcjogcmVkO2B9O1xuYFxuIl19 */");"
 `;

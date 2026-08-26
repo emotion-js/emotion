@@ -45,7 +45,7 @@ jobs:
       - name: Create or update release pull request
         uses: changesets/action/version@22ccf9aa43179fe9e27dc62e575971d28cce197c # v2.0.0
         with:
-          script: yarn version-packages
+          script: pnpm version-packages
 
   pack:
     name: Pack
@@ -61,7 +61,7 @@ jobs:
       - uses: $/.github/actions/ci-setup
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: Pack
         id: pack
