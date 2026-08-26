@@ -23,6 +23,7 @@ trustPolicyExclude:
   - ua-parser-js@1.0.41
 
 overrides:
+  '@types/minimatch': 5.1.2
   cheerio: 1.0.0-rc.3
   prettier: 3.3.2
 
