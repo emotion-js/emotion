@@ -23,6 +23,7 @@ trustPolicyExclude:
   - ua-parser-js@1.0.41
 
 overrides:
+  '@types/react-native@0.63.75>@types/react': 18.3.12
   '@types/minimatch': 5.1.2
   cheerio: 1.0.0-rc.3
   prettier: 3.3.2
@@ -42,3 +43,5 @@ allowBuilds:
 
 patchedDependencies:
   '@definitelytyped/dtslint@0.0.112': patches/@definitelytyped__dtslint@0.0.112.patch
+  '@definitelytyped/typescript-versions@0.0.112': patches/@definitelytyped__typescript-versions@0.0.112.patch
+  '@definitelytyped/utils@0.0.112': patches/@definitelytyped__utils@0.0.112.patch

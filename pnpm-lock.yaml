@@ -5,12 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@types/react-native@0.63.75>@types/react': 18.3.12
   '@types/minimatch': 5.1.2
   cheerio: 1.0.0-rc.3
   prettier: 3.3.2
 
 patchedDependencies:
-  '@definitelytyped/dtslint@0.0.112': cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c
+  '@definitelytyped/dtslint@0.0.112': 4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03
+  '@definitelytyped/typescript-versions@0.0.112': e84e2bef92c2f9ce84759dec36ea9d4c64f181e94f2c2b3224e52532c91cf1ca
+  '@definitelytyped/utils@0.0.112': bee049f5278308c574d2348b92f16261a6af6d8aa2417bcd19ca0ec281b48d2d
 
 importers:
 
@@ -325,7 +328,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       '@emotion/hash':
         specifier: '*'
         version: link:../hash
@@ -356,7 +359,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -394,7 +397,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -407,7 +410,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -432,7 +435,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       '@emotion/css':
         specifier: 11.13.5
         version: link:../css
@@ -462,7 +465,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -475,7 +478,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       '@types/react-native':
         specifier: ^0.63.2
         version: 0.63.75
@@ -559,7 +562,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       '@emotion/css':
         specifier: 11.13.5
         version: link:../css
@@ -608,7 +611,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -630,7 +633,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       '@emotion/babel-plugin':
         specifier: 11.13.5
         version: link:../babel-plugin
@@ -651,7 +654,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -679,7 +682,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       '@emotion/react':
         specifier: 11.14.0
         version: link:../react
@@ -702,7 +705,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -711,7 +714,7 @@ importers:
     devDependencies:
       '@definitelytyped/dtslint':
         specifier: 0.0.112
-        version: 0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)
+        version: 0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -3354,9 +3357,6 @@ packages:
   '@types/react-native@0.63.75':
     resolution: {integrity: sha512-SPlOPHMoSP7eeMaEb3ef1T/Hjsjub4xl1ipj4tqaXZtuF+1Pfgn+S3U2/tHWN++S41c+4BJp+krUJ1LXy7pY7w==}
 
-  '@types/react@16.14.70':
-    resolution: {integrity: sha512-DM5Q7rSx9G6QYcVvMgxvEurL5P06OxcDNUXrLxlpBzG4ccUewcBCmsztYbxJBobzO8RIwwmjoaD5OsKqdHDuYQ==}
-
   '@types/react@18.3.12':
     resolution: {integrity: sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==}
 
@@ -3371,9 +3371,6 @@ packages:
 
   '@types/responselike@1.0.3':
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
-
-  '@types/scheduler@0.16.8':
-    resolution: {integrity: sha512-WZLiwShhwLRmeV6zH+GkbOFT6Z6VklCItrDioxUnv+u4Ll+8vKeFySoFyK/0ctcRpOmwAicELfmys1sDc/Rw+A==}
 
   '@types/semver@6.2.7':
     resolution: {integrity: sha512-blctEWbzUFzQx799RZjzzIdBJOXmE37YYEyDtKkx5Dg+V7o/zyyAxLPiI98A2jdTtDgxZleMdfV+7p8WbRJ1OQ==}
@@ -14039,12 +14036,12 @@ snapshots:
       typescript: 5.9.3
       yargs: 15.4.1
 
-  '@definitelytyped/dtslint@0.0.112(patch_hash=cebe55dd08eecd6880de916f937d3950a5cfc4faa981b58b04d750167d6a469c)(typescript@5.9.3)':
+  '@definitelytyped/dtslint@0.0.112(patch_hash=4c57ac45ab8649de0fe75463ebab544bfe1bd1a4d055a16544d5409e856f0e03)(typescript@5.9.3)':
     dependencies:
       '@definitelytyped/dts-critic': 0.0.112(typescript@5.9.3)
       '@definitelytyped/header-parser': 0.0.112
-      '@definitelytyped/typescript-versions': 0.0.112
-      '@definitelytyped/utils': 0.0.112
+      '@definitelytyped/typescript-versions': 0.0.112(patch_hash=e84e2bef92c2f9ce84759dec36ea9d4c64f181e94f2c2b3224e52532c91cf1ca)
+      '@definitelytyped/utils': 0.0.112(patch_hash=bee049f5278308c574d2348b92f16261a6af6d8aa2417bcd19ca0ec281b48d2d)
       fs-extra: 6.0.1
       json-stable-stringify: 1.3.0
       strip-json-comments: 2.0.1
@@ -14054,15 +14051,15 @@ snapshots:
 
   '@definitelytyped/header-parser@0.0.112':
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.112
+      '@definitelytyped/typescript-versions': 0.0.112(patch_hash=e84e2bef92c2f9ce84759dec36ea9d4c64f181e94f2c2b3224e52532c91cf1ca)
       '@types/parsimmon': 1.10.9
       parsimmon: 1.18.1
 
-  '@definitelytyped/typescript-versions@0.0.112': {}
+  '@definitelytyped/typescript-versions@0.0.112(patch_hash=e84e2bef92c2f9ce84759dec36ea9d4c64f181e94f2c2b3224e52532c91cf1ca)': {}
 
-  '@definitelytyped/utils@0.0.112':
+  '@definitelytyped/utils@0.0.112(patch_hash=bee049f5278308c574d2348b92f16261a6af6d8aa2417bcd19ca0ec281b48d2d)':
     dependencies:
-      '@definitelytyped/typescript-versions': 0.0.112
+      '@definitelytyped/typescript-versions': 0.0.112(patch_hash=e84e2bef92c2f9ce84759dec36ea9d4c64f181e94f2c2b3224e52532c91cf1ca)
       '@qiwi/npm-registry-client': 8.9.1
       '@types/node': 14.18.63
       charm: 1.0.2
@@ -16276,13 +16273,7 @@ snapshots:
 
   '@types/react-native@0.63.75':
     dependencies:
-      '@types/react': 16.14.70
-
-  '@types/react@16.14.70':
-    dependencies:
-      '@types/prop-types': 15.7.15
-      '@types/scheduler': 0.16.8
-      csstype: 3.2.3
+      '@types/react': 18.3.12
 
   '@types/react@18.3.12':
     dependencies:
@@ -16308,8 +16299,6 @@ snapshots:
   '@types/responselike@1.0.3':
     dependencies:
       '@types/node': 12.20.55
-
-  '@types/scheduler@0.16.8': {}
 
   '@types/semver@6.2.7': {}
 

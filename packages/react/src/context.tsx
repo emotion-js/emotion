@@ -42,7 +42,7 @@ let withEmotionCache = function withEmotionCache<Props, RefType = any>(
     // the cache will never be null in the browser
     let cache = useContext(EmotionCacheContext)!
 
-    return func(props, cache, ref)
+    return func(props, cache, ref) as React.ReactElement | null
   })
 }
 
@@ -66,7 +66,7 @@ if (!isBrowser) {
         return func(props, cache)
       }
     }
-  }
+  } as typeof withEmotionCache
 }
 
 export { withEmotionCache }

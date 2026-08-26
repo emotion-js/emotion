@@ -2,6 +2,16 @@ diff --git a/dist/lint.js b/dist/lint.js
 index ae29f2a0936fe8e4dee9b4a607ed5c611872d30d..96746c55f2df24c6d09ee30ff85e404138ad0fbe 100644
 --- a/dist/lint.js
 +++ b/dist/lint.js
+@@ -12,8 +12,8 @@ const expectRule_1 = require("./rules/expectRule");
+ const util_1 = require("./util");
+ async function lint(dirPath, minVersion, maxVersion, isLatest, expectOnly, tsLocal) {
+     const tsconfigPath = (0, path_1.join)(dirPath, "tsconfig.json");
+     const lintProgram = tslint_1.Linter.createProgram(tsconfigPath);
+-    for (const version of [maxVersion, minVersion]) {
++    for (const version of typescript_versions_1.TypeScriptVersion.range(minVersion).filter((version) => version <= maxVersion)) {
+         const errors = testDependencies(version, dirPath, lintProgram, tsLocal);
+         if (errors) {
+             return errors;
 @@ -107,9 +107,9 @@ function startsWithDirectory(filePath, dirPath) {
      return normalFilePath.startsWith(normalDirPath + "/") || normalFilePath.startsWith(normalDirPath + "\\");
  }
@@ -15,3 +25,45 @@ index ae29f2a0936fe8e4dee9b4a607ed5c611872d30d..96746c55f2df24c6d09ee30ff85e4041
  }
  function testNoTslintDisables(text) {
      const tslintDisable = "tslint:disable";
+diff --git a/dist/rules/expectRule.js b/dist/rules/expectRule.js
+--- a/dist/rules/expectRule.js
++++ b/dist/rules/expectRule.js
+@@ -68,22 +68,13 @@ class Rule extends Lint.Rules.TypedRule {
+-        const maxFailures = getFailures((0, util_1.last)(versionsToTest), undefined, /*writeOutput*/ true);
+-        if (maxFailures.length) {
+-            return maxFailures;
+-        }
+-        // As an optimization, check the earliest version for errors;
+-        // assume that if it works on min and max, it works for everything in between.
+-        const minFailures = getFailures(versionsToTest[0], undefined, /*writeOutput*/ false);
+-        if (!minFailures.length) {
+-            return [];
+-        }
+-        // There are no failures in the max version, but there are failures in the min version.
+-        // Work backward to find the newest version with failures.
+-        for (let i = versionsToTest.length - 2; i >= 0; i--) {
+-            const failures = getFailures(versionsToTest[i], options.versionsToTest[i + 1].versionName, /*writeOutput*/ false);
++        for (let i = versionsToTest.length - 1; i >= 0; i--) {
++            const nextHigherVersion = i === versionsToTest.length - 1
++                ? undefined
++                : versionsToTest[i + 1].versionName;
++            const failures = getFailures(versionsToTest[i], nextHigherVersion, i === versionsToTest.length - 1);
+             if (failures.length) {
+                 return failures;
+             }
+         }
+-        throw new Error(); // unreachable -- at least the min version should have failures.
++        return [];
+     }
+ }
+ exports.Rule = Rule;
+@@ -127,6 +127,9 @@ function createProgram(configFile, ts) {
+     const parsed = ts.parseJsonConfigFileContent(config, parseConfigHost, (0, path_1.resolve)(projectDirectory), {
+         noEmit: true,
+     });
++    if (Number.parseFloat(ts.versionMajorMinor) >= 6) {
++        parsed.options.ignoreDeprecations = "6.0";
++    }
+     const host = ts.createCompilerHost(parsed.options, true);
+     return ts.createProgram(parsed.fileNames, parsed.options, host);
+ }

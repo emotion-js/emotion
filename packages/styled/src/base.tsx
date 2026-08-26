@@ -148,7 +148,7 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
         const serialized = serializeStyles(
           styles.concat(classInterpolations),
           cache.registered,
-          mergedProps
+          mergedProps as unknown as Theme
         )
         className += `${cache.key}-${serialized.name}`
         if (targetClassName !== undefined) {
