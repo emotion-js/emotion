@@ -21,8 +21,7 @@ jobs:
           - windows-latest
     runs-on: ${{matrix.platform}}
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Run Tests
         run: yarn test:ci --color
@@ -35,8 +34,7 @@ jobs:
     name: TypeScript
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Check Types
         run: yarn tsc:all
@@ -45,8 +43,7 @@ jobs:
     name: Test React 18
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Run Tests with React 18
         run: yarn test:react18:ci
@@ -55,8 +52,7 @@ jobs:
     name: Test Prod
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Prod Tests
         run: yarn test:prod
@@ -65,8 +61,7 @@ jobs:
     name: Test Dist
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Dist Tests
         run: yarn test:dist
@@ -75,8 +70,7 @@ jobs:
     name: Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: ESLint
         run: yarn lint:check
@@ -85,8 +79,7 @@ jobs:
     name: dtslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: build
         run: yarn build
