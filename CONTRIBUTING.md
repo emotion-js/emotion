@@ -29,4 +29,4 @@
 
 ## Changesets
 
-Emotion uses [changesets](https://github.com/Noviny/changesets) to do versioning. What that means for contributors is that you need to add a changeset by running `pnpm changeset` which contains what packages should be bumped, their associated semver bump types and some markdown which will be inserted into changelogs.
+Emotion uses [changesets](https://github.com/changesets/changesets) to do versioning. What that means for contributors is that you need to add a changeset by running `pnpm changeset` which contains what packages should be bumped, their associated semver bump types and some markdown which will be inserted into changelogs.
