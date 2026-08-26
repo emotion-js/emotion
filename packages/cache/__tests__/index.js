@@ -58,33 +58,37 @@ test('should accept container option', () => {
 test('should correctly prefix margin-inline and padding-inline properties without stripping CSS variable names', () => {
   const cache = createCache({ key: 'test-inline-prefix' })
 
-  cache.insert(
-    '.test1',
-    { name: '1', styles: 'margin-inline-end: var(--my-margin-inline-end);' },
-    cache.sheet,
-    true
-  )
-  cache.insert(
-    '.test2',
-    {
-      name: '2',
-      styles: 'padding-inline-start: var(--my-padding-inline-start);'
-    },
-    cache.sheet,
-    true
-  )
+  try {
+    cache.insert(
+      '.test1',
+      { name: '1', styles: 'margin-inline-end: var(--my-margin-inline-end);' },
+      cache.sheet,
+      true
+    )
+    cache.insert(
+      '.test2',
+      {
+        name: '2',
+        styles: 'padding-inline-start: var(--my-padding-inline-start);'
+      },
+      cache.sheet,
+      true
+    )
 
-  expect(
-    cache.sheet.tags
-      .map(
-        tag =>
-          tag.textContent ||
-          Array.from(tag.sheet.cssRules)
-            .map(r => r.cssText)
-            .join('')
-      )
-      .join('')
-  ).toMatchInlineSnapshot(
-    `".test1{-webkit-margin-end:var(--my-margin-inline-end);margin-inline-end:var(--my-margin-inline-end);}.test2{-webkit-padding-start:var(--my-padding-inline-start);padding-inline-start:var(--my-padding-inline-start);}"`
-  )
+    expect(
+      cache.sheet.tags
+        .map(
+          tag =>
+            tag.textContent ||
+            Array.from(tag.sheet.cssRules)
+              .map(r => r.cssText)
+              .join('')
+        )
+        .join('')
+    ).toMatchInlineSnapshot(
+      `".test1{-webkit-margin-end:var(--my-margin-inline-end);margin-inline-end:var(--my-margin-inline-end);}.test2{-webkit-padding-start:var(--my-padding-inline-start);padding-inline-start:var(--my-padding-inline-start);}"`
+    )
+  } finally {
+    cache.sheet.flush()
+  }
 })
