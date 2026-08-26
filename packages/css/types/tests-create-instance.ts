@@ -9,9 +9,9 @@ const emotion1 = createEmotion({
   nonce: 'fasefw'
 })
 
-// $ExpectError
+// @ts-expect-error
 createEmotion('abc')
-// $ExpectError
+// @ts-expect-error
 createEmotion({}, undefined as any)
 
 const {
@@ -29,17 +29,17 @@ const {
 
 flush()
 
-// $ExpectError
+// @ts-expect-error
 flush(undefined as any)
 
 hydrate([])
 hydrate(['123'])
 
-// $ExpectError
+// @ts-expect-error
 hydrate()
-// $ExpectError
+// @ts-expect-error
 hydrate([0])
-// $ExpectError
+// @ts-expect-error
 hydrate([], undefined as any)
 
 cx()
@@ -61,7 +61,7 @@ cx([
 ])
 cx([['abc']])
 
-// $ExpectError
+// @ts-expect-error
 cx(5)
 
 merge('abc def fpfp')
@@ -98,11 +98,11 @@ css(true, true)
 css('fa', 1123)
 css(['123'], 'asdf')
 
-// $ExpectError
+// @ts-expect-error
 css({
   width: {}
 })
-// $ExpectError
+// @ts-expect-error
 css({
   color: 5
 })
@@ -119,7 +119,7 @@ injectGlobal([
     animationDelay: '200ms'
   }
 ])
-// $ExpectError
+// @ts-expect-error
 injectGlobal({
   backgroundColor: 4
 })
@@ -163,7 +163,7 @@ keyframes([
     }
   }
 ])
-// $ExpectError
+// @ts-expect-error
 keyframes({
   '0%': {
     backgroundOrigin: 0

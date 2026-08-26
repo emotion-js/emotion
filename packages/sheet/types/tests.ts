@@ -16,14 +16,14 @@ new StyleSheet({
   speedy: true
 })
 // this has been commented out because the error location has moved in typescript@next at the time of writing this comment
-// // $ExpectError
+// // @ts-expect-error
 // new StyleSheet({
 //   container: document.createElement('div'),
 //   key: 120
 // })
 new StyleSheet({
   container: document.createElement('div'),
-  // $ExpectError
+  // @ts-expect-error
   kye: 'abc'
 })
 
@@ -32,13 +32,13 @@ const styleSheet0 = new StyleSheet({
   container: document.createElement('div')
 })
 const styleSheet1: StyleSheet = styleSheet0
-// $ExpectError
+// @ts-expect-error
 const styleSheet2: StyleSheet = new StyleSheet()
-// $ExpectError
+// @ts-expect-error
 const styleSheet3: StyleSheet = new StyleSheet({})
-// $ExpectError
+// @ts-expect-error
 const styleSheet4: StyleSheet = new StyleSheet({ key: 'mykey' })
-// $ExpectError
+// @ts-expect-error
 const styleSheet5: StyleSheet = new StyleSheet({
   container: document.createElement('div')
 })
@@ -50,15 +50,15 @@ const styleSheet = new StyleSheet({
 
 styleSheet.insert('.name{ color: black; }')
 styleSheet.insert('.cl{ width: 200px; height: 200px; }')
-// $ExpectError
+// @ts-expect-error
 styleSheet.insert()
-// $ExpectError
+// @ts-expect-error
 styleSheet.insert('.name{ color: black; }', undefined as any)
 
 styleSheet.flush()
-// $ExpectError
+// @ts-expect-error
 styleSheet.flush(undefined as any)
-// $ExpectError
+// @ts-expect-error
 styleSheet.flush(...(undefined as any as Array<any>))
 
 const shadowRoot = document.createElement('div').attachShadow({ mode: 'open' })

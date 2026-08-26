@@ -11,23 +11,23 @@ declare class Qwe {
 // $ExpectType Foo[]
 weakMemoize((arg: Foo) => [arg])({ bar: 'xyz' })
 
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: string) => [arg])('foo')
 
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: Foo) => [arg])(42)
 
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: string) => [arg])
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: number) => [arg])
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: boolean) => [arg])
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: symbol) => [arg])
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: null) => [arg])
-// $ExpectError
+// @ts-expect-error
 weakMemoize((arg: undefined) => [arg])
 
 weakMemoize((arg: () => void) => [arg])

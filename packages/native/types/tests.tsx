@@ -176,17 +176,17 @@ export const ImageFullWidthContained = styled.Image`
   // Props forwarding through StyledOptions and FilteringStyledOptions
 
   styled(View, { shouldForwardProp: (prop: string) => true })({})
-  // $ExpectError
+  // @ts-expect-error
   styled(View, { shouldForwardProp: (prop: 'testID') => true })({})
 
   styled(View, {
     shouldForwardProp: (prop: string): prop is 'testID' => true
   })({})
   styled(View, {
-    // $ExpectError
+    // @ts-expect-error
     shouldForwardProp: (prop: 'testID'): prop is 'testID' => true
   })({})
 
-  // $ExpectError
+  // @ts-expect-error
   styled(View, { shouldForwardProp: (prop: 'foo') => true })({})
 }

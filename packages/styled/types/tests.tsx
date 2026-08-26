@@ -38,10 +38,10 @@ const StyledDiv = styled.div({})
 />
 
 // Cannot override with incomplete theme on prop
-// $ExpectError
+// @ts-expect-error
 ;<StyledDiv theme={{ primary: '' }} />
 
-// $ExpectError
+// @ts-expect-error
 ;<StyledDiv theme={{ themeProp: 0 }} />
 
 const Container = styled.div((props: { test: number }) => ({
@@ -181,7 +181,7 @@ const Input5 = styled.input`
   `
   ;<StyledWithAs as="section" />
   ;<StyledWithAs as={Section} />
-  // $ExpectError
+  // @ts-expect-error
   ;<StyledWithAs as="random string" />
 
   const ComposedWithAs = styled(StyledWithAs)`
@@ -189,7 +189,7 @@ const Input5 = styled.input`
   `
   ;<ComposedWithAs as="section" />
   ;<ComposedWithAs as={Section} />
-  // $ExpectError
+  // @ts-expect-error
   ;<ComposedWithAs as="random string" />
 
   const ComponentWithAs: React.FC<{ as: string; className?: string }> = ({
@@ -201,7 +201,7 @@ const Input5 = styled.input`
     background: orange;
   `
   ;<StyledComp as="random string" />
-  // $ExpectError
+  // @ts-expect-error
   ;<StyledComp as={Section} />
 
   const ComponentWithoutAs: React.FC<{ className?: string }> = props => (
@@ -210,11 +210,11 @@ const Input5 = styled.input`
   const StyledCompWithoutAs = styled(ComponentWithoutAs)`
     background: hotpink;
   `
-  // $ExpectError
+  // @ts-expect-error
   ;<StyledCompWithoutAs as="random string" />
-  // $ExpectError
+  // @ts-expect-error
   ;<StyledCompWithoutAs as="section" />
-  // $ExpectError
+  // @ts-expect-error
   ;<StyledCompWithoutAs as={Section} />
 }
 
@@ -225,39 +225,39 @@ const Input5 = styled.input`
 
   // we can't accept a "known" prop here because we need to include `AdditionalProps` and those aren't available yet
   // `Props` represent the actual props of a component while `AdditionalProps` represent props used only for styling purposes
-  // $ExpectError
+  // @ts-expect-error
   styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
 
   styled(fc, { shouldForwardProp: (prop: string) => true })({})
 
-  // $ExpectError
+  // @ts-expect-error
   styled(fc, { shouldForwardProp: (prop: 'bar') => true })({})
-  // $ExpectError
+  // @ts-expect-error
   styled(fc, { shouldForwardProp: (prop: 'foo') => true })({})
 
-  // $ExpectError
+  // @ts-expect-error
   const shouldForwardProp1: StyledOptions['shouldForwardProp'] = (
     prop: 'unknown'
   ) => true
   styled(fc, { shouldForwardProp: shouldForwardProp1 })({})
 
-  // $ExpectError
+  // @ts-expect-error
   styled(fc, { shouldForwardProp: (prop: 'unknown') => true })({})
 
-  // $ExpectError
+  // @ts-expect-error
   const shouldForwardProp2: StyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: 'unknown') => true
 
   styled(fc, { shouldForwardProp: (prop: string): prop is 'foo' => true })({})
-  // $ExpectError
+  // @ts-expect-error
   styled(fc, { shouldForwardProp: (prop: 'foo'): prop is 'foo' => true })({})
 
   const shouldForwardProp3: FilteringStyledOptions['shouldForwardProp'] = (
     prop: string
   ): prop is 'foo' => true
 
-  // $ExpectError
+  // @ts-expect-error
   const shouldForwardProp4: FilteringStyledOptions['shouldForwardProp'] = (
     prop: 'foo'
   ): prop is 'foo' => true
@@ -265,12 +265,12 @@ const Input5 = styled.input`
   const shouldForwardProp5: FilteringStyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: string): prop is 'foo' => true
-  // $ExpectError
+  // @ts-expect-error
   const shouldForwardProp6: FilteringStyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: 'foo'): prop is 'foo' => true
 
-  // $ExpectError
+  // @ts-expect-error
   const shouldForwardProp7: FilteringStyledOptions<{
     foo: string
   }>['shouldForwardProp'] = (prop: 'unknown'): prop is 'unknown' => true
@@ -280,7 +280,7 @@ const Input5 = styled.input`
     'foo'
   >['shouldForwardProp'] = (prop: string): prop is 'foo' => true
 
-  // $ExpectError
+  // @ts-expect-error
   const shouldForwardProp9: FilteringStyledOptions<
     { foo: string; bar: string },
     'foo'
@@ -290,14 +290,14 @@ const Input5 = styled.input`
     shouldForwardProp: (prop: string) => true
   })({})
 
-  // $ExpectError
+  // @ts-expect-error
   styled('div', { shouldForwardProp: (prop: 'color') => true })({})
 
   styled('div', {
-    // $ExpectError
+    // @ts-expect-error
     shouldForwardProp: (prop: 'color'): prop is 'color' => true
   })({})
 
-  // $ExpectError
+  // @ts-expect-error
   styled('div', { shouldForwardProp: (prop: 'foo') => true })({})
 }

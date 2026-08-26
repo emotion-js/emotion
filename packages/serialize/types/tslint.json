@@ -1,9 +1,0 @@
-{
-  "extends": "@definitelytyped/dtslint/dtslint.json",
-  "rules": {
-    "array-type": [true, "generic"],
-    "semicolon": false,
-    "no-null-undefined-union": false,
-    "callable-types": false
-  }
-}

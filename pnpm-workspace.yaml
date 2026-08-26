@@ -9,6 +9,20 @@ minimumReleaseAge: 10080
 shamefullyHoist: true
 shellEmulator: true
 
+packageExtensions:
+  '@definitelytyped/dtslint@0.2.47':
+    dependencies:
+      '@definitelytyped/eslint-plugin': 0.1.34
+      eslint-plugin-jsdoc: 44.2.7
+  '@definitelytyped/typescript-packages@0.1.12':
+    dependencies:
+      typescript-5.0: npm:typescript@~5.0.0-0
+      typescript-5.1: npm:typescript@~5.1.0-0
+      typescript-5.2: npm:typescript@~5.2.0-0
+      typescript-5.3: npm:typescript@~5.3.0-0
+      typescript-5.4: npm:typescript@~5.4.0-0
+      typescript-5.5: npm:typescript@~5.5.0-0
+
 blockExoticSubdeps: true
 trustPolicy: no-downgrade
 trustPolicyExclude:
@@ -42,6 +56,6 @@ allowBuilds:
   sharp: true
 
 patchedDependencies:
-  '@definitelytyped/dtslint@0.0.112': patches/@definitelytyped__dtslint@0.0.112.patch
-  '@definitelytyped/typescript-versions@0.0.112': patches/@definitelytyped__typescript-versions@0.0.112.patch
-  '@definitelytyped/utils@0.0.112': patches/@definitelytyped__utils@0.0.112.patch
+  '@definitelytyped/dtslint@0.2.47': patches/@definitelytyped__dtslint@0.2.47.patch
+  '@definitelytyped/eslint-plugin@0.1.34': patches/@definitelytyped__eslint-plugin@0.1.34.patch
+  '@definitelytyped/typescript-versions@0.1.12': patches/@definitelytyped__typescript-versions@0.1.12.patch

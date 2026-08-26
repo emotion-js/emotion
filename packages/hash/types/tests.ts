@@ -3,13 +3,13 @@ import hash from '@emotion/hash'
 // $ExpectType string
 hash('color: hotpink;')
 
-// $ExpectError
+// @ts-expect-error
 hash()
-// $ExpectError
+// @ts-expect-error
 const hashed2: number = hash('color: hotpink;')
-// $ExpectError
+// @ts-expect-error
 hash(42)
-// $ExpectError
+// @ts-expect-error
 hash({})
-// $ExpectError
+// @ts-expect-error
 hash('color: hotpink;', 'background-color: #fff;')

@@ -9,21 +9,21 @@ declare const renderedNodeStream: NodeJS.ReadableStream
 
 // $ExpectType EmotionCritical
 extractCritical(renderedString)
-// $ExpectError
+// @ts-expect-error
 extractCritical()
-// $ExpectError
+// @ts-expect-error
 extractCritical(renderedString, undefined as any)
 
 // $ExpectType string
 renderStylesToString(renderedString)
-// $ExpectError
+// @ts-expect-error
 renderStylesToString()
-// $ExpectError
+// @ts-expect-error
 renderStylesToString(renderedString, undefined as any)
 
 // $ExpectType ReadWriteStream
 renderStylesToNodeStream()
-// $ExpectError
+// @ts-expect-error
 renderStylesToNodeStream(undefined as any)
 
 renderedNodeStream.pipe(renderStylesToNodeStream())

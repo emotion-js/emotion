@@ -26,11 +26,11 @@ createSerializer({
   }
 })
 createSerializer(213 as any as CreateSerializerOptions)
-// $ExpectError
+// @ts-expect-error
 createSerializer(1)
-// $ExpectError
+// @ts-expect-error
 createSerializer(true)
-// $ExpectError
+// @ts-expect-error
 createSerializer({}, undefined as any)
 
 expect.addSnapshotSerializer(serializer)
@@ -40,5 +40,5 @@ expect.extend(matchers)
 expect({}).toHaveStyleRule('width', 'black')
 expect({}).toHaveStyleRule('height', /red/)
 expect({}).toHaveStyleRule('color', expect.stringContaining('20'))
-// $ExpectError
+// @ts-expect-error
 expect({}).toHaveStyleRule(5, 'abc')

@@ -12,9 +12,9 @@ getRegisteredStyles(testRegisteredCache, [], 'abc')
 getRegisteredStyles(testRegisteredCache, [], 'abc def')
 getRegisteredStyles(testRegisteredCache, [], 'dead end')
 getRegisteredStyles(testRegisteredCache, ['color: red;'], 'black parade')
-// $ExpectError
+// @ts-expect-error
 getRegisteredStyles()
-// $ExpectError
+// @ts-expect-error
 getRegisteredStyles(testRegisteredCache)
 
 insertStyles(
@@ -25,13 +25,13 @@ insertStyles(
   },
   false
 )
-// $ExpectError
+// @ts-expect-error
 insertStyles()
-// $ExpectError
+// @ts-expect-error
 insertStyles(testCache)
-// $ExpectError
+// @ts-expect-error
 insertStyles(testCache, {})
-// $ExpectError
+// @ts-expect-error
 insertStyles(testCache, {
   name: 'abc',
   styles: 'font-size: 18px;'

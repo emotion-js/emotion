@@ -162,14 +162,14 @@ const anim1 = keyframes`
   }
 
   // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
-  // $ExpectError
+  // @ts-expect-error
   ;<CompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
 
   const MemoedCompWithoutClassNameSupport = React.memo(
     CompWithoutClassNameSupport
   )
   // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
-  // $ExpectError
+  // @ts-expect-error
   ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
 }
 
@@ -177,7 +177,7 @@ const anim1 = keyframes`
   const CompWithoutProps = (_props: {}) => {
     return null
   }
-  // $ExpectError
+  // @ts-expect-error
   ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />
 }
 
@@ -193,7 +193,7 @@ const anim1 = keyframes`
   />
   ;<CompWithConditionalClassNameSupport
     foo={false}
-    // $ExpectError
+    // @ts-expect-error
     css={{ backgroundColor: 'hotpink' }}
   />
 }
@@ -229,9 +229,9 @@ const anim1 = keyframes`
   ;<WithOptionalClassName css={{ color: 'hotpink' }} />
 
   const WithRequiredClassName = (props: { className: string }) => null
-  // $ExpectError
+  // @ts-expect-error
   ;<WithRequiredClassName />
-  // $ExpectError
+  // @ts-expect-error
   ;<WithRequiredClassName css={{ color: 'hotpink' }} />
 
   const WithOptionalUnknownClassName = (props: { className?: unknown }) => null
@@ -246,12 +246,12 @@ const anim1 = keyframes`
 
   const WithNoClassName = (props: { foo: string }) => null
   ;<WithNoClassName foo="bar" />
-  // $ExpectError
+  // @ts-expect-error
   ;<WithNoClassName foo="bar" css={{ color: 'hotpink' }} />
 
   const WithOptionalUndefinedClassName = (props: { className?: undefined }) =>
     null
   ;<WithOptionalUndefinedClassName />
-  // $ExpectError
+  // @ts-expect-error
   ;<WithOptionalUndefinedClassName css={{ color: 'hotpink' }} />
 }

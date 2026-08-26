@@ -1,0 +1,52 @@
+diff --git a/dist/index.js b/dist/index.js
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -27,6 +27,9 @@ async function main() {
+     console.log(`dtslint@${require("../package.json").version}`);
+     if (args.length === 1 && args[0] === "types") {
+-        console.log("Please provide a package name to test.\nTo test all changed packages at once, run `pnpm run test-all`.");
+-        process.exit(1);
++        const error = await (0, lint_1.lint)((0, path_1.join)(dirPath, "types"), typescript_versions_1.TypeScriptVersion.lowest, typescript_versions_1.TypeScriptVersion.latest, true, true);
++        if (error) {
++            throw new Error(error);
++        }
++        return;
+     }
+     for (const arg of args) {
+diff --git a/dist/lint.js b/dist/lint.js
+--- a/dist/lint.js
++++ b/dist/lint.js
+@@ -19,6 +19,6 @@ async function lint(dirPath, minVersion, maxVersion, isLatest, expectOnly, tsLoc
+     ];
+     process.env.TSESTREE_SINGLE_RUN = "true";
+-    const files = getSourceFiles(dirPath, isLatest);
++    const files = getSourceFiles(dirPath, isLatest, expectOnly);
+     if (typeof files === "string") {
+         return files;
+     }
+@@ -36,7 +36,7 @@ async function lint(dirPath, minVersion, maxVersion, isLatest, expectOnly, tsLoc
+     }
+     return output;
+ }
+-function getSourceFiles(dirPath, isLatest) {
++function getSourceFiles(dirPath, isLatest, expectOnly) {
+     const tsconfigPath = (0, path_1.join)(dirPath, "tsconfig.json");
+     const lintProgram = (0, createProgram_1.createProgram)(tsconfigPath);
+     const files = [];
+@@ -47,6 +47,6 @@ function getSourceFiles(dirPath, isLatest) {
+         }
+         const { fileName, text } = file;
+-        if (!fileName.includes("node_modules")) {
++        if (!expectOnly && !fileName.includes("node_modules")) {
+             const err = testNoLintDisables(text);
+             if (err) {
+                 const { pos, message } = err;
+@@ -93,7 +93,8 @@ function getEslintOptions(expectOnly, minVersion, maxVersion, tsLocal) {
+     };
+     if (expectOnly) {
+         return {
+             useEslintrc: false,
++            resolvePluginsRelativeTo: __dirname,
+             overrideConfig: {
+                 plugins: ["@definitelytyped", "@typescript-eslint", "jsdoc"],
+                 parser: "@typescript-eslint/parser",

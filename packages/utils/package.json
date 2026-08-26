@@ -59,7 +59,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@definitelytyped/dtslint": "0.0.112",
+    "@definitelytyped/dtslint": "0.2.47",
     "typescript": "^5.4.5"
   }
 }

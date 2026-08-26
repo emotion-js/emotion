@@ -106,7 +106,7 @@ const Canvas1 = styled('canvas', {
   width: '200px'
 })
 ;<Canvas0 />
-// $ExpectError
+// @ts-expect-error
 ;<Canvas0 id="id-should-be-filtered" />
 ;<Canvas1 />
 
@@ -143,13 +143,13 @@ const Button3 = styled('button')<PrimaryProps>(props => ({
   <Button3 primary="blue" />
   <Button3 primary="blue" type="button" />
 </div>
-// $ExpectError
+// @ts-expect-error
 ;<Button2 />
-// $ExpectError
+// @ts-expect-error
 ;<Button2 type="button" />
-// $ExpectError
+// @ts-expect-error
 ;<Button3 />
-// $ExpectError
+// @ts-expect-error
 ;<Button3 type="button" />
 
 const Button4 = styled(ReactClassComponent0)<PrimaryProps>`
@@ -169,13 +169,13 @@ const Button5 = styled(ReactFC0)<PrimaryProps>(props => ({
   <Button5 column={true} primary="blue" />
   <Button5 column={false} primary="blue" />
 </div>
-// $ExpectError
+// @ts-expect-error
 ;<Button4 />
-// $ExpectError
+// @ts-expect-error
 ;<Button4 colume={true} />
-// $ExpectError
+// @ts-expect-error
 ;<Button5 />
-// $ExpectError
+// @ts-expect-error
 ;<Button5 colume={true} />
 
 const Container0 = styled(ReactClassComponent0)`
@@ -183,7 +183,7 @@ const Container0 = styled(ReactClassComponent0)`
   flex-direction: ${props => props.column && 'column'};
 `
 ;<Container0 column={false} />
-// $ExpectError
+// @ts-expect-error
 ;<Container0 />
 
 // When we change component, the original props still need to be available
@@ -192,21 +192,21 @@ const Container1 = Container0.withComponent('span')
 ;<Container1 column={true} />
 ;<Container1 column={true} onClick={undefined as any} />
 
-// $ExpectError
+// @ts-expect-error
 ;<Container1 onClick={undefined as any} />
-// $ExpectError
+// @ts-expect-error
 ;<Container1 contentEditable />
 
 const Container2 = Container0.withComponent(ReactFC0)
 ;<Container2 column={true} />
-// $ExpectError
+// @ts-expect-error
 ;<Container2 />
 
 const Container3 = Container0.withComponent(ReactClassComponent1)
 ;<Container3 column={false} value="123" />
-// $ExpectError
+// @ts-expect-error
 ;<Container3 colume={true} />
-// $ExpectError
+// @ts-expect-error
 ;<Container3 value="5" />
 
 interface ContainerProps {
@@ -218,19 +218,19 @@ const Container4 = styled(ReactFC2)<ContainerProps>(props => ({
   borderStyle: 'solid'
 }))
 ;<Container4 extraWidth="20px" value={123} />
-// $ExpectError
+// @ts-expect-error
 ;<Container4 />
-// $ExpectError
+// @ts-expect-error
 ;<Container4 value="5" />
 
 const Container5 = Container3.withComponent(ReactFC2)
-// $ExpectError
+// @ts-expect-error
 ;<Container5 column={true} value={123} />
-// $ExpectError
+// @ts-expect-error
 ;<Container5 />
-// $ExpectError
+// @ts-expect-error
 ;<Container5 column={true} />
-// $ExpectError
+// @ts-expect-error
 ;<Container5 value={242} />
 
 /**
@@ -240,10 +240,10 @@ const Container5 = Container3.withComponent(ReactFC2)
  * to see the error.
  */
 const C02 = Container0.withComponent(ReactClassComponent2)
-// $ExpectError
+// @ts-expect-error
 ;<C02 column="" />
 const C03 = Container3.withComponent(ReactClassComponent2)
-// $ExpectError
+// @ts-expect-error
 ;<C03 column="" />
 
 const ForwardRefCheckStyled = styled(
@@ -262,9 +262,9 @@ declare const ref0_0: (element: ReactClassComponent0 | null) => void
 declare const ref0_1: (element: ReactClassComponent1 | null) => void
 declare const ref0_2: (element: HTMLDivElement | null) => void
 ;<StyledClass0 column={true} ref={ref0_0} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass0 column={true} ref={ref0_1} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass0 column={true} ref={ref0_2} />
 
 const StyledClass1 = StyledClass0.withComponent(ReactClassComponent1)
@@ -272,9 +272,9 @@ declare const ref1_0: (element: ReactClassComponent1 | null) => void
 declare const ref1_1: (element: ReactClassComponent0 | null) => void
 declare const ref1_2: (element: HTMLDivElement | null) => void
 ;<StyledClass1 column={true} value="" ref={ref1_0} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass1 column={true} value="" ref={ref1_1} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass1 column={true} value="" ref={ref1_2} />
 
 const StyledClass2 = StyledClass0.withComponent('div')
@@ -282,20 +282,20 @@ declare const ref2_0: (element: HTMLDivElement | null) => void
 declare const ref2_1: (element: ReactClassComponent0 | null) => void
 declare const ref2_2: (element: ReactClassComponent1 | null) => void
 ;<StyledClass2 column={true} ref={ref2_0} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass2 column={true} ref={ref2_1} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass2 column={true} ref={ref2_2} />
 
 const StyledClass3 = StyledClass1.withComponent('label')
 declare const ref3_0: (element: HTMLLabelElement | null) => void
 declare const ref3_1: (element: ReactClassComponent0 | null) => void
 declare const ref3_2: (element: HTMLDivElement | null) => void
-  // $ExpectError
+  // @ts-expect-error
 ;<StyledClass3 column={true} ref={ref3_0} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass3 column={true} ref={ref3_1} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledClass3 column={true} ref={ref3_2} />
 
 {
@@ -324,8 +324,10 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
   `
   ;<Readable kind="book" author="Hejlsberg" />
   ;<StyledReadable kind="book" author="Hejlsberg" />
-  ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
-  ;<StyledReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
+  // @ts-expect-error
+  ;<Readable kind="magazine" author="Hejlsberg" />
+  // @ts-expect-error
+  ;<StyledReadable kind="magazine" author="Hejlsberg" />
 }
 
 interface Props {
@@ -398,7 +400,7 @@ const D = styled(C)`
 `
 ;<D tag="a" title="test" />
 ;<D tag="b" content="test" />
-// $ExpectError
+// @ts-expect-error
 ;<D tag="a" title="test" content="test" />
 
 // Ensure refs are available on intrinsic components and they are correct types
@@ -406,9 +408,9 @@ const StyledDiv = styled('div')({})
 declare const ref4_0: (element: ReactClassComponent1 | null) => void
 declare const ref4_1: (element: ReactClassComponent0 | null) => void
 declare const ref4_2: (element: HTMLDivElement | null) => void
-  // $ExpectError
+  // @ts-expect-error
 ;<StyledDiv ref={ref4_0} />
-// $ExpectError
+// @ts-expect-error
 ;<StyledDiv ref={ref4_1} />
 ;<StyledDiv ref={ref4_2} />
 ;<StyledDiv ref={React.createRef()} />
@@ -437,7 +439,7 @@ const Section = styled('section')`
   })
   const StyledMemoedComponent = styled(MemoedComponent)()
   ;<StyledMemoedComponent foo="test" />
-  // $ExpectError
+  // @ts-expect-error
   ;<StyledMemoedComponent />
 }
 

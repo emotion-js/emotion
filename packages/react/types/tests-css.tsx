@@ -29,13 +29,13 @@ css`
   top: ${'20px'};
 `
 
-// $ExpectError
+// @ts-expect-error
 css(() => 'height: 300px;')
 
 css`
   position: relative;
   flexgrow: ${
-    // $ExpectError
+    // @ts-expect-error
     () => 20
   };
 `
