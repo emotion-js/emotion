@@ -1,6 +1,6 @@
 import isBrowser from '#is-browser'
 import isDevelopment from '#is-development'
-import { Theme, ThemeContext, withEmotionCache } from '@emotion/react'
+import { ThemeContext, withEmotionCache } from '@emotion/react'
 import { Interpolation, serializeStyles } from '@emotion/serialize'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import {
@@ -11,7 +11,12 @@ import {
   SerializedStyles
 } from '@emotion/utils'
 import * as React from 'react'
-import { CreateStyled, ElementType, StyledOptions } from './types'
+import {
+  CreateStyled,
+  ElementType,
+  StyledOptions,
+  StyledRuntimeProps
+} from './types'
 import { composeShouldForwardProps, getDefaultShouldForwardProp } from './utils'
 export type {
   ArrayInterpolation,
@@ -87,7 +92,7 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
   return function () {
     // eslint-disable-next-line prefer-rest-params
     let args = arguments as any as Array<
-      TemplateStringsArray | Interpolation<Theme>
+      TemplateStringsArray | Interpolation<StyledRuntimeProps>
     >
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -120,12 +125,12 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
     }
 
     const Styled: ElementType = withEmotionCache(
-      (props: Record<string, unknown>, cache, ref) => {
+      (props: StyledRuntimeProps, cache, ref) => {
         const FinalTag =
           (shouldUseAs && (props.as as React.ElementType)) || baseTag
 
         let className = ''
-        let classInterpolations: Interpolation<Theme>[] = []
+        let classInterpolations: Interpolation<StyledRuntimeProps>[] = []
         let mergedProps = props
         if (props.theme == null) {
           mergedProps = {}
@@ -148,7 +153,7 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
         const serialized = serializeStyles(
           styles.concat(classInterpolations),
           cache.registered,
-          mergedProps as unknown as Theme
+          mergedProps
         )
         className += `${cache.key}-${serialized.name}`
         if (targetClassName !== undefined) {

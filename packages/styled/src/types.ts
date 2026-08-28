@@ -2,6 +2,8 @@ import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import { ReactJSXIntrinsicElements } from './jsx-namespace'
 import { PropsOf, Theme } from '@emotion/react'
 
+export type StyledRuntimeProps = Record<string, unknown> & { theme?: Theme }
+
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
   Props = Record<string, any>,
@@ -185,6 +187,6 @@ export type ElementType = React.ElementType & {
   defaultProps?: Partial<any>
   __emotion_real?: ElementType
   __emotion_base?: ElementType
-  __emotion_styles?: Interpolation<Theme>[]
+  __emotion_styles?: Interpolation<StyledRuntimeProps>[]
   __emotion_forwardProp?: (propName: string) => boolean
 }
