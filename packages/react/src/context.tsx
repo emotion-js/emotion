@@ -32,7 +32,7 @@ let withEmotionCache = function withEmotionCache<Props, RefType = any>(
     props: React.PropsWithoutRef<Props>,
     context: EmotionCache,
     ref?: React.ForwardedRef<RefType>
-  ) => React.ReactNode
+  ) => ReturnType<React.FC>
 ):
   | React.FC<React.PropsWithoutRef<Props> & React.RefAttributes<RefType>>
   | React.ForwardRefExoticComponent<
@@ -42,7 +42,7 @@ let withEmotionCache = function withEmotionCache<Props, RefType = any>(
     // the cache will never be null in the browser
     let cache = useContext(EmotionCacheContext)!
 
-    return func(props, cache, ref) as React.ReactElement | null
+    return func(props, cache, ref)
   })
 }
 
@@ -66,7 +66,7 @@ if (!isBrowser) {
         return func(props, cache)
       }
     }
-  } as typeof withEmotionCache
+  }
 }
 
 export { withEmotionCache }
