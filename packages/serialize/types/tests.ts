@@ -58,4 +58,4 @@ let cssObject: CSSObject = {
 }
 
 // $ExpectError
-cssObject = { fontWeight: 'wrong' }
+cssObject = { fontWeight: Symbol() }

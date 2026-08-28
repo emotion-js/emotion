@@ -9,9 +9,7 @@ const Foo = styled.h1\`color:hotpink;\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from "@emotion/styled/base";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
 const Foo = /*#__PURE__*/_styled("h1", {
   target: "eoxfmb00"
 })(process.env.NODE_ENV === "production" ? {
@@ -33,11 +31,8 @@ styled.h1\`color:blue;\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from "@emotion/styled/base";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
-
-/*#__PURE__*/
-_styled("h1", {
+/*#__PURE__*/_styled("h1", {
   target: "e8evh370"
 })(process.env.NODE_ENV === "production" ? {
   name: "117wnve",

@@ -21,11 +21,10 @@ jobs:
           - windows-latest
     runs-on: ${{matrix.platform}}
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Run Tests
-        run: yarn test:ci --color
+        run: pnpm test:ci --color
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
@@ -35,61 +34,55 @@ jobs:
     name: TypeScript
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Check Types
-        run: yarn tsc:all
+        run: pnpm tsc:all
 
   test_react18:
     name: Test React 18
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Run Tests with React 18
-        run: yarn test:react18:ci
+        run: pnpm test:react18:ci
 
   test_prod:
     name: Test Prod
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Prod Tests
-        run: yarn test:prod
+        run: pnpm test:prod
 
   test_dist:
     name: Test Dist
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: Dist Tests
-        run: yarn test:dist
+        run: pnpm test:dist
 
   linting:
     name: Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: ESLint
-        run: yarn lint:check
+        run: pnpm lint:check
 
   dtslint:
     name: dtslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/ci-setup
+      - uses: $/.github/actions/ci-setup
 
       - name: build
-        run: yarn build
+        run: pnpm build
 
       - name: dtslint
-        run: yarn test:typescript
+        run: pnpm test:typescript

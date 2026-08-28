@@ -51,6 +51,10 @@ ruleTester.run('syntax-preference (string)', rule, {
       options: ['string']
     },
     {
+      code: `const Foo = () => <div css={[styles, , otherStyles]} />`,
+      options: ['string']
+    },
+    {
       code: `css\`color: hotpink;\``,
       options: ['string']
     },
@@ -169,6 +173,10 @@ ruleTester.run('syntax-preference (object)', rule, {
     },
     {
       code: `const Foo = () => <div css={css({ color: 'hotpink' })} />`,
+      options: ['object']
+    },
+    {
+      code: `const Foo = () => <div css={[styles, , otherStyles]} />`,
       options: ['object']
     }
   ],

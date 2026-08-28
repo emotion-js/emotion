@@ -34,7 +34,6 @@ const F = () => <></>
 
 import * as React from 'react';
 import { jsx as ___EmotionJSX } from "@emotion/react";
-
 const F = () => <></>;"
 `;
 
@@ -48,6 +47,5 @@ const P = () => <p />
 
 import * as React from 'react';
 import { jsx as ___EmotionJSX } from "@emotion/react";
-
 const P = () => <p />;"
 `;

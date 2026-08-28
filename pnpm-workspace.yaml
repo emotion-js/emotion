@@ -1,0 +1,47 @@
+packages:
+  - packages/*
+  - site
+  - scripts/*
+  - playgrounds/*
+
+linkWorkspacePackages: true
+minimumReleaseAge: 10080
+shamefullyHoist: true
+shellEmulator: true
+
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - '@next/bundle-analyzer@12.3.7'
+  - '@next/env@12.3.7'
+  - eslint-config-prettier@9.1.2
+  - next@12.3.7
+  - rollup@2.80.0
+  - semver@5.7.2
+  - semver@6.3.1
+  - ua-parser-js@0.7.41
+  - ua-parser-js@1.0.41
+
+overrides:
+  '@types/react-native@0.63.75>@types/react': 18.3.12
+  '@types/minimatch': 5.1.2
+  cheerio: 1.0.0-rc.3
+  prettier: 3.3.2
+
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  core-js: false
+  ejs: false
+  es5-ext: false
+  fsevents: false
+  husky: true
+  lmdb: true
+  msgpackr-extract: false
+  puppeteer: true
+  sharp: true
+
+patchedDependencies:
+  '@definitelytyped/dtslint@0.0.112': patches/@definitelytyped__dtslint@0.0.112.patch
+  '@definitelytyped/typescript-versions@0.0.112': patches/@definitelytyped__typescript-versions@0.0.112.patch
+  '@definitelytyped/utils@0.0.112': patches/@definitelytyped__utils@0.0.112.patch

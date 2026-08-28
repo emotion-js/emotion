@@ -1,5 +1,0 @@
-{
-  "packages": ["packages/*"],
-  "sandboxes": ["pk1qjqpw67"],
-  "node": "16"
-}

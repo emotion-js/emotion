@@ -10,21 +10,20 @@
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
     "test:react18": "jest -c jest-react18.config.js",
-    "test:typescript": "yarn workspaces foreach --verbose --exclude emotion-monorepo run test:typescript",
+    "test:typescript": "pnpm --recursive --workspace-concurrency=1 --if-present run test:typescript",
     "test:ci": "jest --coverage --no-cache --ci --runInBand",
-    "test:react18:ci": "yarn test:react18 --coverage --no-cache --ci --runInBand",
-    "test:dist": "yarn build && jest -c jest.dist.js --no-cache --ci --runInBand",
+    "test:react18:ci": "pnpm test:react18 --coverage --no-cache --ci --runInBand",
+    "test:dist": "pnpm build && jest -c jest.dist.js --no-cache --ci --runInBand",
     "test:prod": "jest -c jest.prod.js --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch",
     "size": "bundlesize",
     "lint": "eslint . --fix",
-    "benchmark": "cd scripts/benchmarks && yarn build && yarn run-benchmark",
-    "preinstall": "node ./scripts/ensure-yarn.js",
+    "benchmark": "pnpm --dir scripts/benchmarks build && pnpm --dir scripts/benchmarks run-benchmark",
+    "preinstall": "node ./scripts/ensure-pnpm.js",
     "postinstall": "preconstruct dev && manypkg check",
     "changeset": "changeset",
-    "version-packages": "changeset version && yarn --mode=\"update-lockfile\"",
-    "release": "yarn build && changeset publish"
+    "version-packages": "changeset version"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -181,8 +180,8 @@
     "@babel/preset-typescript": "^7.18.6",
     "@babel/register": "^7.17.7",
     "@babel/runtime": "^7.18.3",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.7",
+    "@changesets/changelog-github": "^1.0.0",
+    "@changesets/cli": "^3.0.0",
     "@manypkg/cli": "^0.19.1",
     "@preconstruct/cli": "^2.8.8",
     "@testing-library/react": "13.0.0-alpha.5",
@@ -243,8 +242,5 @@
     "unified": "^6.1.6",
     "webpack-bundle-analyzer": "3.3.2"
   },
-  "packageManager": "yarn@3.2.3",
-  "resolutions": {
-    "@definitelytyped/dtslint@0.0.112": "patch:@definitelytyped/dtslint@npm%3A0.0.112#./.yarn/patches/@definitelytyped-dtslint-npm-0.0.112-1e6b842976.patch"
-  }
+  "packageManager": "pnpm@11.24.0+sha512.bd27e345e976dcb0be0b7a1228217b049a817e21b1f355c90dbe7dc46671895a8bc1e6d06c24554505ea93ea0b45f489a27ec1bfbc8de6a9659fca0f16fa0000"
 }

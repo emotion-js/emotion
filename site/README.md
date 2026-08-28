@@ -1,8 +1,8 @@
 # [Emotion Site](https://emotion.sh)
 
-Run the site for development: `yarn dev` (in the `site` directory)
+Run the site for development: `pnpm dev` (in the `site` directory)
 
-Preview the production build of the site: `yarn build && yarn start`
+Preview the production build of the site: `pnpm build && pnpm start`
 
 ## Docs
 

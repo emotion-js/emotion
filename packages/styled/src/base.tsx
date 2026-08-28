@@ -1,7 +1,11 @@
 import isBrowser from '#is-browser'
 import isDevelopment from '#is-development'
 import { Theme, ThemeContext, withEmotionCache } from '@emotion/react'
-import { Interpolation, serializeStyles } from '@emotion/serialize'
+import {
+  ComponentSelector,
+  Interpolation,
+  serializeStyles
+} from '@emotion/serialize'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import {
   EmotionCache,
@@ -25,6 +29,8 @@ const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your 
 Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
+
+type StyledRuntimeProps = Record<string, unknown> & { theme?: Theme }
 
 const Insertion = ({
   cache,
@@ -87,12 +93,11 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
   return function () {
     // eslint-disable-next-line prefer-rest-params
     let args = arguments as any as Array<
-      TemplateStringsArray | Interpolation<Theme>
+      TemplateStringsArray | Interpolation<StyledRuntimeProps>
     >
-    let styles =
-      isReal && tag.__emotion_styles !== undefined
-        ? tag.__emotion_styles.slice(0)
-        : []
+    const inheritedStyles = (tag as ComponentSelector).__emotion_styles
+    let styles: Interpolation<StyledRuntimeProps>[] =
+      isReal && inheritedStyles !== undefined ? inheritedStyles.slice(0) : []
 
     if (identifierName !== undefined) {
       styles.push(`label:${identifierName};`)
@@ -120,12 +125,12 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
     }
 
     const Styled: ElementType = withEmotionCache(
-      (props: Record<string, unknown>, cache, ref) => {
+      (props: StyledRuntimeProps, cache, ref) => {
         const FinalTag =
           (shouldUseAs && (props.as as React.ElementType)) || baseTag
 
         let className = ''
-        let classInterpolations: Interpolation<Theme>[] = []
+        let classInterpolations: Interpolation<StyledRuntimeProps>[] = []
         let mergedProps = props
         if (props.theme == null) {
           mergedProps = {}
@@ -199,7 +204,7 @@ const createStyled = (tag: ElementType, options?: StyledOptions) => {
     Styled.defaultProps = tag.defaultProps
     Styled.__emotion_real = Styled
     Styled.__emotion_base = baseTag
-    Styled.__emotion_styles = styles
+    ;(Styled as ComponentSelector).__emotion_styles = styles
     Styled.__emotion_forwardProp = shouldForwardProp
 
     Object.defineProperty(Styled, 'toString', {

@@ -1,0 +1,11 @@
+diff --git a/dist/typescript-installer.js b/dist/typescript-installer.js
+--- a/dist/typescript-installer.js
++++ b/dist/typescript-installer.js
+@@ -36,6 +36,6 @@ async function installAllTypeScriptVersions() {
+ exports.installAllTypeScriptVersions = installAllTypeScriptVersions;
+ async function installTypeScriptNext() {
+-    await install("next");
++    await install(typescript_versions_1.TypeScriptVersion.latest);
+ }
+ exports.installTypeScriptNext = installTypeScriptNext;
+ async function install(version) {

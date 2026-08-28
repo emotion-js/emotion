@@ -32,7 +32,7 @@ let withEmotionCache = function withEmotionCache<Props, RefType = any>(
     props: React.PropsWithoutRef<Props>,
     context: EmotionCache,
     ref?: React.ForwardedRef<RefType>
-  ) => React.ReactNode
+  ) => ReturnType<React.FC>
 ):
   | React.FC<React.PropsWithoutRef<Props> & React.RefAttributes<RefType>>
   | React.ForwardRefExoticComponent<
