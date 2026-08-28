@@ -1,0 +1,35 @@
+diff --git a/dist/util.js b/dist/util.js
+--- a/dist/util.js
++++ b/dist/util.js
+@@ -58,13 +58,16 @@ function findTypesPackage(file) {
+         }
+         const packageJsonContents = fs_1.default.readFileSync(packageJsonPath, "utf8");
+         const packageJson = JSON.parse(packageJsonContents);
+-        if (!isTypesPackage(packageJson)) {
++        const isLibraryPackage = typeof packageJson.name === "string" &&
++            typeof packageJson.version === "string" &&
++            typeof packageJson.types === "string";
++        if (!isTypesPackage(packageJson) && !isLibraryPackage) {
+             return undefined;
+         }
+         return {
+             dir: p,
+             packageJson,
+-            realName: (0, utils_1.typesPackageNameToRealName)(packageJson.name),
++            realName: isTypesPackage(packageJson) ? (0, utils_1.typesPackageNameToRealName)(packageJson.name) : packageJson.name,
+         };
+     });
+ }
+diff --git a/dist/rules/expect.js b/dist/rules/expect.js
+--- a/dist/rules/expect.js
++++ b/dist/rules/expect.js
+@@ -206,6 +206,9 @@ function createProgram(configFile, ts) {
+         parsed.options.module = ts.ModuleKind.CommonJS;
+         parsed.options.moduleResolution = ts.ModuleResolutionKind.NodeJs;
+     }
++    if (Number.parseFloat(ts.versionMajorMinor) >= 6) {
++        parsed.options.ignoreDeprecations = "6.0";
++    }
+     const host = ts.createCompilerHost(parsed.options, true);
+     return ts.createProgram(parsed.fileNames, parsed.options, host);
+ }

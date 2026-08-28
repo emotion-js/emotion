@@ -1,0 +1,45 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -8,13 +8,13 @@ export type TypeScriptVersion = (typeof TypeScriptVersion.supported)[number];
+ export type AllTypeScriptVersion = UnsupportedTypeScriptVersion | TypeScriptVersion;
+ export declare namespace TypeScriptVersion {
+     /** Add to this list when a version actually ships.  */
+-    const shipped: readonly ["5.6", "5.7", "5.8", "5.9", "6.0"];
++    const shipped: readonly ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9", "6.0"];
+     /** Add to this list when a version is available as typescript@next */
+-    const supported: readonly ["5.6", "5.7", "5.8", "5.9", "6.0"];
++    const supported: readonly ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9", "6.0"];
+     /** Add to this list when it will no longer be supported on Definitely Typed */
+-    const unsupported: readonly ["2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9", "3.0", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "5.0", "5.1", "5.2", "5.3", "5.4", "5.5"];
++    const unsupported: readonly ["2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9", "3.0", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "4.9"];
+     const all: readonly AllTypeScriptVersion[];
+-    const lowest: "5.6";
++    const lowest: "5.0";
+     /** Latest version that may be specified in a `// TypeScript Version:` header. */
+     const latest: "5.6" | "5.7" | "5.8" | "5.9" | "6.0";
+     function isSupported(v: AllTypeScriptVersion): v is TypeScriptVersion;
+diff --git a/dist/index.js b/dist/index.js
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -9,6 +9,6 @@ var TypeScriptVersion;
+ (function (TypeScriptVersion) {
+     /** Add to this list when a version actually ships.  */
+-    TypeScriptVersion.shipped = ["5.6", "5.7", "5.8", "5.9", "6.0"];
++    TypeScriptVersion.shipped = ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9", "6.0"];
+     /** Add to this list when a version is available as typescript@next */
+     TypeScriptVersion.supported = [...TypeScriptVersion.shipped];
+     /** Add to this list when it will no longer be supported on Definitely Typed */
+@@ -43,12 +43,6 @@ var TypeScriptVersion;
+         "4.7",
+         "4.8",
+         "4.9",
+-        "5.0",
+-        "5.1",
+-        "5.2",
+-        "5.3",
+-        "5.4",
+-        "5.5",
+     ];
+     TypeScriptVersion.all = [...TypeScriptVersion.unsupported, ...TypeScriptVersion.supported];
+     TypeScriptVersion.lowest = TypeScriptVersion.supported[0];

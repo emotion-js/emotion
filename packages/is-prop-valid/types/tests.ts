@@ -2,9 +2,9 @@ import isPropValid from '@emotion/is-prop-valid'
 
 isPropValid('ref')
 
-// $ExpectError
+// @ts-expect-error
 isPropValid()
-// $ExpectError
+// @ts-expect-error
 isPropValid({})
-// $ExpectError
+// @ts-expect-error
 isPropValid('ref', 'def')

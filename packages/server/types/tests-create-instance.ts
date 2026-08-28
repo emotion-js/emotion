@@ -5,28 +5,28 @@ declare const cache: EmotionCache
 
 // $ExpectType EmotionServer
 createEmotionServer(cache)
-// $ExpectError
+// @ts-expect-error
 createEmotionServer()
 
 const emotionServer = createEmotionServer(cache)
 
 // $ExpectType EmotionCritical
 emotionServer.extractCritical('<div></div>')
-// $ExpectError
+// @ts-expect-error
 emotionServer.extractCritical()
-// $ExpectError
+// @ts-expect-error
 emotionServer.extractCritical('<div></div>', undefined as any)
 
 // $ExpectType string
 emotionServer.renderStylesToString('<div></div>')
-// $ExpectError
+// @ts-expect-error
 emotionServer.renderStylesToString()
-// $ExpectError
+// @ts-expect-error
 emotionServer.renderStylesToString('<div></div>', undefined as any)
 
 // $ExpectType ReadWriteStream
 emotionServer.renderStylesToNodeStream()
-// $ExpectError
+// @ts-expect-error
 emotionServer.renderStylesToNodeStream(undefined as any)
 
 declare const stream: NodeJS.ReadableStream

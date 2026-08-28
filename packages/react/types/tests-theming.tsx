@@ -23,11 +23,11 @@ const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })}>
   <div />
 </ThemeProvider>
-// $ExpectError
+// @ts-expect-error
 ;<ThemeProvider theme={theme} />
-// $ExpectError
+// @ts-expect-error
 ;<ThemeProvider theme={theme}>{CompFC}</ThemeProvider>
-// $ExpectError
+// @ts-expect-error
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
 
 const ThemedFC = withTheme(CompFC)
@@ -83,7 +83,8 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
   const ThemedReadable = withTheme(Readable)
   ;<Readable kind="book" author="Hejlsberg" />
   ;<ThemedReadable kind="book" author="Hejlsberg" />
-  ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
+  // @ts-expect-error
+  ;<Readable kind="magazine" author="Hejlsberg" />
 }
 
 type StyleDefinition = Interpolation<{ theme: Theme }>

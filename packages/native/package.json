@@ -34,7 +34,7 @@
   ],
   "types": "types/index.d.ts",
   "devDependencies": {
-    "@definitelytyped/dtslint": "0.0.112",
+    "@definitelytyped/dtslint": "0.2.47",
     "@types/react-native": "^0.63.2",
     "react": "16.14.0",
     "react-native": "^0.63.2",

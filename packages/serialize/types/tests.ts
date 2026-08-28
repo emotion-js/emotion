@@ -39,11 +39,11 @@ serializeStyles(
 // $ExpectType SerializedStyles
 serializeStyles([testTemplateStringsArray, 5, '4px'], {}, {})
 
-// $ExpectError
+// @ts-expect-error
 serializeStyles()
-// $ExpectError
+// @ts-expect-error
 serializeStyles({})
-// $ExpectError
+// @ts-expect-error
 serializeStyles({}, {})
 
 let cssObject: CSSObject = {
@@ -57,5 +57,5 @@ let cssObject: CSSObject = {
   }
 }
 
-// $ExpectError
+// @ts-expect-error
 cssObject = { fontWeight: Symbol() }
