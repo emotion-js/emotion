@@ -12,6 +12,7 @@ import { withEmotionCache } from './context'
 import { Theme, ThemeContext } from './theming'
 import { useInsertionEffectAlwaysWithSyncFallback } from '@emotion/use-insertion-effect-with-fallbacks'
 import isBrowser from '#is-browser'
+import { hasOwn } from './utils'
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 
@@ -51,7 +52,7 @@ let classnames = (args: ArrayClassNamesArg): string => {
           }
           toAdd = ''
           for (const k in arg) {
-            if (arg[k] && k) {
+            if (hasOwn.call(arg, k) && arg[k] && k) {
               toAdd && (toAdd += ' ')
               toAdd += k
             }
