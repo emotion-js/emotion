@@ -5,6 +5,50 @@ import {
   addImport
 } from './utils'
 
+// Babel 8 removed `NodePath#hoist` (emotion-js/emotion#3386). The general
+// hoister lifted an expression to the highest scope where its bindings stayed
+// valid; for serialized styles the only case that ever arises is "fully static,
+// so it can go to module scope". This reimplements just that case.
+const referencesOnlyProgramScopeBindings = path => {
+  let safe = true
+  const check = idPath => {
+    if (!idPath.isReferencedIdentifier()) return
+    const binding = idPath.scope.getBinding(idPath.node.name)
+    if (!binding) return
+    if (!binding.scope.path.isProgram()) safe = false
+  }
+  if (path.isIdentifier()) check(path)
+  if (path.isThisExpression()) safe = false
+  path.traverse({
+    Identifier: check,
+    JSXIdentifier: check,
+    ThisExpression() {
+      safe = false
+    }
+  })
+  return safe
+}
+
+const hoistToProgramScope = (path, t) => {
+  // Already at module scope — there is nowhere higher to lift it to, and
+  // `NodePath#hoist` was a no-op in that case.
+  if (!path.scope.getFunctionParent()) return
+  const programScope = path.scope.getProgramParent()
+  const id = programScope.generateUidIdentifier('ref')
+  const init = path.node
+  path.replaceWith(t.cloneNode(id))
+  // Insert immediately before the top-level statement that references it, which
+  // is what `NodePath#hoist` did — putting it at the very top of Program would
+  // land it above the imports.
+  const topLevelStatement = path.findParent(
+    parent => parent.parentPath && parent.parentPath.isProgram()
+  )
+  const [declaration] = topLevelStatement.insertBefore(
+    t.variableDeclaration('var', [t.variableDeclarator(t.cloneNode(id), init)])
+  )
+  programScope.registerDeclaration(declaration)
+}
+
 export const transformCssCallExpression = (
   { state, babel, path, sourceMap, annotateAsPure = true } /*: {
   state: *,
@@ -23,7 +67,9 @@ export const transformCssCallExpression = (
   })
   if (node) {
     path.replaceWith(node)
-    path.hoist()
+    if (referencesOnlyProgramScopeBindings(path)) {
+      hoistToProgramScope(path, babel.types)
+    }
   } else if (annotateAsPure && path.isCallExpression()) {
     path.addComment('leading', '#__PURE__')
   }
