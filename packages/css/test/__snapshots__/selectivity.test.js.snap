@@ -15,62 +15,62 @@ exports[`css complex nested media queries 1`] = `
 `;
 
 exports[`css complex nested styles 1`] = `
-".css-52fshx {
+".css-g8l2wa {
   color: blue;
 }
 
-.css-52fshx:hover {
+.css-g8l2wa:hover {
   color: green;
 }
 
-.css-52fshx:hover .name {
+.css-g8l2wa:hover .name {
   color: amethyst;
 }
 
-.css-52fshx:hover .name:focus {
+.css-g8l2wa:hover .name:focus {
   color: burlywood;
 }
 
 @media (min-width: 420px) {
-  .css-52fshx:hover .name:focus {
+  .css-g8l2wa:hover .name:focus {
     color: rebeccapurple;
   }
 }"
 `;
 
 exports[`css handles media query merges 1`] = `
-".css-19kb3dc {
+".css-j7ue6q {
   color: darkslateblue;
   color: red;
   color: purple;
 }
 
 @media (min-width: 420px) {
-  .css-19kb3dc {
+  .css-j7ue6q {
     color: amethyst;
   }
 }
 
 @media (min-width: 640px) {
-  .css-19kb3dc {
+  .css-j7ue6q {
     color: rebeccapurple;
   }
 }
 
 @media (min-width: 960px) {
-  .css-19kb3dc {
+  .css-j7ue6q {
     color: burlywood;
   }
 }
 
 @media (min-width: 640px) {
-  .css-19kb3dc {
+  .css-j7ue6q {
     color: blue;
   }
 }
 
 @media (min-width: 640px) {
-  .css-19kb3dc {
+  .css-j7ue6q {
     color: aquamarine;
   }
 }"
@@ -141,6 +141,30 @@ exports[`css should allow for context selector being appended to an element type
 ".css-miigdc:hover,
 a.css-miigdc {
   background: blue;
+}"
+`;
+
+exports[`css should replace context selector used inside of a pseudo-class function in a selector group 1`] = `
+".Typography:where(.css-ug0ku .primary),
+.Typography:where(.css-ug0ku .secondary) {
+  display: block;
+}"
+`;
+
+exports[`css should replace context selector used inside of a pseudo-class function in a selector group mixed with regular selectors 1`] = `
+".css-n7pvcp .foo,
+.bar:is(.baz .css-n7pvcp),
+.css-n7pvcp .qwe {
+  display: block;
+}"
+`;
+
+exports[`css should replace context selector used inside of a pseudo-class function in a selector group nested in a selector group 1`] = `
+".c:not(.css-1smfccg .a .d),
+.c:not(.css-1smfccg .b .d),
+.css-1smfccg .a .e,
+.css-1smfccg .b .e {
+  color: hotpink;
 }"
 `;
 

@@ -63,9 +63,17 @@ const toRules = (parsed: string[], points: number[]) => {
           index
         )
         break
-      case 2:
-        parsed[index] += delimit(character)
+      case 2: {
+        const delimited = delimit(character)
+        // stylis also inserts \f after & used inside of pseudo-class functions (like `:is()`, `:where()` or `:not()`)
+        // so we have to track this sequence within the delimited content too
+        // otherwise the parent selector would get prepended and &\f would be left in the output
+        if (delimited.indexOf('&\f') !== -1) {
+          points[index] = 1
+        }
+        parsed[index] += delimited
         break
+      }
       case 4:
         // comma
         if (character === 44) {
