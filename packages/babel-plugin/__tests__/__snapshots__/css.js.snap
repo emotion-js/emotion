@@ -722,6 +722,48 @@ const otherThing = process.env.NODE_ENV === "production" ? {
 };"
 `;
 
+exports[`emotion-babel-plugin css nested-interpolation-order 1`] = `
+"import { css } from '@emotion/react'
+
+const nested = css\`
+  .nested {
+    padding: 25px;
+  }
+\`
+
+const cls = css\`
+  color: red;
+
+  .top-level {
+    .nested {
+      padding: 15px;
+    }
+
+    \${nested};
+
+    &:hover {
+      color: blue;
+    }
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."; }
+
+import { css } from '@emotion/react';
+const nested = process.env.NODE_ENV === "production" ? {
+  name: "1qkbfd3",
+  styles: ".nested{padding:25px;}"
+} : {
+  name: "14k0qg4-nested",
+  styles: ".nested{padding:25px;};label:nested;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5lc3RlZC1pbnRlcnBvbGF0aW9uLW9yZGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVrQiIsImZpbGUiOiJuZXN0ZWQtaW50ZXJwb2xhdGlvbi1vcmRlci5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCBuZXN0ZWQgPSBjc3NgXG4gIC5uZXN0ZWQge1xuICAgIHBhZGRpbmc6IDI1cHg7XG4gIH1cbmBcblxuY29uc3QgY2xzID0gY3NzYFxuICBjb2xvcjogcmVkO1xuXG4gIC50b3AtbGV2ZWwge1xuICAgIC5uZXN0ZWQge1xuICAgICAgcGFkZGluZzogMTVweDtcbiAgICB9XG5cbiAgICAke25lc3RlZH07XG5cbiAgICAmOmhvdmVyIHtcbiAgICAgIGNvbG9yOiBibHVlO1xuICAgIH1cbiAgfVxuYFxuIl19 */",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+const cls = /*#__PURE__*/css("color:red;.top-level{.nested{padding:15px;}", nested, ";&:hover{color:blue;}}" + (process.env.NODE_ENV === "production" ? "" : ";label:cls;"), process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5lc3RlZC1pbnRlcnBvbGF0aW9uLW9yZGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVFlIiwiZmlsZSI6Im5lc3RlZC1pbnRlcnBvbGF0aW9uLW9yZGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmNvbnN0IG5lc3RlZCA9IGNzc2BcbiAgLm5lc3RlZCB7XG4gICAgcGFkZGluZzogMjVweDtcbiAgfVxuYFxuXG5jb25zdCBjbHMgPSBjc3NgXG4gIGNvbG9yOiByZWQ7XG5cbiAgLnRvcC1sZXZlbCB7XG4gICAgLm5lc3RlZCB7XG4gICAgICBwYWRkaW5nOiAxNXB4O1xuICAgIH1cblxuICAgICR7bmVzdGVkfTtcblxuICAgICY6aG92ZXIge1xuICAgICAgY29sb3I6IGJsdWU7XG4gICAgfVxuICB9XG5gXG4iXX0= */");"
+`;
+
 exports[`emotion-babel-plugin css no-actual-import 1`] = `
 "import '@emotion/react'
 
