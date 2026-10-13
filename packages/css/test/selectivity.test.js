@@ -147,6 +147,41 @@ describe('css', () => {
     `
     expect(sheet).toMatchSnapshot()
   })
+
+  // #3366
+  test('should replace context selector used inside of a pseudo-class function in a selector group', () => {
+    css`
+      .Typography:where(& .primary),
+      .Typography:where(& .secondary) {
+        display: block;
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('should replace context selector used inside of a pseudo-class function in a selector group mixed with regular selectors', () => {
+    css`
+      .foo,
+      .bar:is(.baz &),
+      .qwe {
+        display: block;
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('should replace context selector used inside of a pseudo-class function in a selector group nested in a selector group', () => {
+    css`
+      .a,
+      .b {
+        .c:not(& .d),
+        .e {
+          color: hotpink;
+        }
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
 })
 
 describe('orphaned pseudos', () => {
