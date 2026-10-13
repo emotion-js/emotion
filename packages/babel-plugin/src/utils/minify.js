@@ -29,6 +29,25 @@ const toInputTree = (elements, tree) => {
   return tree
 }
 
+const compareLocation = (element1, element2) =>
+  element1.line - element2.line || element1.column - element2.column
+
+// Stylis lists a rule's declarations before its nested rules, so a placeholder
+// (parsed as a declaration) would move ahead of nested rules written before it.
+// The placeholder can stand for whole rules, so keep the source order instead.
+const restoreSourceOrder = elements => {
+  for (let i = 0; i < elements.length; i++) {
+    const { type, children } = elements[i]
+    if (Array.isArray(children)) {
+      if (type === 'rule') {
+        children.sort(compareLocation)
+      }
+      restoreSourceOrder(children)
+    }
+  }
+  return elements
+}
+
 var stringifyTree = elements => {
   return elements
     .map(element => {
@@ -143,7 +162,9 @@ function createRawStringFromTemplateLiteral(
 export default function minify(path, t) {
   const quasi = path.node.quasi
   const raw = createRawStringFromTemplateLiteral(quasi)
-  const minified = stringifyTree(toInputTree(compile(raw), []))
+  const minified = stringifyTree(
+    restoreSourceOrder(toInputTree(compile(raw), []))
+  )
   const expressions = replacePlaceholdersWithExpressions(
     minified,
     quasi.expressions || [],
