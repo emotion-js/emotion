@@ -1,10 +1,17 @@
 name: 'CI setup'
+inputs:
+  node-version:
+    description: Optional Node.js version override for compatibility tests
+    required: false
+    default: ''
+
 runs:
   using: 'composite'
   steps:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
+        node-version: ${{ inputs.node-version }}
         node-version-file: .node-version
         cache: yarn
 

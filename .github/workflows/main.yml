@@ -12,10 +12,11 @@ permissions:
 
 jobs:
   test:
-    name: 'Tests on ${{matrix.platform}}'
+    name: 'Tests using Node ${{ matrix.node_version }} on ${{ matrix.platform }}'
     strategy:
       fail-fast: false
       matrix:
+        node_version: [22, 24, 26]
         platform:
           - ubuntu-latest
           - windows-latest
@@ -23,13 +24,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/ci-setup
+        with:
+          node-version: ${{ matrix.node_version }}
 
       - name: Run Tests
         run: yarn test:ci --color
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
-        if: ${{ matrix.platform == 'ubuntu-latest' && always() }}
+        if: ${{ matrix.platform == 'ubuntu-latest' && matrix.node_version == 24 && always() }}
 
   typescript:
     name: TypeScript
