@@ -15,7 +15,7 @@ sheet.insert('html { color: hotpink; }')
 ```
 
 > **Note:**
-> This is not useful for server-side rendering, you should implement SSR seperately
+> This is not useful for server-side rendering, you should implement SSR separately
 
 ## StyleSheet
 

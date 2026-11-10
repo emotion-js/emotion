@@ -151,7 +151,7 @@ describe('unsafe pseudo classes', () => {
       `)
     })
 
-    test('does warn when not using the flag on the rule that preceeds another rule', () => {
+    test('does warn when not using the flag on the rule that precedes another rule', () => {
       expect(
         renderer
           .create(
@@ -201,7 +201,7 @@ describe('unsafe pseudo classes', () => {
       `)
     })
 
-    test('does warn when not using the flag on the rule that preceeds a declaration', () => {
+    test('does warn when not using the flag on the rule that precedes a declaration', () => {
       expect(
         renderer
           .create(
@@ -268,7 +268,7 @@ describe('unsafe pseudo classes', () => {
       expect(console.error).not.toBeCalled()
     })
 
-    test('does not warn when using the flag on the rule that preceeds another rule', () => {
+    test('does not warn when using the flag on the rule that precedes another rule', () => {
       expect(
         renderer
           .create(
@@ -306,7 +306,7 @@ describe('unsafe pseudo classes', () => {
       expect(console.error).not.toBeCalled()
     })
 
-    test('does not warn when using the flag on the rule that preceeds a declaration', () => {
+    test('does not warn when using the flag on the rule that precedes a declaration', () => {
       expect(
         renderer
           .create(
