@@ -95,14 +95,14 @@ test('no React hook order violations', () => {
 
 // https://github.com/emotion-js/emotion/issues/3414
 test('does not throw when a Global is restored after its styles were empty and a neighbouring Global unmounted', () => {
-    const cache = createCache({ key: 'global-restore' })
+const cache = createCache({ key: 'global-restore' })
   function App({ firstStyles, includeSecond }) {
     return (
       <CacheProvider value={cache}>
-      <Global styles={firstStyles} />
-    {includeSecond && <Global styles={{ body: { background: 'green' } }} />}
+        <Global styles={firstStyles} />
+        {includeSecond && <Global styles={{ body: { background: 'green' } }} />}
       </CacheProvider>
-    )    
+    )
   }
   const { rerender, unmount } = render(<App firstStyles="" includeSecond />)
   rerender(<App firstStyles={{ body: { background: 'red' } }} includeSecond />)
@@ -115,7 +115,7 @@ test('does not throw when a Global is restored after its styles were empty and a
         includeSecond={false}
       />
     )
-    }).not.toThrow()
+}).not.toThrow()
   expect(document.head.textContent).toContain('blue')
   unmount()
 })
