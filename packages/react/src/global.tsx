@@ -134,6 +134,12 @@ export let Global = /* #__PURE__ */ withEmotionCache<GlobalProps>(
         let element = sheet.tags[sheet.tags.length - 1].nextElementSibling
         sheet.before = element
         sheet.flush()
+      } else if (sheet.before && !sheet.before.isConnected) {
+        // the sheet is empty, so sheet.before may still reference a style
+        // element that has since been removed (for example, a neighbouring
+        // Global unmounted). Refresh it so the next insert does not use
+        // a detached node.
+        sheet.before = cache.sheet.tags[0] ?? null
       }
       cache.insert(``, serialized, sheet, false)
     }, [cache, serialized.name])

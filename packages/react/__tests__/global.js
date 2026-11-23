@@ -92,3 +92,30 @@ test('no React hook order violations', () => {
   render(<Comp flag />)
   expect(console.error).not.toHaveBeenCalled()
 })
+
+// https://github.com/emotion-js/emotion/issues/3414
+test('does not throw when a Global is restored after its styles were empty and a neighbouring Global unmounted', () => {
+  const cache = createCache({ key: 'global-restore' })
+  function App({ firstStyles, includeSecond }) {
+    return (
+      <CacheProvider value={cache}>
+        <Global styles={firstStyles} />
+        {includeSecond && <Global styles={{ body: { background: 'green' } }} />}
+      </CacheProvider>
+    )
+  }
+  const { rerender, unmount } = render(<App firstStyles="" includeSecond />)
+  rerender(<App firstStyles={{ body: { background: 'red' } }} includeSecond />)
+  rerender(<App firstStyles="" includeSecond />)
+  rerender(<App firstStyles="" includeSecond={false} />)
+  expect(() => {
+    rerender(
+      <App
+        firstStyles={{ body: { background: 'blue' } }}
+        includeSecond={false}
+      />
+    )
+  }).not.toThrow()
+  expect(document.head.textContent).toContain('blue')
+  unmount()
+})
