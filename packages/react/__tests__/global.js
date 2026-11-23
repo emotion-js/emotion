@@ -77,8 +77,7 @@ test('no React hook order violations', () => {
       <CacheProvider value={cache}>
         <Global
           styles={
-            flag &)
-          }
+            flag &&
             (t => css`
               color: ${t.color};
             `)
